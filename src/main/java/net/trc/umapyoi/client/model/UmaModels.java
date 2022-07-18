@@ -8,6 +8,9 @@ public class UmaModels {
     public static final ResourceLocation GOLD_SHIP = getModel("gold_ship");
     public static final ResourceLocation TRAINNING_SUIT = getModel("trainning_suit");
     public static ResourceLocation getModel(String name) {
-        return new ResourceLocation(Umapyoi.MODID, "models/entity/"+name+".json");
+        return getModel(Umapyoi.MODID, name);
+    }
+    public static ResourceLocation getModel(String modid,String name) {
+        return new ResourceLocation(modid, "models/entity/"+name+".json");
     }
 }

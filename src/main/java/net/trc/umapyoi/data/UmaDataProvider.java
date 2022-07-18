@@ -76,7 +76,7 @@ public class UmaDataProvider implements DataProvider {
 
     @Override
     public String getName() {
-        return String.format("%s provider for %s", UmaData.REGISTRY_KEY.getRegistryName(), modId);
+        return String.format("%s provider for %s", "uma musume data", modId);
     }
 
 }

@@ -38,15 +38,15 @@ public class UmaSoulCuriosWrapper implements ICurio {
         Multimap<Attribute, AttributeModifier> atts = LinkedHashMultimap.create();
         atts.put(Attributes.MOVEMENT_SPEED,
                 new AttributeModifier(uuid, "speed_bonus",
-                        MathUtil.lerp( ((double)UmapyoiAPI.getUmaData(getStack()).getInt("speed") / 1200.0D), 0.1, 3.0),
+                        MathUtil.lerp( ((double)UmapyoiAPI.getUmaSoulData(getStack()).getInt("speed") / 1200.0D), 0.1, 3.0),
                         AttributeModifier.Operation.MULTIPLY_TOTAL));
         atts.put(Attributes.ATTACK_DAMAGE,
                 new AttributeModifier(uuid, "strength_attack_bonus",
-                        MathUtil.lerp((double) (UmapyoiAPI.getUmaData(getStack()).getInt("strength") / 1200), 0.0, 2),
+                        MathUtil.lerp((double) (UmapyoiAPI.getUmaSoulData(getStack()).getInt("strength") / 1200), 0.0, 2),
                         AttributeModifier.Operation.MULTIPLY_TOTAL));
         atts.put(Attributes.ATTACK_SPEED,
                 new AttributeModifier(uuid, "strength_speed_bonus",
-                        MathUtil.lerp((double) (UmapyoiAPI.getUmaData(getStack()).getInt("strength") / 1200), 0.0, 1.25),
+                        MathUtil.lerp((double) (UmapyoiAPI.getUmaSoulData(getStack()).getInt("strength") / 1200), 0.0, 1.25),
                         AttributeModifier.Operation.MULTIPLY_TOTAL));
         CuriosApi.getCuriosHelper().addSlotModifier(atts, "uma_suit", uuid, 1.0, AttributeModifier.Operation.ADDITION);
         return atts;

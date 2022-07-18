@@ -21,7 +21,7 @@ public class UmaSoulCapProvider implements ICapabilitySerializable<CompoundTag>{
     public UmaSoulCapProvider(ItemStack stack, CompoundTag nbt) {
         this.stack = stack;
         this.curiosInstance = new UmaSoulCuriosWrapper(stack);
-        this.umaInstance = new UmaCapability();
+        this.umaInstance = new UmaCapability(stack);
     }
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {

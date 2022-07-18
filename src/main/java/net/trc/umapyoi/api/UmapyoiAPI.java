@@ -1,10 +1,13 @@
 package net.trc.umapyoi.api;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.trc.umapyoi.capability.CapabilityRegistry;
 import net.trc.umapyoi.item.UmaSoulItem;
+import net.trc.umapyoi.registry.UmaData;
+import net.trc.umapyoi.registry.UmaDataRegistry;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
@@ -24,7 +27,7 @@ public class UmapyoiAPI {
         return ItemStack.EMPTY;
     }
 
-    public static CompoundTag getUmaData(ItemStack stack) {
+    public static CompoundTag getUmaSoulData(ItemStack stack) {
         if (stack.getItem() instanceof UmaSoulItem) {
             if(stack.getCapability(CapabilityRegistry.UMACAP).isPresent()) {
                 var umadata = stack.getCapability(CapabilityRegistry.UMACAP).orElse(null);
@@ -33,65 +36,19 @@ public class UmapyoiAPI {
         }
         return new CompoundTag();
     }
+    
+    public static UmaData getUmaData(ItemStack stack) {
+        if (stack.getItem() instanceof UmaSoulItem) {
+            return UmaDataRegistry.UMA_DATA_REGISTRY.get().getValue(new ResourceLocation(stack.getOrCreateTag().getString("data")));
+        }
+        return UmaDataRegistry.COMMON_UMA.get();
+    }
 
-//    public static int getSpeed(ItemStack stack) {
-//        return getUmaData(stack).getInt("speed");
-//    }
-//
-//    public static void setSpeed(ItemStack stack, int speed) {
-//        if (stack.getItem() instanceof UmaSoulItem) {
-//            stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-//                    cap.setSpeed(speed);
-//            });
-//        }
-//    }
-//
-//    public static int getStamina(ItemStack stack) {
-//        return getUmaData(stack).getInt("stamina");
-//    }
-//
-//    public static void setStamina(ItemStack stack, int stamina) {
-//        if (stack.getItem() instanceof UmaSoulItem) {
-//            stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-//                    cap.setStamina(stamina);
-//            });
-//        }
-//    }
-//
-//    public static int getStrength(ItemStack stack) {
-//        return getUmaData(stack).getInt("strength");
-//    }
-//
-//    public static void setStrength(ItemStack stack, int strength) {
-//        if (stack.getItem() instanceof UmaSoulItem) {
-//            stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-//                    cap.setStrength(strength);
-//            });
-//        }
-//    }
-//
-//    public static int getMentality(ItemStack stack) {
-//        return getUmaData(stack).getInt("mentality");
-//    }
-//
-//    public static void setMentality(ItemStack stack, int mentality) {
-//        if (stack.getItem() instanceof UmaSoulItem) {
-//            stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-//                    cap.setMentality(mentality);
-//            });
-//        }
-//    }
-//
-//    public static int getWisdom(ItemStack stack) {
-//        return getUmaData(stack).getInt("wisdom");
-//    }
-//
-//    public static void setWisdom(ItemStack stack, int wisdom) {
-//        if (stack.getItem() instanceof UmaSoulItem) {
-//            stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-//                    cap.setWisdom(wisdom);
-//            });
-//        }
-//    }
+    public static ItemStack setUmaData(ItemStack stack, UmaData data) {
+        if (stack.getItem() instanceof UmaSoulItem) {
+            stack.getOrCreateTag().putString("data", data.getRegistryName().toString());
+        }
+        return stack;
+    }
 
 }

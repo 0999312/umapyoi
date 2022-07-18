@@ -1,3 +1,6 @@
 {
-   "message.test.speed" : "speed: %s"
+   "message.test.speed" : "speed: %s",
+   "umapyoi.umadata.name" : "Uma Musume Name: %s",
+   "umapyoi.uma.common_uma" : "Nameless Uma Musume",
+   "umapyoi.uma.gold_ship" : "Gold Ship"
 }

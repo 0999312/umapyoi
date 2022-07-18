@@ -13,9 +13,10 @@ import net.trc.umapyoi.Umapyoi;
 
 public class UmaData extends ForgeRegistryEntry<UmaData> {
     public static final Codec<UmaData> CODEC = RecordCodecBuilder.create(instance -> instance
-            .group(Codec.STRING.fieldOf("name").forGetter((UmaData data) -> data.name),
-                    Codec.INT.listOf().fieldOf("property").forGetter((UmaData data) -> data.property),
-                    Codec.INT.listOf().fieldOf("max_property").forGetter((UmaData data) -> data.max_property))
+            .group(Codec.STRING.fieldOf("name").forGetter(UmaData::name),
+                    Codec.INT.listOf().fieldOf("property").forGetter(UmaData::property),
+                    Codec.INT.listOf().fieldOf("max_property").forGetter(UmaData::maxProperty)
+                    )
             .apply(instance, UmaData::new));
 
     public static final ResourceKey<Registry<UmaData>> REGISTRY_KEY = ResourceKey
@@ -29,6 +30,18 @@ public class UmaData extends ForgeRegistryEntry<UmaData> {
         this.name = value;
         this.property = s;
         this.max_property = max_s;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public List<Integer> property() {
+        return property;
+    }
+
+    public List<Integer> maxProperty() {
+        return max_property;
     }
 
 }

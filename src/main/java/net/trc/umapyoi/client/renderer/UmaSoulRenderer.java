@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ItemStack;
-import net.trc.umapyoi.Umapyoi;
+import net.trc.umapyoi.api.UmapyoiAPI;
 import net.trc.umapyoi.client.model.UmaModels;
 import net.trc.umapyoi.client.model.UmaPlayerModel;
 import net.trc.umapyoi.item.UmaSuitItem;
@@ -32,8 +32,14 @@ public class UmaSoulRenderer implements ICurioRenderer {
             float headPitch) {
 
         LivingEntity player = slotContext.entity();
-        VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(getTexture()));
-        UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(player, ClientUtil.getModelPOJO(UmaModels.COMMON_UMA),
+        VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(getTexture(stack)));
+        UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(player,
+                ClientUtil.getModelPOJO(
+                        UmaModels.getModel(
+                                UmapyoiAPI.getUmaData(stack).getRegistryName().getNamespace(),
+                                UmapyoiAPI.getUmaData(stack).name()
+                                )
+                        ),
                 BedrockVersion.LEGACY);
         boolean suit_flag = false;
 
@@ -42,13 +48,13 @@ public class UmaSoulRenderer implements ICurioRenderer {
             if (itemHandler.getStacksHandler("uma_suit").isPresent()) {
                 var stacksHandler = itemHandler.getStacksHandler("uma_suit").orElse(null);
                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();
-                
+
                 if (stackHandler.getSlots() > 0 && stackHandler.getStackInSlot(0).getItem() instanceof UmaSuitItem) {
                     suit_flag = true;
                 }
             }
         }
-        
+
         base_model.setModelProperties(player, suit_flag, player instanceof ArmorStand);
         base_model.prepareMobModel(player, limbSwing, limbSwingAmount, partialTicks);
         base_model.setupAnim(player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
@@ -56,8 +62,9 @@ public class UmaSoulRenderer implements ICurioRenderer {
                 LivingEntityRenderer.getOverlayCoords(player, 0.0F), 1, 1, 1, 1);
     }
 
-    private ResourceLocation getTexture() {
-        return new ResourceLocation(Umapyoi.MODID, "textures/model/common_uma.png");
+    private ResourceLocation getTexture(ItemStack stack) {
+        return new ResourceLocation(UmapyoiAPI.getUmaData(stack).getRegistryName().getNamespace(),
+                "textures/model/" + UmapyoiAPI.getUmaData(stack).name() + ".png");
     }
 
 }

@@ -1,9 +1,11 @@
 package net.trc.umapyoi.capability;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
+import net.trc.umapyoi.api.UmapyoiAPI;
 
 public class UmaCapability implements IUmaCapability {
-
+    
     private int speed = 1;
     private int stamina = 1;
     private int strength = 1;
@@ -15,6 +17,20 @@ public class UmaCapability implements IUmaCapability {
     private int max_strength = 1200;
     private int max_mentality = 1200;
     private int max_wisdom = 1200;
+    
+    public UmaCapability(ItemStack stack) {
+        this.setSpeed(UmapyoiAPI.getUmaData(stack).property().get(0));
+        this.setStamina(UmapyoiAPI.getUmaData(stack).property().get(1));
+        this.setStrength(UmapyoiAPI.getUmaData(stack).property().get(2));
+        this.setMentality(UmapyoiAPI.getUmaData(stack).property().get(3));
+        this.setWisdom(UmapyoiAPI.getUmaData(stack).property().get(4));
+        
+        this.setMaxSpeed(UmapyoiAPI.getUmaData(stack).maxProperty().get(0));
+        this.setMaxStamina(UmapyoiAPI.getUmaData(stack).maxProperty().get(1));
+        this.setMaxStrength(UmapyoiAPI.getUmaData(stack).maxProperty().get(2));
+        this.setMaxMentality(UmapyoiAPI.getUmaData(stack).maxProperty().get(3));
+        this.setMaxWisdom(UmapyoiAPI.getUmaData(stack).maxProperty().get(4));
+    }
     
     @Override
     public CompoundTag serializeNBT() {

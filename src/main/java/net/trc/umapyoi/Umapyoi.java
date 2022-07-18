@@ -12,9 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryBuilder;
 import net.trc.umapyoi.item.ItemRegistry;
-import net.trc.umapyoi.registry.UmaData;
 import net.trc.umapyoi.registry.UmaDataRegistry;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import org.slf4j.Logger;
@@ -39,10 +37,9 @@ public class Umapyoi {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::enqueueIMC);
-        ItemRegistry.ITEMS.register(modEventBus);
-        UmaDataRegistry.UMA_DATA.makeRegistry(UmaData.class,
-                () -> new RegistryBuilder<UmaData>().disableSaving().dataPackRegistry(UmaData.CODEC, UmaData.CODEC));
         UmaDataRegistry.UMA_DATA.register(modEventBus);
+        ItemRegistry.ITEMS.register(modEventBus);
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {
