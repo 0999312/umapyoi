@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ItemStack;
+import net.trc.umapyoi.Umapyoi;
 import net.trc.umapyoi.api.UmapyoiAPI;
 import net.trc.umapyoi.client.model.UmaModels;
 import net.trc.umapyoi.client.model.UmaPlayerModel;
@@ -34,13 +35,7 @@ public class UmaSoulRenderer implements ICurioRenderer {
         LivingEntity player = slotContext.entity();
         VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(getTexture(stack)));
         UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(player,
-                ClientUtil.getModelPOJO(
-                        UmaModels.getModel(
-                                UmapyoiAPI.getUmaData(stack).getRegistryName().getNamespace(),
-                                UmapyoiAPI.getUmaData(stack).name()
-                                )
-                        ),
-                BedrockVersion.LEGACY);
+                ClientUtil.getModelPOJO(UmaModels.getModel(UmapyoiAPI.getUmaData(stack).name())), BedrockVersion.LEGACY);
         boolean suit_flag = false;
 
         if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent()) {
@@ -63,7 +58,7 @@ public class UmaSoulRenderer implements ICurioRenderer {
     }
 
     private ResourceLocation getTexture(ItemStack stack) {
-        return new ResourceLocation(UmapyoiAPI.getUmaData(stack).getRegistryName().getNamespace(),
+        return new ResourceLocation(Umapyoi.MODID,
                 "textures/model/" + UmapyoiAPI.getUmaData(stack).name() + ".png");
     }
 

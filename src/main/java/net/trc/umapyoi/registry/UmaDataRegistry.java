@@ -20,4 +20,5 @@ public class UmaDataRegistry {
     public static final RegistryObject<UmaData> GOLD_SHIP = UMA_DATA.register("gold_ship", ()->{
         return new UmaData("gold_ship", Lists.newArrayList(100,100,100,100,100), Lists.newArrayList(1200,1200,1200,1200,1200));
     });
+
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -21,32 +22,32 @@ import net.trc.umapyoi.Umapyoi;
 import net.trc.umapyoi.api.UmapyoiAPI;
 import net.trc.umapyoi.curios.UmaSoulCapProvider;
 import net.trc.umapyoi.registry.UmaData;
-import net.trc.umapyoi.registry.UmaDataRegistry;
 
 public class UmaSoulItem extends Item {
 
     public UmaSoulItem() {
         super(Umapyoi.defaultItemProperties().stacksTo(1));
     }
-    
+
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag nbt) {
         return new UmaSoulCapProvider(stack, nbt);
     }
-    
+
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslatableComponent("umapyoi.umadata.name", I18n.get("umapyoi.uma."+UmapyoiAPI.getUmaData(stack).name())));
+        tooltip.add(new TranslatableComponent("umapyoi.umadata.name",
+                I18n.get("umapyoi.uma." + UmapyoiAPI.getUmaData(stack).name())));
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (this.allowdedIn(group)) {
-            for (UmaData data : UmaDataRegistry.UMA_DATA_REGISTRY.get().getValues()) {
-                items.add(UmapyoiAPI.setUmaData(getDefaultInstance(), data));
-            }
+            if (Minecraft.getInstance().getConnection() != null)
+                Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(UmaData.REGISTRY_KEY).stream()
+                        .forEach(data -> items.add(UmapyoiAPI.setUmaData(getDefaultInstance(), data)));
         }
     }
 }

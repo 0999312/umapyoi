@@ -1,9 +1,10 @@
 package net.trc.umapyoi.api;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.trc.umapyoi.Umapyoi;
 import net.trc.umapyoi.capability.CapabilityRegistry;
 import net.trc.umapyoi.item.UmaSoulItem;
 import net.trc.umapyoi.registry.UmaData;
@@ -29,24 +30,28 @@ public class UmapyoiAPI {
 
     public static CompoundTag getUmaSoulData(ItemStack stack) {
         if (stack.getItem() instanceof UmaSoulItem) {
-            if(stack.getCapability(CapabilityRegistry.UMACAP).isPresent()) {
+            if (stack.getCapability(CapabilityRegistry.UMACAP).isPresent()) {
                 var umadata = stack.getCapability(CapabilityRegistry.UMACAP).orElse(null);
                 return umadata.serializeNBT();
             }
         }
         return new CompoundTag();
     }
-    
+
     public static UmaData getUmaData(ItemStack stack) {
         if (stack.getItem() instanceof UmaSoulItem) {
-            return UmaDataRegistry.UMA_DATA_REGISTRY.get().getValue(new ResourceLocation(stack.getOrCreateTag().getString("data")));
+            return UmaData.CODEC.parse(NbtOps.INSTANCE, stack.getOrCreateTag().get("data"))
+                    .resultOrPartial(msg -> Umapyoi.getLogger().error("Failed to parse {}: {}", stack.toString(), msg))
+                    .orElseGet(UmaDataRegistry.COMMON_UMA);
         }
         return UmaDataRegistry.COMMON_UMA.get();
     }
 
     public static ItemStack setUmaData(ItemStack stack, UmaData data) {
         if (stack.getItem() instanceof UmaSoulItem) {
-            stack.getOrCreateTag().putString("data", data.getRegistryName().toString());
+            UmaData.CODEC.encodeStart(NbtOps.INSTANCE, data).resultOrPartial(
+                    msg -> Umapyoi.getLogger().error("Failed to encode {}: {}", data.getRegistryName().toString(), msg))
+                    .ifPresent(tag -> stack.getOrCreateTag().put("data", tag));
         }
         return stack;
     }

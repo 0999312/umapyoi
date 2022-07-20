@@ -57,6 +57,7 @@ public class UmaDataProvider implements DataProvider {
         this.datas.forEach( (loc, data) -> {
             String pathString = String.join("/", PackType.SERVER_DATA.getDirectory(), loc.getNamespace(), UmaData.REGISTRY_KEY.location().getNamespace(), UmaData.REGISTRY_KEY.location().getPath(), loc.getPath()+".json");
             Path path = outputFolder.resolve(pathString);
+            
             UmaData.CODEC.encodeStart(ops, data)
             .resultOrPartial(msg -> Umapyoi.getLogger().error("Failed to encode {}: {}", path, msg)) // Log error on encode failure.
             .ifPresent(json -> // Output to file on encode success.
