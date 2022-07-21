@@ -41,7 +41,10 @@ public class UmapyoiAPI {
     public static UmaData getUmaData(ItemStack stack) {
         if (stack.getItem() instanceof UmaSoulItem) {
             return UmaData.CODEC.parse(NbtOps.INSTANCE, stack.getOrCreateTag().get("data"))
-                    .resultOrPartial(msg -> Umapyoi.getLogger().error("Failed to parse {}: {}", stack.toString(), msg))
+                    .resultOrPartial(msg -> {
+                        Umapyoi.getLogger().error("Failed to parse {}: {}", stack.toString(), msg);
+                        UmapyoiAPI.setUmaData(stack, UmaDataRegistry.COMMON_UMA.get());
+                        })
                     .orElseGet(UmaDataRegistry.COMMON_UMA);
         }
         return UmaDataRegistry.COMMON_UMA.get();

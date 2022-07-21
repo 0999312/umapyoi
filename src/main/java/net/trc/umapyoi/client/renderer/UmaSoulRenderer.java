@@ -19,6 +19,7 @@ import net.trc.umapyoi.api.UmapyoiAPI;
 import net.trc.umapyoi.client.model.UmaModels;
 import net.trc.umapyoi.client.model.UmaPlayerModel;
 import net.trc.umapyoi.item.UmaSuitItem;
+import net.trc.umapyoi.registry.UmaData;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
@@ -33,9 +34,10 @@ public class UmaSoulRenderer implements ICurioRenderer {
             float headPitch) {
 
         LivingEntity player = slotContext.entity();
-        VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(getTexture(stack)));
+        final UmaData data = UmapyoiAPI.getUmaData(stack);
+        VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(getTexture(data)));
         UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(player,
-                ClientUtil.getModelPOJO(UmaModels.getModel(UmapyoiAPI.getUmaData(stack).name())), BedrockVersion.LEGACY);
+                ClientUtil.getModelPOJO(UmaModels.getModel(data.name())), BedrockVersion.LEGACY);
         boolean suit_flag = false;
 
         if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent()) {
@@ -57,9 +59,9 @@ public class UmaSoulRenderer implements ICurioRenderer {
                 LivingEntityRenderer.getOverlayCoords(player, 0.0F), 1, 1, 1, 1);
     }
 
-    private ResourceLocation getTexture(ItemStack stack) {
+    private ResourceLocation getTexture(UmaData data) {
         return new ResourceLocation(Umapyoi.MODID,
-                "textures/model/" + UmapyoiAPI.getUmaData(stack).name() + ".png");
+                "textures/model/" + data.name() + ".png");
     }
 
 }
