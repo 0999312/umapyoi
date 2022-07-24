@@ -1,11 +1,11 @@
 {
-  "name": "tokai_teio",
+  "name": "gold_ship",
   "property": [
-    1,
-    1,
-    1,
-    1,
-    1
+    100,
+    100,
+    100,
+    100,
+    100
   ],
   "max_property": [
     1200,

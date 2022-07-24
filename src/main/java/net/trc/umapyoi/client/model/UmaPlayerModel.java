@@ -13,6 +13,7 @@ import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.CrossbowItem;
+import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 
@@ -272,7 +273,7 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.tail.visible = false;
             }
             this.crouching = player.isCrouching();
-            if (!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty()) {
+            if (!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty() && !(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ElytraItem)) {
                 this.hideParts.visible = false;
             }
 

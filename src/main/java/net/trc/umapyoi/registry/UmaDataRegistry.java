@@ -20,5 +20,10 @@ public class UmaDataRegistry {
     public static final RegistryObject<UmaData> GOLD_SHIP = UMA_DATA.register("gold_ship", ()->{
         return new UmaData("gold_ship", Lists.newArrayList(100,100,100,100,100), Lists.newArrayList(1200,1200,1200,1200,1200));
     });
-
+    public static final RegistryObject<UmaData> SPECIAL_WEEK = UMA_DATA.register("special_week", ()->{
+        return new UmaData("special_week", Lists.newArrayList(100,100,100,100,100), Lists.newArrayList(1200,1200,1200,1200,1200));
+    });
+    public static final RegistryObject<UmaData> TOKAI_TEIO = UMA_DATA.register("tokai_teio", ()->{
+        return new UmaData("tokai_teio", Lists.newArrayList(100,100,100,100,100), Lists.newArrayList(1200,1200,1200,1200,1200), true);
+    });
 }

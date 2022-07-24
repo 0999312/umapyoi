@@ -1,6 +1,6 @@
 {
 	"format_version": "1.10.0",
-	"geometry.zombie:geometry.humanoid": {
+	"geometry.model": {
 		"texturewidth": 128,
 		"textureheight": 128,
 		"visible_bounds_width": 3,
@@ -341,17 +341,7 @@
 				]
 			},
 			{
-				"name": "body",
-				"pivot": [0, 24, 0],
-				"mirror": true,
-				"cubes": [
-					{"origin": [-2.5, 22, -2.5], "size": [5, 4, 5], "uv": [56, 28], "inflate": -1.25, "mirror": false},
-					{"origin": [-3.5, 11.75, -1.5], "size": [7, 12, 3], "uv": [58, 0], "inflate": -0.251, "mirror": false}
-				]
-			},
-			{
 				"name": "tail",
-				"parent": "body",
 				"pivot": [0, 15, 3]
 			},
 			{
@@ -373,6 +363,15 @@
 				"cubes": [
 					{"origin": [-1.5, 2.77874, 4.00169], "size": [3, 7, 4], "uv": [26, 58], "inflate": 0.01, "mirror": false},
 					{"origin": [-1, 2.51419, 5.03732], "size": [2, 7, 2], "uv": [0, 0], "mirror": false}
+				]
+			},
+			{
+				"name": "body",
+				"pivot": [0, 24, 0],
+				"mirror": true,
+				"cubes": [
+					{"origin": [-2.5, 22, -2.5], "size": [5, 4, 5], "uv": [56, 28], "inflate": -1.25, "mirror": false},
+					{"origin": [-3.5, 11.75, -1.5], "size": [7, 12, 3], "uv": [58, 0], "inflate": -0.251, "mirror": false}
 				]
 			},
 			{

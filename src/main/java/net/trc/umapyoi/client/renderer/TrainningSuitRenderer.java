@@ -16,4 +16,14 @@ public class TrainningSuitRenderer extends AbstractSuitRenderer {
         return new ResourceLocation(Umapyoi.MODID, "textures/model/trainning_suit.png");
     }
 
+    @Override
+    protected ResourceLocation getFlatModel() {
+        return UmaModels.TRAINNING_SUIT_FLAT;
+    }
+
+    @Override
+    protected ResourceLocation getFlatTexture() {
+        return new ResourceLocation(Umapyoi.MODID, "textures/model/trainning_suit.png");
+    }
+
 }

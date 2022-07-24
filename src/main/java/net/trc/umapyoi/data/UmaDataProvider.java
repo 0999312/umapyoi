@@ -39,7 +39,8 @@ public class UmaDataProvider implements DataProvider {
     }
     
     public void addDatas() {
-        this.addData(UmaDataRegistry.COMMON_UMA);
+        this.addData(UmaDataRegistry.GOLD_SHIP);
+        this.addData(UmaDataRegistry.TOKAI_TEIO);
     }
     
     public void addData(Supplier<UmaData> data) {
