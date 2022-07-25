@@ -41,6 +41,9 @@ public class UmaDataProvider implements DataProvider {
     public void addDatas() {
         this.addData(UmaDataRegistry.GOLD_SHIP);
         this.addData(UmaDataRegistry.TOKAI_TEIO);
+        this.addData(UmaDataRegistry.SPECIAL_WEEK);
+        this.addData(UmaDataRegistry.OGURI_CAP);
+        this.addData(UmaDataRegistry.SAKURA_SAYONO_O);
     }
     
     public void addData(Supplier<UmaData> data) {

@@ -38,7 +38,7 @@ public class UmaUniformRenderer {
 
         @Override
         protected ResourceLocation getTexture() {
-            return new ResourceLocation(Umapyoi.MODID, "textures/model/winter_suit.png");
+            return new ResourceLocation(Umapyoi.MODID, "textures/model/winter_uniform.png");
         }
 
         @Override
@@ -48,7 +48,7 @@ public class UmaUniformRenderer {
 
         @Override
         protected ResourceLocation getFlatTexture() {
-            return new ResourceLocation(Umapyoi.MODID, "textures/model/winter_suit.png");
+            return new ResourceLocation(Umapyoi.MODID, "textures/model/winter_uniform.png");
         }
 
     }

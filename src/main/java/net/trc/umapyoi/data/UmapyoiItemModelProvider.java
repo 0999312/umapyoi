@@ -16,8 +16,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
     @Override
     protected void registerModels() {
       ItemRegistry.ITEMS.getEntries().forEach((item)->{
-          if(item == ItemRegistry.HACHIMI_MID || item == ItemRegistry.HACHIMI_BIG
-            || item == ItemRegistry.WINTER_UNIFORM || item == ItemRegistry.SUMMER_UNIFORM)
+          if(item == ItemRegistry.HACHIMI_MID || item == ItemRegistry.HACHIMI_BIG)
               return;
           if(item.get() instanceof BlockItem block)
               itemBlock(block::getBlock);
