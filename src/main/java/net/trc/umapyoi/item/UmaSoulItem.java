@@ -38,8 +38,8 @@ public class UmaSoulItem extends Item {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslatableComponent("umapyoi.umadata.name",
-                I18n.get("umapyoi.uma." + UmapyoiAPI.getUmaData(stack).name())));
+        tooltip.add(new TranslatableComponent("tooltip.umapyoi.umadata.name",
+                I18n.get("tooltip.umapyoi.uma." + UmapyoiAPI.getUmaData(stack).name())));
     }
 
     @Override

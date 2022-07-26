@@ -23,6 +23,8 @@ public class StatusUpItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        if(level.isClientSide())
+            return super.use(level, player, hand);
         if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent()) {
             var itemHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
             if (itemHandler.getStacksHandler("uma_soul").isPresent()) {
@@ -33,43 +35,43 @@ public class StatusUpItem extends Item {
                     stackHandler.getStackInSlot(0).getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
                         switch (status) {
                         case SPEED: {
-                            cap.setSpeed(value);
+                            cap.setSpeed(cap.getSpeed() + value);
                             break;
                         }
                         case STAMINA: {
-                            cap.setStamina(value);
+                            cap.setStamina(cap.getStamina() + value);
                             break;
                         }
                         case STRENGTH: {
-                            cap.setStrength(value);
+                            cap.setStrength(cap.getStrength() + value);
                             break;
                         }
                         case MENTALITY: {
-                            cap.setMentality(value);
+                            cap.setMentality(cap.getMentality() + value);
                             break;
                         }
                         case WISDOM: {
-                            cap.setWisdom(value);
+                            cap.setWisdom(cap.getWisdom() + value);
                             break;
                         }
                         case MAX_SPEED: {
-                            cap.setMaxSpeed(value);
+                            cap.setMaxSpeed(cap.getMaxSpeed() + value);
                             break;
                         }
                         case MAX_STAMINA: {
-                            cap.setMaxStamina(value);
+                            cap.setMaxStamina(cap.getMaxStamina() + value);
                             break;
                         }
                         case MAX_STRENGTH: {
-                            cap.setMaxStrength(value);
+                            cap.setMaxStrength(cap.getMaxStrength() + value);
                             break;
                         }
                         case MAX_MENTALITY: {
-                            cap.setMaxMentality(value);
+                            cap.setMaxMentality(cap.getMaxMentality() + value);
                             break;
                         }
                         case MAX_WISDOM: {
-                            cap.setMaxWisdom(value);
+                            cap.setMaxWisdom(cap.getMaxWisdom() + value);
                             break;
                         }
                         default:

@@ -17,6 +17,7 @@ import net.trc.umapyoi.api.UmaStatus;
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Umapyoi.MODID);
     
+    public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul", ()->new Item(Umapyoi.defaultItemProperties()));
     public static final RegistryObject<Item> UMA_SOUL = register("uma_soul", UmaSoulItem::new);
 
     public static final RegistryObject<Item> SUMMER_UNIFORM = register("summer_uniform", UmaSuitItem::new);

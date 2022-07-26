@@ -33,4 +33,8 @@ public class UmaDataRegistry {
     public static final RegistryObject<UmaData> SAKURA_SAYONO_O = UMA_DATA.register("sakura_sayono_o", ()->{
         return new UmaData("sakura_sayono_o", Lists.newArrayList(100,100,100,100,100), Lists.newArrayList(1200,1200,1200,1200,1200), true);
     });
+    
+    public static final RegistryObject<UmaData> OGURI_CAP_XMAS = UMA_DATA.register("oguri_cap_xmas", ()->{
+        return new UmaData("oguri_cap_xmas", Lists.newArrayList(120,100,100,100,100), Lists.newArrayList(1200,1200,1200,1200,1200));
+    });
 }

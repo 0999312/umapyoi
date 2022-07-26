@@ -44,6 +44,7 @@ public class UmaDataProvider implements DataProvider {
         this.addData(UmaDataRegistry.SPECIAL_WEEK);
         this.addData(UmaDataRegistry.OGURI_CAP);
         this.addData(UmaDataRegistry.SAKURA_SAYONO_O);
+        this.addData(UmaDataRegistry.OGURI_CAP_XMAS);
     }
     
     public void addData(Supplier<UmaData> data) {

@@ -15,6 +15,7 @@ public class DataGen {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         dataGenerator.addProvider(new UmaDataProvider(dataGenerator, existingFileHelper, Umapyoi.MODID));
         dataGenerator.addProvider(new UmapyoiItemModelProvider(dataGenerator, existingFileHelper));
+        dataGenerator.addProvider(new UmapyoiLangProvider(dataGenerator));
     }
 
 }
