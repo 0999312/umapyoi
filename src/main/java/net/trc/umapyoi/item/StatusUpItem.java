@@ -77,9 +77,9 @@ public class StatusUpItem extends Item {
                         default:
                             throw new IllegalArgumentException("Unexpected value: " + status);
                         }
+                        player.getCooldowns().addCooldown(player.getItemInHand(hand).getItem(), 30);
+                        player.getItemInHand(hand).shrink(1);
                     });
-                    player.getCooldowns().addCooldown(player.getItemInHand(hand).getItem(), 30);
-                    player.getItemInHand(hand).shrink(1);
                 }
             }
         }

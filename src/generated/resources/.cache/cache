@@ -1,4 +1,4 @@
-7ca524aac27cba18eb3bdb77128629b0d229294a assets/umapyoi/lang/en_us.json
+7d9c46a21b34c322f100d8a92f9c716a79aa37c6 assets/umapyoi/lang/en_us.json
 5e693d68b9c3cc94971021fb7451115324791483 assets/umapyoi/models/item/blank_uma_soul.json
 2af16e6bbbfd4398358135c8a9655bcc0be240bd assets/umapyoi/models/item/cupcake.json
 2796108c5ea01ab5517ddee33843a47a1a6d5a5a assets/umapyoi/models/item/jewel.json
@@ -23,9 +23,10 @@ a42101efb66b79f2cf06a73647ccf1e37fb9978f assets/umapyoi/models/item/winter_unifo
 d9657d619cd02752ac6e55cbcddd0b8a7b959531 assets/umapyoi/models/item/wisdom_high_item.json
 03f7f7e3294c61aa2519a3aa6af98e74d2168f27 assets/umapyoi/models/item/wisdom_low_item.json
 b0ec2a3b6ce61f4174cd61031797994ba5cb6c7a assets/umapyoi/models/item/wisdom_mid_item.json
+64660d4848ca005de7ad285d8e19b61f3344b512 data/umapyoi/umapyoi/umadata/agnus_tachyon.json
 2e5b4e54267fc0f29e7b0bf4d7e6c75a694d9a2e data/umapyoi/umapyoi/umadata/gold_ship.json
 da96aee85fe3a4e63c34f8cfb8e32cce6b53ea93 data/umapyoi/umapyoi/umadata/oguri_cap.json
 5e605526807e10ce19ab8cf2f3d27dce07f7f595 data/umapyoi/umapyoi/umadata/oguri_cap_xmas.json
-c2a998134707386ca5f45b8fb05f3f8fe039b5ad data/umapyoi/umapyoi/umadata/sakura_chiyono_o.json
+8f11521ac2ff54e321aaa9b505d1ca5307b513d6 data/umapyoi/umapyoi/umadata/sakura_sayono_o.json
 61f4fe7b54713d773e7a9ddab40a992f31f4c451 data/umapyoi/umapyoi/umadata/special_week.json
 489b44d86e151a81d8053336dde2c7046102fcb3 data/umapyoi/umapyoi/umadata/tokai_teio.json

@@ -15,6 +15,6 @@ public class CapabilityRegistry {
     
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
-        event.register(IUmaCapability.class);
+        event.register(UmaCapability.class);
     }
 }

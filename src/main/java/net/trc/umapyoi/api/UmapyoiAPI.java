@@ -1,11 +1,9 @@
 package net.trc.umapyoi.api;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.trc.umapyoi.Umapyoi;
-import net.trc.umapyoi.capability.CapabilityRegistry;
 import net.trc.umapyoi.item.UmaSoulItem;
 import net.trc.umapyoi.registry.UmaData;
 import net.trc.umapyoi.registry.UmaDataRegistry;
@@ -20,22 +18,14 @@ public class UmapyoiAPI {
             if (itemHandler.getStacksHandler("uma_soul").isPresent()) {
                 var stacksHandler = itemHandler.getStacksHandler("uma_soul").orElse(null);
                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                if (stackHandler.getSlots()<=0)
+                    return ItemStack.EMPTY;
                 if (stackHandler.getStackInSlot(0).getItem() instanceof UmaSoulItem) {
                     return stackHandler.getStackInSlot(0);
                 }
             }
         }
         return ItemStack.EMPTY;
-    }
-
-    public static CompoundTag getUmaSoulData(ItemStack stack) {
-        if (stack.getItem() instanceof UmaSoulItem) {
-            if (stack.getCapability(CapabilityRegistry.UMACAP).isPresent()) {
-                var umadata = stack.getCapability(CapabilityRegistry.UMACAP).orElse(null);
-                return umadata.serializeNBT();
-            }
-        }
-        return new CompoundTag();
     }
 
     public static UmaData getUmaData(ItemStack stack) {

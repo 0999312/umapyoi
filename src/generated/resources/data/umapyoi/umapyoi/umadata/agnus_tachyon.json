@@ -1,7 +1,7 @@
 {
-  "name": "sakura_chiyono_o",
+  "name": "agnus_tachyon",
   "property": [
-    100,
+    120,
     100,
     100,
     100,
@@ -13,6 +13,5 @@
     1200,
     1200,
     1200
-  ],
-  "is_flat": true
+  ]
 }
