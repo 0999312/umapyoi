@@ -51,7 +51,7 @@ public class ClientEvents {
                     .getBuffer(RenderType.entityTranslucent(getTexture(data)));
             UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(event.getPlayer(),
                     ClientUtil.getModelPOJO(UmaModels.getModel(data.name())), BedrockVersion.LEGACY);
-
+            
             base_model.setModelProperties(event.getPlayer());
             base_model.attackTime = 0.0F;
             base_model.crouching = false;
