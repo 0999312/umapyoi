@@ -1085,7 +1085,7 @@
 				]
 			},
 			{
-				"name": "right_arm",
+				"name": "left_arm",
 				"pivot": [4, 22, 0],
 				"mirror": true,
 				"cubes": [
@@ -1094,7 +1094,7 @@
 			},
 			{
 				"name": "right_chestplate",
-				"parent": "right_arm",
+				"parent": "left_arm",
 				"pivot": [5, 22, 0],
 				"cubes": [
 					{"origin": [3.5, 20.5, -1.5], "size": [3, 3, 3], "uv": [72, 37], "inflate": 0.2},
@@ -1104,7 +1104,7 @@
 			},
 			{
 				"name": "right_arm_down",
-				"parent": "right_arm",
+				"parent": "left_arm",
 				"pivot": [5, 17.5, 1.5],
 				"cubes": [
 					{"origin": [3.5, 15.6, -1.5], "size": [3, 1, 3], "uv": [74, 51], "inflate": 0.103},
@@ -1124,7 +1124,7 @@
 				]
 			},
 			{
-				"name": "right_leg",
+				"name": "left_leg",
 				"pivot": [1.75, 12, 0],
 				"mirror": true,
 				"cubes": [
@@ -1135,7 +1135,7 @@
 			},
 			{
 				"name": "right_leg_down",
-				"parent": "right_leg",
+				"parent": "left_leg",
 				"pivot": [1.75, 7, -1.5],
 				"cubes": [
 					{"origin": [0.25, 1.01, -1.5], "size": [3, 6, 3], "uv": [54, 65], "inflate": -0.01}
@@ -1293,7 +1293,7 @@
 				]
 			},
 			{
-				"name": "left_arm",
+				"name": "right_arm",
 				"pivot": [-4, 22, 0],
 				"mirror": true,
 				"cubes": [
@@ -1302,7 +1302,7 @@
 			},
 			{
 				"name": "left_chestplate5",
-				"parent": "left_arm",
+				"parent": "right_arm",
 				"pivot": [-5, 22, 0],
 				"cubes": [
 					{"origin": [-6.5, 20.5, -1.5], "size": [3, 3, 3], "uv": [72, 37], "inflate": 0.2, "mirror": true},
@@ -1312,7 +1312,7 @@
 			},
 			{
 				"name": "left_arm_down",
-				"parent": "left_arm",
+				"parent": "right_arm",
 				"pivot": [-5, 17.5, 1.5],
 				"cubes": [
 					{"origin": [-6.5, 15.6, -1.5], "size": [3, 1, 3], "uv": [74, 51], "inflate": 0.103, "mirror": true},
@@ -1332,7 +1332,7 @@
 				]
 			},
 			{
-				"name": "left_leg",
+				"name": "right_leg",
 				"pivot": [-1.75, 12, 0],
 				"mirror": true,
 				"cubes": [
@@ -1343,7 +1343,7 @@
 			},
 			{
 				"name": "left_leg_down",
-				"parent": "left_leg",
+				"parent": "right_leg",
 				"pivot": [-1.75, 7, -1.5],
 				"cubes": [
 					{"origin": [-3.25, 1.01, -1.5], "size": [3, 6, 3], "uv": [54, 65], "inflate": -0.01, "mirror": true}

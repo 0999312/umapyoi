@@ -53,7 +53,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addTooltip(".umadata.name", "Umamusume's Name:%s");
         addTooltip(".uma.common_uma", "Nameless Umamusume");
         addTooltip(".uma.gold_ship", "Gold Ship");
-        addTooltip(".uma.sakura_sayono_o", "Sakura Chiyono O");
+        addTooltip(".uma.sakura_chiyono_o", "Sakura Chiyono O");
         addTooltip(".uma.special_week", "Special Week");
         addTooltip(".uma.tokai_teio", "Tokai Teio");
         addTooltip(".uma.oguri_cap", "Oguri Cap");

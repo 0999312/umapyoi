@@ -43,7 +43,7 @@ public class UmaDataProvider implements DataProvider {
         this.addData(UmaDataRegistry.TOKAI_TEIO);
         this.addData(UmaDataRegistry.SPECIAL_WEEK);
         this.addData(UmaDataRegistry.OGURI_CAP);
-        this.addData(UmaDataRegistry.SAKURA_SAYONO_O);
+        this.addData(UmaDataRegistry.SAKURA_CHIYONO_O);
         this.addData(UmaDataRegistry.OGURI_CAP_XMAS);
     }
     

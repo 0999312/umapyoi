@@ -67,20 +67,20 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             this.body.xRot = 0.017453292F * entityarmorstand.getBodyPose().getX();
             this.body.yRot = 0.017453292F * entityarmorstand.getBodyPose().getY();
             this.body.zRot = 0.017453292F * entityarmorstand.getBodyPose().getZ();
-            this.rightArm.xRot = 0.017453292F * entityarmorstand.getLeftArmPose().getX();
-            this.rightArm.yRot = 0.017453292F * entityarmorstand.getLeftArmPose().getY();
-            this.rightArm.zRot = 0.017453292F * entityarmorstand.getLeftArmPose().getZ();
-            this.leftArm.xRot = 0.017453292F * entityarmorstand.getRightArmPose().getX();
-            this.leftArm.yRot = 0.017453292F * entityarmorstand.getRightArmPose().getY();
-            this.leftArm.zRot = 0.017453292F * entityarmorstand.getRightArmPose().getZ();
-            this.rightLeg.xRot = 0.017453292F * entityarmorstand.getLeftLegPose().getX();
-            this.rightLeg.yRot = 0.017453292F * entityarmorstand.getLeftLegPose().getY();
-            this.rightLeg.zRot = 0.017453292F * entityarmorstand.getLeftLegPose().getZ();
-            this.rightLeg.setPos(1.9F, 11.0F, 0.0F);
-            this.leftLeg.xRot = 0.017453292F * entityarmorstand.getRightLegPose().getX();
-            this.leftLeg.yRot = 0.017453292F * entityarmorstand.getRightLegPose().getY();
-            this.leftLeg.zRot = 0.017453292F * entityarmorstand.getRightLegPose().getZ();
-            this.leftLeg.setPos(-1.9F, 11.0F, 0.0F);
+            this.leftArm.xRot = 0.017453292F * entityarmorstand.getLeftArmPose().getX();
+            this.leftArm.yRot = 0.017453292F * entityarmorstand.getLeftArmPose().getY();
+            this.leftArm.zRot = 0.017453292F * entityarmorstand.getLeftArmPose().getZ();
+            this.rightArm.xRot = 0.017453292F * entityarmorstand.getRightArmPose().getX();
+            this.rightArm.yRot = 0.017453292F * entityarmorstand.getRightArmPose().getY();
+            this.rightArm.zRot = 0.017453292F * entityarmorstand.getRightArmPose().getZ();
+            this.leftLeg.xRot = 0.017453292F * entityarmorstand.getLeftLegPose().getX();
+            this.leftLeg.yRot = 0.017453292F * entityarmorstand.getLeftLegPose().getY();
+            this.leftLeg.zRot = 0.017453292F * entityarmorstand.getLeftLegPose().getZ();
+            this.leftLeg.setPos(1.9F, 11.0F, 0.0F);
+            this.rightLeg.xRot = 0.017453292F * entityarmorstand.getRightLegPose().getX();
+            this.rightLeg.yRot = 0.017453292F * entityarmorstand.getRightLegPose().getY();
+            this.rightLeg.zRot = 0.017453292F * entityarmorstand.getRightLegPose().getZ();
+            this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
         } else {
             boolean flag = entityIn.getFallFlyingTicks() > 4;
             boolean flag1 = entityIn.isVisuallySwimming();
@@ -100,9 +100,9 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
 
             this.body.yRot = 0.0F;
             this.rightArm.z = 0.0F;
-            this.rightArm.x = -6.0F;
+            this.rightArm.x = -4.0F;
             this.leftArm.z = 0.0F;
-            this.leftArm.x = 6.0F;
+            this.leftArm.x = 4.0F;
             float f = 1.0F;
             if (flag) {
                 f = (float) entityIn.getDeltaMovement().lengthSqr();
@@ -127,12 +127,12 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             if (this.riding) {
                 this.rightArm.xRot += (-(float) Math.PI / 5F);
                 this.leftArm.xRot += (-(float) Math.PI / 5F);
-                this.rightLeg.xRot = -1.4137167F;
-                this.rightLeg.yRot = (-(float) Math.PI / 10F);
-                this.rightLeg.zRot = 0.07853982F;
                 this.leftLeg.xRot = -1.4137167F;
-                this.leftLeg.yRot = ((float) Math.PI / 10F);
-                this.leftLeg.zRot = -0.07853982F;
+                this.leftLeg.yRot = (-(float) Math.PI / 10F);
+                this.leftLeg.zRot = 0.07853982F;
+                this.rightLeg.xRot = -1.4137167F;
+                this.rightLeg.yRot = ((float) Math.PI / 10F);
+                this.rightLeg.zRot = -0.07853982F;
             }
 
             this.rightArm.yRot = 0.0F;
@@ -313,9 +313,9 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             }
 
             this.rightArm.z = Mth.sin(this.body.yRot) * 5.0F;
-            this.rightArm.x = -Mth.cos(this.body.yRot) * 5.0F - 1F;
+            this.rightArm.x = -Mth.cos(this.body.yRot) * 4.0F;
             this.leftArm.z = -Mth.sin(this.body.yRot) * 5.0F;
-            this.leftArm.x = Mth.cos(this.body.yRot) * 5.0F + 1F;
+            this.leftArm.x = Mth.cos(this.body.yRot) * 4.0F;
             this.rightArm.yRot += this.body.yRot;
             this.leftArm.yRot += this.body.yRot;
             this.leftArm.xRot += this.body.yRot;

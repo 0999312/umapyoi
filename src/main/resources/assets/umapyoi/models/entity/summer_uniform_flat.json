@@ -711,7 +711,7 @@
 				]
 			},
 			{
-				"name": "right_arm",
+				"name": "left_arm",
 				"pivot": [4, 22, 0],
 				"mirror": true,
 				"cubes": [
@@ -720,7 +720,7 @@
 			},
 			{
 				"name": "right_chestplate",
-				"parent": "right_arm",
+				"parent": "left_arm",
 				"pivot": [5, 22, 0],
 				"cubes": [
 					{"origin": [3.25, 20.55, -1.9], "size": [3.5, 3.7, 3.8], "uv": [31, 50]},
@@ -729,14 +729,14 @@
 			},
 			{
 				"name": "right_arm_down",
-				"parent": "right_arm",
+				"parent": "left_arm",
 				"pivot": [5, 17.5, 1.5],
 				"cubes": [
 					{"origin": [3.5, 11.5, -1.5], "size": [3, 6, 3], "uv": [46, 41]}
 				]
 			},
 			{
-				"name": "left_arm",
+				"name": "right_arm",
 				"pivot": [-4, 22, 0],
 				"mirror": true,
 				"cubes": [
@@ -745,7 +745,7 @@
 			},
 			{
 				"name": "left_chestplate",
-				"parent": "left_arm",
+				"parent": "right_arm",
 				"pivot": [-5, 22, 0],
 				"cubes": [
 					{"origin": [-7.8, 18.2, -2.9], "size": [5.6, 3.7, 5.8], "uv": [24, 0], "inflate": -1.25, "mirror": true},
@@ -754,14 +754,14 @@
 			},
 			{
 				"name": "left_arm_down",
-				"parent": "left_arm",
+				"parent": "right_arm",
 				"pivot": [-5, 17.5, 1.5],
 				"cubes": [
 					{"origin": [-6.5, 11.5, -1.5], "size": [3, 6, 3], "uv": [46, 41], "mirror": true}
 				]
 			},
 			{
-				"name": "right_leg",
+				"name": "left_leg",
 				"pivot": [1.75, 12, 0],
 				"mirror": true,
 				"cubes": [
@@ -770,7 +770,7 @@
 			},
 			{
 				"name": "right_leggings",
-				"parent": "right_leg",
+				"parent": "left_leg",
 				"pivot": [2.65, 15, -1],
 				"cubes": [
 					{"origin": [0.25, 7, -1.5], "size": [3, 3, 3], "uv": [50, 0], "inflate": 0.01}
@@ -778,7 +778,7 @@
 			},
 			{
 				"name": "right_leg_down",
-				"parent": "right_leg",
+				"parent": "left_leg",
 				"pivot": [1.75, 7, -1.5],
 				"cubes": [
 					{"origin": [0.25, 1, -1.5], "size": [3, 6, 3], "uv": [34, 41], "inflate": 0.01}
@@ -841,7 +841,7 @@
 				]
 			},
 			{
-				"name": "left_leg",
+				"name": "right_leg",
 				"pivot": [-1.75, 12, 0],
 				"mirror": true,
 				"cubes": [
@@ -850,7 +850,7 @@
 			},
 			{
 				"name": "left_leggings",
-				"parent": "left_leg",
+				"parent": "right_leg",
 				"pivot": [-2.65, 15, -1],
 				"cubes": [
 					{"origin": [-3.25, 7, -1.5], "size": [3, 3, 3], "uv": [50, 0], "inflate": 0.01, "mirror": true}
@@ -858,7 +858,7 @@
 			},
 			{
 				"name": "left_leg_down",
-				"parent": "left_leg",
+				"parent": "right_leg",
 				"pivot": [-1.75, 7, -1.5],
 				"cubes": [
 					{"origin": [-3.25, 1, -1.5], "size": [3, 6, 3], "uv": [34, 41], "inflate": 0.01, "mirror": true}
