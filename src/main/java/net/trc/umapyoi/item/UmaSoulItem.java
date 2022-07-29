@@ -66,7 +66,7 @@ public class UmaSoulItem extends Item {
     @Override
     public void readShareTag(ItemStack stack, @Nullable CompoundTag nbt) {
         super.readShareTag(stack, nbt);
-        if(nbt != null) {
+        if(nbt != null && nbt.contains("soul")) {
             stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
                 cap.deserializeNBT(nbt.getCompound("soul"));
             });
