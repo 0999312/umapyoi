@@ -56,7 +56,7 @@ public class UmaSoulItem extends Item {
     @Nullable
     @Override
     public CompoundTag getShareTag(ItemStack stack) {
-        var result = super.getShareTag(stack);
+        var result = super.getShareTag(stack) == null ? stack.getOrCreateTag() : super.getShareTag(stack);
         stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
             result.put("soul", cap.serializeNBT());
         });
@@ -66,8 +66,10 @@ public class UmaSoulItem extends Item {
     @Override
     public void readShareTag(ItemStack stack, @Nullable CompoundTag nbt) {
         super.readShareTag(stack, nbt);
-        stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-            cap.deserializeNBT(nbt.getCompound("soul"));
-        });
+        if(nbt != null) {
+            stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
+                cap.deserializeNBT(nbt.getCompound("soul"));
+            });
+        }
     }
 }
