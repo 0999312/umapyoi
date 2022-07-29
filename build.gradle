@@ -105,8 +105,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.47'
 
     implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.0.5-1.18.2")
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.0")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.0:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1:api")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

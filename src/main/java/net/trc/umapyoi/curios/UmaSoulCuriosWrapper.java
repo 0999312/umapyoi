@@ -39,17 +39,21 @@ public class UmaSoulCuriosWrapper implements ICurio {
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid) {
         IUmaCapability cap = stack.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(getStack()));
         Multimap<Attribute, AttributeModifier> atts = LinkedHashMultimap.create();
+        double speed = Math.max(1, cap.getSpeed());
+        double strength = Math.max(1, cap.getStrength());
+        double max_speed = Math.max(1, cap.getMaxSpeed());
+        double max_strength = Math.max(1, cap.getMaxStrength());
         atts.put(Attributes.MOVEMENT_SPEED,
                 new AttributeModifier(uuid, "speed_bonus",
-                        MathUtil.lerp( ((double)cap.getSpeed() / cap.getMaxSpeed()), 0.1, 3.0),
+                        MathUtil.lerp( (speed / max_speed), 0.1, 0.0025 * max_speed),
                         AttributeModifier.Operation.MULTIPLY_TOTAL));
         atts.put(Attributes.ATTACK_DAMAGE,
                 new AttributeModifier(uuid, "strength_attack_bonus",
-                        MathUtil.lerp( ((double)cap.getStrength() / cap.getMaxStrength()), 0.0, 2),
+                        MathUtil.lerp( (strength / max_strength), 0.0, 0.001 * max_strength),
                         AttributeModifier.Operation.MULTIPLY_TOTAL));
         atts.put(Attributes.ATTACK_SPEED,
                 new AttributeModifier(uuid, "strength_speed_bonus",
-                        MathUtil.lerp( ((double)cap.getStrength() / cap.getMaxStrength()), 0.0, 1.25),
+                        MathUtil.lerp( (strength / max_strength), 0.0, 0.001 * max_strength),
                         AttributeModifier.Operation.MULTIPLY_TOTAL));
         CuriosApi.getCuriosHelper().addSlotModifier(atts, "uma_suit", uuid, 1.0, AttributeModifier.Operation.ADDITION);
         return atts;
