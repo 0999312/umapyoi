@@ -785,13 +785,8 @@
 				]
 			},
 			{
-				"name": "_right_boot",
+				"name": "left_foot",
 				"parent": "right_leg_down",
-				"pivot": [1.75, 7, -1.5]
-			},
-			{
-				"name": "right_shoes",
-				"parent": "_right_boot",
 				"pivot": [1.75, 7, -1.5],
 				"cubes": [
 					{"origin": [0.25, 1, -1.5], "size": [3, 3, 3], "uv": [48, 25], "inflate": 0.09},
@@ -803,7 +798,7 @@
 			},
 			{
 				"name": "shoes5",
-				"parent": "right_shoes",
+				"parent": "left_foot",
 				"pivot": [1.65, 5, -2.5],
 				"rotation": [-22.5, 0, 0],
 				"cubes": [
@@ -814,7 +809,7 @@
 			},
 			{
 				"name": "shoes6",
-				"parent": "right_shoes",
+				"parent": "left_foot",
 				"pivot": [1.65, 3.25, -1.6],
 				"rotation": [22.5, 0, 0],
 				"cubes": [
@@ -824,7 +819,7 @@
 			},
 			{
 				"name": "shoes7",
-				"parent": "right_shoes",
+				"parent": "left_foot",
 				"pivot": [0.25, 0, -4],
 				"rotation": [0, -45, 0],
 				"cubes": [
@@ -833,7 +828,7 @@
 			},
 			{
 				"name": "shoes2",
-				"parent": "right_shoes",
+				"parent": "left_foot",
 				"pivot": [3.25, 0, -4],
 				"rotation": [0, 45, 0],
 				"cubes": [
@@ -865,13 +860,8 @@
 				]
 			},
 			{
-				"name": "_left_boot",
+				"name": "right_foot",
 				"parent": "left_leg_down",
-				"pivot": [-1.75, 12, 0]
-			},
-			{
-				"name": "left_shoes",
-				"parent": "_left_boot",
 				"pivot": [-1.75, 7, -1.5],
 				"cubes": [
 					{"origin": [-3.25, 1, -1.5], "size": [3, 3, 3], "uv": [48, 25], "inflate": 0.09, "mirror": true},
@@ -883,7 +873,7 @@
 			},
 			{
 				"name": "shoes3",
-				"parent": "left_shoes",
+				"parent": "right_foot",
 				"pivot": [-1.65, 5, -2.5],
 				"rotation": [-22.5, 0, 0],
 				"cubes": [
@@ -894,7 +884,7 @@
 			},
 			{
 				"name": "shoes4",
-				"parent": "left_shoes",
+				"parent": "right_foot",
 				"pivot": [-1.65, 3.25, -1.6],
 				"rotation": [22.5, 0, 0],
 				"cubes": [
@@ -904,7 +894,7 @@
 			},
 			{
 				"name": "shoes8",
-				"parent": "left_shoes",
+				"parent": "right_foot",
 				"pivot": [-0.25, 0, -4],
 				"rotation": [0, 45, 0],
 				"cubes": [
@@ -913,7 +903,7 @@
 			},
 			{
 				"name": "shoes9",
-				"parent": "left_shoes",
+				"parent": "right_foot",
 				"pivot": [-3.25, 0, -4],
 				"rotation": [0, -45, 0],
 				"cubes": [

@@ -36,6 +36,12 @@ public class UmaSoulCuriosWrapper implements ICurio {
     }
 
     @Override
+    public void curioTick(SlotContext slotContext) {
+        ICurio.super.curioTick(slotContext);
+        
+    }
+    
+    @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid) {
         IUmaCapability cap = stack.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(getStack()));
         Multimap<Attribute, AttributeModifier> atts = LinkedHashMultimap.create();
