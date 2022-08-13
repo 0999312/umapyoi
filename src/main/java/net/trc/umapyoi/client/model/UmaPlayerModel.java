@@ -44,7 +44,7 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
         this.rightFoot = this.getChild("right_foot");
         this.leftFoot = this.getChild("left_foot");
 
-        this.hideParts = this.getChild("hide_parts");
+        this.hideParts = this.getChild("hide_parts") != null ? this.getChild("hide_parts") : new BedrockPart();
         this.tail = this.getChild("tail");
         this.tailDown = this.getChild("tail_down");
     }
@@ -312,9 +312,9 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.body.yRot *= -1.0F;
             }
 
-            this.rightArm.z = Mth.sin(this.body.yRot) * 5.0F;
+            this.rightArm.z = Mth.sin(this.body.yRot) * 4.0F;
             this.rightArm.x = -Mth.cos(this.body.yRot) * 4.0F;
-            this.leftArm.z = -Mth.sin(this.body.yRot) * 5.0F;
+            this.leftArm.z = -Mth.sin(this.body.yRot) * 4.0F;
             this.leftArm.x = Mth.cos(this.body.yRot) * 4.0F;
             this.rightArm.yRot += this.body.yRot;
             this.leftArm.yRot += this.body.yRot;
