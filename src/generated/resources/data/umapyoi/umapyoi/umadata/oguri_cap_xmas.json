@@ -1,17 +1,26 @@
 {
-  "name": "oguri_cap_xmas",
-  "property": [
-    120,
-    100,
-    100,
-    100,
-    100
-  ],
-  "max_property": [
-    1200,
-    1200,
-    1200,
-    1200,
-    1200
+  "status": {
+    "name": "umapyoi:oguri_cap_xmas",
+    "property": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "maxProperty": [
+      1200,
+      1200,
+      1200,
+      1200,
+      1200
+    ]
+  },
+  "growth": [
+    0,
+    0,
+    0,
+    0,
+    0
   ]
 }

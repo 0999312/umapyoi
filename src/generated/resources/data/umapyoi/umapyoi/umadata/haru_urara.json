@@ -1,0 +1,27 @@
+{
+  "status": {
+    "name": "umapyoi:haru_urara",
+    "property": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "maxProperty": [
+      1200,
+      1200,
+      1200,
+      1200,
+      1200
+    ]
+  },
+  "growth": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "is_flat": true
+}

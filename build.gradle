@@ -17,7 +17,7 @@ apply plugin: 'net.minecraftforge.gradle'
 
 
 version = '1.0'
-group = 'net.trc.umapyoi' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -32,7 +32,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'umapyoi'
 
             mods {
                 umapyoi {
@@ -46,7 +46,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'umapyoi'
 
             mods {
                 umapyoi {
@@ -60,7 +60,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'umapyoi'
 
             mods {
                 umapyoi {
@@ -102,9 +102,9 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.47'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.73'
 
-    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.0.5-1.18.2")
+    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.1.2-1.18.2")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1:api")
 }

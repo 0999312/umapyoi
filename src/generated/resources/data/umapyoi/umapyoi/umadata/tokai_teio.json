@@ -1,18 +1,27 @@
 {
-  "name": "tokai_teio",
-  "property": [
-    100,
-    100,
-    100,
-    100,
-    100
-  ],
-  "max_property": [
-    1200,
-    1200,
-    1200,
-    1200,
-    1200
+  "status": {
+    "name": "umapyoi:tokai_teio",
+    "property": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "maxProperty": [
+      1200,
+      1200,
+      1200,
+      1200,
+      1200
+    ]
+  },
+  "growth": [
+    0,
+    0,
+    0,
+    0,
+    0
   ],
   "is_flat": true
 }
