@@ -20,15 +20,15 @@ public class UmaCapability implements IUmaCapability {
     private final NonNullList<UmaSkill> skills = NonNullList.create();
     private UmaSkill selectSkill;
     private int cooldown = 0;
-
+    private int maxCooldown = 0;
     public UmaCapability(ItemStack stack) {
-        this.status = UmaStatus.CODEC.parse(NbtOps.INSTANCE, stack.getOrCreateTag().getCompound("status"))
+        CompoundTag tag = stack.getOrCreateTag().getCompound("cap");
+        this.status = UmaStatus.CODEC.parse(NbtOps.INSTANCE, tag.getCompound("status"))
                 .resultOrPartial(msg -> {
                     Umapyoi.getLogger().error("Failed to parse {}: {}", stack.toString(), msg);
                     UmapyoiAPI.initUmaSoul(stack, UmaDataRegistry.COMMON_UMA.get());
                 }).orElseGet(UmaCapability::defaultStatus);
-        this.skills.add(UmaSkillRegistry.TEST_1.get());
-        this.skills.add(UmaSkillRegistry.TEST_2.get());
+        UmaSkillUtils.deserializeNBT(this, tag);
         this.selectSkill = this.skills.get(0);
     }
 
@@ -36,10 +36,11 @@ public class UmaCapability implements IUmaCapability {
     public CompoundTag serializeNBT() {
         CompoundTag result = new CompoundTag();
         result.put("status", this.getUmaStatus().serializeNBT());
-        ListTag tagSkills = UmaSkillUtils.serializeNBT(getSkills());
+        ListTag tagSkills = UmaSkillUtils.serializeNBT(this.getSkills());
         result.put("skills", tagSkills);
         result.putString("selectedSkill", this.getSelectedSkill().toString());
         result.putInt("skillCooldown", cooldown);
+        result.putInt("skillMaxCooldown", maxCooldown);
         return result;
     }
 
@@ -50,6 +51,7 @@ public class UmaCapability implements IUmaCapability {
         this.selectSkill = UmaSkillRegistry.REGISTRY.get()
                 .getValue(new ResourceLocation(compound.getString("selectedSkill")));
         this.cooldown = compound.getInt("skillCooldown");
+        this.maxCooldown = compound.getInt("skillMaxCooldown");
     }
 
     @Override
@@ -81,6 +83,7 @@ public class UmaCapability implements IUmaCapability {
         } else {
             this.selectSkill = this.getSkills().get(index - 1);
         }
+        Umapyoi.getLogger().info(String.format("now selected num:%d, %s", index, this.selectSkill));
     }
 
     @Override
@@ -93,6 +96,7 @@ public class UmaCapability implements IUmaCapability {
         } else {
             this.selectSkill = this.getSkills().get(index + 1);
         }
+        Umapyoi.getLogger().info(String.format("now selected num:%d, %s", index, this.selectSkill));
     }
     
     @Override
@@ -109,4 +113,15 @@ public class UmaCapability implements IUmaCapability {
     public boolean isSkillReady() {
         return this.getCooldown() == 0;
     }
+
+    @Override
+    public int getMaxCooldown() {
+        return this.maxCooldown;
+    }
+
+    @Override
+    public void setMaxCooldown(int cooldown) {
+        this.maxCooldown = cooldown;
+    }
+
 }

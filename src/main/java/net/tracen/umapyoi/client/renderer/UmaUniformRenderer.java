@@ -2,14 +2,14 @@ package net.tracen.umapyoi.client.renderer;
 
 import net.minecraft.resources.ResourceLocation;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.client.model.UmaModels;
+import net.tracen.umapyoi.client.ClientUtils;
 
 public class UmaUniformRenderer {
     public static class SummerUniformRenderer extends AbstractSuitRenderer {
 
         @Override
         protected ResourceLocation getModel() {
-            return UmaModels.SUMMER_UNIFORM;
+            return ClientUtils.SUMMER_UNIFORM;
         }
 
         @Override
@@ -19,7 +19,7 @@ public class UmaUniformRenderer {
 
         @Override
         protected ResourceLocation getFlatModel() {
-            return UmaModels.SUMMER_UNIFORM_FLAT;
+            return ClientUtils.SUMMER_UNIFORM_FLAT;
         }
 
         @Override
@@ -33,7 +33,7 @@ public class UmaUniformRenderer {
 
         @Override
         protected ResourceLocation getModel() {
-            return UmaModels.WINTER_UNIFORM;
+            return ClientUtils.WINTER_UNIFORM;
         }
 
         @Override
@@ -43,7 +43,7 @@ public class UmaUniformRenderer {
 
         @Override
         protected ResourceLocation getFlatModel() {
-            return UmaModels.WINTER_UNIFORM_FLAT;
+            return ClientUtils.WINTER_UNIFORM_FLAT;
         }
 
         @Override

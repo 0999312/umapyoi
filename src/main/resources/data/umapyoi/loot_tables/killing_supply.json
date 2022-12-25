@@ -63,6 +63,12 @@
               "count": 1.0
             }
           ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.25
+            }
+          ],
           "name": "umapyoi:speed_mid_item"
         },
         {
@@ -71,6 +77,12 @@
             {
               "function": "minecraft:set_count",
               "count": 1.0
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.25
             }
           ],
           "name": "umapyoi:stamina_mid_item"
@@ -83,6 +95,12 @@
               "count": 1.0
             }
           ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.25
+            }
+          ],
           "name": "umapyoi:strength_mid_item"
         },
         {
@@ -91,6 +109,12 @@
             {
               "function": "minecraft:set_count",
               "count": 1.0
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.25
             }
           ],
           "name": "umapyoi:mentality_mid_item"
@@ -103,6 +127,12 @@
               "count": 1.0
             }
           ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.25
+            }
+          ],
           "name": "umapyoi:wisdom_mid_item"
         },
         {
@@ -111,6 +141,12 @@
             {
               "function": "minecraft:set_count",
               "count": 1.0
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.1
             }
           ],
           "name": "umapyoi:speed_high_item"
@@ -123,6 +159,12 @@
               "count": 1.0
             }
           ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.1
+            }
+          ],
           "name": "umapyoi:stamina_high_item"
         },
         {
@@ -131,6 +173,12 @@
             {
               "function": "minecraft:set_count",
               "count": 1.0
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.1
             }
           ],
           "name": "umapyoi:strength_high_item"
@@ -143,6 +191,12 @@
               "count": 1.0
             }
           ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.1
+            }
+          ],
           "name": "umapyoi:mentality_high_item"
         },
         {
@@ -151,6 +205,12 @@
             {
               "function": "minecraft:set_count",
               "count": 1.0
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.1
             }
           ],
           "name": "umapyoi:wisdom_high_item"

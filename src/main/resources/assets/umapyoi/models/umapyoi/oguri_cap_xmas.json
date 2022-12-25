@@ -416,6 +416,36 @@
 				]
 			},
 			{
+				"name": "bone86",
+				"parent": "hair",
+				"pivot": [2.7, 28.25, 0],
+				"rotation": [0, 0, 67.5]
+			},
+			{
+				"name": "bone87",
+				"parent": "bone86",
+				"pivot": [2.7, 28.25, -1],
+				"rotation": [-45, 0, 0],
+				"cubes": [
+					{"origin": [1.95, 27.25, -2], "size": [4, 2, 2], "uv": [36, 124], "inflate": 0.2, "mirror": true}
+				]
+			},
+			{
+				"name": "bone84",
+				"parent": "hair",
+				"pivot": [-2.7, 28.25, 0],
+				"rotation": [0, 0, -67.5]
+			},
+			{
+				"name": "bone85",
+				"parent": "bone84",
+				"pivot": [-2.7, 28.25, -1],
+				"rotation": [-45, 0, 0],
+				"cubes": [
+					{"origin": [-5.95, 27.25, -2], "size": [4, 2, 2], "uv": [36, 124], "inflate": 0.2}
+				]
+			},
+			{
 				"name": "body",
 				"pivot": [0, 24, 0],
 				"mirror": true,

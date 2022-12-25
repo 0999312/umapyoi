@@ -6,6 +6,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -14,13 +16,11 @@ import net.tracen.umapyoi.Umapyoi;
 public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
     private final SkillType type;
     private final int requiredWisdom;
-    private final int successRate;
     private final int cooldown;
+    private final SoundEvent sound;
 
     private final ResourceLocation parentSkill;
-    private final ResourceLocation upperSkill;
 
-    private final ResourceLocation requiredUma;
     private String descriptionId;
 
     public static final ResourceKey<Registry<UmaSkill>> REGISTRY_KEY = ResourceKey
@@ -29,11 +29,9 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
     public UmaSkill(Builder builder) {
         this.type = builder.type;
         this.requiredWisdom = builder.requiredWisdom;
-        this.successRate = builder.successRate;
         this.cooldown = builder.cooldown;
         this.parentSkill = builder.parentSkill;
-        this.upperSkill = builder.upperSkill;
-        this.requiredUma = builder.requiredUma;
+        this.sound = builder.sound;
     }
 
     public SkillType getType() {
@@ -44,20 +42,8 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         return requiredWisdom;
     }
 
-    public int getSuccessRate() {
-        return successRate;
-    }
-
     public ResourceLocation getParentSkill() {
         return parentSkill;
-    }
-
-    public ResourceLocation getUpperSkill() {
-        return upperSkill;
-    }
-
-    public ResourceLocation getRequiredUma() {
-        return requiredUma;
     }
 
     public int getCooldown() {
@@ -87,42 +73,40 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         Umapyoi.getLogger().error(String.format("Wait, %s is an empty skill! Call the dev!", this.toString()));
     }
 
+    public SoundEvent getSound() {
+        return sound;
+    }
+
     public static class Builder {
         private SkillType type = SkillType.BUFF;
         private int requiredWisdom = 0;
-        private int successRate = 100;
         private int cooldown = 1200;
-
+        private SoundEvent sound = SoundEvents.PLAYER_ATTACK_SWEEP;
         private ResourceLocation parentSkill = null;
-        private ResourceLocation upperSkill = null;
-        private ResourceLocation requiredUma = null;
 
-        public void type(SkillType type) {
+        public Builder type(SkillType type) {
             this.type = type;
+            return this;
         }
 
-        public void requiredWisdom(int requiredWisdom) {
+        public Builder requiredWisdom(int requiredWisdom) {
             this.requiredWisdom = requiredWisdom;
+            return this;
+        }
+        
+        public Builder sound(SoundEvent sound) {
+            this.sound = sound;
+            return this;
         }
 
-        public void successRate(int successRate) {
-            this.successRate = successRate;
-        }
-
-        public void cooldown(int tick) {
+        public Builder cooldown(int tick) {
             this.cooldown = tick;
+            return this;
         }
 
-        public void parentSkill(ResourceLocation parentSkill) {
+        public Builder parentSkill(ResourceLocation parentSkill) {
             this.parentSkill = parentSkill;
-        }
-
-        public void upperSkill(ResourceLocation upperSkill) {
-            this.upperSkill = upperSkill;
-        }
-
-        public void requiredUma(ResourceLocation requiredUma) {
-            this.requiredUma = requiredUma;
+            return this;
         }
     }
 }

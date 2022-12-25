@@ -2,13 +2,13 @@ package net.tracen.umapyoi.client.renderer;
 
 import net.minecraft.resources.ResourceLocation;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.client.model.UmaModels;
+import net.tracen.umapyoi.client.ClientUtils;
 
 public class TrainningSuitRenderer extends AbstractSuitRenderer {
 
     @Override
     protected ResourceLocation getModel() {
-        return UmaModels.TRAINNING_SUIT;
+        return ClientUtils.TRAINNING_SUIT;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class TrainningSuitRenderer extends AbstractSuitRenderer {
 
     @Override
     protected ResourceLocation getFlatModel() {
-        return UmaModels.TRAINNING_SUIT_FLAT;
+        return ClientUtils.TRAINNING_SUIT_FLAT;
     }
 
     @Override

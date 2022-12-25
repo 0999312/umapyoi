@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.CreativeModeTab;
@@ -20,7 +20,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.api.UmaSkillUtils;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.curios.UmaSoulCapProvider;
@@ -41,8 +40,11 @@ public class UmaSoulItem extends Item {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        StringBuffer buffer = new StringBuffer("umadata.")
+                .append(UmapyoiAPI.getUmaStatus(stack).name().toString().replace(':', '.'));
         tooltip.add(new TranslatableComponent("tooltip.umapyoi.umadata.name",
-                I18n.get("tooltip.umapyoi.uma." + UmapyoiAPI.getUmaStatus(stack).name().getPath())));
+                I18n.get(buffer.toString()))
+                .withStyle(ChatFormatting.GRAY));
     }
 
     @Override
@@ -60,11 +62,7 @@ public class UmaSoulItem extends Item {
     public CompoundTag getShareTag(ItemStack stack) {
         var result = super.getShareTag(stack) == null ? stack.getOrCreateTag() : super.getShareTag(stack);
         stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-            result.put("status", cap.getUmaStatus().serializeNBT());
-            ListTag tagSkills = UmaSkillUtils.serializeNBT(cap.getSkills());
-            result.put("skills", tagSkills);
-            result.putString("selectedSkill", cap.getSelectedSkill().toString());
-            result.putInt("skillCooldown", cap.getCooldown());
+            result.put("cap", cap.serializeNBT());
         });
         return result;
     }
@@ -74,7 +72,7 @@ public class UmaSoulItem extends Item {
         super.readShareTag(stack, nbt);
         if (nbt != null) {
             stack.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-                cap.deserializeNBT(nbt);
+                cap.deserializeNBT(nbt.getCompound("cap"));
             });
         }
     }

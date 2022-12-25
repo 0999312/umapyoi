@@ -3,12 +3,15 @@ package net.tracen.umapyoi.network;
 import java.util.function.Supplier;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
+import net.tracen.umapyoi.registry.skills.UmaSkill;
 
 public class UseSkillPacket {
     private final String message;
@@ -32,10 +35,17 @@ public class UseSkillPacket {
             if (!umaSoul.isEmpty()) {
                 umaSoul.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
                     if(cap.isSkillReady()) {
-                        cap.getSelectedSkill().applySkill(player.getLevel(), player);
-                        cap.setCooldown(cap.getSelectedSkill().getCooldown());
+                        UmaSkill selectedSkill = cap.getSelectedSkill();
+                        player.connection.send(new ClientboundSoundPacket(selectedSkill.getSound(), SoundSource.PLAYERS, 
+                                player.getX(), 
+                                player.getY(), 
+                                player.getZ(), 
+                                1F, 1F));
+                        selectedSkill.applySkill(player.getLevel(), player);
+                        cap.setMaxCooldown(selectedSkill.getCooldown());
+                        cap.setCooldown(selectedSkill.getCooldown());
                     } else {
-                        player.displayClientMessage(new TextComponent(String.format("Not ready : %d", cap.getCooldown())), false);
+                        player.displayClientMessage(new TranslatableComponent("umapyoi.skill_not_ready", cap.getCooldown() / 20), true);
                     }
                     
                 });

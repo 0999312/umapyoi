@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IJI",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:purple_wool"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    }
+  },
+  "result": {
+    "item": "umapyoi:winter_uniform"
+  }
+}

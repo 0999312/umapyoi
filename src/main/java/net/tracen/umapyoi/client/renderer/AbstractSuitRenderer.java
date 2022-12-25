@@ -32,6 +32,8 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
             float headPitch) {
 
         LivingEntity player = slotContext.entity();
+        
+        if(player.isInvisible()) return;
 
         CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(itemHandler -> {
             itemHandler.getStacksHandler("uma_soul").ifPresent(stacksHandler -> {

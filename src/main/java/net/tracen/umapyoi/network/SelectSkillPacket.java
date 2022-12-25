@@ -3,7 +3,6 @@ package net.tracen.umapyoi.network;
 import java.util.function.Supplier;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
@@ -39,8 +38,7 @@ public class SelectSkillPacket {
                     } else {
                         Umapyoi.getLogger().warn("Some one send a weird packet.");
                     }
-                    player.displayClientMessage(
-                            new TranslatableComponent("Selected %s", cap.getSelectedSkill().toString()), true);
+                    
                 });
             }
 

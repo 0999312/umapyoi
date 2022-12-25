@@ -32,6 +32,10 @@ public class UmaDataProvider implements DataProvider {
     protected final ExistingFileHelper existingFileHelper;
     private final ExistingFileHelper.IResourceType resourceType;
 
+    public UmaDataProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+        this(generator, existingFileHelper, Umapyoi.MODID);
+    }
+    
     public UmaDataProvider(DataGenerator generator, ExistingFileHelper existingFileHelper, String modId) {
         this.generator = generator;
         this.modId = modId;
@@ -41,14 +45,9 @@ public class UmaDataProvider implements DataProvider {
     }
 
     public void addDatas() {
-        this.addData(UmaDataRegistry.GOLD_SHIP);
-        this.addData(UmaDataRegistry.TOKAI_TEIO);
-        this.addData(UmaDataRegistry.SPECIAL_WEEK);
-        this.addData(UmaDataRegistry.OGURI_CAP);
-        this.addData(UmaDataRegistry.SAKURA_CHIYONO_O);
-        this.addData(UmaDataRegistry.OGURI_CAP_XMAS);
-        this.addData(UmaDataRegistry.AGNUS_TACHYON);
-        this.addData(UmaDataRegistry.HARU_URARA);
+        for(Supplier<UmaData> data : UmaDataRegistry.UMA_DATA.getEntries()) {
+            this.addData(data);
+        }
     }
 
     public void addData(Supplier<UmaData> data) {

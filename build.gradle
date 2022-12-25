@@ -2,10 +2,12 @@ buildscript {
     repositories {
         // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://maven.parchmentmc.org' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -13,10 +15,11 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
 }
+
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
-
-version = '1.0'
+version = '0.0.2'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 
@@ -25,13 +28,14 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'parchment', version: '1.18.2-2022.08.07-1.18.2'
     runs {
         client {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            properties 'mixin.env.disableRefMap': 'true'
             property 'forge.enabledGameTestNamespaces', 'umapyoi'
 
             mods {
@@ -46,6 +50,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            properties 'mixin.env.disableRefMap': 'true'
             property 'forge.enabledGameTestNamespaces', 'umapyoi'
 
             mods {
@@ -60,6 +65,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            properties 'mixin.env.disableRefMap': 'true'
             property 'forge.enabledGameTestNamespaces', 'umapyoi'
 
             mods {
@@ -73,7 +79,7 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-
+			properties 'mixin.env.disableRefMap': 'true'
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
@@ -99,6 +105,11 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
     }
+    
+    // JEI, Tinker's Construct, Mantle, Iron Chests, Natura, etc.
+    maven { url = "https://dvs1.progwml6.com/files/maven" }
+    // Patchouli
+    maven { url = 'https://maven.blamejared.com' }
 }
 
 dependencies {
@@ -107,18 +118,24 @@ dependencies {
     implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.1.2-1.18.2")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1:api")
+    
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-70")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-70")
+    
+    compileOnly fg.deobf("mezz.jei:jei-1.18.2-forge:10.0.0.191")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2-forge:10.0.0.191")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "examplemod",
-                "Specification-Vendor"    : "examplemodsareus",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Specification-Title"     : "umapyoi",
+                "Specification-Vendor"    : "tracen_minecraft_group",
+                "Specification-Version"   : "0.0.2",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "examplemodsareus",
+                "Implementation-Vendor"   : "tracen_minecraft_group",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

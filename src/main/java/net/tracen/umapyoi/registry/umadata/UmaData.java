@@ -1,12 +1,12 @@
 package net.tracen.umapyoi.registry.umadata;
 
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import net.minecraft.Util;
 import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -14,29 +14,29 @@ import net.tracen.umapyoi.Umapyoi;
 
 public class UmaData extends ForgeRegistryEntry<UmaData> {
     public static final Codec<UmaData> CODEC = RecordCodecBuilder.create(instance -> instance
-            .group(UmaStatus.CODEC.fieldOf("status").forGetter(UmaData::status),
-                    Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).fieldOf("growth").forGetter(
-                            UmaData::growth),
-                    Codec.BOOL.optionalFieldOf("is_flat", false).forGetter(UmaData::isFlat))
+            .group(
+                    UmaStatus.CODEC.fieldOf("status").forGetter(UmaData::status),
+                    ResourceLocation.CODEC.fieldOf("uniqueSkill").forGetter(UmaData::uniqueSkill),
+                    Codec.BOOL.optionalFieldOf("isFlat", false).forGetter(UmaData::isFlat))
             .apply(instance, UmaData::new));
 
     public static final ResourceKey<Registry<UmaData>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "umadata"));
 
     private final UmaStatus status;
-    private final int[] growth;
-    
-//    private ;
+    private final ResourceLocation uniqueSkill;
     
     private boolean isFlat = false;
 
-    public UmaData(UmaStatus status, int[] growth) {
-        this(status, growth, false);
+    private String descriptionId;
+
+    public UmaData(UmaStatus status, ResourceLocation uniqueSkill) {
+        this(status, uniqueSkill, false);
     }
 
-    public UmaData(UmaStatus status, int[] growth, boolean flat) {
+    public UmaData(UmaStatus status, ResourceLocation uniqueSkill, boolean flat) {
         this.status = status;
-        this.growth = growth;
+        this.uniqueSkill = uniqueSkill;
         this.isFlat = flat;
     }
 
@@ -44,15 +44,35 @@ public class UmaData extends ForgeRegistryEntry<UmaData> {
         return status;
     }
 
-    public int[] growth() {
-        return growth;
+    public ResourceLocation uniqueSkill() {
+        return uniqueSkill;
     }
 
     public boolean isFlat() {
         return isFlat;
     }
 
+    @Override
+    public int hashCode() {
+        return this.getRegistryName().hashCode();
+    }
+
     public String toString() {
-        return "umadata:" + this.getRegistryName().toString();
+        return this.getRegistryName().toString();
+    }
+    
+    public Component getDescription() {
+        return new TranslatableComponent(this.getDescriptionId());
+    }
+
+    protected String getOrCreateDescriptionId() {
+        if (this.descriptionId == null) {
+            this.descriptionId = Util.makeDescriptionId("umadata", this.getRegistryName());
+        }
+        return this.descriptionId;
+    }
+
+    public String getDescriptionId() {
+        return this.getOrCreateDescriptionId();
     }
 }

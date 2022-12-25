@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "tag": "forge:crops/carrot"
+  },
+  "addition": [
+    {
+      "tag": "forge:gems/diamond"
+    },
+    {
+      "tag": "forge:gems/emerald"
+    }
+  ],
+  "result": {
+    "item": "umapyoi:jewel"
+  }
+}

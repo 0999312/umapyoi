@@ -14,9 +14,14 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.tracen.umapyoi.block.BlockRegistry;
+import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
+import net.tracen.umapyoi.container.ContainerRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.network.NetPacketHandler;
+import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
+import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import org.slf4j.Logger;
@@ -41,10 +46,15 @@ public class Umapyoi {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::enqueueIMC);
+        TrainingSupportRegistry.SUPPORTS.register(modEventBus);
         UmaSkillRegistry.SKILLS.register(modEventBus);
         UmaDataRegistry.UMA_DATA.register(modEventBus);
+        UmaFactorRegistry.FACTORS.register(modEventBus);
+        BlockRegistry.BLOCKS.register(modEventBus);
+        BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
-
+        ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
+        
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
     }

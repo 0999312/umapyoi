@@ -18,7 +18,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
         ItemRegistry.ITEMS.getEntries().forEach((item) -> {
             if (item == ItemRegistry.HACHIMI_MID || item == ItemRegistry.HACHIMI_BIG)
                 return;
-            if (item.get()instanceof BlockItem block)
+            if (item.get()instanceof BlockItem block && item != ItemRegistry.THREE_GODDESS)
                 itemBlock(block::getBlock);
             else
                 normalItem(item);

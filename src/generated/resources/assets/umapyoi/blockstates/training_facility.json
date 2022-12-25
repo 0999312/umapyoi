@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "umapyoi:block/training_facility"
+    },
+    "facing=south": {
+      "model": "umapyoi:block/training_facility",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "umapyoi:block/training_facility",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "umapyoi:block/training_facility",
+      "y": 90
+    }
+  }
+}

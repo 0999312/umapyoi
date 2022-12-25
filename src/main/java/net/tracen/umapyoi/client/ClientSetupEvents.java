@@ -1,16 +1,23 @@
 package net.tracen.umapyoi.client;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
+import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.tracen.umapyoi.block.BlockRegistry;
+import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.client.key.SkillKeyMapping;
 import net.tracen.umapyoi.client.renderer.TrainningSuitRenderer;
 import net.tracen.umapyoi.client.renderer.UmaSoulRenderer;
 import net.tracen.umapyoi.client.renderer.UmaUniformRenderer;
+import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
 import net.tracen.umapyoi.item.ItemRegistry;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
@@ -28,11 +35,18 @@ public class ClientSetupEvents {
             CuriosRendererRegistry.register(ItemRegistry.WINTER_UNIFORM.get(),
                     UmaUniformRenderer.WinterUniformRenderer::new);
         });
+        event.enqueueWork(()->{
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TRAINING_FACILITY.get(), RenderType.cutoutMipped());
+        });
         event.enqueueWork(() -> {
             ClientRegistry.registerKeyBinding(SkillKeyMapping.KEY_USE_SKILL);
             ClientRegistry.registerKeyBinding(SkillKeyMapping.KEY_FORMER_SKILL);
             ClientRegistry.registerKeyBinding(SkillKeyMapping.KEY_LATTER_SKILL);
         });
+        
+        OverlayRegistry.registerOverlayBottom("umapyoi.skillhud", SkillOverlay.INSTANCE);
+        
+        BlockEntityRenderers.register(BlockEntityRegistry.THREE_GODDESS.get(), ThreeGoddessBlockRender::new);
     }
 
     @SubscribeEvent

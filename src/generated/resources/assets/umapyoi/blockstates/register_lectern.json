@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "umapyoi:block/register_lectern"
+    },
+    "facing=south": {
+      "model": "umapyoi:block/register_lectern",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "umapyoi:block/register_lectern",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "umapyoi:block/register_lectern",
+      "y": 90
+    }
+  }
+}

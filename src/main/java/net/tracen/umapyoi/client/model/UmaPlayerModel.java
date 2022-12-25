@@ -21,7 +21,11 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     public final BedrockPart leftEar;
     public final BedrockPart rightFoot;
     public final BedrockPart leftFoot;
+    
+    public final BedrockPart rightLegHideParts;
+    public final BedrockPart leftLegHideParts;
 
+    public final BedrockPart hat;
     public final BedrockPart hideParts;
     public final BedrockPart tail;
     public final BedrockPart tailDown;
@@ -38,7 +42,12 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
         this.rightFoot = this.getChild("right_foot");
         this.leftFoot = this.getChild("left_foot");
 
+        this.hat = this.getChild("hat") != null ? this.getChild("hat") : new BedrockPart();
         this.hideParts = this.getChild("hide_parts") != null ? this.getChild("hide_parts") : new BedrockPart();
+        
+        this.rightLegHideParts = this.getChild("right_leg_hide_parts") != null ? this.getChild("right_leg_hide_parts") : new BedrockPart();
+        this.leftLegHideParts = this.getChild("left_leg_hide_parts") != null ? this.getChild("left_leg_hide_parts") : new BedrockPart();
+        
         this.tail = this.getChild("tail");
         this.tailDown = this.getChild("tail_down");
     }
@@ -70,28 +79,25 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             this.rightLeg.zRot = 0.017453292F * entityarmorstand.getRightLegPose().getZ();
             this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
         } else {
-
-            if (this.crouching) {
-                this.body.xRot = 0.5F;
-                this.rightLeg.z = 4.75F;
-                this.leftLeg.z = 4.75F;
-                this.rightLeg.y = 12.2F;
-                this.leftLeg.y = 12.2F;
-                this.head.y = 4.2F;
-                this.body.y = 3.2F;
-                this.leftArm.y = 5.2F;
-                this.rightArm.y = 5.2F;
-            } else {
-                this.body.xRot = 0.0F;
-                this.rightLeg.z = 0.1F;
-                this.leftLeg.z = 0.1F;
-                this.rightLeg.y = 12.0F;
-                this.leftLeg.y = 12.0F;
-                this.head.y = 0.0F;
-                this.body.y = 0.0F;
-                this.leftArm.y = 2.0F;
-                this.rightArm.y = 2.0F;
-            }
+//            if (this.crouching) {
+//                this.rightLeg.z = 4.75F;
+//                this.leftLeg.z = 4.75F;
+//                this.rightLeg.y = 12.2F;
+//                this.leftLeg.y = 12.2F;
+//                this.head.y = 4.2F;
+//                this.body.y = 3.2F;
+//                this.leftArm.y = 5.2F;
+//                this.rightArm.y = 5.2F;
+//            } else {
+//                this.rightLeg.z = 0.0F;
+//                this.leftLeg.z = 0.0F;
+//                this.rightLeg.y = 12.0F;
+//                this.leftLeg.y = 12.0F;
+//                this.head.y = 0.0F;
+//                this.body.y = 0.0F;
+//                this.leftArm.y = 2.0F;
+//                this.rightArm.y = 2.0F;
+//            }
 
             this.tail.copyFrom(this.body);
 
@@ -135,16 +141,27 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.tail.visible = false;
             }
             this.crouching = player.isCrouching();
-            if (UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && !player.getItemBySlot(EquipmentSlot.CHEST).isEmpty()
-                    && !(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ElytraItem)) {
-                this.hideParts.visible = false;
-            }
+            if (UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && !UmapyoiConfig.HIDE_PARTS_RENDER.get()) {
+                
+                if (!player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+                    this.hat.visible = false;
+                }
+                
+                if (!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty()
+                        && !(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ElytraItem)) {
+                    this.hideParts.visible = false;
+                }
+                
+                if (!player.getItemBySlot(EquipmentSlot.LEGS).isEmpty()) {
+                    this.rightLegHideParts.visible = false;
+                    this.leftLegHideParts.visible = false;
+                }
 
-            if (UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && !player.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
-                this.rightFoot.visible = false;
-                this.leftFoot.visible = false;
+                if (!player.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
+                    this.rightFoot.visible = false;
+                    this.leftFoot.visible = false;
+                }
             }
-
         }
     }
 
@@ -164,5 +181,6 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             part.x += 0.25F;
         part.y = old_part.y;
         part.z = old_part.z;
+
     }
 }

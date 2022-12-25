@@ -11,10 +11,10 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.api.UmapyoiAPI;
+import net.tracen.umapyoi.client.ClientUtils;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.item.UmaSuitItem;
 import net.tracen.umapyoi.registry.umadata.UmaStatus;
@@ -32,8 +32,11 @@ public class UmaSoulRenderer implements ICurioRenderer {
             float headPitch) {
 
         LivingEntity player = slotContext.entity();
+        
+        if(player.isInvisible()) return;
+        
         UmaStatus data = UmapyoiAPI.getUmaStatus(stack);
-        VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(getTexture(data)));
+        VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(data)));
         UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(player, ClientUtil.getModelPOJO(data.name()),
                 BedrockVersion.LEGACY);
         boolean suit_flag = false;
@@ -69,10 +72,6 @@ public class UmaSoulRenderer implements ICurioRenderer {
 
         base_model.renderToBuffer(matrixStack, vertexconsumer, light,
                 LivingEntityRenderer.getOverlayCoords(player, 0.0F), 1, 1, 1, 1);
-    }
-
-    private ResourceLocation getTexture(UmaStatus data) {
-        return new ResourceLocation(data.name().getNamespace(), "textures/model/" + data.name().getPath() + ".png");
     }
 
 }
