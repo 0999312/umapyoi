@@ -33,7 +33,7 @@ public class UmaSoulRenderer implements ICurioRenderer {
 
         LivingEntity player = slotContext.entity();
         
-        if(player.isInvisible()) return;
+        if(player.isInvisible() && !player.isSpectator()) return;
         
         UmaStatus data = UmapyoiAPI.getUmaStatus(stack);
         VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(data)));

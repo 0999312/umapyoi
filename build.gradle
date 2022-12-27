@@ -19,7 +19,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
-version = '0.0.2'
+version = '0.0.5'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 

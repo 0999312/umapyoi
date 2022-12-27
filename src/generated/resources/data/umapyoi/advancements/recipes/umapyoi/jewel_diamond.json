@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "umapyoi:jewel"
+      "umapyoi:jewel_diamond"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "umapyoi:jewel"
+        "recipe": "umapyoi:jewel_diamond"
       }
     }
   },

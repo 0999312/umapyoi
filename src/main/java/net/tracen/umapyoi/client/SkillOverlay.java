@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.client.gui.IIngameOverlay;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
@@ -26,10 +27,13 @@ public class SkillOverlay implements IIngameOverlay{
             "textures/gui/skill_hud.png");
     @Override
     public void render(ForgeIngameGui gui, PoseStack poseStack, float partialTick, int width, int height) {
+        if(!UmapyoiConfig.OVERLAY_SWITCH.get()) 
+            return ;
         int x = width / 2;
         int y = height;
         
         Player player = minecraft.player;
+        if(player.isSpectator()) return ;
         
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

@@ -44,7 +44,8 @@ public class ClientSetupEvents {
             ClientRegistry.registerKeyBinding(SkillKeyMapping.KEY_LATTER_SKILL);
         });
         
-        OverlayRegistry.registerOverlayBottom("umapyoi.skillhud", SkillOverlay.INSTANCE);
+        OverlayRegistry.registerOverlayBottom("umapyoi.skill_overlay", SkillOverlay.INSTANCE);
+        OverlayRegistry.registerOverlayBottom("umapyoi.motivation_overlay", MotivationOverlay.INSTANCE);
         
         BlockEntityRenderers.register(BlockEntityRegistry.THREE_GODDESS.get(), ThreeGoddessBlockRender::new);
     }

@@ -28,6 +28,7 @@ public class SelectSkillPacket {
     public void handler(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
+            if(player.isSpectator()) return ;
             ItemStack umaSoul = UmapyoiAPI.getUmaSoul(player);
             if (!umaSoul.isEmpty()) {
                 umaSoul.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {

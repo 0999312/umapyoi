@@ -100,9 +100,20 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("container.umapyoi.skill_learning", "Skill Learning Table");
         add("container.umapyoi.retire_register", "Retire Register");
         
+        add("key.category.umapyoi", "Umapyoi");
+        add("key.umapyoi.use_skill", "Use Skill");
+        add("key.umapyoi.select_former_skill", "Select Former Skill");
+        add("key.umapyoi.select_latter_skill", "Select Former Skill");
+        
         add("umapyoi.skill.no_require","Nothing required.");
         add("umapyoi.skill.require_wisdom","%s wisdom required.");
         add("umapyoi.skill_not_ready","Skill is not ready, %d seconds remaining.");
+        
+        add("umapyoi.motivation.bad", "Slump");
+        add("umapyoi.motivation.down", "Low");
+        add("umapyoi.motivation.normal", "Normal");
+        add("umapyoi.motivation.good", "High");
+        add("umapyoi.motivation.perfect", "Peak");
         
         add("umastatus.level.0", "G-");
         add("umastatus.level.1", "G");

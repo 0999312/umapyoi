@@ -95,7 +95,6 @@ public class ClientEvents {
             }
             event.setCanceled(true);
         }
-
     }
 
     private static ResourceLocation getTexture(UmaStatus data) {

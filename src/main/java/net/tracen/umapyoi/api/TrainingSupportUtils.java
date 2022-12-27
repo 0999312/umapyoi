@@ -2,7 +2,7 @@ package net.tracen.umapyoi.api;
 
 import java.util.List;
 
-import org.apache.commons.compress.utils.Lists;
+import com.google.common.collect.Lists;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;

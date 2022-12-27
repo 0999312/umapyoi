@@ -17,12 +17,12 @@ import net.tracen.umapyoi.network.UseSkillPacket;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class SkillKeyMapping {
-    public static final KeyMapping KEY_USE_SKILL = new KeyMapping("key.use_skill", KeyConflictContext.IN_GAME,
+    public static final KeyMapping KEY_USE_SKILL = new KeyMapping("key.umapyoi.use_skill", KeyConflictContext.IN_GAME,
             KeyModifier.NONE, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_BRACKET, "key.category.umapyoi");
-    public static final KeyMapping KEY_FORMER_SKILL = new KeyMapping("key.select_former_skill",
+    public static final KeyMapping KEY_FORMER_SKILL = new KeyMapping("key.umapyoi.select_former_skill",
             KeyConflictContext.IN_GAME, KeyModifier.NONE, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,
             "key.category.umapyoi");
-    public static final KeyMapping KEY_LATTER_SKILL = new KeyMapping("key.select_latter_skill",
+    public static final KeyMapping KEY_LATTER_SKILL = new KeyMapping("key.umapyoi.select_latter_skill",
             KeyConflictContext.IN_GAME, KeyModifier.NONE, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_DOWN,
             "key.category.umapyoi");
 

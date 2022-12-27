@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.api.UmapyoiAPI;
+import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -41,12 +42,17 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
 
                 boolean flat_flag = false;
                 if (stackHandler.getSlots() > 0) {
-                    if (!(stacksHandler).getRenders().get(0)) {
+                    ItemStack stackInSlot = stackHandler.getStackInSlot(0);
+                    if(stackInSlot.isEmpty())
                         return;
-                    }
+                    if(!stackInSlot.getCapability(CapabilityRegistry.UMACAP).isPresent())
+                        return;
+                    if (!(stacksHandler).getRenders().get(0)) 
+                        return;
+                    
                     flat_flag = Minecraft.getInstance().getConnection().registryAccess()
                             .registryOrThrow(UmaData.REGISTRY_KEY)
-                            .get(UmapyoiAPI.getUmaStatus(stackHandler.getStackInSlot(0)).name()).isFlat();
+                            .get(UmapyoiAPI.getUmaStatus(stackInSlot).name()).isFlat();
                 }
 
                 VertexConsumer vertexconsumer = renderTypeBuffer
