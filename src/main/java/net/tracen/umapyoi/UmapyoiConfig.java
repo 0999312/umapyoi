@@ -4,11 +4,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class UmapyoiConfig {
     public static ForgeConfigSpec COMMON_CONFIG;
-
-    public static ForgeConfigSpec.IntValue ITEM_LOW_VALUE;
-    public static ForgeConfigSpec.IntValue ITEM_MID_VALUE;
-    public static ForgeConfigSpec.IntValue ITEM_HIGH_VALUE;
-    
+    public static ForgeConfigSpec.DoubleValue CHANCE_MOTIVATION_EFFECT;
     public static ForgeConfigSpec.DoubleValue DAMAGE_MOTIVATION_EFFECT;
 
     public static ForgeConfigSpec CLIENT_CONFIG;
@@ -16,24 +12,22 @@ public class UmapyoiConfig {
     public static ForgeConfigSpec.BooleanValue HIDE_PARTS_RENDER;
     public static ForgeConfigSpec.BooleanValue ELYTRA_RENDER;
     
+    public static ForgeConfigSpec.IntValue EAR_ANIMATION_INTERVAL;
+    public static ForgeConfigSpec.IntValue TAIL_ANIMATION_INTERVAL;
+    
     public static ForgeConfigSpec.BooleanValue OVERLAY_SWITCH;
 
     static {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
         COMMON_BUILDER.comment("General settings").push("general");
-
-        ITEM_LOW_VALUE = COMMON_BUILDER.comment("Determining the values that Notepads can provide.")
-                .defineInRange("stat_limit_value", 1, 0, 10);
-
-        ITEM_MID_VALUE = COMMON_BUILDER.comment("Determining the values that Writings can provide.")
-                .defineInRange("stat_limit_value", 2, 0, 10);
-
-        ITEM_HIGH_VALUE = COMMON_BUILDER.comment("Determining the values that Scrolls can provide.")
-                .defineInRange("stat_limit_value", 3, 0, 10);
         
-        DAMAGE_MOTIVATION_EFFECT = COMMON_BUILDER.comment("Determining the chance that damage will effect motivation.")
+        CHANCE_MOTIVATION_EFFECT = COMMON_BUILDER.comment("Determining the chance that damage will effect motivation.")
                 .comment("Set to 0 to turn off.")
-                .defineInRange("damage_motivation_effect", 0.5, 0.0, 1.0);
+                .defineInRange("chance_motivation_effect", 0.5, 0.0, 1.0);
+        
+        DAMAGE_MOTIVATION_EFFECT = COMMON_BUILDER.comment("Determining the damage that will effect motivation.")
+                .comment("Set to 0 to turn off.")
+                .defineInRange("damage_motivation_effect", 4.0, 0.0, Double.MAX_VALUE);
 
         COMMON_BUILDER.pop();
         COMMON_CONFIG = COMMON_BUILDER.build();
@@ -54,6 +48,12 @@ public class UmapyoiConfig {
                 .comment("Determines whether to render player's elytra after closed vanilla armor render.",
                         "Player's elytra won't render after closing this.")
                 .define("elytra_render", true);
+        
+        EAR_ANIMATION_INTERVAL = CLIENT_BUILDER.comment("Determining the interval tick between twice ear animation.")
+                .defineInRange("ear_animation_interval", 100, 10, Integer.MAX_VALUE);
+        TAIL_ANIMATION_INTERVAL = CLIENT_BUILDER.comment("Determining the interval tick between twice tail animation.")
+                .defineInRange("tail_animation_interval", 200, 10, Integer.MAX_VALUE);
+        
         CLIENT_BUILDER.pop();
         CLIENT_CONFIG = CLIENT_BUILDER.build();
     }

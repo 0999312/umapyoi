@@ -1,0 +1,17 @@
+{
+  "level": 2,
+  "type": "wisdom",
+  "supports": [
+    {
+      "support": "umapyoi:wisdom_support",
+      "level": 2
+    },
+    {
+      "support": "umapyoi:skill_support",
+      "level": 1,
+      "tag": {
+        "skill": "umapyoi:last_leg"
+      }
+    }
+  ]
+}

@@ -22,7 +22,6 @@ import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.tracen.umapyoi.api.UmaFactorUtils;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.capability.IUmaCapability;
@@ -34,6 +33,7 @@ import net.tracen.umapyoi.registry.factors.FactorType;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 import net.tracen.umapyoi.registry.umadata.UmaStatus.Growth;
+import net.tracen.umapyoi.utils.UmaFactorUtils;
 
 public class RetireRegisterMenu extends AbstractContainerMenu {
     protected final ResultContainer resultSlots = new ResultContainer();
@@ -63,7 +63,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         ItemStack inputSoul = this.inputSlots.getItem(0);
         if(inputSoul.getItem() instanceof UmaSoulItem) {
             IUmaCapability cap = inputSoul.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(inputSoul));
-            return cap.getUmaStatus().getGrowth() == Growth.TRAINED;
+            return cap.getUmaStatus().growth() == Growth.TRAINED;
         }
         return false;
     }
@@ -158,7 +158,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
                 .orElse(UmaFactorRegistry.SPEED_FACTOR.get());
         UmaFactorStack skillFactor = new UmaFactorStack(UmaFactorRegistry.SKILL_FACTOR.get(), 1);
         skillFactor.getOrCreateTag().putString("skill",
-                cap.getSkills().get(rand.nextInt(cap.getSkills().size())).getRegistryName().toString());
+                cap.getSkills().get(rand.nextInt(cap.getSkills().size())).toString());
         List<UmaFactorStack> stackList = Lists.newArrayList(new UmaFactorStack(statusFactor, rand.nextInt(3) + 1), skillFactor);
         result.getOrCreateTag().putString("name", cap.getUmaStatus().name().toString());
         result.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(stackList));

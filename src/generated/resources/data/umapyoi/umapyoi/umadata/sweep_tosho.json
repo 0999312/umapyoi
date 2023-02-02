@@ -1,0 +1,15 @@
+{
+  "status": {
+    "name": "umapyoi:sweep_tosho",
+    "property": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "motivation": "normal",
+    "growth": "untrained"
+  },
+  "uniqueSkill": "umapyoi:basic_pace"
+}

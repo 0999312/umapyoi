@@ -40,7 +40,7 @@ public class MotivationOverlay implements IIngameOverlay{
         RenderSystem.setShaderTexture(0, HUD);
         if(!UmapyoiAPI.getUmaSoul(player).isEmpty()) {
             UmapyoiAPI.getUmaSoul(player).getCapability(CapabilityRegistry.UMACAP).ifPresent(cap->{
-                switch(cap.getUmaStatus().getMotivation()) {   
+                switch(cap.getUmaStatus().motivation()) {   
                 case BAD -> {
                     GuiComponent.blit(poseStack, x + 118, y - 37, 0, 60, 64, 14, 64, 96);
                     this.minecraft.font.draw(poseStack, new TranslatableComponent("umapyoi.motivation.bad"), x + 132, y - 34, 0XFFFFFF);
@@ -62,7 +62,7 @@ public class MotivationOverlay implements IIngameOverlay{
                     GuiComponent.blit(poseStack, x + 118, y - 37, 0, 0, 64, 14, 64, 96);
                     this.minecraft.font.draw(poseStack, new TranslatableComponent("umapyoi.motivation.perfect"), x + 132, y - 34, 0XFFFFFF);
                 }
-                default -> throw new IllegalArgumentException("Unexpected value: " + cap.getUmaStatus().getMotivation());
+                default -> throw new IllegalArgumentException("Unexpected value: " + cap.getUmaStatus().motivation());
                 }
             });
         }

@@ -15,6 +15,7 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
+import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 
 public class SkillOverlay implements IIngameOverlay{
@@ -46,10 +47,10 @@ public class SkillOverlay implements IIngameOverlay{
     
     private void renderSkill(ItemStack soul, PoseStack poseStack, int x, int y) {
         soul.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap->{
-            int skillCD = cap.getCooldown();
-            int cdProcess = skillCD != 0 ? skillCD * 96 / cap.getMaxCooldown() : 0;
-            GuiComponent.blit(poseStack, x, y, 0, 20, cdProcess + 1, 20, 128, 64);
-            UmaSkill skill = cap.getSelectedSkill();
+//            int skillCD = cap.getCooldown();
+//            int cdProcess = skillCD != 0 ? skillCD * 96 / cap.getMaxCooldown() : 0;
+//            GuiComponent.blit(poseStack, x, y, 0, 20, cdProcess + 1, 20, 128, 64);
+            UmaSkill skill = UmaSkillRegistry.REGISTRY.get().getValue(cap.getSelectedSkill());
             if(skill != null) {
                 switch(skill.getType()) {
                 case BUFF -> GuiComponent.blit(poseStack, x + 3, y + 2, 0, 48, 16, 16, 128, 64);
@@ -57,8 +58,9 @@ public class SkillOverlay implements IIngameOverlay{
                 case HEAL -> GuiComponent.blit(poseStack, x + 3, y + 2, 32, 48, 16, 16, 128, 64);
                 }
                 this.minecraft.font.draw(poseStack, skill.getDescription(), x + 22, y + 6, 0x794016);
+            }else {
+                GuiComponent.blit(poseStack, x, y, 0, 20, 96, 20, 128, 64);
             }
-            
         });
     }
     

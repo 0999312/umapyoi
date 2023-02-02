@@ -36,9 +36,9 @@ public class ThreeGoddessContainer extends AbstractContainerMenu {
         this.containerData = dataIn;
         this.canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
         int startX = 8;
-        
+
         this.addSlot(new ThreeGoddessJewelSlot(inventory, 0, 80, 27));
-        
+
         this.addSlot(new ThreeGoddessFactorSlot(inventory, 1, 50, 78));
         this.addSlot(new ThreeGoddessFactorSlot(inventory, 2, 109, 78));
 
@@ -141,15 +141,15 @@ public class ThreeGoddessContainer extends AbstractContainerMenu {
 
         @Override
         public boolean mayPlace(ItemStack stack) {
-            return stack.is(ItemRegistry.JEWEL.get());
+            return stack.is(ItemRegistry.BLANK_UMA_SOUL.get());
         }
-        
+
         @Override
         public int getMaxStackSize(ItemStack stack) {
             return 1;
         }
     }
-    
+
     public static class ThreeGoddessFactorSlot extends SlotItemHandler {
 
         public ThreeGoddessFactorSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
@@ -158,7 +158,24 @@ public class ThreeGoddessContainer extends AbstractContainerMenu {
 
         @Override
         public boolean mayPlace(ItemStack stack) {
-            return stack.is(ItemRegistry.UMA_FACTOR_ITEM.get());
+            boolean result = stack.is(ItemRegistry.UMA_FACTOR_ITEM.get());
+            boolean flag = false;
+
+            switch (this.getSlotIndex()) {
+            case 1: {
+                flag = stack.getOrCreateTag().getString("name")
+                        .equals(this.getItemHandler().getStackInSlot(2).getOrCreateTag().getString("name"));
+                break;
+            }
+            case 2: {
+                flag = stack.getOrCreateTag().getString("name")
+                        .equals(this.getItemHandler().getStackInSlot(1).getOrCreateTag().getString("name"));
+                break;
+            }
+            default:
+                break;
+            }
+            return result && !flag;
         }
     }
 

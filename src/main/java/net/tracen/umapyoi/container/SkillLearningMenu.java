@@ -9,7 +9,6 @@ import net.minecraft.world.inventory.ItemCombinerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.tracen.umapyoi.api.UmaStatusUtils;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.capability.IUmaCapability;
@@ -18,8 +17,9 @@ import net.tracen.umapyoi.item.SkillBookItem;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
-import net.tracen.umapyoi.registry.training.SupportContainer;
 import net.tracen.umapyoi.registry.umadata.UmaStatus.Growth;
+import net.tracen.umapyoi.utils.UmaSkillUtils;
+import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public class SkillLearningMenu extends ItemCombinerMenu {
 
@@ -44,8 +44,11 @@ public class SkillLearningMenu extends ItemCombinerMenu {
                     .tryParse(inputSkill.getOrCreateTag().getCompound("support").getCompound("tag").getString("skill"));
             if (UmaSkillRegistry.REGISTRY.get().containsKey(skillRL)) {
                 IUmaCapability cap = inputSoul.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(inputSoul));
+                if(cap.getSkillSlots() <= cap.getSkills().size())
+                    return false;
+                
                 UmaSkill skill = UmaSkillRegistry.REGISTRY.get().getValue(skillRL);
-                boolean result = cap.getSkills().contains(skill);
+                boolean result = cap.getSkills().contains(skillRL);
                 return cap.getUmaStatus().property()[UmaStatusUtils.StatusType.WISDOM.getId()] >= skill.getRequiredWisdom() && !result;
             }
         }
@@ -57,7 +60,7 @@ public class SkillLearningMenu extends ItemCombinerMenu {
             return stack.getCapability(CapabilityRegistry.UMACAP)
                     .orElse(new UmaCapability(stack))
                     .getUmaStatus()
-                    .getGrowth() != Growth.RETIRED;
+                    .growth() != Growth.RETIRED;
         }
         return false;
     }
@@ -104,8 +107,8 @@ public class SkillLearningMenu extends ItemCombinerMenu {
         ItemStack result = this.inputSlots.getItem(0).copy();
         IUmaCapability cap = result.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(result));
         ItemStack supportItem = this.inputSlots.getItem(1).copy();
-        if (supportItem.getItem() instanceof SupportContainer supports) {
-            supports.getSupports(supportItem).forEach(support -> support.applySupport(cap));
+        if (supportItem.getItem() instanceof SkillBookItem skillBook) {
+            UmaSkillUtils.learnSkill(cap, skillBook.getSkill(supportItem).getRegistryName());
         }
         return result;
     }

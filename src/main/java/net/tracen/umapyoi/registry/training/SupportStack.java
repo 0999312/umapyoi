@@ -10,8 +10,9 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.capability.IUmaCapability;
-import net.tracen.umapyoi.registry.TrainingSupportRegistry;
+import net.tracen.umapyoi.events.ApplyTrainingSupportEvent;
 
 public class SupportStack {
     private final TrainingSupport factor;
@@ -20,9 +21,11 @@ public class SupportStack {
     private CompoundTag tag;
 
     public static final Codec<SupportStack> CODEC = RecordCodecBuilder.create(instance -> instance
-            .group(TrainingSupportRegistry.REGISTRY.get().getCodec().fieldOf("support")
-                    .forGetter(SupportStack::getFactor), Codec.INT.fieldOf("level").forGetter(SupportStack::getLevel),
-                    CompoundTag.CODEC.optionalFieldOf("tag").forGetter(stack -> Optional.ofNullable(stack.getTag())))
+            .group(
+                    TrainingSupport.CODEC.fieldOf("support").forGetter(SupportStack::getFactor), 
+                    Codec.INT.fieldOf("level").forGetter(SupportStack::getLevel),
+                    CompoundTag.CODEC.optionalFieldOf("tag").forGetter(stack -> Optional.ofNullable(stack.getTag()))
+                  )
             .apply(instance, SupportStack::new));
     
     public static final SupportStack EMPTY = new SupportStack(null, 0);
@@ -63,7 +66,10 @@ public class SupportStack {
      }
 
     public void applySupport(IUmaCapability cap) {
-        this.getFactor().applySupport(cap, this);
+        if(!MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Pre(this, cap))) {
+            this.getFactor().applySupport(cap, this);
+            MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Post(this, cap));
+        }
     }
     
     public Component getDescription() {

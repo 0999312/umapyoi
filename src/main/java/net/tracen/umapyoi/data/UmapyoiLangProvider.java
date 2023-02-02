@@ -3,10 +3,12 @@ package net.tracen.umapyoi.data;
 import java.util.function.Supplier;
 
 import cn.mcmod_mmf.mmlib.data.AbstractLangProvider;
+import net.minecraft.Util;
 import net.minecraft.data.DataGenerator;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.registry.SupportCardRegistry;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
@@ -14,6 +16,7 @@ import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 import net.tracen.umapyoi.registry.training.TrainingSupport;
+import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
 public class UmapyoiLangProvider extends AbstractLangProvider {
@@ -31,7 +34,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
 
         add(ItemRegistry.CUPCAKE.get(), "Plain Cupcake");
         add(ItemRegistry.SWEET_CUPCAKE.get(), "Sweet Cupcake");
-        add(ItemRegistry.BLANK_UMA_SOUL.get(), "Blank Umamusume Soul");
+        add(ItemRegistry.BLANK_UMA_SOUL.get(), "Faded Umamusume Soul");
         add(ItemRegistry.UMA_SOUL.get(), "Umamusume Soul");
         add(ItemRegistry.UMA_FACTOR_ITEM.get(), "Umamusume Wish");
 
@@ -62,9 +65,14 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add(ItemRegistry.SKILL_BOOK.get(), "Skill Book");
         
         add(BlockRegistry.THREE_GODDESS.get(), "Three Goddesses Statue");
+        add(BlockRegistry.THREE_GODDESS_UPPER.get(), "Three Goddesses Statue");
         add(BlockRegistry.TRAINING_FACILITY.get(), "Training Facility");
         add(BlockRegistry.SKILL_LEARNING_TABLE.get(), "Skill Learning Table");
         add(BlockRegistry.REGISTER_LECTERN.get(), "Retire Register Lectern");
+        
+        add(BlockRegistry.UMA_PEDESTAL.get(), "Umamusume Pedestal");
+        
+        add(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(), "Support Album Pedestal");
 
         add("curios.modifiers.uma_soul", "When being umamusume:");
         add("curios.modifiers.uma_suit", "When wearing apparel:");
@@ -75,6 +83,9 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addTooltip(".umadata.name", "Umamusume's Name:%s");        
         addTooltip(".umafactor.data", "Has %s and %d more factors.");
+        
+        addTooltip(".supports", "Supports:");        
+        addTooltip(".supporters", "Supporters:");
         
         addSupport(TrainingSupportRegistry.SPEED_SUPPORT, "Speed Increase");
         addSupport(TrainingSupportRegistry.STAMINA_SUPPORT, "Stamina Increase");
@@ -139,12 +150,34 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.HARU_URARA, "Haru Urara");
         addUma(UmaDataRegistry.TAMAMO_CROSS, "Tamamo Cross");
         addUma(UmaDataRegistry.OGURI_CAP_XMAS, "[Miraculous White Star] Oguri Cap");
-        
+        addUma(UmaDataRegistry.GOLD_SHIP_WATER, "[Run! Fun! Watergun!!] Gold Ship");
         addUma(UmaDataRegistry.SAKURA_BAKUSHIN_O, "Sakura Bakushin O");
         addUma(UmaDataRegistry.MATIKANEFUKUKITARU, "Matikane Fukukitaru");
         addUma(UmaDataRegistry.RICE_SHOWER, "Rice Shower");
         addUma(UmaDataRegistry.SEIUN_SKY, "Seiun Sky");
         addUma(UmaDataRegistry.VODKA, "Vodka");
+        
+        addUma(UmaDataRegistry.MANHATTAN_CAFE, "Manhattan cafe");
+        addUma(UmaDataRegistry.MEJIRO_ARDAN, "Mejiro Ardan");
+        
+        addUma(UmaDataRegistry.DAITAKU_HELIOS, "Daitaku Helios");
+        addUma(UmaDataRegistry.SWEEP_TOSHO, "Sweep Tosho");
+        addUma(UmaDataRegistry.GOLD_CITY, "Gold City");
+        
+        addSupportCard(SupportCardRegistry.TEST_SUPPOERS, "Test Supporters Card");
+        addSupportCard(SupportCardRegistry.TEST_1, "Test 1 Card");
+        addSupportCard(SupportCardRegistry.TEST_2, "Test 2 Card");
+        addSupportCard(SupportCardRegistry.TEST_3, "Test 3 Card");
+        addSupportCard(SupportCardRegistry.TEST_4, "Test 4 Card");
+        addSupportCard(SupportCardRegistry.TEST_5, "Test 5 Card");
+    }
+    
+    private void addSupportCard(Supplier<SupportCard> key, String name) {
+        addSupportCard(key.get(), name);
+    }
+    
+    private void addSupportCard(SupportCard key, String name) {
+        add(Util.makeDescriptionId("support_card", key.getRegistryName()) + ".name", name);
     }
 
     private void addUma(Supplier<UmaData> key, String name) {

@@ -46,12 +46,18 @@
   "umadata.umapyoi.seiun_sky": "セイウンスカイ",
   "umadata.umapyoi.vodka": "ウオッカ",
   
+  "umadata.umapyoi.manhattan_cafe": "マンハッタンカフェ",
+  "umadata.umapyoi.mejiro_ardan": "メジロアルダン",
+  
   "tooltip.umapyoi.umadata.name": "ウマ娘名：%s",
   
   "block.umapyoi.skill_learning_table": "スキル獲得台",
   "block.umapyoi.three_goddess": "三女神像",
   "block.umapyoi.training_facility": "トレーニングターミナル",
   "block.umapyoi.register_lectern": "引退登録台",
+  
+  "block.umapyoi.three_goddess_upper": "三女神像",
+  
   "container.umapyoi.skill_learning": "スキル獲得台",
   "container.umapyoi.three_goddess": "三女神像",
   "container.umapyoi.training_facility": "トレーニングターミナル",

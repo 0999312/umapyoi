@@ -10,8 +10,9 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.capability.IUmaCapability;
-import net.tracen.umapyoi.registry.UmaFactorRegistry;
+import net.tracen.umapyoi.events.ApplyFactorEvent;
 
 public class UmaFactorStack {
     private final UmaFactor factor;
@@ -20,11 +21,11 @@ public class UmaFactorStack {
     private CompoundTag tag;
 
     public static final Codec<UmaFactorStack> CODEC = RecordCodecBuilder.create(instance -> instance
-            .group(UmaFactorRegistry.REGISTRY.get().getCodec().fieldOf("factor").forGetter(UmaFactorStack::getFactor),
+            .group(UmaFactor.CODEC.fieldOf("factor").forGetter(UmaFactorStack::getFactor),
                     Codec.INT.fieldOf("level").forGetter(UmaFactorStack::getLevel),
                     CompoundTag.CODEC.optionalFieldOf("Tag").forGetter(stack -> Optional.ofNullable(stack.getTag())))
             .apply(instance, UmaFactorStack::new));
-
+    
     public UmaFactorStack(UmaFactor factor, int level) {
         this.factor = factor;
         this.level = level;
@@ -51,7 +52,10 @@ public class UmaFactorStack {
     }
 
     public void applyFactor(IUmaCapability cap) {
-        this.getFactor().applyFactor(cap, this);
+        if(!MinecraftForge.EVENT_BUS.post(new ApplyFactorEvent.Pre(this, cap))) {
+            this.getFactor().applyFactor(cap, this);
+            MinecraftForge.EVENT_BUS.post(new ApplyFactorEvent.Post(this, cap));
+        }
     }
     
     public Component getDescription() {

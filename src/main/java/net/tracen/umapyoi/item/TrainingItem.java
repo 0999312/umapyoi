@@ -1,6 +1,7 @@
 package net.tracen.umapyoi.item;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.capability.IUmaCapability;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 import net.tracen.umapyoi.registry.training.SupportStack;
 import net.tracen.umapyoi.registry.training.SupportType;
@@ -43,23 +45,28 @@ public class TrainingItem extends Item implements SupportContainer{
     }
 
     @Override
-    public List<SupportStack> getSupports(ItemStack stack) {
-        return ImmutableList.of(this.getSupport());
-    }
-
-    @Override
-    public SupportType getSupportType(ItemStack stack) {
-        return this.type;
-    }
-
-    @Override
-    public boolean isConsumable(ItemStack stack) {
+    public boolean isConsumable(Level level, ItemStack stack) {
         return true;
     }
 
     @Override
-    public int getSupportLevel(ItemStack stack) {
+    public int getSupportLevel(Level level, ItemStack stack) {
         return this.level;
     }
+
+    @Override
+    public SupportType getSupportType(Level level, ItemStack stack) {
+        return this.type;
+    }
+
+    @Override
+    public List<SupportStack> getSupports(Level level, ItemStack stack) {
+        return ImmutableList.of(this.getSupport());
+    }
+
+    @Override
+    public Predicate<IUmaCapability> canSupport(Level level, ItemStack stack) {
+        return cap -> true;
+    }    
 
 }

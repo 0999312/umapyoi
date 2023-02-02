@@ -8,12 +8,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.api.UmaStatusUtils;
-import net.tracen.umapyoi.api.UmaStatusUtils.StatusType;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.container.RetireRegisterMenu;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.umadata.UmaStatus;
+import net.tracen.umapyoi.utils.UmaStatusUtils;
+import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegisterMenu> {
     

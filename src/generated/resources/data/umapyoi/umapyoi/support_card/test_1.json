@@ -1,0 +1,14 @@
+{
+  "level": 2,
+  "type": "speed",
+  "supports": [
+    {
+      "support": "umapyoi:speed_support",
+      "level": 2
+    },
+    {
+      "support": "umapyoi:strength_support",
+      "level": 1
+    }
+  ]
+}

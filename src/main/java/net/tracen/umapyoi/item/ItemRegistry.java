@@ -11,16 +11,19 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.api.UmaStatusUtils;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.food.UmaDrinkItem;
 import net.tracen.umapyoi.item.food.UmaFoodItem;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.training.SupportType;
+import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Umapyoi.MODID);
 
+    public static final RegistryObject<Item> UMA_PEDESTAL = register("uma_pedestal",
+            () -> new BlockItem(BlockRegistry.UMA_PEDESTAL.get(), Umapyoi.defaultItemProperties()));
+    
     public static final RegistryObject<Item> THREE_GODDESS = register("three_goddess",
             () -> new BlockItem(BlockRegistry.THREE_GODDESS.get(), Umapyoi.defaultItemProperties()));
 
@@ -34,7 +37,8 @@ public class ItemRegistry {
             () -> new BlockItem(BlockRegistry.REGISTER_LECTERN.get(), Umapyoi.defaultItemProperties()));
 
     public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul",
-            () -> new Item(Umapyoi.defaultItemProperties()));
+            FadedUmaSoulItem::new);
+    
     public static final RegistryObject<Item> UMA_SOUL = register("uma_soul", UmaSoulItem::new);
     public static final RegistryObject<Item> UMA_FACTOR_ITEM = register("uma_factor_item", UmaFactorContainerItem::new);
 
@@ -95,22 +99,24 @@ public class ItemRegistry {
     });
 
     public static final RegistryObject<Item> SKILL_BOOK = register("skill_book", SkillBookItem::new);
+    
+    public static final RegistryObject<Item> SUPPORT_CARD = register("support_card", SupportCardItem::new);
 
     public static final RegistryObject<Item> HACHIMI_MID = register("hachimi_mid",
             () -> new UmaDrinkItem(UmaStatusUtils::addMotivation,
-                    FoodInfo.builder().name("hachimi_mid").amountAndCalories(4, 0.6F).water(30F)
+                    FoodInfo.builder().name("hachimi_mid").alwaysEat().amountAndCalories(4, 0.6F).water(30F)
                             .nutrients(2F, 2F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F)
                             .build()));
 
     public static final RegistryObject<Item> HACHIMI_BIG = register("hachimi_big", () -> new UmaDrinkItem(status -> {
         UmaStatusUtils.addMotivation(status);
         UmaStatusUtils.addMotivation(status);
-    }, FoodInfo.builder().name("hachimi_big").amountAndCalories(8, 0.8F).water(30F).nutrients(4F, 4F, 0F, 0F, 0F)
+    }, FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(8, 0.8F).water(30F).nutrients(4F, 4F, 0F, 0F, 0F)
             .decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final RegistryObject<Item> ROYAL_BITTER = register("royal_bitter", () -> new UmaDrinkItem(
             UmaStatusUtils::downMotivation,
-            FoodInfo.builder().name("royal_bitter").amountAndCalories(4, 0.6F).water(30F).nutrients(4F, 4F, 0F, 0F, 0F)
+            FoodInfo.builder().name("royal_bitter").alwaysEat().amountAndCalories(4, 0.6F).water(30F).nutrients(4F, 4F, 0F, 0F, 0F)
                     .addEffect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600), 1F)
                     .addEffect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20), 0.5F).decayModifier(1.5F)
                     .heatCapacity(1F).cookingTemp(480F).build()));
@@ -122,7 +128,7 @@ public class ItemRegistry {
                             .build()));
 
     public static final RegistryObject<Item> SWEET_CUPCAKE = register("sweet_cupcake",
-            () -> new UmaDrinkItem(status -> {
+            () -> new UmaFoodItem(status -> {
                 UmaStatusUtils.addMotivation(status);
                 UmaStatusUtils.addMotivation(status);
             }, FoodInfo.builder().name("sweet_cupcake").amountAndCalories(7, 0.6F).water(0F)

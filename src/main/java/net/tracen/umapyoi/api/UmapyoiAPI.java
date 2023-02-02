@@ -1,20 +1,14 @@
 package net.tracen.umapyoi.api;
 
-import java.util.List;
-
-import com.google.common.collect.Lists;
-
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.Registry;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
-import net.tracen.umapyoi.capability.UmaCapability;
+import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.item.UmaSuitItem;
-import net.tracen.umapyoi.registry.UmaSkillRegistry;
-import net.tracen.umapyoi.registry.skills.UmaSkill;
+import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
-import net.tracen.umapyoi.registry.umadata.UmaStatus;
+import net.tracen.umapyoi.utils.ClientUtils;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
@@ -83,25 +77,15 @@ public class UmapyoiAPI {
         }
         return false;
     }
-
-    public static UmaStatus getUmaStatus(ItemStack stack) {
-        return stack.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(stack)).getUmaStatus();
+    
+    public static Registry<UmaData> getUmaDataRegistry(Level level){
+        if(level.isClientSide()) return ClientUtils.getClientUmaDataRegistry();
+        return level.registryAccess().registryOrThrow(UmaData.REGISTRY_KEY);
     }
-
-    public static ItemStack initUmaSoul(ItemStack stack, UmaData data) {
-        UmaSkill skill = UmaSkillRegistry.REGISTRY.get().getValue(data.uniqueSkill());
-        return initUmaSoul(stack, data.status(), Lists.newArrayList(skill));
+    
+    public static Registry<SupportCard> getSupportCardRegistry(Level level){
+        if(level.isClientSide()) return ClientUtils.getClientSupportCardRegistry();
+        return level.registryAccess().registryOrThrow(SupportCard.REGISTRY_KEY);
     }
-
-    public static ItemStack initUmaSoul(ItemStack stack, UmaStatus status, List<UmaSkill> skills) {
-        if (stack.getItem() instanceof UmaSoulItem) {
-            CompoundTag result = new CompoundTag();
-            result.put("status", status.serializeNBT());
-            result.put("skills", UmaSkillUtils.serializeNBT(skills));
-            result.putString("selectedSkill", skills.get(0).toString());
-            result.putInt("skillCooldown", 0);
-            stack.getOrCreateTag().put("cap", result);
-        }
-        return stack;
-    }
+    
 }

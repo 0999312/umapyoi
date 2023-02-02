@@ -17,7 +17,9 @@ import net.tracen.umapyoi.client.key.SkillKeyMapping;
 import net.tracen.umapyoi.client.renderer.TrainningSuitRenderer;
 import net.tracen.umapyoi.client.renderer.UmaSoulRenderer;
 import net.tracen.umapyoi.client.renderer.UmaUniformRenderer;
+import net.tracen.umapyoi.client.renderer.blockentity.SupportAlbumPedestalBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
+import net.tracen.umapyoi.client.renderer.blockentity.UmaPedestalBlockRender;
 import net.tracen.umapyoi.item.ItemRegistry;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
@@ -46,8 +48,11 @@ public class ClientSetupEvents {
         
         OverlayRegistry.registerOverlayBottom("umapyoi.skill_overlay", SkillOverlay.INSTANCE);
         OverlayRegistry.registerOverlayBottom("umapyoi.motivation_overlay", MotivationOverlay.INSTANCE);
+        OverlayRegistry.registerOverlayBottom("umapyoi.action_bar", ActionBarOverlay.INSTANCE);
         
         BlockEntityRenderers.register(BlockEntityRegistry.THREE_GODDESS.get(), ThreeGoddessBlockRender::new);
+        BlockEntityRenderers.register(BlockEntityRegistry.UMA_PEDESTAL.get(), UmaPedestalBlockRender::new);
+        BlockEntityRenderers.register(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(), SupportAlbumPedestalBlockRender::new);
     }
 
     @SubscribeEvent

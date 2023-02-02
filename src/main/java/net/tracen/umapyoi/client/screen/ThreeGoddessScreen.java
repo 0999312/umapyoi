@@ -5,6 +5,7 @@ import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 
 import cn.mcmod_mmf.mmlib.client.RenderUtils;
+import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
 import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockVersion;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -13,10 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.client.ClientUtils;
-import net.tracen.umapyoi.client.model.SimpleUmapyoiModel;
 import net.tracen.umapyoi.container.ThreeGoddessContainer;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
+import net.tracen.umapyoi.utils.ClientUtils;
 
 public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessContainer> {
 
@@ -53,16 +53,16 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
     }
     
     protected void renderModel(int pPosX, int pPosY, int pScale, Quaternion pQuaternion, ResourceLocation name) {
-        if(!UmaDataRegistry.UMA_DATA_REGISTRY.get().containsKey(name)) {
+        if(!ClientUtils.getClientUmaDataRegistry().containsKey(name)) {
             name = UmaDataRegistry.COMMON_UMA.getId();
         }
-        SimpleUmapyoiModel model = new SimpleUmapyoiModel(ClientUtil.getModelPOJO(name), BedrockVersion.LEGACY);
+        SimpleBedrockModel model = new SimpleBedrockModel(ClientUtil.getModelPOJO(name), BedrockVersion.LEGACY);
         ClientUtils.renderModelInInventory(pPosX, pPosY, pScale, pQuaternion, model, name);
     }
 
     @Override
     protected void renderLabels(PoseStack ms, int mouseX, int mouseY) {
-        this.font.draw(ms, this.title, (float)this.titleLabelX, (float)this.titleLabelY - 3, 0xFFFFFF);
+        this.font.draw(ms, this.title, (this.imageWidth / 2.0F) - (this.font.width(this.title.getVisualOrderText()) / 2.0F), (float)this.titleLabelY - 3, 0xFFFFFF);
         this.font.draw(ms, this.playerInventoryTitle, 8.0f, this.imageHeight - 96 + 2, 4210752);
     }
 

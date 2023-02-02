@@ -23,6 +23,15 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                 models().getExistingFile(new ResourceLocation("umapyoi:block/register_lectern")));
         simpleBlock(BlockRegistry.SKILL_LEARNING_TABLE.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/skill_learning_table")));
+        
+        simpleBlock(BlockRegistry.UMA_PEDESTAL.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/pedestal")));
+        
+        simpleBlock(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/pedestal")));
+        
+        simpleBlock(BlockRegistry.THREE_GODDESS_UPPER.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/three_goddess")));
     }
 
 }

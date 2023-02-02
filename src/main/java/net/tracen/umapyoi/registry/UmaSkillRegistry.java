@@ -20,15 +20,15 @@ public class UmaSkillRegistry {
             RegistryBuilder::new);
 
     public static final RegistryObject<UmaSkill> BASIC_PACE = SKILLS.register("basic_pace",
-            () -> new SpeedSkill(new UmaSkill.Builder().type(SkillType.BUFF).cooldown(2400), 0, 400));
+            () -> new SpeedSkill(new UmaSkill.Builder().type(SkillType.BUFF), 0, 400));
     
     public static final RegistryObject<UmaSkill> LAST_LEG = SKILLS.register("last_leg",
-            () -> new SpeedSkill(new UmaSkill.Builder().type(SkillType.BUFF).cooldown(2400).requiredWisdom(2), 1, 200));
+            () -> new SpeedSkill(new UmaSkill.Builder().type(SkillType.BUFF).actionPoint(400).requiredWisdom(2), 1, 200));
     public static final RegistryObject<UmaSkill> HEART_AND_SOUL = SKILLS.register("heart_and_soul",
-            () -> new SpeedSkill(new UmaSkill.Builder().type(SkillType.BUFF).cooldown(3600).requiredWisdom(4), 2, 200));
+            () -> new SpeedSkill(new UmaSkill.Builder().type(SkillType.BUFF).actionPoint(600).requiredWisdom(4), 2, 200));
     
     public static final RegistryObject<UmaSkill> DEEP_BREATHS = SKILLS.register("deep_breaths",
-            () -> new HealSkill(new UmaSkill.Builder().type(SkillType.HEAL).cooldown(2400).requiredWisdom(2), 0));
+            () -> new HealSkill(new UmaSkill.Builder().type(SkillType.HEAL).actionPoint(400).requiredWisdom(2), 0));
     public static final RegistryObject<UmaSkill> COOLDOWN = SKILLS.register("cooldown",
-            () -> new HealSkill(new UmaSkill.Builder().type(SkillType.HEAL).cooldown(3600).requiredWisdom(4), 1));
+            () -> new HealSkill(new UmaSkill.Builder().type(SkillType.HEAL).actionPoint(600).requiredWisdom(4), 1));
 }

@@ -1,0 +1,15 @@
+{
+  "status": {
+    "name": "umapyoi:gold_ship_water",
+    "property": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "motivation": "normal",
+    "growth": "untrained"
+  },
+  "uniqueSkill": "umapyoi:basic_pace"
+}

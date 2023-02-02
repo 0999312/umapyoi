@@ -14,7 +14,7 @@
           "functions": [
             {
               "function": "minecraft:set_nbt",
-              "tag": "{support:{tag:{skill:\"umapyoi:heart_and_soul\"},level:1,support:\"umapyoi:skill_support\" } }"
+              "tag": "{skill:\"umapyoi:heart_and_soul\"}"
             }
           ],
           "name": "umapyoi:skill_book"
@@ -24,7 +24,7 @@
           "functions": [
             {
               "function": "minecraft:set_nbt",
-              "tag": "{support:{tag:{skill:\"umapyoi:cooldown\"},level:1,support:\"umapyoi:skill_support\" } }"
+              "tag": "{skill:\"umapyoi:cooldown\"}"
             }
           ],
           "name": "umapyoi:skill_book"

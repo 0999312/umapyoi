@@ -1,5 +1,7 @@
 package net.tracen.umapyoi.registry.training;
 
+import com.mojang.serialization.Codec;
+
 public enum SupportType {
     SPEED,
     STAMINA,
@@ -7,5 +9,10 @@ public enum SupportType {
     GUTS,
     WISDOM,
     FRIENDSHIP,
-    GROUP
+    GROUP;
+    
+    public static final Codec<SupportType> CODEC = Codec.STRING.xmap(
+            string -> SupportType.valueOf(string.toUpperCase()),
+            instance -> instance.name().toLowerCase()
+    );
 }

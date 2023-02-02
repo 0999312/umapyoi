@@ -18,4 +18,12 @@ public class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<TrainingFacilityBlockEntity>> TRAINING_FACILITY = BLOCK_ENTITIES
             .register("training_facility", () -> BlockEntityType.Builder
                     .of(TrainingFacilityBlockEntity::new, BlockRegistry.TRAINING_FACILITY.get()).build(null));
+    
+    public static final RegistryObject<BlockEntityType<UmaPedestalBlockEntity>> UMA_PEDESTAL = BLOCK_ENTITIES
+            .register("uma_pedestal", () -> BlockEntityType.Builder
+                    .of(UmaPedestalBlockEntity::new, BlockRegistry.UMA_PEDESTAL.get()).build(null));
+    
+    public static final RegistryObject<BlockEntityType<SupportAlbumPedestalBlockEntity>> SUPPORT_ALBUM_PEDESTAL = BLOCK_ENTITIES
+            .register("support_album_pedestal", () -> BlockEntityType.Builder
+                    .of(SupportAlbumPedestalBlockEntity::new, BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get()).build(null));
 }

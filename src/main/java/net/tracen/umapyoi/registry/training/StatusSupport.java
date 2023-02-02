@@ -1,8 +1,8 @@
 package net.tracen.umapyoi.registry.training;
 
-import net.tracen.umapyoi.api.UmaStatusUtils.StatusType;
 import net.tracen.umapyoi.capability.IUmaCapability;
 import net.tracen.umapyoi.registry.umadata.UmaStatus;
+import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class StatusSupport extends TrainingSupport {
     private final StatusType statusType;

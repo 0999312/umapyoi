@@ -2,7 +2,7 @@ package net.tracen.umapyoi.client.renderer;
 
 import net.minecraft.resources.ResourceLocation;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.client.ClientUtils;
+import net.tracen.umapyoi.utils.ClientUtils;
 
 public class UmaUniformRenderer {
     public static class SummerUniformRenderer extends AbstractSuitRenderer {

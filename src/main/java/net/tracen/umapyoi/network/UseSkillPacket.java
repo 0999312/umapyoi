@@ -8,9 +8,12 @@ import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.network.NetworkEvent;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
+import net.tracen.umapyoi.events.SkillEvent;
+import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 
 public class UseSkillPacket {
@@ -33,20 +36,27 @@ public class UseSkillPacket {
             ServerPlayer player = ctx.get().getSender();
             if(player.isSpectator()) return ;
             ItemStack umaSoul = UmapyoiAPI.getUmaSoul(player);
+            
             if (!umaSoul.isEmpty()) {
                 umaSoul.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-                    if(cap.isSkillReady()) {
-                        UmaSkill selectedSkill = cap.getSelectedSkill();
+                    UmaSkill selectedSkill = UmaSkillRegistry.REGISTRY.get().getValue(cap.getSelectedSkill());
+                    if(selectedSkill == null) {
+                        player.displayClientMessage(new TranslatableComponent("umapyoi.unknown_skill"), true);
+                        return;
+                    }
+                    if(MinecraftForge.EVENT_BUS.post(new SkillEvent.UseSkillEvent(cap.getSelectedSkill(), player.getLevel(), player)))
+                        return ;
+                    if(cap.getActionPoint() >= selectedSkill.getActionPoint()) {
                         player.connection.send(new ClientboundSoundPacket(selectedSkill.getSound(), SoundSource.PLAYERS, 
                                 player.getX(), 
                                 player.getY(), 
                                 player.getZ(), 
                                 1F, 1F));
                         selectedSkill.applySkill(player.getLevel(), player);
-                        cap.setMaxCooldown(selectedSkill.getCooldown());
-                        cap.setCooldown(selectedSkill.getCooldown());
+                        cap.setActionPoint(cap.getActionPoint() - selectedSkill.getActionPoint());
+                        MinecraftForge.EVENT_BUS.post(new SkillEvent.ApplySkillEvent(selectedSkill.getRegistryName(), player.getLevel(), player));
                     } else {
-                        player.displayClientMessage(new TranslatableComponent("umapyoi.skill_not_ready", cap.getCooldown() / 20), true);
+                        player.displayClientMessage(new TranslatableComponent("umapyoi.not_enough_ap"), true);
                     }
                     
                 });

@@ -1,5 +1,7 @@
 package net.tracen.umapyoi.registry.factors;
 
+import com.mojang.serialization.Codec;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.Registry;
@@ -11,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.capability.IUmaCapability;
+import net.tracen.umapyoi.registry.UmaFactorRegistry;
 
 public class UmaFactor extends ForgeRegistryEntry<UmaFactor>{
     private final FactorType type;
@@ -18,6 +21,11 @@ public class UmaFactor extends ForgeRegistryEntry<UmaFactor>{
 
     public static final ResourceKey<Registry<UmaFactor>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "factor"));
+    
+    public static final Codec<UmaFactor> CODEC = ResourceLocation.CODEC.xmap(
+            loc -> UmaFactorRegistry.REGISTRY.get().getValue(loc),
+            instance -> instance.getRegistryName()
+    );
     
     public UmaFactor(FactorType type) {
         this.type = type;

@@ -46,10 +46,14 @@
   "umadata.umapyoi.seiun_sky": "青雲天空",
   "umadata.umapyoi.vodka": "伏特加",
   
+  "umadata.umapyoi.manhattan_cafe": "曼哈頓咖啡",
+  "umadata.umapyoi.mejiro_ardan": "目白阿爾丹",
+  
   "tooltip.umapyoi.umadata.name": "馬娘姓名：%s",
   
   "block.umapyoi.skill_learning_table": "技能學習台",
   "block.umapyoi.three_goddess": "三女神像",
+  "block.umapyoi.three_goddess_upper": "三女神像",
   "block.umapyoi.training_facility": "訓練設施終端",
   "block.umapyoi.register_lectern": "引退登記台",
   "container.umapyoi.skill_learning": "技能學習台",

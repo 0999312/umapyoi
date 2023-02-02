@@ -34,8 +34,7 @@ public class UmaDataRegistry {
 
     public static final RegistryObject<UmaData> TOKAI_TEIO = UMA_DATA.register("tokai_teio", () -> {
         return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "tokai_teio"))
-                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"),
-                true);
+                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
     });
 
     public static final RegistryObject<UmaData> OGURI_CAP = UMA_DATA.register("oguri_cap", () -> {
@@ -43,9 +42,9 @@ public class UmaDataRegistry {
                 .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
     });
 
-    public static final RegistryObject<UmaData> SAKURA_CHIYONO_O = UMA_DATA.register("sakura_sayono_o", () -> {
+    public static final RegistryObject<UmaData> SAKURA_CHIYONO_O = UMA_DATA.register("sakura_chiyono_o", () -> {
         return new UmaData(
-                UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "sakura_sayono_o"))
+                UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "sakura_chiyono_o"))
                         .property(1, 1, 1, 1, 1).build(),
                 new ResourceLocation(Umapyoi.MODID, "basic_pace"));
     });
@@ -66,8 +65,7 @@ public class UmaDataRegistry {
 
     public static final RegistryObject<UmaData> HARU_URARA = UMA_DATA.register("haru_urara", () -> {
         return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "haru_urara"))
-                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"),
-                true);
+                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
     });
     
     public static final RegistryObject<UmaData> TAMAMO_CROSS = UMA_DATA.register("tamamo_cross", () -> {
@@ -97,6 +95,36 @@ public class UmaDataRegistry {
     
     public static final RegistryObject<UmaData> SAKURA_BAKUSHIN_O = UMA_DATA.register("sakura_bakushin_o", () -> {
         return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "sakura_bakushin_o"))
+                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
+    });
+    
+    public static final RegistryObject<UmaData> MANHATTAN_CAFE = UMA_DATA.register("manhattan_cafe", () -> {
+        return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "manhattan_cafe"))
+                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
+    });
+
+    public static final RegistryObject<UmaData> MEJIRO_ARDAN = UMA_DATA.register("mejiro_ardan", () -> {
+        return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "mejiro_ardan"))
+                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
+    });
+    
+    public static final RegistryObject<UmaData> DAITAKU_HELIOS = UMA_DATA.register("daitaku_helios", () -> {
+        return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "daitaku_helios"))
+                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
+    });
+    
+    public static final RegistryObject<UmaData> SWEEP_TOSHO = UMA_DATA.register("sweep_tosho", () -> {
+        return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "sweep_tosho"))
+                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
+    });
+    
+    public static final RegistryObject<UmaData> GOLD_CITY = UMA_DATA.register("gold_city", () -> {
+        return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "gold_city"))
+                .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
+    });
+    
+    public static final RegistryObject<UmaData> GOLD_SHIP_WATER = UMA_DATA.register("gold_ship_water", () -> {
+        return new UmaData(UmaStatus.builder(new ResourceLocation(Umapyoi.MODID, "gold_ship_water"))
                 .property(1, 1, 1, 1, 1).build(), new ResourceLocation(Umapyoi.MODID, "basic_pace"));
     });
 }

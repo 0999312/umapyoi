@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.tracen.umapyoi.capability.IUmaCapability;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
+import net.tracen.umapyoi.utils.UmaSkillUtils;
 
 public class SkillSupport extends TrainingSupport {
     public SkillSupport(){
@@ -14,11 +15,7 @@ public class SkillSupport extends TrainingSupport {
     @Override
     public void applySupport(IUmaCapability cap, SupportStack stack) {
         ResourceLocation skill = ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"));
-        if(skill!=null && UmaSkillRegistry.REGISTRY.get().containsKey(skill)) {
-            UmaSkill result = UmaSkillRegistry.REGISTRY.get().getValue(skill);
-            if(!cap.getSkills().contains(result))
-                cap.getSkills().add(result);
-        }
+        UmaSkillUtils.learnSkill(cap, skill);
     }
     
     @Override

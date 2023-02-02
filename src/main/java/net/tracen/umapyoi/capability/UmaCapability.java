@@ -1,57 +1,93 @@
 package net.tracen.umapyoi.capability;
 
-import net.minecraft.core.NonNullList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import com.google.common.base.MoreObjects;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.api.UmaSkillUtils;
-import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
-import net.tracen.umapyoi.registry.UmaSkillRegistry;
-import net.tracen.umapyoi.registry.skills.UmaSkill;
 import net.tracen.umapyoi.registry.umadata.UmaStatus;
 
 public class UmaCapability implements IUmaCapability {
+    private UmaStatus status;
+    private List<ResourceLocation> skills;
+    private int selectedSkill = 0;
+    private int actionPoint = 0;
+    private int maxActionPoint = 0;
+    private int skillslots = 2;
 
-    private final UmaStatus status;
-    private final NonNullList<UmaSkill> skills = NonNullList.create();
-    private UmaSkill selectSkill;
-    private int cooldown = 0;
-    private int maxCooldown = 0;
+    public static final Codec<UmaCapability> CODEC = RecordCodecBuilder.create(instance -> 
+        instance.group(
+                UmaStatus.CODEC.fieldOf("status").forGetter(UmaCapability::getUmaStatus),
+                ResourceLocation.CODEC.listOf().fieldOf("skills")
+                .xmap(deserialize -> deserialize.stream().collect(Collectors.toList()), serialize -> serialize)
+                .forGetter(UmaCapability::getSkills),
+                Codec.INT.optionalFieldOf("selectedSkill", 0).forGetter(UmaCapability::getSelectedSkillIndex),
+                Codec.INT.optionalFieldOf("actionPoint", 200).forGetter(UmaCapability::getActionPoint),
+                Codec.INT.optionalFieldOf("maxActionPoint", 200).forGetter(UmaCapability::getMaxActionPoint),
+                Codec.INT.optionalFieldOf("skillSlots", 4).forGetter(UmaCapability::getSkillSlots)
+        ).apply(instance, UmaCapability::applyCodec)
+    );
+    
+    private static UmaCapability applyCodec(UmaStatus status, List<ResourceLocation> skills, int selectSkill, int ap, int maxAP, int slots) {
+        return new UmaCapability(status, skills, selectSkill, ap, maxAP, slots);
+    }
+    
     public UmaCapability(ItemStack stack) {
-        CompoundTag tag = stack.getOrCreateTag().getCompound("cap");
-        this.status = UmaStatus.CODEC.parse(NbtOps.INSTANCE, tag.getCompound("status"))
-                .resultOrPartial(msg -> {
-                    Umapyoi.getLogger().error("Failed to parse {}: {}", stack.toString(), msg);
-                    UmapyoiAPI.initUmaSoul(stack, UmaDataRegistry.COMMON_UMA.get());
-                }).orElseGet(UmaCapability::defaultStatus);
-        UmaSkillUtils.deserializeNBT(this, tag);
-        this.selectSkill = this.skills.get(0);
+        CompoundTag compound = stack.getOrCreateTag().getCompound("cap");
+        UmaCapability result = UmaCapability.CODEC.parse(NbtOps.INSTANCE, compound).resultOrPartial(msg -> {
+            Umapyoi.getLogger().error("Failed to parse UmaCapability: {}", msg);
+        }).orElseThrow();
+        this.status = result.status;
+        this.skills = result.skills;
+        this.selectedSkill = result.selectedSkill;
+        this.actionPoint = result.actionPoint;
+        this.maxActionPoint = result.maxActionPoint;
+        this.skillslots = result.skillslots;
+    }
+    
+    public UmaCapability(UmaStatus status, List<ResourceLocation> skills) {
+        this(status, skills, 0, status.property()[4] * 200, status.property()[4] * 200, 4);
+    }
+    
+    private UmaCapability(UmaStatus status, List<ResourceLocation> skills, int selectSkill, int ap, int maxAP, int slots) {
+        this.status = status;
+        this.skills = skills;
+        this.selectedSkill = selectSkill;
+        this.actionPoint = ap;
+        this.maxActionPoint = maxAP;
+        this.skillslots = slots;
     }
 
     @Override
     public CompoundTag serializeNBT() {
-        CompoundTag result = new CompoundTag();
-        result.put("status", this.getUmaStatus().serializeNBT());
-        ListTag tagSkills = UmaSkillUtils.serializeNBT(this.getSkills());
-        result.put("skills", tagSkills);
-        result.putString("selectedSkill", this.getSelectedSkill().toString());
-        result.putInt("skillCooldown", cooldown);
-        result.putInt("skillMaxCooldown", maxCooldown);
-        return result;
+        Tag result = UmaCapability.CODEC.encodeStart(NbtOps.INSTANCE, this).resultOrPartial(msg -> {
+            Umapyoi.getLogger().error("Failed to encode UmaCapability: {}", msg);
+        }).orElseThrow();
+        if(result instanceof CompoundTag compound) return compound;
+        return new CompoundTag();
     }
 
     @Override
     public void deserializeNBT(CompoundTag compound) {
-        this.getUmaStatus().deserializeNBT(compound.getCompound("status"));
-        UmaSkillUtils.deserializeNBT(this, compound);
-        this.selectSkill = UmaSkillRegistry.REGISTRY.get()
-                .getValue(new ResourceLocation(compound.getString("selectedSkill")));
-        this.cooldown = compound.getInt("skillCooldown");
-        this.maxCooldown = compound.getInt("skillMaxCooldown");
+        UmaCapability result = UmaCapability.CODEC.parse(NbtOps.INSTANCE, compound).resultOrPartial(msg -> {
+            Umapyoi.getLogger().error("Failed to parse UmaCapability: {}", msg);
+        }).orElseThrow();
+        this.status = result.status;
+        this.skills = result.skills;
+        this.selectedSkill = result.selectedSkill;
+        this.actionPoint = result.actionPoint;
+        this.maxActionPoint = result.maxActionPoint;
+        this.skillslots = result.skillslots;
     }
 
     @Override
@@ -64,64 +100,102 @@ public class UmaCapability implements IUmaCapability {
     }
 
     @Override
-    public NonNullList<UmaSkill> getSkills() {
+    public List<ResourceLocation> getSkills() {
         return this.skills;
     }
 
     @Override
-    public UmaSkill getSelectedSkill() {
-        return this.selectSkill;
+    public ResourceLocation getSelectedSkill() {
+        return this.getSkills().get(selectedSkill);
+    }
+    
+    private int getSelectedSkillIndex() {
+        return selectedSkill;
     }
 
     @Override
     public void selectFormerSkill() {
         if (this.getSkills().size() <= 1)
             return;
-        int index = this.getSkills().contains(selectSkill) ? this.getSkills().indexOf(selectSkill) : 0;
-        if (index == 0) {
-            this.selectSkill = this.getSkills().get(this.getSkills().size() - 1);
+        if (selectedSkill == 0) {
+            this.selectedSkill = this.getSkills().size() - 1;
         } else {
-            this.selectSkill = this.getSkills().get(index - 1);
+            this.selectedSkill --;
         }
-        Umapyoi.getLogger().info(String.format("now selected num:%d, %s", index, this.selectSkill));
+        Umapyoi.getLogger().info(String.format("now selected num:%d, %s", this.selectedSkill, this.getSelectedSkill()));
     }
 
     @Override
     public void selectLatterSkill() {
         if (this.getSkills().size() <= 1)
             return;
-        int index = this.getSkills().contains(selectSkill) ? this.getSkills().indexOf(selectSkill) : 0;
-        if (index == this.getSkills().size() - 1) {
-            this.selectSkill = this.getSkills().get(0);
+        if (selectedSkill == this.getSkills().size() - 1) {
+            this.selectedSkill = 0;
         } else {
-            this.selectSkill = this.getSkills().get(index + 1);
+            this.selectedSkill ++;
         }
-        Umapyoi.getLogger().info(String.format("now selected num:%d, %s", index, this.selectSkill));
+        Umapyoi.getLogger().info(String.format("now selected num:%d, %s", this.selectedSkill, this.getSelectedSkill()));
     }
     
     @Override
-    public int getCooldown() {
-        return cooldown;
+    public int getActionPoint() {
+        return actionPoint;
     }
 
     @Override
-    public void setCooldown(int cooldown) {
-        this.cooldown = cooldown;
+    public void setActionPoint(int ap) {
+        this.actionPoint = ap;
     }
 
     @Override
-    public boolean isSkillReady() {
-        return this.getCooldown() == 0;
+    public int getMaxActionPoint() {
+        return this.maxActionPoint;
     }
 
     @Override
-    public int getMaxCooldown() {
-        return this.maxCooldown;
+    public void setMaxActionPoint(int ap) {
+        this.maxActionPoint = ap;
     }
 
     @Override
-    public void setMaxCooldown(int cooldown) {
-        this.maxCooldown = cooldown;
+    public int getSkillSlots() {
+        return this.skillslots;
     }
 
+    @Override
+    public void setSkillSlots(int slots) {
+        this.skillslots = slots;
+    }
+    
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("status", this.status)
+                .add("skills", this.skills)
+                .add("selectedSkillIndex", this.selectedSkill)
+                .add("actionPoint", this.actionPoint)
+                .add("maxActionPoint", this.maxActionPoint)
+                .add("skillSlots", this.skillslots)
+                .toString();
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.status,this.skills,this.selectedSkill,this.actionPoint,this.maxActionPoint,this.skillslots);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof UmaCapability otherCap) {
+            return Objects.equals(this.status, otherCap.status) &&
+                    Objects.equals(this.skills, otherCap.skills) &&
+                    Objects.equals(this.selectedSkill, otherCap.selectedSkill) &&
+                    Objects.equals(this.actionPoint, otherCap.actionPoint) &&
+                    Objects.equals(this.maxActionPoint, otherCap.maxActionPoint) &&
+                    Objects.equals(this.skillslots, otherCap.skillslots)
+                    ;
+        }
+        return false;
+    }
+    
 }

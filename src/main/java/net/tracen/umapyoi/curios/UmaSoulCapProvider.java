@@ -14,7 +14,6 @@ import net.tracen.umapyoi.capability.UmaCapability;
 import top.theillusivec4.curios.api.CuriosCapability;
 
 public class UmaSoulCapProvider implements ICapabilitySerializable<CompoundTag> {
-
     private final ItemStack stack;
     private final UmaSoulCuriosWrapper curiosInstance;
     private final IUmaCapability umaInstance;

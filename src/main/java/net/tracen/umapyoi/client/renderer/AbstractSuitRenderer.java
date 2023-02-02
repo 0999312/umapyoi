@@ -5,20 +5,23 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockVersion;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
+import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
 import net.tracen.umapyoi.registry.umadata.UmaData;
+import net.tracen.umapyoi.utils.ClientUtils;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
@@ -33,7 +36,7 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
             float headPitch) {
 
         LivingEntity player = slotContext.entity();
-        
+        if(player instanceof Player && !slotContext.identifier().equalsIgnoreCase("uma_suit"))  return;
         if(player.isInvisible()) return;
 
         CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(itemHandler -> {
@@ -50,9 +53,14 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                     if (!(stacksHandler).getRenders().get(0)) 
                         return;
                     
-                    flat_flag = Minecraft.getInstance().getConnection().registryAccess()
-                            .registryOrThrow(UmaData.REGISTRY_KEY)
-                            .get(UmapyoiAPI.getUmaStatus(stackInSlot).name()).isFlat();
+                    flat_flag = ClientUtils.getClientUmaDataRegistry()
+                            .getOrCreateHolder(
+                                    ResourceKey.create(
+                                            UmaData.REGISTRY_KEY, 
+                                            UmaSoulUtils.getUmaSoulName(stackInSlot)
+                                            )
+                                    )
+                            .is(UmapyoiUmaDataTags.FLAT_CHEST);
                 }
 
                 VertexConsumer vertexconsumer = renderTypeBuffer

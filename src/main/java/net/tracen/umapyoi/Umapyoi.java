@@ -19,6 +19,7 @@ import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.container.ContainerRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.network.NetPacketHandler;
+import net.tracen.umapyoi.registry.SupportCardRegistry;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
@@ -48,8 +49,10 @@ public class Umapyoi {
         modEventBus.addListener(this::enqueueIMC);
         TrainingSupportRegistry.SUPPORTS.register(modEventBus);
         UmaSkillRegistry.SKILLS.register(modEventBus);
+        SupportCardRegistry.SUPPORT_CARD.register(modEventBus);
         UmaDataRegistry.UMA_DATA.register(modEventBus);
         UmaFactorRegistry.FACTORS.register(modEventBus);
+        
         BlockRegistry.BLOCKS.register(modEventBus);
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);

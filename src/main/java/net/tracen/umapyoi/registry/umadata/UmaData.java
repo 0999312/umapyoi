@@ -16,40 +16,30 @@ public class UmaData extends ForgeRegistryEntry<UmaData> {
     public static final Codec<UmaData> CODEC = RecordCodecBuilder.create(instance -> instance
             .group(
                     UmaStatus.CODEC.fieldOf("status").forGetter(UmaData::status),
-                    ResourceLocation.CODEC.fieldOf("uniqueSkill").forGetter(UmaData::uniqueSkill),
-                    Codec.BOOL.optionalFieldOf("isFlat", false).forGetter(UmaData::isFlat))
-            .apply(instance, UmaData::new));
+                    ResourceLocation.CODEC.fieldOf("uniqueSkill").forGetter(UmaData::uniqueSkill)
+                  )
+            .apply(instance, UmaData::new)
+            );
 
     public static final ResourceKey<Registry<UmaData>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "umadata"));
 
     private final UmaStatus status;
     private final ResourceLocation uniqueSkill;
-    
-    private boolean isFlat = false;
 
     private String descriptionId;
 
     public UmaData(UmaStatus status, ResourceLocation uniqueSkill) {
-        this(status, uniqueSkill, false);
-    }
-
-    public UmaData(UmaStatus status, ResourceLocation uniqueSkill, boolean flat) {
         this.status = status;
         this.uniqueSkill = uniqueSkill;
-        this.isFlat = flat;
     }
-
+    
     public UmaStatus status() {
         return status;
     }
 
     public ResourceLocation uniqueSkill() {
         return uniqueSkill;
-    }
-
-    public boolean isFlat() {
-        return isFlat;
     }
 
     @Override

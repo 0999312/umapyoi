@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 
-import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockModel;
+import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
 import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockVersion;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.client.Minecraft;
@@ -17,7 +17,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,7 +24,7 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.ThreeGoddessBlock;
 import net.tracen.umapyoi.block.entity.ThreeGoddessBlockEntity;
-import net.tracen.umapyoi.client.ClientUtils;
+import net.tracen.umapyoi.utils.ClientUtils;
 
 public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddessBlockEntity> {
 
@@ -49,13 +48,8 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
     private void renderModel(ThreeGoddessBlockEntity tileEntity, Direction direction, PoseStack poseStack,
             MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 
-        BedrockModel<Entity> base_model = new BedrockModel<Entity>(ClientUtil.getModelPOJO(ClientUtils.THREE_GODDESS),
-                BedrockVersion.LEGACY) {
-            @Override
-            public void setupAnim(Entity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks,
-                    float pNetHeadYaw, float pHeadPitch) {
-            }
-        };
+        SimpleBedrockModel base_model = new SimpleBedrockModel(ClientUtil.getModelPOJO(ClientUtils.THREE_GODDESS),
+                BedrockVersion.LEGACY);
 
         VertexConsumer vertexconsumer = buffer.getBuffer(RenderType
                 .entityTranslucent(new ResourceLocation(Umapyoi.MODID, "textures/model/three_goddesses.png")));
@@ -78,14 +72,14 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
             return;
         
         BlockPos pPos = tileEntity.getBlockPos();
-        this.renderItemLayingDown(tileEntity, partialTicks, poseStack);
+        this.renderItem(tileEntity, partialTicks, poseStack);
         Minecraft.getInstance().getItemRenderer().renderStatic(soul.isEmpty() ? jewel : soul ,
                 ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, buffer,
                 (int) pPos.asLong());
     }
     
     private int degree = 0;
-    private void renderItemLayingDown(ThreeGoddessBlockEntity tileEntity, float partialTicks, PoseStack matrixStackIn) {
+    private void renderItem(ThreeGoddessBlockEntity tileEntity, float partialTicks, PoseStack matrixStackIn) {
         float f = (degree + partialTicks) / 20.0F;
         float f1 = Mth.sin(f) * 0.1F + 0.1F;
         matrixStackIn.translate(0.5D, f1 + 3.0D, 0.5D);

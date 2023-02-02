@@ -16,10 +16,8 @@ import net.tracen.umapyoi.Umapyoi;
 public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
     private final SkillType type;
     private final int requiredWisdom;
-    private final int cooldown;
+    private final int actionPoint;
     private final SoundEvent sound;
-
-    private final ResourceLocation parentSkill;
 
     private String descriptionId;
 
@@ -29,8 +27,7 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
     public UmaSkill(Builder builder) {
         this.type = builder.type;
         this.requiredWisdom = builder.requiredWisdom;
-        this.cooldown = builder.cooldown;
-        this.parentSkill = builder.parentSkill;
+        this.actionPoint = builder.actionPoint;
         this.sound = builder.sound;
     }
 
@@ -42,12 +39,8 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         return requiredWisdom;
     }
 
-    public ResourceLocation getParentSkill() {
-        return parentSkill;
-    }
-
-    public int getCooldown() {
-        return cooldown;
+    public int getActionPoint() {
+        return actionPoint;
     }
 
     public Component getDescription() {
@@ -80,9 +73,8 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
     public static class Builder {
         private SkillType type = SkillType.BUFF;
         private int requiredWisdom = 0;
-        private int cooldown = 1200;
+        private int actionPoint = 200;
         private SoundEvent sound = SoundEvents.PLAYER_ATTACK_SWEEP;
-        private ResourceLocation parentSkill = null;
 
         public Builder type(SkillType type) {
             this.type = type;
@@ -99,14 +91,11 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
             return this;
         }
 
-        public Builder cooldown(int tick) {
-            this.cooldown = tick;
+        public Builder actionPoint(int ap) {
+            this.actionPoint = ap;
             return this;
         }
 
-        public Builder parentSkill(ResourceLocation parentSkill) {
-            this.parentSkill = parentSkill;
-            return this;
-        }
     }
+    
 }

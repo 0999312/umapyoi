@@ -7,10 +7,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 import net.minecraftforge.registries.RegistryObject;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.api.UmaStatusUtils.StatusType;
 import net.tracen.umapyoi.registry.factors.StatusFactor;
 import net.tracen.umapyoi.registry.factors.SkillFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
+import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class UmaFactorRegistry {
     public static final DeferredRegister<UmaFactor> FACTORS = DeferredRegister.create(UmaFactor.REGISTRY_KEY,

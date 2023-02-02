@@ -37,11 +37,13 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         this.inventory = createHandler();
         this.tileData = createIntArray();
     }
-
+    
     public static void workingTick(Level level, BlockPos pos, BlockState state,
             TrainingFacilityBlockEntity blockEntity) {
+        if(level.isClientSide()) 
+            return ;
+        
         boolean didInventoryChange = false;
-
         if (blockEntity.canWork()) {
             didInventoryChange = blockEntity.processRecipe();
         } else {
@@ -66,12 +68,12 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         recipeTime = 0;
 
         ItemStack resultStack = getResultItem();
-
         this.inventory.setStackInSlot(0, resultStack);
+        
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
             if (supportItem.getItem() instanceof SupportContainer supports) {
-                if(supports.isConsumable(supportItem)) 
+                if(supports.isConsumable(this.getLevel(), supportItem)) 
                     supportItem.shrink(1);
             }
         }
@@ -87,7 +89,7 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
             if (supportItem.getItem() instanceof SupportContainer supports) {
-                supports.getSupports(supportItem).forEach(support -> support.applySupport(cap));
+                supports.getSupports(this.getLevel(), supportItem).forEach(support -> support.applySupport(cap));
             }
         }
         return result;
@@ -104,9 +106,18 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
 
         if (input.getItem() instanceof UmaSoulItem) {
             IUmaCapability cap = input.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(input));
-            if(cap.getUmaStatus().getGrowth() == Growth.UNTRAINED) 
+            if(cap.getUmaStatus().growth() == Growth.UNTRAINED) {
+                for (int i = 1; i < 7; i++) {
+                    ItemStack supportItem = this.inventory.getStackInSlot(i);
+                    if (supportItem.getItem() instanceof SupportContainer supports) {
+                        if(!(supports.canSupport(level, supportItem).test(cap)))
+                            return false;
+                    }
+                }
                 return true;
+            }
         }
+
         return false;
     }
 

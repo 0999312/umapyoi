@@ -1,0 +1,18 @@
+{
+  "level": 2,
+  "type": "guts",
+  "supports": [
+    {
+      "support": "umapyoi:speed_support",
+      "level": 1
+    },
+    {
+      "support": "umapyoi:strength_support",
+      "level": 1
+    },
+    {
+      "support": "umapyoi:guts_support",
+      "level": 2
+    }
+  ]
+}

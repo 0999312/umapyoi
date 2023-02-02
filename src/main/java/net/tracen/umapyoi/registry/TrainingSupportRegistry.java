@@ -7,10 +7,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 import net.minecraftforge.registries.RegistryObject;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.api.UmaStatusUtils.StatusType;
 import net.tracen.umapyoi.registry.training.SkillSupport;
 import net.tracen.umapyoi.registry.training.StatusSupport;
 import net.tracen.umapyoi.registry.training.TrainingSupport;
+import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class TrainingSupportRegistry {
     public static final DeferredRegister<TrainingSupport> SUPPORTS = DeferredRegister.create(TrainingSupport.REGISTRY_KEY,

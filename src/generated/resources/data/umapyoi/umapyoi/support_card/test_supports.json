@@ -1,0 +1,34 @@
+{
+  "level": 3,
+  "type": "group",
+  "supports": [
+    {
+      "support": "umapyoi:speed_support",
+      "level": 3
+    },
+    {
+      "support": "umapyoi:stamina_support",
+      "level": 3
+    },
+    {
+      "support": "umapyoi:strength_support",
+      "level": 3
+    },
+    {
+      "support": "umapyoi:guts_support",
+      "level": 3
+    },
+    {
+      "support": "umapyoi:wisdom_support",
+      "level": 3
+    }
+  ],
+  "supporters": [
+    "umapyoi:agnus_tachyon",
+    "umapyoi:manhattan_cafe",
+    "umapyoi:rice_shower",
+    "umapyoi:haru_urara",
+    "umapyoi:oguri_cap",
+    "umapyoi:oguri_cap_xmas"
+  ]
+}

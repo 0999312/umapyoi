@@ -14,7 +14,6 @@ import net.tracen.umapyoi.item.SkillBookItem;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 
 public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFacilityContainer> {
-    
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
             "textures/gui/training_snap.png");
 
@@ -36,7 +35,7 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
 
     @Override
     protected void renderLabels(PoseStack ms, int mouseX, int mouseY) {
-        this.font.draw(ms, this.title, (float)this.titleLabelX, (float)this.titleLabelY - 3, 0xFFFFFF);
+        this.font.draw(ms, this.title, (this.imageWidth / 2.0F) - (this.font.width(this.title.getVisualOrderText()) / 2.0F), (float)this.titleLabelY - 3, 0xFFFFFF);
         this.font.draw(ms, this.playerInventoryTitle, 8.0f, this.imageHeight - 96 + 2, 4210752);
     }
 
@@ -59,7 +58,7 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
             ItemStack stack = this.getMenu().inventory.getStackInSlot(i);
             if(stack.getItem() instanceof SkillBookItem) continue;
             if(stack.getItem() instanceof SupportContainer support) {
-                switch(support.getSupportType(stack)) {
+                switch(support.getSupportType(this.minecraft.level, stack)) {
                 case SPEED -> {
                     types[0]++;
                     this.blit(ms, this.leftPos + 9 + 0 * 23, this.topPos + 42, 3 + 0 * 23, 219, 12, 12);
@@ -104,7 +103,7 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
         for(int i = 1; i<4; i++) {
             ItemStack stack = this.getMenu().inventory.getStackInSlot(i);
             if(stack.getItem() instanceof SupportContainer support) {
-                switch(support.getSupportLevel(stack)) {
+                switch(support.getSupportLevel(this.minecraft.level, stack)) {
                 case 1 -> this.blit(ms, this.leftPos + 7 + (i-1) * 27, this.topPos + 14, 171, 205, 26, 26);
                 case 2 -> this.blit(ms, this.leftPos + 7 + (i-1) * 27, this.topPos + 14, 198, 205, 26, 26);
                 case 3 -> this.blit(ms, this.leftPos + 7 + (i-1) * 27, this.topPos + 14, 225, 205, 26, 26);
@@ -116,7 +115,7 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
         for(int i = 4; i<7; i++) {
             ItemStack stack = this.getMenu().inventory.getStackInSlot(i);
             if(stack.getItem() instanceof SupportContainer support) {
-                switch(support.getSupportLevel(stack)) {
+                switch(support.getSupportLevel(this.minecraft.level, stack)) {
                 case 1 -> this.blit(ms, this.leftPos + 89 + (i-4) * 27, this.topPos + 14, 171, 205, 26, 26);
                 case 2 -> this.blit(ms, this.leftPos + 89 + (i-4) * 27, this.topPos + 14, 198, 205, 26, 26);
                 case 3 -> this.blit(ms, this.leftPos + 89 + (i-4) * 27, this.topPos + 14, 225, 205, 26, 26);

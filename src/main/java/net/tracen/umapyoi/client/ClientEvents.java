@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
-import net.tracen.umapyoi.registry.umadata.UmaStatus;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
@@ -72,12 +72,11 @@ public class ClientEvents {
         Player player = event.getPlayer();
         ItemStack umasoul = UmapyoiAPI.getUmaSoul(player);
         if (!umasoul.isEmpty() && UmapyoiAPI.isUmaSoulRendering(player)) {
-            final UmaStatus data = UmapyoiAPI.getUmaStatus(umasoul);
-
+            ResourceLocation name = UmaSoulUtils.getUmaSoulName(umasoul);
             VertexConsumer vertexconsumer = event.getMultiBufferSource()
-                    .getBuffer(RenderType.entityTranslucent(getTexture(data)));
+                    .getBuffer(RenderType.entityTranslucent(getTexture(name)));
             UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(event.getPlayer(),
-                    ClientUtil.getModelPOJO(data.name()), BedrockVersion.LEGACY);
+                    ClientUtil.getModelPOJO(name), BedrockVersion.LEGACY);
 
             base_model.setModelProperties(event.getPlayer());
             base_model.attackTime = 0.0F;
@@ -97,7 +96,7 @@ public class ClientEvents {
         }
     }
 
-    private static ResourceLocation getTexture(UmaStatus data) {
-        return new ResourceLocation(data.name().getNamespace(), "textures/model/" + data.name().getPath() + ".png");
+    private static ResourceLocation getTexture(ResourceLocation name) {
+        return new ResourceLocation(name.getNamespace(), "textures/model/" + name.getPath() + ".png");
     }
 }
