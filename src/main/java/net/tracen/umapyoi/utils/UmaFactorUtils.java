@@ -25,13 +25,13 @@ public class UmaFactorUtils {
 
     public static List<UmaFactorStack> deserializeNBT(CompoundTag compound) {
         List<UmaFactorStack> list = Lists.newArrayList();
-        
+
         compound.getList("factors", Tag.TAG_COMPOUND).forEach(tag -> {
             UmaFactorStack.CODEC.parse(NbtOps.INSTANCE, tag).resultOrPartial(error -> {
                 Umapyoi.getLogger().error("Failed to parse FactorStack : {}", error);
             }).ifPresent(result -> list.add(result));
         });
-        
+
         return list;
     }
 }

@@ -21,13 +21,20 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
             if (item == ItemRegistry.HACHIMI_MID || item == ItemRegistry.HACHIMI_BIG)
                 return;
             if (item == ItemRegistry.UMA_PEDESTAL) {
-                withExistingParent(blockName(BlockRegistry.UMA_PEDESTAL), new ResourceLocation("umapyoi:block/pedestal"));
+                withExistingParent(blockName(BlockRegistry.UMA_PEDESTAL),
+                        new ResourceLocation("umapyoi:block/pedestal"));
                 return;
             }
-            if (item.get() instanceof BlockItem block && item != ItemRegistry.THREE_GODDESS)
+            
+            if (item == ItemRegistry.SILVER_UMA_PEDESTAL) {
+                withExistingParent(blockName(BlockRegistry.SILVER_UMA_PEDESTAL),
+                        new ResourceLocation("umapyoi:block/silver_pedestal"));
+                return;
+            }
+            
+            if (item.get()instanceof BlockItem block && item != ItemRegistry.THREE_GODDESS)
                 itemBlock(block::getBlock);
-            
-            
+
             else
                 normalItem(item);
         });

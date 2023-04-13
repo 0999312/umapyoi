@@ -19,7 +19,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
-version = '0.1.7'
+version = '0.2.9'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 
@@ -110,6 +110,11 @@ repositories {
     maven { url = "https://dvs1.progwml6.com/files/maven" }
     // Patchouli
     maven { url = 'https://maven.blamejared.com' }
+    
+    maven {
+        name "KosmX's maven"
+        url 'https://maven.kosmx.dev/'
+    }
 }
 
 dependencies {

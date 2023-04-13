@@ -42,7 +42,7 @@
 			{
 				"name": "right_arm_down",
 				"parent": "right_arm",
-				"pivot": [-5, 17.5, -1.7],
+				"pivot": [-4.75, 17.5, 1.5],
 				"cubes": [
 					{"origin": [-6.5, 12.5, -1.5], "size": [3, 5, 3], "uv": [21, 120], "mirror": true},
 					{"origin": [-7.5, 13.3, -2.5], "size": [5, 3, 5], "uv": [0, 120], "inflate": -0.8, "mirror": true},
@@ -70,7 +70,7 @@
 			{
 				"name": "left_arm_down",
 				"parent": "left_arm",
-				"pivot": [5, 17.5, -1.7],
+				"pivot": [4.75, 17.5, 1.5],
 				"cubes": [
 					{"origin": [3.5, 12.5, -1.5], "size": [3, 5, 3], "uv": [21, 120]},
 					{"origin": [2.5, 13.8, -2.5], "size": [5, 3, 5], "uv": [40, 109], "inflate": -0.8}

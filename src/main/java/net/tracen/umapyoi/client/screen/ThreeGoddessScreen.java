@@ -38,22 +38,24 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
         this.renderTooltip(ms, mouseX, mouseY);
         this.renderModels(ms);
     }
-    
+
     protected void renderModels(PoseStack ms) {
         ItemStack fatherFactor = this.menu.inventory.getStackInSlot(1);
         ItemStack motherFactor = this.menu.inventory.getStackInSlot(2);
-        if(!fatherFactor.isEmpty()) {
+        if (!fatherFactor.isEmpty()) {
             ResourceLocation name = new ResourceLocation(fatherFactor.getTag().getString("name"));
-            renderModel(this.leftPos + 33, this.topPos + 55, 25, Quaternion.fromXYZDegrees(new Vector3f(30F, -45f, 0)) ,name);
+            renderModel(this.leftPos + 33, this.topPos + 55, 25, Quaternion.fromXYZDegrees(new Vector3f(30F, -45f, 0)),
+                    name);
         }
-        if(!motherFactor.isEmpty()) {
+        if (!motherFactor.isEmpty()) {
             ResourceLocation name = new ResourceLocation(motherFactor.getTag().getString("name"));
-            renderModel(this.leftPos + 142, this.topPos + 55, 25, Quaternion.fromXYZDegrees(new Vector3f(30F, 45f, 0)) ,name);
+            renderModel(this.leftPos + 142, this.topPos + 55, 25, Quaternion.fromXYZDegrees(new Vector3f(30F, 45f, 0)),
+                    name);
         }
     }
-    
+
     protected void renderModel(int pPosX, int pPosY, int pScale, Quaternion pQuaternion, ResourceLocation name) {
-        if(!ClientUtils.getClientUmaDataRegistry().containsKey(name)) {
+        if (!ClientUtils.getClientUmaDataRegistry().containsKey(name)) {
             name = UmaDataRegistry.COMMON_UMA.getId();
         }
         SimpleBedrockModel model = new SimpleBedrockModel(ClientUtil.getModelPOJO(name), BedrockVersion.LEGACY);
@@ -62,7 +64,9 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
 
     @Override
     protected void renderLabels(PoseStack ms, int mouseX, int mouseY) {
-        this.font.draw(ms, this.title, (this.imageWidth / 2.0F) - (this.font.width(this.title.getVisualOrderText()) / 2.0F), (float)this.titleLabelY - 3, 0xFFFFFF);
+        this.font.draw(ms, this.title,
+                (this.imageWidth / 2.0F) - (this.font.width(this.title.getVisualOrderText()) / 2.0F),
+                (float) this.titleLabelY - 3, 0xFFFFFF);
         this.font.draw(ms, this.playerInventoryTitle, 8.0f, this.imageHeight - 96 + 2, 4210752);
     }
 

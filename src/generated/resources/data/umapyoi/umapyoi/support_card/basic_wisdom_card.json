@@ -1,0 +1,10 @@
+{
+  "ranking": "r",
+  "type": "wisdom",
+  "supports": [
+    {
+      "support": "umapyoi:wisdom_support",
+      "level": 1
+    }
+  ]
+}

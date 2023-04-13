@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.TrainingFacilityContainer;
-import net.tracen.umapyoi.item.SkillBookItem;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 
 public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFacilityContainer> {
@@ -30,12 +29,14 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
         this.renderBackground(ms);
         super.render(ms, mouseX, mouseY, partialTicks);
         this.renderTooltip(ms, mouseX, mouseY);
-        
+
     }
 
     @Override
     protected void renderLabels(PoseStack ms, int mouseX, int mouseY) {
-        this.font.draw(ms, this.title, (this.imageWidth / 2.0F) - (this.font.width(this.title.getVisualOrderText()) / 2.0F), (float)this.titleLabelY - 3, 0xFFFFFF);
+        this.font.draw(ms, this.title,
+                (this.imageWidth / 2.0F) - (this.font.width(this.title.getVisualOrderText()) / 2.0F),
+                (float) this.titleLabelY - 3, 0xFFFFFF);
         this.font.draw(ms, this.playerInventoryTitle, 8.0f, this.imageHeight - 96 + 2, 4210752);
     }
 
@@ -51,14 +52,13 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
         this.renderTrainingAnim(ms);
         this.renderSupportTypes(ms);
     }
-    
+
     private void renderSupportTypes(PoseStack ms) {
-        int[] types = {0,0,0,0,0,0,0,0};
-        for(int i = 1; i<7; i++) {
+        int[] types = { 0, 0, 0, 0, 0, 0, 0, 0 };
+        for (int i = 1; i < 7; i++) {
             ItemStack stack = this.getMenu().inventory.getStackInSlot(i);
-            if(stack.getItem() instanceof SkillBookItem) continue;
-            if(stack.getItem() instanceof SupportContainer support) {
-                switch(support.getSupportType(this.minecraft.level, stack)) {
+            if (stack.getItem() instanceof SupportContainer support) {
+                switch (support.getSupportType(this.minecraft.level, stack)) {
                 case SPEED -> {
                     types[0]++;
                     this.blit(ms, this.leftPos + 9 + 0 * 23, this.topPos + 42, 3 + 0 * 23, 219, 12, 12);
@@ -71,59 +71,65 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
                     types[2]++;
                     this.blit(ms, this.leftPos + 9 + 2 * 23, this.topPos + 42, 3 + 2 * 23, 219, 12, 12);
                 }
-                case GUTS-> {
+                case GUTS -> {
                     types[3]++;
                     this.blit(ms, this.leftPos + 9 + 3 * 23, this.topPos + 42, 3 + 3 * 23, 219, 12, 12);
                 }
-                case WISDOM-> {
+                case WISDOM -> {
                     types[4]++;
                     this.blit(ms, this.leftPos + 9 + 4 * 23, this.topPos + 42, 3 + 4 * 23, 219, 12, 12);
                 }
-                case FRIENDSHIP-> {
+                case FRIENDSHIP -> {
                     types[5]++;
                     this.blit(ms, this.leftPos + 9 + 5 * 23, this.topPos + 42, 3 + 5 * 23, 219, 12, 12);
                 }
-                case GROUP-> {
+                case GROUP -> {
                     types[6]++;
                     this.blit(ms, this.leftPos + 9 + 6 * 23, this.topPos + 42, 3 + 6 * 23, 219, 12, 12);
                 }
-                default->{}
+                default -> {}
                 }
             }
         }
-        for(int i = 0; i<7; i++) {
-            if(types[i] > 0) {
-                this.font.draw(ms, new TextComponent(String.valueOf(types[i])), 
-                        this.leftPos + 23.0F + i * 23.0F, this.topPos + 44 , 0X86D008);
+        for (int i = 0; i < 7; i++) {
+            if (types[i] > 0) {
+                this.font.draw(ms, new TextComponent(String.valueOf(types[i])), this.leftPos + 23.0F + i * 23.0F,
+                        this.topPos + 44, 0X86D008);
             }
         }
     }
-    
+
     private void renderSupportBG(PoseStack ms) {
-        for(int i = 1; i<4; i++) {
+        for (int i = 1; i < 4; i++) {
             ItemStack stack = this.getMenu().inventory.getStackInSlot(i);
-            if(stack.getItem() instanceof SupportContainer support) {
-                switch(support.getSupportLevel(this.minecraft.level, stack)) {
-                case 1 -> this.blit(ms, this.leftPos + 7 + (i-1) * 27, this.topPos + 14, 171, 205, 26, 26);
-                case 2 -> this.blit(ms, this.leftPos + 7 + (i-1) * 27, this.topPos + 14, 198, 205, 26, 26);
-                case 3 -> this.blit(ms, this.leftPos + 7 + (i-1) * 27, this.topPos + 14, 225, 205, 26, 26);
+            if (stack.getItem()instanceof SupportContainer support) {
+                switch (support.getSupportLevel(this.minecraft.level, stack)) {
+                case EASTER_EGG -> this.blit(ms, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 171, 205, 26, 26);
+                case R -> this.blit(ms, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 171, 205, 26, 26);
+                case SR -> this.blit(ms, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 198, 205, 26, 26);
+                case SSR -> this.blit(ms, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 225, 205, 26, 26);
+                default -> throw new IllegalArgumentException(
+                        "Unexpected value: " + support.getSupportLevel(this.minecraft.level, stack));
                 }
-                
+
             }
         }
-        
-        for(int i = 4; i<7; i++) {
+
+        for (int i = 4; i < 7; i++) {
             ItemStack stack = this.getMenu().inventory.getStackInSlot(i);
-            if(stack.getItem() instanceof SupportContainer support) {
-                switch(support.getSupportLevel(this.minecraft.level, stack)) {
-                case 1 -> this.blit(ms, this.leftPos + 89 + (i-4) * 27, this.topPos + 14, 171, 205, 26, 26);
-                case 2 -> this.blit(ms, this.leftPos + 89 + (i-4) * 27, this.topPos + 14, 198, 205, 26, 26);
-                case 3 -> this.blit(ms, this.leftPos + 89 + (i-4) * 27, this.topPos + 14, 225, 205, 26, 26);
+            if (stack.getItem()instanceof SupportContainer support) {
+                switch (support.getSupportLevel(this.minecraft.level, stack)) {
+                case EASTER_EGG -> this.blit(ms, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 171, 205, 26, 26);
+                case R -> this.blit(ms, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 171, 205, 26, 26);
+                case SR -> this.blit(ms, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 198, 205, 26, 26);
+                case SSR -> this.blit(ms, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 225, 205, 26, 26);
+                default -> throw new IllegalArgumentException(
+                        "Unexpected value: " + support.getSupportLevel(this.minecraft.level, stack));
                 }
             }
         }
     }
-    
+
     private void renderTrainingAnim(PoseStack ms) {
         int l = this.menu.getProgressionScaled();
         int n = this.menu.getAnimation();

@@ -44,9 +44,10 @@ public class SkillBookItem extends Item {
     }
 
     public UmaSkill getSkill(ItemStack stack) {
-        ResourceLocation skillID = Optional.ofNullable(ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"))).orElse(UmaSkillRegistry.BASIC_PACE.getId());
+        ResourceLocation skillID = Optional
+                .ofNullable(ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill")))
+                .orElse(UmaSkillRegistry.BASIC_PACE.getId());
         return UmaSkillRegistry.REGISTRY.get().getValue(skillID);
     }
-
 
 }

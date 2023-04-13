@@ -35,7 +35,7 @@ public class UmaDataProvider implements DataProvider {
     public UmaDataProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         this(generator, existingFileHelper, Umapyoi.MODID);
     }
-    
+
     public UmaDataProvider(DataGenerator generator, ExistingFileHelper existingFileHelper, String modId) {
         this.generator = generator;
         this.modId = modId;
@@ -45,7 +45,7 @@ public class UmaDataProvider implements DataProvider {
     }
 
     public void addDatas() {
-        for(Supplier<UmaData> data : UmaDataRegistry.UMA_DATA.getEntries()) {
+        for (Supplier<UmaData> data : UmaDataRegistry.UMA_DATA.getEntries()) {
             this.addData(data);
         }
     }

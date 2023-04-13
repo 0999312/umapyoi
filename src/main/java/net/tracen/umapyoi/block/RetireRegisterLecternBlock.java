@@ -69,7 +69,7 @@ public class RetireRegisterLecternBlock extends CraftingTableBlock {
     public boolean useShapeForLightOcclusion(BlockState pState) {
         return true;
     }
-    
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());

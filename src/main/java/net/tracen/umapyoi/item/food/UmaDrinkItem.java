@@ -10,13 +10,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
-import net.tracen.umapyoi.registry.umadata.UmaStatus;
 
 public class UmaDrinkItem extends ItemDrinkBase {
-    private final Consumer<UmaStatus> consumer;
+    private final Consumer<ItemStack> consumer;
 
-    public UmaDrinkItem(Consumer<UmaStatus> consumer, FoodInfo info) {
+    public UmaDrinkItem(Consumer<ItemStack> consumer, FoodInfo info) {
         super(Umapyoi.defaultItemProperties(), info);
         this.consumer = consumer;
     }
@@ -46,8 +44,7 @@ public class UmaDrinkItem extends ItemDrinkBase {
                     stack.shrink(1);
                 return stack;
             } else {
-                UmapyoiAPI.getUmaSoul(player).getCapability(CapabilityRegistry.UMACAP)
-                        .ifPresent(cap -> this.consumer.accept(cap.getUmaStatus()));
+                this.consumer.accept(UmapyoiAPI.getUmaSoul(player));
             }
         }
         return entity.eat(level, stack);

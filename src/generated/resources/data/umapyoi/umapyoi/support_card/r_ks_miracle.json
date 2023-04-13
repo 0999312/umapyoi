@@ -1,0 +1,13 @@
+{
+  "ranking": "r",
+  "type": "guts",
+  "supports": [
+    {
+      "support": "umapyoi:guts_support",
+      "level": 2
+    }
+  ],
+  "supporters": [
+    "umapyoi:ks_miracle"
+  ]
+}

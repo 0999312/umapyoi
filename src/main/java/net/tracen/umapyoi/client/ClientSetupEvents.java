@@ -17,6 +17,8 @@ import net.tracen.umapyoi.client.key.SkillKeyMapping;
 import net.tracen.umapyoi.client.renderer.TrainningSuitRenderer;
 import net.tracen.umapyoi.client.renderer.UmaSoulRenderer;
 import net.tracen.umapyoi.client.renderer.UmaUniformRenderer;
+import net.tracen.umapyoi.client.renderer.blockentity.SilverSupportAlbumPedestalBlockRender;
+import net.tracen.umapyoi.client.renderer.blockentity.SilverUmaPedestalBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.SupportAlbumPedestalBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaPedestalBlockRender;
@@ -36,8 +38,10 @@ public class ClientSetupEvents {
                     UmaUniformRenderer.SummerUniformRenderer::new);
             CuriosRendererRegistry.register(ItemRegistry.WINTER_UNIFORM.get(),
                     UmaUniformRenderer.WinterUniformRenderer::new);
+
+//            CuriosRendererRegistry.register(ItemRegistry.KINDERGARTEN_UNIFORM.get(), KindergartenRenderer::new);
         });
-        event.enqueueWork(()->{
+        event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TRAINING_FACILITY.get(), RenderType.cutoutMipped());
         });
         event.enqueueWork(() -> {
@@ -45,14 +49,19 @@ public class ClientSetupEvents {
             ClientRegistry.registerKeyBinding(SkillKeyMapping.KEY_FORMER_SKILL);
             ClientRegistry.registerKeyBinding(SkillKeyMapping.KEY_LATTER_SKILL);
         });
-        
+
         OverlayRegistry.registerOverlayBottom("umapyoi.skill_overlay", SkillOverlay.INSTANCE);
         OverlayRegistry.registerOverlayBottom("umapyoi.motivation_overlay", MotivationOverlay.INSTANCE);
         OverlayRegistry.registerOverlayBottom("umapyoi.action_bar", ActionBarOverlay.INSTANCE);
-        
+
         BlockEntityRenderers.register(BlockEntityRegistry.THREE_GODDESS.get(), ThreeGoddessBlockRender::new);
         BlockEntityRenderers.register(BlockEntityRegistry.UMA_PEDESTAL.get(), UmaPedestalBlockRender::new);
-        BlockEntityRenderers.register(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(), SupportAlbumPedestalBlockRender::new);
+        BlockEntityRenderers.register(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
+                SupportAlbumPedestalBlockRender::new);
+        
+        BlockEntityRenderers.register(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), SilverUmaPedestalBlockRender::new);
+        BlockEntityRenderers.register(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
+                SilverSupportAlbumPedestalBlockRender::new);
     }
 
     @SubscribeEvent

@@ -20,23 +20,24 @@ public class SkillLearningTableBlock extends CraftingTableBlock {
     private static final Component CONTAINER_TITLE = new TranslatableComponent("container.umapyoi.skill_learning");
 
     public SkillLearningTableBlock() {
-       super(Properties.copy(Blocks.OAK_WOOD).noOcclusion());
+        super(Properties.copy(Blocks.OAK_WOOD).noOcclusion());
     }
 
     @Override
     public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
-       return new SimpleMenuProvider((id, inventory, player) -> {
-          return new SkillLearningMenu(id, inventory, ContainerLevelAccess.create(pLevel, pPos));
-       }, CONTAINER_TITLE);
+        return new SimpleMenuProvider((id, inventory, player) -> {
+            return new SkillLearningMenu(id, inventory, ContainerLevelAccess.create(pLevel, pPos));
+        }, CONTAINER_TITLE);
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-       if (pLevel.isClientSide) {
-          return InteractionResult.SUCCESS;
-       } else {
-          pPlayer.openMenu(pState.getMenuProvider(pLevel, pPos));
-          return InteractionResult.CONSUME;
-       }
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
+            BlockHitResult pHit) {
+        if (pLevel.isClientSide) {
+            return InteractionResult.SUCCESS;
+        } else {
+            pPlayer.openMenu(pState.getMenuProvider(pLevel, pPos));
+            return InteractionResult.CONSUME;
+        }
     }
 }

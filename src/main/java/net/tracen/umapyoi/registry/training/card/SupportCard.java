@@ -14,10 +14,12 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.training.SupportStack;
 import net.tracen.umapyoi.registry.training.SupportType;
+import net.tracen.umapyoi.utils.GachaRanking;
 
 public class SupportCard extends ForgeRegistryEntry<SupportCard> {
     public static final Codec<SupportCard> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Codec.INT.fieldOf("level").forGetter(SupportCard::getSupportCardLevel),
+            GachaRanking.CODEC.optionalFieldOf("ranking", GachaRanking.EASTER_EGG)
+                    .forGetter(SupportCard::getGachaRanking),
             SupportType.CODEC.fieldOf("type").forGetter(SupportCard::getSupportType),
             SupportEntry.CODEC.listOf().fieldOf("supports").forGetter(SupportCard::getSupports), ResourceLocation.CODEC
                     .listOf().optionalFieldOf("supporters", Lists.newArrayList()).forGetter(SupportCard::getSupporters))
@@ -26,20 +28,21 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
     public static final ResourceKey<Registry<SupportCard>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "support_card"));
 
-    private final int level;
+    private final GachaRanking ranking;
     private final SupportType type;
     private final List<SupportEntry> supports;
     private final List<ResourceLocation> supporters;
 
-    private SupportCard(int level, SupportType type, List<SupportEntry> supports, List<ResourceLocation> supporters) {
-        this.level = level;
+    private SupportCard(GachaRanking level, SupportType type, List<SupportEntry> supports,
+            List<ResourceLocation> supporters) {
+        this.ranking = level;
         this.type = type;
         this.supports = supports;
         this.supporters = supporters;
     }
 
-    public int getSupportCardLevel() {
-        return level;
+    public GachaRanking getGachaRanking() {
+        return ranking;
     }
 
     public List<SupportEntry> getSupports() {
@@ -63,7 +66,7 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
     }
 
     public static class Builder {
-        private int level = 1;
+        private GachaRanking level = GachaRanking.R;
         private SupportType type = SupportType.SPEED;
         private List<SupportEntry> supports = Lists.newArrayList();
         private List<ResourceLocation> supporters = Lists.newArrayList();
@@ -75,7 +78,7 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
             return new Builder();
         }
 
-        public Builder level(int level) {
+        public Builder ranking(GachaRanking level) {
             this.level = level;
             return this;
         }

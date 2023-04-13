@@ -1,0 +1,20 @@
+{
+  "ranking": "ssr",
+  "type": "stamina",
+  "supports": [
+    {
+      "support": "umapyoi:stamina_support",
+      "level": 3
+    },
+    {
+      "support": "umapyoi:skill_support",
+      "level": 1,
+      "tag": {
+        "skill": "umapyoi:big_eater"
+      }
+    }
+  ],
+  "supporters": [
+    "umapyoi:super_creek"
+  ]
+}

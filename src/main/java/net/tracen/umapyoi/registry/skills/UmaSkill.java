@@ -85,7 +85,7 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
             this.requiredWisdom = requiredWisdom;
             return this;
         }
-        
+
         public Builder sound(SoundEvent sound) {
             this.sound = sound;
             return this;
@@ -97,5 +97,5 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         }
 
     }
-    
+
 }

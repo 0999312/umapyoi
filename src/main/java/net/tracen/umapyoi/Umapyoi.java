@@ -17,6 +17,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.container.ContainerRegistry;
+import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.network.NetPacketHandler;
 import net.tracen.umapyoi.registry.SupportCardRegistry;
@@ -52,12 +53,12 @@ public class Umapyoi {
         SupportCardRegistry.SUPPORT_CARD.register(modEventBus);
         UmaDataRegistry.UMA_DATA.register(modEventBus);
         UmaFactorRegistry.FACTORS.register(modEventBus);
-        
+        MobEffectRegistry.EFFECTS.register(modEventBus);
         BlockRegistry.BLOCKS.register(modEventBus);
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
-        
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
     }

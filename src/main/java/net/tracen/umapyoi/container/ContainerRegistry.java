@@ -13,13 +13,16 @@ public class ContainerRegistry {
 
     public static final RegistryObject<MenuType<ThreeGoddessContainer>> THREE_GODDESS = CONTAINER_TYPES
             .register("three_goddess", () -> IForgeMenuType.create(ThreeGoddessContainer::new));
-    
+
     public static final RegistryObject<MenuType<TrainingFacilityContainer>> TRAINING_FACILITY = CONTAINER_TYPES
             .register("training_facility", () -> IForgeMenuType.create(TrainingFacilityContainer::new));
-    
+
     public static final RegistryObject<MenuType<SkillLearningMenu>> SKILL_LEARNING_TABLE = CONTAINER_TYPES
             .register("skill_learning_table", () -> new MenuType<>((SkillLearningMenu::new)));
-    
+
     public static final RegistryObject<MenuType<RetireRegisterMenu>> RETIRE_REGISTER = CONTAINER_TYPES
             .register("retire_register", () -> new MenuType<>((RetireRegisterMenu::new)));
+    
+    public static final RegistryObject<MenuType<DisassemblyBlockMenu>> DISASSEMBLY_BLOCK = CONTAINER_TYPES
+            .register("disassembly_block", () -> new MenuType<>((DisassemblyBlockMenu::new)));
 }

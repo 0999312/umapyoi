@@ -9,12 +9,17 @@
 		"bones": [
 			{
 				"name": "hat",
+				"pivot": [0, 24, 0]
+			},
+			{
+				"name": "hat1",
+				"parent": "hat",
 				"pivot": [0, 24, 0.2],
 				"rotation": [7.5, -5, 2.5]
 			},
 			{
 				"name": "hat_head",
-				"parent": "hat",
+				"parent": "hat1",
 				"pivot": [-3, 31, -2.8],
 				"rotation": [64.73561, 25, 0]
 			},
@@ -154,7 +159,7 @@
 			},
 			{
 				"name": "hat_flower",
-				"parent": "hat",
+				"parent": "hat1",
 				"pivot": [-4.5, 29.5, -4.3],
 				"rotation": [0, 45, 0]
 			},
@@ -223,7 +228,7 @@
 			},
 			{
 				"name": "hat_deco",
-				"parent": "hat",
+				"parent": "hat1",
 				"pivot": [-4.5, 29.5, -4.3],
 				"rotation": [90, 45, -27.5]
 			},
@@ -1884,7 +1889,7 @@
 			{
 				"name": "left_arm_down",
 				"parent": "left_arm",
-				"pivot": [5, 17.5, 1.5],
+				"pivot": [4.75, 17.5, 1.5],
 				"cubes": [
 					{"origin": [3.5, 12.5, -1.5], "size": [3, 5, 3], "uv": [30, 55], "inflate": -0.001},
 					{"origin": [3.5, 15.3, -1.5], "size": [3, 2, 3], "uv": [54, 43], "inflate": 0.1}
@@ -2794,7 +2799,7 @@
 			{
 				"name": "right_arm_down",
 				"parent": "right_arm",
-				"pivot": [-5, 17.5, 1.5],
+				"pivot": [-4.75, 17.5, 1.5],
 				"cubes": [
 					{"origin": [-6.5, 12.5, -1.5], "size": [3, 5, 3], "uv": [30, 55], "inflate": -0.001, "mirror": true},
 					{"origin": [-6.5, 15.3, -1.5], "size": [3, 2, 3], "uv": [54, 43], "inflate": 0.1, "mirror": true}

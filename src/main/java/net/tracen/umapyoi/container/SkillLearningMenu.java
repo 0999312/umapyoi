@@ -10,15 +10,13 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tracen.umapyoi.block.BlockRegistry;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
-import net.tracen.umapyoi.capability.IUmaCapability;
-import net.tracen.umapyoi.capability.UmaCapability;
 import net.tracen.umapyoi.item.SkillBookItem;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
-import net.tracen.umapyoi.registry.umadata.UmaStatus.Growth;
+import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.UmaSkillUtils;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public class SkillLearningMenu extends ItemCombinerMenu {
@@ -40,16 +38,15 @@ public class SkillLearningMenu extends ItemCombinerMenu {
         ItemStack inputSoul = this.inputSlots.getItem(0);
         ItemStack inputSkill = this.inputSlots.getItem(1);
         if (isUmaSoul(inputSoul) && isSkillBook(inputSkill)) {
-            ResourceLocation skillRL = ResourceLocation
-                    .tryParse(inputSkill.getOrCreateTag().getCompound("support").getCompound("tag").getString("skill"));
+            ResourceLocation skillRL = ResourceLocation.tryParse(inputSkill.getOrCreateTag().getString("skill"));
             if (UmaSkillRegistry.REGISTRY.get().containsKey(skillRL)) {
-                IUmaCapability cap = inputSoul.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(inputSoul));
-                if(cap.getSkillSlots() <= cap.getSkills().size())
+                if (!UmaSoulUtils.hasEmptySkillSlot(inputSoul))
                     return false;
-                
+
                 UmaSkill skill = UmaSkillRegistry.REGISTRY.get().getValue(skillRL);
-                boolean result = cap.getSkills().contains(skillRL);
-                return cap.getUmaStatus().property()[UmaStatusUtils.StatusType.WISDOM.getId()] >= skill.getRequiredWisdom() && !result;
+                boolean result = UmaSkillUtils.hasLearnedSkill(inputSoul, skillRL);
+                return UmaSoulUtils.getProperty(inputSoul)[UmaStatusUtils.StatusType.WISDOM.getId()] >= skill
+                        .getRequiredWisdom() && !result;
             }
         }
         return false;
@@ -57,18 +54,15 @@ public class SkillLearningMenu extends ItemCombinerMenu {
 
     private boolean isUmaSoul(ItemStack stack) {
         if (stack.getItem() instanceof UmaSoulItem) {
-            return stack.getCapability(CapabilityRegistry.UMACAP)
-                    .orElse(new UmaCapability(stack))
-                    .getUmaStatus()
-                    .growth() != Growth.RETIRED;
+            return UmaSoulUtils.getGrowth(stack) != Growth.RETIRED;
         }
         return false;
     }
 
     private boolean isSkillBook(ItemStack stack) {
-        if (stack.getItem() instanceof SkillBookItem)
-            return ResourceLocation
-                    .tryParse(stack.getOrCreateTag().getCompound("support").getCompound("tag").getString("skill")) != null;
+        if (stack.getItem()instanceof SkillBookItem skillbook) {
+            return skillbook.getSkill(stack) != null;
+        }
         return false;
     }
 
@@ -105,10 +99,9 @@ public class SkillLearningMenu extends ItemCombinerMenu {
 
     private ItemStack getResultItem() {
         ItemStack result = this.inputSlots.getItem(0).copy();
-        IUmaCapability cap = result.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(result));
         ItemStack supportItem = this.inputSlots.getItem(1).copy();
-        if (supportItem.getItem() instanceof SkillBookItem skillBook) {
-            UmaSkillUtils.learnSkill(cap, skillBook.getSkill(supportItem).getRegistryName());
+        if (supportItem.getItem()instanceof SkillBookItem skillBook) {
+            UmaSkillUtils.learnSkill(result, skillBook.getSkill(supportItem).getRegistryName());
         }
         return result;
     }

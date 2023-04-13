@@ -1,68 +1,64 @@
 package net.tracen.umapyoi.registry.umadata;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.Util;
 import net.minecraft.core.Registry;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.utils.GachaRanking;
 
 public class UmaData extends ForgeRegistryEntry<UmaData> {
-    public static final Codec<UmaData> CODEC = RecordCodecBuilder.create(instance -> instance
-            .group(
-                    UmaStatus.CODEC.fieldOf("status").forGetter(UmaData::status),
-                    ResourceLocation.CODEC.fieldOf("uniqueSkill").forGetter(UmaData::uniqueSkill)
-                  )
-            .apply(instance, UmaData::new)
-            );
+    public static final Codec<UmaData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            ResourceLocation.CODEC.fieldOf("identifier").forGetter(UmaData::getIdentifier),
+            GachaRanking.CODEC.optionalFieldOf("ranking", GachaRanking.EASTER_EGG).forGetter(UmaData::getGachaRanking),
+            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).fieldOf("property").forGetter(UmaData::property),
+            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).fieldOf("maxProperty")
+                    .forGetter(UmaData::maxProperty),
+            ResourceLocation.CODEC.fieldOf("uniqueSkill").forGetter(UmaData::uniqueSkill))
+            .apply(instance, UmaData::new));
 
     public static final ResourceKey<Registry<UmaData>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "umadata"));
 
-    private final UmaStatus status;
+    private final ResourceLocation identifier;
+    private final GachaRanking ranking;
+    private final int[] property;
+    private final int[] maxProperty;
     private final ResourceLocation uniqueSkill;
 
-    private String descriptionId;
-
-    public UmaData(UmaStatus status, ResourceLocation uniqueSkill) {
-        this.status = status;
+    public UmaData(ResourceLocation identifier, GachaRanking ranking, int[] property, int[] maxProperty,
+            ResourceLocation uniqueSkill) {
+        this.identifier = identifier;
+        this.ranking = ranking;
+        this.property = property;
+        this.maxProperty = maxProperty;
         this.uniqueSkill = uniqueSkill;
     }
-    
-    public UmaStatus status() {
-        return status;
+
+    public ResourceLocation getIdentifier() {
+        return identifier;
+    }
+
+    public GachaRanking getGachaRanking() {
+        return ranking;
+    }
+
+    public int[] property() {
+        return property;
+    }
+
+    public int[] maxProperty() {
+        return maxProperty;
     }
 
     public ResourceLocation uniqueSkill() {
         return uniqueSkill;
     }
 
-    @Override
-    public int hashCode() {
-        return this.getRegistryName().hashCode();
-    }
-
-    public String toString() {
-        return this.getRegistryName().toString();
-    }
-    
-    public Component getDescription() {
-        return new TranslatableComponent(this.getDescriptionId());
-    }
-
-    protected String getOrCreateDescriptionId() {
-        if (this.descriptionId == null) {
-            this.descriptionId = Util.makeDescriptionId("umadata", this.getRegistryName());
-        }
-        return this.descriptionId;
-    }
-
-    public String getDescriptionId() {
-        return this.getOrCreateDescriptionId();
-    }
 }

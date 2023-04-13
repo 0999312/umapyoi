@@ -1,0 +1,10 @@
+{
+  "ranking": "r",
+  "type": "guts",
+  "supports": [
+    {
+      "support": "umapyoi:guts_support",
+      "level": 1
+    }
+  ]
+}

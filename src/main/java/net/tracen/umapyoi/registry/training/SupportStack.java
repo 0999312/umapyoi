@@ -10,8 +10,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.tracen.umapyoi.capability.IUmaCapability;
 import net.tracen.umapyoi.events.ApplyTrainingSupportEvent;
 
 public class SupportStack {
@@ -20,14 +20,14 @@ public class SupportStack {
     @Nullable
     private CompoundTag tag;
 
-    public static final Codec<SupportStack> CODEC = RecordCodecBuilder.create(instance -> instance
-            .group(
-                    TrainingSupport.CODEC.fieldOf("support").forGetter(SupportStack::getFactor), 
-                    Codec.INT.fieldOf("level").forGetter(SupportStack::getLevel),
-                    CompoundTag.CODEC.optionalFieldOf("tag").forGetter(stack -> Optional.ofNullable(stack.getTag()))
-                  )
-            .apply(instance, SupportStack::new));
-    
+    public static final Codec<SupportStack> CODEC = RecordCodecBuilder
+            .create(instance -> instance
+                    .group(TrainingSupport.CODEC.fieldOf("support").forGetter(SupportStack::getFactor),
+                            Codec.INT.fieldOf("level").forGetter(SupportStack::getLevel),
+                            CompoundTag.CODEC.optionalFieldOf("tag")
+                                    .forGetter(stack -> Optional.ofNullable(stack.getTag())))
+                    .apply(instance, SupportStack::new));
+
     public static final SupportStack EMPTY = new SupportStack(null, 0);
 
     public SupportStack(TrainingSupport factor, int level) {
@@ -54,24 +54,24 @@ public class SupportStack {
     public int getLevel() {
         return level;
     }
-    
+
     public boolean isEmpty() {
         if (this == EMPTY) {
-           return true;
+            return true;
         } else if (this.getFactor() != null) {
-           return this.getLevel() <= 0;
+            return this.getLevel() <= 0;
         } else {
-           return true;
-        }
-     }
-
-    public void applySupport(IUmaCapability cap) {
-        if(!MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Pre(this, cap))) {
-            this.getFactor().applySupport(cap, this);
-            MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Post(this, cap));
+            return true;
         }
     }
-    
+
+    public void applySupport(ItemStack soul) {
+        if (!MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Pre(this, soul))) {
+            this.getFactor().applySupport(soul, this);
+            MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Post(this, soul));
+        }
+    }
+
     public Component getDescription() {
         return this.getFactor().getDescription(this);
     }

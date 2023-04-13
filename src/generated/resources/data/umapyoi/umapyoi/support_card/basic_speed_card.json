@@ -1,0 +1,10 @@
+{
+  "ranking": "r",
+  "type": "speed",
+  "supports": [
+    {
+      "support": "umapyoi:speed_support",
+      "level": 1
+    }
+  ]
+}

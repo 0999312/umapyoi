@@ -8,15 +8,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.container.RetireRegisterMenu;
 import net.tracen.umapyoi.item.UmaSoulItem;
-import net.tracen.umapyoi.registry.umadata.UmaStatus;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegisterMenu> {
-    
+
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
             "textures/gui/retire_gui.png");
 
@@ -33,12 +32,12 @@ public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegister
         this.renderBackground(ms);
         super.render(ms, mouseX, mouseY, partialTicks);
         this.renderTooltip(ms, mouseX, mouseY);
-        
+
     }
 
     @Override
     protected void renderLabels(PoseStack ms, int mouseX, int mouseY) {
-        this.font.draw(ms, this.title, (float)this.titleLabelX, (float)this.titleLabelY - 3, 0xFFFFFF);
+        this.font.draw(ms, this.title, (float) this.titleLabelX, (float) this.titleLabelY - 3, 0xFFFFFF);
         this.font.draw(ms, this.playerInventoryTitle, 8.0f, this.imageHeight - 96 + 2, 4210752);
     }
 
@@ -50,21 +49,24 @@ public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegister
         }
         RenderUtils.setup(BACKGROUND_TEXTURE);
         this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-        
+
         ItemStack input = this.getMenu().getSlot(0).getItem();
-        if(this.menu.getSlot(0).hasItem() && !this.menu.getSlot(1).hasItem())
+        if (this.menu.getSlot(0).hasItem() && !this.menu.getSlot(1).hasItem())
             this.blit(ms, this.leftPos + 74, this.topPos + 57, 176, 0, 29, 19);
-        
-        else if(input.getItem() instanceof UmaSoulItem) {
-            input.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap->{
-                UmaStatus status = cap.getUmaStatus();                        
-                this.font.draw(ms, UmaStatusUtils.getStatusLevel(status.property()[StatusType.SPEED.getId()]), this.leftPos + 21, this.topPos + 31, 0x40C100);
-                this.font.draw(ms, UmaStatusUtils.getStatusLevel(status.property()[StatusType.STAMINA.getId()]), this.leftPos + 52, this.topPos + 31, 0x40C100);
-                this.font.draw(ms, UmaStatusUtils.getStatusLevel(status.property()[StatusType.STRENGTH.getId()]), this.leftPos + 83, this.topPos + 31, 0x40C100);
-                this.font.draw(ms, UmaStatusUtils.getStatusLevel(status.property()[StatusType.GUTS.getId()]), this.leftPos + 114, this.topPos + 31, 0x40C100);
-                this.font.draw(ms, UmaStatusUtils.getStatusLevel(status.property()[StatusType.WISDOM.getId()]), this.leftPos + 146, this.topPos + 31, 0x40C100);           
-            });
+
+        else if (input.getItem() instanceof UmaSoulItem) {
+            int[] status = UmaSoulUtils.getProperty(input);
+            this.font.draw(ms, UmaStatusUtils.getStatusLevel(status[StatusType.SPEED.getId()]), this.leftPos + 21,
+                    this.topPos + 31, 0x40C100);
+            this.font.draw(ms, UmaStatusUtils.getStatusLevel(status[StatusType.STAMINA.getId()]), this.leftPos + 52,
+                    this.topPos + 31, 0x40C100);
+            this.font.draw(ms, UmaStatusUtils.getStatusLevel(status[StatusType.STRENGTH.getId()]), this.leftPos + 83,
+                    this.topPos + 31, 0x40C100);
+            this.font.draw(ms, UmaStatusUtils.getStatusLevel(status[StatusType.GUTS.getId()]), this.leftPos + 114,
+                    this.topPos + 31, 0x40C100);
+            this.font.draw(ms, UmaStatusUtils.getStatusLevel(status[StatusType.WISDOM.getId()]), this.leftPos + 146,
+                    this.topPos + 31, 0x40C100);
         }
     }
-    
+
 }

@@ -34,28 +34,27 @@ public class UmaPedestalBlockRender implements BlockEntityRenderer<UmaPedestalBl
         }
     }
 
-
     private void renderAnimation(UmaPedestalBlockEntity tileEntity, float partialTicks, PoseStack poseStack,
             MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
         ItemStack item = tileEntity.getStoredItem();
         if (item.isEmpty())
             return;
-        
+
         BlockPos pPos = tileEntity.getBlockPos();
         this.renderItem(partialTicks, poseStack);
-        Minecraft.getInstance().getItemRenderer().renderStatic(item, ItemTransforms.TransformType.FIXED, 
-                combinedLight, combinedOverlay, poseStack, buffer,
-                (int) pPos.asLong());
+        Minecraft.getInstance().getItemRenderer().renderStatic(item, ItemTransforms.TransformType.FIXED, combinedLight,
+                combinedOverlay, poseStack, buffer, (int) pPos.asLong());
     }
-    
+
     private int degree = 0;
+
     private void renderItem(float partialTicks, PoseStack matrixStackIn) {
         float f = (degree + partialTicks) / 20.0F;
         float f1 = Mth.sin(f) * 0.1F + 0.1F;
         matrixStackIn.translate(0.5D, f1 + 1.5D, 0.5D);
         matrixStackIn.mulPose(Vector3f.YP.rotation(f));
         matrixStackIn.scale(0.6F, 0.6F, 0.6F);
-        if (f >= Math.PI * 2) 
+        if (f >= Math.PI * 2)
             degree = 0;
         degree++;
     }

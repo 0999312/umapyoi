@@ -1,0 +1,17 @@
+{
+  "ranking": "r",
+  "type": "wisdom",
+  "supports": [
+    {
+      "support": "umapyoi:wisdom_support",
+      "level": 1
+    },
+    {
+      "support": "umapyoi:speed_support",
+      "level": 1
+    }
+  ],
+  "supporters": [
+    "umapyoi:agnus_tachyon"
+  ]
+}

@@ -15,13 +15,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
-import net.tracen.umapyoi.capability.IUmaCapability;
-import net.tracen.umapyoi.capability.UmaCapability;
 import net.tracen.umapyoi.container.TrainingFacilityContainer;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.training.SupportContainer;
-import net.tracen.umapyoi.registry.umadata.UmaStatus.Growth;
+import net.tracen.umapyoi.registry.umadata.Growth;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements MenuProvider {
 
@@ -37,12 +35,12 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         this.inventory = createHandler();
         this.tileData = createIntArray();
     }
-    
+
     public static void workingTick(Level level, BlockPos pos, BlockState state,
             TrainingFacilityBlockEntity blockEntity) {
-        if(level.isClientSide()) 
-            return ;
-        
+        if (level.isClientSide())
+            return;
+
         boolean didInventoryChange = false;
         if (blockEntity.canWork()) {
             didInventoryChange = blockEntity.processRecipe();
@@ -69,11 +67,11 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
 
         ItemStack resultStack = getResultItem();
         this.inventory.setStackInSlot(0, resultStack);
-        
+
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
-            if (supportItem.getItem() instanceof SupportContainer supports) {
-                if(supports.isConsumable(this.getLevel(), supportItem)) 
+            if (supportItem.getItem()instanceof SupportContainer supports) {
+                if (supports.isConsumable(this.getLevel(), supportItem))
                     supportItem.shrink(1);
             }
         }
@@ -84,12 +82,11 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         if (this.level == null)
             return ItemStack.EMPTY;
         ItemStack result = this.inventory.getStackInSlot(0).copy();
-        IUmaCapability cap = result.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(result));
-        cap.getUmaStatus().setGrowth(Growth.TRAINED);
+        UmaSoulUtils.setGrowth(result, Growth.TRAINED);
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
-            if (supportItem.getItem() instanceof SupportContainer supports) {
-                supports.getSupports(this.getLevel(), supportItem).forEach(support -> support.applySupport(cap));
+            if (supportItem.getItem()instanceof SupportContainer supports) {
+                supports.getSupports(this.getLevel(), supportItem).forEach(support -> support.applySupport(result));
             }
         }
         return result;
@@ -103,16 +100,15 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
 
     private boolean hasInput() {
         ItemStack input = this.inventory.getStackInSlot(0);
-
         if (input.getItem() instanceof UmaSoulItem) {
-            IUmaCapability cap = input.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(input));
-            if(cap.getUmaStatus().growth() == Growth.UNTRAINED) {
+            if (UmaSoulUtils.getGrowth(input) == Growth.UNTRAINED) {
                 for (int i = 1; i < 7; i++) {
                     ItemStack supportItem = this.inventory.getStackInSlot(i);
-                    if (supportItem.getItem() instanceof SupportContainer supports) {
-                        if(!(supports.canSupport(level, supportItem).test(cap)))
+                    if (supportItem.getItem()instanceof SupportContainer supports) {
+                        if (!(supports.canSupport(level, supportItem).test(input)))
                             return false;
                     }
+
                 }
                 return true;
             }

@@ -9,7 +9,7 @@
 		"bones": [
 			{
 				"name": "hat",
-				"pivot": [0, 0, 0]
+				"pivot": [0, 24, 0]
 			},
 			{
 				"name": "bone3",
@@ -369,7 +369,7 @@
 				]
 			},
 			{
-				"name": "right_arm_down2",
+				"name": "right_arm_down",
 				"parent": "right_arm",
 				"pivot": [-5, 17.5, 1.5],
 				"cubes": [

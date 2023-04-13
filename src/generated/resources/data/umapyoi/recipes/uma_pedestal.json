@@ -1,20 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "AJA",
+    " J ",
     "GAG",
-    "AAA"
+    "GGG"
   ],
   "key": {
     "A": {
-      "tag": "forge:stone"
+      "item": "umapyoi:silver_uma_pedestal"
     },
     "G": {
       "tag": "forge:ingots/gold"
     },
-    "J": {
-      "item": "umapyoi:jewel"
-    }
+    "J": [
+      {
+        "item": "umapyoi:crystal_gold"
+      },
+      {
+        "item": "umapyoi:horseshoe_gold"
+      }
+    ]
   },
   "result": {
     "item": "umapyoi:uma_pedestal"

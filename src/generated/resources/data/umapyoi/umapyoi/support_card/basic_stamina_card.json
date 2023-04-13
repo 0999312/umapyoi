@@ -1,0 +1,10 @@
+{
+  "ranking": "r",
+  "type": "stamina",
+  "supports": [
+    {
+      "support": "umapyoi:stamina_support",
+      "level": 1
+    }
+  ]
+}

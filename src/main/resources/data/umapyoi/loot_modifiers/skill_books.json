@@ -43,7 +43,7 @@
     },
     {
       "condition": "minecraft:random_chance",
-      "chance": 0.85
+      "chance": 0.5
     }
   ],
   "lootTable": "umapyoi:simple_skills",

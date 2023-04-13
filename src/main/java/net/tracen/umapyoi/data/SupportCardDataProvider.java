@@ -35,7 +35,7 @@ public class SupportCardDataProvider implements DataProvider {
     public SupportCardDataProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         this(generator, existingFileHelper, Umapyoi.MODID);
     }
-    
+
     public SupportCardDataProvider(DataGenerator generator, ExistingFileHelper existingFileHelper, String modId) {
         this.generator = generator;
         this.modId = modId;
@@ -45,7 +45,7 @@ public class SupportCardDataProvider implements DataProvider {
     }
 
     public void addDatas() {
-        for(Supplier<SupportCard> data : SupportCardRegistry.SUPPORT_CARD.getEntries()) {
+        for (Supplier<SupportCard> data : SupportCardRegistry.SUPPORT_CARD.getEntries()) {
             this.addData(data);
         }
     }

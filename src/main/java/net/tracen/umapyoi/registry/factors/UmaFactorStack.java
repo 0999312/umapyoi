@@ -10,8 +10,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.tracen.umapyoi.capability.IUmaCapability;
 import net.tracen.umapyoi.events.ApplyFactorEvent;
 
 public class UmaFactorStack {
@@ -20,12 +20,14 @@ public class UmaFactorStack {
     @Nullable
     private CompoundTag tag;
 
-    public static final Codec<UmaFactorStack> CODEC = RecordCodecBuilder.create(instance -> instance
-            .group(UmaFactor.CODEC.fieldOf("factor").forGetter(UmaFactorStack::getFactor),
-                    Codec.INT.fieldOf("level").forGetter(UmaFactorStack::getLevel),
-                    CompoundTag.CODEC.optionalFieldOf("Tag").forGetter(stack -> Optional.ofNullable(stack.getTag())))
-            .apply(instance, UmaFactorStack::new));
-    
+    public static final Codec<UmaFactorStack> CODEC = RecordCodecBuilder
+            .create(instance -> instance
+                    .group(UmaFactor.CODEC.fieldOf("factor").forGetter(UmaFactorStack::getFactor),
+                            Codec.INT.fieldOf("level").forGetter(UmaFactorStack::getLevel),
+                            CompoundTag.CODEC.optionalFieldOf("Tag")
+                                    .forGetter(stack -> Optional.ofNullable(stack.getTag())))
+                    .apply(instance, UmaFactorStack::new));
+
     public UmaFactorStack(UmaFactor factor, int level) {
         this.factor = factor;
         this.level = level;
@@ -51,13 +53,13 @@ public class UmaFactorStack {
         return level;
     }
 
-    public void applyFactor(IUmaCapability cap) {
-        if(!MinecraftForge.EVENT_BUS.post(new ApplyFactorEvent.Pre(this, cap))) {
-            this.getFactor().applyFactor(cap, this);
-            MinecraftForge.EVENT_BUS.post(new ApplyFactorEvent.Post(this, cap));
+    public void applyFactor(ItemStack soul) {
+        if (!MinecraftForge.EVENT_BUS.post(new ApplyFactorEvent.Pre(this, soul))) {
+            this.getFactor().applyFactor(soul, this);
+            MinecraftForge.EVENT_BUS.post(new ApplyFactorEvent.Post(this, soul));
         }
     }
-    
+
     public Component getDescription() {
         return this.getFactor().getDescription(this);
     }

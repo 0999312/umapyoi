@@ -33,10 +33,14 @@ public class UmaSoulRenderer implements ICurioRenderer {
             float headPitch) {
 
         LivingEntity player = slotContext.entity();
-        if(player instanceof Player && !slotContext.identifier().equalsIgnoreCase("uma_soul"))  return;
-        if(player.isInvisible() && !player.isSpectator()) return;
-        ResourceLocation name = UmaSoulUtils.getUmaSoulName(stack);
-        VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(name)));
+
+        if (player instanceof Player && !slotContext.identifier().equalsIgnoreCase("uma_soul"))
+            return;
+        if (player.isInvisible() && !player.isSpectator())
+            return;
+        ResourceLocation name = UmaSoulUtils.getName(stack);
+        VertexConsumer vertexconsumer = renderTypeBuffer
+                .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(name)));
         UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(player, ClientUtil.getModelPOJO(name),
                 BedrockVersion.LEGACY);
         boolean suit_flag = false;
@@ -54,6 +58,7 @@ public class UmaSoulRenderer implements ICurioRenderer {
         }
 
         base_model.setModelProperties(player, suit_flag, false);
+
         base_model.prepareMobModel(player, limbSwing, limbSwingAmount, partialTicks);
 
         if (renderLayerParent.getModel() instanceof HumanoidModel) {

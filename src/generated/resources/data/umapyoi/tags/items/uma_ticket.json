@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "umapyoi:blank_ticket",
+    "umapyoi:uma_ticket",
+    "#umapyoi:sr_uma_ticket",
+    "#umapyoi:ssr_uma_ticket"
+  ]
+}

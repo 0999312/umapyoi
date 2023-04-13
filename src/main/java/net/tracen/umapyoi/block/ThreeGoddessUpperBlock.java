@@ -17,38 +17,40 @@ public class ThreeGoddessUpperBlock extends Block {
     public ThreeGoddessUpperBlock() {
         super(Properties.copy(Blocks.POLISHED_ANDESITE).noOcclusion());
     }
-    
+
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.INVISIBLE;
     }
-    
+
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         return pLevel.getBlockState(pPos.below()).is(BlockRegistry.THREE_GODDESS.get());
     }
-    
+
     @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if(pLevel.getBlockState(pPos.below()).is(BlockRegistry.THREE_GODDESS.get())) {
+        if (pLevel.getBlockState(pPos.below()).is(BlockRegistry.THREE_GODDESS.get())) {
             pLevel.destroyBlock(pPos.below(), true);
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
-    
-    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos,
+            boolean pIsMoving) {
         if (!pLevel.isClientSide) {
-           if (!pState.canSurvive(pLevel, pPos)) {
-              pLevel.removeBlock(pPos, false);
-           }
+            if (!pState.canSurvive(pLevel, pPos)) {
+                pLevel.removeBlock(pPos, false);
+            }
         }
     }
-    
+
     @SuppressWarnings("deprecation")
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand,
             BlockHitResult pHit) {
-        return pLevel.getBlockState(pPos.below()).getBlock().use(pLevel.getBlockState(pPos.below()), pLevel, pPos.below(), pPlayer, pHand, pHit);
+        return pLevel.getBlockState(pPos.below()).getBlock().use(pLevel.getBlockState(pPos.below()), pLevel,
+                pPos.below(), pPlayer, pHand, pHit);
     }
 }

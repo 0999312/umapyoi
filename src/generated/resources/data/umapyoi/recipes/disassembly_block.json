@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " J ",
+    "ALA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:ingots/iron"
+    },
+    "L": {
+      "item": "minecraft:blast_furnace"
+    },
+    "J": {
+      "item": "umapyoi:blank_ticket"
+    }
+  },
+  "result": {
+    "item": "umapyoi:disassembly_block"
+  }
+}

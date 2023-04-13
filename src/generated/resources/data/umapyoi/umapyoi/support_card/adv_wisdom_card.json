@@ -1,0 +1,14 @@
+{
+  "ranking": "sr",
+  "type": "wisdom",
+  "supports": [
+    {
+      "support": "umapyoi:speed_support",
+      "level": 1
+    },
+    {
+      "support": "umapyoi:wisdom_support",
+      "level": 2
+    }
+  ]
+}

@@ -66,26 +66,27 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
 
     private void renderAnimation(ThreeGoddessBlockEntity tileEntity, float partialTicks, PoseStack poseStack,
             MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-        ItemStack jewel =tileEntity.getInventory().getStackInSlot(0);
-        ItemStack soul =tileEntity.getInventory().getStackInSlot(3);
+        ItemStack jewel = tileEntity.getInventory().getStackInSlot(0);
+        ItemStack soul = tileEntity.getInventory().getStackInSlot(3);
         if (jewel.isEmpty() && soul.isEmpty())
             return;
-        
+
         BlockPos pPos = tileEntity.getBlockPos();
         this.renderItem(tileEntity, partialTicks, poseStack);
-        Minecraft.getInstance().getItemRenderer().renderStatic(soul.isEmpty() ? jewel : soul ,
+        Minecraft.getInstance().getItemRenderer().renderStatic(soul.isEmpty() ? jewel : soul,
                 ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, buffer,
                 (int) pPos.asLong());
     }
-    
+
     private int degree = 0;
+
     private void renderItem(ThreeGoddessBlockEntity tileEntity, float partialTicks, PoseStack matrixStackIn) {
         float f = (degree + partialTicks) / 20.0F;
         float f1 = Mth.sin(f) * 0.1F + 0.1F;
         matrixStackIn.translate(0.5D, f1 + 3.0D, 0.5D);
         matrixStackIn.mulPose(Vector3f.YP.rotation(f));
         matrixStackIn.scale(0.6F, 0.6F, 0.6F);
-        if (f >= Math.PI * 2) 
+        if (f >= Math.PI * 2)
             degree = 0;
         degree++;
     }

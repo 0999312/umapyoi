@@ -1,0 +1,14 @@
+{
+  "ranking": "sr",
+  "type": "guts",
+  "supports": [
+    {
+      "support": "umapyoi:strength_support",
+      "level": 1
+    },
+    {
+      "support": "umapyoi:guts_support",
+      "level": 2
+    }
+  ]
+}

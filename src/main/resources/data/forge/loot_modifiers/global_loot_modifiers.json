@@ -1,8 +1,8 @@
 {
   "replace": false,
   "entries": [
-    "umapyoi:dropping",
     "umapyoi:skill_books",
-    "umapyoi:rare_skill_books"
-  ]
+    "umapyoi:rare_skill_books",
+    "umapyoi:chest_training_books"
+    ]
 }

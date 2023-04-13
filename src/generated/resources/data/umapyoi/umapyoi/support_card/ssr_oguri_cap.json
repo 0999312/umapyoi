@@ -1,0 +1,24 @@
+{
+  "ranking": "ssr",
+  "type": "guts",
+  "supports": [
+    {
+      "support": "umapyoi:stamina_support",
+      "level": 1
+    },
+    {
+      "support": "umapyoi:strength_support",
+      "level": 3
+    },
+    {
+      "support": "umapyoi:skill_support",
+      "level": 1,
+      "tag": {
+        "skill": "umapyoi:nutritional_supplements"
+      }
+    }
+  ],
+  "supporters": [
+    "umapyoi:oguri_cap"
+  ]
+}

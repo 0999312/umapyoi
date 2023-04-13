@@ -25,14 +25,14 @@ public class TrainingSupportUtils {
 
     public static List<SupportStack> deserializeNBT(CompoundTag compound) {
         List<SupportStack> list = Lists.newArrayList();
-        
+
         compound.getList("supports", Tag.TAG_COMPOUND).forEach(tag -> {
             SupportStack.CODEC.parse(NbtOps.INSTANCE, tag).resultOrPartial(error -> {
                 Umapyoi.getLogger().error("Failed to parse SupportStack : {}", error);
             }).ifPresent(result -> list.add(result));
         });
-        
+
         return list;
     }
-    
+
 }

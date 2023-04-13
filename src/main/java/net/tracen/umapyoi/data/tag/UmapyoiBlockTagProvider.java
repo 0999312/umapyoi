@@ -15,13 +15,13 @@ public class UmapyoiBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-            .add(BlockRegistry.THREE_GODDESS.get())
-            .add(BlockRegistry.THREE_GODDESS_UPPER.get())
-            .add(BlockRegistry.TRAINING_FACILITY.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.THREE_GODDESS.get())
+                .add(BlockRegistry.THREE_GODDESS_UPPER.get()).add(BlockRegistry.UMA_PEDESTAL.get())
+                .add(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get()).add(BlockRegistry.TRAINING_FACILITY.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(BlockRegistry.SKILL_LEARNING_TABLE.get())
+                .add(BlockRegistry.REGISTER_LECTERN.get())
+                .add(BlockRegistry.DISASSEMBLY_BLOCK.get());
         
-        this.tag(BlockTags.MINEABLE_WITH_AXE)
-        .add(BlockRegistry.SKILL_LEARNING_TABLE.get())
-        .add(BlockRegistry.REGISTER_LECTERN.get());
     }
 }

@@ -34,7 +34,7 @@ public class UmaPedestalBlock extends BaseEntityBlock {
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
-    
+
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return BlockEntityRegistry.UMA_PEDESTAL.get().create(pos, state);
@@ -48,7 +48,7 @@ public class UmaPedestalBlock extends BaseEntityBlock {
             if (tileEntity instanceof UmaPedestalBlockEntity blockEntity) {
                 ItemStack heldStack = player.getItemInHand(handIn);
                 ItemStack offhandStack = player.getOffhandItem();
-                if(blockEntity.isEmpty()) {
+                if (blockEntity.isEmpty()) {
                     if (!offhandStack.isEmpty()) {
                         if (handIn.equals(InteractionHand.MAIN_HAND) && !(heldStack.getItem() instanceof BlockItem)) {
                             return InteractionResult.PASS; // Pass to off-hand if that item is placeable
@@ -57,7 +57,7 @@ public class UmaPedestalBlock extends BaseEntityBlock {
                     if (heldStack.isEmpty()) {
                         return InteractionResult.PASS;
                     } else if (heldStack.is(Items.BOOK)) {
-                        world.destroyBlock(pos, true);
+                        world.destroyBlock(pos, false);
                         world.setBlock(pos, BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get().defaultBlockState(), UPDATE_ALL);
                     } else if (blockEntity.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
                         world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.END_PORTAL_FRAME_FILL,
@@ -65,20 +65,21 @@ public class UmaPedestalBlock extends BaseEntityBlock {
                         return InteractionResult.SUCCESS;
                     }
                 } else {
-                    if(heldStack.isEmpty()) {
+                    if (heldStack.isEmpty()) {
                         if (!player.getInventory().add(blockEntity.removeItem())) {
-                            Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), blockEntity.removeItem());
+                            Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(),
+                                    blockEntity.removeItem());
                         }
-                        
-                        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS,
-                                0.25F, 0.5F);
+
+                        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP,
+                                SoundSource.BLOCKS, 0.25F, 0.5F);
                         return InteractionResult.SUCCESS;
-                    }else {
+                    } else {
                         player.displayClientMessage(new TranslatableComponent("umapyoi.uma_pedestal.cannot_add_item"),
                                 true);
                         return InteractionResult.PASS;
                     }
-                        
+
                 }
             }
         }

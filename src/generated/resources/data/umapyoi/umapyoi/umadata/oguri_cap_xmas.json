@@ -1,15 +1,19 @@
 {
-  "status": {
-    "name": "umapyoi:oguri_cap_xmas",
-    "property": [
-      1,
-      1,
-      1,
-      1,
-      1
-    ],
-    "motivation": "normal",
-    "growth": "untrained"
-  },
-  "uniqueSkill": "umapyoi:basic_pace"
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "maxProperty": [
+    12,
+    12,
+    12,
+    12,
+    12
+  ],
+  "uniqueSkill": "umapyoi:basic_pace",
+  "identifier": "umapyoi:oguri_cap",
+  "ranking": "ssr"
 }

@@ -1,0 +1,14 @@
+{
+  "ranking": "ssr",
+  "type": "stamina",
+  "supports": [
+    {
+      "support": "umapyoi:stamina_support",
+      "level": 3
+    },
+    {
+      "support": "umapyoi:guts_support",
+      "level": 2
+    }
+  ]
+}

@@ -28,6 +28,26 @@
             }
           ],
           "name": "umapyoi:skill_book"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{skill:\"umapyoi:nutritional_supplements\"}"
+            }
+          ],
+          "name": "umapyoi:skill_book"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{skill:\"umapyoi:serene\"}"
+            }
+          ],
+          "name": "umapyoi:skill_book"
         }
       ]
     }

@@ -16,9 +16,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
+import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
@@ -36,8 +36,10 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
             float headPitch) {
 
         LivingEntity player = slotContext.entity();
-        if(player instanceof Player && !slotContext.identifier().equalsIgnoreCase("uma_suit"))  return;
-        if(player.isInvisible()) return;
+        if (player instanceof Player && !slotContext.identifier().equalsIgnoreCase("uma_suit"))
+            return;
+        if (player.isInvisible())
+            return;
 
         CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(itemHandler -> {
             itemHandler.getStacksHandler("uma_soul").ifPresent(stacksHandler -> {
@@ -46,20 +48,16 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                 boolean flat_flag = false;
                 if (stackHandler.getSlots() > 0) {
                     ItemStack stackInSlot = stackHandler.getStackInSlot(0);
-                    if(stackInSlot.isEmpty())
+                    if (stackInSlot.isEmpty())
                         return;
-                    if(!stackInSlot.getCapability(CapabilityRegistry.UMACAP).isPresent())
+                    if (!(stackInSlot.getItem() instanceof UmaSoulItem))
                         return;
-                    if (!(stacksHandler).getRenders().get(0)) 
+                    if (!(stacksHandler).getRenders().get(0))
                         return;
-                    
+
                     flat_flag = ClientUtils.getClientUmaDataRegistry()
                             .getOrCreateHolder(
-                                    ResourceKey.create(
-                                            UmaData.REGISTRY_KEY, 
-                                            UmaSoulUtils.getUmaSoulName(stackInSlot)
-                                            )
-                                    )
+                                    ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
                             .is(UmapyoiUmaDataTags.FLAT_CHEST);
                 }
 

@@ -14,7 +14,6 @@ import net.tracen.umapyoi.UmapyoiConfig;
 
 public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel<T> {
 
-
     public final BedrockPart rightArmDown;
     public final BedrockPart leftArmDown;
     public final BedrockPart rightLegDown;
@@ -22,10 +21,10 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
 
     public final BedrockPart rightEar;
     public final BedrockPart leftEar;
-    
+
     public final BedrockPart rightEarHideParts;
     public final BedrockPart leftEarHideParts;
-    
+
     public final BedrockPart rightFoot;
     public final BedrockPart leftFoot;
 
@@ -53,9 +52,9 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
 
         this.hat = this.getChild("hat") != null ? this.getChild("hat") : new BedrockPart();
         this.longHair = this.getChild("long_hair") != null ? this.getChild("long_hair") : new BedrockPart();
-        
+
         this.hideParts = this.getChild("hide_parts") != null ? this.getChild("hide_parts") : new BedrockPart();
-        
+
         this.rightEarHideParts = this.getChild("right_earmuffs");
         this.leftEarHideParts = this.getChild("left_earmuffs");
 
@@ -96,7 +95,7 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
         } else {
             this.tail.copyFrom(this.body);
-            
+
             if (this.crouching) {
                 this.tail.xRot = 1.0F + pLimbSwingAmount * 0.5F;
                 this.tail.z = 3.125F;
@@ -106,34 +105,37 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.tail.z = 1.75F;
                 this.tail.y = 8.0F;
             }
-            if(this.head.xRot < 0)
+            if (this.head.xRot < 0)
                 this.longHair.xRot -= this.head.xRot;
-            
-            int ears_reminder = (int) ((pAgeInTicks + Math.abs(entityIn.getUUID().getLeastSignificantBits()) % 10 ) % UmapyoiConfig.EAR_ANIMATION_INTERVAL.get());
-            int tail_reminder = (int) ((pAgeInTicks + Math.abs(entityIn.getUUID().getLeastSignificantBits()) % 10 ) % UmapyoiConfig.TAIL_ANIMATION_INTERVAL.get());
-                        
-            if(0 < ears_reminder && ears_reminder < 8) {
-                if(this.leftEarHideParts != null) this.leftEarHideParts.zRot += Mth.cos(ears_reminder) * 0.125F;
-                if(this.rightEarHideParts != null) this.rightEarHideParts.zRot -= Mth.cos(ears_reminder) * 0.125F;
+
+            int ears_reminder = (int) ((pAgeInTicks + Math.abs(entityIn.getUUID().getLeastSignificantBits()) % 10)
+                    % UmapyoiConfig.EAR_ANIMATION_INTERVAL.get());
+            int tail_reminder = (int) ((pAgeInTicks + Math.abs(entityIn.getUUID().getLeastSignificantBits()) % 10)
+                    % UmapyoiConfig.TAIL_ANIMATION_INTERVAL.get());
+
+            if (0 < ears_reminder && ears_reminder < 8) {
+                if (this.leftEarHideParts != null)
+                    this.leftEarHideParts.zRot += Mth.cos(ears_reminder) * 0.125F;
+                if (this.rightEarHideParts != null)
+                    this.rightEarHideParts.zRot -= Mth.cos(ears_reminder) * 0.125F;
                 this.leftEar.zRot += Mth.cos(ears_reminder) * 0.125F;
                 this.rightEar.zRot -= Mth.cos(ears_reminder) * 0.125F;
-            }else {
+            } else {
                 this.leftEar.zRot = 0F;
                 this.rightEar.zRot = 0F;
             }
-            
-            if(0 < tail_reminder && tail_reminder < 8) {
+
+            if (0 < tail_reminder && tail_reminder < 8) {
                 this.tail.zRot = -Mth.cos(pAgeInTicks * 0.7F) * 0.5F;
                 this.tail.yRot = Mth.cos(pAgeInTicks * 0.7F) * 0.5F;
-            }else {
+            } else {
                 this.tail.zRot = 0;
                 this.tail.yRot = 0;
             }
         }
         this.hat.copyFrom(head);
-        
-    }
 
+    }
 
     public void setModelProperties(LivingEntity player) {
         this.setModelProperties(player, false);
@@ -158,11 +160,13 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.setAllVisible(false);
                 this.head.visible = true;
                 this.tail.visible = true;
+                this.hat.visible = false;
             } else if (hide_head) {
                 this.head.visible = false;
                 this.tail.visible = false;
+                this.hat.visible = true;
             }
-            
+
             this.crouching = player.isCrouching();
             if (UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && !UmapyoiConfig.HIDE_PARTS_RENDER.get()) {
 
@@ -185,12 +189,16 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                     this.leftFoot.visible = false;
                 }
             }
-            if(this.hat.visible) {
-                if(this.leftEarHideParts != null) this.leftEar.visible = false;
-                if(this.rightEarHideParts != null) this.rightEar.visible = false;
-            }else {
-                if(this.leftEarHideParts != null) this.leftEar.visible = true;
-                if(this.rightEarHideParts != null) this.rightEar.visible = true;
+            if (this.hat.visible) {
+                if (this.leftEarHideParts != null)
+                    this.leftEar.visible = false;
+                if (this.rightEarHideParts != null)
+                    this.rightEar.visible = false;
+            } else {
+                if (this.leftEarHideParts != null)
+                    this.leftEar.visible = true;
+                if (this.rightEarHideParts != null)
+                    this.rightEar.visible = true;
             }
         }
     }
@@ -206,11 +214,14 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             part.x += 1F;
 
         if (part == this.leftLeg)
-            part.x -= 0.25F;
+            part.x -= 0.125F;
         if (part == this.rightLeg)
-            part.x += 0.25F;
+            part.x += 0.125F;
         part.y = old_part.y;
         part.z = old_part.z;
-
+        if (part == this.leftLeg)
+            part.z -= 0.125F;
+        if (part == this.rightLeg)
+            part.z -= 0.125F;
     }
 }

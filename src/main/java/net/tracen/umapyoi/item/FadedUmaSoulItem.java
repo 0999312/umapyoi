@@ -26,15 +26,14 @@ public class FadedUmaSoulItem extends Item {
             TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         pTooltipComponents.add(new TranslatableComponent("tooltip.umapyoi.umadata.name",
-                UmaSoulUtils.getTranslatedUmaName(this.getUmaName(pStack)))
-                .withStyle(ChatFormatting.GRAY));
+                UmaSoulUtils.getTranslatedUmaName(this.getUmaName(pStack))).withStyle(ChatFormatting.GRAY));
     }
-    
+
     public ResourceLocation getUmaName(ItemStack pStack) {
-        if(pStack.getOrCreateTag().getString("name").isBlank())
+        if (pStack.getOrCreateTag().getString("name").isBlank())
             return UmaDataRegistry.COMMON_UMA.getId();
         return Optional.ofNullable(ResourceLocation.tryParse(pStack.getOrCreateTag().getString("name")))
                 .orElse(UmaDataRegistry.COMMON_UMA.getId());
     }
-    
+
 }

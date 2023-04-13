@@ -17,31 +17,34 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tracen.umapyoi.block.BlockRegistry;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
-import net.tracen.umapyoi.capability.IUmaCapability;
-import net.tracen.umapyoi.capability.UmaCapability;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.factors.FactorType;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
-import net.tracen.umapyoi.registry.umadata.UmaStatus.Growth;
+import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.UmaFactorUtils;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class RetireRegisterMenu extends AbstractContainerMenu {
+    private final DataSlot factorSeed = DataSlot.standalone();
+
+    private final Random rand = new Random();
     protected final ResultContainer resultSlots = new ResultContainer();
     protected final Container inputSlots = new SimpleContainer(1) {
         @Override
         public int getContainerSize() {
             return 1;
         };
+
         /**
          * For tile entities, ensures the chunk containing the tile entity is saved to
          * disk later - the game won't think it hasn't changed and skip it.
@@ -61,9 +64,8 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
 
     protected boolean hasResult() {
         ItemStack inputSoul = this.inputSlots.getItem(0);
-        if(inputSoul.getItem() instanceof UmaSoulItem) {
-            IUmaCapability cap = inputSoul.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(inputSoul));
-            return cap.getUmaStatus().growth() == Growth.TRAINED;
+        if (inputSoul.getItem() instanceof UmaSoulItem) {
+            return UmaSoulUtils.getGrowth(inputSoul) == Growth.TRAINED;
         }
         return false;
     }
@@ -72,9 +74,8 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         resultStack.onCraftedBy(player.level, player, resultStack.getCount());
         this.resultSlots.awardUsedRecipes(player);
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
-        if(inputSoul.getItem() instanceof UmaSoulItem) {
-            IUmaCapability cap = inputSoul.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(inputSoul));
-            cap.getUmaStatus().setGrowth(Growth.RETIRED);
+        if (inputSoul.getItem() instanceof UmaSoulItem) {
+            UmaSoulUtils.setGrowth(inputSoul, Growth.RETIRED);
             this.inputSlots.setItem(0, inputSoul);
             this.access.execute((level, pos) -> {
                 player.playSound(SoundEvents.PLAYER_LEVELUP, 1F, 1F);
@@ -85,7 +86,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     protected boolean isValidBlock(BlockState pState) {
         return pState.is(BlockRegistry.REGISTER_LECTERN.get());
     }
-    
+
     public RetireRegisterMenu(int pContainerId, Inventory pPlayerInventory) {
         this(pContainerId, pPlayerInventory, ContainerLevelAccess.NULL);
     }
@@ -118,6 +119,8 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
 
             public void onTake(Player p_150604_, ItemStack p_150605_) {
                 RetireRegisterMenu.this.onTake(p_150604_, p_150605_);
+                p_150604_.onEnchantmentPerformed(p_150605_, 0);
+                RetireRegisterMenu.this.factorSeed.set(p_150604_.getEnchantmentSeed());
             }
         });
 
@@ -131,6 +134,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(pPlayerInventory, k, 8 + k * 18, 152));
         }
 
+        this.addDataSlot(this.factorSeed).set(this.player.getEnchantmentSeed());
     }
 
     /**
@@ -148,21 +152,42 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     private ItemStack getResultItem() {
         ItemStack result = ItemRegistry.UMA_FACTOR_ITEM.get().getDefaultInstance();
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
-        if(!(inputSoul.getItem() instanceof UmaSoulItem)) return ItemStack.EMPTY;
-        IUmaCapability cap = inputSoul.getCapability(CapabilityRegistry.UMACAP).orElse(new UmaCapability(inputSoul));
-        Random rand = new Random();
+        if (!(inputSoul.getItem() instanceof UmaSoulItem))
+            return ItemStack.EMPTY;
+
+        this.rand.setSeed(this.getFactorSeed().get());
+        List<UmaFactorStack> stackList = createResultFactors(inputSoul);
+
+        result.getOrCreateTag().putString("name", UmaSoulUtils.getName(inputSoul).toString());
+        result.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(stackList));
+        return result;
+    }
+
+    public List<UmaFactorStack> createResultFactors(ItemStack inputSoul) {
         @NotNull
         Collection<UmaFactor> values = UmaFactorRegistry.REGISTRY.get().getValues();
         UmaFactor statusFactor = values.stream().filter(fac -> fac.getFactorType() == FactorType.STATUS)
                 .skip(values.isEmpty() ? 0 : rand.nextInt(values.size())).findFirst()
                 .orElse(UmaFactorRegistry.SPEED_FACTOR.get());
-        UmaFactorStack skillFactor = new UmaFactorStack(UmaFactorRegistry.SKILL_FACTOR.get(), 1);
-        skillFactor.getOrCreateTag().putString("skill",
-                cap.getSkills().get(rand.nextInt(cap.getSkills().size())).toString());
-        List<UmaFactorStack> stackList = Lists.newArrayList(new UmaFactorStack(statusFactor, rand.nextInt(3) + 1), skillFactor);
-        result.getOrCreateTag().putString("name", cap.getUmaStatus().name().toString());
-        result.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(stackList));
-        return result;
+        UmaFactorStack uniqueFactor = new UmaFactorStack(UmaFactorRegistry.UNIQUE_SKILL_FACTOR.get(), 1);
+        uniqueFactor.getOrCreateTag().putString("skill", UmaSoulUtils.getSkills(inputSoul).get(0).getAsString());
+        List<UmaFactorStack> stackList = Lists.newArrayList(new UmaFactorStack(statusFactor, rand.nextInt(3) + 1),
+                uniqueFactor);
+
+        createSkillFactors(inputSoul, stackList);
+        return stackList;
+    }
+
+    public void createSkillFactors(ItemStack inputSoul, List<UmaFactorStack> stackList) {
+        UmaSoulUtils.getSkills(inputSoul).stream().skip(1).forEach(skillTag -> {
+            int skillLevel = this.rand.nextInt(4);
+            if (skillLevel == 0)
+                return;
+            UmaFactorStack skillFactor = new UmaFactorStack(UmaFactorRegistry.SKILL_FACTOR.get(), skillLevel);
+            skillFactor.getOrCreateTag().putString("skill", skillTag.getAsString());
+            stackList.add(skillFactor);
+        });
+
     }
 
     /**
@@ -170,6 +195,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
      */
     public void slotsChanged(Container pInventory) {
         super.slotsChanged(pInventory);
+        this.rand.setSeed(this.getFactorSeed().get());
         if (pInventory == this.inputSlots) {
             this.createResult();
         }
@@ -238,5 +264,9 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         }
 
         return itemstack;
+    }
+
+    public DataSlot getFactorSeed() {
+        return factorSeed;
     }
 }

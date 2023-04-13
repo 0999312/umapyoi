@@ -28,6 +28,26 @@
             }
           ],
           "name": "umapyoi:skill_book"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{skill:\"umapyoi:big_eater\"}"
+            }
+          ],
+          "name": "umapyoi:skill_book"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{skill:\"umapyoi:steel_will\"}"
+            }
+          ],
+          "name": "umapyoi:skill_book"
         }
       ]
     }

@@ -31,7 +31,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.tracen.umapyoi.api.UmapyoiAPI;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.container.ThreeGoddessContainer;
 import net.tracen.umapyoi.inventory.ThreeGoddessItemHandler;
 import net.tracen.umapyoi.item.FadedUmaSoulItem;
@@ -65,8 +64,8 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
     }
 
     public static void workingTick(Level level, BlockPos pos, BlockState state, ThreeGoddessBlockEntity blockEntity) {
-        if(level.isClientSide()) 
-            return ;
+        if (level.isClientSide())
+            return;
         boolean didInventoryChange = false;
 
         if (blockEntity.canWork()) {
@@ -127,23 +126,28 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
     private ItemStack getResultItem() {
         if (this.level == null)
             return ItemStack.EMPTY;
-        
+
         ItemStack left = this.inventory.getStackInSlot(1);
         ItemStack right = this.inventory.getStackInSlot(2);
         Registry<UmaData> registry = UmapyoiAPI.getUmaDataRegistry(this.getLevel());
-        
-        UmaData data = registry.getOptional(
-                ResourceLocation.tryParse(this.inventory.getStackInSlot(0).getOrCreateTag().getString("name"))
-                )
+
+        ResourceLocation name = ResourceLocation
+                .tryParse(this.inventory.getStackInSlot(0).getOrCreateTag().getString("name"));
+        name = registry.containsKey(name) ? name : UmaDataRegistry.COMMON_UMA.getId();
+
+        UmaData data = registry
+                .getOptional(
+                        ResourceLocation.tryParse(this.inventory.getStackInSlot(0).getOrCreateTag().getString("name")))
                 .orElse(UmaDataRegistry.COMMON_UMA.get());
 
-        ItemStack result = UmaSoulUtils.initUmaSoul(ItemRegistry.UMA_SOUL.get().getDefaultInstance(), data);
-        result.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap -> {
-            if (!left.isEmpty() && !right.isEmpty()) {
-                UmaFactorUtils.deserializeNBT(left.getOrCreateTag()).forEach(fac -> fac.applyFactor(cap));
-                UmaFactorUtils.deserializeNBT(right.getOrCreateTag()).forEach(fac -> fac.applyFactor(cap));
-            }
-        });
+        ItemStack result = UmaSoulUtils.initUmaSoul(ItemRegistry.UMA_SOUL.get().getDefaultInstance(), name, data)
+                .copy();
+
+        if (!left.isEmpty() && !right.isEmpty()) {
+            UmaFactorUtils.deserializeNBT(left.getOrCreateTag()).forEach(fac -> fac.applyFactor(result));
+            UmaFactorUtils.deserializeNBT(right.getOrCreateTag()).forEach(fac -> fac.applyFactor(result));
+        }
+
         return result;
     }
 

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "umapyoi:blank_ticket"
+    },
+    {
+      "item": "umapyoi:horseshoe_silver"
+    }
+  ],
+  "result": {
+    "item": "umapyoi:card_ticket"
+  }
+}

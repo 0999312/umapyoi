@@ -1,8 +1,8 @@
 package net.tracen.umapyoi.block.entity;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
@@ -15,11 +15,10 @@ import com.google.common.collect.Lists;
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.inventory.ContainerData;
@@ -31,13 +30,18 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
+import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.inventory.ThreeGoddessItemHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaData;
+import net.tracen.umapyoi.utils.ClientUtils;
+import net.tracen.umapyoi.utils.GachaRanking;
+import net.tracen.umapyoi.utils.GachaUtils;
 
-public class UmaPedestalBlockEntity extends SyncedBlockEntity{
+public class UmaPedestalBlockEntity extends SyncedBlockEntity implements Gachable {
 
     public static final int MAX_PROCESS_TIME = 200;
     private final ItemStackHandler inventory;
@@ -61,8 +65,8 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity{
     }
 
     public static void workingTick(Level level, BlockPos pos, BlockState state, UmaPedestalBlockEntity blockEntity) {
-        if(level.isClientSide()) 
-            return ;
+        if (level.isClientSide())
+            return;
         boolean didInventoryChange = false;
 
         if (blockEntity.canWork()) {
@@ -78,22 +82,7 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity{
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, UmaPedestalBlockEntity blockEntity) {
         if (blockEntity.canWork())
-            UmaPedestalBlockEntity.addWorkingParticle(level, pos);
-    }
-
-    private static void addWorkingParticle(Level pLevel, BlockPos pPos) {
-        Random pRand = pLevel.getRandom();
-        List<BlockPos> posOffsets = BlockPos.betweenClosedStream(-2, 0, -2, 2, 1, 2).filter(pos -> {
-            return Math.abs(pos.getX()) == 2 || Math.abs(pos.getZ()) == 2;
-        }).map(BlockPos::immutable).toList();
-        for (BlockPos spawnPos : posOffsets) {
-            if (pRand.nextInt(32) == 0) {
-                pLevel.addParticle(ParticleTypes.ENCHANT, (double) pPos.getX() + 0.5D, (double) pPos.getY() + 1.5D,
-                        (double) pPos.getZ() + 0.5D, (double) ((float) spawnPos.getX() + pRand.nextFloat() * 2F) - 0.5D,
-                        (double) ((float) spawnPos.getY() + 2D - pRand.nextFloat()),
-                        (double) ((float) spawnPos.getZ() + pRand.nextFloat() * 2F) - 0.5D);
-            }
-        }
+            ClientUtils.addSummonParticle(level, pos);
     }
 
     private boolean processRecipe() {
@@ -117,30 +106,28 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity{
     private ItemStack getResultItem() {
         if (this.level == null)
             return ItemStack.EMPTY;
-        
+
         Random rand = this.getLevel().getRandom();
         Registry<UmaData> registry = UmapyoiAPI.getUmaDataRegistry(this.getLevel());
 
         @NotNull
-        Collection<Holder<UmaData>> values = registry.holders()
-                .filter(uma -> !uma.is(UmaDataRegistry.COMMON_UMA.getId()))
+        Collection<ResourceLocation> keys = registry.keySet().stream()
+                .filter(this.getFilter(getLevel(), getStoredItem()))
                 .collect(Collectors.toCollection(Lists::newArrayList));
-        
-        Holder<UmaData> holder = values.stream()
-                .skip(values.isEmpty() ? 0 : rand.nextInt(values.size()))
-                .findFirst()
-                .orElse(registry.getOrCreateHolder(UmaDataRegistry.COMMON_UMA.getKey()));
+
+        ResourceLocation holder = keys.stream().skip(keys.isEmpty() ? 0 : rand.nextInt(keys.size())).findFirst()
+                .orElse(UmaDataRegistry.COMMON_UMA.getId());
 
         ItemStack result = ItemRegistry.BLANK_UMA_SOUL.get().getDefaultInstance();
-        result.getOrCreateTag().putString("name", holder.value().status().name().toString());
+        result.getOrCreateTag().putString("name", holder.toString());
 
         return result;
     }
 
     private boolean canWork() {
-        return !getStoredItem().isEmpty() && getStoredItem().is(ItemRegistry.JEWEL.get());
+        return !getStoredItem().isEmpty() && getStoredItem().is(UmapyoiItemTags.UMA_TICKET);
     }
-    
+
     public ItemStack getStoredItem() {
         return inventory.getStackInSlot(0);
     }
@@ -148,7 +135,7 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity{
     public boolean isEmpty() {
         return inventory.getStackInSlot(0).isEmpty();
     }
-    
+
     public boolean addItem(ItemStack itemStack) {
         if (isEmpty() && !itemStack.isEmpty()) {
             inventory.setStackInSlot(0, itemStack.split(1));
@@ -157,7 +144,7 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity{
         }
         return false;
     }
-    
+
     public ItemStack removeItem() {
         if (!isEmpty()) {
             ItemStack item = getStoredItem().split(1);
@@ -256,6 +243,36 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity{
             public int getCount() {
                 return 1;
             }
+        };
+    }
+
+    @Override
+    public Predicate<? super ResourceLocation> getFilter(Level level, ItemStack input) {
+        return resloc -> {
+            if (input.is(UmapyoiItemTags.SSR_UMA_TICKET))
+                return UmapyoiAPI.getUmaDataRegistry(level).get(resloc).getGachaRanking() == GachaRanking.SSR;
+            if (input.is(ItemRegistry.BLANK_TICKET.get()))
+                return UmapyoiAPI.getUmaDataRegistry(level).get(resloc).getGachaRanking() == GachaRanking.R;
+            boolean cfgFlag = GachaUtils.checkGachaConfig();
+            int gacha_roll;
+            int ssrHit = cfgFlag ? UmapyoiConfig.GACHA_PROBABILITY_SSR.get()
+                    : UmapyoiConfig.DEFAULT_GACHA_PROBABILITY_SSR;
+            if (input.is(UmapyoiItemTags.SR_UMA_TICKET)) {
+//              Set gacha roll, 30 = 100 - 70(default).  
+                gacha_roll = level.getRandom()
+                        .nextInt(cfgFlag
+                                ? UmapyoiConfig.GACHA_PROBABILITY_SUM.get() - UmapyoiConfig.GACHA_PROBABILITY_R.get()
+                                : 30);
+
+                return UmapyoiAPI.getUmaDataRegistry(level).get(resloc)
+                        .getGachaRanking() == (gacha_roll < ssrHit ? GachaRanking.SSR : GachaRanking.SR);
+            }
+            gacha_roll = level.getRandom().nextInt(
+                    cfgFlag ? UmapyoiConfig.GACHA_PROBABILITY_SUM.get() : UmapyoiConfig.DEFAULT_GACHA_PROBABILITY_SUM);
+            int srHit = ssrHit + (cfgFlag ? UmapyoiConfig.GACHA_PROBABILITY_SR.get() : UmapyoiConfig.DEFAULT_GACHA_PROBABILITY_SR);
+            return UmapyoiAPI.getUmaDataRegistry(level).get(resloc)
+                    .getGachaRanking() == (gacha_roll < ssrHit ? GachaRanking.SSR
+                            : gacha_roll < srHit ? GachaRanking.SR : GachaRanking.R);
         };
     }
 

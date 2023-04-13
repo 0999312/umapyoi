@@ -19,17 +19,26 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                 models().getExistingFile(new ResourceLocation("umapyoi:block/three_goddess")));
         horizontalBlock(BlockRegistry.TRAINING_FACILITY.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/training_facility")));
+        horizontalBlock(BlockRegistry.DISASSEMBLY_BLOCK.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/disassembly_block")));
         horizontalBlock(BlockRegistry.REGISTER_LECTERN.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/register_lectern")));
         simpleBlock(BlockRegistry.SKILL_LEARNING_TABLE.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/skill_learning_table")));
-        
+
         simpleBlock(BlockRegistry.UMA_PEDESTAL.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/pedestal")));
-        
+
         simpleBlock(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/pedestal")));
         
+        simpleBlock(BlockRegistry.SILVER_UMA_PEDESTAL.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/silver_pedestal")));
+
+        simpleBlock(BlockRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/silver_pedestal")));
+
+
         simpleBlock(BlockRegistry.THREE_GODDESS_UPPER.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/three_goddess")));
     }

@@ -37,14 +37,14 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
         this.containerData = cookingPotDataIn;
         this.canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
         int startX = 8;
-        
+
         this.addSlot(new TrainingUmaSlot(inventory, 0, 80, 98));
-        for(int i = 1; i<4; i++) {
-            this.addSlot(new TrainingSupportSlot(inventory, i, (i - 1) * 27 + 12, 19));
+        for (int i = 1; i < 4; i++) {
+            this.addSlot(new TrainingSupportSlot(tileEntity, inventory, i, (i - 1) * 27 + 12, 19));
         }
-        
-        for(int i = 4; i<7; i++) {
-            this.addSlot(new TrainingSupportSlot(inventory, i, (i - 4) * 27 + 94, 19));
+
+        for (int i = 4; i < 7; i++) {
+            this.addSlot(new TrainingSupportSlot(tileEntity, inventory, i, (i - 4) * 27 + 94, 19));
         }
 
         // Main Player Inventory
@@ -111,7 +111,8 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
         return itemStack;
     }
 
-    private static TrainingFacilityBlockEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data) {
+    private static TrainingFacilityBlockEntity getTileEntity(final Inventory playerInventory,
+            final FriendlyByteBuf data) {
         Objects.requireNonNull(playerInventory, "playerInventory cannot be null");
         Objects.requireNonNull(data, "data cannot be null");
         final BlockEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
@@ -135,30 +136,42 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
         int i = this.containerData.get(0);
         return i != 0 ? i * 130 / TrainingFacilityBlockEntity.MAX_PROCESS_TIME : 0;
     }
-    
+
     @OnlyIn(Dist.CLIENT)
     public int getAnimation() {
         int i = this.containerData.get(0);
-        return i != 0 ? i % 4  : 0;
+        return i != 0 ? i % 4 : 0;
     }
 
     public static class TrainingSupportSlot extends SlotItemHandler {
+        private final TrainingFacilityBlockEntity tileEntity;
 
-        public TrainingSupportSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+        public TrainingSupportSlot(TrainingFacilityBlockEntity tileEntity, IItemHandler itemHandler, int index,
+                int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
+            this.tileEntity = tileEntity;
         }
 
         @Override
         public boolean mayPlace(ItemStack stack) {
-            return stack.getItem() instanceof SupportContainer;
+            if (stack.getItem()instanceof SupportContainer support) {
+                for (int i = 1; i < 7; i++) {
+                    ItemStack other = this.getItemHandler().getStackInSlot(i);
+                    if (i == this.getSlotIndex() || other.isEmpty())
+                        continue;
+                    if (!(support.canSupport(this.tileEntity.getLevel(), stack).test(other)))
+                        return false;
+                }
+            }
+            return true;
         }
-        
+
         @Override
         public int getMaxStackSize(ItemStack stack) {
             return 1;
         }
     }
-    
+
     public static class TrainingUmaSlot extends SlotItemHandler {
 
         public TrainingUmaSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {

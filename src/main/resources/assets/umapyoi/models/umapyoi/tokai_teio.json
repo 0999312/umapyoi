@@ -1583,7 +1583,7 @@
 			{
 				"name": "right_arm_down",
 				"parent": "right_arm",
-				"pivot": [-5, 17.5, 1.5],
+				"pivot": [-4.75, 17.5, 1.5],
 				"cubes": [
 					{"origin": [-6.5, 12.5, -1.5], "size": [3, 5, 3], "uv": [33, 55], "inflate": -0.001},
 					{"origin": [-6.5, 15.3, -1.5], "size": [3, 2, 3], "uv": [24, 0], "inflate": 0.1}
@@ -1935,7 +1935,7 @@
 			{
 				"name": "left_arm_down",
 				"parent": "left_arm",
-				"pivot": [5, 17.5, 1.5],
+				"pivot": [4.75, 17.5, 1.5],
 				"cubes": [
 					{"origin": [3.5, 12.5, -1.5], "size": [3, 5, 3], "uv": [21, 55], "inflate": -0.001},
 					{"origin": [3.5, 15.3, -1.5], "size": [3, 2, 3], "uv": [24, 0], "inflate": 0.1, "mirror": true}

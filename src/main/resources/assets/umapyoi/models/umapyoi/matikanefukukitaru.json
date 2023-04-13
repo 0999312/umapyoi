@@ -849,7 +849,7 @@
 			{
 				"name": "left_arm_down",
 				"parent": "left_arm",
-				"pivot": [5, 17.5, 1.5],
+				"pivot": [4.75, 17.5, 1.5],
 				"cubes": [
 					{"origin": [3.5, 12.5, -1.5], "size": [3, 5, 3], "uv": [57, 29], "inflate": -0.001},
 					{"origin": [3, 13.7, -2], "size": [4, 2, 4], "uv": [52, 39], "inflate": -0.4}
@@ -877,7 +877,7 @@
 			{
 				"name": "right_arm_down",
 				"parent": "right_arm",
-				"pivot": [-5, 17.5, 1.5],
+				"pivot": [-4.75, 17.5, 1.5],
 				"cubes": [
 					{"origin": [-6.5, 12.5, -1.5], "size": [3, 5, 3], "uv": [57, 29], "inflate": -0.001, "mirror": true}
 				]

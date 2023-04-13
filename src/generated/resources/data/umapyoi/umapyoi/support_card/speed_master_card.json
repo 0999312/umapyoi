@@ -1,0 +1,14 @@
+{
+  "ranking": "ssr",
+  "type": "speed",
+  "supports": [
+    {
+      "support": "umapyoi:speed_support",
+      "level": 3
+    },
+    {
+      "support": "umapyoi:strength_support",
+      "level": 2
+    }
+  ]
+}

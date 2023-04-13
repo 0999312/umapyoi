@@ -1,40 +1,57 @@
 package net.tracen.umapyoi.events;
 
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
+import net.tracen.umapyoi.effect.MobEffectRegistry;
+import net.tracen.umapyoi.registry.umadata.Motivations;
 import net.tracen.umapyoi.utils.UmaSkillUtils;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 @Mod.EventBusSubscriber
 public class CommonEvents {
     @SubscribeEvent
-    public static void onPlayerHurt(LivingHurtEvent event) {
-        if(event.getEntityLiving() instanceof Player player) {
-            ItemStack soul = UmapyoiAPI.getUmaSoul(player);
-            if(soul.isEmpty()) return ;
-            if(event.getAmount() < UmapyoiConfig.DAMAGE_MOTIVATION_EFFECT.get()) return ;
-            if(UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get() > 0) {
-                if(player.getLevel().getRandom().nextDouble() <= UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get())
-                soul.getCapability(CapabilityRegistry.UMACAP).ifPresent(cap->{
-                    UmaStatusUtils.downMotivation(cap.getUmaStatus());
-                });
-            }
+    public static void onDamageDownMotivation(LivingDamageEvent event) {
+        LivingEntity entityLiving = event.getEntityLiving();
+        ItemStack soul = UmapyoiAPI.getUmaSoul(entityLiving);
+        if (soul.isEmpty())
+            return;
+        if (event.getAmount() < UmapyoiConfig.DAMAGE_MOTIVATION_EFFECT.get())
+            return;
+        if (UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get() > 0) {
+            if (entityLiving.getLevel().getRandom().nextDouble() <= UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get())
+                UmaStatusUtils.downMotivation(soul);
         }
     }
-    
+
+    @SubscribeEvent
+    public static void onDamagePanicking(LivingDamageEvent event) {
+        LivingEntity entityLiving = event.getEntityLiving();
+        ItemStack soul = UmapyoiAPI.getUmaSoul(entityLiving);
+        if (soul.isEmpty() || UmaSoulUtils.getMotivation(soul) != Motivations.BAD)
+            return;
+        if (event.getAmount() < UmapyoiConfig.DAMAGE_MOTIVATION_EFFECT.get())
+            return;
+        if (UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get() > 0) {
+            if (entityLiving.getLevel().getRandom().nextDouble() <= UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get())
+                entityLiving.addEffect(new MobEffectInstance(MobEffectRegistry.PANICKING.get(), 3600));
+        }
+
+    }
+
     @SubscribeEvent
     public static void onTrainingFinished(ApplyTrainingSupportEvent.Post event) {
-        UmaSkillUtils.syncActionPoint(event.getCapability());
+        UmaSkillUtils.syncActionPoint(event.getUmaSoul());
     }
-    
+
     @SubscribeEvent
     public static void onTrainingFinished(ApplyFactorEvent.Post event) {
-        UmaSkillUtils.syncActionPoint(event.getCapability());
+        UmaSkillUtils.syncActionPoint(event.getUmaSoul());
     }
 }

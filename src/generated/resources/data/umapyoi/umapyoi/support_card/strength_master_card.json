@@ -1,0 +1,14 @@
+{
+  "ranking": "ssr",
+  "type": "strength",
+  "supports": [
+    {
+      "support": "umapyoi:stamina_support",
+      "level": 2
+    },
+    {
+      "support": "umapyoi:strength_support",
+      "level": 3
+    }
+  ]
+}

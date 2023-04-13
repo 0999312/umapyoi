@@ -1,0 +1,17 @@
+{
+  "ranking": "r",
+  "type": "strength",
+  "supports": [
+    {
+      "support": "umapyoi:stamina_support",
+      "level": 1
+    },
+    {
+      "support": "umapyoi:strength_support",
+      "level": 1
+    }
+  ],
+  "supporters": [
+    "umapyoi:oguri_cap"
+  ]
+}

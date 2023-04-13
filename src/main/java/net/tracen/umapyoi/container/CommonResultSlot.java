@@ -13,8 +13,7 @@ public class CommonResultSlot extends SlotItemHandler {
     private final Player player;
     private int removeCount;
 
-    public CommonResultSlot(Player player, IItemHandler inventoryIn, int index,
-            int xPosition, int yPosition) {
+    public CommonResultSlot(Player player, IItemHandler inventoryIn, int index, int xPosition, int yPosition) {
         super(inventoryIn, index, xPosition, yPosition);
         this.player = player;
     }

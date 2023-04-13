@@ -10,6 +10,7 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.factors.StatusFactor;
 import net.tracen.umapyoi.registry.factors.SkillFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
+import net.tracen.umapyoi.registry.factors.UniqueSkillFactor;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class UmaFactorRegistry {
@@ -35,4 +36,6 @@ public class UmaFactorRegistry {
             () -> new StatusFactor(StatusType.WISDOM));
 
     public static final RegistryObject<UmaFactor> SKILL_FACTOR = FACTORS.register("skill_factor", SkillFactor::new);
+    public static final RegistryObject<UmaFactor> UNIQUE_SKILL_FACTOR = FACTORS.register("unique_skill_factor",
+            UniqueSkillFactor::new);
 }

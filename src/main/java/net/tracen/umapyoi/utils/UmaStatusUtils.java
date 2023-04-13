@@ -2,8 +2,8 @@ package net.tracen.umapyoi.utils;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.registry.umadata.Motivations;
-import net.tracen.umapyoi.registry.umadata.UmaStatus;
 
 public class UmaStatusUtils {
 
@@ -20,31 +20,31 @@ public class UmaStatusUtils {
             return this.id;
         }
     }
-    
+
     public static Component getStatusLevel(int level) {
         return new TranslatableComponent("umastatus.level." + level);
     }
-    
-    public static void addMotivation(UmaStatus status) {
-        Motivations motivation = status.motivation();
+
+    public static void addMotivation(ItemStack stack) {
+        Motivations motivation = UmaSoulUtils.getMotivation(stack);
         switch (motivation) {
-        case PERFECT -> status.setMotivation(Motivations.PERFECT);
-        case GOOD -> status.setMotivation(Motivations.PERFECT);
-        case NORMAL -> status.setMotivation(Motivations.GOOD);
-        case DOWN -> status.setMotivation(Motivations.NORMAL);
-        case BAD -> status.setMotivation(Motivations.DOWN);
+        case PERFECT -> UmaSoulUtils.setMotivation(stack, Motivations.PERFECT);
+        case GOOD -> UmaSoulUtils.setMotivation(stack, Motivations.PERFECT);
+        case NORMAL -> UmaSoulUtils.setMotivation(stack, Motivations.GOOD);
+        case DOWN -> UmaSoulUtils.setMotivation(stack, Motivations.NORMAL);
+        case BAD -> UmaSoulUtils.setMotivation(stack, Motivations.DOWN);
         default -> throw new IllegalArgumentException("Unexpected motivation value: " + motivation);
         }
     }
 
-    public static void downMotivation(UmaStatus status) {
-        Motivations motivation = status.motivation();
+    public static void downMotivation(ItemStack stack) {
+        Motivations motivation = UmaSoulUtils.getMotivation(stack);
         switch (motivation) {
-        case PERFECT -> status.setMotivation(Motivations.GOOD);
-        case GOOD -> status.setMotivation(Motivations.NORMAL);
-        case NORMAL -> status.setMotivation(Motivations.DOWN);
-        case DOWN -> status.setMotivation(Motivations.BAD);
-        case BAD -> status.setMotivation(Motivations.BAD);
+        case PERFECT -> UmaSoulUtils.setMotivation(stack, Motivations.GOOD);
+        case GOOD -> UmaSoulUtils.setMotivation(stack, Motivations.NORMAL);
+        case NORMAL -> UmaSoulUtils.setMotivation(stack, Motivations.DOWN);
+        case DOWN -> UmaSoulUtils.setMotivation(stack, Motivations.BAD);
+        case BAD -> UmaSoulUtils.setMotivation(stack, Motivations.BAD);
         default -> throw new IllegalArgumentException("Unexpected motivation value: " + motivation);
         }
     }

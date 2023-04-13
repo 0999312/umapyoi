@@ -72,7 +72,7 @@ public class ClientEvents {
         Player player = event.getPlayer();
         ItemStack umasoul = UmapyoiAPI.getUmaSoul(player);
         if (!umasoul.isEmpty() && UmapyoiAPI.isUmaSoulRendering(player)) {
-            ResourceLocation name = UmaSoulUtils.getUmaSoulName(umasoul);
+            ResourceLocation name = UmaSoulUtils.getName(umasoul);
             VertexConsumer vertexconsumer = event.getMultiBufferSource()
                     .getBuffer(RenderType.entityTranslucent(getTexture(name)));
             UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(event.getPlayer(),

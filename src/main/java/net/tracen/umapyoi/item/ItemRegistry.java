@@ -21,9 +21,12 @@ import net.tracen.umapyoi.utils.UmaStatusUtils;
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Umapyoi.MODID);
 
+    public static final RegistryObject<Item> SILVER_UMA_PEDESTAL = register("silver_uma_pedestal",
+            () -> new BlockItem(BlockRegistry.SILVER_UMA_PEDESTAL.get(), Umapyoi.defaultItemProperties()));
+    
     public static final RegistryObject<Item> UMA_PEDESTAL = register("uma_pedestal",
             () -> new BlockItem(BlockRegistry.UMA_PEDESTAL.get(), Umapyoi.defaultItemProperties()));
-    
+
     public static final RegistryObject<Item> THREE_GODDESS = register("three_goddess",
             () -> new BlockItem(BlockRegistry.THREE_GODDESS.get(), Umapyoi.defaultItemProperties()));
 
@@ -35,18 +38,36 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> REGISTER_LECTERN = register("register_lectern",
             () -> new BlockItem(BlockRegistry.REGISTER_LECTERN.get(), Umapyoi.defaultItemProperties()));
-
-    public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul",
-            FadedUmaSoulItem::new);
     
+    public static final RegistryObject<Item> DISASSEMBLY_BLOCK = register("disassembly_block",
+            () -> new BlockItem(BlockRegistry.DISASSEMBLY_BLOCK.get(), Umapyoi.defaultItemProperties()));
+
+    public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul", FadedUmaSoulItem::new);
+
     public static final RegistryObject<Item> UMA_SOUL = register("uma_soul", UmaSoulItem::new);
     public static final RegistryObject<Item> UMA_FACTOR_ITEM = register("uma_factor_item", UmaFactorContainerItem::new);
 
     public static final RegistryObject<Item> SUMMER_UNIFORM = register("summer_uniform", UmaSuitItem::new);
     public static final RegistryObject<Item> WINTER_UNIFORM = register("winter_uniform", UmaSuitItem::new);
     public static final RegistryObject<Item> TRAINNING_SUIT = register("trainning_suit", UmaSuitItem::new);
+//    public static final RegistryObject<Item> KINDERGARTEN_UNIFORM = register("kindergarten_uniform", UmaSuitItem::new);
 
-    public static final RegistryObject<Item> JEWEL = register("jewel", () -> new Item(Umapyoi.defaultItemProperties()));
+    public static final RegistryObject<Item> JEWEL = register("jewel", ItemRegistry::newMaterial);
+
+    public static final RegistryObject<Item> BLANK_TICKET = register("blank_ticket", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> UMA_TICKET = register("uma_ticket", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> SR_UMA_TICKET = register("sr_uma_ticket", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> SSR_UMA_TICKET = register("ssr_uma_ticket", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> CARD_TICKET = register("card_ticket", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> SR_CARD_TICKET = register("sr_card_ticket", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> SSR_CARD_TICKET = register("ssr_card_ticket", ItemRegistry::newMaterial);
+    
+    public static final RegistryObject<Item> CRYSTAL_SILVER = register("crystal_silver", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> CRYSTAL_GOLD = register("crystal_gold", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> CRYSTAL_RAINBOW = register("crystal_rainbow", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> HORSESHOE_SILVER = register("horseshoe_silver", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> HORSESHOE_GOLD = register("horseshoe_gold", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> HORSESHOE_RAINBOW = register("horseshoe_rainbow", ItemRegistry::newMaterial);
 
     public static final RegistryObject<Item> SPEED_LOW_ITEM = register("speed_low_item", () -> {
         return new TrainingItem(SupportType.SPEED, TrainingSupportRegistry.SPEED_SUPPORT, 1);
@@ -99,7 +120,7 @@ public class ItemRegistry {
     });
 
     public static final RegistryObject<Item> SKILL_BOOK = register("skill_book", SkillBookItem::new);
-    
+
     public static final RegistryObject<Item> SUPPORT_CARD = register("support_card", SupportCardItem::new);
 
     public static final RegistryObject<Item> HACHIMI_MID = register("hachimi_mid",
@@ -111,15 +132,16 @@ public class ItemRegistry {
     public static final RegistryObject<Item> HACHIMI_BIG = register("hachimi_big", () -> new UmaDrinkItem(status -> {
         UmaStatusUtils.addMotivation(status);
         UmaStatusUtils.addMotivation(status);
-    }, FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(8, 0.8F).water(30F).nutrients(4F, 4F, 0F, 0F, 0F)
-            .decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
+    }, FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(8, 0.8F).water(30F)
+            .nutrients(4F, 4F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
 
-    public static final RegistryObject<Item> ROYAL_BITTER = register("royal_bitter", () -> new UmaDrinkItem(
-            UmaStatusUtils::downMotivation,
-            FoodInfo.builder().name("royal_bitter").alwaysEat().amountAndCalories(4, 0.6F).water(30F).nutrients(4F, 4F, 0F, 0F, 0F)
-                    .addEffect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600), 1F)
-                    .addEffect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20), 0.5F).decayModifier(1.5F)
-                    .heatCapacity(1F).cookingTemp(480F).build()));
+    public static final RegistryObject<Item> ROYAL_BITTER = register("royal_bitter",
+            () -> new UmaDrinkItem(UmaStatusUtils::downMotivation,
+                    FoodInfo.builder().name("royal_bitter").alwaysEat().amountAndCalories(4, 0.6F).water(30F)
+                            .nutrients(4F, 4F, 0F, 0F, 0F)
+                            .addEffect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600), 1F)
+                            .addEffect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20), 0.5F).decayModifier(1.5F)
+                            .heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final RegistryObject<Item> CUPCAKE = register("cupcake",
             () -> new UmaFoodItem(UmaStatusUtils::addMotivation,
@@ -127,15 +149,17 @@ public class ItemRegistry {
                             .nutrients(2F, 2F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F)
                             .build()));
 
-    public static final RegistryObject<Item> SWEET_CUPCAKE = register("sweet_cupcake",
-            () -> new UmaFoodItem(status -> {
-                UmaStatusUtils.addMotivation(status);
-                UmaStatusUtils.addMotivation(status);
-            }, FoodInfo.builder().name("sweet_cupcake").amountAndCalories(7, 0.6F).water(0F)
-                    .nutrients(4F, 4F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
+    public static final RegistryObject<Item> SWEET_CUPCAKE = register("sweet_cupcake", () -> new UmaFoodItem(status -> {
+        UmaStatusUtils.addMotivation(status);
+        UmaStatusUtils.addMotivation(status);
+    }, FoodInfo.builder().name("sweet_cupcake").amountAndCalories(7, 0.6F).water(0F).nutrients(4F, 4F, 0F, 0F, 0F)
+            .decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
 
     private static <V extends Item> RegistryObject<V> register(String name, Supplier<V> item) {
         return ITEMS.register(name, item);
     }
 
+    private static Item newMaterial() {
+        return new Item(Umapyoi.defaultItemProperties());
+    }
 }

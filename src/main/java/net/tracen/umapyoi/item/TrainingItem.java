@@ -16,25 +16,26 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.capability.IUmaCapability;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 import net.tracen.umapyoi.registry.training.SupportStack;
 import net.tracen.umapyoi.registry.training.SupportType;
 import net.tracen.umapyoi.registry.training.TrainingSupport;
+import net.tracen.umapyoi.utils.GachaRanking;
 
-public class TrainingItem extends Item implements SupportContainer{
+public class TrainingItem extends Item implements SupportContainer {
     private final SupportType type;
     private final Supplier<TrainingSupport> support;
     private final int level;
+
     public TrainingItem(SupportType type, Supplier<TrainingSupport> support, int level) {
         super(Umapyoi.defaultItemProperties());
         this.type = type;
         this.support = support;
         this.level = level;
     }
-    
+
     protected SupportStack getSupport() {
-        return Suppliers.memoize(()->new SupportStack(this.support.get(),this.level)).get();
+        return Suppliers.memoize(() -> new SupportStack(this.support.get(), this.level)).get();
     }
 
     @Override
@@ -50,8 +51,8 @@ public class TrainingItem extends Item implements SupportContainer{
     }
 
     @Override
-    public int getSupportLevel(Level level, ItemStack stack) {
-        return this.level;
+    public GachaRanking getSupportLevel(Level level, ItemStack stack) {
+        return GachaRanking.values()[this.level - 1];
     }
 
     @Override
@@ -65,8 +66,8 @@ public class TrainingItem extends Item implements SupportContainer{
     }
 
     @Override
-    public Predicate<IUmaCapability> canSupport(Level level, ItemStack stack) {
-        return cap -> true;
-    }    
+    public Predicate<ItemStack> canSupport(Level level, ItemStack stack) {
+        return soul -> true;
+    }
 
 }

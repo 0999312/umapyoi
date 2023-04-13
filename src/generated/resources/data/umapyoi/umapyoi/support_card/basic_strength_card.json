@@ -1,0 +1,10 @@
+{
+  "ranking": "r",
+  "type": "strength",
+  "supports": [
+    {
+      "support": "umapyoi:strength_support",
+      "level": 1
+    }
+  ]
+}

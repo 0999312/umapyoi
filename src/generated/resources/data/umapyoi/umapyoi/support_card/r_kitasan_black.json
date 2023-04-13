@@ -1,0 +1,17 @@
+{
+  "ranking": "r",
+  "type": "speed",
+  "supports": [
+    {
+      "support": "umapyoi:speed_support",
+      "level": 1
+    },
+    {
+      "support": "umapyoi:strength_support",
+      "level": 1
+    }
+  ],
+  "supporters": [
+    "umapyoi:kitasan_black"
+  ]
+}

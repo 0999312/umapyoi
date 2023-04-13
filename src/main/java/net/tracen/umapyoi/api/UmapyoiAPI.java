@@ -1,6 +1,7 @@
 package net.tracen.umapyoi.api;
 
 import net.minecraft.core.Registry;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -14,9 +15,9 @@ import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 public class UmapyoiAPI {
 
-    public static ItemStack getUmaSoul(Player player) {
-        if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent()) {
-            var itemHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
+    public static ItemStack getUmaSoul(LivingEntity entity) {
+        if (CuriosApi.getCuriosHelper().getCuriosHandler(entity).isPresent()) {
+            var itemHandler = CuriosApi.getCuriosHelper().getCuriosHandler(entity).orElse(null);
             if (itemHandler.getStacksHandler("uma_soul").isPresent()) {
                 var stacksHandler = itemHandler.getStacksHandler("uma_soul").orElse(null);
                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();
@@ -30,9 +31,9 @@ public class UmapyoiAPI {
         return ItemStack.EMPTY;
     }
 
-    public static ItemStack getUmaSuit(Player player) {
-        if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent()) {
-            var itemHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
+    public static ItemStack getUmaSuit(LivingEntity entity) {
+        if (CuriosApi.getCuriosHelper().getCuriosHandler(entity).isPresent()) {
+            var itemHandler = CuriosApi.getCuriosHelper().getCuriosHandler(entity).orElse(null);
             if (itemHandler.getStacksHandler("uma_suit").isPresent()) {
                 var stacksHandler = itemHandler.getStacksHandler("uma_suit").orElse(null);
                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();
@@ -77,15 +78,17 @@ public class UmapyoiAPI {
         }
         return false;
     }
-    
-    public static Registry<UmaData> getUmaDataRegistry(Level level){
-        if(level.isClientSide()) return ClientUtils.getClientUmaDataRegistry();
+
+    public static Registry<UmaData> getUmaDataRegistry(Level level) {
+        if (level.isClientSide())
+            return ClientUtils.getClientUmaDataRegistry();
         return level.registryAccess().registryOrThrow(UmaData.REGISTRY_KEY);
     }
-    
-    public static Registry<SupportCard> getSupportCardRegistry(Level level){
-        if(level.isClientSide()) return ClientUtils.getClientSupportCardRegistry();
+
+    public static Registry<SupportCard> getSupportCardRegistry(Level level) {
+        if (level.isClientSide())
+            return ClientUtils.getClientSupportCardRegistry();
         return level.registryAccess().registryOrThrow(SupportCard.REGISTRY_KEY);
     }
-    
+
 }
