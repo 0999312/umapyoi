@@ -14,7 +14,8 @@ public class StatusSupport extends TrainingSupport {
 
     @Override
     public void applySupport(ItemStack soul, SupportStack stack) {
-        UmaSoulUtils.getProperty(soul)[statusType.getId()] = Math.min(12,
+        UmaSoulUtils.getProperty(soul)[statusType.getId()] = Math.min(
+                UmaSoulUtils.getMaxProperty(soul)[statusType.getId()],
                 UmaSoulUtils.getProperty(soul)[statusType.getId()] + stack.getLevel());
     }
 

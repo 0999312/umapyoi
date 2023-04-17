@@ -2,9 +2,12 @@
   "replace": false,
   "values": [
     "umapyoi:three_goddess",
-    "umapyoi:three_goddess_upper",
-    "umapyoi:uma_pedestal",
     "umapyoi:support_album_pedestal",
+    "umapyoi:uma_pedestal",
+    "umapyoi:silver_support_album_pedestal",
+    "umapyoi:silver_uma_pedestal",
+    "umapyoi:disassembly_block",
+    "umapyoi:three_goddess_upper",
     "umapyoi:training_facility"
   ]
 }

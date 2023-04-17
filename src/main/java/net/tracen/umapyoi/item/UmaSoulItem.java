@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import javax.annotation.Nullable;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.NonNullList;
@@ -62,6 +63,11 @@ public class UmaSoulItem extends Item {
         return ranking == GachaRanking.SSR ? Rarity.EPIC : ranking == GachaRanking.SR ? Rarity.UNCOMMON : Rarity.COMMON;
     }
 
+    @Override
+    public String getDescriptionId(ItemStack pStack) {
+        return Util.makeDescriptionId("umadata", UmaSoulUtils.getName(pStack));
+    }
+    
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {

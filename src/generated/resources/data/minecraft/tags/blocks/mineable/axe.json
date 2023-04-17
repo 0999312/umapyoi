@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "umapyoi:skill_learning_table",
-    "umapyoi:register_lectern",
-    "umapyoi:disassembly_block"
+    "umapyoi:register_lectern"
   ]
 }

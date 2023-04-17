@@ -10,6 +10,10 @@ public class UmapyoiConfig {
     public static final int DEFAULT_GACHA_PROBABILITY_SSR = 10;
     
     public static ForgeConfigSpec COMMON_CONFIG;
+    
+    public static ForgeConfigSpec.IntValue STAT_LIMIT_VALUE;
+    public static ForgeConfigSpec.DoubleValue STAT_LIMIT_REDUCTION_RATE;
+    
     public static ForgeConfigSpec.DoubleValue CHANCE_MOTIVATION_EFFECT;
     public static ForgeConfigSpec.DoubleValue DAMAGE_MOTIVATION_EFFECT;
     
@@ -33,32 +37,40 @@ public class UmapyoiConfig {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
         COMMON_BUILDER.comment("General settings").push("general");
 
-        CHANCE_MOTIVATION_EFFECT = COMMON_BUILDER.comment("Determining the chance that damage will effect motivation.")
-                .comment("Set to 0 to turn off.").defineInRange("chance_motivation_effect", 0.5, 0.0, 1.0);
+        CHANCE_MOTIVATION_EFFECT = COMMON_BUILDER.comment("Determining the chance that damage will effect motivation.",
+                "Set to 0 to turn off.").defineInRange("chance_motivation_effect", 0.5, 0.0, 1.0);
 
         DAMAGE_MOTIVATION_EFFECT = COMMON_BUILDER
-                .comment("Determining the damage that will effect motivation.")
-                .comment("Set to 0 to turn off.").defineInRange("damage_motivation_effect", 4.0, 0.0, Double.MAX_VALUE);
+                .comment("Determining the damage that will effect motivation.",
+                        "Set to 0 to turn off.").defineInRange("damage_motivation_effect", 4.0, 0.0, Double.MAX_VALUE);
 
         GACHA_PROBABILITY_SUM = COMMON_BUILDER
-                .comment("Determining the sum of gacha probabilities.")
-                .comment("If the sum of the three gacha probabilities does not equal the expected sum, follow the default configuration.")
+                .comment("Determining the sum of gacha probabilities.",
+                        "If the sum of the three gacha probabilities does not equal the expected sum, follow the default configuration.")
                 .defineInRange("gacha_probability_sum", DEFAULT_GACHA_PROBABILITY_SUM, 3, Integer.MAX_VALUE);
         
         GACHA_PROBABILITY_R = COMMON_BUILDER
-                .comment("Determining the R ranking probability of gacha probabilities.")
-                .comment("If the sum of the three gacha probabilities does not equal the expected sum, follow the default configuration.")
+                .comment("Determining the R ranking probability of gacha probabilities.",
+                        "If the sum of the three gacha probabilities does not equal the expected sum, follow the default configuration.")
                 .defineInRange("gacha_probability_r", DEFAULT_GACHA_PROBABILITY_R, 1, Integer.MAX_VALUE);
         
         GACHA_PROBABILITY_SR = COMMON_BUILDER
-                .comment("Determining the SR ranking probability of gacha probabilities.")
-                .comment("If the sum of the three gacha probabilities does not equal the expected sum, follow the default configuration.")
+                .comment("Determining the SR ranking probability of gacha probabilities.",
+                        "If the sum of the three gacha probabilities does not equal the expected sum, follow the default configuration.")
                 .defineInRange("gacha_probability_sr", DEFAULT_GACHA_PROBABILITY_SR, 1, Integer.MAX_VALUE);
         
         GACHA_PROBABILITY_SSR = COMMON_BUILDER
-                .comment("Determining the SSR ranking probability of gacha probabilities.")
-                .comment("If the sum of the three gacha probabilities does not equal the expected sum, follow the default configuration.")
+                .comment("Determining the SSR ranking probability of gacha probabilities.",
+                        "If the sum of the three gacha probabilities does not equal the expected sum, follow the default configuration.")
                 .defineInRange("gacha_probability_ssr", DEFAULT_GACHA_PROBABILITY_SSR, 1, Integer.MAX_VALUE);
+        
+        STAT_LIMIT_VALUE = COMMON_BUILDER.comment("Determines the threshold for all base stat values.",
+                "If the threshold value is exceeded, the attribute effect will be reduced according to stat_limit_reduction.",
+                "Some attribute effects no longer increase after exceeding the threshold")
+                .defineInRange("stat_limit_value", 12, 12, Integer.MAX_VALUE);
+        STAT_LIMIT_REDUCTION_RATE = COMMON_BUILDER.comment("Determines the reduction for all base stat values.",
+                "If the threshold value is exceeded, the attribute effect will be reduced according to this value.")
+                .defineInRange("stat_limit_reduction", 0.75D, 0D, 1D);
         
         COMMON_BUILDER.pop();
         COMMON_CONFIG = COMMON_BUILDER.build();

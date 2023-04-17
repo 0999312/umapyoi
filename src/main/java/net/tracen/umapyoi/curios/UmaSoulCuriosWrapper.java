@@ -16,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
+import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
 import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
@@ -109,6 +110,12 @@ public class UmaSoulCuriosWrapper implements ICurio {
 
     private double getBounsValue(int num, double multiply) {
         return UmaSoulUtils.getMotivation(this.getStack()).getMultiplier()
-                * (Math.max(1, UmaSoulUtils.getProperty(this.getStack())[num]) * multiply);
+                * getExactProperty(num, multiply);
+    }
+
+    public double getExactProperty(int num, double multiply) {
+        int property = Math.min(12, UmaSoulUtils.getProperty(this.getStack())[num]);
+        int ex_property = Math.max(0, UmaSoulUtils.getProperty(this.getStack())[num] - UmapyoiConfig.STAT_LIMIT_VALUE.get());
+        return multiply * (Math.max(1, property) + ex_property * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get());
     }
 }
