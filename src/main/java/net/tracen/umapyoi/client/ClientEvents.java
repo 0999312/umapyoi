@@ -85,12 +85,16 @@ public class ClientEvents {
             base_model.setupAnim(event.getPlayer(), 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
             if (event.getArm() == HumanoidArm.RIGHT) {
                 base_model.rightArm.xRot = 0.0F;
+                base_model.rightArm.x -=1F;
                 base_model.rightArm.render(event.getPoseStack(), vertexconsumer, event.getPackedLight(),
                         OverlayTexture.NO_OVERLAY);
+                base_model.rightArm.x +=1F;
             } else {
                 base_model.leftArm.xRot = 0.0F;
+                base_model.leftArm.x +=1F;
                 base_model.leftArm.render(event.getPoseStack(), vertexconsumer, event.getPackedLight(),
                         OverlayTexture.NO_OVERLAY);
+                base_model.leftArm.x -=1F;
             }
             event.setCanceled(true);
         }

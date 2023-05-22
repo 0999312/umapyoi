@@ -1,8 +1,11 @@
 package net.tracen.umapyoi.item;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
+
 import javax.annotation.Nullable;
 
 import com.google.common.base.Suppliers;
@@ -38,6 +41,8 @@ import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class SupportCardItem extends Item implements SupportContainer {
+    private static final Comparator<Entry<ResourceKey<SupportCard>, SupportCard>> COMPARATOR = new CardDataComparator();
+    
     public SupportCardItem() {
         super(Umapyoi.defaultItemProperties().stacksTo(1));
     }
@@ -47,26 +52,29 @@ public class SupportCardItem extends Item implements SupportContainer {
     public void fillItemCategory(CreativeModeTab pCategory, NonNullList<ItemStack> pItems) {
         if (this.allowdedIn(pCategory)) {
             if (Minecraft.getInstance().getConnection() != null) {
-                for (Entry<ResourceKey<SupportCard>, SupportCard> card : ClientUtils.getClientSupportCardRegistry()
-                        .entrySet()) {
+                SupportCardItem.sortedCardDataList().forEach(card ->{
                     if (card.getKey().location().equals(SupportCardRegistry.BLANK_CARD.getId()))
-                        continue;
+                        return;
                     ItemStack result = this.getDefaultInstance();
                     result.getOrCreateTag().putString("support_card", card.getKey().location().toString());
                     result.getOrCreateTag().putString("ranking",
                             card.getValue().getGachaRanking().name().toLowerCase());
                     pItems.add(result);
-                }
+                });
             }
         }
     }
 
+    public static Stream<Entry<ResourceKey<SupportCard>, SupportCard>> sortedCardDataList() {
+        Umapyoi.getLogger().info("Sorting SC......");
+        return ClientUtils.getClientSupportCardRegistry().entrySet().stream().sorted(SupportCardItem.COMPARATOR);
+    }
+    
     @Override
     public ItemStack getDefaultInstance() {
         ItemStack result = super.getDefaultInstance();
         result.getOrCreateTag().putString("support_card", SupportCardRegistry.BLANK_CARD.getId().toString());
-        result.getOrCreateTag().putString("ranking",
-                SupportCardRegistry.BLANK_CARD.get().getGachaRanking().name().toLowerCase());
+        result.getOrCreateTag().putString("ranking", GachaRanking.R.name().toLowerCase());
         return result;
     }
 
@@ -148,11 +156,12 @@ public class SupportCardItem extends Item implements SupportContainer {
         return itemstack -> {
             if (level == null)
                 return false;
-            if (itemstack.getItem() instanceof UmaSoulItem) {
+            var item = itemstack.getItem();
+            if (item instanceof UmaSoulItem) {
                 UmaData data = UmapyoiAPI.getUmaDataRegistry(level).get(UmaSoulUtils.getName(itemstack));
                 return !(this.getSupportCard(level, stack).getSupporters().contains(data.getIdentifier()));
             }
-            if (itemstack.getItem()instanceof SupportCardItem other) {
+            if (item instanceof SupportCardItem other) {
                 return this.checkSupports(level, stack, itemstack);
             }
             return true;
@@ -167,5 +176,19 @@ public class SupportCardItem extends Item implements SupportContainer {
             }
         }
         return true;
+    }
+    
+    private static class CardDataComparator implements Comparator<Entry<ResourceKey<SupportCard>, SupportCard>> {
+        @Override
+        public int compare(Entry<ResourceKey<SupportCard>, SupportCard> left, Entry<ResourceKey<SupportCard>, SupportCard> right) {
+            var leftRanking = left.getValue().getGachaRanking();
+            var rightRanking = right.getValue().getGachaRanking();
+            if(leftRanking == rightRanking) {
+                String leftName = left.getKey().location().toString();
+                String rightName = right.getKey().location().toString();
+                return leftName.compareToIgnoreCase(rightName);
+            }
+            return leftRanking.compareTo(rightRanking);
+        }
     }
 }

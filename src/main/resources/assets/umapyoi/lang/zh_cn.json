@@ -77,6 +77,7 @@
   "umadata.umapyoi.aston_machan": "真弓快车",
   "umadata.umapyoi.curren_chan": "真机伶",
   "umadata.umapyoi.mr_cb": "千明代表",
+  "umadata.umapyoi.curren_chan_dress": "[朔月のマ・シェリ] 真机伶",
   
   "umadata.umapyoi.kitasan_black": "北部玄驹",
   "umadata.umapyoi.satono_diamond": "里见光钻",
@@ -164,6 +165,10 @@
   "uma_skill.umapyoi.big_eater": "贪吃鬼",
   "uma_skill.umapyoi.nutritional_supplements": "营养补给",
   "uma_skill.umapyoi.steel_will": "钢之意志",
+  "uma_skill.umapyoi.low_health_buff": "倾其所有",
+  "uma_skill.umapyoi.low_health_heal": "机不可失",
+  "uma_skill.umapyoi.adv_low_health_buff": "决死之心",
+  "uma_skill.umapyoi.adv_low_health_heal": "起死回生",
   
   "umapyoi.motivation.bad": "极差",
   "umapyoi.motivation.down": "不佳",

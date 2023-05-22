@@ -1,7 +1,9 @@
 package net.tracen.umapyoi.item;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
@@ -34,7 +36,8 @@ import net.tracen.umapyoi.utils.UmaStatusUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class UmaSoulItem extends Item {
-
+    private static final Comparator<Entry<ResourceKey<UmaData>, UmaData>> COMPARATOR = new UmaDataComparator();
+    
     public UmaSoulItem() {
         super(Umapyoi.defaultItemProperties().stacksTo(1));
     }
@@ -44,12 +47,16 @@ public class UmaSoulItem extends Item {
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (this.allowdedIn(group)) {
             if (Minecraft.getInstance().getConnection() != null) {
-                for (Entry<ResourceKey<UmaData>, UmaData> entry : ClientUtils.getClientUmaDataRegistry().entrySet()) {
-                    items.add(UmaSoulUtils.initUmaSoul(getDefaultInstance(), entry.getKey().location(),
-                            entry.getValue()));
-                }
+                UmaSoulItem.sortedUmaDataList().forEach(entry -> {
+                  items.add(UmaSoulUtils.initUmaSoul(getDefaultInstance(), entry.getKey().location(),
+                  entry.getValue()));
+                });
             }
         }
+    }
+
+    public static Stream<Entry<ResourceKey<UmaData>, UmaData>> sortedUmaDataList() {
+        return ClientUtils.getClientUmaDataRegistry().entrySet().stream().sorted(UmaSoulItem.COMPARATOR);
     }
     
     @Override
@@ -98,11 +105,23 @@ public class UmaSoulItem extends Item {
                     UmaStatusUtils.getStatusLevel(property[StatusType.WISDOM.getId()]),
                     UmaStatusUtils.getStatusLevel(maxProperty[StatusType.WISDOM.getId()]))
                             .withStyle(ChatFormatting.DARK_GREEN));
-
         } else {
             tooltip.add(new TranslatableComponent("tooltip.umapyoi.press_shift_for_details")
                     .withStyle(ChatFormatting.AQUA));
         }
     }
 
+    private static class UmaDataComparator implements Comparator<Entry<ResourceKey<UmaData>, UmaData>> {
+        @Override
+        public int compare(Entry<ResourceKey<UmaData>, UmaData> left, Entry<ResourceKey<UmaData>, UmaData> right) {
+            var leftRanking = left.getValue().getGachaRanking();
+            var rightRanking = right.getValue().getGachaRanking();
+            if(leftRanking == rightRanking) {
+                String leftName = left.getKey().location().toString();
+                String rightName = right.getKey().location().toString();
+                return leftName.compareToIgnoreCase(rightName);
+            }
+            return leftRanking.compareTo(rightRanking);
+        }
+    }
 }

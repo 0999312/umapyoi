@@ -148,6 +148,11 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSkill(UmaSkillRegistry.STEEL_WILL, "Will of Steel");
         addSkill(UmaSkillRegistry.BIG_EATER, "Big Eater");
         addSkill(UmaSkillRegistry.NUTRITIONAL_SUPPLEMENTS, "Nutritional Supplements");
+        
+        addSkill(UmaSkillRegistry.LOW_HEALTH_BUFF, "All I Have");
+        addSkill(UmaSkillRegistry.ADV_LOWHEALTH_BUFF, "Prepared to Die");
+        addSkill(UmaSkillRegistry.LOW_HEALTH_HEAL, "One Chance");
+        addSkill(UmaSkillRegistry.ADV_LOWHEALTH_HEAL, "From the Brink");
 
         add("container.umapyoi.three_goddess", "Three Goddesses Statue");
         add("container.umapyoi.training_facility", "Training Facility");
@@ -238,6 +243,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.MEISHO_DOTOU, "Meisho Doto");
         addUma(UmaDataRegistry.KITASAN_BLACK, "Kitasan Black");
         addUma(UmaDataRegistry.SATONO_DIAMOND, "Satono Diamond");
+        
+        addUma(UmaDataRegistry.CURREN_CHAN_DRESS, "[Calend's Ma Chérie] Curren Chan");
         
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");

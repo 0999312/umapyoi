@@ -2,7 +2,6 @@ package net.tracen.umapyoi.api;
 
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.item.UmaSoulItem;
@@ -47,7 +46,7 @@ public class UmapyoiAPI {
         return ItemStack.EMPTY;
     }
 
-    public static boolean isUmaSoulRendering(Player player) {
+    public static boolean isUmaSoulRendering(LivingEntity player) {
         if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent()) {
             var itemHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
             if (itemHandler.getStacksHandler("uma_soul").isPresent()) {
@@ -63,7 +62,7 @@ public class UmapyoiAPI {
         return false;
     }
 
-    public static boolean isUmaSuitRendering(Player player) {
+    public static boolean isUmaSuitRendering(LivingEntity player) {
         if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent()) {
             var itemHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
             if (itemHandler.getStacksHandler("uma_suit").isPresent()) {

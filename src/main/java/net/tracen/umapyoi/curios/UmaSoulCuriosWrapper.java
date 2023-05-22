@@ -94,7 +94,7 @@ public class UmaSoulCuriosWrapper implements ICurio {
         CuriosApi.getCuriosHelper().addSlotModifier(atts, "uma_suit", uuid, 1.0, AttributeModifier.Operation.ADDITION);
         if (UmaSoulUtils.getGrowth(getStack()) == Growth.UNTRAINED)
             return atts;
-        atts.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "speed_bonus",
+        atts.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "speed_running_bonus",
                 getBounsValue(StatusType.SPEED.getId(), 0.1), AttributeModifier.Operation.MULTIPLY_TOTAL));
         atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(uuid, "strength_attack_bonus",
                 getBounsValue(StatusType.STRENGTH.getId(), 0.2), AttributeModifier.Operation.MULTIPLY_TOTAL));
@@ -103,7 +103,7 @@ public class UmaSoulCuriosWrapper implements ICurio {
         atts.put(Attributes.ARMOR, new AttributeModifier(uuid, "guts_armor_bonus",
                 getBounsValue(StatusType.GUTS.getId(), 1), AttributeModifier.Operation.ADDITION));
         atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "guts_armor_toughness_bonus",
-                getBounsValue(StatusType.GUTS.getId(), 2), AttributeModifier.Operation.ADDITION));
+                getBounsValue(StatusType.GUTS.getId(), 1), AttributeModifier.Operation.ADDITION));
 
         return atts;
     }

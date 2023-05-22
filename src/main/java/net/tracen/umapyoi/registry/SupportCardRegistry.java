@@ -156,7 +156,7 @@ public class SupportCardRegistry {
     public static final RegistryObject<SupportCard> SSR_OGURICAP = SUPPORT_CARD.register("ssr_oguri_cap",
                 SupportCard.Builder.create()
                 .ranking(GachaRanking.SSR)
-                .supportType(SupportType.GUTS)
+                .supportType(SupportType.STRENGTH)
                 .addSupporter(UmaDataRegistry.OGURI_CAP.getId())
                 .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 1))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 3))

@@ -50,8 +50,13 @@ public class SupportCardDataProvider implements DataProvider {
         }
     }
 
+
     public void addData(Supplier<SupportCard> data) {
-        this.datas.computeIfAbsent(data.get().getRegistryName(), loc -> {
+        this.addData(data, data.get().getRegistryName());
+    }
+    
+    public void addData(Supplier<SupportCard> data, ResourceLocation name) {
+        this.datas.computeIfAbsent(name, loc -> {
             existingFileHelper.trackGenerated(loc, resourceType);
             return data.get();
         });
@@ -89,7 +94,7 @@ public class SupportCardDataProvider implements DataProvider {
 
     @Override
     public String getName() {
-        return String.format("%s provider for %s", "uma musume data", modId);
+        return String.format("%s provider for %s", "supplier card", modId);
     }
 
 }

@@ -141,6 +141,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
      * called when the Anvil Input Slot changes, calculates the new result and puts
      * it in the output slot
      */
+    
     public void createResult() {
         if (!this.hasResult()) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
@@ -193,6 +194,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     /**
      * Callback for when the crafting matrix is changed.
      */
+    @Override
     public void slotsChanged(Container pInventory) {
         super.slotsChanged(pInventory);
         this.rand.setSeed(this.getFactorSeed().get());
@@ -205,6 +207,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     /**
      * Called when the container is closed.
      */
+    @Override
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
         this.access.execute((level, pos) -> {
@@ -215,6 +218,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     /**
      * Determines whether supplied player can use this container
      */
+    @Override
     public boolean stillValid(Player pPlayer) {
         return this.access.evaluate((level, pos) -> {
             return !this.isValidBlock(level.getBlockState(pos)) ? false
@@ -227,6 +231,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this
      * moves the stack between the player inventory and the other inventory(s).
      */
+    @Override
     public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(pIndex);

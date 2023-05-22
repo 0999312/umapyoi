@@ -48,6 +48,26 @@
             }
           ],
           "name": "umapyoi:skill_book"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{skill:\"umapyoi:adv_low_health_buff\"}"
+            }
+          ],
+          "name": "umapyoi:skill_book"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{skill:\"umapyoi:adv_low_health_heal\"}"
+            }
+          ],
+          "name": "umapyoi:skill_book"
         }
       ]
     }

@@ -91,6 +91,7 @@
   "umadata.umapyoi.taiki_shuttle": "タイキシャトル",
   "umadata.umapyoi.ks_miracle": "ケイエスミラクル",
   "umadata.umapyoi.super_creek": "スーパークリーク",
+  "umadata.umapyoi.curren_chan_dress": "[朔月のマ・シェリ] カレンチャン",
   
   "tooltip.umapyoi.umadata.name": "ウマ娘名：%s",
   "tooltip.umapyoi.supports": "サポート：",
@@ -170,6 +171,10 @@
   "uma_skill.umapyoi.steel_will": "鋼の意志",
   "effect.umapyoi.panicking": "掛かり",
   "uma_skill.umapyoi.serene": "冷静",
+  "uma_skill.umapyoi.low_health_buff": "ありったけ",
+  "uma_skill.umapyoi.low_health_heal": "ワンチャンス",
+  "uma_skill.umapyoi.adv_low_health_buff": "決死の覚悟",
+  "uma_skill.umapyoi.adv_low_health_heal": "起死回生",
   
   "umapyoi.motivation.bad": "絶不調",
   "umapyoi.motivation.down": "不調",

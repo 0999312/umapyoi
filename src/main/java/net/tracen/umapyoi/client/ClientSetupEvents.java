@@ -39,7 +39,6 @@ public class ClientSetupEvents {
             CuriosRendererRegistry.register(ItemRegistry.WINTER_UNIFORM.get(),
                     UmaUniformRenderer.WinterUniformRenderer::new);
 
-//            CuriosRendererRegistry.register(ItemRegistry.KINDERGARTEN_UNIFORM.get(), KindergartenRenderer::new);
         });
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TRAINING_FACILITY.get(), RenderType.cutoutMipped());

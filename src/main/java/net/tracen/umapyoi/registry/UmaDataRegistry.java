@@ -127,6 +127,9 @@ public class UmaDataRegistry {
     
     public static final RegistryObject<UmaData> TAIKI_SHUTTLE = UMA_DATA.register("taiki_shuttle",
             () -> UmaDataRegistry.createNewUmamusume("taiki_shuttle", GachaRanking.SR));
+    
+    public static final RegistryObject<UmaData> CURREN_CHAN_DRESS = UMA_DATA.register("curren_chan_dress",
+            () -> UmaDataRegistry.createNewUmamusume("curren_chan", GachaRanking.SSR));
 
     public static UmaData createNewUmamusume(String name, GachaRanking ranking) {
         return new UmaData(new ResourceLocation(Umapyoi.MODID, name), ranking, new int[] { 1, 1, 1, 1, 1 },
