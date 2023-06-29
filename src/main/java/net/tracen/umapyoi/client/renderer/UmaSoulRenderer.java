@@ -1,5 +1,9 @@
 package net.tracen.umapyoi.client.renderer;
 
+import java.util.concurrent.TimeUnit;
+
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -41,8 +45,9 @@ public class UmaSoulRenderer implements ICurioRenderer {
         ResourceLocation name = UmaSoulUtils.getName(stack);
         VertexConsumer vertexconsumer = renderTypeBuffer
                 .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(name)));
-        UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(player, ClientUtil.getModelPOJO(name),
-                BedrockVersion.LEGACY);
+        Supplier<UmaPlayerModel<LivingEntity>> modelSuppiler = Suppliers.memoizeWithExpiration(
+                () -> new UmaPlayerModel<>(player, ClientUtil.getModelPOJO(name), BedrockVersion.LEGACY), 
+                5, TimeUnit.SECONDS);
         boolean suit_flag = false;
 
         if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent()) {
@@ -57,14 +62,12 @@ public class UmaSoulRenderer implements ICurioRenderer {
             }
         }
 
+        UmaPlayerModel<LivingEntity> base_model = modelSuppiler.get();
         base_model.setModelProperties(player, suit_flag, false);
-
         base_model.prepareMobModel(player, limbSwing, limbSwingAmount, partialTicks);
-
         if (renderLayerParent.getModel() instanceof HumanoidModel) {
             @SuppressWarnings("unchecked")
             HumanoidModel<LivingEntity> model = (HumanoidModel<LivingEntity>) renderLayerParent.getModel();
-
             base_model.copyAnim(base_model.head, model.head);
             base_model.copyAnim(base_model.body, model.body);
             base_model.copyAnim(base_model.leftArm, model.leftArm);
@@ -74,7 +77,6 @@ public class UmaSoulRenderer implements ICurioRenderer {
         }
 
         base_model.setupAnim(player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-
         base_model.renderToBuffer(matrixStack, vertexconsumer, light,
                 LivingEntityRenderer.getOverlayCoords(player, 0.0F), 1, 1, 1, 1);
     }

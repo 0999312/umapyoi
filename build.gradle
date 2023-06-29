@@ -23,7 +23,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
 
-version = '0.2.12'
+version = '0.2.13-1.18.2'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 
@@ -47,7 +47,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'umapyoi'
-			arg '-mixin.config=mixins.umapyoi.json'
+            arg '-mixin.config=mixins.umapyoi.json'
             // Export mixin-changed classes
             property 'mixin.debug.export', 'true'
 			property 'mixin.env.remapRefMap', 'true'
@@ -65,7 +65,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'umapyoi'
-			arg '-mixin.config=mixins.umapyoi.json'
+            arg '-mixin.config=mixins.umapyoi.json'
             // Export mixin-changed classes
             property 'mixin.debug.export', 'true'
 			property 'mixin.env.remapRefMap', 'true'

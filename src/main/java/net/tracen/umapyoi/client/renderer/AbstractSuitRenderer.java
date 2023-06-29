@@ -1,5 +1,9 @@
 package net.tracen.umapyoi.client.renderer;
 
+import java.util.concurrent.TimeUnit;
+
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -56,16 +60,18 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                         return;
 
                     flat_flag = ClientUtils.getClientUmaDataRegistry()
-                            .getOrCreateHolder(
-                                    ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
+                            .getOrCreateHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
                             .is(UmapyoiUmaDataTags.FLAT_CHEST);
                 }
 
                 VertexConsumer vertexconsumer = renderTypeBuffer
                         .getBuffer(RenderType.entityTranslucent(flat_flag ? getFlatTexture() : getTexture()));
-                UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(player,
-                        ClientUtil.getModelPOJO(flat_flag ? getFlatModel() : getModel()), BedrockVersion.LEGACY);
-
+                Supplier<UmaPlayerModel<LivingEntity>> modelSuppiler = flat_flag
+                        ? Suppliers.memoizeWithExpiration(() -> new UmaPlayerModel<>(player,
+                                ClientUtil.getModelPOJO(getFlatModel()), BedrockVersion.LEGACY), 5, TimeUnit.SECONDS)
+                        : Suppliers.memoizeWithExpiration(() -> new UmaPlayerModel<>(player,
+                                ClientUtil.getModelPOJO(getModel()), BedrockVersion.LEGACY), 5, TimeUnit.SECONDS);
+                UmaPlayerModel<LivingEntity> base_model = modelSuppiler.get();
                 base_model.setModelProperties(player, false, true);
                 base_model.prepareMobModel(player, limbSwing, limbSwingAmount, partialTicks);
 

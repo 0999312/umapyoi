@@ -1,5 +1,7 @@
 package net.tracen.umapyoi.client.renderer.blockentity;
 
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
@@ -27,7 +29,7 @@ import net.tracen.umapyoi.block.entity.ThreeGoddessBlockEntity;
 import net.tracen.umapyoi.utils.ClientUtils;
 
 public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddessBlockEntity> {
-
+    private final Supplier<SimpleBedrockModel> MODEL = Suppliers.memoize(()->new SimpleBedrockModel(ClientUtil.getModelPOJO(ClientUtils.THREE_GODDESS), BedrockVersion.LEGACY));
     public ThreeGoddessBlockRender(BlockEntityRendererProvider.Context context) {
     }
 
@@ -48,9 +50,6 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
     private void renderModel(ThreeGoddessBlockEntity tileEntity, Direction direction, PoseStack poseStack,
             MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 
-        SimpleBedrockModel base_model = new SimpleBedrockModel(ClientUtil.getModelPOJO(ClientUtils.THREE_GODDESS),
-                BedrockVersion.LEGACY);
-
         VertexConsumer vertexconsumer = buffer.getBuffer(RenderType
                 .entityTranslucent(new ResourceLocation(Umapyoi.MODID, "textures/model/three_goddesses.png")));
         poseStack.pushPose();
@@ -60,7 +59,7 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
         poseStack.mulPose(Vector3f.YP.rotationDegrees(f));
         poseStack.mulPose(Vector3f.XP.rotationDegrees(180));
 
-        base_model.renderToBuffer(poseStack, vertexconsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
+        MODEL.get().renderToBuffer(poseStack, vertexconsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
         poseStack.popPose();
     }
 
