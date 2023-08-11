@@ -700,7 +700,7 @@
 			},
 			{
 				"name": "skirt",
-				"parent": "body",
+				"parent": "hide_parts",
 				"pivot": [0, 9, 0]
 			},
 			{
@@ -1009,7 +1009,7 @@
 				]
 			},
 			{
-				"name": "right_foot2",
+				"name": "right_foot",
 				"parent": "right_leg_down",
 				"pivot": [-1.75, 7, -1.5],
 				"cubes": [
@@ -1021,7 +1021,7 @@
 			},
 			{
 				"name": "shoes8",
-				"parent": "right_foot2",
+				"parent": "right_foot",
 				"pivot": [-3.25, 0, -3.5],
 				"rotation": [0, -30, 0],
 				"cubes": [
@@ -1030,7 +1030,7 @@
 			},
 			{
 				"name": "shoes9",
-				"parent": "right_foot2",
+				"parent": "right_foot",
 				"pivot": [-0.25, 0, -3.5],
 				"rotation": [0, 30, 0],
 				"cubes": [
@@ -1039,7 +1039,7 @@
 			},
 			{
 				"name": "shoes10",
-				"parent": "right_foot2",
+				"parent": "right_foot",
 				"pivot": [-1.75, 2, -3.5],
 				"rotation": [27.5, 0, 0],
 				"cubes": [
@@ -1048,7 +1048,7 @@
 			},
 			{
 				"name": "shoes6",
-				"parent": "right_foot2",
+				"parent": "right_foot",
 				"pivot": [-1.75, 2.85, -3.1],
 				"rotation": [27.5, 0, 0],
 				"cubes": [

@@ -1,0 +1,17 @@
+{
+    "name": "回归者",
+    "icon": "umapyoi:disassembly_block",
+    "category": "umapyoi:others",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "回归者是将马娘之魂或者支援卡送还给三女神的设备，以实现“灵魂的回归”。$(p)在基座上放置马娘之魂或支援卡即可进行“回归”。原有的马娘之魂或者支援卡将会被“送还”，留下一个纯粹的水晶。马娘之魂、褪色的马娘之魂经过“回归”会得到马娘水晶，而支援卡则会得到蹄铁水晶。马娘水晶和蹄铁水晶是合成马券的重要材料。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:disassembly_block",
+            "text": "有点眼熟的造型。"
+        }
+    ]
+}

@@ -170,8 +170,17 @@ public class SupportCardItem extends Item implements SupportContainer {
 
     public boolean checkSupports(Level level, ItemStack stack, ItemStack other) {
         if (stack.getItem() instanceof SupportCardItem otherItem) {
-            for (ResourceLocation name : this.getSupportCard(level, stack).getSupporters()) {
-                if (otherItem.getSupportCard(level, other).getSupporters().contains(name))
+            
+            var supportCardID = this.getSupportCardID(stack);
+            var otherCardID = this.getSupportCardID(other);
+            if(supportCardID.equals(otherCardID))
+                return false;
+            
+            var supportCard = this.getSupportCard(level, stack);
+            var otherCard = this.getSupportCard(level, other);
+            
+            for (ResourceLocation name : supportCard.getSupporters()) {
+                if (otherCard.getSupporters().contains(name))
                     return false;
             }
         }

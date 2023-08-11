@@ -29,7 +29,6 @@
   "item.umapyoi.wisdom_high_item": "智力秘传书",
   "item.umapyoi.wisdom_low_item": "智力记事本",
   "item.umapyoi.wisdom_mid_item": "智力战术书",
-  
   "item.umapyoi.horseshoe_gold": "金色蹄铁水晶",
   "item.umapyoi.horseshoe_rainbow": "彩色蹄铁水晶",
   "item.umapyoi.horseshoe_silver": "银色蹄铁水晶",
@@ -46,10 +45,18 @@
   "item.umapyoi.card_ticket": "支援卡券",
   "item.umapyoi.uma_ticket": "马娘券",
   
+  "item.umapyoi.small_energy_drink": "活力20",
+  "item.umapyoi.large_energy_drink": "活力65",
+  "item.umapyoi.medium_energy_drink": "活力40",
+  "umadata.umapyoi.mejiro_mcqueen": "目白麦昆",
+  "umadata.umapyoi.copano_rickey": "小林历奇",
   "umadata.umapyoi.common_uma": "无名马娘",
   "umadata.umapyoi.common_uma_a": "无名马娘",
   "umadata.umapyoi.common_uma_b": "无名马娘",
   "umadata.umapyoi.common_uma_c": "无名马娘",
+  
+  "umadata.umapyoi.symboli_rudolf": "鲁道夫象征",
+  "umadata.umapyoi.narita_top_road": "成田路",
   
   "umadata.umapyoi.gold_ship": "黄金船",
   "umadata.umapyoi.oguri_cap": "小栗帽",
@@ -102,7 +109,8 @@
   "block.umapyoi.support_album_pedestal": "支援相册基座",
   "block.umapyoi.silver_support_album_pedestal": "银色支援相册基座",
   "block.umapyoi.silver_uma_pedestal": "银色马娘召唤基座",
-  "block.umapyoi.disassembly_block": "拆解机",
+  "block.umapyoi.disassembly_block": "回归者",
+  "container.umapyoi.disassembly_block": "回归者",
   "container.umapyoi.skill_learning": "技能学习台",
   "container.umapyoi.three_goddess": "三女神像",
   "container.umapyoi.training_facility": "训练设施终端",
@@ -155,6 +163,10 @@
   "uma_factor.umapyoi.wisdom_factor": "智力",
   
   "effect.umapyoi.panicking": "焦躁",
+  
+  "book.umapyoi.trainers_manual.landing_text": "这是马儿蹦跳模组的手册。",
+  "book.umapyoi.trainers_manual.subtitle": "特雷森学院",
+  "book.umapyoi.trainers_manual.title": "特雷森训练员手册",
   
   "uma_skill.umapyoi.basic_pace": "基础步伐",
   "uma_skill.umapyoi.cooldown": "冷却",

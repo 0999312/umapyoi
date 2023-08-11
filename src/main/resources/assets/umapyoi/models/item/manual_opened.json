@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/texture",
-		"particle": "block/texture"
+		"0": "umapyoi:item/manual",
+		"particle": "umapyoi:item/manual"
 	},
 	"elements": [
 		{
@@ -37,9 +37,9 @@
 			}
 		},
 		{
-			"from": [4, 1, 4],
-			"to": [12, 2, 9],
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 3.06, 8]},
+			"from": [4, 0.75, 4],
+			"to": [12, 1.75, 9],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 2.81, 8]},
 			"faces": {
 				"north": {"uv": [8, 6, 16, 8], "rotation": 180, "texture": "#0"},
 				"east": {"uv": [8, 6, 13, 8], "rotation": 180, "texture": "#0"},
@@ -50,9 +50,9 @@
 			}
 		},
 		{
-			"from": [4, 1.2375, 9.23044],
-			"to": [12, 2.2375, 14.23044],
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 0.1775, 10.23044]},
+			"from": [4, 0.9875, 9.23044],
+			"to": [12, 1.9875, 14.23044],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, -0.0725, 10.23044]},
 			"faces": {
 				"north": {"uv": [8, 8.5, 16, 10.5], "texture": "#0"},
 				"east": {"uv": [8, 6.5, 13, 8.5], "texture": "#0"},
@@ -85,9 +85,8 @@
 			"scale": [0.75, 0.75, 0.75]
 		},
 		"gui": {
-			"rotation": [45, 60, 0],
-			"translation": [-0.25, 2.75, 0],
-			"scale": [0.95, 0.95, 0.95]
+			"rotation": [60, 105, 0],
+			"translation": [-0.25, 2.75, 0]
 		},
 		"head": {
 			"rotation": [0, -90, 0],

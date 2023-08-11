@@ -156,6 +156,12 @@
   
   "effect.umapyoi.panicking": "焦躁",
   
+  "item.umapyoi.small_energy_drink": "活力20",
+  "item.umapyoi.large_energy_drink": "活力65",
+  "item.umapyoi.medium_energy_drink": "活力40",
+  "umadata.umapyoi.mejiro_mcqueen": "目白麥昆",
+  "umadata.umapyoi.copano_rickey": "小林歷奇",
+  
   "uma_skill.umapyoi.basic_pace": "基礎步伐",
   "uma_skill.umapyoi.cooldown": "冷卻",
   "uma_skill.umapyoi.deep_breaths": "深呼吸",

@@ -2,7 +2,6 @@ package net.tracen.umapyoi.client.model;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockHumanoidModel;
 import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockPart;
-import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockVersion;
 import cn.mcmod_mmf.mmlib.client.model.pojo.BedrockModelPOJO;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
@@ -14,55 +13,55 @@ import net.tracen.umapyoi.UmapyoiConfig;
 
 public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel<T> {
 
-    public final BedrockPart rightArmDown;
-    public final BedrockPart leftArmDown;
-    public final BedrockPart rightLegDown;
-    public final BedrockPart leftLegDown;
+    public BedrockPart rightArmDown;
+    public BedrockPart leftArmDown;
+    public BedrockPart rightLegDown;
+    public BedrockPart leftLegDown;
+    public BedrockPart rightEar;
+    public BedrockPart leftEar;
+    public BedrockPart rightEarHideParts;
+    public BedrockPart leftEarHideParts;
+    public BedrockPart rightFoot;
+    public BedrockPart leftFoot;
+    public BedrockPart rightLegHideParts;
+    public BedrockPart leftLegHideParts;
+    public BedrockPart hat;
+    public BedrockPart longHair;
+    public BedrockPart hideParts;
+    public BedrockPart tail;
+    public BedrockPart tailDown;
+    
+    public BedrockPart cape;
+    
+    public UmaPlayerModel() {
+        super();
+    }
+    
+    public UmaPlayerModel(BedrockModelPOJO pojo) {
+        super(pojo);
+    }
 
-    public final BedrockPart rightEar;
-    public final BedrockPart leftEar;
-
-    public final BedrockPart rightEarHideParts;
-    public final BedrockPart leftEarHideParts;
-
-    public final BedrockPart rightFoot;
-    public final BedrockPart leftFoot;
-
-    public final BedrockPart rightLegHideParts;
-    public final BedrockPart leftLegHideParts;
-
-    public final BedrockPart hat;
-    public final BedrockPart longHair;
-    public final BedrockPart hideParts;
-
-    public final BedrockPart tail;
-    public final BedrockPart tailDown;
-
-    public UmaPlayerModel(LivingEntity player, BedrockModelPOJO pojo, BedrockVersion version) {
-        super(pojo, version);
+    @Override
+    public void loadModel(BedrockModelPOJO pojo) {
+        super.loadModel(pojo);
         this.rightArmDown = this.getChild("right_arm_down");
         this.leftArmDown = this.getChild("left_arm_down");
         this.rightLegDown = this.getChild("right_leg_down");
         this.leftLegDown = this.getChild("left_leg_down");
-
         this.rightEar = this.getChild("right_ear");
         this.leftEar = this.getChild("left_ear");
         this.rightFoot = this.getChild("right_foot");
         this.leftFoot = this.getChild("left_foot");
-
         this.hat = this.getChild("hat") != null ? this.getChild("hat") : new BedrockPart();
+        this.cape = this.getChild("cape") != null ? this.getChild("cape") : new BedrockPart();
         this.longHair = this.getChild("long_hair") != null ? this.getChild("long_hair") : new BedrockPart();
-
         this.hideParts = this.getChild("hide_parts") != null ? this.getChild("hide_parts") : new BedrockPart();
-
         this.rightEarHideParts = this.getChild("right_earmuffs");
         this.leftEarHideParts = this.getChild("left_earmuffs");
-
         this.rightLegHideParts = this.getChild("right_leg_hide_parts") != null ? this.getChild("right_leg_hide_parts")
                 : new BedrockPart();
         this.leftLegHideParts = this.getChild("left_leg_hide_parts") != null ? this.getChild("left_leg_hide_parts")
                 : new BedrockPart();
-
         this.tail = this.getChild("tail");
         this.tailDown = this.getChild("tail_down");
     }
@@ -100,41 +99,54 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.tail.xRot = 1.0F + pLimbSwingAmount * 0.5F;
                 this.tail.z = 3.125F;
                 this.tail.y = 11.0F;
+                
+                this.cape.xRot = 1.0F + pLimbSwingAmount * 0.5F;
             } else {
                 this.tail.xRot = pLimbSwingAmount * 1F;
                 this.tail.z = 1.75F;
                 this.tail.y = 8.0F;
+                
+                this.cape.xRot = pLimbSwingAmount * 1F;
             }
             if (this.head.xRot < 0)
-                this.longHair.xRot -= this.head.xRot;
+                this.longHair.xRot = -this.head.xRot;
+            else this.longHair.xRot = 0F;
 
-            int ears_reminder = (int) ((pAgeInTicks + Math.abs(entityIn.getUUID().getLeastSignificantBits()) % 10)
-                    % UmapyoiConfig.EAR_ANIMATION_INTERVAL.get());
-            int tail_reminder = (int) ((pAgeInTicks + Math.abs(entityIn.getUUID().getLeastSignificantBits()) % 10)
-                    % UmapyoiConfig.TAIL_ANIMATION_INTERVAL.get());
-
-            if (0 < ears_reminder && ears_reminder < 8) {
-                if (this.leftEarHideParts != null)
-                    this.leftEarHideParts.zRot += Mth.cos(ears_reminder) * 0.125F;
-                if (this.rightEarHideParts != null)
-                    this.rightEarHideParts.zRot -= Mth.cos(ears_reminder) * 0.125F;
-                this.leftEar.zRot += Mth.cos(ears_reminder) * 0.125F;
-                this.rightEar.zRot -= Mth.cos(ears_reminder) * 0.125F;
-            } else {
-                this.leftEar.zRot = 0F;
-                this.rightEar.zRot = 0F;
-            }
-
-            if (0 < tail_reminder && tail_reminder < 8) {
-                this.tail.zRot = -Mth.cos(pAgeInTicks * 0.7F) * 0.5F;
-                this.tail.yRot = Mth.cos(pAgeInTicks * 0.7F) * 0.5F;
-            } else {
-                this.tail.zRot = 0;
-                this.tail.yRot = 0;
-            }
+            animationEarTail(entityIn, pAgeInTicks);
         }
         this.hat.copyFrom(head);
 
+    }
+
+    private void animationEarTail(T entityIn, float pAgeInTicks) {
+        int ears_reminder = (int) ((pAgeInTicks + Math.abs(entityIn.getUUID().getLeastSignificantBits()) % 10)
+                % UmapyoiConfig.EAR_ANIMATION_INTERVAL.get());
+        int tail_reminder = (int) ((pAgeInTicks + Math.abs(entityIn.getUUID().getLeastSignificantBits()) % 10)
+                % UmapyoiConfig.TAIL_ANIMATION_INTERVAL.get());
+        float earRot = Mth.cos(ears_reminder) * 0.125F;
+        if (0 < ears_reminder && ears_reminder < 8) {
+            if (this.leftEarHideParts != null)
+                this.leftEarHideParts.zRot = earRot;
+            if (this.rightEarHideParts != null)
+                this.rightEarHideParts.zRot = -earRot;
+            this.leftEar.zRot = earRot;
+            this.rightEar.zRot = -earRot;
+        } else {
+            if (this.leftEarHideParts != null)
+                this.leftEarHideParts.zRot = 0F;
+            if (this.rightEarHideParts != null)
+                this.rightEarHideParts.zRot = 0F;
+            this.leftEar.zRot = 0F;
+            this.rightEar.zRot = 0F;
+        }
+
+        if (0 < tail_reminder && tail_reminder < 8) {
+            this.tail.zRot = -Mth.cos(pAgeInTicks * 0.7F) * 0.5F;
+            this.tail.yRot = Mth.cos(pAgeInTicks * 0.7F) * 0.5F;
+        } else {
+            this.tail.zRot = 0;
+            this.tail.yRot = 0;
+        }
     }
 
     public void setModelProperties(LivingEntity player) {
@@ -172,23 +184,36 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
 
                 if (!player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
                     this.hat.visible = false;
+                }else {
+                    this.hat.visible = true;
                 }
 
                 if (!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty()
                         && !(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ElytraItem)) {
                     this.hideParts.visible = false;
+                    this.cape.visible = false;
+                }else {
+                    this.hideParts.visible = true;
+                    this.cape.visible = true;
                 }
 
                 if (!player.getItemBySlot(EquipmentSlot.LEGS).isEmpty()) {
                     this.rightLegHideParts.visible = false;
                     this.leftLegHideParts.visible = false;
+                }else {
+                    this.rightLegHideParts.visible = true;
+                    this.leftLegHideParts.visible = true;
                 }
 
                 if (!player.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
                     this.rightFoot.visible = false;
                     this.leftFoot.visible = false;
+                }else {
+                    this.rightFoot.visible = true;
+                    this.leftFoot.visible = true;
                 }
             }
+            
             if (this.hat.visible) {
                 if (this.leftEarHideParts != null)
                     this.leftEar.visible = false;

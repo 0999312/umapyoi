@@ -55,6 +55,11 @@ public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements G
     public int getProcessTime() {
         return recipeTime;
     }
+    
+    private int animationTime;
+    public int getAnimationTime() {
+        return animationTime;
+    }
 
     public SilverUmaPedestalBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), pos, state);
@@ -63,6 +68,7 @@ public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements G
         this.outputHandler = LazyOptional.of(() -> new ThreeGoddessItemHandler(inventory, Direction.DOWN));
         this.tileData = createIntArray();
     }
+
 
     public static void workingTick(Level level, BlockPos pos, BlockState state, SilverUmaPedestalBlockEntity blockEntity) {
         if (level.isClientSide())
@@ -81,8 +87,10 @@ public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements G
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, SilverUmaPedestalBlockEntity blockEntity) {
+        blockEntity.animationTime++;
         if (blockEntity.canWork())
             ClientUtils.addSummonParticle(level, pos);
+        blockEntity.animationTime %= 360;
     }
 
     private boolean processRecipe() {
@@ -251,7 +259,7 @@ public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements G
         return resloc -> {
             if (input.is(UmapyoiItemTags.SR_UMA_TICKET))
                 return UmapyoiAPI.getUmaDataRegistry(level).get(resloc).getGachaRanking() == GachaRanking.SR;
-            if (input.is(ItemRegistry.BLANK_TICKET.get()))
+            if (input.is(UmapyoiItemTags.COMMON_GACHA_ITEM))
                 return UmapyoiAPI.getUmaDataRegistry(level).get(resloc).getGachaRanking() == GachaRanking.R;
             boolean cfgFlag = GachaUtils.checkGachaConfig();
             int gacha_roll;

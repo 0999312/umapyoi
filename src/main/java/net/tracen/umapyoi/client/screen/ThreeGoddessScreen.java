@@ -6,7 +6,6 @@ import com.mojang.math.Vector3f;
 
 import cn.mcmod_mmf.mmlib.client.RenderUtils;
 import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
-import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockVersion;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -58,7 +57,7 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
         if (!ClientUtils.getClientUmaDataRegistry().containsKey(name)) {
             name = UmaDataRegistry.COMMON_UMA.getId();
         }
-        SimpleBedrockModel model = new SimpleBedrockModel(ClientUtil.getModelPOJO(name), BedrockVersion.LEGACY);
+        SimpleBedrockModel model = new SimpleBedrockModel(ClientUtil.getModelPOJO(name));
         ClientUtils.renderModelInInventory(pPosX, pPosY, pScale, pQuaternion, model, name);
     }
 

@@ -33,7 +33,7 @@ import net.tracen.umapyoi.block.entity.TrainingFacilityBlockEntity;
 public class TrainingFacilityBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
 
     public TrainingFacilityBlock() {
         super(Properties.copy(Blocks.IRON_BLOCK).noOcclusion().noCollission());

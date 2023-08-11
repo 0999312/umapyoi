@@ -5,10 +5,17 @@
       "item": "minecraft:paper"
     },
     {
+      "item": "minecraft:paper"
+    },
+    {
+      "tag": "forge:gems/lapis"
+    },
+    {
       "item": "umapyoi:jewel"
     }
   ],
   "result": {
-    "item": "umapyoi:blank_ticket"
+    "item": "umapyoi:blank_ticket",
+    "count": 2
   }
 }

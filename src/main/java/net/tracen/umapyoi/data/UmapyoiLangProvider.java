@@ -63,6 +63,10 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add(ItemRegistry.WISDOM_LOW_ITEM.get(), "Wisdom Notepad");
         add(ItemRegistry.WISDOM_MID_ITEM.get(), "Wisdom Writings");
         add(ItemRegistry.WISDOM_HIGH_ITEM.get(), "Wisdom Scroll");
+        
+        add(ItemRegistry.SMALL_ENERGY_DRINK.get(), "Vital 20");
+        add(ItemRegistry.MEDIUM_ENERGY_DRINK.get(), "Vital 40");
+        add(ItemRegistry.LARGE_ENERGY_DRINK.get(), "Vital 65");
 
         add(ItemRegistry.SKILL_BOOK.get(), "Skill Book");
         
@@ -177,6 +181,10 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("umapyoi.motivation.normal", "Normal");
         add("umapyoi.motivation.good", "High");
         add("umapyoi.motivation.perfect", "Peak");
+        
+        add("book.umapyoi.trainers_manual.title", "Tracen Trainers' Manual");
+        add("book.umapyoi.trainers_manual.subtitle", "Tracen Academy");
+        add("book.umapyoi.trainers_manual.landing_text", "This is the manual of Umapyoi mod.");
 
         add("umastatus.level.0", "G-");
         add("umastatus.level.1", "G");
@@ -206,6 +214,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.COMMON_UMA_B, "Nameless Umamusume");
         addUma(UmaDataRegistry.COMMON_UMA_C, "Nameless Umamusume");
         
+        addUma(UmaDataRegistry.MEJIRO_MCQUEEN, "Mejiro McQueen");
         addUma(UmaDataRegistry.GOLD_SHIP, "Gold Ship");
         addUma(UmaDataRegistry.SAKURA_CHIYONO_O, "Sakura Chiyono O");
         addUma(UmaDataRegistry.SPECIAL_WEEK, "Special Week");
@@ -243,6 +252,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.MEISHO_DOTOU, "Meisho Doto");
         addUma(UmaDataRegistry.KITASAN_BLACK, "Kitasan Black");
         addUma(UmaDataRegistry.SATONO_DIAMOND, "Satono Diamond");
+        addUma(UmaDataRegistry.COPANO_RICKEY, "Copano Rickey");
         
         addUma(UmaDataRegistry.CURREN_CHAN_DRESS, "[Calend's Ma Chérie] Curren Chan");
         

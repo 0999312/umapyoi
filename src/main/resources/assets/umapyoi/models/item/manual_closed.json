@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/texture",
-		"particle": "block/texture"
+		"0": "umapyoi:item/manual",
+		"particle": "umapyoi:item/manual"
 	},
 	"elements": [
 		{
@@ -29,7 +29,6 @@
 		{
 			"from": [3, 0, 5],
 			"to": [13, 0, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
 			"faces": {
 				"up": {"uv": [10, 6, 0, 0], "texture": "#0"},
 				"down": {"uv": [10, 0, 0, 6], "texture": "#0"}

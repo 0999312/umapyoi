@@ -30,6 +30,7 @@ public class UmaData extends ForgeRegistryEntry<UmaData> {
     private final GachaRanking ranking;
     private final int[] property;
     private final int[] maxProperty;
+    
     private final ResourceLocation uniqueSkill;
 
     public UmaData(ResourceLocation identifier, GachaRanking ranking, int[] property, int[] maxProperty,

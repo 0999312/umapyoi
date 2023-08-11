@@ -714,7 +714,7 @@
 			},
 			{
 				"name": "skirt2",
-				"parent": "body",
+				"parent": "hide_parts",
 				"pivot": [0, 12, 0],
 				"cubes": [
 					{"origin": [-3.5, 13.5, -1.5], "size": [7, 2, 3], "uv": [0, 113], "inflate": 0.001}
@@ -1031,7 +1031,7 @@
 			},
 			{
 				"name": "bone33",
-				"parent": "body",
+				"parent": "hide_parts",
 				"pivot": [0, 20.5, 2.15333],
 				"rotation": [-7.5, 0, 0]
 			},

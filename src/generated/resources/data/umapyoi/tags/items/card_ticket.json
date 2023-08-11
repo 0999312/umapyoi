@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "umapyoi:blank_ticket",
+    "#umapyoi:common_gacha_item",
     "umapyoi:card_ticket",
     "#umapyoi:sr_card_ticket",
     "#umapyoi:ssr_card_ticket"

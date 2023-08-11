@@ -8,13 +8,13 @@
       "item": "minecraft:honey_bottle"
     },
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:sugar"
     },
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:sugar"
     },
     {
-      "item": "minecraft:water_bucket"
+      "tag": "forge:water"
     }
   ],
   "result": {

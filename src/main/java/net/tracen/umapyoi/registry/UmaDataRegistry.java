@@ -130,6 +130,18 @@ public class UmaDataRegistry {
     
     public static final RegistryObject<UmaData> CURREN_CHAN_DRESS = UMA_DATA.register("curren_chan_dress",
             () -> UmaDataRegistry.createNewUmamusume("curren_chan", GachaRanking.SSR));
+    
+    public static final RegistryObject<UmaData> MEJIRO_MCQUEEN = UMA_DATA.register("mejiro_mcqueen",
+            () -> UmaDataRegistry.createNewUmamusume("mejiro_mcqueen", GachaRanking.SR));
+    
+    public static final RegistryObject<UmaData> COPANO_RICKEY = UMA_DATA.register("copano_rickey",
+            () -> UmaDataRegistry.createNewUmamusume("copano_rickey", GachaRanking.SR));
+    
+    public static final RegistryObject<UmaData> SYMBOLI_RUDOLF = UMA_DATA.register("symboli_rudolf",
+            () -> UmaDataRegistry.createNewUmamusume("symboli_rudolf", GachaRanking.SR));
+    
+    public static final RegistryObject<UmaData> NARITA_TOP_ROAD = UMA_DATA.register("narita_top_road",
+            () -> UmaDataRegistry.createNewUmamusume("narita_top_road", GachaRanking.SR));
 
     public static UmaData createNewUmamusume(String name, GachaRanking ranking) {
         return new UmaData(new ResourceLocation(Umapyoi.MODID, name), ranking, new int[] { 1, 1, 1, 1, 1 },

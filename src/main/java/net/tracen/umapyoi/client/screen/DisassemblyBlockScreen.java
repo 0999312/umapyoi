@@ -42,12 +42,12 @@ public class DisassemblyBlockScreen extends AbstractContainerScreen<DisassemblyB
         if (this.minecraft == null) {
             return;
         }
+        
         RenderUtils.setup(BACKGROUND_TEXTURE);
         this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 
         if (this.menu.getSlot(0).hasItem() && !this.menu.getSlot(1).hasItem())
             this.blit(ms, this.leftPos + 74, this.topPos + 57, 176, 0, 29, 19);
-
     }
 
 }

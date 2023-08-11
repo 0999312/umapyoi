@@ -51,9 +51,14 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity implements Gachabl
     protected final ContainerData tileData;
 
     private int recipeTime;
+    private int animationTime;
 
     public int getProcessTime() {
         return recipeTime;
+    }
+    
+    public int getAnimationTime() {
+        return animationTime;
     }
 
     public UmaPedestalBlockEntity(BlockPos pos, BlockState state) {
@@ -81,8 +86,10 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity implements Gachabl
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, UmaPedestalBlockEntity blockEntity) {
+        blockEntity.animationTime++;
         if (blockEntity.canWork())
             ClientUtils.addSummonParticle(level, pos);
+        blockEntity.animationTime %= 360;
     }
 
     private boolean processRecipe() {
@@ -251,7 +258,7 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity implements Gachabl
         return resloc -> {
             if (input.is(UmapyoiItemTags.SSR_UMA_TICKET))
                 return UmapyoiAPI.getUmaDataRegistry(level).get(resloc).getGachaRanking() == GachaRanking.SSR;
-            if (input.is(ItemRegistry.BLANK_TICKET.get()))
+            if (input.is(UmapyoiItemTags.COMMON_GACHA_ITEM))
                 return UmapyoiAPI.getUmaDataRegistry(level).get(resloc).getGachaRanking() == GachaRanking.R;
             boolean cfgFlag = GachaUtils.checkGachaConfig();
             int gacha_roll;

@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "umapyoi:jewel_emerald"
+      "umapyoi:royal_bitter"
     ]
   },
   "criteria": {
-    "has_gem": {
+    "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:gems/emerald"
+            "tag": "forge:crops/nether_wart"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "umapyoi:jewel_emerald"
+        "recipe": "umapyoi:royal_bitter"
       }
     }
   },
   "requirements": [
     [
-      "has_gem",
+      "has_item",
       "has_the_recipe"
     ]
   ]

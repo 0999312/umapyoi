@@ -119,6 +119,12 @@
   "curios.modifiers.uma_suit": "衣装を着るとき：",
   "item.umapyoi.skill_book": "スキル本",
   
+  "item.umapyoi.small_energy_drink": "バイタル20",
+  "item.umapyoi.large_energy_drink": "バイタル65",
+  "item.umapyoi.medium_energy_drink": "バイタル40",
+  "umadata.umapyoi.mejiro_mcqueen": "メジロマックイーン",
+  "umadata.umapyoi.copano_rickey": "コパノリッキー",
+  
   "support_card.umapyoi.adv_guts_card.name": "[上級トレーニング] 根性トレーニング",
   "support_card.umapyoi.adv_speed_card.name": "[上級トレーニング] スピードトレーニング",
   "support_card.umapyoi.adv_stamina_card.name": "[上級トレーニング] スタミナトレーニング",

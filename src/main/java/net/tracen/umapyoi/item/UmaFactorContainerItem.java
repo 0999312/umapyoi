@@ -76,4 +76,12 @@ public class UmaFactorContainerItem extends Item {
             }
         }
     }
+
+    public static int getScore(ItemStack stack) {
+        return stack.getOrCreateTag().contains("score") ? stack.getOrCreateTag().getInt("score") : 0;
+    }
+
+    public static void setScore(ItemStack stack, int phy) {
+        stack.getOrCreateTag().putInt("score", phy);
+    }
 }

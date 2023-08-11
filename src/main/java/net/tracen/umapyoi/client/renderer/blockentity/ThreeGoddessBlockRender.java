@@ -1,13 +1,10 @@
 package net.tracen.umapyoi.client.renderer.blockentity;
 
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 
 import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
-import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockVersion;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -29,8 +26,11 @@ import net.tracen.umapyoi.block.entity.ThreeGoddessBlockEntity;
 import net.tracen.umapyoi.utils.ClientUtils;
 
 public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddessBlockEntity> {
-    private final Supplier<SimpleBedrockModel> MODEL = Suppliers.memoize(()->new SimpleBedrockModel(ClientUtil.getModelPOJO(ClientUtils.THREE_GODDESS), BedrockVersion.LEGACY));
+    public static final ResourceLocation TEXTURE = new ResourceLocation(Umapyoi.MODID, "textures/model/three_goddesses.png");
+    private final SimpleBedrockModel model;
+
     public ThreeGoddessBlockRender(BlockEntityRendererProvider.Context context) {
+        model = new SimpleBedrockModel();
     }
 
     @Override
@@ -51,15 +51,17 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
             MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 
         VertexConsumer vertexconsumer = buffer.getBuffer(RenderType
-                .entityTranslucent(new ResourceLocation(Umapyoi.MODID, "textures/model/three_goddesses.png")));
+                .entityCutout(new ResourceLocation(Umapyoi.MODID, "textures/model/three_goddesses.png")));
         poseStack.pushPose();
         poseStack.translate(0.5D, 1.5D, 0.5D);
 
-        float f = -direction.toYRot();
-        poseStack.mulPose(Vector3f.YP.rotationDegrees(f));
+        poseStack.mulPose(Vector3f.YN.rotationDegrees(direction.toYRot()));
         poseStack.mulPose(Vector3f.XP.rotationDegrees(180));
 
-        MODEL.get().renderToBuffer(poseStack, vertexconsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
+        var pojo = ClientUtil.getModelPOJO(ClientUtils.THREE_GODDESS);
+        if(model.needRefresh(pojo))
+            model.loadModel(pojo);
+        model.renderToBuffer(poseStack, vertexconsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
         poseStack.popPose();
     }
 
@@ -77,16 +79,11 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
                 (int) pPos.asLong());
     }
 
-    private int degree = 0;
-
     private void renderItem(ThreeGoddessBlockEntity tileEntity, float partialTicks, PoseStack matrixStackIn) {
-        float f = (degree + partialTicks) / 20.0F;
+        float f = (tileEntity.getAnimationTime() + partialTicks) / 20.0F;
         float f1 = Mth.sin(f) * 0.1F + 0.1F;
         matrixStackIn.translate(0.5D, f1 + 3.0D, 0.5D);
         matrixStackIn.mulPose(Vector3f.YP.rotation(f));
         matrixStackIn.scale(0.6F, 0.6F, 0.6F);
-        if (f >= Math.PI * 2)
-            degree = 0;
-        degree++;
     }
 }

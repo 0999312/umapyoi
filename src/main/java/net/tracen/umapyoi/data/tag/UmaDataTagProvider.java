@@ -29,7 +29,7 @@ public class UmaDataTagProvider extends ForgeRegistryTagsProvider<UmaData> {
         this.tag(UmapyoiUmaDataTags.FLAT_CHEST).add(UmaDataRegistry.TOKAI_TEIO.get())
                 .add(UmaDataRegistry.TAMAMO_CROSS.get()).add(UmaDataRegistry.MANHATTAN_CAFE.get())
                 .add(UmaDataRegistry.SILENCE_SUZUKA.get()).add(UmaDataRegistry.TAMAMO_CROSS_FESTIVAL.get())
-                .add(UmaDataRegistry.GRASS_WONDER.get()).add(UmaDataRegistry.HARU_URARA.get());
+                .add(UmaDataRegistry.GRASS_WONDER.get()).add(UmaDataRegistry.MEJIRO_MCQUEEN.get()).add(UmaDataRegistry.HARU_URARA.get());
     }
 
 }

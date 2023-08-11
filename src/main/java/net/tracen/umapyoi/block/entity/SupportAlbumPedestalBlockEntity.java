@@ -69,6 +69,10 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
     public int getProcessTime() {
         return recipeTime;
     }
+    private int animationTime;
+    public int getAnimationTime() {
+        return animationTime;
+    }
 
     public SupportAlbumPedestalBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(), pos, state);
@@ -97,8 +101,10 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
 
     public static void animationTick(Level level, BlockPos pos, BlockState state,
             SupportAlbumPedestalBlockEntity blockEntity) {
+        blockEntity.animationTime++;
         if (blockEntity.canWork())
             ClientUtils.addSummonParticle(level, pos);
+        blockEntity.animationTime %= 360;
         SupportAlbumPedestalBlockEntity.bookAnimationTick(level, pos, state, blockEntity);
     }
 
@@ -330,7 +336,7 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
         return resloc -> {
             if (input.is(UmapyoiItemTags.SSR_CARD_TICKET))
                 return UmapyoiAPI.getSupportCardRegistry(level).get(resloc).getGachaRanking() == GachaRanking.SSR;
-            if (input.is(ItemRegistry.BLANK_TICKET.get()))
+            if (input.is(UmapyoiItemTags.COMMON_GACHA_ITEM))
                 return UmapyoiAPI.getSupportCardRegistry(level).get(resloc).getGachaRanking() == GachaRanking.R;
             boolean cfgFlag = GachaUtils.checkGachaConfig();
             int gacha_roll;

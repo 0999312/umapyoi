@@ -3,8 +3,6 @@ package net.tracen.umapyoi.item;
 import java.util.function.Supplier;
 
 import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,6 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
+import net.tracen.umapyoi.item.food.EnergyDrinkMethods;
 import net.tracen.umapyoi.item.food.UmaDrinkItem;
 import net.tracen.umapyoi.item.food.UmaFoodItem;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
@@ -125,22 +124,20 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> HACHIMI_MID = register("hachimi_mid",
             () -> new UmaDrinkItem(UmaStatusUtils::addMotivation,
-                    FoodInfo.builder().name("hachimi_mid").alwaysEat().amountAndCalories(4, 0.6F).water(30F)
+                    FoodInfo.builder().name("hachimi_mid").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
                             .nutrients(2F, 2F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F)
                             .build()));
 
     public static final RegistryObject<Item> HACHIMI_BIG = register("hachimi_big", () -> new UmaDrinkItem(status -> {
         UmaStatusUtils.addMotivation(status);
         UmaStatusUtils.addMotivation(status);
-    }, FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(8, 0.8F).water(30F)
+    }, FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(4, 0.8F).water(30F)
             .nutrients(4F, 4F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final RegistryObject<Item> ROYAL_BITTER = register("royal_bitter",
-            () -> new UmaDrinkItem(UmaStatusUtils::downMotivation,
-                    FoodInfo.builder().name("royal_bitter").alwaysEat().amountAndCalories(4, 0.6F).water(30F)
-                            .nutrients(4F, 4F, 0F, 0F, 0F)
-                            .addEffect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600), 1F)
-                            .addEffect(() -> new MobEffectInstance(MobEffects.CONFUSION, 20), 0.5F).decayModifier(1.5F)
+            () -> new UmaDrinkItem(EnergyDrinkMethods::royalBitter,
+                    FoodInfo.builder().name("royal_bitter").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
+                            .nutrients(2F, 2F, 0F, 0F, 0F)
                             .heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final RegistryObject<Item> CUPCAKE = register("cupcake",
@@ -154,6 +151,24 @@ public class ItemRegistry {
         UmaStatusUtils.addMotivation(status);
     }, FoodInfo.builder().name("sweet_cupcake").amountAndCalories(7, 0.6F).water(0F).nutrients(4F, 4F, 0F, 0F, 0F)
             .decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
+    
+    public static final RegistryObject<Item> SMALL_ENERGY_DRINK = register("small_energy_drink",
+            () -> new UmaDrinkItem(EnergyDrinkMethods::smallEnergy,
+                    FoodInfo.builder().name("small_energy_drink").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
+                            .nutrients(2F, 2F, 0F, 0F, 0F)
+                            .heatCapacity(1F).cookingTemp(480F).build()));
+    
+    public static final RegistryObject<Item> MEDIUM_ENERGY_DRINK = register("medium_energy_drink",
+            () -> new UmaDrinkItem(EnergyDrinkMethods::mediumEnergy,
+                    FoodInfo.builder().name("medium_energy_drink").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
+                            .nutrients(2F, 2F, 0F, 0F, 0F)
+                            .heatCapacity(1F).cookingTemp(480F).build()));
+    
+    public static final RegistryObject<Item> LARGE_ENERGY_DRINK = register("large_energy_drink",
+            () -> new UmaDrinkItem(EnergyDrinkMethods::largeEnergy,
+                    FoodInfo.builder().name("large_energy_drink").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
+                            .nutrients(2F, 2F, 0F, 0F, 0F)
+                            .heatCapacity(1F).cookingTemp(480F).build()));
 
     private static <V extends Item> RegistryObject<V> register(String name, Supplier<V> item) {
         return ITEMS.register(name, item);

@@ -41,14 +41,14 @@ public class UmaSkillRegistry {
             () -> new HealSkill(new UmaSkill.Builder().type(SkillType.HEAL).actionPoint(900).requiredWisdom(4), 1));
     
     public static final RegistryObject<UmaSkill> LOW_HEALTH_HEAL = SKILLS.register("low_health_heal",
-            () -> new LowHealthHealSkill(new UmaSkill.Builder().type(SkillType.HEAL).actionPoint(400).requiredWisdom(2), 0));
+            () -> new LowHealthHealSkill(new UmaSkill.Builder().type(SkillType.HEAL).actionPoint(400).requiredWisdom(2), 1));
     public static final RegistryObject<UmaSkill> ADV_LOWHEALTH_HEAL = SKILLS.register("adv_low_health_heal",
-            () -> new LowHealthHealSkill(new UmaSkill.Builder().type(SkillType.HEAL).actionPoint(900).requiredWisdom(4), 1));
+            () -> new LowHealthHealSkill(new UmaSkill.Builder().type(SkillType.HEAL).actionPoint(900).requiredWisdom(4), 2));
     
     public static final RegistryObject<UmaSkill> LOW_HEALTH_BUFF = SKILLS.register("low_health_buff",
-            () -> new LowHealthBuffSkill(new UmaSkill.Builder().type(SkillType.BUFF).actionPoint(400).requiredWisdom(2), 0));
+            () -> new LowHealthBuffSkill(new UmaSkill.Builder().type(SkillType.BUFF).actionPoint(400).requiredWisdom(2), 1));
     public static final RegistryObject<UmaSkill> ADV_LOWHEALTH_BUFF = SKILLS.register("adv_low_health_buff",
-            () -> new LowHealthBuffSkill(new UmaSkill.Builder().type(SkillType.BUFF).actionPoint(900).requiredWisdom(4), 1));
+            () -> new LowHealthBuffSkill(new UmaSkill.Builder().type(SkillType.BUFF).actionPoint(900).requiredWisdom(4), 2));
     
     
     public static final RegistryObject<UmaSkill> NUTRITIONAL_SUPPLEMENTS = SKILLS.register("nutritional_supplements",

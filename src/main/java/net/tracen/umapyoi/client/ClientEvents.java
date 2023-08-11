@@ -2,7 +2,6 @@ package net.tracen.umapyoi.client;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockVersion;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -75,8 +74,7 @@ public class ClientEvents {
             ResourceLocation name = UmaSoulUtils.getName(umasoul);
             VertexConsumer vertexconsumer = event.getMultiBufferSource()
                     .getBuffer(RenderType.entityTranslucent(getTexture(name)));
-            UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(event.getPlayer(),
-                    ClientUtil.getModelPOJO(name), BedrockVersion.LEGACY);
+            UmaPlayerModel<LivingEntity> base_model = new UmaPlayerModel<>(ClientUtil.getModelPOJO(name));
 
             base_model.setModelProperties(event.getPlayer());
             base_model.attackTime = 0.0F;

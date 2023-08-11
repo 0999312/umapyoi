@@ -36,7 +36,7 @@ public class UmaSoulUtils {
         tag.putInt("actionPoint", data.property()[4] * 200);
         tag.putInt("maxActionPoint", data.property()[4] * 200);
         tag.putInt("skillSlots", 4);
-
+        tag.putInt("physique", 1);
         return result;
     }
 
@@ -128,11 +128,15 @@ public class UmaSoulUtils {
     }
 
     public static int getActionPoint(ItemStack stack) {
-        return stack.getOrCreateTag().getInt("actionPoint");
+        return Math.min(stack.getOrCreateTag().getInt("actionPoint"), 0);
     }
 
     public static void setActionPoint(ItemStack stack, int ap) {
         stack.getOrCreateTag().putInt("actionPoint", ap);
+    }
+    
+    public static void addActionPoint(ItemStack stack, int ap) {
+        UmaSoulUtils.setActionPoint(stack, Math.min(UmaSoulUtils.getActionPoint(stack) + ap, UmaSoulUtils.getMaxActionPoint(stack)) );
     }
 
     public static int getMaxActionPoint(ItemStack stack) {
@@ -142,4 +146,19 @@ public class UmaSoulUtils {
     public static void setMaxActionPoint(ItemStack stack, int ap) {
         stack.getOrCreateTag().putInt("maxActionPoint", ap);
     }
+    
+    public static int getPhysique(ItemStack stack) {
+        return Math.min(stack.getOrCreateTag().getInt("physique"), 0);
+    }
+
+    public static void setPhysique(ItemStack stack, int phy) {
+        stack.getOrCreateTag().putInt("physique", phy);
+    }
+    
+    public static void downPhysique(ItemStack stack) {
+        int phy = Math.min(getPhysique(stack) - 1, 0);
+        stack.getOrCreateTag().putInt("physique", phy);
+    }
+    
+
 }

@@ -23,7 +23,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
 
-version = '0.2.13-1.18.2'
+version = '0.2.16-1.18.2'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 
@@ -147,7 +147,7 @@ dependencies {
     // Apply Mixin AP
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.2.0-1.18.2")
+    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.2.1-1.18.2")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1:api")
 

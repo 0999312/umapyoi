@@ -54,6 +54,11 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
     public int getProcessTime() {
         return recipeTime;
     }
+    
+    private int animationTime;
+    public int getAnimationTime() {
+        return animationTime;
+    }
 
     public ThreeGoddessBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.THREE_GODDESS.get(), pos, state);
@@ -80,8 +85,10 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, ThreeGoddessBlockEntity blockEntity) {
+        blockEntity.animationTime++;
         if (blockEntity.canWork())
             ThreeGoddessBlockEntity.addWorkingParticle(level, pos);
+        blockEntity.animationTime %= 360;
     }
 
     private static void addWorkingParticle(Level pLevel, BlockPos pPos) {
@@ -112,13 +119,11 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
         recipeTime = 0;
 
         ItemStack resultStack = getResultItem();
-        ItemStack outStack = inventory.getStackInSlot(3);
-
-        if (outStack.isEmpty()) {
-            inventory.setStackInSlot(3, resultStack.copy());
-        }
-
+        
+        this.inventory.setStackInSlot(3, resultStack.copy());
+        
         this.inventory.getStackInSlot(0).shrink(1);
+        
         this.getLevel().playSound(null, this.getBlockPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.BLOCKS, 1F, 1F);
         return true;
     }
