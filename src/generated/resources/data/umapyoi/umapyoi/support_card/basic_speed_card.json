@@ -1,10 +1,11 @@
 {
-  "ranking": "r",
-  "type": "speed",
   "supports": [
     {
       "support": "umapyoi:speed_support",
       "level": 1
     }
-  ]
+  ],
+  "max_damage": 10,
+  "ranking": "r",
+  "type": "speed"
 }

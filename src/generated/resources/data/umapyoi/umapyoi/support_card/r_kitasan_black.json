@@ -1,6 +1,4 @@
 {
-  "ranking": "r",
-  "type": "speed",
   "supports": [
     {
       "support": "umapyoi:speed_support",
@@ -13,5 +11,8 @@
   ],
   "supporters": [
     "umapyoi:kitasan_black"
-  ]
+  ],
+  "max_damage": 12,
+  "ranking": "r",
+  "type": "speed"
 }

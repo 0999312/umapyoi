@@ -1,50 +1,58 @@
 {
-    "name": "属性与技能",
+    "name": "Statuses & Skills",
     "icon": "umapyoi:skill_book",
     "category": "umapyoi:training",
     "sortnum": 1,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "马娘之魂有五种基础的属性，还有一些其他相关联的额外属性和“技能”。$(p)五种基础属性分别是：$(#57C3F9)速度$()、$(#FE6C55)耐力$()、$(#FFAE1F)力量$()、$(#FF8AAF)毅力$()和$(#23E0A7)智力$()。$(p)基础属性是衡量马娘能力高低的主要指标，如何进一步提高基础属性是训练员的一大重要课题。"
+            "text": "The Umamusume Soul has five statuses, as well as a number of other additional attributes and skills associated with it. $(p) The five statuses are: $(#57C3F9) Speed$(), $(#FE6C55) Stamina$(), $(#FFAE1F) Strength$(), $(#FF8AAF) Guts$(), and $(#23E0A7) Wisdom$(). $(p) Status is the main indicator of the level of Umamusume's ability, and how to further improve Status is a major issue for trainers."
         },
         {
             "type": "patchouli:text",
-            "text": "$(#57C3F9)速度$()主要控制移动的速度；$(#FE6C55)耐力$()主要控制生命值的上限与饥饿的速度；$(#FFAE1F)力量$()主要控制攻击所造成的伤害；$(#FF8AAF)毅力$()则会带来额外的护甲值；$(#23E0A7)智力$()则影响技能的学习与行动力的上限。"
+            "text": "$(#57C3F9)Speed$() controls the speed of movement; $(#FE6C55)Stamina$() controls the cap of life and hunger; $(#FFAE1F)Strength$() controls the damage dealt in melee; $(#FF8AAF)Guts$() brings extra armor value; and $(#23E0A7)Wisdom$() affects the learning of skills and the Action Pt cap."
         },
         {
             "type": "patchouli:text",
-            "text": "有的时候，不同的马娘在相同的基础属性水平下拥有不同的效果。$(p)这是因为每一个马娘在不同属性方面有不同加成，与她们原本所擅长的领域有关。"
+            "text": "There are times when different Umamusume have different effects at the same Status level. $(p) This is because each Umamusume has different bonuses in different attributes related to what they originally specialized in."
         },
         {
             "type": "patchouli:text",
-            "text": "技能是衡量马娘能力的另一个重要指标。除去马娘之魂当中自带的技能，我们将其称为固有技能，其他的所有技能都需要后天进行学习。$(p)合适的时机下，合适的技能是扭转局势的关键。所以技能对于一个马娘而言有时甚至比属性更加重要。"
+            "text": "In addition to Status, there are some additional attributes. These are Physique, Telent, Memory, and Action Pt. $(p)$(#f00)$(l) These extra attributes cannot be directly boosted by means other than Factor Inheritance.$()"
         },
         {
             "type": "patchouli:text",
-            "text": "技能有三种类型：增益型、回复型和阻碍型。增益型主要对自身或附近实体提供增益效果；回复型主要对自身或附近实体提供状态恢复；阻碍型则会对其他实体带来负面效果或直接造成伤害。$(p)通常阻碍型技能不会对自身带来负面影响。$(p)技能的图标代表着技能的类型：金色图标代表增益型；蓝色图标代表回复型；红色图标代表阻碍型。"
+            "text": "Physique determines how many times that Soul can be trained, the higher the Physique the more training can be done; $(br)Telent determines the number of training books that can be read; $(br)Memory determines the number of skills that can be learned; and $(br)Action Pt allows Umamusume to use more skills in the same time period."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Skills are another important indicator of Umamusume's statuses. Except for the skills that come with Soul, which we call inherent skills, all other skills need to be learned later. The $(p)right skill at the right time is the key to turning the tide. That's why skills are sometimes even more important to an Umamusume than statuses."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "There are three types of skills: Gaining, Restoring and Hindering. Enhancement skills provide benefits to yourself or nearby entities; Restoration skills restore status to yourself or nearby entities; and Hindering skills provide negative effects or direct damage to other entities. $(p) Normally hindering skills do not negatively affect themselves. $(p) The icon of the skill represents the type of skill: gold icon represents gain type; blue icon represents recovery type; red icon represents hinder type."
         },
         {
             "type": "patchouli:image",
             "images": ["umapyoi:textures/book_images/skills.png"],
-            "text": "按下$(k:key.umapyoi.use_skill)使用技能，按$(k:key.umapyoi.select_former_skill)和$(k:key.umapyoi.select_latter_skill)切换技能。"
+            "text": "Press $(k:key.umapyoi.use_skill) to use the skill, and $(k:key.umapyoi.select_former_skill) and $(k:key.umapyoi.select_latter_skill) to toggle the skill."
         },
         {
             "type": "patchouli:text",
-            "text": "有三种方式可以获得技能：因子继承、训练和单独学习。$(p)其中前两者需要对应的因子或训练项目，且不能保证马娘能够学会该技能，但它们不需要任何智力基础。单独学习技能需要技能书和技能学习台，通过消耗技能书的方式学会技能。这种方式虽然需要一定智力作为基础，但绝对保证可以学会一项技能。"
+            "text": "There are three ways to acquire a skill: Factor Inheritance, Training, and Learning Alone. $(p) The first two of these require a corresponding Factor or Training program and there is no guarantee that Umamusume will be able to learn the skill, but they do not have the Wisdom restriction. Learning the skill alone requires a Skill Book and Skill Learning Table, and the skill is learned by consuming the Skill Book. This method requires a certain amount of Wisdom as a base, but it is absolutely guaranteed that a skill can be learned."
         },
         {
           "type": "patchouli:text",
-          "text": "技能的使用消耗行动力，如果行动力不足将无法使用技能。$(p)行动力的上限与智力水平直接相关，提高智力可以获得大量的行动力上限。同样，有些支援卡也会提供增加行动力上限的训练项目。"
+          "text": "Skills consume Action Pt. If there is not enough Action Pt, the skill cannot be used. The $(p) Action Pt limit is directly related to the Wisdom level, and increasing Wisdom can result in a large Action Pt limit. Similarly, some Support Cards offer training programs that increase the Action Pt limit."
         },
         {
           "type": "patchouli:text",
-          "text": "一个马娘可以学习的技能是有限的。如果技能数到达了上限，则无法学会其他技能。$(p)$(#f00)$(l)技能无法取消学习，所以对技能的安排需要谨慎，请合理规划。$()"
+          "text": "There is a limit to the number of skills an Umamusume can learn. If the number of skills reaches the upper limit, no other skills can be learned. $(p)$(#f00)$(l) Skills cannot be unlearned, so care needs to be taken with skills, plan wisely. $()"
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:skill_learning_table",
-            "text": "技能书的话自己去箱子里找找看，或者问问路边的训练员。"
+            "text": "For skill books, look in the loot chest yourself, or ask the trainer nearby."
         }
     ]
 }

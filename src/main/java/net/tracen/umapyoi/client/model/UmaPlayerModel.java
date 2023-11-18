@@ -1,5 +1,8 @@
 package net.tracen.umapyoi.client.model;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+
 import cn.mcmod_mmf.mmlib.client.model.BedrockHumanoidModel;
 import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockPart;
 import cn.mcmod_mmf.mmlib.client.model.pojo.BedrockModelPOJO;
@@ -9,7 +12,9 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ElytraItem;
+import net.minecraftforge.fml.ModList;
 import net.tracen.umapyoi.UmapyoiConfig;
+import net.tracen.umapyoi.compat.fpm.FPMCompat;
 
 public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel<T> {
 
@@ -65,6 +70,14 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
         this.tail = this.getChild("tail");
         this.tailDown = this.getChild("tail_down");
     }
+    
+    @Override
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay,
+            float red, float green, float blue, float alpha) {
+        super.renderToBuffer(poseStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        if(ModList.get().isLoaded("firstpersonmod"))
+            FPMCompat.showHead(this);
+    }
 
     @Override
     public void setupAnim(T entityIn, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw,
@@ -93,6 +106,9 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             this.rightLeg.zRot = 0.017453292F * entityarmorstand.getRightLegPose().getZ();
             this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
         } else {
+            if(ModList.get().isLoaded("firstpersonmod"))
+                FPMCompat.hideHead(this);
+            
             this.tail.copyFrom(this.body);
 
             if (this.crouching) {
@@ -150,14 +166,6 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     }
 
     public void setModelProperties(LivingEntity player) {
-        this.setModelProperties(player, false);
-    }
-
-    public void setModelProperties(LivingEntity player, boolean render_head_only) {
-        this.setModelProperties(player, render_head_only, false);
-    }
-
-    public void setModelProperties(LivingEntity player, boolean render_head_only, boolean hide_head) {
 
         boolean shouldSit = player.isPassenger()
                 && (player.getVehicle() != null && player.getVehicle().shouldRiderSit());
@@ -168,20 +176,10 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             this.head.visible = true;
         } else {
             this.setAllVisible(true);
-            if (render_head_only) {
-                this.setAllVisible(false);
-                this.head.visible = true;
-                this.tail.visible = true;
-                this.hat.visible = false;
-            } else if (hide_head) {
-                this.head.visible = false;
-                this.tail.visible = false;
-                this.hat.visible = true;
-            }
 
             this.crouching = player.isCrouching();
             if (UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && !UmapyoiConfig.HIDE_PARTS_RENDER.get()) {
-
+                
                 if (!player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
                     this.hat.visible = false;
                 }else {
@@ -248,5 +246,13 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             part.z -= 0.125F;
         if (part == this.rightLeg)
             part.z -= 0.125F;
+    }
+    
+    public void showHat() {
+        this.hat.visible = true;
+    }
+    
+    public void hideHat() {
+        this.hat.visible = true;
     }
 }

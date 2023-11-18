@@ -31,9 +31,7 @@ public class UmaSkillUtils {
     }
 
     public static void syncActionPoint(ItemStack stack) {
-        int max_ap = UmaSoulUtils.getProperty(stack)[4] * 200;
-        UmaSoulUtils.setMaxActionPoint(stack, max_ap);
-        UmaSoulUtils.setActionPoint(stack, max_ap);
+        UmaSoulUtils.setActionPoint(stack, UmaSoulUtils.getMaxActionPoint(stack));
     }
 
     public static void learnSkill(ItemStack stack, ResourceLocation skill) {

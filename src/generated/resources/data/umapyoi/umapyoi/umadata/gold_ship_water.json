@@ -1,19 +1,26 @@
 {
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "propertyRate": [
+    0,
+    0,
+    20,
+    0,
+    20
+  ],
+  "uniqueSkill": "umapyoi:basic_pace",
+  "identifier": "umapyoi:gold_ship",
+  "ranking": "ssr",
   "property": [
     1,
     1,
     1,
     1,
     1
-  ],
-  "maxProperty": [
-    12,
-    12,
-    12,
-    12,
-    12
-  ],
-  "uniqueSkill": "umapyoi:basic_pace",
-  "identifier": "umapyoi:gold_ship",
-  "ranking": "ssr"
+  ]
 }

@@ -32,10 +32,53 @@ public class UmapyoiConfig {
 
     public static ForgeConfigSpec.BooleanValue OVERLAY_SWITCH;
     public static ForgeConfigSpec.BooleanValue TOOLTIP_SWITCH;
+    
+    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_SPEED;
+    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_STRENGTH_ATTACK;
+    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_STAMINA_HEALTH;
+    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_GUTS_ARMOR;
+    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS;
+    
+    public static ForgeConfigSpec.BooleanValue UMASOUL_SPEED_PRECENT_ENABLE;
+    public static ForgeConfigSpec.BooleanValue UMASOUL_STRENGTH_PRECENT_ENABLE;
+    public static ForgeConfigSpec.BooleanValue UMASOUL_STAMINA_PRECENT_ENABLE;
+    public static ForgeConfigSpec.BooleanValue UMASOUL_GUTS_PRECENT_ENABLE;
 
     static {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
         COMMON_BUILDER.comment("General settings").push("general");
+        
+        UMASOUL_SPEED_PRECENT_ENABLE = COMMON_BUILDER.comment("Determines whether to add speed bouns as a percentage.",
+                "If enable, the bonus will be calculated as a percentage.").define("umasoul_speed_percent_enable", true);
+        
+        UMASOUL_MAX_SPEED = COMMON_BUILDER
+                .comment("Determining the max speed of umamusume soul.",
+                        "Set to 0 will not add any speed.").defineInRange("umasoul_max_speed", 1.20, 0.0, Double.MAX_VALUE);
+        
+        UMASOUL_STRENGTH_PRECENT_ENABLE = COMMON_BUILDER.comment("Determines whether to add strength bouns as a percentage.",
+                "If enable, the bonus will be calculated as a percentage.").define("umasoul_strength_percent_enable", true);
+        
+        UMASOUL_MAX_STRENGTH_ATTACK = COMMON_BUILDER
+                .comment("Determining the max attack of umamusume soul.",
+                        "Set to 0 will not add any attack.").defineInRange("umasoul_max_strength_attack", 2.0, 0.0, Double.MAX_VALUE);
+        
+        UMASOUL_STAMINA_PRECENT_ENABLE = COMMON_BUILDER.comment("Determines whether to add stamina bouns as a percentage.",
+                "If enable, the bonus will be calculated as a percentage.").define("umasoul_stamina_percent_enable", false);
+        
+        UMASOUL_MAX_STAMINA_HEALTH = COMMON_BUILDER
+                .comment("Determining the max health of umamusume soul.",
+                        "Set to 0 will not add any health.").defineInRange("umasoul_max_stamina_health", 20, 0.0, Double.MAX_VALUE);
+        
+        UMASOUL_GUTS_PRECENT_ENABLE = COMMON_BUILDER.comment("Determines whether to add guts bouns as a percentage.",
+                "If enable, the bonus will be calculated as a percentage.").define("umasoul_guts_percent_enable", false);
+        
+        UMASOUL_MAX_GUTS_ARMOR = COMMON_BUILDER
+                .comment("Determining the max armor of umamusume soul.",
+                        "Set to 0 will not add any health.").defineInRange("umasoul_max_guts_armor", 5.0, 0.0, Double.MAX_VALUE);
+        
+        UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS = COMMON_BUILDER
+                .comment("Determining the max armor toughness of umamusume soul.",
+                        "Set to 0 will not add any health.").defineInRange("umasoul_max_guts_armor_toughness", 4.0, 0.0, Double.MAX_VALUE);
 
         CHANCE_MOTIVATION_EFFECT = COMMON_BUILDER.comment("Determining the chance that damage will effect motivation.",
                 "Set to 0 to turn off.").defineInRange("chance_motivation_effect", 0.5, 0.0, 1.0);
@@ -67,10 +110,10 @@ public class UmapyoiConfig {
         STAT_LIMIT_VALUE = COMMON_BUILDER.comment("Determines the threshold for all base stat values.",
                 "If the threshold value is exceeded, the attribute effect will be reduced according to stat_limit_reduction.",
                 "Some attribute effects no longer increase after exceeding the threshold")
-                .defineInRange("stat_limit_value", 12, 12, Integer.MAX_VALUE);
+                .defineInRange("stat_limit_value", 18, 18, Integer.MAX_VALUE);
         STAT_LIMIT_REDUCTION_RATE = COMMON_BUILDER.comment("Determines the reduction for all base stat values.",
                 "If the threshold value is exceeded, the attribute effect will be reduced according to this value.")
-                .defineInRange("stat_limit_reduction", 0.75D, 0D, 1D);
+                .defineInRange("stat_limit_reduction", 0.6D, 0D, 1D);
         
         COMMON_BUILDER.pop();
         COMMON_CONFIG = COMMON_BUILDER.build();

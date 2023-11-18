@@ -15,6 +15,7 @@ import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
@@ -26,6 +27,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
 public class UmaSoulCuriosWrapper implements ICurio {
+
     private final ItemStack stack;
 
     public UmaSoulCuriosWrapper(ItemStack stack) {
@@ -35,6 +37,11 @@ public class UmaSoulCuriosWrapper implements ICurio {
     @Override
     public SoundInfo getEquipSound(SlotContext slotContext) {
         return new SoundInfo(SoundEvents.ARMOR_EQUIP_LEATHER, 1.0f, 1.0f);
+    }
+
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext) {
+        return UmaSoulUtils.getGrowth(getStack()) != Growth.UNTRAINED;
     }
 
     @Override
@@ -94,28 +101,61 @@ public class UmaSoulCuriosWrapper implements ICurio {
         CuriosApi.getCuriosHelper().addSlotModifier(atts, "uma_suit", uuid, 1.0, AttributeModifier.Operation.ADDITION);
         if (UmaSoulUtils.getGrowth(getStack()) == Growth.UNTRAINED)
             return atts;
-        atts.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "speed_running_bonus",
-                getBounsValue(StatusType.SPEED.getId(), 0.1), AttributeModifier.Operation.MULTIPLY_TOTAL));
-        atts.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(uuid, "strength_attack_bonus",
-                getBounsValue(StatusType.STRENGTH.getId(), 0.2), AttributeModifier.Operation.MULTIPLY_TOTAL));
-        atts.put(Attributes.MAX_HEALTH, new AttributeModifier(uuid, "strength_attack_bonus",
-                getBounsValue(StatusType.STAMINA.getId(), 2), AttributeModifier.Operation.ADDITION));
-        atts.put(Attributes.ARMOR, new AttributeModifier(uuid, "guts_armor_bonus",
-                getBounsValue(StatusType.GUTS.getId(), 1), AttributeModifier.Operation.ADDITION));
-        atts.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "guts_armor_toughness_bonus",
-                getBounsValue(StatusType.GUTS.getId(), 1), AttributeModifier.Operation.ADDITION));
+        atts.put(Attributes.MOVEMENT_SPEED,
+                new AttributeModifier(uuid, "speed_running_bonus",
+                        getExactProperty(StatusType.SPEED.getId(), UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
+                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                                : AttributeModifier.Operation.ADDITION));
+        
+        atts.put(ForgeMod.SWIM_SPEED.get(),
+                new AttributeModifier(uuid, "speed_swiming_bonus",
+                        getExactProperty(StatusType.SPEED.getId(), UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
+                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                                : AttributeModifier.Operation.ADDITION));
+        
+        atts.put(ForgeMod.STEP_HEIGHT_ADDITION.get(),
+                new AttributeModifier(uuid, "speed_step_bonus",
+                        getExactProperty(StatusType.SPEED.getId(), UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
+                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                                : AttributeModifier.Operation.ADDITION));
+        
+        atts.put(Attributes.ATTACK_DAMAGE,
+                new AttributeModifier(uuid, "strength_attack_bonus",
+                        getExactProperty(StatusType.STRENGTH.getId(), UmapyoiConfig.UMASOUL_MAX_STRENGTH_ATTACK.get()),
+                        UmapyoiConfig.UMASOUL_STRENGTH_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                                : AttributeModifier.Operation.ADDITION));
+        atts.put(Attributes.MAX_HEALTH,
+                new AttributeModifier(uuid, "strength_attack_bonus",
+                        getExactProperty(StatusType.STAMINA.getId(), UmapyoiConfig.UMASOUL_MAX_STAMINA_HEALTH.get()),
+                        UmapyoiConfig.UMASOUL_STAMINA_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                                : AttributeModifier.Operation.ADDITION));
+        atts.put(Attributes.ARMOR,
+                new AttributeModifier(uuid, "guts_armor_bonus",
+                        getExactProperty(StatusType.GUTS.getId(), UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR.get()),
+                        UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                                : AttributeModifier.Operation.ADDITION));
+        atts.put(Attributes.ARMOR_TOUGHNESS,
+                new AttributeModifier(uuid, "guts_armor_toughness_bonus",
+                        getExactProperty(StatusType.GUTS.getId(), UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS.get()),
+                        UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                                : AttributeModifier.Operation.ADDITION));
 
         return atts;
     }
 
-    private double getBounsValue(int num, double multiply) {
-        return UmaSoulUtils.getMotivation(this.getStack()).getMultiplier()
-                * getExactProperty(num, multiply);
+    public double getExactProperty(int num, double limit) {
+        var retiredValue = UmaSoulUtils.getGrowth(getStack()) == Growth.RETIRED ? 1.0D : 0.25D;
+        var propertyRate = 1.0D + (UmaSoulUtils.getPropertyRate(this.getStack())[num] / 100.0D);
+        var totalProperty = propertyPercentage(num);
+        return UmaSoulUtils.getMotivation(this.getStack()).getMultiplier() * limit * propertyRate * retiredValue * totalProperty;
     }
 
-    public double getExactProperty(int num, double multiply) {
-        int property = Math.min(12, UmaSoulUtils.getProperty(this.getStack())[num]);
-        int ex_property = Math.max(0, UmaSoulUtils.getProperty(this.getStack())[num] - UmapyoiConfig.STAT_LIMIT_VALUE.get());
-        return multiply * (Math.max(1, property) + ex_property * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get());
+    private double propertyPercentage(int num) {
+        var x = UmaSoulUtils.getProperty(this.getStack())[num];
+        var statLimit = UmapyoiConfig.STAT_LIMIT_VALUE.get();
+        var denominator = 1 + Math.pow(Math.E, 
+                (x > statLimit ? (-0.125 * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get()) : -0.125) * 
+                (x - statLimit));
+        return 1 / denominator;
     }
 }

@@ -46,8 +46,7 @@ public class UseSkillPacket {
                     player.displayClientMessage(new TranslatableComponent("umapyoi.unknown_skill"), true);
                     return;
                 }
-                if (MinecraftForge.EVENT_BUS
-                        .post(new SkillEvent.UseSkillEvent(selectedSkillName, player.getLevel(), player)))
+                if (MinecraftForge.EVENT_BUS.post(new SkillEvent.UseSkillEvent(selectedSkillName, player.getLevel(), player)))
                     return;
                 int ap = UmaSoulUtils.getActionPoint(umaSoul);
                 if (ap >= selectedSkill.getActionPoint()) {

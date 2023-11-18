@@ -85,10 +85,14 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, ThreeGoddessBlockEntity blockEntity) {
-        blockEntity.animationTime++;
         if (blockEntity.canWork())
             ThreeGoddessBlockEntity.addWorkingParticle(level, pos);
-        blockEntity.animationTime %= 360;
+        if(blockEntity.hasInput()) {
+            blockEntity.animationTime++;
+            blockEntity.animationTime %= 360;
+        } else {
+            blockEntity.animationTime = 0;  
+        }
     }
 
     private static void addWorkingParticle(Level pLevel, BlockPos pPos) {

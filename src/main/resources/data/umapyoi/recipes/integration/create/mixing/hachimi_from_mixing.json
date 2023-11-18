@@ -1,0 +1,29 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "fluidTag": "forge:honey",
+      "amount": 250
+    },
+    {
+      "fluid": "minecraft:water",
+      "nbt": {},
+      "amount": 500
+    },
+    {
+      "tag": "forge:sugar"
+    }
+  ],
+  "results": [
+    {
+      "item": "umapyoi:hachimi_mid",
+      "count": 1
+    }
+  ]
+}

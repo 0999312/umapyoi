@@ -1,0 +1,17 @@
+{
+    "name": "移籍登记台",
+    "icon": "umapyoi:disassembly_block",
+    "category": "umapyoi:others",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "由于马娘之魂的流行，村民当中也出现了类似训练中心的地方。$(p)因此，村民之间交换马娘之魂或者支援卡的情况时常发生。这种交换被称为“移籍”。登记移籍之后，作为交换会根据物品的情况给予相对应的报酬。$(p)马娘水晶和蹄铁水晶是合成马券的重要材料，主要的来源便是移籍报酬。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:disassembly_block",
+            "text": "同模换色之法"
+        }
+    ]
+}

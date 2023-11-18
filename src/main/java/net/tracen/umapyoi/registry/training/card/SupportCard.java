@@ -22,7 +22,9 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
                     .forGetter(SupportCard::getGachaRanking),
             SupportType.CODEC.fieldOf("type").forGetter(SupportCard::getSupportType),
             SupportEntry.CODEC.listOf().fieldOf("supports").forGetter(SupportCard::getSupports), ResourceLocation.CODEC
-                    .listOf().optionalFieldOf("supporters", Lists.newArrayList()).forGetter(SupportCard::getSupporters))
+                    .listOf().optionalFieldOf("supporters", Lists.newArrayList()).forGetter(SupportCard::getSupporters),
+            Codec.INT.fieldOf("max_damage").forGetter(SupportCard::getMaxDamage)        
+            )
             .apply(instance, SupportCard::new));
 
     public static final ResourceKey<Registry<SupportCard>> REGISTRY_KEY = ResourceKey
@@ -32,13 +34,15 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
     private final SupportType type;
     private final List<SupportEntry> supports;
     private final List<ResourceLocation> supporters;
+    private final int maxDamage;
 
     private SupportCard(GachaRanking level, SupportType type, List<SupportEntry> supports,
-            List<ResourceLocation> supporters) {
+            List<ResourceLocation> supporters, int maxDamage) {
         this.ranking = level;
         this.type = type;
         this.supports = supports;
         this.supporters = supporters;
+        this.maxDamage = maxDamage;
     }
 
     public GachaRanking getGachaRanking() {
@@ -47,6 +51,10 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
 
     public List<SupportEntry> getSupports() {
         return supports;
+    }
+    
+    public int getMaxDamage() {
+        return maxDamage;
     }
 
     public List<SupportStack> getSupportStacks() {
@@ -70,7 +78,7 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
         private SupportType type = SupportType.SPEED;
         private List<SupportEntry> supports = Lists.newArrayList();
         private List<ResourceLocation> supporters = Lists.newArrayList();
-
+        private int damage = 3;
         private Builder() {
         }
 
@@ -80,6 +88,11 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
 
         public Builder ranking(GachaRanking level) {
             this.level = level;
+            return this;
+        }
+        
+        public Builder maxDamage(int damage) {
+            this.damage = damage;
             return this;
         }
 
@@ -99,7 +112,7 @@ public class SupportCard extends ForgeRegistryEntry<SupportCard> {
         }
 
         public SupportCard build() {
-            return new SupportCard(level, type, supports, supporters);
+            return new SupportCard(level, type, supports, supporters, damage);
         }
     }
 }

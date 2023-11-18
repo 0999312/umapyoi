@@ -90,7 +90,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
 
         add(BlockRegistry.THREE_GODDESS.get(), "Three Goddesses Statue");
         add(BlockRegistry.THREE_GODDESS_UPPER.get(), "Three Goddesses Statue");
-        add(BlockRegistry.TRAINING_FACILITY.get(), "Training Facility");
+        add(BlockRegistry.TRAINING_FACILITY.get(), "Training Terminal");
         add(BlockRegistry.SKILL_LEARNING_TABLE.get(), "Skill Learning Table");
         add(BlockRegistry.REGISTER_LECTERN.get(), "Retire Register Lectern");
         
@@ -100,7 +100,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add(BlockRegistry.UMA_PEDESTAL.get(), "Golden Umamusume Pedestal");
         add(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(), "Golden Support Album Pedestal");
         
-        add(BlockRegistry.DISASSEMBLY_BLOCK.get(), "Uma-Disassembly Block");
+        add(BlockRegistry.DISASSEMBLY_BLOCK.get(), "Transfer Register Lectern");
 
         add(MobEffectRegistry.PANICKING.get(), "Panicking");
 
@@ -110,7 +110,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("curios.identifier.uma_soul", "Umamusume Soul");
         add("curios.identifier.uma_suit", "Umamusume Apparel");
         add("itemGroup.umapyoi", "Umapyoi");
-
+        
         addTooltip(".umadata.name", "Umamusume's Name:%s");
         addTooltip(".umafactor.data", "Has %s and %d more factors.");
 
@@ -122,6 +122,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addTooltip(".uma_soul.soul_details", "Umamusume Soul Status:");
         addTooltip(".press_shift_for_details", "Press Shift Button for details.");
         addTooltip(".factors.factors_details", "Factors:");
+        
+        addTooltip(".uma_soul.ranking", "Total Ranking: %s");
 
         addTooltip(".uma_soul.speed_details", "Speed: %s / %s");
         addTooltip(".uma_soul.stamina_details", "Stamina: %s / %s");
@@ -135,12 +137,26 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSupport(TrainingSupportRegistry.GUTS_SUPPORT, "Guts Increase");
         addSupport(TrainingSupportRegistry.WISDOM_SUPPORT, "Wisdom Increase");
         addSupport(TrainingSupportRegistry.SKILL_SUPPORT, "Learning Skill");
+        addSupport(TrainingSupportRegistry.AP_SUPPORT, "Action Pt Increase");
 
         addFactor(UmaFactorRegistry.SPEED_FACTOR, "Speed Factor");
         addFactor(UmaFactorRegistry.STAMINA_FACTOR, "Stamina Factor");
         addFactor(UmaFactorRegistry.STRENGTH_FACTOR, "Strength Factor");
         addFactor(UmaFactorRegistry.GUTS_FACTOR, "Guts Factor");
         addFactor(UmaFactorRegistry.WISDOM_FACTOR, "Wisdom Factor");
+        
+        addFactor(UmaFactorRegistry.PHYSIQUE_FACTOR, "Physique Factor");
+        addFactor(UmaFactorRegistry.TELENT_FACTOR, "Telent Factor");
+        addFactor(UmaFactorRegistry.MEMORY_FACTOR, "Memory Factor");
+        addFactor(UmaFactorRegistry.ACTIONS_FACTOR, "Action Pt Factor");
+        
+        addFactor(UmaFactorRegistry.WHITE_SPEED_FACTOR, "Speed Experiences");
+        addFactor(UmaFactorRegistry.WHITE_STAMINA_FACTOR, "Stamina Experiences");
+        addFactor(UmaFactorRegistry.WHITE_STRENGTH_FACTOR, "Strength Experiences");
+        addFactor(UmaFactorRegistry.WHITE_GUTS_FACTOR, "Guts Experiences");
+        addFactor(UmaFactorRegistry.WHITE_WISDOM_FACTOR, "Wisdom Experiences");
+        addFactor(UmaFactorRegistry.WHITE_TELENT_FACTOR, "Effective Learning");
+        addFactor(UmaFactorRegistry.WHITE_ACTIONS_FACTOR, "Action Planning");
 
         addSkill(UmaSkillRegistry.BASIC_PACE, "Basic Pace");
         addSkill(UmaSkillRegistry.LAST_LEG, "Last Leg");
@@ -162,6 +178,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("container.umapyoi.training_facility", "Training Facility");
         add("container.umapyoi.skill_learning", "Skill Learning Table");
         add("container.umapyoi.retire_register", "Retire Register");
+        add("container.umapyoi.disassembly_block", "Transfer Register");
 
         add("key.category.umapyoi", "Umapyoi");
         add("key.umapyoi.use_skill", "Use Skill");
@@ -185,34 +202,61 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("book.umapyoi.trainers_manual.title", "Tracen Trainers' Manual");
         add("book.umapyoi.trainers_manual.subtitle", "Tracen Academy");
         add("book.umapyoi.trainers_manual.landing_text", "This is the manual of Umapyoi mod.");
+        
+        add("umapyoi.no_umasoul_equiped", "Please equip Umamusume Soul first.");
+        add("umapyoi.learning.no_learning_time", "No longer able to learn more.");
+        add("umapyoi.learning.can_not_learn", "No longer possible to continue with this part of the learning process.");
+        
+        add("umapyoi.jei.disassembly", "Transfer Register");
+        add("umapyoi.jei.gacha", "Pedestal Summon");
+        add("umapyoi.jei.gacha.need_book", "Need a book on pedestal");
 
-        add("umastatus.level.0", "G-");
-        add("umastatus.level.1", "G");
-        add("umastatus.level.2", "F");
-        add("umastatus.level.3", "E");
-        add("umastatus.level.4", "D");
-        add("umastatus.level.5", "C");
-        add("umastatus.level.6", "B");
-        add("umastatus.level.7", "A");
-        add("umastatus.level.8", "A+");
-        add("umastatus.level.9", "S");
-        add("umastatus.level.10", "S+");
-        add("umastatus.level.11", "SS");
-        add("umastatus.level.12", "SS+");
+        add("umastatus.level.0", "§7G-");
+        add("umastatus.level.1", "§7G");
+        add("umastatus.level.2", "§7G+");
+        add("umastatus.level.3", "§5F");
+        add("umastatus.level.4", "§5F+");
+        add("umastatus.level.5", "§dE");
+        add("umastatus.level.6", "§dE+");
+        add("umastatus.level.7", "§bD");
+        add("umastatus.level.8", "§bD+");
+        add("umastatus.level.9", "§aC");
+        add("umastatus.level.10", "§aC+");
+        add("umastatus.level.11", "§4B");
+        add("umastatus.level.12", "§4B+");
+        add("umastatus.level.13", "§cA");
+        add("umastatus.level.14", "§cA+");
+        add("umastatus.level.15", "§eS");
+        add("umastatus.level.16", "§eS+");
+        add("umastatus.level.17", "§eSS");
+        add("umastatus.level.18", "§eSS+");
         
-        add("umastatus.level.13", "UG-");
-        add("umastatus.level.14", "UG");
-        add("umastatus.level.15", "UG+");
-        add("umastatus.level.16", "UF");
-        add("umastatus.level.17", "UF+");
-        add("umastatus.level.18", "UE");
-        add("umastatus.level.19", "UE+");
-        add("umastatus.level.20", "UD");
+        add("umastatus.level.19", "§9UG-");
+        add("umastatus.level.20", "§9UG");
+        add("umastatus.level.21", "§9UG+");
+        add("umastatus.level.22", "§9UF-");
+        add("umastatus.level.23", "§9UF");
+        add("umastatus.level.24", "§9UF+");
+        add("umastatus.level.25", "§9UE");
+        add("umastatus.level.26", "§9UE+");
+        add("umastatus.level.27", "§9UD");
+        add("umastatus.level.28", "§9UD+");
+        add("umastatus.level.29", "§9UC");
+        add("umastatus.level.30", "§9UC+");
+        add("umastatus.level.31", "§9UB");
+        add("umastatus.level.32", "§9UB+");
+        add("umastatus.level.33", "§9UA");
+        add("umastatus.level.34", "§9UA+");
+        add("umastatus.level.35", "§9US");
+        add("umastatus.level.36", "§9US+");
+        add("umastatus.level.37", "§9USS");
+        add("umastatus.level.38", "§9USS+");
+        add("umastatus.level.39", "§6MAX");
         
-        addUma(UmaDataRegistry.COMMON_UMA, "Nameless Umamusume");
-        addUma(UmaDataRegistry.COMMON_UMA_A, "Nameless Umamusume");
-        addUma(UmaDataRegistry.COMMON_UMA_B, "Nameless Umamusume");
-        addUma(UmaDataRegistry.COMMON_UMA_C, "Nameless Umamusume");
+        addUma(UmaDataRegistry.COMMON_UMA, "Nameless Bay Umamusume");
+        addUma(UmaDataRegistry.COMMON_UMA_A, "Nameless Perlino Umamusume");
+        addUma(UmaDataRegistry.COMMON_UMA_B, "Nameless Gray Umamusume");
+        addUma(UmaDataRegistry.COMMON_UMA_C, "Nameless Aqua Umamusume");
         
         addUma(UmaDataRegistry.MEJIRO_MCQUEEN, "Mejiro McQueen");
         addUma(UmaDataRegistry.GOLD_SHIP, "Gold Ship");
@@ -256,9 +300,17 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addUma(UmaDataRegistry.CURREN_CHAN_DRESS, "[Calend's Ma Chérie] Curren Chan");
         
+        addUma(UmaDataRegistry.SYMBOLI_RUDOLF, "Symboli Rudolf");
+        addUma(UmaDataRegistry.NARITA_TOP_ROAD, "Narita Top Road");
+        
+        addUma(UmaDataRegistry.VENUS_PARK, "Venus Park");
+        
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");
+        add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "fine_motion")), "Fine Motion");
 
+        addSupportCard(SupportCardRegistry.BLANK_CARD, "Blank Support Card");
+        
         addSupportCard(SupportCardRegistry.BASIC_SPEED_CARD, "[Basic Training] Speed Training");
         addSupportCard(SupportCardRegistry.BASIC_STAMINA_CARD, "[Basic Training] Stamina Training");
         addSupportCard(SupportCardRegistry.BASIC_STRENGTH_CARD, "[Basic Training] Strength Training");
@@ -289,6 +341,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSupportCard(SupportCardRegistry.SSR_KS_MIRACLE, "[To you] K.S. Miracle");
         addSupportCard(SupportCardRegistry.SSR_KITASANBLACK, "[Pushed by the Approaching Passion] Kitasan Black");
         addSupportCard(SupportCardRegistry.SSR_SUPERCREEK, "[A Grain of Peace] Super Creek");
+        
+        addSupportCard(SupportCardRegistry.SSR_FINE_MOTION, "[Gratitude Up to One's Fingertips] Fine Motion");
     }
 
     private void addSupportCard(Supplier<SupportCard> key, String name) {

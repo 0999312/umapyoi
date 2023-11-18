@@ -29,6 +29,7 @@ public abstract class ApplyFactorEvent extends Event {
         }
     }
 
+    @Cancelable
     public static class Post extends ApplyFactorEvent {
         public Post(UmaFactorStack stack, ItemStack soul) {
             super(stack, soul);

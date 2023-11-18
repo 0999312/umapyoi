@@ -92,6 +92,14 @@
   "umadata.umapyoi.ks_miracle": "ケイエスミラクル",
   "umadata.umapyoi.super_creek": "スーパークリーク",
   "umadata.umapyoi.curren_chan_dress": "[朔月のマ・シェリ] カレンチャン",
+  "umadata.umapyoi.venus_park": "ヴェニュスパーク",
+    
+  "umadata.umapyoi.symboli_rudolf": "シンボリルドルフ",
+  "umadata.umapyoi.narita_top_road": "ナリタトップロード",
+  
+  "umapyoi.jei.disassembly": "移籍登録",
+  "umapyoi.jei.gacha": "召喚",
+  "umapyoi.jei.gacha.need_book": "本が必要です",
   
   "tooltip.umapyoi.umadata.name": "ウマ娘名：%s",
   "tooltip.umapyoi.supports": "サポート：",
@@ -106,7 +114,7 @@
   "block.umapyoi.support_album_pedestal": "サポートアルバム台座",
   "block.umapyoi.silver_support_album_pedestal": "銀のサポートアルバム台座",
   "block.umapyoi.silver_uma_pedestal": "銀の召喚台座",
-  "block.umapyoi.disassembly_block": "分解ブロック",
+  "block.umapyoi.disassembly_block": "移籍登録台",
   
   "block.umapyoi.three_goddess_upper": "三女神像",
   
@@ -122,8 +130,10 @@
   "item.umapyoi.small_energy_drink": "バイタル20",
   "item.umapyoi.large_energy_drink": "バイタル65",
   "item.umapyoi.medium_energy_drink": "バイタル40",
+  
   "umadata.umapyoi.mejiro_mcqueen": "メジロマックイーン",
   "umadata.umapyoi.copano_rickey": "コパノリッキー",
+  "umadata.umapyoi.fine_motion": "ファインモーション",
   
   "support_card.umapyoi.adv_guts_card.name": "[上級トレーニング] 根性トレーニング",
   "support_card.umapyoi.adv_speed_card.name": "[上級トレーニング] スピードトレーニング",
@@ -152,6 +162,7 @@
   "support_card.umapyoi.ssr_ks_miracle.name": "[To you]ケイエスミラクル",
   "support_card.umapyoi.ssr_oguri_cap.name": "[『愛してもらうんだぞ』]オグリキャップ",
   "support_card.umapyoi.ssr_super_creek.name": "[一粒の安らぎ]スーパークリーク",
+  "support_card.umapyoi.ssr_fine_motion.name": "[感謝は指先まで込めて]ファインモーション",
   
   "support.umapyoi.guts_support": "根性アップ",
   "support.umapyoi.skill_support": "スキル獲得",
@@ -159,6 +170,7 @@
   "support.umapyoi.stamina_support": "スタミナアップ",
   "support.umapyoi.strength_support": "パワーアップ",
   "support.umapyoi.wisdom_support": "賢さアップ",
+  "support.umapyoi.actionpoint_support": "アクションPtアップ",
   "tooltip.umapyoi.umafactor.data": "%s (など) の合計 %d 因子を所有",
   
   "uma_factor.umapyoi.guts_factor": "根性",
@@ -166,6 +178,18 @@
   "uma_factor.umapyoi.stamina_factor": "スタミナ",
   "uma_factor.umapyoi.strength_factor": "パワー",
   "uma_factor.umapyoi.wisdom_factor": "賢さ",
+  
+  "uma_factor.umapyoi.physique_factor": "体格",
+  "uma_factor.umapyoi.telent_factor": "タレント",
+  "uma_factor.umapyoi.memory_factor": "メモリ",
+  "uma_factor.umapyoi.actions_factor": "アクションPt",
+  "uma_factor.umapyoi.white_telent_factor": "効果的な学習",
+  "uma_factor.umapyoi.white_actions_factor": "行動計画",
+  "uma_factor.umapyoi.white_guts_factor": "根性体験談",
+  "uma_factor.umapyoi.white_speed_factor": "スピード体験談",
+  "uma_factor.umapyoi.white_stamina_factor": "スタミナ体験談",
+  "uma_factor.umapyoi.white_strength_factor": "パワー体験談",
+  "uma_factor.umapyoi.white_wisdom_factor": "賢さ体験談",
   
   "uma_skill.umapyoi.basic_pace": "基本ペース",
   "uma_skill.umapyoi.cooldown": "クールダウン",
@@ -191,18 +215,22 @@
   "umapyoi.skill.no_require": "要件なし",
   "umapyoi.skill.require_wisdom": "%s 賢さ が必要。",
   
+  "umapyoi.no_umasoul_equiped": "まずはウマ娘魂を装備してください。",
+  "umapyoi.learning.no_learning_time": "これ以上学ぶことはできなくなりました。",
+  "umapyoi.learning.can_not_learn": "この部分の学習を続けることはもう不可能です。",
+  
   "tooltip.umapyoi.press_shift_for_details": "詳細はShiftボタンを押してください。",
   "tooltip.umapyoi.support_card.press_ctrl_for_supporters": "サポーター詳細はCtrlボタンを押してください。",
   "tooltip.umapyoi.support_card.press_shift_for_supports": "サポート詳細はShiftボタンを押してください。",
-  "tooltip.umapyoi.uma_soul.soul_details": "馬娘的屬性:",
+  "tooltip.umapyoi.uma_soul.soul_details": "スターテス:",
   "tooltip.umapyoi.uma_soul.speed_details": "スピード： %s / %s",
   "tooltip.umapyoi.uma_soul.stamina_details": "スタミナ： %s / %s",
   "tooltip.umapyoi.uma_soul.strength_details": "パワー： %s / %s",
   "tooltip.umapyoi.uma_soul.guts_details": "根性： %s / %s",
   "tooltip.umapyoi.uma_soul.wisdom_details": "賢さ： %s / %s",
-  
+  "tooltip.umapyoi.uma_soul.ranking": "ランキング： %s",
   "umapyoi.uma_pedestal.cannot_add_item": "これ以上アイテムを追加できません。",
-  "umapyoi.not_enough_ap": "アクションポイントが足りない。",
+  "umapyoi.not_enough_ap": "アクションPtが足りない。",
   "umapyoi.skill.has_learned_skill": "このスキルは習得済みです。",
   "umapyoi.skill.has_retired": "このウマ娘は引退です。",
   "umapyoi.skill.slot_needed": "学習制限に達しました。"

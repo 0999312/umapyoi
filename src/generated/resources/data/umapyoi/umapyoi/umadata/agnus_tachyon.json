@@ -1,19 +1,26 @@
 {
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "propertyRate": [
+    20,
+    0,
+    0,
+    10,
+    0
+  ],
+  "uniqueSkill": "umapyoi:basic_pace",
+  "identifier": "umapyoi:agnus_tachyon",
+  "ranking": "sr",
   "property": [
     1,
     1,
     1,
     1,
     1
-  ],
-  "maxProperty": [
-    12,
-    12,
-    12,
-    12,
-    12
-  ],
-  "uniqueSkill": "umapyoi:basic_pace",
-  "identifier": "umapyoi:agnus_tachyon",
-  "ranking": "sr"
+  ]
 }

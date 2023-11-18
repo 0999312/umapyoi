@@ -1,19 +1,26 @@
 {
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "propertyRate": [
+    10,
+    10,
+    0,
+    0,
+    10
+  ],
+  "uniqueSkill": "umapyoi:basic_pace",
+  "identifier": "umapyoi:mr_cb",
+  "ranking": "sr",
   "property": [
     1,
     1,
     1,
     1,
     1
-  ],
-  "maxProperty": [
-    12,
-    12,
-    12,
-    12,
-    12
-  ],
-  "uniqueSkill": "umapyoi:basic_pace",
-  "identifier": "umapyoi:mr_cb",
-  "ranking": "sr"
+  ]
 }

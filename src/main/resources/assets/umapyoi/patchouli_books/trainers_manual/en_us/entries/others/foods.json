@@ -1,44 +1,44 @@
 {
-    "name": "食品的额外效果",
+    "name": "Foods",
     "icon": "umapyoi:royal_bitter",
     "category": "umapyoi:others",
     "sortnum": 2,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "过去存在于这个世界上的马娘们相当喜爱胡萝卜，甚至她们为村民带来了胡萝卜的种植方法。但这一说法只是传说，并没有太多证据支持。$(p)但是有一件事是确定的：变成马娘之后味道的偏好会被改变。根据现在的训练员们所说：变成马娘之后对胡萝卜料理的喜爱增进了不少；同时对甜味也开始变得喜爱起来，且讨厌苦涩的味道。"
+            "text": "Umamusumes love carrot, they even brought the villagers how to grow carrots. But this is just a legend.$(p)But one thing's for sure: Being Umamusume, taste preference will be changed.According to what is said now: Being Umamusume, will become more like sweet taste, and dislike bitter taste."
         },
         {
             "type": "patchouli:text",
-            "text": "食用马娘们喜爱的食物，例如蛋糕和蜂蜜特饮等，会使得马娘之魂的状态得到提升；反之则会下降。$(p)训练员们为了快速恢复行动力，研发出了“活力”系列饮料。这种饮料可以直接恢复大量的行动力，且可以在焦躁状态下恢复行动力。这一系列饮料可以在村里的道具商人处买到，也可以自己制作。"
+            "text": "Consumption of favorite foods, such as cake and honey drinks, will result in an increase in status, and vice versa.  The trainers of $(p) developed the \"Vital\" series drinks in order to quickly restore Action Pt. This drink directly restores a large amount of Action Pt and can be used to restore Action Pt in Panicking; it can be purchased from the village, or you can make your own."
         },
         {
             "type": "patchouli:text",
-            "text": "道具商人还会提供一种名为“皇家青汁”的饮料。$(p)虽然能使行动力立刻恢复到最佳状态，但一定会使状态下降。$(p)$(#f00)$(l)没有心理准备请不要尝试，真的很苦。$()"
+            "text": "Now there is a drink called \"Royal BitterJuice\".  $(p)$(#f00)$(l)Don't try it if you're not prepared, it's really bitter.$()"
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:hachimi_mid",
             "recipe2": "umapyoi:hachimi_big",
-            "title": "《我不是猫》"
+            "title": "I'm not a cat."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:cupcake",
             "recipe2": "umapyoi:sweet_cupcake",
-            "title": "蛋糕是个谎言！"
+            "title": "Cake is a lie!"
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:small_energy_drink",
             "recipe2": "umapyoi:medium_energy_drink",
-            "title": "其实这就是力〇健吧？"
+            "title": "You probably already know."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:large_energy_drink",
             "recipe2": "umapyoi:royal_bitter",
-            "title": "不好喝，再来一杯！"
+            "title": "Mazui!Moippai!"
         }
     ]
 }

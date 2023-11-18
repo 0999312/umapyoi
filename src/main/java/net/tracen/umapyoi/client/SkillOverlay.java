@@ -54,6 +54,8 @@ public class SkillOverlay implements IIngameOverlay {
             case BUFF -> GuiComponent.blit(poseStack, x + 3, y + 2, 0, 48, 16, 16, 128, 64);
             case HINDER -> GuiComponent.blit(poseStack, x + 3, y + 2, 16, 48, 16, 16, 128, 64);
             case HEAL -> GuiComponent.blit(poseStack, x + 3, y + 2, 32, 48, 16, 16, 128, 64);
+            case PASSIVE -> throw new UnsupportedOperationException("Unimplemented case: " + skill.getType());
+            default -> throw new IllegalArgumentException("Unexpected value: " + skill.getType());
             }
             this.minecraft.font.draw(poseStack, skill.getDescription(), x + 22, y + 6, 0x794016);
         } else {

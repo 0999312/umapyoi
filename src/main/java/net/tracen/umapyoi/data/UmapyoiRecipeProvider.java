@@ -55,7 +55,7 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
 
         ShapedRecipeBuilder.shaped(BlockRegistry.DISASSEMBLY_BLOCK.get()).pattern(" J ").pattern("ALA").pattern("AAA")
-                .define('A', Tags.Items.INGOTS_IRON).define('L', Items.BLAST_FURNACE)
+                .define('A', Tags.Items.INGOTS_IRON).define('L', Items.LECTERN)
                 .define('J', ItemRegistry.BLANK_TICKET.get())
                 .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
 

@@ -27,9 +27,11 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
+import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.registry.SupportCardRegistry;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 import net.tracen.umapyoi.registry.training.SupportStack;
@@ -40,9 +42,10 @@ import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
+@EventBusSubscriber
 public class SupportCardItem extends Item implements SupportContainer {
     private static final Comparator<Entry<ResourceKey<SupportCard>, SupportCard>> COMPARATOR = new CardDataComparator();
-    
+
     public SupportCardItem() {
         super(Umapyoi.defaultItemProperties().stacksTo(1));
     }
@@ -52,13 +55,15 @@ public class SupportCardItem extends Item implements SupportContainer {
     public void fillItemCategory(CreativeModeTab pCategory, NonNullList<ItemStack> pItems) {
         if (this.allowdedIn(pCategory)) {
             if (Minecraft.getInstance().getConnection() != null) {
-                SupportCardItem.sortedCardDataList().forEach(card ->{
+                SupportCardItem.sortedCardDataList().forEach(card -> {
                     if (card.getKey().location().equals(SupportCardRegistry.BLANK_CARD.getId()))
                         return;
                     ItemStack result = this.getDefaultInstance();
                     result.getOrCreateTag().putString("support_card", card.getKey().location().toString());
                     result.getOrCreateTag().putString("ranking",
                             card.getValue().getGachaRanking().name().toLowerCase());
+                    result.getOrCreateTag().putInt("maxDamage",
+                            card.getValue().getMaxDamage());
                     pItems.add(result);
                 });
             }
@@ -66,16 +71,31 @@ public class SupportCardItem extends Item implements SupportContainer {
     }
 
     public static Stream<Entry<ResourceKey<SupportCard>, SupportCard>> sortedCardDataList() {
-        Umapyoi.getLogger().info("Sorting SC......");
         return ClientUtils.getClientSupportCardRegistry().entrySet().stream().sorted(SupportCardItem.COMPARATOR);
     }
-    
+
     @Override
     public ItemStack getDefaultInstance() {
         ItemStack result = super.getDefaultInstance();
         result.getOrCreateTag().putString("support_card", SupportCardRegistry.BLANK_CARD.getId().toString());
         result.getOrCreateTag().putString("ranking", GachaRanking.R.name().toLowerCase());
+        result.getOrCreateTag().putInt("maxDamage", 0);
         return result;
+    }
+    
+    @Override
+    public boolean isDamageable(ItemStack stack) {
+        return this.getMaxDamage(stack) > 0;
+    }
+    
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return stack.getOrCreateTag().getInt("maxDamage");
+    }
+
+    @Override
+    public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
+        return pRepair.is(UmapyoiItemTags.HORSESHOE) || super.isValidRepairItem(pToRepair, pRepair);
     }
 
     @Override
@@ -93,13 +113,15 @@ public class SupportCardItem extends Item implements SupportContainer {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        if (Screen.hasShiftDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
-            tooltip.add(new TranslatableComponent("tooltip.umapyoi.supports").withStyle(ChatFormatting.AQUA));
-            this.getSupports(worldIn, stack)
-                    .forEach(support -> tooltip.add(support.getDescription().copy().withStyle(ChatFormatting.GRAY)));
-        } else {
-            tooltip.add(new TranslatableComponent("tooltip.umapyoi.support_card.press_shift_for_supports")
-                    .withStyle(ChatFormatting.AQUA));
+        if(!this.getSupports(worldIn, stack).isEmpty()) {
+            if (Screen.hasShiftDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
+                tooltip.add(new TranslatableComponent("tooltip.umapyoi.supports").withStyle(ChatFormatting.AQUA));
+                this.getSupports(worldIn, stack)
+                        .forEach(support -> tooltip.add(support.getDescription().copy().withStyle(ChatFormatting.GRAY)));
+            } else {
+                tooltip.add(new TranslatableComponent("tooltip.umapyoi.support_card.press_shift_for_supports")
+                        .withStyle(ChatFormatting.AQUA));
+            }
         }
 
         List<ResourceLocation> supporters = ClientUtils.getClientSupportCardRegistry().get(this.getSupportCardID(stack))
@@ -169,16 +191,16 @@ public class SupportCardItem extends Item implements SupportContainer {
     }
 
     public boolean checkSupports(Level level, ItemStack stack, ItemStack other) {
-        if (stack.getItem() instanceof SupportCardItem otherItem) {
-            
+        if (stack.getItem()instanceof SupportCardItem otherItem) {
+
             var supportCardID = this.getSupportCardID(stack);
             var otherCardID = this.getSupportCardID(other);
-            if(supportCardID.equals(otherCardID))
+            if (supportCardID.equals(otherCardID))
                 return false;
-            
+
             var supportCard = this.getSupportCard(level, stack);
             var otherCard = this.getSupportCard(level, other);
-            
+
             for (ResourceLocation name : supportCard.getSupporters()) {
                 if (otherCard.getSupporters().contains(name))
                     return false;
@@ -186,13 +208,14 @@ public class SupportCardItem extends Item implements SupportContainer {
         }
         return true;
     }
-    
+
     private static class CardDataComparator implements Comparator<Entry<ResourceKey<SupportCard>, SupportCard>> {
         @Override
-        public int compare(Entry<ResourceKey<SupportCard>, SupportCard> left, Entry<ResourceKey<SupportCard>, SupportCard> right) {
+        public int compare(Entry<ResourceKey<SupportCard>, SupportCard> left,
+                Entry<ResourceKey<SupportCard>, SupportCard> right) {
             var leftRanking = left.getValue().getGachaRanking();
             var rightRanking = right.getValue().getGachaRanking();
-            if(leftRanking == rightRanking) {
+            if (leftRanking == rightRanking) {
                 String leftName = left.getKey().location().toString();
                 String rightName = right.getKey().location().toString();
                 return leftName.compareToIgnoreCase(rightName);

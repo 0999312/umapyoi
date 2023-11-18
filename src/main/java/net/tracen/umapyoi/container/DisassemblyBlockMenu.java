@@ -77,7 +77,7 @@ public class DisassemblyBlockMenu extends AbstractContainerMenu {
     }
 
     public DisassemblyBlockMenu(int pContainerId, Inventory pPlayerInventory, ContainerLevelAccess pAccess) {
-        this(ContainerRegistry.RETIRE_REGISTER.get(), pContainerId, pPlayerInventory, pAccess);
+        this(ContainerRegistry.DISASSEMBLY_BLOCK.get(), pContainerId, pPlayerInventory, pAccess);
     }
 
     public DisassemblyBlockMenu(@Nullable MenuType<?> pType, int pContainerId, Inventory pPlayerInventory,
@@ -104,7 +104,6 @@ public class DisassemblyBlockMenu extends AbstractContainerMenu {
 
             public void onTake(Player p_150604_, ItemStack p_150605_) {
                 DisassemblyBlockMenu.this.onTake(p_150604_, p_150605_);
-                p_150604_.onEnchantmentPerformed(p_150605_, 0);
             }
         });
 
@@ -144,12 +143,6 @@ public class DisassemblyBlockMenu extends AbstractContainerMenu {
         ItemStack result = ItemStack.EMPTY;
         GachaRanking ranking = GachaRanking.valueOf(inputSoul.getOrCreateTag().getString("ranking").toUpperCase());
         switch(ranking) {
-            case R : {
-                result = isSupport
-                        ? new ItemStack(ItemRegistry.HORSESHOE_SILVER.get())
-                        : new ItemStack(ItemRegistry.CRYSTAL_SILVER.get()); 
-                break;
-                }
             case SR : {
                 result = isSupport
                         ? new ItemStack(ItemRegistry.HORSESHOE_GOLD.get())
@@ -163,7 +156,9 @@ public class DisassemblyBlockMenu extends AbstractContainerMenu {
                 break;
                 }
             default:
-                break;
+                result = isSupport
+                ? new ItemStack(ItemRegistry.HORSESHOE_SILVER.get())
+                : new ItemStack(ItemRegistry.CRYSTAL_SILVER.get()); 
         }
         return result;
     }

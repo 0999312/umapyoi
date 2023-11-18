@@ -1,4 +1,4 @@
-package net.tracen.umapyoi.client;
+package net.tracen.umapyoi.events.handler;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -20,8 +20,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
+import net.tracen.umapyoi.events.client.RenderingUmaSoulEvent;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
-import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class ClientEvents {
@@ -29,37 +29,44 @@ public class ClientEvents {
     private static NonNullList<ItemStack> armor;
 
     @SubscribeEvent
+    public static void preUmaSoulRendering(RenderingUmaSoulEvent.Pre event) {
+        LivingEntity entity = event.getWearer();
+        var model = event.getModel();
+
+        if (UmapyoiAPI.isUmaSuitRendering(entity)) {
+            model.setAllVisible(false);
+            model.head.visible = true;
+            model.tail.visible = true;
+            model.hat.visible = true;
+        } else {
+            model.setAllVisible(true);
+        }
+    }
+    
+    @SubscribeEvent
     public static void onPlayerRendering(RenderPlayerEvent.Pre event) {
         Player player = event.getPlayer();
-        CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(handler -> {
-            handler.getStacksHandler("uma_soul").ifPresent(stacks -> {
-                if (stacks.getSlots() <= 0)
-                    return;
-                ItemStack umasoul = stacks.getStacks().getStackInSlot(0);
-                if (!umasoul.isEmpty() && stacks.getRenders().get(0)) {
-                    event.getRenderer().getModel().setAllVisible(false);
-                    if (!UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && !umasoul.isEmpty()) {
-                        armor = NonNullList.create();
-                        for (int i = 0; i < player.getInventory().armor.size(); ++i) {
-                            armor.add(player.getInventory().armor.get(i).copy());
-                            if (UmapyoiConfig.ELYTRA_RENDER.get()
-                                    && player.getInventory().armor.get(i).getItem() instanceof ElytraItem)
-                                player.getInventory().armor.set(i, player.getInventory().armor.get(i));
-                            else
-                                player.getInventory().armor.set(i, ItemStack.EMPTY);
-                        }
-                    }
+        ItemStack umasoul = UmapyoiAPI.getUmaSoul(player);
+        if (!umasoul.isEmpty() && UmapyoiAPI.isUmaSoulRendering(player)) {
+            event.getRenderer().getModel().setAllVisible(false);
+            if (!UmapyoiConfig.VANILLA_ARMOR_RENDER.get()) {
+                armor = NonNullList.create();
+                for (int i = 0; i < player.getInventory().armor.size(); ++i) {
+                    armor.add(player.getInventory().armor.get(i).copy());
+                    if (UmapyoiConfig.ELYTRA_RENDER.get()
+                            && player.getInventory().armor.get(i).getItem() instanceof ElytraItem)
+                        player.getInventory().armor.set(i, player.getInventory().armor.get(i));
+                    else
+                        player.getInventory().armor.set(i, ItemStack.EMPTY);
                 }
-            });
-        });
+            }
+        }
     }
 
     @SubscribeEvent
     public static void onPlayerRenderingPost(RenderPlayerEvent.Post event) {
         Player player = event.getPlayer();
-        ItemStack umasoul = UmapyoiAPI.getUmaSoul(event.getPlayer());
-        if (!UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && armor != null && !umasoul.isEmpty()
-                && UmapyoiAPI.isUmaSoulRendering(player)) {
+        if (!UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && armor != null && UmapyoiAPI.isUmaSoulRendering(player)) {
             for (int i = 0; i < player.getInventory().armor.size(); ++i) {
                 player.getInventory().armor.set(i, armor.get(i));
             }

@@ -14,6 +14,10 @@ public class StatusFactor extends UmaFactor {
         this.statusType = status;
     }
 
+    public StatusType getStatusType() {
+        return statusType;
+    }
+    
     @Override
     public void applyFactor(ItemStack soul, UmaFactorStack stack) {
         UmaSoulUtils.getMaxProperty(soul)[statusType.getId()] += stack.getLevel();

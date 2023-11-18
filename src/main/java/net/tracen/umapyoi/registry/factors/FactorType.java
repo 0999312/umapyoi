@@ -1,7 +1,7 @@
 package net.tracen.umapyoi.registry.factors;
 
 public enum FactorType {
-    STATUS, UNIQUE, OTHER;
+    STATUS, UNIQUE, EXTRASTATUS, OTHER;
 
     @Override
     public String toString() {

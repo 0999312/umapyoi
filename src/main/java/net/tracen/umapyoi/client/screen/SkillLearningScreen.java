@@ -66,6 +66,8 @@ public class SkillLearningScreen extends ItemCombinerScreen<SkillLearningMenu> {
             case BUFF -> this.blit(pPoseStack, i + 31, j + 21, 176, 21, 16, 16);
             case HINDER -> this.blit(pPoseStack, i + 31, j + 21, 176, 37, 16, 16);
             case HEAL -> this.blit(pPoseStack, i + 31, j + 21, 176, 53, 16, 16);
+            case PASSIVE -> throw new UnsupportedOperationException("Unimplemented case: " + skill.getType());
+            default -> throw new IllegalArgumentException("Unexpected value: " + skill.getType());
             }
         }
     }

@@ -6,11 +6,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class LowHealthHealSkill extends UmaSkill {
-    private final int level;
 
-    public LowHealthHealSkill(Builder builder, int level) {
+    public LowHealthHealSkill(Builder builder) {
         super(builder);
-        this.level = level;
     }
 
     @Override
@@ -24,8 +22,5 @@ public class LowHealthHealSkill extends UmaSkill {
             user.addEffect(new MobEffectInstance(MobEffects.HEAL, 1, this.getSkillLevel() - 1));
     }
 
-    public int getSkillLevel() {
-        return level;
-    }
 
 }

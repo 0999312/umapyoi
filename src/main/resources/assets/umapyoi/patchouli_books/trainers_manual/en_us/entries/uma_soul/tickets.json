@@ -1,39 +1,39 @@
 {
-    "name": "马娘券",
+    "name": "Umamusume Ticket",
     "icon": "umapyoi:blank_ticket",
     "category": "umapyoi:uma_soul",
     "sortnum": 5,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "这种用萝卜宝石覆膜的票券统称马娘券，简称马券。$(p)大概是因为这些票券上印有字样、且被萝卜宝石所包裹的缘故，它们供奉给三女神时同样会获得马娘之魂或者支援卡。"
+            "text": "These special tickets are collectively known as Umamusume Tickets, or Uma Tickets for short. $(p) Presumably because of the wording printed on these tickets, they are likewise rewarded with an Umamusume Soul or Support Card when offered to the Three Goddesses."
         },
         {
             "type": "patchouli:text",
-            "text": "因为相对而言消耗更少的萝卜宝石，并可以通过一些物品约束对应召唤的结果，所以这些马券很受训练员们的欢迎。$(p)召唤的结果是根据该券的品质和召唤基座的类型共同决定的。因为银色的召唤基座无法得到最稀有的物品，所以也无法使用最高级的马券。"
+            "text": "Because they consume relatively fewer jewels and can constrain the outcome of the corresponding summoning, these horse tickets are very popular with trainers. $(p) The result of a summoning is determined by a combination of the quality of that ticket and the type of the pedestal. Since you can't get the rarest items with a silver pedestal, you can't use the highest-quality tickets either."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:blank_ticket",
-            "text": "虽然萝卜宝石和空白券都可以用于召唤马娘之魂或者支援卡，但是使用它们进行召唤只能得到品质最普通的物品。$(br)单独的马娘券和支援卡券是不同的。二者不能混用，否则无法进行召唤。"
+            "text": "While both Jewels and Blank tickets can be used for summoning, summoning with them will only yield items of the most common quality. The $(br) separate Umamusume Ticket and Support Card Ticket are different. You cannot mix the two or you will not be able to summon."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:uma_ticket",
             "recipe2": "umapyoi:card_ticket",
-            "title": "指不定能升值呢。"
+            "title": "Maybe it will go up in value."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:sr_uma_ticket",
             "recipe2": "umapyoi:sr_card_ticket",
-            "title": "根据黄金星的工艺制作。"
+            "title": "Crafted according to the Golden Star."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:ssr_uma_ticket",
             "recipe2": "umapyoi:ssr_card_ticket",
-            "title": "祝你不歪。"
+            "title": "Good Luck"
         }
     ]
 }

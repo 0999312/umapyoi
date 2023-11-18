@@ -1,6 +1,4 @@
 {
-  "ranking": "sr",
-  "type": "speed",
   "supports": [
     {
       "support": "umapyoi:speed_support",
@@ -10,5 +8,8 @@
       "support": "umapyoi:strength_support",
       "level": 1
     }
-  ]
+  ],
+  "max_damage": 8,
+  "ranking": "sr",
+  "type": "speed"
 }

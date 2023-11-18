@@ -87,10 +87,14 @@ public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements G
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, SilverUmaPedestalBlockEntity blockEntity) {
-        blockEntity.animationTime++;
         if (blockEntity.canWork())
             ClientUtils.addSummonParticle(level, pos);
-        blockEntity.animationTime %= 360;
+        if(!blockEntity.getStoredItem().isEmpty()) {
+            blockEntity.animationTime++;
+            blockEntity.animationTime %= 360;
+        } else {
+            blockEntity.animationTime = 0;  
+        }
     }
 
     private boolean processRecipe() {

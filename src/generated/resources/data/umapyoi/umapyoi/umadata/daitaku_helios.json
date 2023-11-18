@@ -1,19 +1,26 @@
 {
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "propertyRate": [
+    15,
+    0,
+    15,
+    0,
+    0
+  ],
+  "uniqueSkill": "umapyoi:basic_pace",
+  "identifier": "umapyoi:daitaku_helios",
+  "ranking": "sr",
   "property": [
     1,
     1,
     1,
     1,
     1
-  ],
-  "maxProperty": [
-    12,
-    12,
-    12,
-    12,
-    12
-  ],
-  "uniqueSkill": "umapyoi:basic_pace",
-  "identifier": "umapyoi:daitaku_helios",
-  "ranking": "sr"
+  ]
 }

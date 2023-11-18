@@ -101,10 +101,14 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
 
     public static void animationTick(Level level, BlockPos pos, BlockState state,
             SupportAlbumPedestalBlockEntity blockEntity) {
-        blockEntity.animationTime++;
         if (blockEntity.canWork())
             ClientUtils.addSummonParticle(level, pos);
-        blockEntity.animationTime %= 360;
+        if(!blockEntity.getStoredItem().isEmpty()) {
+            blockEntity.animationTime++;
+            blockEntity.animationTime %= 360;
+        } else {
+            blockEntity.animationTime = 0;  
+        }
         SupportAlbumPedestalBlockEntity.bookAnimationTick(level, pos, state, blockEntity);
     }
 
@@ -206,6 +210,7 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
         ItemStack result = ItemRegistry.SUPPORT_CARD.get().getDefaultInstance();
         result.getOrCreateTag().putString("support_card", key.toString());
         result.getOrCreateTag().putString("ranking", registry.get(key).getGachaRanking().name().toLowerCase());
+        result.getOrCreateTag().putInt("maxDamage", registry.get(key).getMaxDamage());
         return result;
     }
 

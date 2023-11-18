@@ -48,6 +48,7 @@ public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegister
             return;
         }
         RenderUtils.setup(BACKGROUND_TEXTURE);
+        ms.pushPose();
         this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 
         ItemStack input = this.getMenu().getSlot(0).getItem();
@@ -67,6 +68,7 @@ public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegister
             this.font.draw(ms, UmaStatusUtils.getStatusLevel(status[StatusType.WISDOM.getId()]), this.leftPos + 146,
                     this.topPos + 31, 0x40C100);
         }
+        ms.popPose();
     }
 
 }

@@ -1,6 +1,6 @@
 {
-    "name": "因子与继承",
-    "description": "这里主要记载着“什么是因子？什么是因子继承？”等相关问题。",
+    "name": "Factor & Inherit",
+    "description": "\"What is Factor? What is Inheritance?\" and other related questions are mainly documented here.",
     "sortnum": 3,
     "icon": "umapyoi:uma_factor_item"
 }

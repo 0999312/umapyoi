@@ -63,10 +63,6 @@ public class ThreeGoddessContainer extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
-        // 0-3: Contain inventory
-        // 4-30: Player inventory
-        // 31-40: Hot bar in the player inventory
-
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
 
@@ -81,17 +77,13 @@ public class ThreeGoddessContainer extends AbstractContainerMenu {
 
                 slot.onQuickCraft(itemStack1, itemStack);
             } else if (index >= 4) {
-                if (index >= 4 && index < 31) {
-                    if (!this.moveItemStackTo(itemStack1, 31, 40, false)) {
+                if (index >= 4 && index < 40) {
+                    if (!this.moveItemStackTo(itemStack1, 0, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index >= 31 && index < 40 && !this.moveItemStackTo(itemStack1, 4, 31, false)) {
-                    return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemStack1, 4, 40, false)) {
-                return ItemStack.EMPTY;
             }
-
+            
             if (itemStack1.getCount() == 0) {
                 slot.set(ItemStack.EMPTY);
             } else {

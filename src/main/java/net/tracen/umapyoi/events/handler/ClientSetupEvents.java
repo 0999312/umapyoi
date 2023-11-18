@@ -1,4 +1,4 @@
-package net.tracen.umapyoi.client;
+package net.tracen.umapyoi.events.handler;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -13,6 +13,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
+import net.tracen.umapyoi.client.ActionBarOverlay;
+import net.tracen.umapyoi.client.MotivationOverlay;
+import net.tracen.umapyoi.client.SkillOverlay;
 import net.tracen.umapyoi.client.key.SkillKeyMapping;
 import net.tracen.umapyoi.client.renderer.TrainningSuitRenderer;
 import net.tracen.umapyoi.client.renderer.UmaSoulRenderer;
@@ -33,7 +36,6 @@ public class ClientSetupEvents {
         event.enqueueWork(() -> {
             CuriosRendererRegistry.register(ItemRegistry.UMA_SOUL.get(), UmaSoulRenderer::new);
             CuriosRendererRegistry.register(ItemRegistry.TRAINNING_SUIT.get(), TrainningSuitRenderer::new);
-
             CuriosRendererRegistry.register(ItemRegistry.SUMMER_UNIFORM.get(),
                     UmaUniformRenderer.SummerUniformRenderer::new);
             CuriosRendererRegistry.register(ItemRegistry.WINTER_UNIFORM.get(),

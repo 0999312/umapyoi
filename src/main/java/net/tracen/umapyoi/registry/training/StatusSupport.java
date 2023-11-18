@@ -13,10 +13,15 @@ public class StatusSupport extends TrainingSupport {
     }
 
     @Override
-    public void applySupport(ItemStack soul, SupportStack stack) {
-        UmaSoulUtils.getProperty(soul)[statusType.getId()] = Math.min(
-                UmaSoulUtils.getMaxProperty(soul)[statusType.getId()],
-                UmaSoulUtils.getProperty(soul)[statusType.getId()] + stack.getLevel());
+    public boolean applySupport(ItemStack soul, SupportStack stack) {
+        if (UmaSoulUtils.getMaxProperty(soul)[statusType.getId()] > UmaSoulUtils.getProperty(soul)[statusType
+                .getId()]) {
+            UmaSoulUtils.getProperty(soul)[statusType.getId()] = Math.min(
+                    UmaSoulUtils.getMaxProperty(soul)[statusType.getId()],
+                    UmaSoulUtils.getProperty(soul)[statusType.getId()] + stack.getLevel());
+            return true;
+        }
+        return false;
     }
 
 }

@@ -50,6 +50,10 @@ public class ClientUtils {
     public static ResourceLocation getTexture(ResourceLocation name) {
         return new ResourceLocation(name.getNamespace(), "textures/model/" + name.getPath() + ".png");
     }
+    
+    public static ResourceLocation getEmissiveTexture(ResourceLocation name) {
+        return new ResourceLocation(name.getNamespace(), "textures/model/" + name.getPath() + "_emissive.png");
+    }
 
     public static Registry<UmaData> getClientUmaDataRegistry() {
         return Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(UmaData.REGISTRY_KEY);

@@ -1,6 +1,4 @@
 {
-  "ranking": "sr",
-  "type": "wisdom",
   "supports": [
     {
       "support": "umapyoi:wisdom_support",
@@ -20,5 +18,8 @@
   ],
   "supporters": [
     "umapyoi:agnus_tachyon"
-  ]
+  ],
+  "max_damage": 8,
+  "ranking": "sr",
+  "type": "wisdom"
 }

@@ -9,22 +9,18 @@ import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class HealSkill extends UmaSkill {
-    private final int level;
 
-    public HealSkill(Builder builder, int level) {
+    public HealSkill(Builder builder) {
         super(builder);
-        this.level = level;
     }
 
     @Override
     public void applySkill(Level level, Player user) {
         ItemStack soul = UmapyoiAPI.getUmaSoul(user);
         int skillTime = UmaSoulUtils.getProperty(soul)[4] >= 10 ? 200 : UmaSoulUtils.getProperty(soul)[4] >= 7 ? 160 : 120;
-        user.addEffect(new MobEffectInstance(MobEffects.REGENERATION, skillTime, this.getSkillLevel()));
+        user.addEffect(new MobEffectInstance(MobEffects.REGENERATION, skillTime, this.getSkillLevel() - 1));
     }
 
-    public int getSkillLevel() {
-        return level;
-    }
+
 
 }

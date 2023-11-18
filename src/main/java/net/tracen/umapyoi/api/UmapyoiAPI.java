@@ -1,5 +1,7 @@
 package net.tracen.umapyoi.api;
 
+import java.util.Optional;
+
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -10,6 +12,8 @@ import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.ClientUtils;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
+import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 public class UmapyoiAPI {
@@ -76,6 +80,12 @@ public class UmapyoiAPI {
             }
         }
         return false;
+    }
+    
+    public static Optional<ICurioRenderer> getUmaSuitRender(LivingEntity player){
+        if(!UmapyoiAPI.isUmaSuitRendering(player))
+            return Optional.empty();
+        return CuriosRendererRegistry.getRenderer(UmapyoiAPI.getUmaSoul(player).getItem());
     }
 
     public static Registry<UmaData> getUmaDataRegistry(Level level) {

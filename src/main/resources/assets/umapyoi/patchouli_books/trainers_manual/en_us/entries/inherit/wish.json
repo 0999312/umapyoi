@@ -1,20 +1,24 @@
 {
-    "name": "马娘的意志",
+    "name": "Umamusume Wish",
     "icon": "umapyoi:uma_factor_item",
     "category": "umapyoi:inherit",
     "sortnum": 1,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "马娘的意志是本格化的副产物，这些蓝色的结晶寄宿着原来马娘之魂对未来的期盼。$(p)马娘的意志内除了原有的名字之外，还有着一些“因子”。“因子”是能够被继承下来的能力，也是即将被传承下去的精神所在。"
+            "text": "Umamusume Wish is a byproduct of Fully Fledged, these blue crystals hold the original Soul's hopes for the future. $(p) Umamusume Wish has a number of \"factors\" in addition to its original name. The \"factors\" are the abilities that can be inherited and the spirit that will be passed on."
         },
         {
             "type": "patchouli:text",
-            "text": "每一个马娘的意志都必定会有一个主属性因子和一个固有技能因子，记录的时候分别使用蓝色字体和绿色字体表示。$(p)其他因子有可能会根据技能的数量、评分的高低和其他有待进一步考究的方面有关，这些因子使用白色字体表示。"
+            "text": "Each Umamusume Wish is bound to have a Status factor, an Extra Attribute factor, and an Inherent Skill factor, which are recorded using blue font, pink font, and green font to indicate them, respectively. $(p) Other factors, which may be related to skill, Ranking, and other aspects to be verified, are shown in gray."
         },
         {
             "type": "patchouli:text",
-            "text": "总体而言，评分越高的马娘所留下的意志越强。意志的强弱表现在因子的数量和因子的等级。越强的意志拥有更多数量、更高等级的因子。"
+            "text": "There is a probability that the Extra Attribute Factor and the Gray Factor will not be fully inherited in Factor Inheritance. $(p) There is a chance that some of the factors will not be inherited at all, so there is a certain luck in Factor Inheritance itself. $(p) Practically speaking, it is not uncommon for Umamusume Soul to inherit all factors in full."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Overall, the higher the Ranking, the stronger the Wish left by Umamusume. The strength of the Wish is expressed in the number of Factors and the Rating of the Factors. The stronger the Wish the more factors with higher Ranking."
         }
     ]
 }

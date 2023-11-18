@@ -1,10 +1,11 @@
 {
-  "ranking": "r",
-  "type": "strength",
   "supports": [
     {
       "support": "umapyoi:strength_support",
       "level": 1
     }
-  ]
+  ],
+  "max_damage": 10,
+  "ranking": "r",
+  "type": "strength"
 }

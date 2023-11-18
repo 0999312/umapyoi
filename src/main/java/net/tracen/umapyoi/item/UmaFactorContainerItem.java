@@ -52,6 +52,7 @@ public class UmaFactorContainerItem extends Item {
                 switch (factor.getFactor().getFactorType()) {
                 case STATUS -> tooltip.add(factor.getDescription().copy().withStyle(ChatFormatting.BLUE));
                 case UNIQUE -> tooltip.add(factor.getDescription().copy().withStyle(ChatFormatting.GREEN));
+                case EXTRASTATUS -> tooltip.add(factor.getDescription().copy().withStyle(ChatFormatting.RED));
                 default -> tooltip.add(factor.getDescription().copy().withStyle(ChatFormatting.GRAY));
                 }
             });
@@ -77,11 +78,4 @@ public class UmaFactorContainerItem extends Item {
         }
     }
 
-    public static int getScore(ItemStack stack) {
-        return stack.getOrCreateTag().contains("score") ? stack.getOrCreateTag().getInt("score") : 0;
-    }
-
-    public static void setScore(ItemStack stack, int phy) {
-        stack.getOrCreateTag().putInt("score", phy);
-    }
 }

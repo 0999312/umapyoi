@@ -32,11 +32,11 @@ public class UmaSoulUtils {
         tag.putString("ranking", data.getGachaRanking().name().toLowerCase());
         tag.putIntArray("property", data.property());
         tag.putIntArray("maxProperty", data.maxProperty());
+        tag.putIntArray("propertyRate", data.propertyRate());
         UmaSoulUtils.addSkill(result, data.uniqueSkill());
         tag.putInt("actionPoint", data.property()[4] * 200);
-        tag.putInt("maxActionPoint", data.property()[4] * 200);
-        tag.putInt("skillSlots", 4);
-        tag.putInt("physique", 1);
+        tag.putIntArray("extraProperty", new int[] { 1, 6, 5, 0 });
+        tag.putInt("resultRanking", ResultRankingUtils.generateRanking(result));
         return result;
     }
 
@@ -49,6 +49,18 @@ public class UmaSoulUtils {
         return stack.getOrCreateTag().getIntArray("property").length > 0
                 ? stack.getOrCreateTag().getIntArray("property")
                 : new int[] { 1, 1, 1, 1, 1 };
+    }
+
+    public static int[] getPropertyRate(ItemStack stack) {
+        return stack.getOrCreateTag().getIntArray("propertyRate").length > 0
+                ? stack.getOrCreateTag().getIntArray("propertyRate")
+                : new int[] { 0, 0, 0, 0, 0 };
+    }
+
+    public static int[] getExtraProperty(ItemStack stack) {
+        return stack.getOrCreateTag().getIntArray("extraProperty").length > 0
+                ? stack.getOrCreateTag().getIntArray("extraProperty")
+                : new int[] { 1, 6, 4, 0 };
     }
 
     public static int[] getMaxProperty(ItemStack stack) {
@@ -99,11 +111,11 @@ public class UmaSoulUtils {
     }
 
     public static int getSkillSlots(ItemStack stack) {
-        return stack.getOrCreateTag().getInt("skillSlots");
+        return getExtraProperty(stack)[2];
     }
 
     public static void setSkillSlots(ItemStack stack, int slots) {
-        stack.getOrCreateTag().putInt("skillSlots", slots);
+        getExtraProperty(stack)[2] = slots;
     }
 
     public static boolean hasEmptySkillSlot(ItemStack stack) {
@@ -128,37 +140,50 @@ public class UmaSoulUtils {
     }
 
     public static int getActionPoint(ItemStack stack) {
-        return Math.min(stack.getOrCreateTag().getInt("actionPoint"), 0);
+        return Math.max(stack.getOrCreateTag().getInt("actionPoint"), 0);
     }
 
     public static void setActionPoint(ItemStack stack, int ap) {
         stack.getOrCreateTag().putInt("actionPoint", ap);
     }
-    
+
     public static void addActionPoint(ItemStack stack, int ap) {
-        UmaSoulUtils.setActionPoint(stack, Math.min(UmaSoulUtils.getActionPoint(stack) + ap, UmaSoulUtils.getMaxActionPoint(stack)) );
+        UmaSoulUtils.setActionPoint(stack,
+                Math.min(UmaSoulUtils.getActionPoint(stack) + ap, UmaSoulUtils.getMaxActionPoint(stack)));
     }
 
     public static int getMaxActionPoint(ItemStack stack) {
-        return stack.getOrCreateTag().getInt("maxActionPoint");
+        return getExtraProperty(stack)[3]
+                + getProperty(stack)[4] * (int) (200 * (1.0D + (UmaSoulUtils.getPropertyRate(stack)[4] / 100.0D)));
     }
 
     public static void setMaxActionPoint(ItemStack stack, int ap) {
-        stack.getOrCreateTag().putInt("maxActionPoint", ap);
+        getExtraProperty(stack)[3] = ap;
     }
-    
+
     public static int getPhysique(ItemStack stack) {
-        return Math.min(stack.getOrCreateTag().getInt("physique"), 0);
+        return getExtraProperty(stack)[0];
     }
 
     public static void setPhysique(ItemStack stack, int phy) {
-        stack.getOrCreateTag().putInt("physique", phy);
+        getExtraProperty(stack)[0] = phy;
     }
-    
-    public static void downPhysique(ItemStack stack) {
-        int phy = Math.min(getPhysique(stack) - 1, 0);
-        stack.getOrCreateTag().putInt("physique", phy);
-    }
-    
 
+    public static void downPhysique(ItemStack stack) {
+        int phy = Math.max(getPhysique(stack) - 1, 0);
+        setPhysique(stack, phy);
+    }
+
+    public static int getLearningTimes(ItemStack stack) {
+        return getExtraProperty(stack)[1];
+    }
+
+    public static void setLearningTimes(ItemStack stack, int learns) {
+        getExtraProperty(stack)[1] = learns;
+    }
+
+    public static void downLearningTimes(ItemStack stack) {
+        int learns = Math.max(getLearningTimes(stack) - 1, 0);
+        setLearningTimes(stack, learns);
+    }
 }

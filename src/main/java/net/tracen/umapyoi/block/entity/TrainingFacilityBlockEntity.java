@@ -6,6 +6,8 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -73,8 +75,15 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
             if (supportItem.getItem()instanceof SupportContainer supports) {
                 if (supports.isConsumable(this.getLevel(), supportItem))
                     supportItem.shrink(1);
+                else if(supportItem.hurt(1, this.getLevel().getRandom(), null)) {
+                    this.getLevel().playSound(null, this.getBlockPos(), SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.BLOCKS, 1F, 1F);
+                    supportItem.shrink(1);
+                    supportItem.setDamageValue(0);
+                }
             }
         }
+        
+        this.getLevel().playSound(null, this.getBlockPos(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 1F, 1F);
         return true;
     }
 
@@ -83,6 +92,7 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
             return ItemStack.EMPTY;
         ItemStack result = this.inventory.getStackInSlot(0).copy();
         UmaSoulUtils.setGrowth(result, Growth.TRAINED);
+        UmaSoulUtils.downPhysique(result);
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
             if (supportItem.getItem()instanceof SupportContainer supports) {
@@ -101,7 +111,7 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
     private boolean hasInput() {
         ItemStack input = this.inventory.getStackInSlot(0);
         if (input.getItem() instanceof UmaSoulItem) {
-            if (UmaSoulUtils.getGrowth(input) == Growth.UNTRAINED) {
+            if (UmaSoulUtils.getGrowth(input) != Growth.RETIRED && UmaSoulUtils.getPhysique(input) > 0) {
                 for (int i = 1; i < 7; i++) {
                     ItemStack supportItem = this.inventory.getStackInSlot(i);
                     if (supportItem.getItem()instanceof SupportContainer supports) {

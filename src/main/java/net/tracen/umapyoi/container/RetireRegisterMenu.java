@@ -1,8 +1,8 @@
 package net.tracen.umapyoi.container;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
@@ -28,9 +28,12 @@ import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.factors.FactorType;
+import net.tracen.umapyoi.registry.factors.SkillFactor;
+import net.tracen.umapyoi.registry.factors.StatusFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 import net.tracen.umapyoi.registry.umadata.Growth;
+import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaFactorUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
@@ -141,7 +144,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
      * called when the Anvil Input Slot changes, calculates the new result and puts
      * it in the output slot
      */
-    
+
     public void createResult() {
         if (!this.hasResult()) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
@@ -155,33 +158,52 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
         if (!(inputSoul.getItem() instanceof UmaSoulItem))
             return ItemStack.EMPTY;
+        int ranking = ResultRankingUtils.getRanking(inputSoul);
 
         this.rand.setSeed(this.getFactorSeed().get());
-        List<UmaFactorStack> stackList = createResultFactors(inputSoul);
+        List<UmaFactorStack> stackList = createResultFactors(inputSoul, ranking);
 
         result.getOrCreateTag().putString("name", UmaSoulUtils.getName(inputSoul).toString());
         result.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(stackList));
         return result;
     }
 
-    public List<UmaFactorStack> createResultFactors(ItemStack inputSoul) {
+    public List<UmaFactorStack> createResultFactors(ItemStack inputSoul, int ranking) {
         @NotNull
-        Collection<UmaFactor> values = UmaFactorRegistry.REGISTRY.get().getValues();
-        UmaFactor statusFactor = values.stream().filter(fac -> fac.getFactorType() == FactorType.STATUS)
-                .skip(values.isEmpty() ? 0 : rand.nextInt(values.size())).findFirst()
+        Stream<UmaFactor> status = UmaFactorRegistry.REGISTRY.get().getValues().stream()
+                .filter(fac -> fac.getFactorType() == FactorType.STATUS);
+        long statusCount = UmaFactorRegistry.REGISTRY.get().getValues().stream()
+                .filter(fac -> fac.getFactorType() == FactorType.STATUS).count();
+        StatusFactor statusFactor = (StatusFactor) status.skip(rand.nextLong(statusCount)).findFirst()
                 .orElse(UmaFactorRegistry.SPEED_FACTOR.get());
+        var statusProperty = UmaSoulUtils.getProperty(inputSoul)[statusFactor.getStatusType().getId()];
+        var i = statusProperty > 19 ? 5 :
+                statusProperty > 10 ? 3 :
+                2;
+        var statusFactorStack = new UmaFactorStack(statusFactor,
+                rand.nextInt(i) + 1);
+
+        Stream<UmaFactor> extraStatus = UmaFactorRegistry.REGISTRY.get().getValues().stream()
+                .filter(fac -> fac.getFactorType() == FactorType.EXTRASTATUS);
+        long extraStatusCount = UmaFactorRegistry.REGISTRY.get().getValues().stream()
+                .filter(fac -> fac.getFactorType() == FactorType.EXTRASTATUS).count();
+        UmaFactor extraStatusFactor = extraStatus.skip(rand.nextLong(extraStatusCount)).findFirst()
+                .orElse(UmaFactorRegistry.PHYSIQUE_FACTOR.get());
+        var extraStatusFactorStack = new UmaFactorStack(extraStatusFactor, rand.nextInt(ranking > 18 ? 3 : 2) + 1);
+
         UmaFactorStack uniqueFactor = new UmaFactorStack(UmaFactorRegistry.UNIQUE_SKILL_FACTOR.get(), 1);
         uniqueFactor.getOrCreateTag().putString("skill", UmaSoulUtils.getSkills(inputSoul).get(0).getAsString());
-        List<UmaFactorStack> stackList = Lists.newArrayList(new UmaFactorStack(statusFactor, rand.nextInt(3) + 1),
-                uniqueFactor);
 
-        createSkillFactors(inputSoul, stackList);
+        List<UmaFactorStack> stackList = Lists.newArrayList(statusFactorStack, extraStatusFactorStack, uniqueFactor);
+
+        createOtherFactors(inputSoul, ranking, stackList);
+        createSkillFactors(inputSoul, ranking, stackList);
         return stackList;
     }
 
-    public void createSkillFactors(ItemStack inputSoul, List<UmaFactorStack> stackList) {
+    public void createSkillFactors(ItemStack inputSoul, int ranking, List<UmaFactorStack> stackList) {
         UmaSoulUtils.getSkills(inputSoul).stream().skip(1).forEach(skillTag -> {
-            int skillLevel = this.rand.nextInt(4);
+            int skillLevel = this.rand.nextInt(ranking > 19 ? 6 : 4);
             if (skillLevel == 0)
                 return;
             UmaFactorStack skillFactor = new UmaFactorStack(UmaFactorRegistry.SKILL_FACTOR.get(), skillLevel);
@@ -189,6 +211,19 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
             stackList.add(skillFactor);
         });
 
+    }
+
+    public void createOtherFactors(ItemStack inputSoul, int ranking, List<UmaFactorStack> stackList) {
+        UmaFactorRegistry.REGISTRY.get().getValues().stream()
+                .filter(fac -> fac.getFactorType() == FactorType.OTHER && !(fac instanceof SkillFactor))
+                .forEach(fac -> {
+                    int skillLevel = this.rand.nextInt(ranking > 19 ? 6 : 4);
+                    if (skillLevel == 0)
+                        return;
+
+                    UmaFactorStack skillFactor = new UmaFactorStack(fac, skillLevel);
+                    stackList.add(skillFactor);
+                });
     }
 
     /**

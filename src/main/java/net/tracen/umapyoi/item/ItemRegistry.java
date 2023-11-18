@@ -3,6 +3,8 @@ package net.tracen.umapyoi.item;
 import java.util.function.Supplier;
 
 import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -138,6 +140,7 @@ public class ItemRegistry {
             () -> new UmaDrinkItem(EnergyDrinkMethods::royalBitter,
                     FoodInfo.builder().name("royal_bitter").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
                             .nutrients(2F, 2F, 0F, 0F, 0F)
+                            .addEffect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600), 1F)
                             .heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final RegistryObject<Item> CUPCAKE = register("cupcake",

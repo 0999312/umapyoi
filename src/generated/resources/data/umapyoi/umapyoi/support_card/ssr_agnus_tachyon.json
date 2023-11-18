@@ -1,6 +1,4 @@
 {
-  "ranking": "ssr",
-  "type": "speed",
   "supports": [
     {
       "support": "umapyoi:strength_support",
@@ -14,11 +12,14 @@
       "support": "umapyoi:skill_support",
       "level": 1,
       "tag": {
-        "skill": "umapyoi:heart_and_soul"
+        "skill": "umapyoi:adv_low_health_buff"
       }
     }
   ],
   "supporters": [
     "umapyoi:agnus_tachyon"
-  ]
+  ],
+  "max_damage": 5,
+  "ranking": "ssr",
+  "type": "speed"
 }

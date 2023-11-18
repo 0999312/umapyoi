@@ -84,15 +84,11 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
 
                 slot.onQuickCraft(itemStack1, itemStack);
             } else if (index >= 7) {
-                if (index >= 7 && index < 34) {
-                    if (!this.moveItemStackTo(itemStack1, 34, 43, false)) {
+                if (index >= 7 && index < 43) {
+                    if (!this.moveItemStackTo(itemStack1, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index >= 34 && index < 43 && !this.moveItemStackTo(itemStack1, 7, 34, false)) {
-                    return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemStack1, 7, 43, false)) {
-                return ItemStack.EMPTY;
             }
 
             if (itemStack1.getCount() == 0) {

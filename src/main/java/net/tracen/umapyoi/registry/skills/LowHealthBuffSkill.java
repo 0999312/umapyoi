@@ -6,11 +6,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class LowHealthBuffSkill extends UmaSkill {
-    private final int level;
 
-    public LowHealthBuffSkill(Builder builder, int level) {
+    public LowHealthBuffSkill(Builder builder) {
         super(builder);
-        this.level = level;
     }
 
     @Override
@@ -22,7 +20,4 @@ public class LowHealthBuffSkill extends UmaSkill {
                 lowHealth ? this.getSkillLevel() : this.getSkillLevel() - 1));
     }
 
-    public int getSkillLevel() {
-        return level;
-    }
 }

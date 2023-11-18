@@ -27,8 +27,8 @@ public class TrainingSupport extends ForgeRegistryEntry<TrainingSupport> {
     public TrainingSupport() {
     }
 
-    public void applySupport(ItemStack soul, SupportStack stack) {
-
+    public boolean applySupport(ItemStack soul, SupportStack stack) {
+        return true;
     }
 
     @Override

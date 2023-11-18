@@ -65,11 +65,12 @@ public class SupportStack {
         }
     }
 
-    public void applySupport(ItemStack soul) {
+    public boolean applySupport(ItemStack soul) {
         if (!MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Pre(this, soul))) {
-            this.getFactor().applySupport(soul, this);
-            MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Post(this, soul));
-        }
+            boolean result = this.getFactor().applySupport(soul, this);
+            return result && !MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Post(this, soul));
+        } else
+            return false;
     }
 
     public Component getDescription() {

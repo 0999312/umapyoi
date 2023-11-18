@@ -1,6 +1,4 @@
 {
-  "ranking": "ssr",
-  "type": "guts",
   "supports": [
     {
       "support": "umapyoi:guts_support",
@@ -20,5 +18,8 @@
   ],
   "supporters": [
     "umapyoi:ks_miracle"
-  ]
+  ],
+  "max_damage": 5,
+  "ranking": "ssr",
+  "type": "guts"
 }

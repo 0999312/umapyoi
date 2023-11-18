@@ -17,6 +17,7 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
     private final SkillType type;
     private final int requiredWisdom;
     private final int actionPoint;
+    private final int level;
     private final SoundEvent sound;
 
     private String descriptionId;
@@ -27,6 +28,7 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
     public UmaSkill(Builder builder) {
         this.type = builder.type;
         this.requiredWisdom = builder.requiredWisdom;
+        this.level = builder.level;
         this.actionPoint = builder.actionPoint;
         this.sound = builder.sound;
     }
@@ -37,6 +39,10 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
 
     public int getRequiredWisdom() {
         return requiredWisdom;
+    }
+    
+    public int getSkillLevel() {
+        return level;
     }
 
     public int getActionPoint() {
@@ -74,6 +80,7 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         private SkillType type = SkillType.BUFF;
         private int requiredWisdom = 0;
         private int actionPoint = 200;
+        private int level = 1;
         private SoundEvent sound = SoundEvents.PLAYER_ATTACK_SWEEP;
 
         public Builder type(SkillType type) {
@@ -93,6 +100,11 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
 
         public Builder actionPoint(int ap) {
             this.actionPoint = ap;
+            return this;
+        }
+        
+        public Builder level(int level) {
+            this.level = level;
             return this;
         }
 

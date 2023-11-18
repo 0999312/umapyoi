@@ -14,8 +14,10 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
+import net.tracen.umapyoi.events.client.RenderingUmaSuitEvent;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.ClientUtils;
@@ -28,6 +30,7 @@ import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 public abstract class AbstractSuitRenderer implements ICurioRenderer {
 
     private final UmaPlayerModel<LivingEntity> baseModel;
+
     public AbstractSuitRenderer() {
         baseModel = new UmaPlayerModel<>();
     }
@@ -38,13 +41,13 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
             int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw,
             float headPitch) {
 
-        LivingEntity player = slotContext.entity();
-        if (player.isInvisible())
+        LivingEntity entity = slotContext.entity();
+        if (entity.isInvisible())
             return;
         if (!slotContext.identifier().equalsIgnoreCase("uma_suit"))
             return;
 
-        CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(itemHandler -> {
+        CuriosApi.getCuriosHelper().getCuriosHandler(entity).ifPresent(itemHandler -> {
             itemHandler.getStacksHandler("uma_soul").ifPresent(stacksHandler -> {
                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();
 
@@ -69,9 +72,13 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                 var pojo = ClientUtil.getModelPOJO(flat_flag ? getFlatModel() : getModel());
                 if(baseModel.needRefresh(pojo))
                     baseModel.loadModel(pojo);
-
-                baseModel.setModelProperties(player, false, true);
-                baseModel.prepareMobModel(player, limbSwing, limbSwingAmount, partialTicks);
+                if(MinecraftForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Pre(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light)))
+                    return ;
+                baseModel.setModelProperties(entity);
+                baseModel.head.visible = false;
+                baseModel.tail.visible = false;
+                baseModel.hat.visible = false;
+                baseModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
 
                 if (renderLayerParent.getModel() instanceof HumanoidModel) {
                     @SuppressWarnings("unchecked")
@@ -85,10 +92,11 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                     baseModel.copyAnim(baseModel.rightLeg, model.rightLeg);
                 }
 
-                baseModel.setupAnim(player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+                baseModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
                 baseModel.renderToBuffer(matrixStack, vertexconsumer, light,
-                        LivingEntityRenderer.getOverlayCoords(player, 0.0F), 1, 1, 1, 1);
+                        LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
+                MinecraftForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Post(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light));
             });
         });
     }
@@ -100,4 +108,5 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
     protected abstract ResourceLocation getFlatModel();
 
     protected abstract ResourceLocation getFlatTexture();
+
 }

@@ -1,18 +1,18 @@
 {
-    "name": "萝卜宝石",
+    "name": "Carrot Jewels",
     "icon": "umapyoi:jewel",
     "category": "umapyoi:uma_soul",
     "sortnum": 1,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "所谓萝卜宝石，是指特地雕刻成胡萝卜形状的宝石。这些宝石深受三女神所喜爱。$(p)萝卜宝石主要供奉给三女神，也可以用于合成召唤基座等重要方块。$(br)直接将宝石供奉给三女神这种方式比较浪费，目前普遍的做法是利用宝石合成“马券”。"
+            "text": "The so-called Carrot Jewels are jewels that are specially carved in the shape of a carrot. These jewels are favored by the Three Goddesses. $(p) Carrot Jewels are mainly offered to the Triple Goddess, but can also be used to synthesize important blocks such as Umamusume Pedestals. It is a wasteful way to offer them directly to the Three Goddesses, and it is now common practice to use them to synthesize \"Uma Tickets\"."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:jewel",
-            "text": "部分村民之间也会使用萝卜宝石进行交易，这是萝卜宝石的第二大用处。",
-            "title": "全都是无料的！"
+            "text": "Some villagers also trade with each other using Carrot Jewels, which is the second most useful use of Carrot Jewels.",
+            "title": "All Free!"
         }
     ]
 }

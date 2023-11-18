@@ -1,6 +1,4 @@
 {
-  "ranking": "ssr",
-  "type": "stamina",
   "supports": [
     {
       "support": "umapyoi:stamina_support",
@@ -16,5 +14,8 @@
   ],
   "supporters": [
     "umapyoi:super_creek"
-  ]
+  ],
+  "max_damage": 5,
+  "ranking": "ssr",
+  "type": "stamina"
 }

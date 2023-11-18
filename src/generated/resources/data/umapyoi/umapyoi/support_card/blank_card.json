@@ -1,4 +1,5 @@
 {
-  "type": "group",
-  "supports": []
+  "supports": [],
+  "max_damage": 3,
+  "type": "group"
 }

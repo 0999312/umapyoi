@@ -1,20 +1,20 @@
 {
-    "name": "因子继承",
+    "name": "Factor Inheritance",
     "icon": "umapyoi:three_goddess",
     "category": "umapyoi:inherit",
     "sortnum": 2,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "根据村民的传说：马娘曾在三女神像之下听到了三女神的指引，看见了一对身影奔向远方闪耀着的光芒。$(p)实际来说，三女神像在为马娘之魂赐福的同时，也在使马娘的意志得到继承。所以说，三女神像是“因子继承”的场所。"
+            "text": "According to legend: Umamusume had heard the guidance of the Three Goddesses under the Three Goddesses Statue, and saw a pair of figures running into the distance shining brightly. $(p) In actuality, the Three Goddesses Statue, while blessing Umamusume Soul, is also making Wish an inheritance. Therefore, the Three Goddesses Statue is the place of \"Factor Inheritance\"."
         },
         {
             "type": "patchouli:text",
-            "text": "要进行因子继承，首先需要准备两个不同马娘的意志。$(p)只有一个意志、两个意志所对应的马娘冲突或者待继承的马娘之魂和意志冲突都会导致无法进行因子继承。$(p)无法进行因子继承也会直接导致赐福无法进行。"
+            "text": "To perform a Factor Inheritance, you first need to prepare two different Umamusume Wishes. $(p) Having only one Wish or creating a conflict will result in the Factor Inheritance not being able to be performed. $(p) Not being able to perform a Factor Inheritance will directly result in the process not being able to be performed."
         },
         {
             "type": "patchouli:text",
-            "text": "因子继承是有概率的。等级越高的因子更有可能被有效继承、因子数量越多可以被有效继承的可能性也越大。$(p)因子继承可以突破原有马娘之魂能力的上限，让马娘之魂的能力达到一个全新的高度。这是训练过程所很难实现的。所以有经验的训练员同时看重训练和继承。"
+            "text": "Factor Inheritance is probabilistic. The higher the level, the more likely a Factor is to be effectively inherited, and the greater the number of Factors that can be effectively inherited, the greater the likelihood that they will be effectively inherited. $(p) Factor Inheritance can break through the upper limit of the original Umamusume Soul's ability, bringing it to a whole new level. This is something that is difficult to achieve with the training process. That's why experienced trainers value both training and inheritance."
         }
     ]
 }

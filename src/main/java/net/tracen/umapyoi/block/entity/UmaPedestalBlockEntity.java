@@ -86,10 +86,14 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity implements Gachabl
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, UmaPedestalBlockEntity blockEntity) {
-        blockEntity.animationTime++;
         if (blockEntity.canWork())
             ClientUtils.addSummonParticle(level, pos);
-        blockEntity.animationTime %= 360;
+        if(!blockEntity.getStoredItem().isEmpty()) {
+            blockEntity.animationTime++;
+            blockEntity.animationTime %= 360;
+        } else {
+            blockEntity.animationTime = 0;  
+        }
     }
 
     private boolean processRecipe() {
@@ -265,7 +269,6 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity implements Gachabl
             int ssrHit = cfgFlag ? UmapyoiConfig.GACHA_PROBABILITY_SSR.get()
                     : UmapyoiConfig.DEFAULT_GACHA_PROBABILITY_SSR;
             if (input.is(UmapyoiItemTags.SR_UMA_TICKET)) {
-//              Set gacha roll, 30 = 100 - 70(default).  
                 gacha_roll = level.getRandom()
                         .nextInt(cfgFlag
                                 ? UmapyoiConfig.GACHA_PROBABILITY_SUM.get() - UmapyoiConfig.GACHA_PROBABILITY_R.get()
