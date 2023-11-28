@@ -1,0 +1,32 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "fluidTag": "forge:honey",
+      "amount": 500
+    },
+    {
+      "fluid": "minecraft:water",
+      "nbt": {},
+      "amount": 500
+    },
+    {
+      "tag": "forge:sugar"
+    },
+    {
+      "tag": "forge:sugar"
+    }
+  ],
+  "results": [
+    {
+      "item": "umapyoi:hachimi_big",
+      "count": 1
+    }
+  ]
+}

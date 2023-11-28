@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "forge:crops/carrot"
+    },
+    [
+      {
+      "tag": "forge:crops/wheat"
+      },
+      {
+      "tag": "forge:flour"
+      }
+    ],
+    {
+      "fluidTag": "forge:milk",
+      "amount": 250
+    },
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:sugar"
+    }
+  ],
+  "results": [
+    {
+      "item": "umapyoi:cupcake"
+    }
+  ]
+}

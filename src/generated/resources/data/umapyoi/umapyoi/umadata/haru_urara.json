@@ -1,0 +1,26 @@
+{
+  "identifier": "umapyoi:haru_urara",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    0,
+    0,
+    10,
+    20,
+    0
+  ],
+  "ranking": "sr",
+  "uniqueSkill": "umapyoi:basic_pace"
+}

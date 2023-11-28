@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "J": {
+      "item": "umapyoi:jewel"
+    },
+    "L": {
+      "tag": "forge:bookshelves"
+    }
+  },
+  "pattern": [
+    " J",
+    " L"
+  ],
+  "result": {
+    "item": "umapyoi:skill_learning_table"
+  },
+  "show_notification": true
+}

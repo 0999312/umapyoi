@@ -1,0 +1,25 @@
+{
+  "type": "strength",
+  "max_damage": 5,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:oguri_cap"
+  ],
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 3,
+      "support": "umapyoi:strength_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:nutritional_supplements"
+      }
+    }
+  ]
+}

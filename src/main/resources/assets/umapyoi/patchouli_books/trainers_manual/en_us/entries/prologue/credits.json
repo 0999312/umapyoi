@@ -1,0 +1,16 @@
+{
+    "name": "About Umapyoi Mod",
+    "icon": "minecraft:writable_book",
+    "category": "umapyoi:prologue",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Thank you for using Umapyoi Mod. This module is based on the theme of Uma Musume Pretty Derby, with \"Breeding & Inheritance\" as the core gameplay.$(p)Being \"Umamusume\", Embark on a great adventure in Minecraft!"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "This module was developed by the \"Tracen Academy Minecraft Group\".$(p)Number: $(li)Leader / Dev: Syameimaru Zheng;$(li)Art: Kuguan_Boom, Dumnheint, TwinTurbo3116, omo, GoldYgg, Pajinyi, Syameimaru Zheng; $(li)Promotion: Syameimaru Zheng, Limuness $(li)Special thanks : Yuriscat"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "umapyoi:block/three_goddess",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "umapyoi:block/three_goddess"
+    },
+    "facing=south": {
+      "model": "umapyoi:block/three_goddess",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "umapyoi:block/three_goddess",
+      "y": 270
+    }
+  }
+}

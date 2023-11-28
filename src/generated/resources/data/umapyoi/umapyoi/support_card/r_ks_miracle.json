@@ -1,0 +1,14 @@
+{
+  "type": "guts",
+  "max_damage": 10,
+  "ranking": "r",
+  "supporters": [
+    "umapyoi:ks_miracle"
+  ],
+  "supports": [
+    {
+      "level": 2,
+      "support": "umapyoi:guts_support"
+    }
+  ]
+}

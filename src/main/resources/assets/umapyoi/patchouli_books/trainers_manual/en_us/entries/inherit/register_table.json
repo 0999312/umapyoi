@@ -1,0 +1,25 @@
+{
+    "name": "Retire Register Lectern",
+    "icon": "umapyoi:register_lectern",
+    "category": "umapyoi:inherit",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Retire Register Lectern is a lectionary that is used at the end of the training, where the trainer completes the evaluation by recording all the information about the soul, and then collects the soul's \"wish\".$(p)After Fully Fledged, Overall rankings will be determined. As a general rule, the higher the ranking the better the ability and the stronger the will to be able to stay. So please raise your ranking as high as possible."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "For some unknown reason, the results of enchantments may change after registration. $(p) Based on the survey, it appears that each registration changes the predicted outcome of enchanting the same item. However, this effect only affects the person who made the registration and no one else. $(p) Conversely, enchantment also affects the outcome of the next acquired factor."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "It is well known that there is a limit to the growth of souls, and the same is true for human growth. $(p) It takes more than individual effort to make a breakthrough in human growth; it takes encouragement, guidance, and direction from all; and the same is true for the soul - it takes a different kind of wish to guide those who come after them to keep moving forward and make new breakthroughs."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:register_lectern",
+            "text": "After Fully Fledged, growth will stop completely, including status growth, skill learning, etc."
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "wisdom",
+  "max_damage": 8,
+  "ranking": "sr",
+  "supporters": [
+    "umapyoi:agnus_tachyon"
+  ],
+  "supports": [
+    {
+      "level": 2,
+      "support": "umapyoi:wisdom_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:speed_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:last_leg"
+      }
+    }
+  ]
+}

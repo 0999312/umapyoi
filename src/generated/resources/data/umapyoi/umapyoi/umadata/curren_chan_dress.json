@@ -1,0 +1,26 @@
+{
+  "identifier": "umapyoi:curren_chan",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    10,
+    0,
+    20,
+    0,
+    10
+  ],
+  "ranking": "ssr",
+  "uniqueSkill": "umapyoi:basic_pace"
+}

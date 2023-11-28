@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:lectern"
+    },
+    "G": {
+      "tag": "forge:ingots/gold"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    }
+  },
+  "pattern": [
+    " J ",
+    " G ",
+    "GAG"
+  ],
+  "result": {
+    "item": "umapyoi:register_lectern"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,22 @@
+{
+  "type": "wisdom",
+  "max_damage": 5,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:fine_motion"
+  ],
+  "supports": [
+    {
+      "level": 3,
+      "support": "umapyoi:wisdom_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:speed_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:actionpoint_support"
+    }
+  ]
+}

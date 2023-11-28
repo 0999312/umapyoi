@@ -1,0 +1,34 @@
+{
+    "name": "马娘之魂",
+    "icon": "umapyoi:uma_soul",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "所谓“赛马娘”，是一群为奔跑而生的女孩。$(p)她们继承了来自另一个世界的名字——其原主有的命运坎坷，有的光耀百代……$(p)她们继承其灵魂继续奔驰着……$(p)$(br)本该如此。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "现在的“赛马娘”更多指那些寄宿在奇妙晶体之中的灵魂。这些“灵魂的结晶”就是所谓的“马娘之魂”。$(br2)至于为什么我们说是“赛马娘”，则是因为我们从这些结晶之中接触到的记忆全部都和所谓“竞赛”相关。$(br2)现在也有很多人通过这些水晶变为马娘之后相互之间进行比赛，可以说确实是名副其实。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "在供奉物品的台座之上放置萝卜宝石或者“马券”，在一阵变化之后就会得到“褪色的马娘之魂”。$(br)这些颜色暗淡的水晶并不能使一个人变成“赛马娘”。$(br2)直接对女神像献上这些暗淡的水晶，可以使水晶在三女神的恩赐之下重新焕发光芒。"
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["umapyoi:textures/book_images/summon_soul.png", "umapyoi:textures/book_images/blank_soul.png"],
+            "text": "“褪色的马娘之魂”出现的过程。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "当你使用马娘之魂成功变成马娘之后，默认情况下在HUD的右下角会显示该马娘当前的心情和所选中的技能。$(br2)HUD右侧有一个蓝条代表着当前马娘之魂的行动力，若行动力已经完全恢复则默认不会显示该蓝条。"
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["umapyoi:textures/book_images/hud_info.png"],
+            "text": "在HUD的右下角会显示该马娘当前的心情和所选中的技能。"
+        }
+    ]
+}

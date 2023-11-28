@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "forge:seeds/wheat"
+    },
+    {
+      "tag": "forge:dusts/redstone"
+    },
+    {
+      "item": "minecraft:glistering_melon_slice"
+    },
+    {
+      "tag": "forge:crops/nether_wart"
+    },
+    {
+      "tag": "forge:sugar"
+    },
+    {
+      "fluid": "minecraft:water",
+      "nbt": {},
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "item": "umapyoi:royal_bitter"
+    }
+  ]
+}
