@@ -1,0 +1,14 @@
+// 1.20.1	2023-09-28T22:11:00.605732	Tags for minecraft:item mod id umapyoi
+3c97b80407cb369d06f88b8b31da41587486fa84 data/forge/tags/items/bread.json
+0bdc999a7f653eecbb3c513a0baf1b963a2587ab data/forge/tags/items/bread/wheat.json
+edb5947f84984a39ab47c98c6fb0b3c3a9a8cc39 data/forge/tags/items/milk.json
+e801bdef0719e27dd7decd88269ada7c5740348e data/forge/tags/items/sugar.json
+c62b9be8a52938b166add3c15cf8fe7b6021f08a data/forge/tags/items/water.json
+056600831210a346003c48312051db320720ea31 data/umapyoi/tags/items/card_ticket.json
+cc9f68af00c5f085ea80b9561020a4d628660cc3 data/umapyoi/tags/items/common_gacha_item.json
+cc9a98374f8212259b3b6bfee2befe4e4f33aee8 data/umapyoi/tags/items/horseshoe.json
+3ef940a4f4e192e4a70dbd5d18fc2aa409b770ce data/umapyoi/tags/items/sr_card_ticket.json
+eea415f25c1df6b1634850b8e7f53f5a263249aa data/umapyoi/tags/items/sr_uma_ticket.json
+ddc68bee333d189e8e26f1496243259be29b64be data/umapyoi/tags/items/ssr_card_ticket.json
+a9266bbec58cae3ba942f547faf6652c2544a167 data/umapyoi/tags/items/ssr_uma_ticket.json
+8b522bce0cb0619385ff75d05ae95119e38fda1d data/umapyoi/tags/items/uma_ticket.json

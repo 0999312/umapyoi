@@ -1,0 +1,17 @@
+{
+    "name": "Three Goddesses Statue",
+    "icon": "umapyoi:three_goddess",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 3,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The \"Three Goddesses\" are the original three Umamusume, the gods who govern the Umamusume. They give the Umamusume soul, power, and knowledge, and show the direction of the Umamusume. ......$(p)For trainers, the greatest significance of the Three Goddesses Statue is the activation of the Faded Umamusume Soul. At the same time, \"Factor Inheritance\" is also the Three Goddesses Statue."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:three_goddess",
+            "text": "Did they really come?"
+        }
+    ]
+}

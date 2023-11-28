@@ -1,0 +1,25 @@
+{
+  "identifier": "umapyoi:venus_park",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    10,
+    10,
+    10,
+    10,
+    10
+  ],
+  "uniqueSkill": "umapyoi:basic_pace"
+}

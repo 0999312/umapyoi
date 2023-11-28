@@ -1,0 +1,26 @@
+{
+  "identifier": "umapyoi:nice_nature",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    0,
+    0,
+    20,
+    0,
+    10
+  ],
+  "ranking": "sr",
+  "uniqueSkill": "umapyoi:basic_pace"
+}

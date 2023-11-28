@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "item": "minecraft:purple_wool"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    }
+  },
+  "pattern": [
+    "IJI",
+    "III",
+    "III"
+  ],
+  "result": {
+    "item": "umapyoi:winter_uniform"
+  },
+  "show_notification": true
+}

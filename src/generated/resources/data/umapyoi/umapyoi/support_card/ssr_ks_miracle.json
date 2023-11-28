@@ -1,0 +1,25 @@
+{
+  "type": "guts",
+  "max_damage": 5,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:ks_miracle"
+  ],
+  "supports": [
+    {
+      "level": 3,
+      "support": "umapyoi:guts_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:speed_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:heart_and_soul"
+      }
+    }
+  ]
+}

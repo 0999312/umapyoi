@@ -1,0 +1,11 @@
+{
+    "name": "book.umapyoi.trainers_manual.title",
+    "landing_text": "book.umapyoi.trainers_manual.landing_text",
+    "subtitle": "book.umapyoi.trainers_manual.subtitle",
+    "version": 0,
+    "creative_tab": "umapyoi",
+    "filler_texture": "umapyoi:textures/book_images/book_filler.png",
+    "book_texture":"umapyoi:textures/gui/book.png",
+    "model":"umapyoi:manual_closed",
+    "use_resource_pack": true
+}

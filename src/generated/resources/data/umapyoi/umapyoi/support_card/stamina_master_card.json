@@ -1,0 +1,15 @@
+{
+  "type": "stamina",
+  "max_damage": 5,
+  "ranking": "ssr",
+  "supports": [
+    {
+      "level": 3,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:guts_support"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "identifier": "umapyoi:vodka",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    10,
+    0,
+    20,
+    0,
+    0
+  ],
+  "ranking": "sr",
+  "uniqueSkill": "umapyoi:basic_pace"
+}

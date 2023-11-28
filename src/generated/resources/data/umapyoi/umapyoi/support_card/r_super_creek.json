@@ -1,0 +1,21 @@
+{
+  "type": "stamina",
+  "max_damage": 10,
+  "ranking": "r",
+  "supporters": [
+    "umapyoi:super_creek"
+  ],
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:nutritional_supplements"
+      }
+    }
+  ]
+}

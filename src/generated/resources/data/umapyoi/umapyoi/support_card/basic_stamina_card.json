@@ -1,0 +1,11 @@
+{
+  "type": "stamina",
+  "max_damage": 10,
+  "ranking": "r",
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:stamina_support"
+    }
+  ]
+}

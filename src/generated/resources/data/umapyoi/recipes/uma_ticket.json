@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "umapyoi:blank_ticket"
+    },
+    {
+      "item": "umapyoi:crystal_silver"
+    }
+  ],
+  "result": {
+    "item": "umapyoi:uma_ticket"
+  }
+}

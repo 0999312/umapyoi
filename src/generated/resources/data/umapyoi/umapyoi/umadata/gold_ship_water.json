@@ -1,0 +1,26 @@
+{
+  "identifier": "umapyoi:gold_ship",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    0,
+    0,
+    20,
+    0,
+    20
+  ],
+  "ranking": "ssr",
+  "uniqueSkill": "umapyoi:basic_pace"
+}

@@ -1,0 +1,18 @@
+{
+  "type": "strength",
+  "max_damage": 10,
+  "ranking": "r",
+  "supporters": [
+    "umapyoi:oguri_cap"
+  ],
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:strength_support"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "strength",
+  "max_damage": 8,
+  "ranking": "sr",
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:strength_support"
+    }
+  ]
+}
