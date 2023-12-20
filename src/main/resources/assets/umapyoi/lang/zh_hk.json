@@ -24,7 +24,7 @@
   "item.umapyoi.sweet_cupcake": "甜紙杯蛋糕",
   "item.umapyoi.trainning_suit": "特雷森訓練服",
   "item.umapyoi.uma_soul": "馬娘之魂",
-  "item.umapyoi.uma_factor_item": "馬娘的意念",
+  "item.umapyoi.uma_factor_item": "馬娘的意志",
   "item.umapyoi.winter_uniform": "特雷森秋季校服",
   "item.umapyoi.wisdom_high_item": "智力秘傳書",
   "item.umapyoi.wisdom_low_item": "智力記事本",
@@ -85,7 +85,6 @@
   "umadata.umapyoi.curren_chan": "真機伶",
   "umadata.umapyoi.mr_cb": "千明代表",
   "umadata.umapyoi.curren_chan_dress": "[朔月のマ・シェリ] 真機伶",
-  "umadata.umapyoi.venus_park": "金星公園",
   
   "umadata.umapyoi.kitasan_black": "北部玄駒",
   "umadata.umapyoi.satono_diamond": "里見光鑽",
@@ -97,10 +96,15 @@
   "umadata.umapyoi.ks_miracle": "凱斯奇蹟",
   "umadata.umapyoi.super_creek": "超級溪流",
   "umadata.umapyoi.fine_motion": "美妙姿勢",
+  "umadata.umapyoi.venus_park": "金星公園",
   
-  "umapyoi.jei.disassembly": "移籍登記",
-  "umapyoi.jei.gacha": "基座召喚",
-  "umapyoi.jei.gacha.need_book": "基座上需要書",
+  "umadata.umapyoi.matikanetannhauser": "待兼詩歌劇",
+  "umadata.umapyoi.mihono_bourbon": "美浦波旁",
+  "umadata.umapyoi.sakura_laurel": "櫻花桂冠",
+  "umadata.umapyoi.little_cocon": "小巧圓餅",
+  "umadata.umapyoi.twinturbo": "雙渦輪",
+  "umadata.umapyoi.kawakami_princess": "川上公主",
+  "umadata.umapyoi.agnus_tachyon_swim": "[Lunatic Lab] 愛麗速子",
   
   "tooltip.umapyoi.umadata.name": "馬娘姓名：%s",
   "tooltip.umapyoi.supports": "支援項：",
@@ -138,6 +142,10 @@
   "support_card.umapyoi.strength_master_card.name": "[大師訓練] 力量訓練",
   "support_card.umapyoi.wisdom_master_card.name": "[大師訓練] 智力訓練",
   
+  "support_card.umapyoi.r_turf_training.name": "[特雷森學院] 標準草地訓練",
+  "support_card.umapyoi.r_dirt_training.name": "[特雷森學院] 標準泥地訓練",
+  "support_card.umapyoi.r_snow_training.name": "[特雷森學院] 標準雪地訓練",
+  
   "support_card.umapyoi.r_agnus_tachyon.name": "[特雷森學院] 愛麗速子",
   "support_card.umapyoi.r_kitasan_black.name": "[特雷森學院] 北部玄駒",
   "support_card.umapyoi.r_ks_miracle.name": "[特雷森學院] 凱斯奇蹟",
@@ -152,6 +160,10 @@
   "support_card.umapyoi.ssr_fine_motion.name": "[連指尖都飽含感激] 美妙姿勢",
 
   "support_card.umapyoi.blank_card.name": "空白支援卡",
+  
+  "umapyoi.jei.disassembly": "移籍登記",
+  "umapyoi.jei.gacha": "基座召喚",
+  "umapyoi.jei.gacha.need_book": "基座上需要書",
 
   "curios.modifiers.uma_soul": "當成為該馬娘時：",
   "curios.modifiers.uma_suit": "當裝備該服飾時：",
@@ -208,6 +220,12 @@
   "uma_skill.umapyoi.adv_low_health_buff": "決死之心",
   "uma_skill.umapyoi.adv_low_health_heal": "起死回生",
   
+  "uma_skill.umapyoi.snow_runner": "雪地行者",
+  "uma_skill.umapyoi.dig_speed": "開掘技巧",
+  "uma_skill.umapyoi.dirt_runner": "泥地行者",
+  "uma_skill.umapyoi.turf_runner": "草地行者",
+  "uma_skill.umapyoi.mountain_climber": "登山家",
+ 
   "umapyoi.motivation.bad": "極差",
   "umapyoi.motivation.down": "不佳",
   "umapyoi.motivation.good": "良好",
@@ -231,5 +249,6 @@
   "umapyoi.not_enough_ap": "行動力不足。",
   "umapyoi.skill.has_learned_skill": "該技能已經學習過了。",
   "umapyoi.skill.has_retired": "該馬娘已引退。",
+  "umapyoi.skill.passive": "這是一個被動技能。",
   "umapyoi.skill.slot_needed": "已達到學習上限。"
 }

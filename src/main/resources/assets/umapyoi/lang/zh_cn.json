@@ -97,6 +97,15 @@
   "umadata.umapyoi.super_creek": "超级溪流",
   "umadata.umapyoi.fine_motion": "美妙姿势",
   "umadata.umapyoi.venus_park": "金星公园",
+  
+  "umadata.umapyoi.matikanetannhauser": "待兼诗歌剧",
+  "umadata.umapyoi.mihono_bourbon": "美浦波旁",
+  "umadata.umapyoi.sakura_laurel": "樱花桂冠",
+  "umadata.umapyoi.little_cocon": "小巧圆饼",
+  "umadata.umapyoi.twinturbo": "双涡轮",
+  "umadata.umapyoi.kawakami_princess": "川上公主",
+  "umadata.umapyoi.agnus_tachyon_swim": "[Lunatic Lab] 爱丽速子",
+  
   "tooltip.umapyoi.umadata.name": "马娘姓名：%s",
   "tooltip.umapyoi.supports": "支援项：",
   "tooltip.umapyoi.supporters": "支援者：",
@@ -132,6 +141,10 @@
   "support_card.umapyoi.stamina_master_card.name": "[大师训练] 耐力训练",
   "support_card.umapyoi.strength_master_card.name": "[大师训练] 力量训练",
   "support_card.umapyoi.wisdom_master_card.name": "[大师训练] 智力训练",
+  
+  "support_card.umapyoi.r_turf_training.name": "[特雷森学院] 标准草地训练",
+  "support_card.umapyoi.r_dirt_training.name": "[特雷森学院] 标准泥地训练",
+  "support_card.umapyoi.r_snow_training.name": "[特雷森学院] 标准雪地训练",
   
   "support_card.umapyoi.r_agnus_tachyon.name": "[特雷森学院] 爱丽速子",
   "support_card.umapyoi.r_kitasan_black.name": "[特雷森学院] 北部玄驹",
@@ -207,6 +220,12 @@
   "uma_skill.umapyoi.adv_low_health_buff": "决死之心",
   "uma_skill.umapyoi.adv_low_health_heal": "起死回生",
   
+  "uma_skill.umapyoi.snow_runner": "雪地行者",
+  "uma_skill.umapyoi.dig_speed": "开掘技巧",
+  "uma_skill.umapyoi.dirt_runner": "泥地行者",
+  "uma_skill.umapyoi.turf_runner": "草地行者",
+  "uma_skill.umapyoi.mountain_climber": "登山家",
+ 
   "umapyoi.motivation.bad": "极差",
   "umapyoi.motivation.down": "不佳",
   "umapyoi.motivation.good": "良好",
@@ -230,5 +249,6 @@
   "umapyoi.not_enough_ap": "行动力不足。",
   "umapyoi.skill.has_learned_skill": "该技能已经学习过了。",
   "umapyoi.skill.has_retired": "该马娘已引退。",
+  "umapyoi.skill.passive": "这是一个被动技能。",
   "umapyoi.skill.slot_needed": "已达到学习上限。"
 }

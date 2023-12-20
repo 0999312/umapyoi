@@ -18,6 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.UmapyoiConfig;
+import net.tracen.umapyoi.events.AddAttributeModifiersEvent;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
 import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
@@ -101,6 +102,7 @@ public class UmaSoulCuriosWrapper implements ICurio {
         CuriosApi.getCuriosHelper().addSlotModifier(atts, "uma_suit", uuid, 1.0, AttributeModifier.Operation.ADDITION);
         if (UmaSoulUtils.getGrowth(getStack()) == Growth.UNTRAINED)
             return atts;
+        MinecraftForge.EVENT_BUS.post(new AddAttributeModifiersEvent(this.getStack(), slotContext, uuid, atts));
         atts.put(Attributes.MOVEMENT_SPEED,
                 new AttributeModifier(uuid, "speed_running_bonus",
                         getExactProperty(StatusType.SPEED.getId(), UmapyoiConfig.UMASOUL_MAX_SPEED.get()),

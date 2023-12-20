@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:dirt",
+    "minecraft:podzol",
+    "minecraft:rooted_dirt",
+    "minecraft:coarse_dirt",
+    "#minecraft:sand"
+  ]
+}

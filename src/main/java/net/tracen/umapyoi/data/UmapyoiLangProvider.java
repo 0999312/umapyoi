@@ -173,6 +173,12 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSkill(UmaSkillRegistry.ADV_LOWHEALTH_BUFF, "Prepared to Die");
         addSkill(UmaSkillRegistry.LOW_HEALTH_HEAL, "One Chance");
         addSkill(UmaSkillRegistry.ADV_LOWHEALTH_HEAL, "From the Brink");
+        
+        addSkill(UmaSkillRegistry.MOUNTAIN_CLIMBER, "Mountain Climber");
+        addSkill(UmaSkillRegistry.DIG_SPEED, "Mining Skills");
+        addSkill(UmaSkillRegistry.TURF_RUNNER, "Turf Runner");
+        addSkill(UmaSkillRegistry.DIRT_RUNNER, "Dirt Runner");
+        addSkill(UmaSkillRegistry.SNOW_RUNNER, "Snow Runner");
 
         add("container.umapyoi.three_goddess", "Three Goddesses Statue");
         add("container.umapyoi.training_facility", "Training Facility");
@@ -190,6 +196,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("umapyoi.skill.slot_needed", "Has reached the learning limit.");
         add("umapyoi.skill.has_retired", "This Umamusume is retired.");
         add("umapyoi.skill.has_learned_skill", "This skill has learned.");
+        add("umapyoi.skill.passive", "This is a passive skill.");
         add("umapyoi.not_enough_ap", "Not enough action points.");
         add("umapyoi.uma_pedestal.cannot_add_item", "Can not add item anymore.");
 
@@ -305,6 +312,14 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addUma(UmaDataRegistry.VENUS_PARK, "Venus Park");
         
+        addUma(UmaDataRegistry.AGNUS_TACHYON_SWIM, "[Lunatic Lab] Agnus Tachyon");
+        addUma(UmaDataRegistry.MIHONO_BOURBON, "Mihono Bourbon");
+        addUma(UmaDataRegistry.MATIKANETANNHAUSER, "Makikanetannhauser");
+        addUma(UmaDataRegistry.KAWAKAMI_PRINCESS, "Kawakami Princess");
+        addUma(UmaDataRegistry.TWIN_TURBO, "Twin Turbo");
+        addUma(UmaDataRegistry.LITTLE_COCON, "Little Cocon");
+        addUma(UmaDataRegistry.SAKURA_LAUREL, "Sakura Laurel");
+        
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "fine_motion")), "Fine Motion");
@@ -334,6 +349,10 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSupportCard(SupportCardRegistry.R_KS_MIRACLE, "[Tracen Academy] K.S. Miracle");
         addSupportCard(SupportCardRegistry.R_OGURICAP, "[Tracen Academy] Oguri Cap");
         addSupportCard(SupportCardRegistry.R_SUPERCREEK, "[Tracen Academy] Super Creek");
+        
+        addSupportCard(SupportCardRegistry.R_TURF_TRAINING, "[Tracen Academy] Standard Turf Training");
+        addSupportCard(SupportCardRegistry.R_DIRT_TRAINING, "[Tracen Academy] Standard Dirt Training");
+        addSupportCard(SupportCardRegistry.R_SNOW_TRAINING, "[Tracen Academy] Standard Snow Training");
         
         addSupportCard(SupportCardRegistry.SR_AGNUS_TACHYON, "[Experimental Study of Lifeform A] Agnes Tachyon");
         addSupportCard(SupportCardRegistry.SSR_AGNUS_TACHYON, "[Q!=0] Agnes Tachyon");

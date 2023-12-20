@@ -23,6 +23,33 @@ public class SupportCardRegistry {
     public static final RegistryObject<SupportCard> BLANK_CARD = SUPPORT_CARD.register("blank_card",
             SupportCard.Builder.create().ranking(GachaRanking.EASTER_EGG).supportType(SupportType.GROUP)::build);
     
+    public static final RegistryObject<SupportCard> R_TURF_TRAINING = SUPPORT_CARD.register("r_turf_training",
+                    SupportCard.Builder.create()
+                    .ranking(GachaRanking.R)
+                    .maxDamage(10)
+                    .supportType(SupportType.SPEED)
+                    .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 1))
+                    .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.TURF_RUNNER.getId()))
+                    ::build);
+    
+    public static final RegistryObject<SupportCard> R_DIRT_TRAINING = SUPPORT_CARD.register("r_dirt_training",
+                    SupportCard.Builder.create()
+                    .ranking(GachaRanking.R)
+                    .maxDamage(10)
+                    .supportType(SupportType.STRENGTH)
+                    .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 1))
+                    .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.DIRT_RUNNER.getId()))
+                    ::build);
+    
+    public static final RegistryObject<SupportCard> R_SNOW_TRAINING = SUPPORT_CARD.register("r_snow_training",
+                    SupportCard.Builder.create()
+                    .ranking(GachaRanking.R)
+                    .maxDamage(10)
+                    .supportType(SupportType.GUTS)
+                    .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 1))
+                    .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.SNOW_RUNNER.getId()))
+                    ::build);
+    
     public static final RegistryObject<SupportCard> R_KITASANBLACK = SUPPORT_CARD.register("r_kitasan_black",
                     SupportCard.Builder.create()
                     .ranking(GachaRanking.R)

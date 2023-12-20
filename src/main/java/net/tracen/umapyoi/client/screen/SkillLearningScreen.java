@@ -39,8 +39,10 @@ public class SkillLearningScreen extends ItemCombinerScreen<SkillLearningMenu> {
             boolean has_retired = UmaSoulUtils.getGrowth(soul) == Growth.RETIRED;
             boolean has_learned = UmaSoulUtils.getSkills(soul)
                     .contains(StringTag.valueOf(skill.getRegistryName().toString()));
+            boolean has_learned_upper = skill.getUpperSkill() != null && 
+                    UmaSoulUtils.getSkills(soul).contains(StringTag.valueOf(skill.getUpperSkill().toString()));
             boolean slot_needed = !soul.isEmpty() && !UmaSoulUtils.hasEmptySkillSlot(soul);
-            if (has_learned)
+            if (has_learned || has_learned_upper)
                 this.font.draw(ms, new TranslatableComponent("umapyoi.skill.has_learned_skill"), 51, 31, 0x794016);
             else if (has_retired)
                 this.font.draw(ms, new TranslatableComponent("umapyoi.skill.has_retired"), 51, 31, 0x794016);
@@ -66,7 +68,7 @@ public class SkillLearningScreen extends ItemCombinerScreen<SkillLearningMenu> {
             case BUFF -> this.blit(pPoseStack, i + 31, j + 21, 176, 21, 16, 16);
             case HINDER -> this.blit(pPoseStack, i + 31, j + 21, 176, 37, 16, 16);
             case HEAL -> this.blit(pPoseStack, i + 31, j + 21, 176, 53, 16, 16);
-            case PASSIVE -> throw new UnsupportedOperationException("Unimplemented case: " + skill.getType());
+            case PASSIVE -> this.blit(pPoseStack, i + 31, j + 21, 176, 69, 16, 16);
             default -> throw new IllegalArgumentException("Unexpected value: " + skill.getType());
             }
         }

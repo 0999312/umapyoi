@@ -3,6 +3,7 @@ package net.tracen.umapyoi.data.tag;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
@@ -24,5 +25,20 @@ public class UmapyoiBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(BlockRegistry.SKILL_LEARNING_TABLE.get())
                 .add(BlockRegistry.REGISTER_LECTERN.get());
         
+        this.tag(UmapyoiBlockTags.TRACK_TURF)
+                .add(Blocks.GRASS_BLOCK)
+                .add(Blocks.DIRT_PATH)
+                .add(Blocks.CRIMSON_NYLIUM)
+                .add(Blocks.WARPED_NYLIUM);
+        
+        this.tag(UmapyoiBlockTags.TRACK_DIRT)
+                .add(Blocks.DIRT)
+                .add(Blocks.PODZOL)
+                .add(Blocks.ROOTED_DIRT)
+                .add(Blocks.COARSE_DIRT)
+                .addTag(BlockTags.SAND);
+        
+        this.tag(UmapyoiBlockTags.TRACK_SNOW)
+                .addTag(BlockTags.SNOW);
     }
 }

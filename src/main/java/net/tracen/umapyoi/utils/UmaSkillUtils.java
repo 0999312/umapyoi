@@ -39,7 +39,16 @@ public class UmaSkillUtils {
             return;
         if (skill != null && UmaSkillRegistry.REGISTRY.get().containsKey(skill)) {
             ListTag skills = UmaSoulUtils.getSkills(stack);
+            UmaSkill skillItem = UmaSkillRegistry.REGISTRY.get().getValue(skill);
+            if(skillItem.getUpperSkill() !=null)
+                if (hasLearnedSkill(stack, skillItem.getUpperSkill()))
+                    return;
+            
             StringTag tag = StringTag.valueOf(skill.toString());
+            int lowerSkillIndex = getLowerSkillIndex(stack, skill);
+            if (lowerSkillIndex != -1)
+                skills.setTag(lowerSkillIndex, tag);
+            
             if (!hasLearnedSkill(stack, skill))
                 skills.add(tag);
         }
@@ -51,5 +60,18 @@ public class UmaSkillUtils {
         StringTag tag = StringTag.valueOf(skill.toString());
         return skills.contains(tag);
     }
-
+    
+    public static int getLowerSkillIndex(ItemStack stack, ResourceLocation skill) {
+        ListTag skills = UmaSoulUtils.getSkills(stack);
+        UmaSkill target = null;
+        for(int i = 0;i<skills.size();i++) {
+            target = UmaSkillRegistry.REGISTRY.get().getValue(ResourceLocation.tryParse(skills.get(i).getAsString()));
+            if(target.getUpperSkill() == null)
+                continue;
+            if(target !=null && target.getUpperSkill().equals(skill))
+                return i;
+        }
+        // if doesn't have lower skill, return -1 for mark.
+        return -1;
+    }
 }

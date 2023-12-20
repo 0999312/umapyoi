@@ -40,7 +40,11 @@ public class SkillLearningMenu extends ItemCombinerMenu {
         if (isUmaSoul(inputSoul) && isSkillBook(inputSkill)) {
             ResourceLocation skillRL = ResourceLocation.tryParse(inputSkill.getOrCreateTag().getString("skill"));
             if (UmaSkillRegistry.REGISTRY.get().containsKey(skillRL)) {
-                if (!UmaSoulUtils.hasEmptySkillSlot(inputSoul))
+                var upperSkill = UmaSkillRegistry.REGISTRY.get().getValue(skillRL).getUpperSkill();
+                if (upperSkill != null && UmaSkillUtils.hasLearnedSkill(inputSoul, upperSkill)) 
+                    return false;
+                
+                if (!UmaSoulUtils.hasEmptySkillSlot(inputSoul) && UmaSkillUtils.getLowerSkillIndex(inputSkill, skillRL) == -1)
                     return false;
 
                 UmaSkill skill = UmaSkillRegistry.REGISTRY.get().getValue(skillRL);

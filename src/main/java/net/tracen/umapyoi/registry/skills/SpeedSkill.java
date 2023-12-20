@@ -2,7 +2,7 @@ package net.tracen.umapyoi.registry.skills;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.api.UmapyoiAPI;
@@ -17,7 +17,7 @@ public class SpeedSkill extends UmaSkill {
     }
 
     @Override
-    public void applySkill(Level level, Player user) {
+    public void applySkill(Level level, LivingEntity user) {
         ItemStack soul = UmapyoiAPI.getUmaSoul(user);
         int skillTime = this.getSpeedTime() + (UmaSoulUtils.getProperty(soul)[4] >= 10 ? 80 : 0);
         int skillLevel = this.getSkillLevel() - 1 + (UmaSoulUtils.getProperty(soul)[2] >= 10 ? 1 : 0);

@@ -69,6 +69,27 @@
           ],
           "name": "umapyoi:skill_book"
         }
+        ,
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{skill:\"umapyoi:mountain_climber\"}"
+            }
+          ],
+          "name": "umapyoi:skill_book"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{skill:\"umapyoi:dig_speed\"}"
+            }
+          ],
+          "name": "umapyoi:skill_book"
+        }
       ]
     }
   ]

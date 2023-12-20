@@ -150,7 +150,22 @@ public class UmaDataRegistry {
             () -> UmaDataRegistry.createNewUmamusume("agnus_tachyon", GachaRanking.SSR, new int[] {15, 0, 10, 0, 15}));
     
     public static final RegistryObject<UmaData> MIHONO_BOURBON = UMA_DATA.register("mihono_bourbon",
-            () -> UmaDataRegistry.createNewUmamusume("mihono_bourbon", GachaRanking.SR, new int[] {20, 10, 0, 0, 0}));
+            () -> UmaDataRegistry.createNewUmamusume("mihono_bourbon", GachaRanking.SR, new int[] {0, 20, 10, 0, 0}));
+    
+    public static final RegistryObject<UmaData> MATIKANETANNHAUSER = UMA_DATA.register("matikanetannhauser",
+            () -> UmaDataRegistry.createNewUmamusume("matikanetannhauser", GachaRanking.SR, new int[] {0, 20, 0, 10, 0}));
+    
+    public static final RegistryObject<UmaData> KAWAKAMI_PRINCESS = UMA_DATA.register("kawakami_princess",
+            () -> UmaDataRegistry.createNewUmamusume("kawakami_princess", GachaRanking.SR, new int[] {0, 10, 0, 20, 0}));
+    
+    public static final RegistryObject<UmaData> TWIN_TURBO = UMA_DATA.register("twinturbo",
+            () -> UmaDataRegistry.createNewUmamusume("twinturbo", GachaRanking.SR, new int[] {30, 0, 0, 0, 0}));
+    
+    public static final RegistryObject<UmaData> LITTLE_COCON = UMA_DATA.register("little_cocon",
+            () -> UmaDataRegistry.createNewUmamusume("little_cocon", GachaRanking.SR, new int[] {10, 0, 10, 0, 10}));
+    
+    public static final RegistryObject<UmaData> SAKURA_LAUREL = UMA_DATA.register("sakura_laurel",
+            () -> UmaDataRegistry.createNewUmamusume("sakura_laurel", GachaRanking.SR, new int[] {0, 20, 10, 0, 0}));
 
     public static UmaData createNewUmamusume(String name, GachaRanking ranking) {
         return new UmaData(new ResourceLocation(Umapyoi.MODID, name), ranking, new int[] { 1, 1, 1, 1, 1 },

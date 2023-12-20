@@ -74,8 +74,7 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
 
         ShapedRecipeBuilder.shaped(BlockRegistry.UMA_PEDESTAL.get()).pattern(" J ").pattern("GAG").pattern("GGG")
                 .define('A', ItemRegistry.SILVER_UMA_PEDESTAL.get()).define('G', Tags.Items.INGOTS_GOLD)
-                .define('J',
-                        Ingredient.fromValues(
+                .define('J', Ingredient.fromValues(
                                 Stream.of(new Ingredient.ItemValue(new ItemStack(ItemRegistry.CRYSTAL_GOLD.get())),
                                         new Ingredient.ItemValue(new ItemStack(ItemRegistry.HORSESHOE_GOLD.get())))))
                 .unlockedBy("has_item", has(ItemRegistry.CRYSTAL_GOLD.get())).save(consumer);
@@ -138,6 +137,7 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .requires(Tags.Items.CROPS_CARROT).requires(Tags.Items.CROPS_WHEAT).requires(Tags.Items.EGGS)
                 .requires(UmapyoiItemTags.SUGAR).requires(UmapyoiItemTags.SUGAR).requires(UmapyoiItemTags.MILK)
                 .unlockedBy("has_item", has(Tags.Items.CROPS_CARROT)).save(consumer);
+        
     }
 
 }

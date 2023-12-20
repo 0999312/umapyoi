@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import net.tracen.umapyoi.Umapyoi;
@@ -19,7 +19,7 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
     private final int actionPoint;
     private final int level;
     private final SoundEvent sound;
-
+    private final ResourceLocation upperSkill;
     private String descriptionId;
 
     public static final ResourceKey<Registry<UmaSkill>> REGISTRY_KEY = ResourceKey
@@ -31,6 +31,7 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         this.level = builder.level;
         this.actionPoint = builder.actionPoint;
         this.sound = builder.sound;
+        this.upperSkill = builder.upperSkill;
     }
 
     public SkillType getType() {
@@ -68,12 +69,16 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         return this.getOrCreateDescriptionId();
     }
 
-    public void applySkill(Level level, Player user) {
+    public void applySkill(Level level, LivingEntity user) {
         Umapyoi.getLogger().error(String.format("Wait, %s is an empty skill! Call the dev!", this.toString()));
     }
 
     public SoundEvent getSound() {
         return sound;
+    }
+
+    public ResourceLocation getUpperSkill() {
+        return upperSkill;
     }
 
     public static class Builder {
@@ -82,7 +87,7 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         private int actionPoint = 200;
         private int level = 1;
         private SoundEvent sound = SoundEvents.PLAYER_ATTACK_SWEEP;
-
+        private ResourceLocation upperSkill;
         public Builder type(SkillType type) {
             this.type = type;
             return this;
@@ -105,6 +110,11 @@ public class UmaSkill extends ForgeRegistryEntry<UmaSkill> {
         
         public Builder level(int level) {
             this.level = level;
+            return this;
+        }
+
+        public Builder upperSkill(ResourceLocation upperSkill) {
+            this.upperSkill = upperSkill;
             return this;
         }
 

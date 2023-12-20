@@ -90,6 +90,14 @@ public class UmaSoulUtils {
     public static ListTag getSkills(ItemStack stack) {
         return stack.getOrCreateTag().getList("skills", Tag.TAG_STRING);
     }
+    
+    public static boolean hasSkill(ItemStack stack, ResourceLocation skill) {
+        for(Tag tag : stack.getOrCreateTag().getList("skills", Tag.TAG_STRING)) {
+            if(tag.getAsString().equals(skill.toString()))
+                return true;
+        }
+        return false;
+    }
 
     public static void addSkill(ItemStack stack, ResourceLocation skill) {
         ListTag result = UmaSoulUtils.getSkills(stack);
@@ -126,10 +134,12 @@ public class UmaSoulUtils {
     }
 
     public static void selectFormerSkill(ItemStack stack) {
-        if (UmaSoulUtils.getSkills(stack).size() <= 1)
+        var skills = UmaSoulUtils.getSkills(stack);
+        if (skills.size() <= 1)
             return;
         int slot = UmaSoulUtils.getSelectedSkillIndex(stack);
-        UmaSoulUtils.setSelectedSkill(stack, slot == 0 ? UmaSoulUtils.getSkills(stack).size() - 1 : slot - 1);
+        int result = slot == 0 ? skills.size() - 1 : slot - 1;
+        UmaSoulUtils.setSelectedSkill(stack, result);
     }
 
     public static void selectLatterSkill(ItemStack stack) {

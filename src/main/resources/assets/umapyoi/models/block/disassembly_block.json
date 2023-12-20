@@ -3,7 +3,8 @@
 	"parent": "block/block",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "umapyoi:block/moving_lectern"
+		"0": "umapyoi:block/moving_lectern",
+		"particle": "umapyoi:block/moving_lectern"
 	},
 	"elements": [
 		{

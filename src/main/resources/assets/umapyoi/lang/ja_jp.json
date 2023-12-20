@@ -97,6 +97,14 @@
   "umadata.umapyoi.symboli_rudolf": "シンボリルドルフ",
   "umadata.umapyoi.narita_top_road": "ナリタトップロード",
   
+  "umadata.umapyoi.matikanetannhauser": "マチカネタンホイザ",
+  "umadata.umapyoi.mihono_bourbon": "ミホノブルボン",
+  "umadata.umapyoi.sakura_laurel": "サクラローレル",
+  "umadata.umapyoi.little_cocon": "リトルココン",
+  "umadata.umapyoi.twinturbo": "ツインターボ",
+  "umadata.umapyoi.kawakami_princess": "カワカミプリンセス",
+  "umadata.umapyoi.agnus_tachyon_swim": "[Lunatic Lab] アグネスタキオン",
+  
   "umapyoi.jei.disassembly": "移籍登録",
   "umapyoi.jei.gacha": "召喚",
   "umapyoi.jei.gacha.need_book": "本が必要です",
@@ -150,6 +158,10 @@
   "support_card.umapyoi.stamina_master_card.name": "[マスタートレーニング] スタミナトレーニング",
   "support_card.umapyoi.strength_master_card.name": "[マスタートレーニング] パワートレーニング",
   "support_card.umapyoi.wisdom_master_card.name": "[マスタートレーニング] 賢さトレーニング",
+  
+  "support_card.umapyoi.r_turf_training.name": "[トレセン学園] スタンダード芝トレーニング",
+  "support_card.umapyoi.r_dirt_training.name": "[トレセン学園] スタンダードダートトレーニング",
+  "support_card.umapyoi.r_snow_training.name": "[トレセン学園] スタンダード雪トレーニング",
   
   "support_card.umapyoi.r_agnus_tachyon.name": "[トレセン学園]アグネスタキオン",
   "support_card.umapyoi.r_kitasan_black.name": "[トレセン学園]キタサンブラック",
@@ -205,6 +217,12 @@
   "uma_skill.umapyoi.low_health_heal": "ワンチャンス",
   "uma_skill.umapyoi.adv_low_health_buff": "決死の覚悟",
   "uma_skill.umapyoi.adv_low_health_heal": "起死回生",
+  
+  "uma_skill.umapyoi.snow_runner": "雪○",
+  "uma_skill.umapyoi.dig_speed": "掘る体験",
+  "uma_skill.umapyoi.dirt_runner": "ダート○",
+  "uma_skill.umapyoi.turf_runner": "芝○",
+  "uma_skill.umapyoi.mountain_climber": "登山家",
   
   "umapyoi.motivation.bad": "絶不調",
   "umapyoi.motivation.down": "不調",
