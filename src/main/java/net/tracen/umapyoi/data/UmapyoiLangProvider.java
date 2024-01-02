@@ -101,6 +101,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(), "Golden Support Album Pedestal");
         
         add(BlockRegistry.DISASSEMBLY_BLOCK.get(), "Transfer Register Lectern");
+        
+        add(BlockRegistry.UMA_STATUES.get(), "Umamusume Statue");
 
         add(MobEffectRegistry.PANICKING.get(), "Panicking");
 
@@ -181,7 +183,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSkill(UmaSkillRegistry.SNOW_RUNNER, "Snow Runner");
 
         add("container.umapyoi.three_goddess", "Three Goddesses Statue");
-        add("container.umapyoi.training_facility", "Training Facility");
+        add("container.umapyoi.training_facility", "Training Terminal");
         add("container.umapyoi.skill_learning", "Skill Learning Table");
         add("container.umapyoi.retire_register", "Retire Register");
         add("container.umapyoi.disassembly_block", "Transfer Register");
@@ -218,6 +220,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("umapyoi.jei.gacha", "Pedestal Summon");
         add("umapyoi.jei.gacha.need_book", "Need a book on pedestal");
 
+        add("entity.minecraft.villager.umapyoi.trainer", "Trainer");
+        
         add("umastatus.level.0", "§7G-");
         add("umastatus.level.1", "§7G");
         add("umastatus.level.2", "§7G+");
@@ -320,6 +324,20 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.LITTLE_COCON, "Little Cocon");
         addUma(UmaDataRegistry.SAKURA_LAUREL, "Sakura Laurel");
         
+        addUma(UmaDataRegistry.NARITA_TAISHIN, "Narita Taishin");
+        addUma(UmaDataRegistry.TM_OPERA_O, "TM Opera O");
+        addUma(UmaDataRegistry.ADMIRE_VEGA, "Admire Vega");
+        addUma(UmaDataRegistry.JUNGLE_POCKET, "Jungle Pocket");
+        addUma(UmaDataRegistry.SYAMEIMARU_ZHENG, "Syameimaru Zheng");
+        addUma(UmaDataRegistry.DUMNHEINT, "Dumnheint");
+        addUma(UmaDataRegistry.DARLEY_ARABIAN, "Darley Arabian");
+        addUma(UmaDataRegistry.GODOLPHIN_BARB, "Godolphin Barb");
+        addUma(UmaDataRegistry.BYERLEY_TURK, "Byerley Turk");
+
+        addUma(UmaDataRegistry.GOLD_CITY_AUTUMN, "[Akizakura Danzatrice] Gold City");
+        addUma(UmaDataRegistry.GRASS_WONDER_UMANET, "[Saint Jade Healer] Grass Wonder");
+        addUma(UmaDataRegistry.SATONO_DIAMOND_FRENCH, "[Chevalier Blue] Satono Diamond");
+        
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "fine_motion")), "Fine Motion");
@@ -362,6 +380,45 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSupportCard(SupportCardRegistry.SSR_SUPERCREEK, "[A Grain of Peace] Super Creek");
         
         addSupportCard(SupportCardRegistry.SSR_FINE_MOTION, "[Gratitude Up to One's Fingertips] Fine Motion");
+        
+        addAdvTitle("umapyoi.root", "Welcome to Tracen Academy!");
+        addAdvDesc("umapyoi.root", "Start your adventure with umamusume!");
+        
+        addAdvTitle("umapyoi.three_goddesses", "The Three Goddesses");
+        addAdvDesc("umapyoi.three_goddesses", "Build the Three Goddesses Statue.");
+        
+        addAdvTitle("umapyoi.summon_pedestal", "Gacha Time!");
+        addAdvDesc("umapyoi.summon_pedestal", "Craft a new Umamusume Pedestal.");
+        
+        addAdvTitle("umapyoi.gold_pedestal", "Getting an Upgrade, But Pedestal");
+        addAdvDesc("umapyoi.gold_pedestal", "Upgrade your Umamusume Pedestal.");
+        
+        addAdvTitle("umapyoi.blank_uma_soul", "Starting Future");
+        addAdvDesc("umapyoi.blank_uma_soul", "Got your first Umamusume Soul.");
+        
+        addAdvTitle("umapyoi.uma_soul", "Aoharu Soul");
+        addAdvDesc("umapyoi.uma_soul", "Bless your faded soul in the Three Goddesses Statue.");
+        
+        addAdvTitle("umapyoi.training", "Three years between you and her have begun.");
+        addAdvDesc("umapyoi.training", "Craft the Training Terminal.");
+        //
+        addAdvTitle("umapyoi.support_pedestal", "Support Cards");
+        addAdvDesc("umapyoi.support_pedestal", "Use a book to Umamusume Pedestal to get Support Pedestal.");
+        
+        addAdvTitle("umapyoi.register_lectern", "Three years between you and her have ended?");
+        addAdvDesc("umapyoi.register_lectern", "Craft the Register Lectern to end your training.");
+        
+        addAdvTitle("umapyoi.inheritance", "Entrust");
+        addAdvDesc("umapyoi.inheritance", "Finish a Umamusume's training and got her wishes.");
+        
+        addAdvTitle("umapyoi.transfer", "Special Transfer");
+        addAdvDesc("umapyoi.transfer", "Craft the Transfer Lectern.");
+        
+        addAdvTitle("umapyoi.skill_learning_table", "Learning Time");
+        addAdvDesc("umapyoi.skill_learning_table", "Craft the Skill Learning Table.");
+        
+        addAdvTitle("umapyoi.uma_ticket", "Wastepaper");
+        addAdvDesc("umapyoi.uma_ticket", "Got the Blank Ticket.");
     }
 
     private void addSupportCard(Supplier<SupportCard> key, String name) {

@@ -63,6 +63,11 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .define('A', Tags.Items.STONE).define('L', Tags.Items.STORAGE_BLOCKS_QUARTZ)
                 .define('J', ItemRegistry.JEWEL.get()).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
                 .save(consumer);
+        
+        ShapedRecipeBuilder.shaped(BlockRegistry.UMA_STATUES.get()).pattern(" J ").pattern(" A ").pattern("AAA")
+                .define('A', Tags.Items.STONE)
+                .define('J', ItemRegistry.JEWEL.get()).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
+                .save(consumer);
 
         ShapedRecipeBuilder.shaped(BlockRegistry.REGISTER_LECTERN.get()).pattern(" J ").pattern(" G ").pattern("GAG")
                 .define('A', Items.LECTERN).define('G', Tags.Items.INGOTS_GOLD).define('J', ItemRegistry.JEWEL.get())

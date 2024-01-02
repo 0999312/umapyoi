@@ -12,7 +12,7 @@ public class KindergartenRenderer extends AbstractSuitRenderer {
     }
 
     @Override
-    protected ResourceLocation getTexture() {
+    protected ResourceLocation getTexture(boolean tanned) {
         return new ResourceLocation(Umapyoi.MODID, "textures/model/kindergarten_uniform.png");
     }
 
@@ -22,7 +22,7 @@ public class KindergartenRenderer extends AbstractSuitRenderer {
     }
 
     @Override
-    protected ResourceLocation getFlatTexture() {
+    protected ResourceLocation getFlatTexture(boolean tanned) {
         return new ResourceLocation(Umapyoi.MODID, "textures/model/kindergarten_uniform.png");
     }
 

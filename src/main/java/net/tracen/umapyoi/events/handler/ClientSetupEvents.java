@@ -25,6 +25,7 @@ import net.tracen.umapyoi.client.renderer.blockentity.SilverUmaPedestalBlockRend
 import net.tracen.umapyoi.client.renderer.blockentity.SupportAlbumPedestalBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaPedestalBlockRender;
+import net.tracen.umapyoi.client.renderer.blockentity.UmaStatuesBlockRender;
 import net.tracen.umapyoi.item.ItemRegistry;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
@@ -59,6 +60,8 @@ public class ClientSetupEvents {
         BlockEntityRenderers.register(BlockEntityRegistry.UMA_PEDESTAL.get(), UmaPedestalBlockRender::new);
         BlockEntityRenderers.register(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
                 SupportAlbumPedestalBlockRender::new);
+        
+        BlockEntityRenderers.register(BlockEntityRegistry.UMA_STATUES.get(), UmaStatuesBlockRender::new);
         
         BlockEntityRenderers.register(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), SilverUmaPedestalBlockRender::new);
         BlockEntityRenderers.register(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),

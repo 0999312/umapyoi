@@ -30,7 +30,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "There are three types of skills: Gaining, Restoring and Hindering. Enhancement skills provide benefits to yourself or nearby entities; Restoration skills restore status to yourself or nearby entities; and Hindering skills provide negative effects or direct damage to other entities. $(p) Normally hindering skills do not negatively affect themselves. $(p) The icon of the skill represents the type of skill: gold icon represents gain type; blue icon represents recovery type; red icon represents hinder type."
+            "text": "There are four types of skills: Gaining, Restoring, Hindering and Passive. Enhancement skills provide benefits to yourself or nearby entities; Restoration skills restore status to yourself or nearby entities; and Hindering skills provide negative effects or direct damage to other entities. $(p) Normally hindering skills do not negatively affect themselves. $(p) Passive skills cannot actively trigger skill effects. On the contrary, passive skills will be activated automatically based on specific situations."
         },
         {
             "type": "patchouli:image",

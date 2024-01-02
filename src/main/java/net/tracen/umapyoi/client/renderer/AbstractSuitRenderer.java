@@ -34,7 +34,7 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
     public AbstractSuitRenderer() {
         baseModel = new UmaPlayerModel<>();
     }
-    
+
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext,
             PoseStack matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer,
@@ -52,6 +52,7 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                 IDynamicStackHandler stackHandler = stacksHandler.getStacks();
 
                 boolean flat_flag = false;
+                boolean tanned = false;
                 if (stackHandler.getSlots() > 0) {
                     ItemStack stackInSlot = stackHandler.getStackInSlot(0);
                     if (stackInSlot.isEmpty())
@@ -64,16 +65,21 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                     flat_flag = ClientUtils.getClientUmaDataRegistry()
                             .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
                             .get().is(UmapyoiUmaDataTags.FLAT_CHEST);
+                    
+                    tanned = ClientUtils.getClientUmaDataRegistry()
+                            .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
+                            .get().is(UmapyoiUmaDataTags.TANNED_SKIN);
                 }
 
-                VertexConsumer vertexconsumer = renderTypeBuffer
-                        .getBuffer(RenderType.entityTranslucent(flat_flag ? getFlatTexture() : getTexture()));
-                
+                VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(
+                        RenderType.entityTranslucent(flat_flag ? getFlatTexture(tanned) : getTexture(tanned)));
+
                 var pojo = ClientUtil.getModelPOJO(flat_flag ? getFlatModel() : getModel());
-                if(baseModel.needRefresh(pojo))
+                if (baseModel.needRefresh(pojo))
                     baseModel.loadModel(pojo);
-                if(MinecraftForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Pre(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light)))
-                    return ;
+                if (MinecraftForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Pre(entity, baseModel, partialTicks,
+                        matrixStack, renderTypeBuffer, light)))
+                    return;
                 baseModel.setModelProperties(entity);
                 baseModel.head.visible = false;
                 baseModel.tail.visible = false;
@@ -96,17 +102,18 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
 
                 baseModel.renderToBuffer(matrixStack, vertexconsumer, light,
                         LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
-                MinecraftForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Post(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light));
+                MinecraftForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Post(entity, baseModel, partialTicks,
+                        matrixStack, renderTypeBuffer, light));
             });
         });
     }
 
     protected abstract ResourceLocation getModel();
 
-    protected abstract ResourceLocation getTexture();
+    protected abstract ResourceLocation getTexture(boolean tanned);
 
     protected abstract ResourceLocation getFlatModel();
 
-    protected abstract ResourceLocation getFlatTexture();
+    protected abstract ResourceLocation getFlatTexture(boolean tanned);
 
 }

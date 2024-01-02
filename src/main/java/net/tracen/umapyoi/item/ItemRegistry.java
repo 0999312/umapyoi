@@ -28,6 +28,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> UMA_PEDESTAL = register("uma_pedestal",
             () -> new BlockItem(BlockRegistry.UMA_PEDESTAL.get(), Umapyoi.defaultItemProperties()));
 
+    public static final RegistryObject<Item> UMA_STATUE = register("uma_statue",
+            () -> new BlockItem(BlockRegistry.UMA_STATUES.get(), Umapyoi.defaultItemProperties()));
+    
     public static final RegistryObject<Item> THREE_GODDESS = register("three_goddess",
             () -> new BlockItem(BlockRegistry.THREE_GODDESS.get(), Umapyoi.defaultItemProperties()));
 

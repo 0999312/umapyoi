@@ -62,7 +62,7 @@ public class UmaSkillRegistry {
             () -> new SereneSkill(new UmaSkill.Builder().level(1).type(SkillType.HEAL).actionPoint(300).requiredWisdom(2)));
     
     public static final RegistryObject<UmaSkill> STEEL_WILL = SKILLS.register("steel_will",
-            () -> new SteelWillSkill(new UmaSkill.Builder().level(2).type(SkillType.HEAL).actionPoint(1200).requiredWisdom(8)));
+            () -> new SteelWillSkill(new UmaSkill.Builder().level(3).type(SkillType.HEAL).actionPoint(1200).requiredWisdom(8)));
     
     public static final RegistryObject<UmaSkill> MOUNTAIN_CLIMBER = SKILLS.register("mountain_climber",
             () -> new PassiveSkill(new UmaSkill.Builder().level(1).requiredWisdom(2)));

@@ -38,6 +38,7 @@ public class ClientUtils {
     public static final ResourceLocation WINTER_UNIFORM_FLAT = getModel("winter_uniform_flat");
 
     public static final ResourceLocation THREE_GODDESS = getModel("three_goddesses");
+    public static final ResourceLocation UMA_STATUES = getModel("uma_statue");
 
     public static ResourceLocation getModel(String name) {
         return getModel(Umapyoi.MODID, name);

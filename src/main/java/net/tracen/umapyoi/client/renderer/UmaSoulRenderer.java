@@ -94,10 +94,12 @@ public class UmaSoulRenderer implements ICurioRenderer {
         baseModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         baseModel.renderToBuffer(matrixStack, vertexConsumer, light,
                 LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
-        VertexConsumer emissiveConsumer = renderTypeBuffer
-                .getBuffer(EmissiveRenderType.emissive(ClientUtils.getEmissiveTexture(renderTarget)));
-        baseModel.renderEmissiveParts(matrixStack, emissiveConsumer, light,
-                LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
+        if(baseModel.isEmissive()) {
+            VertexConsumer emissiveConsumer = renderTypeBuffer
+                    .getBuffer(EmissiveRenderType.emissive(ClientUtils.getEmissiveTexture(renderTarget)));
+            baseModel.renderEmissiveParts(matrixStack, emissiveConsumer, light,
+                    LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
+        }
         MinecraftForge.EVENT_BUS.post(
                 new RenderingUmaSoulEvent.Post(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light));
     }

@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.events.SkillEvent;
+import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
@@ -27,6 +28,14 @@ public class UmaSkillUtils {
             return null;
         SupportEntry result = new SupportEntry(TrainingSupportRegistry.SKILL_SUPPORT.getId(), 1);
         result.getOrCreateTag().putString("skill", skill.toString());
+        return result;
+    }
+    
+    public static ItemStack getSkillBook(UmaSkill skill) {
+        if (skill == null)
+            return ItemStack.EMPTY;
+        ItemStack result = new ItemStack(ItemRegistry.SKILL_BOOK.get());
+        result.getOrCreateTag().putString("skill", skill.getRegistryName().toString());
         return result;
     }
 

@@ -50,8 +50,7 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
     private void renderModel(ThreeGoddessBlockEntity tileEntity, Direction direction, PoseStack poseStack,
             MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 
-        VertexConsumer vertexconsumer = buffer.getBuffer(RenderType
-                .entityCutout(new ResourceLocation(Umapyoi.MODID, "textures/model/three_goddesses.png")));
+        VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entityCutout(TEXTURE));
         poseStack.pushPose();
         poseStack.translate(0.5D, 1.5D, 0.5D);
 

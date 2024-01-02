@@ -25,6 +25,7 @@ import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
+import net.tracen.umapyoi.villager.VillageRegistry;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import org.slf4j.Logger;
 
@@ -58,7 +59,8 @@ public class Umapyoi {
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
-
+        VillageRegistry.POI_TYPES.register(modEventBus);
+        VillageRegistry.PROFESSIONS.register(modEventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
     }

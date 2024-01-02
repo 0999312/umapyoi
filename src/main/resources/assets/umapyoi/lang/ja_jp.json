@@ -29,7 +29,7 @@
   "item.umapyoi.wisdom_high_item": "賢さ秘伝書",
   "item.umapyoi.wisdom_low_item": "賢さのメモ帳",
   "item.umapyoi.wisdom_mid_item": "賢さ戦術書",
-  
+  "entity.minecraft.villager.umapyoi.trainer": "トレーナー",
   "item.umapyoi.horseshoe_gold": "金の蹄鉄",
   "item.umapyoi.horseshoe_rainbow": "虹の蹄鉄",
   "item.umapyoi.horseshoe_silver": "銀の蹄鉄",
@@ -45,7 +45,7 @@
   "item.umapyoi.ssr_uma_ticket": "虹のウマ娘ガチャチケット",
   "item.umapyoi.card_ticket": "サポートカードガチャチケット",
   "item.umapyoi.uma_ticket": "ウマ娘ガチャチケット",
-  
+  "block.umapyoi.uma_statues": "ウマ娘像",
   "umadata.umapyoi.common_uma": "名無しウマ娘",
   "umadata.umapyoi.common_uma_a": "名無しウマ娘",
   "umadata.umapyoi.common_uma_b": "名無しウマ娘",
@@ -104,6 +104,19 @@
   "umadata.umapyoi.twinturbo": "ツインターボ",
   "umadata.umapyoi.kawakami_princess": "カワカミプリンセス",
   "umadata.umapyoi.agnus_tachyon_swim": "[Lunatic Lab] アグネスタキオン",
+  
+  "umadata.umapyoi.darley_arabian": "ダーレーアラビアン",
+  "umadata.umapyoi.dumnheint": "ダムハイト",
+  "umadata.umapyoi.admire_vega": "アドマイヤベガ",
+  "umadata.umapyoi.byerley_turk": "バイアリーターク",
+  "umadata.umapyoi.godolphin_barb": "ゴドルフィンバルブ",
+  "umadata.umapyoi.gold_city_autumn": "[秋桜ダンツァトリーチェ] ゴールドシチー",
+  "umadata.umapyoi.grass_wonder_umanet": "[Saint Jade Healer] グラスワンダー",
+  "umadata.umapyoi.jungle_pocket": "ジャングルポケット",
+  "umadata.umapyoi.narita_taishin": "ナリタタイシン",
+  "umadata.umapyoi.satono_diamond_french": "[セイントジェード・ヒーラー] サトノダイヤモンド",
+  "umadata.umapyoi.syameimaru_zheng": "射命丸 政",
+  "umadata.umapyoi.tm_opera_o": "テイエムオペラオー",
   
   "umapyoi.jei.disassembly": "移籍登録",
   "umapyoi.jei.gacha": "召喚",

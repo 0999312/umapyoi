@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " J ",
+    " A ",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:stone"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    }
+  },
+  "result": {
+    "item": "umapyoi:uma_statue"
+  }
+}

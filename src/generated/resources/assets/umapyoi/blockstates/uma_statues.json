@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "umapyoi:block/uma_statue"
+    },
+    "facing=south": {
+      "model": "umapyoi:block/uma_statue",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "umapyoi:block/uma_statue",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "umapyoi:block/uma_statue",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "umapyoi:register_lectern",
+  "display": {
+    "icon": {
+      "item": "umapyoi:disassembly_block"
+    },
+    "title": {
+      "translate": "advancement.umapyoi.transfer.title"
+    },
+    "description": {
+      "translate": "advancement.umapyoi.transfer.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "umapyoi:disassembly_block"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item"
+    ]
+  ]
+}

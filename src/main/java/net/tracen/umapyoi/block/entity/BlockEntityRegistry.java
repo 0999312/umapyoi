@@ -34,4 +34,8 @@ public class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<SilverSupportAlbumPedestalBlockEntity>> SILVER_SUPPORT_ALBUM_PEDESTAL = BLOCK_ENTITIES
             .register("silver_support_album_pedestal", () -> BlockEntityType.Builder
                     .of(SilverSupportAlbumPedestalBlockEntity::new, BlockRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get()).build(null));
+    
+    public static final RegistryObject<BlockEntityType<UmaStatueBlockEntity>> UMA_STATUES = BLOCK_ENTITIES
+            .register("uma_statues", () -> BlockEntityType.Builder
+                    .of(UmaStatueBlockEntity::new, BlockRegistry.UMA_STATUES.get()).build(null));
 }

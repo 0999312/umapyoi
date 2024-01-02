@@ -5,6 +5,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
+import net.tracen.umapyoi.data.advancements.UmapyoiAdvancementsDataProvider;
 import net.tracen.umapyoi.data.loot.UmapyoiLootTableProvider;
 import net.tracen.umapyoi.data.tag.UmaDataTagProvider;
 import net.tracen.umapyoi.data.tag.UmapyoiBlockTagProvider;
@@ -22,6 +23,7 @@ public class DataGen {
             dataGenerator.addProvider(new UmapyoiLangProvider(dataGenerator));
         }
         if(event.includeServer()) {
+            
             dataGenerator.addProvider(new UmaDataProvider(dataGenerator, existingFileHelper));
             dataGenerator.addProvider(new SupportCardDataProvider(dataGenerator, existingFileHelper));
             UmapyoiBlockTagProvider blockTagProvider = new UmapyoiBlockTagProvider(dataGenerator, existingFileHelper);
@@ -30,6 +32,7 @@ public class DataGen {
             dataGenerator.addProvider(new UmapyoiLootTableProvider(dataGenerator));
             dataGenerator.addProvider(new UmaDataTagProvider(dataGenerator, existingFileHelper));
             dataGenerator.addProvider(new UmapyoiRecipeProvider(dataGenerator));
+            dataGenerator.addProvider(new UmapyoiAdvancementsDataProvider(dataGenerator, existingFileHelper));
         }
     }
 

@@ -25,14 +25,15 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
                         new ResourceLocation("umapyoi:block/pedestal"));
                 return;
             }
-            
+
             if (item == ItemRegistry.SILVER_UMA_PEDESTAL) {
                 withExistingParent(blockName(BlockRegistry.SILVER_UMA_PEDESTAL),
                         new ResourceLocation("umapyoi:block/silver_pedestal"));
                 return;
             }
-            
-            if (item.get()instanceof BlockItem block && item != ItemRegistry.THREE_GODDESS)
+
+            if (item.get()instanceof BlockItem block
+                    && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE))
                 itemBlock(block::getBlock);
 
             else

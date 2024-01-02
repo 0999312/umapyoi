@@ -1,0 +1,42 @@
+{
+  "parent": "umapyoi:summon_pedestal",
+  "display": {
+    "icon": {
+      "item": "umapyoi:support_card"
+    },
+    "title": {
+      "translate": "advancement.umapyoi.support_pedestal.title"
+    },
+    "description": {
+      "translate": "advancement.umapyoi.support_pedestal.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "buildSupport": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": {
+          "block": {
+            "blocks": [
+              "umapyoi:silver_uma_pedestal"
+            ]
+          }
+        },
+        "item": {
+          "items": [
+            "minecraft:book"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "buildSupport"
+    ]
+  ]
+}

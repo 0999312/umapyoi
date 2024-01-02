@@ -1,0 +1,37 @@
+{
+  "parent": "umapyoi:root",
+  "display": {
+    "icon": {
+      "item": "umapyoi:three_goddess"
+    },
+    "title": {
+      "translate": "advancement.umapyoi.three_goddesses.title"
+    },
+    "description": {
+      "translate": "advancement.umapyoi.three_goddesses.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "umapyoi:three_goddess"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item"
+    ]
+  ]
+}
