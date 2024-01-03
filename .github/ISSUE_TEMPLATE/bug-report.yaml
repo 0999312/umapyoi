@@ -1,0 +1,44 @@
+name: Bug Report
+description: 提交错误报告
+title: "Bug: "
+labels:
+  - bug
+body:
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: 请简明地表述 bug 是什么。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: 请描述如何重现这个bug。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: 请描述期望的行为。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: 请尽量详细地提供相关截图，可以是游戏视频、游戏截图、游戏输出的日志
+  - type: textarea
+    attributes:
+      label: Versions
+      description: 请填写相应的版本号。
+      value: |
+        - OS: <!-- e.g. Windows 11 -->
+        - Launcher: <!-- e.g. PCL2 -->
+        - Java version: <!-- e.g. JDK 17 (17.0.7) -->
+        - Minecraft version: <!-- e.g. 1.18.2 -->
+        - Umapyoi version: <!-- e.g. 1.4.22 -->
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: 请描述其他想要补充的信息。（如崩溃日志、报告等）
