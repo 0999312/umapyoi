@@ -1,0 +1,18 @@
+{
+    "name": "Carrot Jewels",
+    "icon": "umapyoi:jewel",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The so-called Carrot Jewels are jewels that are specially carved in the shape of a carrot. These jewels are favored by the Three Goddesses. $(p) Carrot Jewels are mainly offered to the Triple Goddess, but can also be used to synthesize important blocks such as Umamusume Pedestals. It is a wasteful way to offer them directly to the Three Goddesses, and it is now common practice to use them to synthesize \"Uma Tickets\"."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:jewel",
+            "text": "Some villagers also trade with each other using Carrot Jewels, which is the second most useful use of Carrot Jewels.",
+            "title": "All Free!"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Factor Inheritance",
+    "icon": "umapyoi:three_goddess",
+    "category": "umapyoi:inherit",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "According to legend: Umamusume had heard the guidance of the Three Goddesses under the Three Goddesses Statue, and saw a pair of figures running into the distance shining brightly. $(p) In actuality, the Three Goddesses Statue, while blessing Umamusume Soul, is also making Wish an inheritance. Therefore, the Three Goddesses Statue is the place of \"Factor Inheritance\"."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "To perform a Factor Inheritance, you first need to prepare two different Umamusume Wishes. $(p) Having only one Wish or creating a conflict will result in the Factor Inheritance not being able to be performed. $(p) Not being able to perform a Factor Inheritance will directly result in the process not being able to be performed."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Factor Inheritance is probabilistic. The higher the level, the more likely a Factor is to be effectively inherited, and the greater the number of Factors that can be effectively inherited, the greater the likelihood that they will be effectively inherited. $(p) Factor Inheritance can break through the upper limit of the original Umamusume Soul's ability, bringing it to a whole new level. This is something that is difficult to achieve with the training process. That's why experienced trainers value both training and inheritance."
+        }
+    ]
+}

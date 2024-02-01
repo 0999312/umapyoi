@@ -1,0 +1,39 @@
+{
+    "name": "Umamusume Ticket",
+    "icon": "umapyoi:blank_ticket",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 5,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "These special tickets are collectively known as Umamusume Tickets, or Uma Tickets for short. $(p) Presumably because of the wording printed on these tickets, they are likewise rewarded with an Umamusume Soul or Support Card when offered to the Three Goddesses."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Because they consume relatively fewer jewels and can constrain the outcome of the corresponding summoning, these horse tickets are very popular with trainers. $(p) The result of a summoning is determined by a combination of the quality of that ticket and the type of the pedestal. Since you can't get the rarest items with a silver pedestal, you can't use the highest-quality tickets either."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:blank_ticket",
+            "text": "While both Jewels and Blank tickets can be used for summoning, summoning with them will only yield items of the most common quality. The $(br) separate Umamusume Ticket and Support Card Ticket are different. You cannot mix the two or you will not be able to summon."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:uma_ticket",
+            "recipe2": "umapyoi:card_ticket",
+            "title": "Maybe it will go up in value."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:sr_uma_ticket",
+            "recipe2": "umapyoi:sr_card_ticket",
+            "title": "Crafted according to the Golden Star."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:ssr_uma_ticket",
+            "recipe2": "umapyoi:ssr_card_ticket",
+            "title": "Good Luck"
+        }
+    ]
+}
