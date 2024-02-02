@@ -1,58 +1,58 @@
 {
-    "name": "Statuses & Skills",
+    "name": "ステータスとスキル",
     "icon": "umapyoi:skill_book",
     "category": "umapyoi:training",
     "sortnum": 1,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The Umamusume Soul has five statuses, as well as a number of other additional attributes and skills associated with it. $(p) The five statuses are: $(#57C3F9) Speed$(), $(#FE6C55) Stamina$(), $(#FFAE1F) Strength$(), $(#FF8AAF) Guts$(), and $(#23E0A7) Wisdom$(). $(p) Status is the main indicator of the level of Umamusume's ability, and how to further improve Status is a major issue for trainers."
+            "text": "ウマ娘魂には5つのステータスのほか、それに関連するその他の追加属性やスキルが多数あります。 $(p) 5 つのステータスは次のとおりです: $(#57C3F9) スピード$()、$(#FE6C55) スタミナ$()、$(#FFAE1F) パワー$()、$(#FF8AAF) 根性$()、 $(#23E0A7) 賢さ$()。 $(p) ウマ娘の能力の高さを示す主な指標となるステータスはトレーナーにとってステータスをいかに向上させるかが大きな課題となっています。"
         },
         {
             "type": "patchouli:text",
-            "text": "$(#57C3F9)Speed$() controls the speed of movement; $(#FE6C55)Stamina$() controls the cap of life and hunger; $(#FFAE1F)Strength$() controls the damage dealt in melee; $(#FF8AAF)Guts$() brings extra armor value; and $(#23E0A7)Wisdom$() affects the learning of skills and the Action Pt cap."
+            "text": "$(#57C3F9)スピード$() は移動速度に関係します。 $(#FE6C55)スタミナ$() はHPと空腹の上限に関係します。 $(#FFAE1F)パワー$() は近接攻撃で与えるダメージに関係します。 $(#FF8AAF)根性$() は追加のアーマーポイントをもたらします。 $(#23E0A7)賢さ$() はスキルの学習とアクションポイントの上限に影響します。"
         },
         {
             "type": "patchouli:text",
-            "text": "There are times when different Umamusume have different effects at the same Status level. $(p) This is because each Umamusume has different bonuses in different attributes related to what they originally specialized in."
+            "text": "同じステータスでもウマ娘によって効果が異なる場合があります。 $(p) これは各ウマ娘が元々得意としていたことに関連する属性ごとに異なるボーナスを持っているためです。"
         },
         {
             "type": "patchouli:text",
-            "text": "In addition to Status, there are some additional attributes. These are Physique, Telent, Memory, and Action Pt. $(p)$(#f00)$(l) These extra attributes cannot be directly boosted by means other than Factor Inheritance.$()"
+            "text": "ステータスに加えて、追加の属性がいくつかあります。 これらは、体格、タレント（才能）、メモリ（記憶力）、および行動ポイントです。 $(p)$(#f00)$(l) これらの追加属性は、因子継承以外の方法で直接強化することはできません。$()"
         },
         {
             "type": "patchouli:text",
-            "text": "Physique determines how many times that Soul can be trained, the higher the Physique the more training can be done; $(br)Telent determines the number of training books that can be read; $(br)Memory determines the number of skills that can be learned; and $(br)Action Pt allows Umamusume to use more skills in the same time period."
+            "text": "体格はウマ娘魂を訓練できる回数を決定します。体格が高いほどより多くの訓練を行うことができます。 $(br)タレントは読めるトレーニング本の数を決定します。 $(br)メモリは学習できるスキルの数を決定します。 $(br)行動ポイントにより、ウマ娘は同じ時間内により多くのスキルを使用できるようになります。"
         },
         {
             "type": "patchouli:text",
-            "text": "Skills are another important indicator of Umamusume's statuses. Except for the skills that come with Soul, which we call inherent skills, all other skills need to be learned later. The $(p)right skill at the right time is the key to turning the tide. That's why skills are sometimes even more important to an Umamusume than statuses."
+            "text": "スキルもウマ娘のステータスを表す重要な指標です。 固有スキルと呼ばれるソウルに付属するスキルを除き、その他のスキルはすべて後から習得する必要があります。 適切なタイミングで適切なスキルを身につけることが、流れを変える鍵となります。 そのためウマ娘にとってはステータスよりもスキルが重要な場合もあります。"
         },
         {
             "type": "patchouli:text",
-            "text": "There are three types of skills: Gaining, Restoring and Hindering. Enhancement skills provide benefits to yourself or nearby entities; Restoration skills restore status to yourself or nearby entities; and Hindering skills provide negative effects or direct damage to other entities. $(p) Normally hindering skills do not negatively affect themselves. $(p) The icon of the skill represents the type of skill: gold icon represents gain type; blue icon represents recovery type; red icon represents hinder type."
+            "text": "スキルには強化、回復、妨害の3種類があります。 強化スキルはあなた自身または近くの存在に良い効果をもたらします。 回復スキルは自分自身または近くのエンティティのステータスを回復します。 妨害スキルは他のエンティティにマイナスの効果を与えたり直接ダメージを与えたりします。 $(p) 通常妨害スキルはそれ自体に悪影響を及ぼしません。 $(p) スキルのアイコンはスキルのタイプを表します。金色のアイコンは強化タイプを表します。 青いアイコンは回復タイプを表します。 赤いアイコンは妨害タイプを表します。"
         },
         {
             "type": "patchouli:image",
             "images": ["umapyoi:textures/book_images/skills.png"],
-            "text": "Press $(k:key.umapyoi.use_skill) to use the skill, and $(k:key.umapyoi.select_former_skill) and $(k:key.umapyoi.select_latter_skill) to toggle the skill."
+            "text": "$(k:key.umapyoi.use_skill) を押してスキルを使用し、$(k:key.umapyoi.select_former_skill) と $(k:key.umapyoi.select_latter_skill) を押してスキルを切り替えます。"
         },
         {
             "type": "patchouli:text",
-            "text": "There are three ways to acquire a skill: Factor Inheritance, Training, and Learning Alone. $(p) The first two of these require a corresponding Factor or Training program and there is no guarantee that Umamusume will be able to learn the skill, but they do not have the Wisdom restriction. Learning the skill alone requires a Skill Book and Skill Learning Table, and the skill is learned by consuming the Skill Book. This method requires a certain amount of Wisdom as a base, but it is absolutely guaranteed that a skill can be learned."
+            "text": "スキルを取得するには、因子継承、トレーニング、単独学習の3つの方法があります。 $(p) これらのうち最初の2つは、対応する因子またはトレーニングプログラムを必要とし、ウマ娘がスキルを習得できるという保証はありませんが、賢さの制限はありません。 単独でスキルを習得するにはスキルブックとスキル学習表が必要で、スキルブックを消費することでスキルを習得します。 この方法は基礎としてある程度の知恵が必要ですが、確実にスキルを習得することができます。"
         },
         {
           "type": "patchouli:text",
-          "text": "Skills consume Action Pt. If there is not enough Action Pt, the skill cannot be used. The $(p) Action Pt limit is directly related to the Wisdom level, and increasing Wisdom can result in a large Action Pt limit. Similarly, some Support Cards offer training programs that increase the Action Pt limit."
+          "text": "スキルは行動Ptを消費します。 行動Ptが足りない場合はスキルを使用できません。 $(p) 行動ptの制限は賢さに直接関係しており、賢さの増加により行動ptの上限が大きくなる可能性があります。 同様に一部のサポートカードにはアクションポイントの上限を増やすトレーニングプログラムが用意されています。"
         },
         {
           "type": "patchouli:text",
-          "text": "There is a limit to the number of skills an Umamusume can learn. If the number of skills reaches the upper limit, no other skills can be learned. $(p)$(#f00)$(l) Skills cannot be unlearned, so care needs to be taken with skills, plan wisely. $()"
+          "text": "ウマ娘が習得できるスキルには制限があります。 スキル数が上限に達すると他のスキルを習得できなくなります。 $(p)$(#f00)$(l) スキル関係はキャンセルことができないため、スキルには注意し、賢明な計画を立てる必要があります。 $()"
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:skill_learning_table",
-            "text": "For skill books, look in the loot chest yourself, or ask the trainer nearby."
+            "text": "スキルブックについては戦利品チェストを自分で調べるか近くのトレーナーに尋ねてください。"
         }
     ]
 }

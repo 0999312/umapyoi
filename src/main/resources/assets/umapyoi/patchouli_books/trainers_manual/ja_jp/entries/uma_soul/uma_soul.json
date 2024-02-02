@@ -1,34 +1,34 @@
 {
-    "name": "Umamusume Soul",
+    "name": "ウマ娘魂",
     "icon": "umapyoi:uma_soul",
     "category": "umapyoi:uma_soul",
     "sortnum": 0,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "So-called \"Uma Musume\", is a group of girls who were born to run.$(p)They have inherited names from another world - some of their original owners have been ill-fated, some have shone for generations ......$(p)They inherit their souls and continue to run ......$(p)The way it was supposed to be."
+            "text": "いわゆる「ウマ娘」は、走るために生まれた少女たちです。$(p)彼女らは別の世界から名前を受け継いでいます。元の所有者の中には不運な者もいれば、何世代にもわたって輝いていた者もいます。 .....$(p)彼女らは魂を受け継ぎ走り続ける....$(p)そのはずだった。"
         },
         {
             "type": "patchouli:text",
-            "text": "These now refer more to the souls that are lodged in the marvelous crystals. This \"Crystallization of the soul\" is the so-called \"Umamusume Soul\"."
+            "text": "これらは現在ではクリスタルの中に閉じ込められた魂を指します。この「魂の結晶」がいわゆる「ウマ娘魂」です。"
         },
         {
             "type": "patchouli:text",
-            "text": "Place the jewel or \"Uma Ticket\", After a burst of change will gets \"Faded Umamusume Soul\". $(br)These dull colored crystals don't work at all. $(br2)Offering these dull crystals directly to the statue of the Goddess will cause the crystals to glow again with the gift of the Three Goddesses."
+            "text": "ジュエルまたは「ガチャチケット」を置くと「フェードウマ娘魂」が手に入ります。 $(br)これらのくすんだ色の結晶はまったく機能しません。 $(br2)これらのクリスタルを女神像に直接捧げると、三女神の贈り物によってクリスタルは再び輝きます。"
         },
         {
             "type": "patchouli:image",
             "images": ["umapyoi:textures/book_images/summon_soul.png", "umapyoi:textures/book_images/blank_soul.png"],
-            "text": "The emergence of \"Faded Umamusume Soul\"."
+            "text": "『フェードウマ娘魂』の登場。"
         },
         {
             "type": "patchouli:text",
-            "text": "After transform to \"Uma Musume\", By default the current motivations and selected skill are displayed in the bottom right corner of the HUD. $(br2) There is a blue bar on the right side of the HUD representing the current Action Pt, which is not shown by default if Action Pt has been fully restored."
+            "text": "「ウマ娘」に変身すると、デフォルトでは現在のモチベーションと選択したスキルがHUDの右下に表示されます。 $(br2) HUDの右側には現在の行動ptを表す青いバーがありますが、行動ptが最大になっている場合、デフォルトでは表示されません。"
         },
         {
             "type": "patchouli:image",
             "images": ["umapyoi:textures/book_images/hud_info.png"],
-            "text": "The current motivations and selected skill are displayed in the bottom right corner of the HUD."
+            "text": "現在のモチベーションと選択したスキルが HUD の右下隅に表示されます。"
         }
     ]
 }

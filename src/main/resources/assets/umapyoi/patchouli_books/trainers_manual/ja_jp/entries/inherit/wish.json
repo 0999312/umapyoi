@@ -1,24 +1,24 @@
 {
-    "name": "Umamusume Wish",
+    "name": "ウマ娘の想い",
     "icon": "umapyoi:uma_factor_item",
     "category": "umapyoi:inherit",
     "sortnum": 1,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "Umamusume Wish is a byproduct of Fully Fledged, these blue crystals hold the original Soul's hopes for the future. $(p) Umamusume Wish has a number of \"factors\" in addition to its original name. The \"factors\" are the abilities that can be inherited and the spirit that will be passed on."
+            "text": "ウマ娘の想いは完全に引退時に生成される物であり、これらの青い結晶にはオリジナルのソウルの未来への希望が込められています。 $(p) ウマ娘の想いには、元の名前に加えて、さまざまな「要素」があります。 「因子」とは、受け継がれる能力や受け継がれる精神のことです。"
         },
         {
             "type": "patchouli:text",
-            "text": "Each Umamusume Wish is bound to have a Status factor, an Extra Attribute factor, and an Inherent Skill factor, which are recorded using blue font, pink font, and green font to indicate them, respectively. $(p) Other factors, which may be related to skill, Ranking, and other aspects to be verified, are shown in gray."
+            "text": "各ウマ娘の想いにはステータス要素、追加属性要素、固有スキル要素があり、それぞれ青のフォント、ピンクのフォント、緑のフォントで記録されます。 $(p) スキル、ランク、その他の要素は灰色で表示されます。"
         },
         {
             "type": "patchouli:text",
-            "text": "There is a probability that the Extra Attribute Factor and the Gray Factor will not be fully inherited in Factor Inheritance. $(p) There is a chance that some of the factors will not be inherited at all, so there is a certain luck in Factor Inheritance itself. $(p) Practically speaking, it is not uncommon for Umamusume Soul to inherit all factors in full."
+            "text": "因子継承において追加属性因子および灰色因子が完全に継承されない可能性があります。 $(p) 因子の一部はまったく継承されない可能性があるため、因子の継承自体にはある程度の運が伴います。 $(p) 実質的にはウマ娘ソウルが全ての要素を完全に引き継ぐことも珍しくないです。"
         },
         {
             "type": "patchouli:text",
-            "text": "Overall, the higher the Ranking, the stronger the Wish left by Umamusume. The strength of the Wish is expressed in the number of Factors and the Rating of the Factors. The stronger the Wish the more factors with higher Ranking."
+            "text": "全体的にランクが高いほど、ウマ娘が残した想いが強くなります。 想いの強さは、因子の数と因子の評価で表されます。 願いが強いほど、ランクが上がる要素が多くなります。"
         }
     ]
 }
