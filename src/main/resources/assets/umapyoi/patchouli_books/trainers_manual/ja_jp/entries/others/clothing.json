@@ -1,0 +1,27 @@
+{
+    "name": "衣装",
+    "icon": "umapyoi:summer_uniform",
+    "category": "umapyoi:others",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "ウマ娘になるとウマ娘専用の様々な衣装を着ることができるようになります。 ウマ娘なので衣装を着るのは当然です。 $(p) 村には専門の衣装デザイナーがいます。 $(p) デザイナーの村人から衣装を購入するだけでなく、自分で衣装を作ることもできます。"
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:summer_uniform",
+          "text": "クラッシック"
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:winter_uniform",
+          "text": "冬はまだ少し寒いです。"
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:trainning_suit",
+          "text": "運動に最適"
+        }
+    ]
+}

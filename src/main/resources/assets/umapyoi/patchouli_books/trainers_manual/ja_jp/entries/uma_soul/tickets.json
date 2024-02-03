@@ -1,0 +1,39 @@
+{
+    "name": "ガチャチケット",
+    "icon": "umapyoi:blank_ticket",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 5,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "この特別なチケットを総称して「ウマ娘ガチャチケット」、略して「ガチャチケット」と呼びます。 $(p) おそらくこれらのチケットに印刷されている文言から、三女神に捧げると同様にウマ娘魂またはサポートカードが与えられます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "消費ジュエルが比較的少なく、対応する召喚の結果を制限できるためこれらのガチャチケットはトレーナー達に非常に人気があります。 $(p) 召喚の結果は、そのチケットの品質と台座の種類の組み合わせによって決まります。 銀の台座では最高ランクのアイテムが手に入らないので、最上級チケットも使えません。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:blank_ticket",
+            "text": "ジュエルとブランクチケットの両方を召喚に使用できますが、それらを使用して召喚すると、最も一般的な品質のアイテムのみが得られます。 $(br)ウマ娘ガチャチケットとサポートカードガチャチケットは異なります。 2つを混合すると召喚できなくなります。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:uma_ticket",
+            "recipe2": "umapyoi:card_ticket",
+            "title": "もしかしたら価値が上がるかも知れません。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:sr_uma_ticket",
+            "recipe2": "umapyoi:sr_card_ticket",
+            "title": "ゴールデンスターに従って作られています。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:ssr_uma_ticket",
+            "recipe2": "umapyoi:ssr_card_ticket",
+            "title": "幸運を"
+        }
+    ]
+}

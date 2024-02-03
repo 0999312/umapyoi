@@ -1,0 +1,20 @@
+{
+    "name": "プロローグ",
+    "icon": "umapyoi:blank_uma_soul",
+    "category": "umapyoi:prologue",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "伝説によると、私たちがこの地に足を踏み入れる前、「馬の耳と神の力」を持つ人々の一団がここに住んでいたそうです。 これらの人々は、「三女神」に導かれてここに来たと主張しました。 村人たちは彼らを「ウマ娘」と呼びました。彼らは全員が女性であり、優れた馬のようなスピードを持っていたからです。 $(br)彼らは果てしない草原を駆け抜け、痕跡だけを残して遠くに消えていった……"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Because of this presence, some villagers began to believe in the Three Goddesses, hoping that they would be given equal power by the Goddesses. These villagers not only built statues of the Three Goddesses and offered carrots, a favorite of the Umamusume, to the statues, but also carved jewels in the shape of the carrots and offered them to the goddesses."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Once when offering a jewel to the statue of the goddess, the jewel suddenly and violently changed into a crystal like a flame. The priest held up the crystal in front of the crowd, and in an instant it became \"Umamusume\". The congregation exclaimed. $(p)Today, with the will of \"Umamusume\", we continue to run in this unknown land......"
+        }
+    ]
+}

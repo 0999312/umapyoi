@@ -1,0 +1,17 @@
+{
+    "name": "三女神像",
+    "icon": "umapyoi:three_goddess",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 3,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "「三女神」とは、初代ウマ娘の3人であり、ウマ娘を司る神です。 ウマ娘に魂、力、知識を与え、ウマ娘の方向性を示す。 ……$(p)トレーナーにとって三女神像の最大の意義は、フェードウマ娘魂の活性化です。 同時に「因子継承」は三女神像で行います。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:three_goddess",
+            "text": "本当に彼女らは実在したのか？"
+        }
+    ]
+}
