@@ -18,6 +18,7 @@ public class ScreensRegistry {
             MenuScreens.register(ContainerRegistry.SKILL_LEARNING_TABLE.get(), SkillLearningScreen::new);
             MenuScreens.register(ContainerRegistry.RETIRE_REGISTER.get(), RetireRegisterScreen::new);
             MenuScreens.register(ContainerRegistry.DISASSEMBLY_BLOCK.get(), DisassemblyBlockScreen::new);
+            MenuScreens.register(ContainerRegistry.UMA_SELECT_TICKET.get(), UmaSelectScreen::new);
         });
     }
 }

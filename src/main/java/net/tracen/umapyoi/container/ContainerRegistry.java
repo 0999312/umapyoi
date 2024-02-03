@@ -25,4 +25,7 @@ public class ContainerRegistry {
     
     public static final RegistryObject<MenuType<DisassemblyBlockMenu>> DISASSEMBLY_BLOCK = CONTAINER_TYPES
             .register("disassembly_block", () -> new MenuType<>((DisassemblyBlockMenu::new)));
+    
+    public static final RegistryObject<MenuType<UmaSelectMenu>> UMA_SELECT_TICKET = CONTAINER_TYPES
+            .register("uma_select_ticket", () -> new MenuType<>((UmaSelectMenu::new)));
 }

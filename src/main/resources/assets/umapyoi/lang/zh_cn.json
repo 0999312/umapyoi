@@ -155,6 +155,7 @@
   "block.umapyoi.three_goddess_upper": "三女神像",
   "block.umapyoi.training_facility": "训练设施终端",
   "block.umapyoi.register_lectern": "育成登记台",
+  "block.umapyoi.uma_select_block": "自选登记台",
   "block.umapyoi.uma_pedestal": "马娘召唤基座",
   "block.umapyoi.support_album_pedestal": "支援相册基座",
   "block.umapyoi.silver_support_album_pedestal": "银色支援相册基座",
@@ -165,6 +166,7 @@
   "container.umapyoi.three_goddess": "三女神像",
   "container.umapyoi.training_facility": "训练设施终端",
   "container.umapyoi.retire_register": "育成记录",
+  "container.umapyoi.umaselect": "自选登记",
   
   "support_card.umapyoi.adv_guts_card.name": "[进阶训练] 毅力训练",
   "support_card.umapyoi.adv_speed_card.name": "[进阶训练] 速度训练",

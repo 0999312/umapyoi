@@ -132,7 +132,6 @@ public class DisassemblyBlockMenu extends AbstractContainerMenu {
     }
 
     private ItemStack getResultItem() {
-        
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
         boolean isSupport = inputSoul.getItem() instanceof SupportContainer;
         if (!(inputSoul.getItem() instanceof UmaSoulItem || isSupport))

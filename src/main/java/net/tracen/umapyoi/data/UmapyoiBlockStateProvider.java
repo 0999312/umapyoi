@@ -25,6 +25,8 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                 models().getExistingFile(new ResourceLocation("umapyoi:block/disassembly_block")));
         horizontalBlock(BlockRegistry.REGISTER_LECTERN.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/register_lectern")));
+        horizontalBlock(BlockRegistry.UMA_SELECT_BLOCK.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/uma_select_block")));
         simpleBlock(BlockRegistry.SKILL_LEARNING_TABLE.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/skill_learning_table")));
 

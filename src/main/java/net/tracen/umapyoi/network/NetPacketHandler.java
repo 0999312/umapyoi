@@ -24,5 +24,10 @@ public class NetPacketHandler {
         INSTANCE.messageBuilder(SelectSkillPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
                 .encoder(SelectSkillPacket::toBytes).decoder(SelectSkillPacket::new)
                 .consumer(SelectSkillPacket::handler).add();
+        
+        INSTANCE.messageBuilder(EditSearchPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(EditSearchPacket::toBytes)
+                .decoder(EditSearchPacket::new)
+                .consumer(EditSearchPacket::handler).add();
     }
 }

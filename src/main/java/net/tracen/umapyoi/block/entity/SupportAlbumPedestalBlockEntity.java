@@ -339,6 +339,9 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
     @Override
     public Predicate<? super ResourceLocation> getFilter(Level level, ItemStack input) {
         return resloc -> {
+            if (!input.getOrCreateTag().getString("name").isBlank()) {
+                return resloc.equals(ResourceLocation.tryParse(input.getOrCreateTag().getString("name")));
+            }
             if (input.is(UmapyoiItemTags.SSR_CARD_TICKET))
                 return UmapyoiAPI.getSupportCardRegistry(level).get(resloc).getGachaRanking() == GachaRanking.SSR;
             if (input.is(UmapyoiItemTags.COMMON_GACHA_ITEM))

@@ -261,6 +261,9 @@ public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements G
     @Override
     public Predicate<? super ResourceLocation> getFilter(Level level, ItemStack input) {
         return resloc -> {
+            if (!input.getOrCreateTag().getString("name").isBlank()) {
+                return resloc.equals(ResourceLocation.tryParse(input.getOrCreateTag().getString("name")));
+            }
             if (input.is(UmapyoiItemTags.SR_UMA_TICKET))
                 return UmapyoiAPI.getUmaDataRegistry(level).get(resloc).getGachaRanking() == GachaRanking.SR;
             if (input.is(UmapyoiItemTags.COMMON_GACHA_ITEM))
