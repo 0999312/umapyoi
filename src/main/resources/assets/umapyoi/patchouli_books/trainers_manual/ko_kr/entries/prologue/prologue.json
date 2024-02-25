@@ -6,15 +6,15 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "According to the legend, a group of people with \"horse ears and divine powers\" had lived here before we set foot on the land. These people claimed to have been guided here by the \"Three Goddesses\". The villagers called them \"Umamusume\" because all of them were female and had the speed of a good horse. $(br)They galloped over the boundless grassland and disappeared into the distance, leaving only a trace behind......"
+            "text": "전설에 따르면, 우리가 이 땅에 발을 들여놓기 전에 \"말의 귀와 신성한 힘\" 을 가진 한 무리의 사람들이 이 곳에 살았습니다. 이 사람들은 \"세 여신\" 의 인도를 받아 이 곳으로 왔다고 주장했습니다. 마을 주민들은 그들을 \"우마무스메\" 라고 불렀는데, 왜냐하면 그들 모두 여자였으며 훌륭한 말의 속도를 갖고 있었기 때문입니다. $(br)그들은 무한한 초원 위를 질주해 멀리 사라져 흔적만 남겼습니다......"
         },
         {
             "type": "patchouli:text",
-            "text": "Because of this presence, some villagers began to believe in the Three Goddesses, hoping that they would be given equal power by the Goddesses. These villagers not only built statues of the Three Goddesses and offered carrots, a favorite of the Umamusume, to the statues, but also carved jewels in the shape of the carrots and offered them to the goddesses."
+            "text": "이런 존재 때문에, 일부 주민들은 세 여신에게 우마무스메와 같은 힘을 부여받을 수 있길 바라며 세 여신을 믿기 시작했습니다. 이 주민들은 세 여신의 조각상을 세우고 우마무스메가 좋아하는 당근을 바쳤을 뿐만 아니라, 당근 모양으로 보석을 조각해 여신에게 바치기도 했습니다."
         },
         {
             "type": "patchouli:text",
-            "text": "Once when offering a jewel to the statue of the goddess, the jewel suddenly and violently changed into a crystal like a flame. The priest held up the crystal in front of the crowd, and in an instant it became \"Umamusume\". The congregation exclaimed. $(p)Today, with the will of \"Umamusume\", we continue to run in this unknown land......"
+            "text": "한번은 여신상에 보석을 바칠 때, 보석이 갑자기 격렬하게 불꽃과 같은 크리스탈로 변했습니다. 사제가 군중 앞에서 크리스탈을 들어올리자 그는 순식간에 \"우마무스메\" 가 되었습니다. 그러자 신도들은 소리쳤습니다. $(p) 오늘도 \"우마무스메\"의 뜻으로 우리는 이 미지의 땅을 계속 달립니다......"
         }
     ]
 }
