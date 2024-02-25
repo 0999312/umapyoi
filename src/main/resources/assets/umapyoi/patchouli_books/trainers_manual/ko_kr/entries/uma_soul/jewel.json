@@ -1,18 +1,18 @@
 {
-    "name": "Carrot Jewels",
+    "name": "당근 쥬얼",
     "icon": "umapyoi:jewel",
     "category": "umapyoi:uma_soul",
     "sortnum": 1,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The so-called Carrot Jewels are jewels that are specially carved in the shape of a carrot. These jewels are favored by the Three Goddesses. $(p) Carrot Jewels are mainly offered to the Triple Goddess, but can also be used to synthesize important blocks such as Umamusume Pedestals. It is a wasteful way to offer them directly to the Three Goddesses, and it is now common practice to use them to synthesize \"Uma Tickets\"."
+            "text": "이른바 당근 쥬얼은 당근 모양으로 특별히 조각된 보석입니다. 이 보석들은 세 여신이 선호합니다. $(p) 당근 쥬얼은 주로 세 여신에게 바쳐지지만 우마무스메 대좌와 같은 중요한 블록을 조합하는 데 사용될 수도 있습니다. 세 여신에게 직접 바치는 것은 낭비에 가까운 방법이며, 이제는 \"우마 티켓\"을 조합하는 데 사용하는 것이 일반적인 방법입니다."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:jewel",
-            "text": "Some villagers also trade with each other using Carrot Jewels, which is the second most useful use of Carrot Jewels.",
-            "title": "All Free!"
+            "text": "어떤 주민들은 당근 쥬얼을 사용해 서로 거래하기도 하며 이것은 당근 쥬얼이 두번째로 유용하게 쓰이는 방법이기도 합니다.",
+            "title": "쌉니다 싸요!"
         }
     ]
 }
