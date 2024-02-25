@@ -1,0 +1,25 @@
+{
+    "name": "Motivations & Panicking",
+    "icon": "umapyoi:textures/book_images/motivations_icon.png",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 4,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Although Umamusume Soul appears to be just a crystal, you can feel the inner heart of Umamusume after changing into it. $(br)Motivation is what you can feel most directly. $(p)Umamusume Soul's mood will be directly reflected on the user, not only will the mood be high or low along with it, but it will also directly affect how the power is utilized. Therefore, it is very important to keep the Motivation high."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "There are five stages of motivations: $(#EB4573)Peak$(), $(#EE7C40)High$(), $(#F18E0F)Normal$(), $(#1968B3)Low$(), and $(#6A4497)Slump$(), with the states decreasing in the order above. $(p) Injury is usually the main cause of lowered motivation, and consuming some odd-tasting foods may also lead to lowered motivation. The fastest and most common way to get back in the motivation is to consume tasty food, such as tasty drinks or desserts."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["umapyoi:textures/book_images/motivations.png"],
+            "text": "The five stages of motivations: $(#EB4573)Peak$(), $(#EE7C40)High$(), $(#F18E0F)Normal$(), $(#1968B3)Low$(), and $(#6A4497)Slump$()."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "If Motivation is already Peak, continuing to lower Motivation may lead to \"Panicking\". $(p) Anxiety prevents a person from regaining Action Pt naturally. You can take the edge off by drinking some milk or using the \"Serene\" skill. Incidentally, Panicking does not affect other ways of regaining Action Pt, such as drinking Vital."
+        }
+    ]
+}

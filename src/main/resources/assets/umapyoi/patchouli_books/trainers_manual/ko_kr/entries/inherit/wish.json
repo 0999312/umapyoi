@@ -1,0 +1,24 @@
+{
+    "name": "Umamusume Wish",
+    "icon": "umapyoi:uma_factor_item",
+    "category": "umapyoi:inherit",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Umamusume Wish is a byproduct of Fully Fledged, these blue crystals hold the original Soul's hopes for the future. $(p) Umamusume Wish has a number of \"factors\" in addition to its original name. The \"factors\" are the abilities that can be inherited and the spirit that will be passed on."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Each Umamusume Wish is bound to have a Status factor, an Extra Attribute factor, and an Inherent Skill factor, which are recorded using blue font, pink font, and green font to indicate them, respectively. $(p) Other factors, which may be related to skill, Ranking, and other aspects to be verified, are shown in gray."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "There is a probability that the Extra Attribute Factor and the Gray Factor will not be fully inherited in Factor Inheritance. $(p) There is a chance that some of the factors will not be inherited at all, so there is a certain luck in Factor Inheritance itself. $(p) Practically speaking, it is not uncommon for Umamusume Soul to inherit all factors in full."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Overall, the higher the Ranking, the stronger the Wish left by Umamusume. The strength of the Wish is expressed in the number of Factors and the Rating of the Factors. The stronger the Wish the more factors with higher Ranking."
+        }
+    ]
+}

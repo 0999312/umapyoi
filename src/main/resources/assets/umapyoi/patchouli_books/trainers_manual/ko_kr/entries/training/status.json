@@ -1,0 +1,58 @@
+{
+    "name": "Statuses & Skills",
+    "icon": "umapyoi:skill_book",
+    "category": "umapyoi:training",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The Umamusume Soul has five statuses, as well as a number of other additional attributes and skills associated with it. $(p) The five statuses are: $(#57C3F9) Speed$(), $(#FE6C55) Stamina$(), $(#FFAE1F) Strength$(), $(#FF8AAF) Guts$(), and $(#23E0A7) Wisdom$(). $(p) Status is the main indicator of the level of Umamusume's ability, and how to further improve Status is a major issue for trainers."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(#57C3F9)Speed$() controls the speed of movement; $(#FE6C55)Stamina$() controls the cap of life and hunger; $(#FFAE1F)Strength$() controls the damage dealt in melee; $(#FF8AAF)Guts$() brings extra armor value; and $(#23E0A7)Wisdom$() affects the learning of skills and the Action Pt cap."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "There are times when different Umamusume have different effects at the same Status level. $(p) This is because each Umamusume has different bonuses in different attributes related to what they originally specialized in."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "In addition to Status, there are some additional attributes. These are Physique, Telent, Memory, and Action Pt. $(p)$(#f00)$(l) These extra attributes cannot be directly boosted by means other than Factor Inheritance.$()"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Physique determines how many times that Soul can be trained, the higher the Physique the more training can be done; $(br)Telent determines the number of training books that can be read; $(br)Memory determines the number of skills that can be learned; and $(br)Action Pt allows Umamusume to use more skills in the same time period."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Skills are another important indicator of Umamusume's statuses. Except for the skills that come with Soul, which we call inherent skills, all other skills need to be learned later. The $(p)right skill at the right time is the key to turning the tide. That's why skills are sometimes even more important to an Umamusume than statuses."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "There are four types of skills: Gaining, Restoring, Hindering and Passive. Enhancement skills provide benefits to yourself or nearby entities; Restoration skills restore status to yourself or nearby entities; and Hindering skills provide negative effects or direct damage to other entities. $(p) Normally hindering skills do not negatively affect themselves. $(p) Passive skills cannot actively trigger skill effects. On the contrary, passive skills will be activated automatically based on specific situations."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["umapyoi:textures/book_images/skills.png"],
+            "text": "Press $(k:key.umapyoi.use_skill) to use the skill, and $(k:key.umapyoi.select_former_skill) and $(k:key.umapyoi.select_latter_skill) to toggle the skill."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "There are three ways to acquire a skill: Factor Inheritance, Training, and Learning Alone. $(p) The first two of these require a corresponding Factor or Training program and there is no guarantee that Umamusume will be able to learn the skill, but they do not have the Wisdom restriction. Learning the skill alone requires a Skill Book and Skill Learning Table, and the skill is learned by consuming the Skill Book. This method requires a certain amount of Wisdom as a base, but it is absolutely guaranteed that a skill can be learned."
+        },
+        {
+          "type": "patchouli:text",
+          "text": "Skills consume Action Pt. If there is not enough Action Pt, the skill cannot be used. The $(p) Action Pt limit is directly related to the Wisdom level, and increasing Wisdom can result in a large Action Pt limit. Similarly, some Support Cards offer training programs that increase the Action Pt limit."
+        },
+        {
+          "type": "patchouli:text",
+          "text": "There is a limit to the number of skills an Umamusume can learn. If the number of skills reaches the upper limit, no other skills can be learned. $(p)$(#f00)$(l) Skills cannot be unlearned, so care needs to be taken with skills, plan wisely. $()"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:skill_learning_table",
+            "text": "For skill books, look in the loot chest yourself, or ask the trainer nearby."
+        }
+    ]
+}

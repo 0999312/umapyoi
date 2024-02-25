@@ -1,0 +1,27 @@
+{
+    "name": "Costumes",
+    "icon": "umapyoi:summer_uniform",
+    "category": "umapyoi:others",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "After being a Umamusume, You can wear various types of clothing designed specifically for Umamusume. Because of the Umamusume's likeness, it makes sense to wear their costumes. $(p)Villagers have some clothing for Umamusume, After all, the number of Umamusume is also increasing. $(p) In addition to buying costumes from the villagers, you can also go ahead and make some costumes yourself."
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:summer_uniform",
+          "text": "Classic"
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:winter_uniform",
+          "text": "It still gets a little cold in the winter."
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:trainning_suit",
+          "text": "Best for sports"
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "name": "Support Card",
+    "icon": "umapyoi:support_card",
+    "category": "umapyoi:training",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Support Cards are magical cards that provide power directly to Soul. $(p) We have reason to believe that the Support Cards are a record of events that Umamusume has experienced in the past, either in this world, or in worlds we don't know about. In fact, some of the texts extracted from the support cards confirm this."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "The support card is mainly to provide power to Soul, today you just need to insert the support card in the training terminal in advance. $(p)Once the training terminal is activated, the terminal will input the events and experiences recorded on the support cards into Soul, transforming them into Soul's power. $(p)These cards help trainers to carry out their training, hence the name \"support card\", i.e. cards that provide training support."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "The contents of a support card are roughly divided into two main sections: \"Supporters\" and \"Support Items\". $(p) Supporter is the character that the Support Card corresponds to, while the Support Items are all the abilities that the Support Card can provide, such as Attribute Enhancements and Skills."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Because of the conflict reactions that can occur, it appears that two different support cards for the same character cannot be used at the same time, much less two identical support cards at the same time. $(p) If a Support Card does not have any Supporters on it, it means that the Support Card can be used with all Support Cards except its own."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Different types of support cards exist. In addition to Attribute Cards, which correspond to the five main types of Status - Speed, Stamina, Strength, Guts, and Wisdom - there are also Friend Cards and Team Cards. $(p) Of these, only Team Cards will have multiple Supporters."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Attribute cards provide a large number of attributes in addition to the possibility of learning skills; Friend cards do not provide a large number of basic attributes, but do provide special support items. The $(p) team cards provide a large number of attributes and special support items, but the presence of multiple supporters makes them extremely vulnerable to conflict."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While the use of support cards is convenient, there are two important issues: conflict and wear and tear. $(p) Just as Support Cards can conflict with each other, Umamusume Soul can also conflict with Support Cards. If an Umamusume to be trained conflicts with any of the Supporters of any of the Support Cards in the Training Terminal, the Training Terminal cannot be activated."
+        },
+        {
+          "type": "patchouli:text",
+          "text": "The support card cannot be read by the training terminal for a long period of time, so it is subject to wear and tear during actual use. $(p) When a Support Card reaches the end of its lifespan, it will break and disappear. $(p)You can repair a Support Card with any Hoof Crystal, but you cannot repair two Support Cards with the Synthesis Table - it will only result in a single Scrap Card. Scrap cards can only be recycled into a silver Horseshoe Crystal."
+        },
+        {
+          "type": "patchouli:text",
+          "text": "Grindstone seems to be able to repair two different support cards into intact support cards without causing a scrap card situation. $(p) Because of this, many trainers also borrow villagers' Grindstone to help repair cards."
+        }
+    ]
+}

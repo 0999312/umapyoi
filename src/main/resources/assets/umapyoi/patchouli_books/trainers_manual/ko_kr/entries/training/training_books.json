@@ -1,0 +1,16 @@
+{
+    "name": "Traditional training methods",
+    "icon": "umapyoi:speed_high_item",
+    "category": "umapyoi:training",
+    "sortnum": 3,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "In the past there was a ritualized form of training, but now all that remains are the written records and experiences left behind by the ancients. $(p) These writings have been restored and reformatted into books or scrolls to aid in training, collectively known as training books, which are now very popular in the village."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "However, to train with these training books, you need to become Umamusume before reading. As you read, you will learn from the text, thus increasing your ability. $(p) Please note that there is only a limited amount of knowledge in the text, so you will not be able to increase your ability after a certain level of reading the training books."
+        }
+    ]
+}

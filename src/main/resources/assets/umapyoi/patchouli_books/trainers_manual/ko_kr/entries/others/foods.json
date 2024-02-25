@@ -1,0 +1,44 @@
+{
+    "name": "Foods",
+    "icon": "umapyoi:royal_bitter",
+    "category": "umapyoi:others",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Umamusumes love carrot, they even brought the villagers how to grow carrots. But this is just a legend.$(p)But one thing's for sure: Being Umamusume, taste preference will be changed.According to what is said now: Being Umamusume, will become more like sweet taste, and dislike bitter taste."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Consumption of favorite foods, such as cake and honey drinks, will result in an increase in status, and vice versa.  The trainers of $(p) developed the \"Vital\" series drinks in order to quickly restore Action Pt. This drink directly restores a large amount of Action Pt and can be used to restore Action Pt in Panicking; it can be purchased from the village, or you can make your own."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Now there is a drink called \"Royal BitterJuice\".  $(p)$(#f00)$(l)Don't try it if you're not prepared, it's really bitter.$()"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:hachimi_mid",
+            "recipe2": "umapyoi:hachimi_big",
+            "title": "I'm not a cat."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:cupcake",
+            "recipe2": "umapyoi:sweet_cupcake",
+            "title": "Cake is a lie!"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:small_energy_drink",
+            "recipe2": "umapyoi:medium_energy_drink",
+            "title": "You probably already know."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:large_energy_drink",
+            "recipe2": "umapyoi:royal_bitter",
+            "title": "Mazui!Moippai!"
+        }
+    ]
+}

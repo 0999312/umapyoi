@@ -1,0 +1,17 @@
+{
+    "name": "Transfer Register Lectern",
+    "icon": "umapyoi:disassembly_block",
+    "category": "umapyoi:others",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Due to the popularity of Umamusume Soul, places like training centers have appeared in the village. As a result, Umamusume Soul and Support Cards are often exchanged between villagers. This exchange is called \"Transfer\". When you register a transfer, you will be paid according to the condition of the item. $(p)Umamusume Crystal and Horseshoe Crystal are important materials for synthesizing Tickets, and the main source is Transfer."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:disassembly_block",
+            "text": "Just another color"
+        }
+    ]
+}

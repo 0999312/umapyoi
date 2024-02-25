@@ -1,0 +1,26 @@
+{
+    "name": "Umamusume Pedestal",
+    "icon": "umapyoi:uma_pedestal",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The Umamusume Pedestal is a pedestal used for offering tributes to the Three Goddesses.$(p) After the first appearance of Umamusume Soul, the pedestal for the offerings to the three goddesses was refined, culminating in a beautiful pedestal of this design. The main purpose of the pedestal was to pray to the Three Goddesses for the granting of the Umamusume Soul, and so this pedestal was also called, in the mouths of the \"trainers,\" the summoning pedestal - the pedestal for the summoning of the Umamusume Soul! ."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Place the jewel or \"Uma Ticket\", After a burst of change will gets \"Faded Umamusume Soul\". $(p)However, if a book is placed on the Umamusume Pedestal, the book instantly changes and becomes part of the summoning pedestal - a levitating book with a blue cover. Instead of getting the Umamusume Soul, such a Pedestal will get a card - a Support Card. The Support Card is a very important item as a \"training\" item."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "The Umamusume Pedestal exists in both gold and silver colorways, with only the gold pedestal yielding the rarest item, identified by its purple name. $(p)$(p)$(#f00)$(l) Please show your devotion by taking down your secondary prop when summoning. $()"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:silver_uma_pedestal",
+            "recipe2": "umapyoi:uma_pedestal",
+            "title": "Miracles don't come without a price!"
+        }
+    ]
+}

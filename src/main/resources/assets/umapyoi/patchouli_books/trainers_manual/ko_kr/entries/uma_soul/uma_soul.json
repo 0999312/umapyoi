@@ -1,0 +1,34 @@
+{
+    "name": "Umamusume Soul",
+    "icon": "umapyoi:uma_soul",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "So-called \"Uma Musume\", is a group of girls who were born to run.$(p)They have inherited names from another world - some of their original owners have been ill-fated, some have shone for generations ......$(p)They inherit their souls and continue to run ......$(p)The way it was supposed to be."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "These now refer more to the souls that are lodged in the marvelous crystals. This \"Crystallization of the soul\" is the so-called \"Umamusume Soul\"."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Place the jewel or \"Uma Ticket\", After a burst of change will gets \"Faded Umamusume Soul\". $(br)These dull colored crystals don't work at all. $(br2)Offering these dull crystals directly to the statue of the Goddess will cause the crystals to glow again with the gift of the Three Goddesses."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["umapyoi:textures/book_images/summon_soul.png", "umapyoi:textures/book_images/blank_soul.png"],
+            "text": "The emergence of \"Faded Umamusume Soul\"."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "After transform to \"Uma Musume\", By default the current motivations and selected skill are displayed in the bottom right corner of the HUD. $(br2) There is a blue bar on the right side of the HUD representing the current Action Pt, which is not shown by default if Action Pt has been fully restored."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["umapyoi:textures/book_images/hud_info.png"],
+            "text": "The current motivations and selected skill are displayed in the bottom right corner of the HUD."
+        }
+    ]
+}
