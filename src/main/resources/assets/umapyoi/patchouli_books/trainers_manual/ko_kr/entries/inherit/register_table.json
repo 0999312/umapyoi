@@ -1,20 +1,20 @@
 {
-    "name": "Retire Register Lectern",
+    "name": "육성 완료 독서대",
     "icon": "umapyoi:register_lectern",
     "category": "umapyoi:inherit",
     "sortnum": 0,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "육성 완료 독서대는 트레이닝이 끝나면 트레이너가 소울에 대한 모든 정보를 기록하여 평가를 완료한 후 소울의 염원을 모을 때 사용하는 일과표입니다. 육성이 완료되면 전체 순위가 결정됩니다. 일반적으로 순위가 높을수록 실력이 좋고, 지금 상태를 유지하려는 의지가 강합니다. 그러니 당신의 순위를 최대한 높게 만드세요."
+            "text": "육성 완료 독서대는 트레이닝이 끝나면 트레이너가 소울에 대한 모든 정보를 기록하여 평가를 완료한 후 소울의 \"염원\"을 모을 때 사용하는 일과표입니다.$(p)육성이 완료되면 전체 랭킹이 결정됩니다. 일반적으로 랭킹이 높을수록 실력이 좋고, 지금 상태를 유지하려는 의지가 강합니다. 그러니 당신의 랭킹을 최대한 높게 만드세요."
         },
         {
             "type": "patchouli:text",
-            "text": "For some unknown reason, the results of enchantments may change after registration. $(p) Based on the survey, it appears that each registration changes the predicted outcome of enchanting the same item. However, this effect only affects the person who made the registration and no one else. $(p) Conversely, enchantment also affects the outcome of the next acquired factor."
+            "text": "알려지지 않은 이유로, 육성 이후 인챈트의 결과가 달라질 수 있습니다. $(p) 설문 조사에 따르면, 각 육성은 동일한 아이템에 대한 인챈트의 예측 결과를 달라지게 하는 것으로 나타났습니다. 그러나 이 효과는 육성을 하는 사람에게만 영향을 미치고 다른 이들에게는 영향을 주지 않습니다. $(p) 반대로, 인챈트는 다음에 획득할 인자의 결과에도 영향을 미칩니다."
         },
         {
             "type": "patchouli:text",
-            "text": "소울의 성장에 한계가 있다는 것은 잘 알려져 있으며, 이는 인간의 성장에도 마찬가지로 적용됩니다. 인간의 성장에 돌파구를 만들기 위해서는 개인의 노력 이상의 것이 필요하고, 모든 이들로부터 격려, 지도, 그리고 지침이 필요하며, 소울에게도 마찬가지입니다 - 자신을 따르는 이들이 계속 전진하고 새로운 돌파구를 만들도록 안내하는 것은 다른 종류의 희망이 필요합니다."
+            "text": "소울의 성장에 한계가 있다는 것은 잘 알려져 있으며, 이는 인간의 성장에도 마찬가지로 적용됩니다. $(p) 인간의 성장에 돌파구를 만들기 위해서는 개인의 노력 이상의 것이 필요하고, 모든 이들로부터 격려, 지도, 그리고 지침이 필요하며, 소울에게도 마찬가지입니다 - 자신을 따르는 이들이 계속 전진하고 새로운 돌파구를 만들도록 안내하는 것은 다른 종류의 희망이 필요합니다."
         },
         {
             "type": "patchouli:crafting",
