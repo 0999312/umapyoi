@@ -1,24 +1,24 @@
 {
-    "name": "Umamusume Wish",
+    "name": "우마무스메 염원",
     "icon": "umapyoi:uma_factor_item",
     "category": "umapyoi:inherit",
     "sortnum": 1,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "Umamusume Wish is a byproduct of Fully Fledged, these blue crystals hold the original Soul's hopes for the future. $(p) Umamusume Wish has a number of \"factors\" in addition to its original name. The \"factors\" are the abilities that can be inherited and the spirit that will be passed on."
+            "text": "우마무스메 염원은 육성 완료의 결과물로, 이 푸른 크리스탈들은 원래 소울들의 미래에 대한 희망을 담고 있습니다. $(p) 우마무스메 염원은 원래의 이름 외에도 많은 \"인자\" 가 있습니다. \"인자\" 는 물려받을 수 있는 능력들과 계승되어질 정신입니다."
         },
         {
             "type": "patchouli:text",
-            "text": "Each Umamusume Wish is bound to have a Status factor, an Extra Attribute factor, and an Inherent Skill factor, which are recorded using blue font, pink font, and green font to indicate them, respectively. $(p) Other factors, which may be related to skill, Ranking, and other aspects to be verified, are shown in gray."
+            "text": "각 우마무스메 염원은 기초 능력치 인자, 적성 인자, 고유 스킬 인자가 있는데, 이들은 각각 파란색, 분홍색, 녹색 폰트로 표시됩니다. $(p) 스킬, 랭킹 및 다른 검증해야 할 요소들과 관련이 있을 수 있는 다른 인자들은 회색 폰트로 표시됩니다."
         },
         {
             "type": "patchouli:text",
-            "text": "There is a probability that the Extra Attribute Factor and the Gray Factor will not be fully inherited in Factor Inheritance. $(p) There is a chance that some of the factors will not be inherited at all, so there is a certain luck in Factor Inheritance itself. $(p) Practically speaking, it is not uncommon for Umamusume Soul to inherit all factors in full."
+            "text": "인자 계승에서는 적성 인자와 일반 인자가 완전히 계승되지 않을 확률이 있습니다. $(p) 인자 중 일부는 전혀 계승되지 않을 확률이 있으므로, 인자 계승 자체에는 일정한 운이 있습니다. $(p) 실제로 우마무스메 소울이 모든 인자를 완전히 계승하는 것은 드문 일이 아닙니다."
         },
         {
             "type": "patchouli:text",
-            "text": "Overall, the higher the Ranking, the stronger the Wish left by Umamusume. The strength of the Wish is expressed in the number of Factors and the Rating of the Factors. The stronger the Wish the more factors with higher Ranking."
+            "text": "전체적으로, 랭킹이 높을수록 우마무스메가 남긴 염원이 강해집니다. 염원의 힘은 인자의 수와 인자의 등급으로 표현됩니다. 염원이 강할수록 순위가 높아지며 인자도 많아집니다."
         }
     ]
 }
