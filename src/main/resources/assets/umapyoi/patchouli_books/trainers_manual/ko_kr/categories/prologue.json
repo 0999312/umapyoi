@@ -1,6 +1,6 @@
 {
-    "name": "Prologue",
-    "description": "It all starts here ......$(br2) The list of acknowledgements etc. for this mod is also here.",
+    "name": "프롤로그",
+    "description": "모든 것은 이 곳에서 시작됩니다 ......$(br2) 이 모드에 대한 감사의 글 등등 또한 여기에 있습니다.",
     "sortnum": 0,
     "icon": "umapyoi:blank_uma_soul"
 }
