@@ -1,17 +1,17 @@
 {
-    "name": "Three Goddesses Statue",
+    "name": "삼여신상",
     "icon": "umapyoi:three_goddess",
     "category": "umapyoi:uma_soul",
     "sortnum": 3,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The \"Three Goddesses\" are the original three Umamusume, the gods who govern the Umamusume. They give the Umamusume soul, power, and knowledge, and show the direction of the Umamusume. ......$(p)For trainers, the greatest significance of the Three Goddesses Statue is the activation of the Faded Umamusume Soul. At the same time, \"Factor Inheritance\" is also the Three Goddesses Statue."
+            "text": " \"세 여신\" 은 최초의 세 우마무스메이자 우마무스메를 다스리는 신들입니다. 그들은 우마무스메 소울, 힘, 지식을 제공하며 우마무스메에게 방향을 제시합니다. ......$(p)트레이너들에게 삼여신상의 가장 큰 의미는 빛바랜 우마무스메 소울의 활성화입니다. 동시에 \"인자 계승\" 또한 삼여신상을 통해 이뤄집니다."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:three_goddess",
-            "text": "Did they really come?"
+            "text": "그들이 진짜로 오긴 했을까요?"
         }
     ]
 }
