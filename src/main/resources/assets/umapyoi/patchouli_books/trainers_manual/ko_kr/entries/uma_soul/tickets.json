@@ -1,27 +1,27 @@
 {
-    "name": "Umamusume Ticket",
+    "name": "우마무스메 티켓",
     "icon": "umapyoi:blank_ticket",
     "category": "umapyoi:uma_soul",
     "sortnum": 5,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "These special tickets are collectively known as Umamusume Tickets, or Uma Tickets for short. $(p) Presumably because of the wording printed on these tickets, they are likewise rewarded with an Umamusume Soul or Support Card when offered to the Three Goddesses."
+            "text": "이 특별한 티켓들은 통틀어서 우마무스메 티켓, 줄여서 우마 티켓이라고 알려져 있습니다. $(p) 아마도 이 티켓에 인쇄된 문구들 때문에, 그것들도 세 여신에게 바쳐질 때 우마무스메 소울 또는 서포트 카드로 보상을 받습니다."
         },
         {
             "type": "patchouli:text",
-            "text": "Because they consume relatively fewer jewels and can constrain the outcome of the corresponding summoning, these horse tickets are very popular with trainers. $(p) The result of a summoning is determined by a combination of the quality of that ticket and the type of the pedestal. Since you can't get the rarest items with a silver pedestal, you can't use the highest-quality tickets either."
+            "text": "상대적으로 적게 쥬얼을 소모하고 유사한 뽑기 결과를 제한할 수 있기 때문에 이 티켓들은 트레이너들에게 인기가 많습니다. $(p) 뽑기 결과는 해당 티켓의 품질과 대좌의 종류에 따라 결정됩니다. 은색 대좌로는 가장 희귀한 아이템을 얻을 수 없기에, 최고 품질의 티켓 또한 얻을 수 없습니다."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:blank_ticket",
-            "text": "While both Jewels and Blank tickets can be used for summoning, summoning with them will only yield items of the most common quality. The $(br) separate Umamusume Ticket and Support Card Ticket are different. You cannot mix the two or you will not be able to summon."
+            "text": "쥬얼과 백지 티켓은 모두 뽑기에 사용할 수 있지만 그것들로 뽑으면 가장 일반적인 품질의 아이템만 얻을 수 있습니다. $(br) 다른 우마무스메 티켓과 서포트 카드 티켓은 다릅니다. 둘을 섞어 쓸 수 없으며 그렇게 한다면 뽑기를 할 수 없습니다."
         },
         {
             "type": "patchouli:crafting",
             "recipe": "umapyoi:uma_ticket",
             "recipe2": "umapyoi:card_ticket",
-            "title": "Maybe it will go up in value."
+            "title": "아마도 가치가 올라갈 수도 있습니다."
         },
         {
             "type": "patchouli:crafting",
@@ -33,7 +33,7 @@
             "type": "patchouli:crafting",
             "recipe": "umapyoi:ssr_uma_ticket",
             "recipe2": "umapyoi:ssr_card_ticket",
-            "title": "Good Luck"
+            "title": "행운을 빕니다"
         }
     ]
 }
