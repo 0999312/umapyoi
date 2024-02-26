@@ -1,25 +1,25 @@
 {
-    "name": "Motivations & Panicking",
+    "name": "컨디션과 공황",
     "icon": "umapyoi:textures/book_images/motivations_icon.png",
     "category": "umapyoi:uma_soul",
     "sortnum": 4,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "Although Umamusume Soul appears to be just a crystal, you can feel the inner heart of Umamusume after changing into it. $(br)Motivation is what you can feel most directly. $(p)Umamusume Soul's mood will be directly reflected on the user, not only will the mood be high or low along with it, but it will also directly affect how the power is utilized. Therefore, it is very important to keep the Motivation high."
+            "text": "우마무스메 소울은 단순한 크리스탈로 보이지만, 당신이 우마무스메로 변한 뒤에는 그 내면을 느낄 수 있습니다. $(br)컨디션은 가장 직접적으로 느낄 수 있는 것입니다. $(p)우마무스메 소울의 기분은 사용자에게 직접적으로 영향을 줄 것이고, 그와 함께 컨디션도 높거나 낮을 뿐만 아니라 힘을 어떻게 사용하는지에도 직접적으로 영향을 줄 것입니다. 따라서 컨디션을 높게 유지하는 것이 매우 중요합니다."
         },
         {
             "type": "patchouli:text",
-            "text": "There are five stages of motivations: $(#EB4573)Peak$(), $(#EE7C40)High$(), $(#F18E0F)Normal$(), $(#1968B3)Low$(), and $(#6A4497)Slump$(), with the states decreasing in the order above. $(p) Injury is usually the main cause of lowered motivation, and consuming some odd-tasting foods may also lead to lowered motivation. The fastest and most common way to get back in the motivation is to consume tasty food, such as tasty drinks or desserts."
+            "text": "컨디션에는 $(#EB4573)최상$(), $(#EE7C40)양호$(), $(#F18E0F)보통$(), $(#1968B3)저조$(), 그리고 $(#6A4497)최악$() 총 5단계가 있으며 이 순서대로 상태가 낮아집니다. $(p) 부상은 일반적으로 컨디션 저하의 주요 원인이며, 일부 이상한 맛의 음식을 먹는 것도 컨디션 저하로 이어질 수 있습니다. 컨디션을 되찾는 가장 빠르고 일반적인 방법은 맛있는 음료나 디저트 같은 것을 먹는 것입니다."
         },
         {
             "type": "patchouli:image",
             "images": ["umapyoi:textures/book_images/motivations.png"],
-            "text": "The five stages of motivations: $(#EB4573)Peak$(), $(#EE7C40)High$(), $(#F18E0F)Normal$(), $(#1968B3)Low$(), and $(#6A4497)Slump$()."
+            "text": "컨디션의 5단계: $(#EB4573)최상$(), $(#EE7C40)양호$(), $(#F18E0F)보통$(), $(#1968B3)저조$(), $(#6A4497)최악$()."
         },
         {
             "type": "patchouli:text",
-            "text": "If Motivation is already Peak, continuing to lower Motivation may lead to \"Panicking\". $(p) Anxiety prevents a person from regaining Action Pt naturally. You can take the edge off by drinking some milk or using the \"Serene\" skill. Incidentally, Panicking does not affect other ways of regaining Action Pt, such as drinking Vital."
+            "text": "컨디션이 이미 최상이라면 컨디션이 계속 떨어질 경우 \"공황\"으로 이어질 수 있습니다. $(p) 불안감은 자연적으로 액션 포인트를 회복하는 것을 방해합니다. 당신은 우유를 마시거나 \"냉정\" 스킬을 사용하여 그것을 떨쳐낼 수 있습니다. 추가로, 공황은 바이탈을 마시는 것과 같이 액션 포인트를 회복하는 다른 방법들에 영향을 주지 않습니다."
         }
     ]
 }
