@@ -1,0 +1,44 @@
+{
+    "name": "음식",
+    "icon": "umapyoi:royal_bitter",
+    "category": "umapyoi:others",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "우마무스메들은 당근을 사랑해서 주민들에게 당근을 재배하는 법을 전파했을 정도입니다. 하지만 이것은 그저 전설일 뿐입니다.$(p)하지만 한 가지 확실한 것은 우마무스메가 되면, 맛의 선호도가 바뀔 것입니다. 현재 알려진 바에 따르면, 우마무스메가 되면 달콤한 맛을 더 좋아하게 되고 쓴 맛을 싫어하게 된다고 합니다."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "케이크와 꿀 음료와 같이 좋아하는 음식을 섭취하면 스탯이 상승하고 그 반대의 경우도 마찬가지입니다. $(p) 의 트레이너들은 액션 포인트를 빠르게 채우기 위해 \"바이탈\" 음료 시리즈를 개발했습니다. 이 음료는 대량의 액션 포인트를 즉시 채워주며 패닉 상태일 때 액션 포인트를 복구하는데 사용할 수도 있습니다. 이것은 마을에서 구입할 수도, 직접 만들 수도 있습니다."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "이제 \"로열 비터주스\" 라고 불리는 음료가 있습니다.  $(p)$(#f00)$(l)준비되지 않았다면 맛보려 하지 마세요. 정말 쓰답니다.$()"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:hachimi_mid",
+            "recipe2": "umapyoi:hachimi_big",
+            "title": "나는 고양이가 아니야."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:cupcake",
+            "recipe2": "umapyoi:sweet_cupcake",
+            "title": "케이크는 거짓말이야!"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:small_energy_drink",
+            "recipe2": "umapyoi:medium_energy_drink",
+            "title": "당신은 아마도 이미 알지도요."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:large_energy_drink",
+            "recipe2": "umapyoi:royal_bitter",
+            "title": "맛없어! 한잔더!"
+        }
+    ]
+}

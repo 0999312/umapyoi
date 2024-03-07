@@ -1,0 +1,16 @@
+{
+    "name": "우마뾰이 모드에 대해",
+    "icon": "minecraft:writable_book",
+    "category": "umapyoi:prologue",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "우마뾰이 모드를 이용해 주셔서 감사드립니다. 이 모듈은 우마 무스메 프리티 더비의 테마를 기본으로 \"번식과 계승\" 을 게임 플레이의 주 컨텐츠로 하고 있습니다.$(p) \"우마무스메\" 가 되어, 마인크래프트에서의 엄청난 모험을 즐겨보세요!"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "이 모듈은 \"트레센 아카데미 마인크래프트 그룹\" 에 의해 개발되었습니다.$(p)Number: $(li)리더 / 개발자: Syameimaru Zheng;$(li)아트: Kuguan_Boom, Dumnheint, TwinTurbo3116, omo, GoldYgg, Pajinyi, Syameimaru Zheng; $(li)홍보: Syameimaru Zheng, Limuness $(li)Special thanks : Yuriscat"
+        }
+    ]
+}
