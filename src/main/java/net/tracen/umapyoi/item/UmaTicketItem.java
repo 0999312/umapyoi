@@ -12,7 +12,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
+import net.tracen.umapyoi.registry.SupportCardRegistry;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
+import net.tracen.umapyoi.utils.TrainingSupportUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class UmaTicketItem extends Item {
@@ -25,9 +28,14 @@ public class UmaTicketItem extends Item {
     public void appendHoverText(ItemStack pStack, Level pLevel, List<Component> pTooltipComponents,
             TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        if (!pStack.getOrCreateTag().getString("name").isBlank())
-            pTooltipComponents.add(new TranslatableComponent("tooltip.umapyoi.umadata.name",
+        if (!pStack.getOrCreateTag().getString("name").isBlank()) {
+            if(pStack.is(UmapyoiItemTags.CARD_TICKET))
+                pTooltipComponents.add(new TranslatableComponent("tooltip.umapyoi.support_card.name",
+                        TrainingSupportUtils.getTranslatedSupportCardName(this.getSupportCardID(pStack))).withStyle(ChatFormatting.GRAY));
+            else{pTooltipComponents.add(new TranslatableComponent("tooltip.umapyoi.umadata.name",
                 UmaSoulUtils.getTranslatedUmaName(this.getUmaName(pStack))).withStyle(ChatFormatting.GRAY));
+            }
+        }
     }
 
     public ResourceLocation getUmaName(ItemStack pStack) {
@@ -40,4 +48,10 @@ public class UmaTicketItem extends Item {
         return !pStack.getOrCreateTag().getString("name").isBlank();
     }
 
+    private ResourceLocation getSupportCardID(ItemStack stack) {
+        if (stack.getOrCreateTag().contains("name"))
+            return ResourceLocation.tryParse(stack.getOrCreateTag().getString("name"));
+        return SupportCardRegistry.BLANK_CARD.getId();
+    }
+    
 }

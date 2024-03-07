@@ -2,8 +2,10 @@ package net.tracen.umapyoi.block;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
@@ -57,11 +59,17 @@ public class UmaPedestalBlock extends BaseEntityBlock {
                     if (heldStack.isEmpty()) {
                         return InteractionResult.PASS;
                     } else if (heldStack.is(Items.BOOK)) {
+                        if (player instanceof ServerPlayer serverPlayer) {
+                            CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, heldStack);
+                        }
                         world.destroyBlock(pos, false);
                         world.setBlock(pos, BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get().defaultBlockState(), UPDATE_ALL);
                     } else if (blockEntity.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
                         world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.END_PORTAL_FRAME_FILL,
                                 SoundSource.BLOCKS, 1.0F, 0.8F);
+                        if (player instanceof ServerPlayer serverPlayer) {
+                            CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, heldStack);
+                        }
                         return InteractionResult.SUCCESS;
                     }
                 } else {

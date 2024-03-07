@@ -9,6 +9,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Quaternion;
 
+import cn.mcmod_mmf.mmlib.client.EmissiveRenderType;
+import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -39,6 +41,9 @@ public class ClientUtils {
 
     public static final ResourceLocation THREE_GODDESS = getModel("three_goddesses");
     public static final ResourceLocation UMA_STATUES = getModel("uma_statue");
+    
+    public static final ResourceLocation SWIMSUIT = getModel("swimsuit");
+    public static final ResourceLocation SWIMSUIT_FLAT = getModel("swimsuit_flat");
 
     public static ResourceLocation getModel(String name) {
         return getModel(Umapyoi.MODID, name);
@@ -97,12 +102,20 @@ public class ClientUtils {
         if (pQuaternion != null)
             posestack1.mulPose(pQuaternion);
         Lighting.setupForEntityInInventory();
-        MultiBufferSource.BufferSource multibuffersource$buffersource = Minecraft.getInstance().renderBuffers()
+        MultiBufferSource.BufferSource buffersource = Minecraft.getInstance().renderBuffers()
                 .bufferSource();
-        VertexConsumer vertexconsumer = multibuffersource$buffersource
+        VertexConsumer vertexconsumer = buffersource
                 .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(texture)));
         pModel.renderToBuffer(posestack1, vertexconsumer, 15728880, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
-        multibuffersource$buffersource.endBatch();
+        if(pModel instanceof BedrockModel bedrock) {
+            if(bedrock.isEmissive()) {
+                VertexConsumer emissiveConsumer = buffersource.getBuffer(
+                        EmissiveRenderType.emissive(ClientUtils.getEmissiveTexture(texture)));
+                bedrock.renderEmissiveParts(posestack1, emissiveConsumer, 
+                        15728880, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+            }
+        }
+        buffersource.endBatch();
         posestack.popPose();
         RenderSystem.applyModelViewMatrix();
         Lighting.setupFor3DItems();

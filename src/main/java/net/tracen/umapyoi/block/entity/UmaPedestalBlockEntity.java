@@ -33,7 +33,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
-import net.tracen.umapyoi.inventory.ThreeGoddessItemHandler;
+import net.tracen.umapyoi.inventory.CommonItemHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.registry.UmaDataRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaData;
@@ -64,8 +64,8 @@ public class UmaPedestalBlockEntity extends SyncedBlockEntity implements Gachabl
     public UmaPedestalBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.UMA_PEDESTAL.get(), pos, state);
         this.inventory = createHandler();
-        this.inputHandler = LazyOptional.of(() -> new ThreeGoddessItemHandler(inventory, Direction.UP));
-        this.outputHandler = LazyOptional.of(() -> new ThreeGoddessItemHandler(inventory, Direction.DOWN));
+        this.inputHandler = LazyOptional.of(() -> new CommonItemHandler(inventory, Direction.UP,1,0));
+        this.outputHandler = LazyOptional.of(() -> new CommonItemHandler(inventory, Direction.DOWN,1,0));
         this.tileData = createIntArray();
     }
 

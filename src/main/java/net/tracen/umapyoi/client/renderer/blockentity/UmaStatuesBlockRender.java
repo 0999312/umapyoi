@@ -65,7 +65,7 @@ public class UmaStatuesBlockRender implements BlockEntityRenderer<UmaStatueBlock
         rightArm.zRot = ClientUtil.convertRotation(5);
         
         VertexConsumer vertexConsumer = buffer
-                .getBuffer(RenderType.entityTranslucent(tileEntity.isEmpty() ? TEXTURE : ClientUtils.getTexture(UmaSoulUtils.getName(item))));
+                .getBuffer(RenderType.entityTranslucentCull(tileEntity.isEmpty() ? TEXTURE : ClientUtils.getTexture(UmaSoulUtils.getName(item))));
         model.renderToBuffer(poseStack, vertexConsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
         
         if(model.isEmissive()) {

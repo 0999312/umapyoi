@@ -21,9 +21,7 @@
       "conditions": {
         "location": {
           "block": {
-            "blocks": [
-              "umapyoi:silver_uma_pedestal"
-            ]
+            "tag": "umapyoi:pedestal/uma"
           }
         },
         "item": {

@@ -72,7 +72,7 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                 }
 
                 VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(
-                        RenderType.entityTranslucent(flat_flag ? getFlatTexture(tanned) : getTexture(tanned)));
+                        RenderType.entityTranslucentCull(flat_flag ? getFlatTexture(tanned) : getTexture(tanned)));
 
                 var pojo = ClientUtil.getModelPOJO(flat_flag ? getFlatModel() : getModel());
                 if (baseModel.needRefresh(pojo))

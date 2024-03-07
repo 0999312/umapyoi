@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IJI",
+    "ILI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:leather"
+    },
+    "L": {
+      "tag": "forge:dyes/blue"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    }
+  },
+  "result": {
+    "item": "umapyoi:swimsuit"
+  }
+}

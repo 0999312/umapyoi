@@ -25,6 +25,8 @@
   "advancement.umapyoi.uma_ticket.title": "废纸",
   "advancement.umapyoi.support_pedestal.desc": "在召唤基座上使用一本书，得到支援基座。",
   "advancement.umapyoi.support_pedestal.title": "抽卡下井！",
+  "advancement.umapyoi.skill_book.desc": "在地牢或训练员村民处得到技能书。",
+  "advancement.umapyoi.skill_book.title": "技能书",
   "entity.minecraft.villager.umapyoi.trainer": "训练员",
   "itemGroup.umapyoi": "马儿蹦跳",
   "curios.identifier.uma_soul": "马娘之魂",
@@ -75,6 +77,9 @@
   "item.umapyoi.small_energy_drink": "活力20",
   "item.umapyoi.large_energy_drink": "活力65",
   "item.umapyoi.medium_energy_drink": "活力40",
+  
+  "item.umapyoi.swimsuit": "特雷森制式泳装",
+  
   "umadata.umapyoi.mejiro_mcqueen": "目白麦昆",
   "umadata.umapyoi.copano_rickey": "小林历奇",
   "umadata.umapyoi.common_uma": "无名鹿毛马娘",
@@ -145,8 +150,12 @@
   "umadata.umapyoi.satono_diamond_french": "[蔚蓝骑士] 里见光钻",
   "umadata.umapyoi.syameimaru_zheng": "射命丸 政",
   "umadata.umapyoi.tm_opera_o": "好歌剧",
+  "umadata.umapyoi.smart_falcon": "醒目飞鹰",
+  "umadata.umapyoi.manhattan_cafe_valentine": "[柳绿小夜] 曼城茶座",
+  "umadata.umapyoi.mejiro_ramonu": "目白高峰",
   
   "tooltip.umapyoi.umadata.name": "马娘姓名：%s",
+  "tooltip.umapyoi.support_card.name": "支援卡：%s",
   "tooltip.umapyoi.supports": "支援项：",
   "tooltip.umapyoi.supporters": "支援者：",
   
@@ -200,6 +209,8 @@
   "support_card.umapyoi.ssr_oguri_cap.name": "[要得到爱呦] 小栗帽",
   "support_card.umapyoi.ssr_super_creek.name": "[一粒的安宁] 超级溪流",
   "support_card.umapyoi.ssr_fine_motion.name": "[连指尖都饱含感激] 美妙姿势",
+  "support_card.umapyoi.ssr_w_mejiro_ramonu.name": "[绚烂] 目白高峰",
+  "support_card.umapyoi.ssr_g_rudolf.name": "[绝对皇帝] 鲁道夫象征",
 
   "support_card.umapyoi.blank_card.name": "空白支援卡",
   
@@ -283,6 +294,7 @@
   "tooltip.umapyoi.uma_soul.strength_details": "力量： %s / %s",
   "tooltip.umapyoi.uma_soul.guts_details": "毅力： %s / %s",
   "tooltip.umapyoi.uma_soul.wisdom_details": "智力： %s / %s",
+  "tooltip.umapyoi.factors.factors_details": "因子：",
 
   "umapyoi.uma_pedestal.cannot_add_item": "无法添加更多物品。",
   "umapyoi.skill.no_require": "没有需求。",

@@ -77,7 +77,7 @@ public class UmaSoulRenderer implements ICurioRenderer {
             baseModel.loadModel(pojo);
 
         VertexConsumer vertexConsumer = renderTypeBuffer
-                .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(renderTarget)));
+                .getBuffer(RenderType.entityTranslucentCull(ClientUtils.getTexture(renderTarget)));
         baseModel.setModelProperties(entity);
         baseModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
         if (MinecraftForge.EVENT_BUS.post(

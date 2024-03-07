@@ -17,6 +17,7 @@ import net.tracen.umapyoi.client.ActionBarOverlay;
 import net.tracen.umapyoi.client.MotivationOverlay;
 import net.tracen.umapyoi.client.SkillOverlay;
 import net.tracen.umapyoi.client.key.SkillKeyMapping;
+import net.tracen.umapyoi.client.renderer.SwimsuitRenderer;
 import net.tracen.umapyoi.client.renderer.TrainningSuitRenderer;
 import net.tracen.umapyoi.client.renderer.UmaSoulRenderer;
 import net.tracen.umapyoi.client.renderer.UmaUniformRenderer;
@@ -41,7 +42,8 @@ public class ClientSetupEvents {
                     UmaUniformRenderer.SummerUniformRenderer::new);
             CuriosRendererRegistry.register(ItemRegistry.WINTER_UNIFORM.get(),
                     UmaUniformRenderer.WinterUniformRenderer::new);
-
+            CuriosRendererRegistry.register(ItemRegistry.SWIMSUIT.get(),
+                    SwimsuitRenderer::new);
         });
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TRAINING_FACILITY.get(), RenderType.cutoutMipped());

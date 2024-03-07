@@ -4,19 +4,20 @@ import java.util.function.Supplier;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.UmaSelectMenu;
 
-public class EditSearchPacket {
+public class SetupResultPacket {
     private final String message;
 
-    public EditSearchPacket(FriendlyByteBuf buffer) {
+    public SetupResultPacket(FriendlyByteBuf buffer) {
         message = buffer.readUtf(Short.MAX_VALUE);
     }
 
-    public EditSearchPacket(String message) {
+    public SetupResultPacket(String message) {
         this.message = message;
     }
 
@@ -31,7 +32,7 @@ public class EditSearchPacket {
                 String s = SharedConstants.filterText(this.message);
                 Umapyoi.getLogger().info("Packet received:{}",s);
                 if (s.length() <= 50) {
-                    menu.setItemName(s);
+                    menu.setItemName(ResourceLocation.tryParse(s));
                 }
            }
             

@@ -58,6 +58,11 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .define('A', Tags.Items.INGOTS_IRON).define('L', Items.LECTERN)
                 .define('J', ItemRegistry.BLANK_TICKET.get())
                 .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(BlockRegistry.UMA_SELECT_BLOCK.get()).pattern(" J ").pattern("BLB").pattern("AAA")
+        .define('A', Tags.Items.GEMS_DIAMOND)
+        .define('B', Items.NETHER_STAR).define('L', Items.LECTERN)
+        .define('J', ItemRegistry.JEWEL.get())
+        .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
 
         ShapedRecipeBuilder.shaped(BlockRegistry.THREE_GODDESS.get()).pattern(" J ").pattern("JLJ").pattern("AAA")
                 .define('A', Tags.Items.STONE).define('L', Tags.Items.STORAGE_BLOCKS_QUARTZ)
@@ -103,6 +108,15 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
 
         ShapedRecipeBuilder.shaped(ItemRegistry.TRAINNING_SUIT.get()).pattern("IJI").pattern("ILI").pattern("ILI")
                 .define('I', Items.RED_WOOL).define('L', Items.WHITE_WOOL).define('J', ItemRegistry.JEWEL.get())
+                .unlockedBy("has_item", has(ItemRegistry.JEWEL.get())).save(consumer);
+        
+        ShapedRecipeBuilder.shaped(ItemRegistry.SWIMSUIT.get())
+                .pattern("IJI")
+                .pattern("ILI")
+                .pattern(" I ")
+                .define('I', Tags.Items.LEATHER)
+                .define('L', Tags.Items.DYES_BLUE)
+                .define('J', ItemRegistry.JEWEL.get())
                 .unlockedBy("has_item", has(ItemRegistry.JEWEL.get())).save(consumer);
 
         ShapelessRecipeBuilder.shapeless(ItemRegistry.HACHIMI_MID.get()).requires(Items.HONEY_BOTTLE)

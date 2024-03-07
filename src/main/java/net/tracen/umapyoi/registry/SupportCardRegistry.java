@@ -241,5 +241,26 @@ public class SupportCardRegistry {
                 .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 1))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 2))
                 ::build);
-
+    
+    public static final RegistryObject<SupportCard> SSR_RUDOLF_G = SUPPORT_CARD.register("ssr_g_rudolf",
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(6)
+                .supportType(SupportType.GUTS)
+                .addSupporter(UmaDataRegistry.SYMBOLI_RUDOLF.getId())
+                .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 3))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 1))
+                ::build);
+    
+    public static final RegistryObject<SupportCard> SSR_MEJIRO_RAMONU_W = SUPPORT_CARD.register("ssr_w_mejiro_ramonu",
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(5)
+                .supportType(SupportType.WISDOM)
+                .addSupporter(new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu"))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.WISDOM_SUPPORT.getId(), 4))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 2))
+                ::build);
 }

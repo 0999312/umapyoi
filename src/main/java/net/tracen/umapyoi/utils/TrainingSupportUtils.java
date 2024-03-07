@@ -4,10 +4,14 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.training.SupportStack;
 
@@ -35,4 +39,7 @@ public class TrainingSupportUtils {
         return list;
     }
 
+    public static Component getTranslatedSupportCardName(ResourceLocation name) {
+        return new TranslatableComponent(Util.makeDescriptionId("support_card", name) + ".name");
+    }
 }

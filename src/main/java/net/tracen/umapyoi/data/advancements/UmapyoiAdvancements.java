@@ -12,7 +12,7 @@ import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.tracen.umapyoi.block.BlockRegistry;
+import net.tracen.umapyoi.data.tag.UmapyoiBlockTags;
 import net.tracen.umapyoi.item.ItemRegistry;
 
 public class UmapyoiAdvancements extends AbstractAdvancements {
@@ -36,7 +36,7 @@ public class UmapyoiAdvancements extends AbstractAdvancements {
                         .addCriterion("buildSupport",
                                 ItemUsedOnBlockTrigger.TriggerInstance.itemUsedOnBlock(
                                         LocationPredicate.Builder.location()
-                                                .setBlock(BlockPredicate.Builder.block().of(BlockRegistry.SILVER_UMA_PEDESTAL.get()).build()),
+                                                .setBlock(BlockPredicate.Builder.block().of(UmapyoiBlockTags.PEDESTAL_UMA).build()),
                                         ItemPredicate.Builder.item().of(Items.BOOK)))
                         .save(comsumer, "umapyoi:support_pedestal");
 

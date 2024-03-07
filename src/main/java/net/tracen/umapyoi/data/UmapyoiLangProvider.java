@@ -101,8 +101,11 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(), "Golden Support Album Pedestal");
         
         add(BlockRegistry.DISASSEMBLY_BLOCK.get(), "Transfer Register Lectern");
+        add(BlockRegistry.UMA_SELECT_BLOCK.get(), "Selection Lectern");
         
         add(BlockRegistry.UMA_STATUES.get(), "Umamusume Statue");
+        
+        add(ItemRegistry.SWIMSUIT.get(), "Tracen Swimsuit");
 
         add(MobEffectRegistry.PANICKING.get(), "Panicking");
 
@@ -114,6 +117,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("itemGroup.umapyoi", "Umapyoi");
         
         addTooltip(".umadata.name", "Umamusume's Name:%s");
+        addTooltip(".support_card.name", "Support Card:%s");
         addTooltip(".umafactor.data", "Has %s and %d more factors.");
 
         addTooltip(".supports", "Supports:");
@@ -187,6 +191,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("container.umapyoi.skill_learning", "Skill Learning Table");
         add("container.umapyoi.retire_register", "Retire Register");
         add("container.umapyoi.disassembly_block", "Transfer Register");
+        add("container.umapyoi.umaselect", "Selection Register");
 
         add("key.category.umapyoi", "Umapyoi");
         add("key.umapyoi.use_skill", "Use Skill");
@@ -333,14 +338,18 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.DARLEY_ARABIAN, "Darley Arabian");
         addUma(UmaDataRegistry.GODOLPHIN_BARB, "Godolphin Barb");
         addUma(UmaDataRegistry.BYERLEY_TURK, "Byerley Turk");
+        addUma(UmaDataRegistry.FINE_MOTION, "Fine Motion");
+        addUma(UmaDataRegistry.SMART_FALCON, "Smart Falcon");
 
         addUma(UmaDataRegistry.GOLD_CITY_AUTUMN, "[Akizakura Danzatrice] Gold City");
         addUma(UmaDataRegistry.GRASS_WONDER_UMANET, "[Saint Jade Healer] Grass Wonder");
         addUma(UmaDataRegistry.SATONO_DIAMOND_FRENCH, "[Chevalier Blue] Satono Diamond");
         
+        addUma(UmaDataRegistry.MANHATTAN_CAFE_VALENTINE, "[Willow Night] Manhattan cafe");
+        
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");
-        add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "fine_motion")), "Fine Motion");
+        add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");
 
         addSupportCard(SupportCardRegistry.BLANK_CARD, "Blank Support Card");
         
@@ -381,6 +390,9 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addSupportCard(SupportCardRegistry.SSR_FINE_MOTION, "[Gratitude Up to One's Fingertips] Fine Motion");
         
+        addSupportCard(SupportCardRegistry.SSR_RUDOLF_G, "[Unmistakable Emperor] Symboli Rudolf");
+        addSupportCard(SupportCardRegistry.SSR_MEJIRO_RAMONU_W, "[Radiant] Mejiro Ramonu");
+        
         addAdvTitle("umapyoi.root", "Welcome to Tracen Academy!");
         addAdvDesc("umapyoi.root", "Start your adventure with umamusume!");
         
@@ -401,9 +413,12 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addAdvTitle("umapyoi.training", "Three years between you and her have begun.");
         addAdvDesc("umapyoi.training", "Craft the Training Terminal.");
-        //
+
         addAdvTitle("umapyoi.support_pedestal", "Support Cards");
         addAdvDesc("umapyoi.support_pedestal", "Use a book to Umamusume Pedestal to get Support Pedestal.");
+        
+        addAdvTitle("umapyoi.skill_book", "Skill books");
+        addAdvDesc("umapyoi.skill_book", "Found Skill books in dungeon or trainer villager.");
         
         addAdvTitle("umapyoi.register_lectern", "Three years between you and her have ended?");
         addAdvDesc("umapyoi.register_lectern", "Craft the Register Lectern to end your training.");

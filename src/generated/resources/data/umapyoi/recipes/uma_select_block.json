@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " J ",
+    "BLB",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:gems/diamond"
+    },
+    "B": {
+      "item": "minecraft:nether_star"
+    },
+    "L": {
+      "item": "minecraft:lectern"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    }
+  },
+  "result": {
+    "item": "umapyoi:uma_select_block"
+  }
+}

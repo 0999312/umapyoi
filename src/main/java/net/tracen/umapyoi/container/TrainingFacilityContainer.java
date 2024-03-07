@@ -66,9 +66,9 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
-        // 0-3 6: Contain inventory
-        // 4-33: Player inventory
-        // 34-43: Hot bar in the player inventory
+        // 0-7: Contain inventory
+        // 7-33: Player inventory
+        // 33-43: Hot bar in the player inventory
 
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
@@ -85,7 +85,7 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
                 slot.onQuickCraft(itemStack1, itemStack);
             } else if (index >= 7) {
                 if (index >= 7 && index < 43) {
-                    if (!this.moveItemStackTo(itemStack1, 0, 6, false)) {
+                    if (!this.moveItemStackTo(itemStack1, 0, 7, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
