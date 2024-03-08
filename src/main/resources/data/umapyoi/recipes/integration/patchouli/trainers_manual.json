@@ -1,0 +1,18 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "patchouli"
+    }
+  ],
+  "type": "patchouli:shapeless_book_recipe",
+  "ingredients": [
+    {
+      "item": "umapyoi:jewel"
+    },
+    {
+      "item": "minecraft:book"
+    }
+  ],
+  "book": "umapyoi:trainers_manual"
+}

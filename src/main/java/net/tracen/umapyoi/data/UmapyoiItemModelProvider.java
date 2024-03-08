@@ -32,7 +32,8 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
                 return;
             }
             
-            if (item.get()instanceof BlockItem block && item != ItemRegistry.THREE_GODDESS)
+            if (item.get()instanceof BlockItem block
+                    && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE))
                 itemBlock(block::getBlock);
 
             else

@@ -24,5 +24,12 @@ public class NetPacketHandler {
         INSTANCE.messageBuilder(SelectSkillPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
                 .encoder(SelectSkillPacket::toBytes).decoder(SelectSkillPacket::new)
                 .consumerNetworkThread(SelectSkillPacket::handler).add();
+        
+        INSTANCE.messageBuilder(SetupResultPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(SetupResultPacket::toBytes).decoder(SetupResultPacket::new)
+                .consumerNetworkThread(SetupResultPacket::handler).add();
+        INSTANCE.messageBuilder(EmptyResultPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(EmptyResultPacket::toBytes).decoder(EmptyResultPacket::new)
+                .consumerNetworkThread(EmptyResultPacket::handler).add();
     }
 }

@@ -34,7 +34,7 @@
         },
         {
           "type": "patchouli:text",
-          "text": "The support card cannot be read by the training terminal for a long period of time, so it is subject to wear and tear during actual use. $(p) When a Support Card reaches the end of its lifespan, it will break and disappear. $(p)You can repair a Support Card with any Hoof Crystal, but you cannot repair two Support Cards with the Synthesis Table - it will only result in a single Scrap Card. Scrap cards can only be recycled into a silver Horseshoe Crystal."
+          "text": "The support card cannot be read by the training terminal for a long period of time, so it is subject to wear and tear during actual use. $(p) When a Support Card reaches the end of its lifespan, it will break and disappear. $(p)You can repair a Support Card with any Horseshoe Crystal, but you cannot repair two Support Cards with the Crafting Table - it will only result in a single Scrap Card. Scrap cards can only be recycled into a silver Horseshoe Crystal."
         },
         {
           "type": "patchouli:text",

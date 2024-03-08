@@ -8,19 +8,6 @@
 		"visible_bounds_offset": [0, 1.25, 0],
 		"bones": [
 			{
-				"name": "hat",
-				"pivot": [0, 24, 0]
-			},
-			{
-				"name": "ahoge",
-				"parent": "hat",
-				"pivot": [-1, 33.5, -1],
-				"rotation": [44.32747, 33.98362, 88.99389],
-				"cubes": [
-					{"origin": [-3, 33, -3], "size": [4, 1, 4], "uv": [40, 38], "inflate": -0.3}
-				]
-			},
-			{
 				"name": "head",
 				"pivot": [0, 24, 0],
 				"cubes": [
@@ -247,6 +234,15 @@
 				"pivot": [2.78584, 31.01585, -1.18628],
 				"cubes": [
 					{"origin": [1.8077, 29.82527, -1.24912], "size": [2, 2, 1], "uv": [60, 0], "inflate": 0.001, "mirror": true}
+				]
+			},
+			{
+				"name": "ahoge",
+				"parent": "head",
+				"pivot": [-1, 33.5, -1],
+				"rotation": [44.32747, 33.98362, 88.99389],
+				"cubes": [
+					{"origin": [-3, 33, -3], "size": [4, 1, 4], "uv": [40, 38], "inflate": -0.3}
 				]
 			},
 			{

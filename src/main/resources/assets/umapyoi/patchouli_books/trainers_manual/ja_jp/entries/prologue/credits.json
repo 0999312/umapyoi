@@ -1,0 +1,16 @@
+{
+    "name": "うまぴょいModについて",
+    "icon": "minecraft:writable_book",
+    "category": "umapyoi:prologue",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "うまぴょいModをご利用いただき誠にありがとうございます。 このモジュールは、「ウマ娘 プリティーダービー」をテーマにした「繁殖と継承」をゲームプレイの核としています。$(p)「ウマ娘」になって、Minecraft で大冒険に出かけましょう!"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "このモジュールは「Tracen Academy Minecraft Group」によって開発されました。$(p)番号: $(li)リーダー / 開発者: Syameimaru Zheng;$(li)アート: Kuguan_Boom、Dumnheit、TwinTurbo3116、omo、GoldYgg、Pajinyi、 Syameimaru Zheng; $(li)プロモーション: Syameimaru Zheng、Limuness $(li)Special thanks : Yuriscat"
+        }
+    ]
+}

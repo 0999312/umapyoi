@@ -1,0 +1,44 @@
+{
+    "name": "食べ物",
+    "icon": "umapyoi:royal_bitter",
+    "category": "umapyoi:others",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "ウマ娘はニンジンが大好きで、村人たちにニンジンの育て方を教えてくれたりもしました。 しかしこれは単なる伝説です。$(p)しかし、一つ確かなことは、ウマ娘になると味の好みが変わるということです。今言われているところによると、ウマ娘になると甘い味が好きになり、苦い味が嫌いになるそうです。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ケーキやハチミツドリンクなどの好物を摂取するとステータスが上がりその逆も同様です。 $(p) ウマ娘のトレーナーたちはアクションポイントを迅速に回復するために「バイタル」シリーズのドリンクを開発しました。 このドリンクは直接行動Ptを大量に回復しパニック時の行動Ptの回復に使用できます。 村から購入することも自分で作ることもできます。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "「ロイヤルビタージュース」というドリンクが登場しました。 $(p)$(#f00)$(l)準備ができていない場合は試さないでください。本当に苦いです。$()"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:hachimi_mid",
+            "recipe2": "umapyoi:hachimi_big",
+            "title": "私は猫ではありません。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:cupcake",
+            "recipe2": "umapyoi:sweet_cupcake",
+            "title": "ケーキは嘘です！（portalネタ）"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:small_energy_drink",
+            "recipe2": "umapyoi:medium_energy_drink",
+            "title": "おそらくすでにご存知でしょう。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:large_energy_drink",
+            "recipe2": "umapyoi:royal_bitter",
+            "title": "不味ーい！もう一杯！"
+        }
+    ]
+}

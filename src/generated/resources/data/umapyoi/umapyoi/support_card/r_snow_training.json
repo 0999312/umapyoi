@@ -1,0 +1,18 @@
+{
+  "type": "guts",
+  "max_damage": 10,
+  "ranking": "r",
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:guts_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:snow_runner"
+      }
+    }
+  ]
+}

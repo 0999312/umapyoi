@@ -1,7 +1,11 @@
 package net.tracen.umapyoi.block.entity;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,8 +19,14 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.tracen.umapyoi.container.TrainingFacilityContainer;
+import net.tracen.umapyoi.inventory.CommonItemHandler;
+import net.tracen.umapyoi.inventory.TerminalResultHandler;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 import net.tracen.umapyoi.registry.umadata.Growth;
@@ -28,17 +38,15 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
     private final ItemStackHandler inventory;
 
     protected final ContainerData tileData;
-
+    private final LazyOptional<IItemHandler> inputHandler;
+    private final LazyOptional<IItemHandler> outputHandler;
     private int recipeTime;
-    
-    private int animationTime;
-    public int getAnimationTime() {
-        return animationTime;
-    }
 
     public TrainingFacilityBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.TRAINING_FACILITY.get(), pos, state);
         this.inventory = createHandler();
+        this.inputHandler = LazyOptional.of(() -> new CommonItemHandler(inventory, Direction.UP,7,0));
+        this.outputHandler = LazyOptional.of(() -> new TerminalResultHandler(inventory, 0));
         this.tileData = createIntArray();
     }
 
@@ -179,6 +187,19 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
                 inventoryChanged();
             }
         };
+    }
+    
+    @Override
+    @Nonnull
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
+        if (cap.equals(ForgeCapabilities.ITEM_HANDLER)) {
+            if (side == null || side.equals(Direction.UP)) {
+                return inputHandler.cast();
+            } else {
+                return outputHandler.cast();
+            }
+        }
+        return super.getCapability(cap, side);
     }
 
     private ContainerData createIntArray() {

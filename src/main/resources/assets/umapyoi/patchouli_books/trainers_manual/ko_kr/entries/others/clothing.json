@@ -1,0 +1,27 @@
+{
+    "name": "의상",
+    "icon": "umapyoi:summer_uniform",
+    "category": "umapyoi:others",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "우마무스메가 되고 나면, 당신은 우마무스메를 위해 특별히 디자인된 다양한 종류의 옷들을 입을 수 있습니다. 우마무스메의 외관 때문에 그들의 의상을 입는 것이 좋습니다. $(p)주민들은 우마무스메를 위한 옷감을 갖고 있으며, 결국에는 우마무스메의 수 또한 늘고 있습니다. $(p) 주민들로부터 의상을 구입하는 것 외에도, 여러분은 또한 직접 스스로 입을 의상을 만들 수 있습니다."
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:summer_uniform",
+          "text": "고전."
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:winter_uniform",
+          "text": "여전히 겨울에 약간의 추위를 느낄 수 있습니다."
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:trainning_suit",
+          "text": "스포츠에 적합합니다."
+        }
+    ]
+}

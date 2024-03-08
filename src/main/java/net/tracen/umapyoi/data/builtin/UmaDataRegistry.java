@@ -54,6 +54,29 @@ public class UmaDataRegistry {
     public static final ResourceKey<UmaData> NARITA_TOP_ROAD = register("narita_top_road");
     public static final ResourceKey<UmaData> VENUS_PARK = register("venus_park");
     
+    public static final ResourceKey<UmaData> AGNUS_TACHYON_SWIM = register("agnus_tachyon_swim");
+    public static final ResourceKey<UmaData> MIHONO_BOURBON = register("mihono_bourbon");
+    public static final ResourceKey<UmaData> MATIKANETANNHAUSER = register("matikanetannhauser");
+    public static final ResourceKey<UmaData> KAWAKAMI_PRINCESS = register("kawakami_princess");
+    public static final ResourceKey<UmaData> TWIN_TURBO = register("twinturbo");
+    public static final ResourceKey<UmaData> LITTLE_COCON = register("little_cocon");
+    public static final ResourceKey<UmaData> SAKURA_LAUREL = register("sakura_laurel");
+    public static final ResourceKey<UmaData> FINE_MOTION = register("fine_motion");
+    public static final ResourceKey<UmaData> TM_OPERA_O = register("tm_opera_o");
+    public static final ResourceKey<UmaData> ADMIRE_VEGA = register("admire_vega");
+    public static final ResourceKey<UmaData> JUNGLE_POCKET = register("jungle_pocket");
+    public static final ResourceKey<UmaData> NARITA_TAISHIN = register("narita_taishin");
+    public static final ResourceKey<UmaData> GOLD_CITY_AUTUMN = register("gold_city_autumn");
+    public static final ResourceKey<UmaData> GRASS_WONDER_UMANET = register("grass_wonder_umanet");
+    public static final ResourceKey<UmaData> SATONO_DIAMOND_FRENCH = register("satono_diamond_french");
+    public static final ResourceKey<UmaData> SYAMEIMARU_ZHENG = register("syameimaru_zheng");
+    public static final ResourceKey<UmaData> DUMNHEINT = register("dumnheint");
+    public static final ResourceKey<UmaData> DARLEY_ARABIAN = register("darley_arabian");
+    public static final ResourceKey<UmaData> GODOLPHIN_BARB = register("godolphin_barb");
+    public static final ResourceKey<UmaData> BYERLEY_TURK = register("byerley_turk");
+    public static final ResourceKey<UmaData> SMART_FALCON = register("smart_falcon");
+    public static final ResourceKey<UmaData> MANHATTAN_CAFE_VALENTINE = register("manhattan_cafe_valentine");
+    
     public static void registerAll(BootstapContext<UmaData> bootstrap) {
         bootstrap.register(COMMON_UMA, UmaData.createNewUmamusume("common_uma", GachaRanking.R));
         bootstrap.register(COMMON_UMA_A, UmaData.createNewUmamusume("common_uma_a", GachaRanking.R));
@@ -99,6 +122,30 @@ public class UmaDataRegistry {
         bootstrap.register(SYMBOLI_RUDOLF, UmaData.createNewUmamusume("symboli_rudolf", GachaRanking.SR, new int[] {0, 20, 0, 10, 0}));
         bootstrap.register(NARITA_TOP_ROAD, UmaData.createNewUmamusume("narita_top_road", GachaRanking.SR, new int[] {20, 10, 0, 0, 0}));
         bootstrap.register(VENUS_PARK, UmaData.createNewUmamusume("venus_park", GachaRanking.EASTER_EGG, new int[] {10, 10, 10, 10, 10}));
+        
+        bootstrap.register(AGNUS_TACHYON_SWIM, UmaData.createNewUmamusume("agnus_tachyon", GachaRanking.SSR, new int[] {15, 0, 10, 0, 15}));
+        bootstrap.register(MIHONO_BOURBON, UmaData.createNewUmamusume("mihono_bourbon", GachaRanking.SR, new int[] {0, 20, 10, 0, 0}));
+        bootstrap.register(MATIKANETANNHAUSER, UmaData.createNewUmamusume("matikanetannhauser", GachaRanking.SR, new int[] {0, 20, 0, 10, 0}));
+        bootstrap.register(KAWAKAMI_PRINCESS, UmaData.createNewUmamusume("kawakami_princess", GachaRanking.SR, new int[] {0, 10, 0, 20, 0}));
+        bootstrap.register(TWIN_TURBO, UmaData.createNewUmamusume("twinturbo", GachaRanking.SR, new int[] {30, 0, 0, 0, 0}));
+        bootstrap.register(LITTLE_COCON, UmaData.createNewUmamusume("little_cocon", GachaRanking.SR, new int[] {10, 0, 10, 0, 10}));
+        bootstrap.register(SAKURA_LAUREL, UmaData.createNewUmamusume("sakura_laurel", GachaRanking.SR, new int[] {0, 20, 10, 0, 0})); 
+        
+        bootstrap.register(FINE_MOTION,UmaData.createNewUmamusume("fine_motion", GachaRanking.SR, new int[] {0, 0, 15, 0, 15}));
+        bootstrap.register(TM_OPERA_O,UmaData.createNewUmamusume("tm_opera_o", GachaRanking.SR, new int[] {0, 20, 0, 0, 10}));
+        bootstrap.register(ADMIRE_VEGA,UmaData.createNewUmamusume("admire_vega", GachaRanking.SR, new int[] {10, 0, 20, 0, 0}));
+        bootstrap.register(JUNGLE_POCKET,UmaData.createNewUmamusume("jungle_pocket", GachaRanking.SR, new int[] {10, 0, 20, 0, 0}));
+        bootstrap.register(NARITA_TAISHIN,UmaData.createNewUmamusume("narita_taishin", GachaRanking.SR, new int[] {10, 0, 0, 20, 0}));
+        bootstrap.register(GOLD_CITY_AUTUMN,UmaData.createNewUmamusume("gold_city", GachaRanking.SSR, new int[] {10, 0, 15, 0, 15}));
+        bootstrap.register(GRASS_WONDER_UMANET,UmaData.createNewUmamusume("grass_wonder", GachaRanking.SSR, new int[] {15, 0, 10, 0, 15}));
+        bootstrap.register(SATONO_DIAMOND_FRENCH,UmaData.createNewUmamusume("satono_diamond", GachaRanking.SSR, new int[] {10, 15, 0, 15, 0}));
+        bootstrap.register(SYAMEIMARU_ZHENG,UmaData.createNewUmamusume("syameimaru_zheng", GachaRanking.EASTER_EGG, new int[] {20, 0, 0, 10, 0}));
+        bootstrap.register(DUMNHEINT,UmaData.createNewUmamusume("dumnheint", GachaRanking.EASTER_EGG, new int[] {10, 0, 20, 0, 0}));
+        bootstrap.register(DARLEY_ARABIAN,UmaData.createNewUmamusume("darley_arabian", GachaRanking.EASTER_EGG, new int[] {10, 10, 10, 10, 10}));
+        bootstrap.register(GODOLPHIN_BARB,UmaData.createNewUmamusume("godolphin_barb", GachaRanking.EASTER_EGG, new int[] {25, 0, 0, 0, 25}));
+        bootstrap.register(BYERLEY_TURK,UmaData.createNewUmamusume("byerley_turk", GachaRanking.EASTER_EGG, new int[] {0, 15, 20, 15, 0}));
+        bootstrap.register(SMART_FALCON,UmaData.createNewUmamusume("smart_falcon", GachaRanking.SR, new int[] {20, 0, 10, 0, 0}));
+        bootstrap.register(MANHATTAN_CAFE_VALENTINE,UmaData.createNewUmamusume("manhattan_cafe", GachaRanking.SSR, new int[] {0, 20, 20, 0, 0}));
     }
 
     private static ResourceKey<UmaData> register(String id) {

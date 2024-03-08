@@ -1,0 +1,17 @@
+{
+    "name": "삼여신상",
+    "icon": "umapyoi:three_goddess",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 3,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": " \"세 여신\" 은 최초의 세 우마무스메이자 우마무스메를 다스리는 신들입니다. 그들은 우마무스메 소울, 힘, 지식을 제공하며 우마무스메에게 방향을 제시합니다. ......$(p)트레이너들에게 삼여신상의 가장 큰 의미는 빛바랜 우마무스메 소울의 활성화입니다. 동시에 \"인자 계승\" 또한 삼여신상을 통해 이뤄집니다."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:three_goddess",
+            "text": "그들이 진짜로 존재하긴 했을까요?"
+        }
+    ]
+}

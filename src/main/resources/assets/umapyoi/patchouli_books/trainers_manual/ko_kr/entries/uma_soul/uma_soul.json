@@ -1,0 +1,34 @@
+{
+    "name": "우마무스메 소울",
+    "icon": "umapyoi:uma_soul",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "『우마무스메』…….그녀들은 달리기 위해 태어났다.$(p)때로는 기구하고, 때로는 빛나는 역사를 지닌 다른 세계의 이름을 지니고 태어나,$(p)그 영혼을 이어받아 달린다… 그것이 그녀들의 운명."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "이제 이것들은 경이로운 크리스탈에 깃든 영혼을 가리키는데 있어 더 많이 쓰이는 표현입니다. 이 \"영혼의 결정체\" 는 이른바 \"우마무스메 소울\"이라고 불립니다."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "쥬얼이나 \"우마 티켓\"을 넣으면 한 번의 변화 후에 \"빛바랜 우마무스메 소울\"이 나옵니다. $(br)이 칙칙한 크리스탈들은 전혀 작동하지 않습니다. $(br2)이 칙칙한 크리스탈들을 여신상에 바로 바치면 세 여신의 은총으로 크리스탈이 다시 빛날 것입니다."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["umapyoi:textures/book_images/summon_soul.png", "umapyoi:textures/book_images/blank_soul.png"],
+            "text": "\"빛바랜 우마무스메 소울\"의 등장."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "\"우마 무스메\" 로 변신한 뒤, 기본적으로 현재 컨디션과 선택한 스킬이 HUD의 오른쪽 하단에 표시됩니다. $(br2) HUD의 오른쪽에는 현재의 액션 포인트를 나타내는 파란색 막대가 있으며, 액션 포인트가 완전히 채워진 경우에는 기본적으로 표시되지 않습니다."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["umapyoi:textures/book_images/hud_info.png"],
+            "text": "현재 컨디션과 선택한 스킬이 HUD의 오른쪽 하단에 표시됩니다."
+        }
+    ]
+}

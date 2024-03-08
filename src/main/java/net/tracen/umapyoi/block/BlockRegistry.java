@@ -16,7 +16,7 @@ public class BlockRegistry {
             SupportAlbumPedestalBlock::new);
     public static final RegistryObject<Block> THREE_GODDESS = BLOCKS.register("three_goddess", ThreeGoddessBlock::new);
     public static final RegistryObject<Block> THREE_GODDESS_UPPER = BLOCKS.register("three_goddess_upper",
-            ThreeGoddessUpperBlock::new);
+            ()->new StatuesUpperBlock(THREE_GODDESS));
     public static final RegistryObject<Block> TRAINING_FACILITY = BLOCKS.register("training_facility",
             TrainingFacilityBlock::new);
     public static final RegistryObject<Block> SKILL_LEARNING_TABLE = BLOCKS.register("skill_learning_table",
@@ -26,4 +26,13 @@ public class BlockRegistry {
     
     public static final RegistryObject<Block> DISASSEMBLY_BLOCK = BLOCKS.register("disassembly_block",
             DisassemblyBlock::new);
+    
+    public static final RegistryObject<Block> UMA_STATUES = BLOCKS.register("uma_statues",
+            UmaStatueBlock::new);
+    
+    public static final RegistryObject<Block> UMA_STATUES_UPPER = BLOCKS.register("uma_statues_upper",
+            ()->new StatuesUpperBlock(UMA_STATUES, Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D)));
+    
+    public static final RegistryObject<Block> UMA_SELECT_BLOCK = BLOCKS.register("uma_select_block",
+            UmaSelectBlock::new);
 }

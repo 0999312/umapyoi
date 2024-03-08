@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-28T22:11:00.6047319	Item Models: umapyoi
+// 1.20.1	2024-03-06T20:34:50.548945	Item Models: umapyoi
 eb203ac61047f57a3d27c883fef827ffb672e86e assets/umapyoi/models/item/blank_ticket.json
 a160441d9de23d2cd1e654138352edb941f60bd3 assets/umapyoi/models/item/blank_uma_soul.json
 8942fac00e5e9760addae49b0928ca83558fbc4c assets/umapyoi/models/item/card_ticket.json
@@ -38,12 +38,15 @@ a035cff5275f21b0dfaf4a4d806048f06ecc369a assets/umapyoi/models/item/strength_hig
 c34794b1df3277944631d820447e92516912b5d5 assets/umapyoi/models/item/summer_uniform.json
 f636b32b254bca5560e713feaaf786171ba2dc50 assets/umapyoi/models/item/support_card.json
 7f4c21d1346e1343f93f6ae67af687135d79dd44 assets/umapyoi/models/item/sweet_cupcake.json
+c2665a7f2725087c4e65d77f1aced9f20e584f8e assets/umapyoi/models/item/swimsuit.json
 3e9de809b42316c8d544cbd301a7499eb2b2ae5a assets/umapyoi/models/item/three_goddess.json
 c318a1785973693d5f9cc9b50bf3cf1a02faed06 assets/umapyoi/models/item/training_facility.json
 e7c8b3cc8f80945a1fb1b32a277d0bd4c7c16928 assets/umapyoi/models/item/trainning_suit.json
 95c77fd74c384110079e322a1005aeb91f4a5fa7 assets/umapyoi/models/item/uma_factor_item.json
 8013bc4db5b34c070800d2ad5be4b22a8d2ad685 assets/umapyoi/models/item/uma_pedestal.json
+e3c3be787ef19b155ef9c8ab80ff830060a26984 assets/umapyoi/models/item/uma_select_block.json
 95d74bdc181e9a8739f503c5c37dfc0b384e648e assets/umapyoi/models/item/uma_soul.json
+b960115a345190023067f2066a26fb156c1cb0c1 assets/umapyoi/models/item/uma_statue.json
 a7d3fffd9d9291c6e15483bd53447ae57db9d4ea assets/umapyoi/models/item/uma_ticket.json
 2ff5310a142e64c88c3eafd11706841df3a3f7ed assets/umapyoi/models/item/winter_uniform.json
 4bc9cdd50641cbdeb3181934ecdb0804299d45fe assets/umapyoi/models/item/wisdom_high_item.json

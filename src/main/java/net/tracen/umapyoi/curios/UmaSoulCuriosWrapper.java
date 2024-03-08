@@ -11,9 +11,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
@@ -52,7 +50,6 @@ public class UmaSoulCuriosWrapper implements ICurio {
         if (this.getStack().isEmpty())
             return;
         if (!commandSenderWorld.isClientSide && entity instanceof Player player) {
-            applyStaminaEffect(player);
             resumeActionPoint(entity);
         }
 
@@ -65,26 +62,6 @@ public class UmaSoulCuriosWrapper implements ICurio {
             UmaSoulUtils.setActionPoint(this.getStack(), Math.min(UmaSoulUtils.getActionPoint(this.getStack()) + 1,
                     UmaSoulUtils.getMaxActionPoint(this.getStack())));
         }
-    }
-
-    private void applyStaminaEffect(Player player) {
-        FoodData foodData = player.getFoodData();
-        boolean isPlayerHealingWithSaturation = player.level().getGameRules()
-                .getBoolean(GameRules.RULE_NATURAL_REGENERATION) && player.isHurt()
-                && foodData.getSaturationLevel() > 0.0F && foodData.getFoodLevel() >= 20;
-        if (!isPlayerHealingWithSaturation) {
-            float exhaustion = foodData.getExhaustionLevel();
-            float reduction = getStaminaExhaustion(
-                    UmaSoulUtils.getProperty(this.getStack())[StatusType.STRENGTH.getId()])
-                    * UmaSoulUtils.getMotivation(this.getStack()).getMultiplier();
-            if (exhaustion > 0.01F) {
-                player.causeFoodExhaustion(-reduction);
-            }
-        }
-    }
-
-    public float getStaminaExhaustion(int stamina) {
-        return Math.max(1, stamina) * 0.00075f;
     }
 
     @Override

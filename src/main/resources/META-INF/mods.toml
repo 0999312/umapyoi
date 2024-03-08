@@ -29,13 +29,13 @@ Horsey horsey meowsy meowsy  3 2 1  Fight!!
 [[dependencies.umapyoi]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.20,1.21)"
+    versionRange="[1.20,1.20.2)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.umapyoi]]
     modId="mysterious_mountain_lib"
     mandatory=true
-    versionRange="[1.2.6-1.20,)"
+    versionRange="[1.4.4-1.20.1,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.umapyoi]]

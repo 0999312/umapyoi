@@ -21,6 +21,8 @@ public class UmapyoiBlockLoot extends AbstartctBlockLoot {
         dropSelf(BlockRegistry.UMA_PEDESTAL.get());
         dropSelf(BlockRegistry.SILVER_UMA_PEDESTAL.get());
         dropSelf(BlockRegistry.DISASSEMBLY_BLOCK.get());
+        dropSelf(BlockRegistry.UMA_SELECT_BLOCK.get());
+        dropSelf(BlockRegistry.UMA_STATUES.get());
         dropOther(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(), ItemRegistry.UMA_PEDESTAL.get());
         dropOther(BlockRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(), ItemRegistry.SILVER_UMA_PEDESTAL.get());
     }

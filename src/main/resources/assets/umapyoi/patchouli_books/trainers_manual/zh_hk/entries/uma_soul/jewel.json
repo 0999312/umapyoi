@@ -1,0 +1,18 @@
+{
+    "name": "蘿蔔寶石",
+    "icon": "umapyoi:jewel",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "所謂蘿蔔寶石，是指特地雕刻成胡蘿蔔形狀的寶石。這些寶石深受三女神所喜愛。$(p)蘿蔔寶石主要供奉給三女神，也可以用於合成召喚基座等重要方塊。$(br)直接將寶石供奉給三女神這種方式比較浪費，目前普遍的做法是利用寶石合成“馬券”。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:jewel",
+            "text": "部分村民之間也會使用蘿蔔寶石進行交易，這是蘿蔔寶石的第二大用處。",
+            "title": "全都是無料的！"
+        }
+    ]
+}

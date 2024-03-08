@@ -1,0 +1,37 @@
+{
+  "parent": "umapyoi:summon_pedestal",
+  "display": {
+    "icon": {
+      "item": "umapyoi:blank_ticket"
+    },
+    "title": {
+      "translate": "advancement.umapyoi.uma_ticket.title"
+    },
+    "description": {
+      "translate": "advancement.umapyoi.uma_ticket.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "umapyoi:blank_ticket"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item"
+    ]
+  ]
+}

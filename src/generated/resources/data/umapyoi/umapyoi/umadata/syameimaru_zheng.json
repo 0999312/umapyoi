@@ -1,0 +1,25 @@
+{
+  "identifier": "umapyoi:syameimaru_zheng",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    20,
+    0,
+    0,
+    10,
+    0
+  ],
+  "uniqueSkill": "umapyoi:basic_pace"
+}

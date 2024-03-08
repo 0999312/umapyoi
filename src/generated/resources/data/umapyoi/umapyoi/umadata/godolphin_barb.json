@@ -1,0 +1,25 @@
+{
+  "identifier": "umapyoi:godolphin_barb",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    25,
+    0,
+    0,
+    0,
+    25
+  ],
+  "uniqueSkill": "umapyoi:basic_pace"
+}

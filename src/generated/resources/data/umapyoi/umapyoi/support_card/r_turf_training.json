@@ -1,0 +1,18 @@
+{
+  "type": "speed",
+  "max_damage": 10,
+  "ranking": "r",
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:speed_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:turf_runner"
+      }
+    }
+  ]
+}

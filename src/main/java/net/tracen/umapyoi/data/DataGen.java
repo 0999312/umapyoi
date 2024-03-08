@@ -25,6 +25,7 @@ import net.tracen.umapyoi.data.loot.UmapyoiBlockLoot;
 import net.tracen.umapyoi.data.tag.UmaDataTagProvider;
 import net.tracen.umapyoi.data.tag.UmapyoiBlockTagProvider;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTagsProvider;
+import net.tracen.umapyoi.data.tag.UmapyoiPOITagsProvider;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
@@ -73,6 +74,7 @@ public class DataGen {
         dataGenerator.addProvider(event.includeServer(), DataGen.getLootTableProvider(packOutput));
         dataGenerator.addProvider(event.includeServer(), new UmaDataTagProvider(packOutput,
                 lookupProvider.thenApply(r -> append(r, umaDataBuilder)), existingFileHelper));
+        dataGenerator.addProvider(event.includeServer(), new UmapyoiPOITagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new UmapyoiRecipeProvider(packOutput));
 
     }

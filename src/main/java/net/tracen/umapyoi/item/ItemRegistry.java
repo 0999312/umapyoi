@@ -26,6 +26,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> UMA_PEDESTAL = register("uma_pedestal",
             () -> new BlockItem(BlockRegistry.UMA_PEDESTAL.get(), Umapyoi.defaultItemProperties()));
 
+    public static final RegistryObject<Item> UMA_STATUE = register("uma_statue",
+            () -> new BlockItem(BlockRegistry.UMA_STATUES.get(), Umapyoi.defaultItemProperties()));
+    
     public static final RegistryObject<Item> THREE_GODDESS = register("three_goddess",
             () -> new BlockItem(BlockRegistry.THREE_GODDESS.get(), Umapyoi.defaultItemProperties()));
 
@@ -40,6 +43,9 @@ public class ItemRegistry {
     
     public static final RegistryObject<Item> DISASSEMBLY_BLOCK = register("disassembly_block",
             () -> new BlockItem(BlockRegistry.DISASSEMBLY_BLOCK.get(), Umapyoi.defaultItemProperties()));
+    
+    public static final RegistryObject<Item> UMA_SELECT_BLOCK = register("uma_select_block",
+            () -> new BlockItem(BlockRegistry.UMA_SELECT_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
     public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul", FadedUmaSoulItem::new);
 
@@ -49,17 +55,18 @@ public class ItemRegistry {
     public static final RegistryObject<Item> SUMMER_UNIFORM = register("summer_uniform", UmaSuitItem::new);
     public static final RegistryObject<Item> WINTER_UNIFORM = register("winter_uniform", UmaSuitItem::new);
     public static final RegistryObject<Item> TRAINNING_SUIT = register("trainning_suit", UmaSuitItem::new);
+    public static final RegistryObject<Item> SWIMSUIT = register("swimsuit", UmaSuitItem::new);
 //    public static final RegistryObject<Item> KINDERGARTEN_UNIFORM = register("kindergarten_uniform", UmaSuitItem::new);
 
     public static final RegistryObject<Item> JEWEL = register("jewel", ItemRegistry::newMaterial);
 
     public static final RegistryObject<Item> BLANK_TICKET = register("blank_ticket", ItemRegistry::newMaterial);
-    public static final RegistryObject<Item> UMA_TICKET = register("uma_ticket", ItemRegistry::newMaterial);
-    public static final RegistryObject<Item> SR_UMA_TICKET = register("sr_uma_ticket", ItemRegistry::newMaterial);
-    public static final RegistryObject<Item> SSR_UMA_TICKET = register("ssr_uma_ticket", ItemRegistry::newMaterial);
-    public static final RegistryObject<Item> CARD_TICKET = register("card_ticket", ItemRegistry::newMaterial);
-    public static final RegistryObject<Item> SR_CARD_TICKET = register("sr_card_ticket", ItemRegistry::newMaterial);
-    public static final RegistryObject<Item> SSR_CARD_TICKET = register("ssr_card_ticket", ItemRegistry::newMaterial);
+    public static final RegistryObject<Item> UMA_TICKET = register("uma_ticket", UmaTicketItem::new);
+    public static final RegistryObject<Item> SR_UMA_TICKET = register("sr_uma_ticket", UmaTicketItem::new);
+    public static final RegistryObject<Item> SSR_UMA_TICKET = register("ssr_uma_ticket", UmaTicketItem::new);
+    public static final RegistryObject<Item> CARD_TICKET = register("card_ticket", UmaTicketItem::new);
+    public static final RegistryObject<Item> SR_CARD_TICKET = register("sr_card_ticket", UmaTicketItem::new);
+    public static final RegistryObject<Item> SSR_CARD_TICKET = register("ssr_card_ticket", UmaTicketItem::new);
     
     public static final RegistryObject<Item> CRYSTAL_SILVER = register("crystal_silver", ItemRegistry::newMaterial);
     public static final RegistryObject<Item> CRYSTAL_GOLD = register("crystal_gold", ItemRegistry::newMaterial);

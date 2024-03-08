@@ -1,0 +1,37 @@
+{
+  "parent": "umapyoi:uma_soul",
+  "display": {
+    "icon": {
+      "item": "umapyoi:training_facility"
+    },
+    "title": {
+      "translate": "advancement.umapyoi.training.title"
+    },
+    "description": {
+      "translate": "advancement.umapyoi.training.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "umapyoi:training_facility"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "item"
+    ]
+  ]
+}

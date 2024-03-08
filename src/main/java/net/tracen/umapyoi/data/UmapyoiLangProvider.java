@@ -102,6 +102,11 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(), "Golden Support Album Pedestal");
         
         add(BlockRegistry.DISASSEMBLY_BLOCK.get(), "Transfer Register Lectern");
+        add(BlockRegistry.UMA_SELECT_BLOCK.get(), "Selection Lectern");
+        
+        add(BlockRegistry.UMA_STATUES.get(), "Umamusume Statue");
+        
+        add(ItemRegistry.SWIMSUIT.get(), "Tracen Swimsuit");
 
         add(MobEffectRegistry.PANICKING.get(), "Panicking");
 
@@ -113,6 +118,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("itemGroup.umapyoi", "Umapyoi");
         
         addTooltip(".umadata.name", "Umamusume's Name:%s");
+        addTooltip(".support_card.name", "Support Card:%s");
         addTooltip(".umafactor.data", "Has %s and %d more factors.");
 
         addTooltip(".supports", "Supports:");
@@ -174,12 +180,19 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSkill(UmaSkillRegistry.ADV_LOWHEALTH_BUFF, "Prepared to Die");
         addSkill(UmaSkillRegistry.LOW_HEALTH_HEAL, "One Chance");
         addSkill(UmaSkillRegistry.ADV_LOWHEALTH_HEAL, "From the Brink");
+        
+        addSkill(UmaSkillRegistry.MOUNTAIN_CLIMBER, "Mountain Climber");
+        addSkill(UmaSkillRegistry.DIG_SPEED, "Mining Skills");
+        addSkill(UmaSkillRegistry.TURF_RUNNER, "Turf Runner");
+        addSkill(UmaSkillRegistry.DIRT_RUNNER, "Dirt Runner");
+        addSkill(UmaSkillRegistry.SNOW_RUNNER, "Snow Runner");
 
         add("container.umapyoi.three_goddess", "Three Goddesses Statue");
-        add("container.umapyoi.training_facility", "Training Facility");
+        add("container.umapyoi.training_facility", "Training Terminal");
         add("container.umapyoi.skill_learning", "Skill Learning Table");
         add("container.umapyoi.retire_register", "Retire Register");
         add("container.umapyoi.disassembly_block", "Transfer Register");
+        add("container.umapyoi.umaselect", "Selection Register");
 
         add("key.category.umapyoi", "Umapyoi");
         add("key.umapyoi.use_skill", "Use Skill");
@@ -191,6 +204,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("umapyoi.skill.slot_needed", "Has reached the learning limit.");
         add("umapyoi.skill.has_retired", "This Umamusume is retired.");
         add("umapyoi.skill.has_learned_skill", "This skill has learned.");
+        add("umapyoi.skill.passive", "This is a passive skill.");
         add("umapyoi.not_enough_ap", "Not enough action points.");
         add("umapyoi.uma_pedestal.cannot_add_item", "Can not add item anymore.");
 
@@ -212,6 +226,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("umapyoi.jei.gacha", "Pedestal Summon");
         add("umapyoi.jei.gacha.need_book", "Need a book on pedestal");
 
+        add("entity.minecraft.villager.umapyoi.trainer", "Trainer");
+        
         add("umastatus.level.0", "§7G-");
         add("umastatus.level.1", "§7G");
         add("umastatus.level.2", "§7G+");
@@ -306,9 +322,35 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addUma(UmaDataRegistry.VENUS_PARK, "Venus Park");
         
+        addUma(UmaDataRegistry.AGNUS_TACHYON_SWIM, "[Lunatic Lab] Agnus Tachyon");
+        addUma(UmaDataRegistry.MIHONO_BOURBON, "Mihono Bourbon");
+        addUma(UmaDataRegistry.MATIKANETANNHAUSER, "Makikanetannhauser");
+        addUma(UmaDataRegistry.KAWAKAMI_PRINCESS, "Kawakami Princess");
+        addUma(UmaDataRegistry.TWIN_TURBO, "Twin Turbo");
+        addUma(UmaDataRegistry.LITTLE_COCON, "Little Cocon");
+        addUma(UmaDataRegistry.SAKURA_LAUREL, "Sakura Laurel");
+        
+        addUma(UmaDataRegistry.NARITA_TAISHIN, "Narita Taishin");
+        addUma(UmaDataRegistry.TM_OPERA_O, "TM Opera O");
+        addUma(UmaDataRegistry.ADMIRE_VEGA, "Admire Vega");
+        addUma(UmaDataRegistry.JUNGLE_POCKET, "Jungle Pocket");
+        addUma(UmaDataRegistry.SYAMEIMARU_ZHENG, "Syameimaru Zheng");
+        addUma(UmaDataRegistry.DUMNHEINT, "Dumnheint");
+        addUma(UmaDataRegistry.DARLEY_ARABIAN, "Darley Arabian");
+        addUma(UmaDataRegistry.GODOLPHIN_BARB, "Godolphin Barb");
+        addUma(UmaDataRegistry.BYERLEY_TURK, "Byerley Turk");
+        addUma(UmaDataRegistry.FINE_MOTION, "Fine Motion");
+        addUma(UmaDataRegistry.SMART_FALCON, "Smart Falcon");
+
+        addUma(UmaDataRegistry.GOLD_CITY_AUTUMN, "[Akizakura Danzatrice] Gold City");
+        addUma(UmaDataRegistry.GRASS_WONDER_UMANET, "[Saint Jade Healer] Grass Wonder");
+        addUma(UmaDataRegistry.SATONO_DIAMOND_FRENCH, "[Chevalier Blue] Satono Diamond");
+        
+        addUma(UmaDataRegistry.MANHATTAN_CAFE_VALENTINE, "[Willow Night] Manhattan cafe");
+        
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");
-        add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "fine_motion")), "Fine Motion");
+        add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");
 
         addSupportCard(SupportCard.EMPTY_ID, "Blank Support Card");
         
@@ -336,6 +378,10 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSupportCard(SupportCardRegistry.R_OGURICAP, "[Tracen Academy] Oguri Cap");
         addSupportCard(SupportCardRegistry.R_SUPERCREEK, "[Tracen Academy] Super Creek");
         
+        addSupportCard(SupportCardRegistry.R_TURF_TRAINING, "[Tracen Academy] Standard Turf Training");
+        addSupportCard(SupportCardRegistry.R_DIRT_TRAINING, "[Tracen Academy] Standard Dirt Training");
+        addSupportCard(SupportCardRegistry.R_SNOW_TRAINING, "[Tracen Academy] Standard Snow Training");
+        
         addSupportCard(SupportCardRegistry.SR_AGNUS_TACHYON, "[Experimental Study of Lifeform A] Agnes Tachyon");
         addSupportCard(SupportCardRegistry.SSR_AGNUS_TACHYON, "[Q!=0] Agnes Tachyon");
         addSupportCard(SupportCardRegistry.SSR_OGURICAP, "['You'll Be Dearly Beloved'] Oguri Cap");
@@ -344,6 +390,51 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSupportCard(SupportCardRegistry.SSR_SUPERCREEK, "[A Grain of Peace] Super Creek");
         
         addSupportCard(SupportCardRegistry.SSR_FINE_MOTION, "[Gratitude Up to One's Fingertips] Fine Motion");
+        
+        addSupportCard(SupportCardRegistry.SSR_RUDOLF_G, "[Unmistakable Emperor] Symboli Rudolf");
+        addSupportCard(SupportCardRegistry.SSR_MEJIRO_RAMONU_W, "[Radiant] Mejiro Ramonu");
+        
+        addAdvTitle("umapyoi.root", "Welcome to Tracen Academy!");
+        addAdvDesc("umapyoi.root", "Start your adventure with umamusume!");
+        
+        addAdvTitle("umapyoi.three_goddesses", "The Three Goddesses");
+        addAdvDesc("umapyoi.three_goddesses", "Build the Three Goddesses Statue.");
+        
+        addAdvTitle("umapyoi.summon_pedestal", "Gacha Time!");
+        addAdvDesc("umapyoi.summon_pedestal", "Craft a new Umamusume Pedestal.");
+        
+        addAdvTitle("umapyoi.gold_pedestal", "Getting an Upgrade, But Pedestal");
+        addAdvDesc("umapyoi.gold_pedestal", "Upgrade your Umamusume Pedestal.");
+        
+        addAdvTitle("umapyoi.blank_uma_soul", "Starting Future");
+        addAdvDesc("umapyoi.blank_uma_soul", "Got your first Umamusume Soul.");
+        
+        addAdvTitle("umapyoi.uma_soul", "Aoharu Soul");
+        addAdvDesc("umapyoi.uma_soul", "Bless your faded soul in the Three Goddesses Statue.");
+        
+        addAdvTitle("umapyoi.training", "Three years between you and her have begun.");
+        addAdvDesc("umapyoi.training", "Craft the Training Terminal.");
+
+        addAdvTitle("umapyoi.support_pedestal", "Support Cards");
+        addAdvDesc("umapyoi.support_pedestal", "Use a book to Umamusume Pedestal to get Support Pedestal.");
+        
+        addAdvTitle("umapyoi.skill_book", "Skill books");
+        addAdvDesc("umapyoi.skill_book", "Found Skill books in dungeon or trainer villager.");
+        
+        addAdvTitle("umapyoi.register_lectern", "Three years between you and her have ended?");
+        addAdvDesc("umapyoi.register_lectern", "Craft the Register Lectern to end your training.");
+        
+        addAdvTitle("umapyoi.inheritance", "Entrust");
+        addAdvDesc("umapyoi.inheritance", "Finish a Umamusume's training and got her wishes.");
+        
+        addAdvTitle("umapyoi.transfer", "Special Transfer");
+        addAdvDesc("umapyoi.transfer", "Craft the Transfer Lectern.");
+        
+        addAdvTitle("umapyoi.skill_learning_table", "Learning Time");
+        addAdvDesc("umapyoi.skill_learning_table", "Craft the Skill Learning Table.");
+        
+        addAdvTitle("umapyoi.uma_ticket", "Wastepaper");
+        addAdvDesc("umapyoi.uma_ticket", "Got the Blank Ticket.");
     }
 
     private void addSupportCard(ResourceKey<SupportCard> data, String name) {

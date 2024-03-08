@@ -25,7 +25,7 @@ mixin {
     add sourceSets.main, 'mixins.umapyoi.refmap.json'
 }
 
-version = '1.1.21-1.20.1'
+version = '1.4.24-1.20.1'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 
@@ -128,7 +128,7 @@ repositories {
 
     // Patchouli
     maven { url = 'https://maven.blamejared.com' }
-    
+
     maven {
       // location of a maven mirror for JEI files, as a fallback
       name = "ModMaven"
@@ -141,12 +141,13 @@ dependencies {
     // Apply Mixin AP
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:1.2.6-1.20")
-    implementation fg.deobf("top.theillusivec4.curios:curios-forge:5.3.4+1.20.1")
-
-    // No patchouli for now
-    //compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-70")
-    //runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-70")
+    implementation fg.deobf("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:1.4.4-1.20.1")
+    // Compile against only the API artifact
+    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1:api"))
+    // Use the full Curios API jar at runtime
+    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1"))
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-83-FORGE")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-83-FORGE")
 
     // compile against the JEI API but do not include it at runtime
     compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))

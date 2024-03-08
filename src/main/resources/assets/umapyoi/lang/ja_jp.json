@@ -29,10 +29,12 @@
   "item.umapyoi.wisdom_high_item": "賢さ秘伝書",
   "item.umapyoi.wisdom_low_item": "賢さのメモ帳",
   "item.umapyoi.wisdom_mid_item": "賢さ戦術書",
-  
+  "entity.minecraft.villager.umapyoi.trainer": "トレーナー",
   "item.umapyoi.horseshoe_gold": "金の蹄鉄",
   "item.umapyoi.horseshoe_rainbow": "虹の蹄鉄",
   "item.umapyoi.horseshoe_silver": "銀の蹄鉄",
+  
+  "item.umapyoi.swimsuit": "トレセン水着",
   
   "item.umapyoi.crystal_gold": "金の結晶",
   "item.umapyoi.crystal_rainbow": "虹の結晶",
@@ -45,6 +47,8 @@
   "item.umapyoi.ssr_uma_ticket": "虹のウマ娘ガチャチケット",
   "item.umapyoi.card_ticket": "サポートカードガチャチケット",
   "item.umapyoi.uma_ticket": "ウマ娘ガチャチケット",
+  
+  "block.umapyoi.uma_statues": "ウマ娘像",
   
   "umadata.umapyoi.common_uma": "名無しウマ娘",
   "umadata.umapyoi.common_uma_a": "名無しウマ娘",
@@ -97,6 +101,30 @@
   "umadata.umapyoi.symboli_rudolf": "シンボリルドルフ",
   "umadata.umapyoi.narita_top_road": "ナリタトップロード",
   
+  "umadata.umapyoi.matikanetannhauser": "マチカネタンホイザ",
+  "umadata.umapyoi.mihono_bourbon": "ミホノブルボン",
+  "umadata.umapyoi.sakura_laurel": "サクラローレル",
+  "umadata.umapyoi.little_cocon": "リトルココン",
+  "umadata.umapyoi.twinturbo": "ツインターボ",
+  "umadata.umapyoi.kawakami_princess": "カワカミプリンセス",
+  "umadata.umapyoi.agnus_tachyon_swim": "[Lunatic Lab] アグネスタキオン",
+  
+  "umadata.umapyoi.darley_arabian": "ダーレーアラビアン",
+  "umadata.umapyoi.dumnheint": "ダムハイト",
+  "umadata.umapyoi.admire_vega": "アドマイヤベガ",
+  "umadata.umapyoi.byerley_turk": "バイアリーターク",
+  "umadata.umapyoi.godolphin_barb": "ゴドルフィンバルブ",
+  "umadata.umapyoi.gold_city_autumn": "[秋桜ダンツァトリーチェ] ゴールドシチー",
+  "umadata.umapyoi.grass_wonder_umanet": "[Saint Jade Healer] グラスワンダー",
+  "umadata.umapyoi.jungle_pocket": "ジャングルポケット",
+  "umadata.umapyoi.narita_taishin": "ナリタタイシン",
+  "umadata.umapyoi.satono_diamond_french": "[セイントジェード・ヒーラー] サトノダイヤモンド",
+  "umadata.umapyoi.syameimaru_zheng": "射命丸 政",
+  "umadata.umapyoi.tm_opera_o": "テイエムオペラオー",
+  "umadata.umapyoi.smart_falcon": "スマートファルコン",
+  "umadata.umapyoi.manhattan_cafe_valentine": "[柳緑小夜] マンハッタンカフェ",
+  "umadata.umapyoi.mejiro_ramonu": "メジロラモーヌ",
+  
   "umapyoi.jei.disassembly": "移籍登録",
   "umapyoi.jei.gacha": "召喚",
   "umapyoi.jei.gacha.need_book": "本が必要です",
@@ -115,13 +143,14 @@
   "block.umapyoi.silver_support_album_pedestal": "銀のサポートアルバム台座",
   "block.umapyoi.silver_uma_pedestal": "銀の召喚台座",
   "block.umapyoi.disassembly_block": "移籍登録台",
-  
+  "block.umapyoi.uma_select_block": "引換登録台",
   "block.umapyoi.three_goddess_upper": "三女神像",
   
   "container.umapyoi.skill_learning": "スキル獲得台",
   "container.umapyoi.three_goddess": "三女神像",
   "container.umapyoi.training_facility": "トレーニングターミナル",
   "container.umapyoi.retire_register": "引退登録",
+  "container.umapyoi.umaselect": "引換登録",
 
   "curios.modifiers.uma_soul": "このウマ娘になったとき：",
   "curios.modifiers.uma_suit": "衣装を着るとき：",
@@ -151,6 +180,10 @@
   "support_card.umapyoi.strength_master_card.name": "[マスタートレーニング] パワートレーニング",
   "support_card.umapyoi.wisdom_master_card.name": "[マスタートレーニング] 賢さトレーニング",
   
+  "support_card.umapyoi.r_turf_training.name": "[トレセン学園] スタンダード芝トレーニング",
+  "support_card.umapyoi.r_dirt_training.name": "[トレセン学園] スタンダードダートトレーニング",
+  "support_card.umapyoi.r_snow_training.name": "[トレセン学園] スタンダード雪トレーニング",
+  
   "support_card.umapyoi.r_agnus_tachyon.name": "[トレセン学園]アグネスタキオン",
   "support_card.umapyoi.r_kitasan_black.name": "[トレセン学園]キタサンブラック",
   "support_card.umapyoi.r_ks_miracle.name": "[トレセン学園]ケイエスミラクル",
@@ -163,6 +196,8 @@
   "support_card.umapyoi.ssr_oguri_cap.name": "[『愛してもらうんだぞ』]オグリキャップ",
   "support_card.umapyoi.ssr_super_creek.name": "[一粒の安らぎ]スーパークリーク",
   "support_card.umapyoi.ssr_fine_motion.name": "[感謝は指先まで込めて]ファインモーション",
+  "support_card.umapyoi.ssr_w_mejiro_ramonu.name": "[燦爛] メジロラモーヌ",
+  "support_card.umapyoi.ssr_g_rudolf.name": "[絶対皇帝] シンボリルドルフ",
   
   "support.umapyoi.guts_support": "根性アップ",
   "support.umapyoi.skill_support": "スキル獲得",
@@ -206,6 +241,12 @@
   "uma_skill.umapyoi.adv_low_health_buff": "決死の覚悟",
   "uma_skill.umapyoi.adv_low_health_heal": "起死回生",
   
+  "uma_skill.umapyoi.snow_runner": "雪○",
+  "uma_skill.umapyoi.dig_speed": "掘る体験",
+  "uma_skill.umapyoi.dirt_runner": "ダート○",
+  "uma_skill.umapyoi.turf_runner": "芝○",
+  "uma_skill.umapyoi.mountain_climber": "登山家",
+  
   "umapyoi.motivation.bad": "絶不調",
   "umapyoi.motivation.down": "不調",
   "umapyoi.motivation.good": "好調",
@@ -229,6 +270,10 @@
   "tooltip.umapyoi.uma_soul.guts_details": "根性： %s / %s",
   "tooltip.umapyoi.uma_soul.wisdom_details": "賢さ： %s / %s",
   "tooltip.umapyoi.uma_soul.ranking": "ランキング： %s",
+  "tooltip.umapyoi.factors.factors_details": "因子：",
+  
+  "tooltip.umapyoi.support_card.name": "サポートカード：%s",
+  
   "umapyoi.uma_pedestal.cannot_add_item": "これ以上アイテムを追加できません。",
   "umapyoi.not_enough_ap": "アクションPtが足りない。",
   "umapyoi.skill.has_learned_skill": "このスキルは習得済みです。",

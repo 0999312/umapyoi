@@ -1,14 +1,8 @@
 package net.tracen.umapyoi.client.renderer;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import cn.mcmod_mmf.mmlib.client.model.pojo.BedrockModelPOJO;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
@@ -20,8 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ItemStack;
-import net.tracen.umapyoi.Umapyoi;
+import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
+import net.tracen.umapyoi.events.client.RenderingUmaSoulEvent;
 import net.tracen.umapyoi.item.UmaSuitItem;
 import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
@@ -31,11 +26,14 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 public class UmaSoulRenderer implements ICurioRenderer {
-    private final Cache<BedrockModelPOJO, UmaPlayerModel<LivingEntity>> models;
+    private final UmaPlayerModel<LivingEntity> baseModel;
+
+    public UmaPlayerModel<LivingEntity> getBaseModel() {
+        return baseModel;
+    }
+
     public UmaSoulRenderer() {
-        models = CacheBuilder.newBuilder()
-                .expireAfterWrite(10L, TimeUnit.MINUTES)
-                .build();
+        baseModel = new UmaPlayerModel<>();
     }
     
     @Override
@@ -52,9 +50,6 @@ public class UmaSoulRenderer implements ICurioRenderer {
             return;
         if (entity.isInvisible() && !entity.isSpectator())
             return;
-        ResourceLocation name = UmaSoulUtils.getName(stack);
-        VertexConsumer vertexconsumer = renderTypeBuffer
-                .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(name)));
         boolean suit_flag = false;
 
         if (CuriosApi.getCuriosInventory(entity).isPresent()) {
@@ -68,31 +63,39 @@ public class UmaSoulRenderer implements ICurioRenderer {
                 }
             }
         }
-        var pojo = ClientUtil.getModelPOJO(name);
-        UmaPlayerModel<LivingEntity> baseModel;
-        try {
-            baseModel = models.get(pojo, ()->{
-                Umapyoi.getLogger().info("Need Loading Model to cache, {}", pojo);
-                return new UmaPlayerModel<>(pojo);
-                });        
-            baseModel.setModelProperties(entity, suit_flag, false);
-            baseModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
-            if (renderLayerParent.getModel() instanceof HumanoidModel) {
-                HumanoidModel<?> model = (HumanoidModel<?>) renderLayerParent.getModel();
-                baseModel.copyAnim(baseModel.head, model.head);
-                baseModel.copyAnim(baseModel.body, model.body);
-                baseModel.copyAnim(baseModel.leftArm, model.leftArm);
-                baseModel.copyAnim(baseModel.leftLeg, model.leftLeg);
-                baseModel.copyAnim(baseModel.rightArm, model.rightArm);
-                baseModel.copyAnim(baseModel.rightLeg, model.rightLeg);
-            }
-            baseModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-
-            baseModel.renderToBuffer(matrixStack, vertexconsumer, light,
-                    LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        
+        ResourceLocation renderTarget = suit_flag
+                ? ClientUtils.getClientUmaDataRegistry().get(UmaSoulUtils.getName(stack)).getIdentifier()
+                : UmaSoulUtils.getName(stack);
+        var pojo = ClientUtil.getModelPOJO(renderTarget);
+        if (baseModel.needRefresh(pojo))
+            baseModel.loadModel(pojo);
+        VertexConsumer vertexConsumer = renderTypeBuffer
+                .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(renderTarget)));
+        baseModel.setModelProperties(entity);
+        baseModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+        if (MinecraftForge.EVENT_BUS.post(
+                new RenderingUmaSoulEvent.Pre(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light)))
+            return;
+        if (renderLayerParent.getModel() instanceof HumanoidModel<?> entityModel) {
+            baseModel.copyAnim(baseModel.head, entityModel.head);
+            baseModel.copyAnim(baseModel.body, entityModel.body);
+            baseModel.copyAnim(baseModel.leftArm, entityModel.leftArm);
+            baseModel.copyAnim(baseModel.leftLeg, entityModel.leftLeg);
+            baseModel.copyAnim(baseModel.rightArm, entityModel.rightArm);
+            baseModel.copyAnim(baseModel.rightLeg, entityModel.rightLeg);
         }
+        baseModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        baseModel.renderToBuffer(matrixStack, vertexConsumer, light,
+                LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
+        if(baseModel.isEmissive()) {
+            VertexConsumer emissiveConsumer = renderTypeBuffer
+                    .getBuffer(RenderType.entityTranslucentEmissive(ClientUtils.getEmissiveTexture(renderTarget)));
+            baseModel.renderEmissiveParts(matrixStack, emissiveConsumer, light,
+                    LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
+        }
+        MinecraftForge.EVENT_BUS.post(
+                new RenderingUmaSoulEvent.Post(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light));
     }
 
 }

@@ -1,0 +1,22 @@
+{
+  "type": "guts",
+  "max_damage": 6,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:symboli_rudolf"
+  ],
+  "supports": [
+    {
+      "level": 3,
+      "support": "umapyoi:guts_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:speed_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:strength_support"
+    }
+  ]
+}

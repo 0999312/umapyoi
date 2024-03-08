@@ -38,7 +38,11 @@ public class ClientUtils {
     public static final ResourceLocation WINTER_UNIFORM_FLAT = getModel("winter_uniform_flat");
 
     public static final ResourceLocation THREE_GODDESS = getModel("three_goddesses");
-
+    public static final ResourceLocation UMA_STATUES = getModel("uma_statue");
+    
+    public static final ResourceLocation SWIMSUIT = getModel("swimsuit");
+    public static final ResourceLocation SWIMSUIT_FLAT = getModel("swimsuit_flat");
+    
     public static ResourceLocation getModel(String name) {
         return getModel(Umapyoi.MODID, name);
     }
@@ -49,6 +53,10 @@ public class ClientUtils {
 
     public static ResourceLocation getTexture(ResourceLocation name) {
         return new ResourceLocation(name.getNamespace(), "textures/model/" + name.getPath() + ".png");
+    }
+    
+    public static ResourceLocation getEmissiveTexture(ResourceLocation name) {
+        return new ResourceLocation(name.getNamespace(), "textures/model/" + name.getPath() + "_emissive.png");
     }
 
     public static Registry<UmaData> getClientUmaDataRegistry() {

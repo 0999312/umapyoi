@@ -1,0 +1,25 @@
+{
+  "identifier": "umapyoi:byerley_turk",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    0,
+    15,
+    20,
+    15,
+    0
+  ],
+  "uniqueSkill": "umapyoi:basic_pace"
+}

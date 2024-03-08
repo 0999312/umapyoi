@@ -20,6 +20,11 @@ public class SupportCardRegistry {
     public static final ResourceKey<SupportCard> R_KS_MIRACLE = register("r_ks_miracle");
     public static final ResourceKey<SupportCard> R_AGNUS_TACHYON = register("r_agnus_tachyon");
     
+    public static final ResourceKey<SupportCard> R_TURF_TRAINING = register("r_turf_training");
+    public static final ResourceKey<SupportCard> R_DIRT_TRAINING = register("r_dirt_training");
+    public static final ResourceKey<SupportCard> R_SNOW_TRAINING = register("r_snow_training");
+                
+    
     public static final ResourceKey<SupportCard> BASIC_SPEED_CARD = register("basic_speed_card");
     public static final ResourceKey<SupportCard> BASIC_STAMINA_CARD = register("basic_stamina_card");
     public static final ResourceKey<SupportCard> BASIC_STRENGTH_CARD = register("basic_strength_card");
@@ -47,7 +52,37 @@ public class SupportCardRegistry {
     
     public static final ResourceKey<SupportCard> SSR_FINE_MOTION = register("ssr_fine_motion");
     
+    public static final ResourceKey<SupportCard> SSR_RUDOLF_G = register("ssr_g_rudolf");
+    public static final ResourceKey<SupportCard> SSR_MEJIRO_RAMONU_W = register("ssr_w_mejiro_ramonu");
     public static void registerAll(BootstapContext<SupportCard> bootstrap) {
+        
+        bootstrap.register(R_TURF_TRAINING,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.R)
+                .maxDamage(10)
+                .supportType(SupportType.SPEED)
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 1))
+                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.TURF_RUNNER.getId()))
+                .build());
+        
+        bootstrap.register(R_DIRT_TRAINING,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.R)
+                .maxDamage(10)
+                .supportType(SupportType.STRENGTH)
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 1))
+                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.DIRT_RUNNER.getId()))
+                .build());
+        
+        bootstrap.register(R_SNOW_TRAINING,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.R)
+                .maxDamage(10)
+                .supportType(SupportType.GUTS)
+                .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 1))
+                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.SNOW_RUNNER.getId()))
+                .build());
+        
         bootstrap.register(R_KITASANBLACK,
                 SupportCard.Builder.create()
                 .ranking(GachaRanking.R)
@@ -229,6 +264,28 @@ public class SupportCardRegistry {
                 .addSupporter(new ResourceLocation(Umapyoi.MODID, "fine_motion"))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.WISDOM_SUPPORT.getId(), 3))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 1))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 2))
+                .build());
+        
+        bootstrap.register(SSR_RUDOLF_G,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(6)
+                .supportType(SupportType.GUTS)
+                .addSupporter(UmaDataRegistry.SYMBOLI_RUDOLF.location())
+                .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 3))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 1))
+                .build());
+    
+        bootstrap.register(SSR_MEJIRO_RAMONU_W,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(5)
+                .supportType(SupportType.WISDOM)
+                .addSupporter(new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu"))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.WISDOM_SUPPORT.getId(), 4))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 2))
                 .build());
     }

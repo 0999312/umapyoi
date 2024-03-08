@@ -18,6 +18,8 @@ import net.tracen.umapyoi.network.NetPacketHandler;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
+import net.tracen.umapyoi.villager.VillageRegistry;
+
 import org.slf4j.Logger;
 
 @Mod(Umapyoi.MODID)
@@ -41,7 +43,8 @@ public class Umapyoi {
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
-
+        VillageRegistry.POI_TYPES.register(modEventBus);
+        VillageRegistry.PROFESSIONS.register(modEventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
     }

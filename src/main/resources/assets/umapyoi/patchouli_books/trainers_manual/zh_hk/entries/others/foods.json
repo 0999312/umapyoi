@@ -1,0 +1,44 @@
+{
+    "name": "食品的額外效果",
+    "icon": "umapyoi:royal_bitter",
+    "category": "umapyoi:others",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "過去存在於這個世界上的馬娘們相當喜愛胡蘿蔔，甚至她們為村民帶來了胡蘿蔔的種植方法。但這一説法只是傳説，並沒有太多證據支持。$(p)但是有一件事是確定的：變成馬娘之後味道的偏好會被改變。根據現在的訓練員們所説：變成馬娘之後對胡蘿蔔料理的喜愛增進了不少；同時對甜味也開始變得喜愛起來，且討厭苦澀的味道。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "食用馬娘們喜愛的食物，例如蛋糕和蜂蜜特飲等，會使得馬娘之魂的狀態得到提升；反之則會下降。$(p)訓練員們為了快速恢復行動力，研發出了“活力”系列飲料。這種飲料可以直接恢復大量的行動力，且可以在焦躁狀態下恢復行動力。這一系列飲料可以在村裏的道具商人處買到，也可以自己製作。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "流浪商人會提供一種名為“皇家青汁”的飲料。$(p)雖然能使行動力立刻恢復到最佳狀態，但一定會使狀態下降。$(p)$(#f00)$(l)沒有心理準備請不要嘗試，真的很苦。$()"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:hachimi_mid",
+            "recipe2": "umapyoi:hachimi_big",
+            "title": "《我不是貓》"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:cupcake",
+            "recipe2": "umapyoi:sweet_cupcake",
+            "title": "蛋糕是個謊言！"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:small_energy_drink",
+            "recipe2": "umapyoi:medium_energy_drink",
+            "title": "其實這就是力〇健吧？"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:large_energy_drink",
+            "recipe2": "umapyoi:royal_bitter",
+            "title": "不好喝，再來一杯！"
+        }
+    ]
+}

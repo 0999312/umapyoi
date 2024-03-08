@@ -2,7 +2,7 @@ package net.tracen.umapyoi.registry.skills;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
 public class LowHealthHealSkill extends UmaSkill {
@@ -12,7 +12,7 @@ public class LowHealthHealSkill extends UmaSkill {
     }
 
     @Override
-    public void applySkill(Level level, Player user) {
+    public void applySkill(Level level, LivingEntity user) {
         boolean lowHealth = (user.getHealth() / user.getMaxHealth()) < 0.6;
         user.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100 * this.getSkillLevel(),
                 lowHealth ? this.getSkillLevel() : this.getSkillLevel() - 1));

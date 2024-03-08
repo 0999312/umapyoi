@@ -23,6 +23,8 @@ public class UmaSoulUtils {
     public static Component getTranslatedUmaName(ResourceLocation name) {
         return Component.translatable(Util.makeDescriptionId("umadata", name));
     }
+    
+
 
     public static ItemStack initUmaSoul(ItemStack stack, ResourceLocation name, UmaData data) {
         ItemStack result = stack.copy();
@@ -88,6 +90,14 @@ public class UmaSoulUtils {
 
     public static ListTag getSkills(ItemStack stack) {
         return stack.getOrCreateTag().getList("skills", Tag.TAG_STRING);
+    }
+    
+    public static boolean hasSkill(ItemStack stack, ResourceLocation skill) {
+        for(Tag tag : stack.getOrCreateTag().getList("skills", Tag.TAG_STRING)) {
+            if(tag.getAsString().equals(skill.toString()))
+                return true;
+        }
+        return false;
     }
 
     public static void addSkill(ItemStack stack, ResourceLocation skill) {

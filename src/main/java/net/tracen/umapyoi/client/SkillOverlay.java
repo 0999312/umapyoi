@@ -47,6 +47,7 @@ public class SkillOverlay implements IGuiOverlay {
             case BUFF -> guiGraphics.blit(HUD, x + 3, y + 2, 0, 48, 16, 16, 128, 64);
             case HINDER -> guiGraphics.blit(HUD, x + 3, y + 2, 16, 48, 16, 16, 128, 64);
             case HEAL -> guiGraphics.blit(HUD, x + 3, y + 2, 32, 48, 16, 16, 128, 64);
+            case PASSIVE -> guiGraphics.blit(HUD, x + 3, y + 2, 48, 48, 16, 16, 128, 64);
             }
             guiGraphics.drawString(gui.getFont(), skill.getDescription(), x + 22, y + 6, 0x794016);
         } else {

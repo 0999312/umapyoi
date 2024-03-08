@@ -5,7 +5,7 @@
     "version": 0,
     "creative_tab": "umapyoi",
     "filler_texture": "umapyoi:textures/book_images/book_filler.png",
-    "book_texture":"umapyoi:textures/gui/book.png",
+    "book_texture":"umapyoi:textures/gui/book_scr.png",
     "model":"umapyoi:manual_closed",
     "use_resource_pack": true
 }

@@ -17,12 +17,16 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
     protected void registerStatesAndModels() {
         horizontalBlock(BlockRegistry.THREE_GODDESS.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/three_goddess")));
+        horizontalBlock(BlockRegistry.UMA_STATUES.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/uma_statue")));
         horizontalBlock(BlockRegistry.TRAINING_FACILITY.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/training_facility")));
         horizontalBlock(BlockRegistry.DISASSEMBLY_BLOCK.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/disassembly_block")));
         horizontalBlock(BlockRegistry.REGISTER_LECTERN.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/register_lectern")));
+        horizontalBlock(BlockRegistry.UMA_SELECT_BLOCK.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/uma_select_block")));
         simpleBlock(BlockRegistry.SKILL_LEARNING_TABLE.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/skill_learning_table")));
 
@@ -41,6 +45,8 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
 
         simpleBlock(BlockRegistry.THREE_GODDESS_UPPER.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/three_goddess")));
+        simpleBlock(BlockRegistry.UMA_STATUES_UPPER.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/uma_statue")));
     }
 
 }

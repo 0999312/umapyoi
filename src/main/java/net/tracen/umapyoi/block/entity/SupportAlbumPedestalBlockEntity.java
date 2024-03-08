@@ -37,7 +37,7 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
-import net.tracen.umapyoi.inventory.ThreeGoddessItemHandler;
+import net.tracen.umapyoi.inventory.CommonItemHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.utils.ClientUtils;
@@ -79,8 +79,8 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
     public SupportAlbumPedestalBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(), pos, state);
         this.inventory = createHandler();
-        this.inputHandler = LazyOptional.of(() -> new ThreeGoddessItemHandler(inventory, Direction.UP));
-        this.outputHandler = LazyOptional.of(() -> new ThreeGoddessItemHandler(inventory, Direction.DOWN));
+        this.inputHandler = LazyOptional.of(() -> new CommonItemHandler(inventory, Direction.UP,1,0));
+        this.outputHandler = LazyOptional.of(() -> new CommonItemHandler(inventory, Direction.DOWN,1,0));
         this.tileData = createIntArray();
     }
 
@@ -208,6 +208,7 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
         ItemStack result = ItemRegistry.SUPPORT_CARD.get().getDefaultInstance();
         result.getOrCreateTag().putString("support_card", key.toString());
         result.getOrCreateTag().putString("ranking", registry.get(key).getGachaRanking().name().toLowerCase());
+        result.getOrCreateTag().putInt("maxDamage", registry.get(key).getMaxDamage());
         return result;
     }
 
@@ -336,6 +337,9 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
     @Override
     public Predicate<? super ResourceLocation> getFilter(Level level, ItemStack input) {
         return resloc -> {
+            if (!input.getOrCreateTag().getString("name").isBlank()) {
+                return resloc.equals(ResourceLocation.tryParse(input.getOrCreateTag().getString("name")));
+            }
             if (input.is(UmapyoiItemTags.SSR_CARD_TICKET))
                 return UmapyoiAPI.getSupportCardRegistry(level).get(resloc).getGachaRanking() == GachaRanking.SSR;
             if (input.is(ItemRegistry.BLANK_TICKET.get()))

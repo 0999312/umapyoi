@@ -31,9 +31,10 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                         new Ingredient.TagValue(Tags.Items.GEMS_EMERALD))))
                 .unlockedBy("has_item", has(Tags.Items.CROPS_CARROT)).save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.BLANK_TICKET.get()).requires(Items.PAPER)
-                .requires(ItemRegistry.JEWEL.get()).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
-                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.BLANK_TICKET.get(), 2).requires(Items.PAPER).requires(Items.PAPER)
+        .requires(Tags.Items.GEMS_LAPIS).requires(ItemRegistry.JEWEL.get())
+        .unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
+        .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.UMA_TICKET.get())
                 .requires(ItemRegistry.BLANK_TICKET.get()).requires(ItemRegistry.CRYSTAL_SILVER.get())
                 .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
@@ -58,7 +59,11 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .pattern("ALA").pattern("AAA").define('A', Tags.Items.INGOTS_IRON).define('L', Items.BLAST_FURNACE)
                 .define('J', ItemRegistry.BLANK_TICKET.get())
                 .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.UMA_SELECT_BLOCK.get()).pattern(" J ").pattern("BLB").pattern("AAA")
+        .define('A', Tags.Items.GEMS_DIAMOND)
+        .define('B', Items.NETHER_STAR).define('L', Items.LECTERN)
+        .define('J', ItemRegistry.JEWEL.get())
+        .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.THREE_GODDESS.get()).pattern(" J ")
                 .pattern("JLJ").pattern("AAA").define('A', Tags.Items.STONE)
                 .define('L', Tags.Items.STORAGE_BLOCKS_QUARTZ).define('J', ItemRegistry.JEWEL.get())
@@ -82,6 +87,21 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                                 Stream.of(new Ingredient.ItemValue(new ItemStack(ItemRegistry.CRYSTAL_GOLD.get())),
                                         new Ingredient.ItemValue(new ItemStack(ItemRegistry.HORSESHOE_GOLD.get())))))
                 .unlockedBy("has_item", has(ItemRegistry.CRYSTAL_GOLD.get())).save(consumer);
+        
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, 
+                BlockRegistry.UMA_STATUES.get()).pattern(" J ").pattern(" A ").pattern("AAA")
+        .define('A', Tags.Items.STONE)
+        .define('J', ItemRegistry.JEWEL.get()).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
+        .save(consumer);
+        
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.SWIMSUIT.get())
+                .pattern("IJI")
+                .pattern("ILI")
+                .pattern(" I ")
+                .define('I', Tags.Items.LEATHER)
+                .define('L', Tags.Items.DYES_BLUE)
+                .define('J', ItemRegistry.JEWEL.get())
+                .unlockedBy("has_item", has(ItemRegistry.JEWEL.get())).save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.SKILL_LEARNING_TABLE.get()).pattern(" J")
                 .pattern(" L").define('L', Tags.Items.BOOKSHELVES).define('J', ItemRegistry.JEWEL.get())
