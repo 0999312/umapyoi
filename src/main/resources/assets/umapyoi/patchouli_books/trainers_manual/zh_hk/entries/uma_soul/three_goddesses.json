@@ -1,0 +1,17 @@
+{
+    "name": "三女神像",
+    "icon": "umapyoi:three_goddess",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 3,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "“三女神”是最初的三位馬娘，掌管馬孃的神明。她們賜予馬娘靈魂、力量以及知識，為馬娘指明方向……$(p)對於訓練員而言，三女神像最大的意義是激活褪色的馬娘之魂。同時，“因子繼承”的場合也是三女神像，與激活馬娘之魂同時進行。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:three_goddess",
+            "text": "三女神真的來過嗎？如來！"
+        }
+    ]
+}

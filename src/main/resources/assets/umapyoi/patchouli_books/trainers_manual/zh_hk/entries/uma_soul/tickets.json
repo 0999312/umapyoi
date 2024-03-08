@@ -1,0 +1,39 @@
+{
+    "name": "馬娘券",
+    "icon": "umapyoi:blank_ticket",
+    "category": "umapyoi:uma_soul",
+    "sortnum": 5,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "這種用蘿蔔寶石覆膜的票券統稱馬娘券，簡稱馬券。$(p)大概是因為這些票券上印有字樣、且被蘿蔔寶石所包裹的緣故，它們供奉給三女神時同樣會獲得馬娘之魂或者支援卡。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "因為相對而言消耗更少的蘿蔔寶石，並可以通過一些物品約束對應召喚的結果，所以這些馬券很受訓練員們的歡迎。$(p)召喚的結果是根據該券的品質和召喚基座的類型共同決定的。因為銀色的召喚基座無法得到最稀有的物品，所以也無法使用最高級的馬券。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:blank_ticket",
+            "text": "雖然蘿蔔寶石和空白券都可以用於召喚馬娘之魂或者支援卡，但是使用它們進行召喚只能得到品質最普通的物品。$(br)單獨的馬娘券和支援卡券是不同的。二者不能混用，否則無法進行召喚。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:uma_ticket",
+            "recipe2": "umapyoi:card_ticket",
+            "title": "指不定能升值呢。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:sr_uma_ticket",
+            "recipe2": "umapyoi:sr_card_ticket",
+            "title": "根據黃金星的工藝製作。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "umapyoi:ssr_uma_ticket",
+            "recipe2": "umapyoi:ssr_card_ticket",
+            "title": "祝你不歪。"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "name": "服裝",
+    "icon": "umapyoi:summer_uniform",
+    "category": "umapyoi:others",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "變身為馬娘之後，你可以穿上專門為馬娘所設計的各類服裝。因為有了馬孃的樣貌，所以穿上她們的服裝合情合理。$(p)村裏的牧羊人會批發一些馬孃的服裝，畢竟馬孃的數量也在日益增加。$(p)除了從村民那邊購買服裝，也可以自己去製作一些服裝。"
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:summer_uniform",
+          "text": "經典中的經典中的經典"
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:winter_uniform",
+          "text": "冬天穿起來還是會有點冷"
+        },
+        {
+          "type": "patchouli:crafting",
+          "recipe": "umapyoi:trainning_suit",
+          "text": "最適合運動的一集"
+        }
+    ]
+}

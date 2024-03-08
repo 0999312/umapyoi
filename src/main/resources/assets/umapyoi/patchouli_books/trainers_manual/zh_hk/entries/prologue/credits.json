@@ -1,0 +1,16 @@
+{
+    "name": "關於本模組",
+    "icon": "minecraft:writable_book",
+    "category": "umapyoi:prologue",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "感謝您使用《馬兒蹦跳》。本模組是以《賽馬娘：Pretty Derby》為主題，以“育成和繼承”為核心玩法的模組。$(p)在Minecraft的世界裏，成為“賽馬娘”，展開大冒險吧！"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "本模組由“特雷森學院Minecraft部”小組開發。$(p)小組成員：$(li)組長/主策劃/程序開發：射命丸政；$(li)模型製作：褲管十字、琥珀酸、Dumnheint、千代汪、omo、金幣、界徐爾特爾等；$(li)材質繪製：帕金伊、射命丸政；$(li)宣傳：射命丸政、梨木莉亞。$(li)特別緻謝：尤里的貓 提供了召喚基座的方塊模型。"
+        }
+    ]
+}

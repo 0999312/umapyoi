@@ -182,7 +182,7 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         if (cap.equals(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)) {
-            if (side == null || side.equals(Direction.UP)) {
+            if (side == null || !side.equals(Direction.DOWN)) {
                 return inputHandler.cast();
             } else {
                 return outputHandler.cast();

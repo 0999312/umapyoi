@@ -37,7 +37,7 @@ public class ThreeGoddessItemHandler implements IItemHandler {
     @Override
     @Nonnull
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-        if (side == null || side.equals(Direction.DOWN)) {
+        if (side == null || !side.equals(Direction.DOWN)) {
             return slot < SLOTS_INPUT ? itemHandler.insertItem(slot, stack, simulate) : stack;
         } else {
             return stack;
@@ -47,8 +47,8 @@ public class ThreeGoddessItemHandler implements IItemHandler {
     @Override
     @Nonnull
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        if (side == null || side.equals(Direction.DOWN)) {
-            return slot < SLOTS_INPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+        if (side == null || !side.equals(Direction.DOWN)) {
+            return ItemStack.EMPTY;
         } else {
             return slot == SLOT_OUTPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         }
