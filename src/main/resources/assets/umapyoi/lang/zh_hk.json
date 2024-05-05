@@ -131,7 +131,7 @@
   "umadata.umapyoi.matikanetannhauser": "待兼詩歌劇",
   "umadata.umapyoi.mihono_bourbon": "美浦波旁",
   "umadata.umapyoi.sakura_laurel": "櫻花桂冠",
-  "umadata.umapyoi.little_cocon": "小巧圓餅",
+  "umadata.umapyoi.little_cocon": "小巧圓繭",
   "umadata.umapyoi.twinturbo": "雙渦輪",
   "umadata.umapyoi.kawakami_princess": "川上公主",
   "umadata.umapyoi.agnus_tachyon_swim": "[Lunatic Lab] 愛麗速子",
@@ -151,6 +151,8 @@
   "umadata.umapyoi.smart_falcon": "醒目飛鷹",
   "umadata.umapyoi.manhattan_cafe_valentine": "[柳綠小夜] 曼城茶座",
   "umadata.umapyoi.mejiro_ramonu": "目白高峰",
+  
+  "umadata.umapyoi.hishi_miracle": "菱鉆奇寶",
   
   "tooltip.umapyoi.umadata.name": "馬娘姓名：%s",
   "tooltip.umapyoi.supports": "支援項：",

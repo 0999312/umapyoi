@@ -3,6 +3,8 @@ package net.tracen.umapyoi.block.entity;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,6 +29,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.tracen.umapyoi.container.TrainingFacilityContainer;
 import net.tracen.umapyoi.inventory.CommonItemHandler;
 import net.tracen.umapyoi.inventory.TerminalResultHandler;
+import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 import net.tracen.umapyoi.registry.umadata.Growth;
@@ -185,6 +188,46 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
             @Override
             protected void onContentsChanged(int slot) {
                 inventoryChanged();
+            }
+            
+            @Override
+            public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                if(slot == 0) {
+                    if(!(stack.is(ItemRegistry.UMA_SOUL.get()) && UmaSoulUtils.getGrowth(stack) != Growth.RETIRED))
+                        return false;
+                    for (int i = 1; i < 7; i++) {
+                        ItemStack other = this.getStackInSlot(i);
+                        if (other.isEmpty())
+                            continue;
+                        if (other.getItem()instanceof SupportContainer support) {
+                            if (!(support.canSupport(TrainingFacilityBlockEntity.this.getLevel(), other).test(stack)))
+                                return false;
+                        } else
+                            return false;
+                    }
+                    return true;
+                }
+                else {
+                    if (stack.getItem() instanceof SupportContainer support) {
+                        var soul = this.getStackInSlot(0);
+                        for (int i = 1; i < 7; i++) {
+                            ItemStack other = this.getStackInSlot(i);
+                            if(!soul.isEmpty()) {
+                                if (!support.canSupport(TrainingFacilityBlockEntity.this.getLevel(), stack).test(soul))
+                                    return false;
+                            }
+                            
+                            if (i == slot || other.isEmpty())
+                                continue;
+                            
+                            if (!(support.canSupport(TrainingFacilityBlockEntity.this.getLevel(), stack).test(other)))
+                                return false;
+                        }
+                    } else {
+                        return false;
+                    }
+                    return true;
+                }
             }
         };
     }

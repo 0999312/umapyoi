@@ -84,19 +84,21 @@ public class SupportCardItem extends Item implements SupportContainer {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flagIn) {
+        super.appendHoverText(stack, level, tooltip, flagIn);
+        ResourceLocation cardID = this.getSupportCardID(stack);
+        if (isEmptyCard(level, cardID))
+            return ;
         if (Screen.hasShiftDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
             tooltip.add(Component.translatable("tooltip.umapyoi.supports").withStyle(ChatFormatting.AQUA));
-            this.getSupports(worldIn, stack)
+            this.getSupports(level, stack)
                     .forEach(support -> tooltip.add(support.getDescription().copy().withStyle(ChatFormatting.GRAY)));
         } else {
             tooltip.add(Component.translatable("tooltip.umapyoi.support_card.press_shift_for_supports")
                     .withStyle(ChatFormatting.AQUA));
         }
 
-        List<ResourceLocation> supporters = ClientUtils.getClientSupportCardRegistry().get(this.getSupportCardID(stack))
-                .getSupporters();
+        List<ResourceLocation> supporters = ClientUtils.getClientSupportCardRegistry().get(cardID).getSupporters();
         if (!supporters.isEmpty()) {
             if (Screen.hasControlDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
                 tooltip.add(Component.translatable("tooltip.umapyoi.supporters").withStyle(ChatFormatting.AQUA));
@@ -117,9 +119,13 @@ public class SupportCardItem extends Item implements SupportContainer {
 
     public SupportCard getSupportCard(Level level, ItemStack stack) {
         ResourceLocation cardID = this.getSupportCardID(stack);
-        if (level == null || !UmapyoiAPI.getSupportCardRegistry(level).containsKey(cardID))
+        if (isEmptyCard(level, cardID))
             return SupportCard.EMPTY;
         return UmapyoiAPI.getSupportCardRegistry(level).get(cardID);
+    }
+
+    private boolean isEmptyCard(Level level, ResourceLocation cardID) {
+        return level == null || cardID.equals(SupportCard.EMPTY_ID) || !UmapyoiAPI.getSupportCardRegistry(level).containsKey(cardID);
     }
 
     @Override
@@ -162,9 +168,18 @@ public class SupportCardItem extends Item implements SupportContainer {
     }
 
     public boolean checkSupports(Level level, ItemStack stack, ItemStack other) {
-        if (stack.getItem() instanceof SupportCardItem otherItem) {
-            for (ResourceLocation name : this.getSupportCard(level, stack).getSupporters()) {
-                if (otherItem.getSupportCard(level, other).getSupporters().contains(name))
+        if (stack.getItem()instanceof SupportCardItem otherItem) {
+
+            var supportCardID = this.getSupportCardID(stack);
+            var otherCardID = this.getSupportCardID(other);
+            if (supportCardID.equals(otherCardID))
+                return false;
+
+            var supportCard = this.getSupportCard(level, stack);
+            var otherCard = this.getSupportCard(level, other);
+
+            for (ResourceLocation name : supportCard.getSupporters()) {
+                if (otherCard.getSupporters().contains(name))
                     return false;
             }
         }

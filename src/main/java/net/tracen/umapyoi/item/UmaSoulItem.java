@@ -29,6 +29,7 @@ import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
+import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
@@ -96,6 +97,10 @@ public class UmaSoulItem extends Item {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        int ranking = ResultRankingUtils.getRanking(stack);
+        if(UmaSoulUtils.getGrowth(stack) == Growth.RETIRED)
+            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.ranking", UmaStatusUtils.getStatusLevel(ranking))
+                            .withStyle(ChatFormatting.GOLD));
         if (Screen.hasShiftDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
             tooltip.add(
                     Component.translatable("tooltip.umapyoi.uma_soul.soul_details").withStyle(ChatFormatting.AQUA));

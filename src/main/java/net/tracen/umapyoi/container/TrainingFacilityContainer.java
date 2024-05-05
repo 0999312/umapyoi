@@ -38,7 +38,7 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
         this.canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
         int startX = 8;
 
-        this.addSlot(new TrainingUmaSlot(inventory, 0, 80, 98));
+        this.addSlot(new TrainingUmaSlot(tileEntity, inventory, 0, 80, 98));
         for (int i = 1; i < 4; i++) {
             this.addSlot(new TrainingSupportSlot(tileEntity, inventory, i, (i - 1) * 27 + 12, 19));
         }
@@ -147,8 +147,15 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
         @Override
         public boolean mayPlace(ItemStack stack) {
             if (stack.getItem()instanceof SupportContainer support) {
+                var soul = this.getItemHandler().getStackInSlot(0);
                 for (int i = 1; i < 7; i++) {
                     ItemStack other = this.getItemHandler().getStackInSlot(i);
+                    
+                    if(!soul.isEmpty()) {
+                        if (!support.canSupport(this.tileEntity.getLevel(), stack).test(soul))
+                            return false;
+                    }
+                    
                     if (i == this.getSlotIndex() || other.isEmpty())
                         continue;
                     if (!(support.canSupport(this.tileEntity.getLevel(), stack).test(other)))
@@ -165,14 +172,31 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
     }
 
     public static class TrainingUmaSlot extends SlotItemHandler {
+        private final TrainingFacilityBlockEntity tileEntity;
 
-        public TrainingUmaSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+        public TrainingUmaSlot(TrainingFacilityBlockEntity tileEntity, IItemHandler itemHandler, int index,
+                int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
+            this.tileEntity = tileEntity;
         }
 
         @Override
         public boolean mayPlace(ItemStack stack) {
-            return stack.is(ItemRegistry.UMA_SOUL.get());
+            if (stack.is(ItemRegistry.UMA_SOUL.get())) {
+                for (int i = 1; i < 7; i++) {
+                    ItemStack other = this.getItemHandler().getStackInSlot(i);
+                    if (other.isEmpty())
+                        continue;
+                    if (other.getItem() instanceof SupportContainer support) {
+                        if (!(support.canSupport(this.tileEntity.getLevel(), other).test(stack)))
+                            return false;
+                    } else {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
         }
     }
 }

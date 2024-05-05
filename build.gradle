@@ -25,7 +25,7 @@ mixin {
     add sourceSets.main, 'mixins.umapyoi.refmap.json'
 }
 
-version = '1.4.24-1.20.1'
+version = '1.4.26-1.20.1'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 

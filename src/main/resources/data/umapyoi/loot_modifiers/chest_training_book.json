@@ -1,7 +1,7 @@
 {
   "conditions": [
     {
-      "condition": "minecraft:alternative",
+      "condition": "minecraft:any_of",
       "terms": [
         {
           "condition": "forge:loot_table_id",
@@ -84,5 +84,5 @@
     }
   ],
   "lootTable": "umapyoi:supply_book",
-  "type": "mmlib:add_loot_table"
+  "type":"mysterious_mountain_lib:add_loot_table"
 }
