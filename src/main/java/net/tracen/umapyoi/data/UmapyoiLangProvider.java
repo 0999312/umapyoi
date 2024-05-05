@@ -152,7 +152,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addFactor(UmaFactorRegistry.WISDOM_FACTOR, "Wisdom Factor");
         
         addFactor(UmaFactorRegistry.PHYSIQUE_FACTOR, "Physique Factor");
-        addFactor(UmaFactorRegistry.TELENT_FACTOR, "Telent Factor");
+        addFactor(UmaFactorRegistry.TELENT_FACTOR, "Talent Factor");
         addFactor(UmaFactorRegistry.MEMORY_FACTOR, "Memory Factor");
         addFactor(UmaFactorRegistry.ACTIONS_FACTOR, "Action Pt Factor");
         
@@ -340,6 +340,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.BYERLEY_TURK, "Byerley Turk");
         addUma(UmaDataRegistry.FINE_MOTION, "Fine Motion");
         addUma(UmaDataRegistry.SMART_FALCON, "Smart Falcon");
+        
+        addUma(UmaDataRegistry.HISHI_MIRACLE, "Hishi Miracle");
 
         addUma(UmaDataRegistry.GOLD_CITY_AUTUMN, "[Akizakura Danzatrice] Gold City");
         addUma(UmaDataRegistry.GRASS_WONDER_UMANET, "[Saint Jade Healer] Grass Wonder");

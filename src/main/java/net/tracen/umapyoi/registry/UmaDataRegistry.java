@@ -212,6 +212,9 @@ public class UmaDataRegistry {
     public static final RegistryObject<UmaData> MANHATTAN_CAFE_VALENTINE = UMA_DATA.register("manhattan_cafe_valentine",
             () -> UmaDataRegistry.createNewUmamusume("manhattan_cafe", GachaRanking.SSR, new int[] {0, 20, 20, 0, 0}));
     
+    public static final RegistryObject<UmaData> HISHI_MIRACLE = UMA_DATA.register("hishi_miracle",
+            () -> UmaDataRegistry.createNewUmamusume("hishi_miracle", GachaRanking.SR, new int[] {7, 8, 7, 8, 0}));
+    
     public static UmaData createNewUmamusume(String name, GachaRanking ranking) {
         return new UmaData(new ResourceLocation(Umapyoi.MODID, name), ranking, new int[] { 1, 1, 1, 1, 1 },
                 new int[] { 18, 18, 18, 18, 18 }, new int[] { 0, 0, 0, 0, 0 }, new ResourceLocation(Umapyoi.MODID, "basic_pace"));

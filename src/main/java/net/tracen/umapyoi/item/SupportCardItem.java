@@ -113,6 +113,9 @@ public class SupportCardItem extends Item implements SupportContainer {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        ResourceLocation cardID = this.getSupportCardID(stack);
+        if (isEmptyCard(worldIn, cardID))
+            return ;
         if(!this.getSupports(worldIn, stack).isEmpty()) {
             if (Screen.hasShiftDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
                 tooltip.add(new TranslatableComponent("tooltip.umapyoi.supports").withStyle(ChatFormatting.AQUA));
@@ -124,8 +127,7 @@ public class SupportCardItem extends Item implements SupportContainer {
             }
         }
 
-        List<ResourceLocation> supporters = ClientUtils.getClientSupportCardRegistry().get(this.getSupportCardID(stack))
-                .getSupporters();
+        List<ResourceLocation> supporters = ClientUtils.getClientSupportCardRegistry().get(cardID).getSupporters();
         if (!supporters.isEmpty()) {
             if (Screen.hasControlDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
                 tooltip.add(new TranslatableComponent("tooltip.umapyoi.supporters").withStyle(ChatFormatting.AQUA));
@@ -146,9 +148,13 @@ public class SupportCardItem extends Item implements SupportContainer {
 
     public SupportCard getSupportCard(Level level, ItemStack stack) {
         ResourceLocation cardID = this.getSupportCardID(stack);
-        if (level == null || !UmapyoiAPI.getSupportCardRegistry(level).containsKey(cardID))
+        if (isEmptyCard(level, cardID))
             return SupportCardRegistry.BLANK_CARD.get();
         return UmapyoiAPI.getSupportCardRegistry(level).get(cardID);
+    }
+    
+    private boolean isEmptyCard(Level level, ResourceLocation cardID) {
+        return level == null || cardID.equals(SupportCardRegistry.BLANK_CARD.getId()) || !UmapyoiAPI.getSupportCardRegistry(level).containsKey(cardID);
     }
 
     @Override

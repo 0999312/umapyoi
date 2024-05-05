@@ -241,6 +241,41 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
             protected void onContentsChanged(int slot) {
                 inventoryChanged();
             }
+            
+            @Override
+            public boolean isItemValid(int slot, ItemStack stack) {
+                if(slot == 0) {
+                    if (stack.is(ItemRegistry.BLANK_UMA_SOUL.get())) {
+                        String name = stack.getOrCreateTag().getString("name");
+                        return !(name.equals(this.getStackInSlot(1).getOrCreateTag().getString("name"))
+                                || name.equals(this.getStackInSlot(2).getOrCreateTag().getString("name")));
+                    }
+                    return false;
+                }
+                else if(slot == 1) {
+                    boolean result = stack.is(ItemRegistry.UMA_FACTOR_ITEM.get());
+                    boolean factorFlag = false;
+                    String name = stack.getOrCreateTag().getString("name");
+                    var soulStack = this.getStackInSlot(0);
+                    boolean soulFlag = !soulStack.isEmpty() && stack.getOrCreateTag().getString("name")
+                            .equals(soulStack.getOrCreateTag().getString("name"));
+                    factorFlag = name.equals(this.getStackInSlot(2).getOrCreateTag().getString("name"));
+
+                    return result && !soulFlag && !factorFlag;
+                }
+                else if(slot == 2) {
+                    boolean result = stack.is(ItemRegistry.UMA_FACTOR_ITEM.get());
+                    boolean factorFlag = false;
+                    String name = stack.getOrCreateTag().getString("name");
+                    var soulStack = this.getStackInSlot(0);
+                    boolean soulFlag = !soulStack.isEmpty() && stack.getOrCreateTag().getString("name")
+                            .equals(soulStack.getOrCreateTag().getString("name"));
+                    factorFlag = name.equals(this.getStackInSlot(1).getOrCreateTag().getString("name"));
+                    
+                    return result && !soulFlag && !factorFlag;
+                }
+                return super.isItemValid(slot, stack);
+            }
         };
     }
 
