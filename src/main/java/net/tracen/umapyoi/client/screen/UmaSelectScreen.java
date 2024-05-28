@@ -158,6 +158,8 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         if (name.length() <= 50 && !this.name.equalsIgnoreCase(name)) {
             this.name = name;
             this.selectIndex = -1;
+            this.startIndex = (int) ((double) (this.scrollOffs * (float) this.getOffscreenRows()) + 0.5D)
+                    * RECIPES_COLUMNS;
             NetPacketHandler.INSTANCE.sendToServer(new EmptyResultPacket());
         }
     }
@@ -321,7 +323,8 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         if (this.displayRecipes) {
             int i = this.leftPos + RECIPES_X;
             int j = this.topPos + RECIPES_Y;
-            int k = this.startIndex + SCROLLER_WIDTH;
+            List<ResourceLocation> results = this.getResults();
+            int k = Math.min(this.startIndex + SCROLLER_WIDTH, results.size());
 
             for (int l = this.startIndex; l < k; ++l) {
                 int i1 = l - this.startIndex;
@@ -332,7 +335,7 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
                             .play(SimpleSoundInstance.forUI(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
                     this.selectIndex = l;
                     NetPacketHandler.INSTANCE.sendToServer(
-                            new SetupResultPacket(this.getResults().get(this.getSelectIndex()).toString()));
+                            new SetupResultPacket(results.get(this.selectIndex).toString()));
                     return true;
                 }
             }
@@ -378,7 +381,7 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
     }
 
     protected int getOffscreenRows() {
-        return (this.getResults().size() + RECIPES_COLUMNS - 1) / RECIPES_COLUMNS - RECIPES_ROWS;
+        return Math.max(0, (this.getResults().size() + RECIPES_COLUMNS - 1) / RECIPES_COLUMNS - RECIPES_ROWS);
     }
 
     /**
