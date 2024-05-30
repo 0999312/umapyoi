@@ -350,6 +350,9 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addUma(UmaDataRegistry.MANHATTAN_CAFE_VALENTINE, "[Willow Night] Manhattan cafe");
         
+        addUma(UmaDataRegistry.DAIWA_SCARLET, "Daiwa Scarlet");
+        addUma(UmaDataRegistry.WIN_VARIATION, "Win Variation");
+        
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");

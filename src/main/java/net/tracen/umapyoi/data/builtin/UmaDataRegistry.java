@@ -77,12 +77,15 @@ public class UmaDataRegistry {
     public static final ResourceKey<UmaData> SMART_FALCON = register("smart_falcon");
     public static final ResourceKey<UmaData> MANHATTAN_CAFE_VALENTINE = register("manhattan_cafe_valentine");
     public static final ResourceKey<UmaData> HISHI_MIRACLE = register("hishi_miracle");
+    public static final ResourceKey<UmaData> DAIWA_SCARLET = register("daiwa_scarlet");
+    public static final ResourceKey<UmaData> WIN_VARIATION = register("win_variation");
     
     public static void registerAll(BootstapContext<UmaData> bootstrap) {
         bootstrap.register(COMMON_UMA, UmaData.createNewUmamusume("common_uma", GachaRanking.R));
         bootstrap.register(COMMON_UMA_A, UmaData.createNewUmamusume("common_uma_a", GachaRanking.R));
         bootstrap.register(COMMON_UMA_B, UmaData.createNewUmamusume("common_uma_b", GachaRanking.R));
         bootstrap.register(COMMON_UMA_C, UmaData.createNewUmamusume("common_uma_c", GachaRanking.R));
+        
         bootstrap.register(GOLD_SHIP, UmaData.createNewUmamusume("gold_ship", GachaRanking.SR, new int[] {0, 20, 10, 0, 0}));
         bootstrap.register(SPECIAL_WEEK, UmaData.createNewUmamusume("special_week", GachaRanking.SR, new int[] {0, 20, 0, 0, 10}));
         bootstrap.register(TOKAI_TEIO, UmaData.createNewUmamusume("tokai_teio", GachaRanking.SR, new int[] {20, 10, 0, 0, 0}));
@@ -149,6 +152,8 @@ public class UmaDataRegistry {
         bootstrap.register(MANHATTAN_CAFE_VALENTINE,UmaData.createNewUmamusume("manhattan_cafe", GachaRanking.SSR, new int[] {0, 20, 20, 0, 0}));
 
         bootstrap.register(HISHI_MIRACLE, UmaData.createNewUmamusume("hishi_miracle", GachaRanking.SR, new int[] {7, 8, 7, 8, 0}));
+        bootstrap.register(DAIWA_SCARLET, UmaData.createNewUmamusume("daiwa_scarlet", GachaRanking.SR, new int[] {10, 0, 0, 20, 0}));
+        bootstrap.register(WIN_VARIATION, UmaData.createNewUmamusume("win_variation", GachaRanking.SR, new int[] {10, 0, 0, 20, 0}));
     }
 
     private static ResourceKey<UmaData> register(String id) {
