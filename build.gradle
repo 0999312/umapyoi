@@ -1,29 +1,21 @@
-buildscript {
-    repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://maven.parchmentmc.org' }
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7.+'
-        classpath 'org.parchmentmc:librarian:1.+'
-    }
-}
-
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 plugins {
+    id 'eclipse'
     id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+     // This should be below the net.minecraftforge.gradle plugin
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
+// Mixin
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'eclipse'
 
-version = '1.4.27-1.18.2'
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'mixins.umapyoi.refmap.json'
+}
+
+version = '1.5.28-1.18.2'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 
@@ -32,13 +24,10 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 
-mixin {
-    // MixinGradle Settings
-    add sourceSets.main, 'mixins.umapyoi.refmap.json'
-}
 
 minecraft {
-    mappings channel: 'parchment', version: '1.18.2-2022.08.07-1.18.2'
+    mappings channel: 'parchment', version: '2022.08.07-1.18.2'
+    copyIdeResources = true
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {

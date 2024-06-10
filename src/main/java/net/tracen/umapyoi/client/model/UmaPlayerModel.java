@@ -1,5 +1,8 @@
 package net.tracen.umapyoi.client.model;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -31,13 +34,12 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     public BedrockPart rightLegHideParts;
     public BedrockPart leftLegHideParts;
     public BedrockPart hat;
-    public BedrockPart longHair;
     public BedrockPart hideParts;
     public BedrockPart tail;
     public BedrockPart tailDown;
     
     public BedrockPart cape;
-    
+    public List<BedrockPart> longHairParts;
     public UmaPlayerModel() {
         super();
     }
@@ -49,6 +51,7 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     @Override
     public void loadModel(BedrockModelPOJO pojo) {
         super.loadModel(pojo);
+        
         this.rightArmDown = this.getChild("right_arm_down");
         this.leftArmDown = this.getChild("left_arm_down");
         this.rightLegDown = this.getChild("right_leg_down");
@@ -59,7 +62,6 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
         this.leftFoot = this.getChild("left_foot");
         this.hat = this.getChild("hat") != null ? this.getChild("hat") : new BedrockPart();
         this.cape = this.getChild("cape") != null ? this.getChild("cape") : new BedrockPart();
-        this.longHair = this.getChild("long_hair") != null ? this.getChild("long_hair") : new BedrockPart();
         this.hideParts = this.getChild("hide_parts") != null ? this.getChild("hide_parts") : new BedrockPart();
         this.rightEarHideParts = this.getChild("right_earmuffs");
         this.leftEarHideParts = this.getChild("left_earmuffs");
@@ -69,6 +71,11 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 : new BedrockPart();
         this.tail = this.getChild("tail");
         this.tailDown = this.getChild("tail_down");
+        this.longHairParts = Lists.newArrayList();
+        this.getModelMap().forEach((name,part)->{
+        	if(name.startsWith("long_hair_") || name.equals("long_hair"))
+        		this.longHairParts.add(part);
+        });
     }
     
     @Override
@@ -106,8 +113,6 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             this.rightLeg.zRot = 0.017453292F * entityarmorstand.getRightLegPose().getZ();
             this.rightLeg.setPos(-1.9F, 11.0F, 0.0F);
         } else {
-            if(ModList.get().isLoaded("firstpersonmod"))
-                FPMCompat.hideHead(this);
             
             this.tail.copyFrom(this.body);
 
@@ -124,9 +129,11 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 
                 this.cape.xRot = pLimbSwingAmount * 1F;
             }
-            if (this.head.xRot < 0)
-                this.longHair.xRot = -this.head.xRot;
-            else this.longHair.xRot = 0F;
+            if (this.head.xRot < 0) {
+            	this.longHairParts.forEach(part -> part.xRot = -this.head.xRot);
+                }
+            else 
+            	this.longHairParts.forEach(part -> part.xRot = 0F);
 
             animationEarTail(entityIn, pAgeInTicks);
         }
@@ -166,7 +173,6 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     }
 
     public void setModelProperties(LivingEntity player) {
-
         boolean shouldSit = player.isPassenger()
                 && (player.getVehicle() != null && player.getVehicle().shouldRiderSit());
         this.riding = shouldSit;
