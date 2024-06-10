@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-18T17:08:42.9304187	UmaData Registry
+// 1.20.1	2024-06-10T15:01:51.3077521	UmaData Registry
 bc61cfddfb38307c7beadbfd4fac08e961306e33 data/umapyoi/umapyoi/umadata/admire_vega.json
 b50074724982f0fe6a3a3f26437532ca4a076ef1 data/umapyoi/umapyoi/umadata/agnus_tachyon.json
 066f99c7571ad3cd66250cc088095acd7637741e data/umapyoi/umapyoi/umadata/agnus_tachyon_swim.json
@@ -15,6 +15,7 @@ d9c2b4a0421960d235168d60059662fe091e0119 data/umapyoi/umapyoi/umadata/curren_cha
 29ffffa07f89c21bff02ccfd1c921130133a0fbf data/umapyoi/umapyoi/umadata/daiwa_scarlet.json
 9cbbaa91517db2c9e1cdb08882b71707553d5f7a data/umapyoi/umapyoi/umadata/darley_arabian.json
 a76035077b8c35f4e3467a7ab398aeac7ff7e774 data/umapyoi/umapyoi/umadata/dumnheint.json
+cc3058f50fdd0f021421854b89f7fc092d2a0268 data/umapyoi/umapyoi/umadata/el_condor_pasa.json
 00f7de65b269537ff745ea703c76f6f532fc62ef data/umapyoi/umapyoi/umadata/fine_motion.json
 03650b73addf527a625f9f8951ea2da594087424 data/umapyoi/umapyoi/umadata/godolphin_barb.json
 1cd434cc3974edb6b90798a9e9108ec5f4bb7a48 data/umapyoi/umapyoi/umadata/gold_city.json
@@ -25,14 +26,18 @@ cac16ac59c8c563e728a1d57381957a9913a1559 data/umapyoi/umapyoi/umadata/grass_wond
 f3cecd68bb5a2b7720e2f0c4328cd8cf0854ac37 data/umapyoi/umapyoi/umadata/grass_wonder_umanet.json
 6840e2f971f109f520d5fd85484b31e5743cbc16 data/umapyoi/umapyoi/umadata/haru_urara.json
 a41beae04209c1bfe7fc45868626a5437c4c075e data/umapyoi/umapyoi/umadata/hishi_miracle.json
+1b3271f3bf5b88daa04cd3afbaabc5138c8ad222 data/umapyoi/umapyoi/umadata/hokko_tarumae.json
 1f2f42a73702e6084e5873c64703830f45a1d0cd data/umapyoi/umapyoi/umadata/jungle_pocket.json
 fef54e08acbc5aa5cc2ee4e969911e4e9e072e1a data/umapyoi/umapyoi/umadata/kawakami_princess.json
+a6ab3d56b3add9a192d736591d96fabb0b3c6c1f data/umapyoi/umapyoi/umadata/king_halo.json
+401b109c98fccb749943868202e346bc7b588964 data/umapyoi/umapyoi/umadata/king_halo_wedding.json
 197ebd40ca99893cbc16da7dc41544d2188ba8c0 data/umapyoi/umapyoi/umadata/kitasan_black.json
 1fff237bf437a49650efe672cbdec52160f2305b data/umapyoi/umapyoi/umadata/little_cocon.json
 0409960edb393156e3ee595812240c94c2d95bab data/umapyoi/umapyoi/umadata/manhattan_cafe.json
 b8b6f5e648afcc292666b735e0628a933bf53f55 data/umapyoi/umapyoi/umadata/manhattan_cafe_valentine.json
 d5c8721385d988ce1addce453eff93b33e314161 data/umapyoi/umapyoi/umadata/matikanefukukitaru.json
 74c9c69e966d6e777695732ef9b149f88e6964e9 data/umapyoi/umapyoi/umadata/matikanetannhauser.json
+1d6b561639674993d1dc846a7da3a83ff1cab2c2 data/umapyoi/umapyoi/umadata/matikanetannhauser_sports.json
 f64df3c6f72947203d0cf8a3cdfa3610e318e9d3 data/umapyoi/umapyoi/umadata/mayano_top_gun.json
 1792df6a9a526c482138e07d00b5e38a782de3c5 data/umapyoi/umapyoi/umadata/meisho_dotou.json
 ca0f7430d28ff8e63f2954c6379ce88fb6599f97 data/umapyoi/umapyoi/umadata/mejiro_ardan.json

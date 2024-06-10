@@ -347,11 +347,16 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.GOLD_CITY_AUTUMN, "[Akizakura Danzatrice] Gold City");
         addUma(UmaDataRegistry.GRASS_WONDER_UMANET, "[Saint Jade Healer] Grass Wonder");
         addUma(UmaDataRegistry.SATONO_DIAMOND_FRENCH, "[Chevalier Blue] Satono Diamond");
-        
         addUma(UmaDataRegistry.MANHATTAN_CAFE_VALENTINE, "[Willow Night] Manhattan cafe");
         
         addUma(UmaDataRegistry.DAIWA_SCARLET, "Daiwa Scarlet");
         addUma(UmaDataRegistry.WIN_VARIATION, "Win Variation");
+        
+        addUma(UmaDataRegistry.EL_CONDOR_PASA, "El Condor Pasa");
+        addUma(UmaDataRegistry.KING_HALO, "King Halo");
+        addUma(UmaDataRegistry.KING_HALO_WEDDING, "[Evergreen Identity] King Halo");
+        addUma(UmaDataRegistry.HOKKO_TARUMAE, "Hokko Tarumae");
+        addUma(UmaDataRegistry.MATIKANETANNHAUSER_SPORTS, "[Blue Turbulence] Makikanetannhauser");
         
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");

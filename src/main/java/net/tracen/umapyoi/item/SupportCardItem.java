@@ -160,7 +160,7 @@ public class SupportCardItem extends Item implements SupportContainer {
                 UmaData data = UmapyoiAPI.getUmaDataRegistry(level).get(UmaSoulUtils.getName(itemstack));
                 return !(this.getSupportCard(level, stack).getSupporters().contains(data.getIdentifier()));
             }
-            if (item instanceof SupportCardItem other) {
+            if (item instanceof SupportCardItem) {
                 return this.checkSupports(level, stack, itemstack);
             }
             return true;
@@ -168,8 +168,7 @@ public class SupportCardItem extends Item implements SupportContainer {
     }
 
     public boolean checkSupports(Level level, ItemStack stack, ItemStack other) {
-        if (stack.getItem()instanceof SupportCardItem otherItem) {
-
+        if (stack.getItem()instanceof SupportCardItem) {
             var supportCardID = this.getSupportCardID(stack);
             var otherCardID = this.getSupportCardID(other);
             if (supportCardID.equals(otherCardID))
