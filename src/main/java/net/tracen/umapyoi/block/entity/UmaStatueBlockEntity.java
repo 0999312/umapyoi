@@ -15,7 +15,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.tracen.umapyoi.block.UmaStatueBlock;
 import net.tracen.umapyoi.item.ItemRegistry;
 
 public class UmaStatueBlockEntity extends SyncedBlockEntity {
@@ -102,6 +101,6 @@ public class UmaStatueBlockEntity extends SyncedBlockEntity {
     
     @Override
     public AABB getRenderBoundingBox() {
-    	return UmaStatueBlock.SHAPE.bounds();
+    	return AABB.ofSize(getBlockPos().getCenter().add(0,1,0),1,3,1);
     }
 }
