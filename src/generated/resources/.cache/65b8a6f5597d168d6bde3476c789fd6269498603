@@ -1,9 +1,10 @@
-// 1.20.1	2024-06-10T15:01:51.3077521	UmaData Registry
+// 1.20.1	2024-07-19T01:31:43.7446179	UmaData Registry
 bc61cfddfb38307c7beadbfd4fac08e961306e33 data/umapyoi/umapyoi/umadata/admire_vega.json
 b50074724982f0fe6a3a3f26437532ca4a076ef1 data/umapyoi/umapyoi/umadata/agnus_tachyon.json
 066f99c7571ad3cd66250cc088095acd7637741e data/umapyoi/umapyoi/umadata/agnus_tachyon_swim.json
 7cc4e18e0823e0b8df5ea43da3aa2d10934e845c data/umapyoi/umapyoi/umadata/aston_machan.json
 ff51d18d203b592bc6ca8fc88e619a792c212c79 data/umapyoi/umapyoi/umadata/byerley_turk.json
+48e3f3876b06064747e72ed01eb691787de01938 data/umapyoi/umapyoi/umadata/cheval_grand.json
 a4f2ff7742abafa58dbfc9e8fb6748c3f923edea data/umapyoi/umapyoi/umadata/common_uma.json
 91e3997812b5695f7908f5e0879726f78e9397d6 data/umapyoi/umapyoi/umadata/common_uma_a.json
 9d228829e4dfe9de7e96a5c0f3a03c5cc4dfae18 data/umapyoi/umapyoi/umadata/common_uma_b.json
@@ -17,6 +18,8 @@ d9c2b4a0421960d235168d60059662fe091e0119 data/umapyoi/umapyoi/umadata/curren_cha
 a76035077b8c35f4e3467a7ab398aeac7ff7e774 data/umapyoi/umapyoi/umadata/dumnheint.json
 cc3058f50fdd0f021421854b89f7fc092d2a0268 data/umapyoi/umapyoi/umadata/el_condor_pasa.json
 00f7de65b269537ff745ea703c76f6f532fc62ef data/umapyoi/umapyoi/umadata/fine_motion.json
+572d3a34c00ac4474df828af6decd443c0aefbec data/umapyoi/umapyoi/umadata/fujimasa_march.json
+2debf780677634c1809773fd9dca99e63e95329b data/umapyoi/umapyoi/umadata/fuji_kiseki.json
 03650b73addf527a625f9f8951ea2da594087424 data/umapyoi/umapyoi/umadata/godolphin_barb.json
 1cd434cc3974edb6b90798a9e9108ec5f4bb7a48 data/umapyoi/umapyoi/umadata/gold_city.json
 1d15db5b45dd31ea6c71ded409a965e1153e6b6f data/umapyoi/umapyoi/umadata/gold_city_autumn.json
@@ -70,5 +73,7 @@ f6727485b4c46cbe375e56af022c338c01522fef data/umapyoi/umapyoi/umadata/taiki_shut
 09a516d613d2da144c51917d720b15c59ffec6af data/umapyoi/umapyoi/umadata/tokai_teio.json
 4fff953d2a9e03a75862dd514b78533dffbe0aab data/umapyoi/umapyoi/umadata/twinturbo.json
 ce243491185081b9cff2d81cef9ac30d1979ac92 data/umapyoi/umapyoi/umadata/venus_park.json
+d5f2c7f66ec4ad7aed2bb062ea20ef6e3db96ce0 data/umapyoi/umapyoi/umadata/verxina.json
+5ac11bc9a62364822193006977b51abbf775fe3f data/umapyoi/umapyoi/umadata/vivlos.json
 5e1c28691a3ba613e9963130077af56b2fac3b86 data/umapyoi/umapyoi/umadata/vodka.json
 f6d3cd63d205cb485ee0178697a4c860f26fd403 data/umapyoi/umapyoi/umadata/win_variation.json

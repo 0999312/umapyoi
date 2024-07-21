@@ -29,7 +29,7 @@ import net.tracen.umapyoi.block.entity.UmaStatueBlockEntity;
 
 public class UmaStatueBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     public UmaStatueBlock() {
         super(Properties.copy(Blocks.STONE).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
@@ -44,6 +44,8 @@ public class UmaStatueBlock extends BaseEntityBlock {
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
+    
+    
     
     @SuppressWarnings("deprecation")
     @Override

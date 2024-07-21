@@ -1,12 +1,19 @@
 package net.tracen.umapyoi.client.renderer.blockentity;
 
+import java.util.function.Function;
+
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 import com.mojang.math.Axis;
 import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
 import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockPart;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
+import net.minecraft.Util;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -63,7 +70,7 @@ public class UmaStatuesBlockRender implements BlockEntityRenderer<UmaStatueBlock
         rightArm.zRot = ClientUtil.convertRotation(5);
         
         VertexConsumer vertexConsumer = buffer
-                .getBuffer(RenderType.entityTranslucentCull(tileEntity.isEmpty() ? TEXTURE : ClientUtils.getTexture(UmaSoulUtils.getName(item))));
+                .getBuffer(TestRenderType.test(tileEntity.isEmpty() ? TEXTURE : ClientUtils.getTexture(UmaSoulUtils.getName(item))));
         model.renderToBuffer(poseStack, vertexConsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
         
         if(model.isEmissive()) {
@@ -74,5 +81,31 @@ public class UmaStatuesBlockRender implements BlockEntityRenderer<UmaStatueBlock
         
         poseStack.popPose();
     }
+    private static class TestRenderType extends RenderType{
+	    public TestRenderType(String pName, VertexFormat pFormat, Mode pMode, int pBufferSize,
+				boolean pAffectsCrumbling, boolean pSortOnUpload, Runnable pSetupState, Runnable pClearState) {
+			super(pName, pFormat, pMode, pBufferSize, pAffectsCrumbling, pSortOnUpload, pSetupState, pClearState);
+			// TODO Auto-generated constructor stub
+		}
 
+		private static final Function<ResourceLocation, RenderType> 
+	    ENTITY_TRANSLUCENT_CULL = Util.memoize((p_286165_) -> {
+	       RenderType.CompositeState rendertype$compositestate = 
+	       RenderType.CompositeState.builder()
+	       .setShaderState(RenderType.RENDERTYPE_ENTITY_TRANSLUCENT_SHADER)
+	       .setTextureState(new RenderStateShard.TextureStateShard(p_286165_, false, false))
+	       .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+	       .setCullState(NO_CULL)
+	       .setLightmapState(LIGHTMAP)
+	       .setOverlayState(OVERLAY)
+	       .createCompositeState(true);
+	       return RenderType.create(
+	         "test_render", 
+	         DefaultVertexFormat.NEW_ENTITY, 
+	         VertexFormat.Mode.QUADS, 256, false, false, rendertype$compositestate);
+	    });
+		public static RenderType test(ResourceLocation texture) {
+			return ENTITY_TRANSLUCENT_CULL.apply(texture);
+		}
+    }
 }

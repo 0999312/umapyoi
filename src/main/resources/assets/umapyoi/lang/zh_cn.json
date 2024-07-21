@@ -164,6 +164,13 @@
   "umadata.umapyoi.hokko_tarumae": "北港火山",
   "umadata.umapyoi.el_condor_pasa": "神鹰",
   
+  "umadata.umapyoi.cheval_grand": "高尚骏逸",
+  "umadata.umapyoi.verxina": "极锋",
+  "umadata.umapyoi.vivlos": "强击",
+  
+  "umadata.umapyoi.fuji_kiseki": "富士奇迹",
+  "umadata.umapyoi.fujimasa_march": "藤正进行曲",
+  
   "tooltip.umapyoi.umadata.name": "马娘姓名：%s",
   "tooltip.umapyoi.support_card.name": "支援卡：%s",
   "tooltip.umapyoi.supports": "支援项：",

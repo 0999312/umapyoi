@@ -23,8 +23,6 @@ public class UmaSoulUtils {
     public static Component getTranslatedUmaName(ResourceLocation name) {
         return Component.translatable(Util.makeDescriptionId("umadata", name));
     }
-    
-
 
     public static ItemStack initUmaSoul(ItemStack stack, ResourceLocation name, UmaData data) {
         ItemStack result = stack.copy();

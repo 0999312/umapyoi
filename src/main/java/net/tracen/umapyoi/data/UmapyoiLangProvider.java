@@ -358,6 +358,13 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.HOKKO_TARUMAE, "Hokko Tarumae");
         addUma(UmaDataRegistry.MATIKANETANNHAUSER_SPORTS, "[Blue Turbulence] Makikanetannhauser");
         
+        addUma(UmaDataRegistry.CHEVAL_GRAND, "Cheval Grand");
+        addUma(UmaDataRegistry.VERXINA, "Verxina");
+        addUma(UmaDataRegistry.VIVLOS, "Vivlos");
+        
+        addUma(UmaDataRegistry.FUJI_KISEKI, "Fuji Kiseki");
+        addUma(UmaDataRegistry.FUJIMASA_MARCH, "Fujimasa March");
+        
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");

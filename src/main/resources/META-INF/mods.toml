@@ -35,7 +35,7 @@ Horsey horsey meowsy meowsy  3 2 1  Fight!!
 [[dependencies.umapyoi]]
     modId="mysterious_mountain_lib"
     mandatory=true
-    versionRange="[1.4.4-1.20.1,)"
+    versionRange="[1.4.7-1.20.1,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.umapyoi]]

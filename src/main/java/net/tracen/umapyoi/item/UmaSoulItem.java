@@ -47,7 +47,9 @@ public class UmaSoulItem extends Item {
     
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag nbt) {
-        return new UmaSoulCapProvider(stack);
+    	if(!stack.isEmpty() && stack.getItem() instanceof UmaSoulItem)
+    		return new UmaSoulCapProvider(stack);
+    	return null;
     }
     
     @Override

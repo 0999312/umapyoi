@@ -277,7 +277,7 @@
 							"size": [8, 8, 8],
 							"inflate": 0.5,
 							"uv": {
-								"north": {"uv": [8, 32], "uv_size": [8, 8]},
+								"north": {"uv": [0, 130], "uv_size": [16, 16]},
 								"east": {"uv": [0, 32], "uv_size": [8, 8]},
 								"south": {"uv": [0, 40], "uv_size": [8, 8]},
 								"west": {"uv": [8, 32], "uv_size": [-8, 8]}
@@ -4832,6 +4832,24 @@
 								"west": {"uv": [63, 48], "uv_size": [3, 5]},
 								"up": {"uv": [60, 45], "uv_size": [3, 3]},
 								"down": {"uv": [63, 48], "uv_size": [3, -3]}
+							}
+						}
+					]
+				},
+				{
+					"name": "left_leg_hide_parts",
+					"parent": "left_leg",
+					"pivot": [-23.5, 21, -2],
+					"cubes": [
+						{
+							"origin": [0.25, 10, -1.5],
+							"size": [3, 2, 3],
+							"inflate": 0.1,
+							"uv": {
+								"north": {"uv": [55, 29], "uv_size": [-3, 2]},
+								"east": {"uv": [58, 29], "uv_size": [-3, 2]},
+								"south": {"uv": [61, 29], "uv_size": [-3, 2]},
+								"west": {"uv": [52, 29], "uv_size": [-3, 2]}
 							}
 						}
 					]

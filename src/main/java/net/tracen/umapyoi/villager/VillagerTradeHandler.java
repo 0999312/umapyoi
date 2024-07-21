@@ -130,7 +130,7 @@ public class VillagerTradeHandler {
         genericTrades
             .add(new RandomPriceOrderItemListing(new ItemStack(ItemRegistry.MEDIUM_ENERGY_DRINK.get()), 2, 1, 4, 32, 2));
 
-        List<VillagerTrades.ItemListing> rareTrades = event.getGenericTrades();
+        List<VillagerTrades.ItemListing> rareTrades = event.getRareTrades();
         
         rareTrades
             .add(new RandomPriceOrderItemListing(new ItemStack(ItemRegistry.LARGE_ENERGY_DRINK.get()), 3, 1, 2, 32, 15));
