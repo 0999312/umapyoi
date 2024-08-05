@@ -15,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.tracen.umapyoi.block.entity.UmaStatueBlockEntity;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
 import net.tracen.umapyoi.events.client.RenderingUmaSuitEvent;
@@ -108,9 +109,15 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
         });
     }
 
+    public  ResourceLocation getModelPatched(boolean flatten){
+        return flatten ? getFlatModel() : getModel();
+    }
     protected abstract ResourceLocation getModel();
 
     protected abstract ResourceLocation getTexture(boolean tanned);
+    public  ResourceLocation getTexturePatched(boolean tanned, boolean flatten){
+        return flatten ? getFlatTexture(tanned) : getTexture(tanned);
+    }
 
     protected abstract ResourceLocation getFlatModel();
 
