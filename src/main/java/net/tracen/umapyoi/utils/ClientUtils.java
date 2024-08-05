@@ -1,6 +1,7 @@
 package net.tracen.umapyoi.utils;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
@@ -97,5 +98,11 @@ public class ClientUtils {
         multibuffersource$buffersource.endBatch();
         guiGraphic.pose().popPose();
         Lighting.setupFor3DItems();
+     }
+
+     public static void ifNonNull(Object obj, Runnable runnable) {
+         if (obj != null) {
+             runnable.run();
+         }
      }
 }
