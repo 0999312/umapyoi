@@ -208,6 +208,7 @@
   "umadata.umapyoi.daitaku_helios": "다이타쿠 헬리오스",
   "umadata.umapyoi.darley_arabian": "달리 아라비안",
   "umadata.umapyoi.dumnheint": "Dumnheint(모드 제작자)", 
+  "umadata.umapyoi.el_condor_pasa": "엘 콘도르 파사",
   "umadata.umapyoi.fine_motion": "파인 모션",
   "umadata.umapyoi.godolphin_barb": "고돌핀 바브",
   "umadata.umapyoi.gold_city": "골드 시티",
@@ -217,8 +218,11 @@
   "umadata.umapyoi.grass_wonder": "그래스 원더",
   "umadata.umapyoi.grass_wonder_umanet": "[세인트 제이드 힐러] 그래스 원더",
   "umadata.umapyoi.haru_urara": "하루 우라라",
+  "umadata.umapyoi.hokko_tarumae": "홋코 타루마에",
   "umadata.umapyoi.jungle_pocket": "정글 포켓",
   "umadata.umapyoi.kawakami_princess": "카와카미 프린세스",
+  "umadata.umapyoi.king_halo": "킹 헤일로",
+  "umadata.umapyoi.king_halo_wedding": "[Evergreen Identity] 킹 헤일로",
   "umadata.umapyoi.kitasan_black": "키타산 블랙",
   "umadata.umapyoi.ks_miracle": "케이에스 미라클",
   "umadata.umapyoi.little_cocon": "리틀 코콘",
@@ -226,6 +230,7 @@
   "umadata.umapyoi.manhattan_cafe_valentine": "[버들빛 밤] 맨해튼 카페",
   "umadata.umapyoi.matikanefukukitaru": "마치카네 후쿠키타루",
   "umadata.umapyoi.matikanetannhauser": "마치카네 탄호이저",
+  "umadata.umapyoi.matikanetannhauser_sports": "[블루・터뷸런스] 마치카네 탄호이저",
   "umadata.umapyoi.mayano_top_gun": "마야노 탑건",
   "umadata.umapyoi.meisho_dotou": "메이쇼 도토",
   "umadata.umapyoi.mejiro_ardan": "메지로 아르당",
@@ -259,6 +264,8 @@
   "umadata.umapyoi.tokai_teio": "토카이 테이오",
   "umadata.umapyoi.twinturbo": "트윈 터보",
   "umadata.umapyoi.venus_park": "베누스 파크",
+  "umadata.umapyoi.verxina": "비르시나",
+  "umadata.umapyoi.vivlos": "비블로스",
   "umadata.umapyoi.vodka": "보드카",
   "umadata.umapyoi.hishi_miracle": "히시 미라클",
   "umadata.umapyoi.daiwa_scarlet": "다이와 스칼렛",
@@ -324,4 +331,3 @@
   "umastatus.level.8": "\u00A7bD+",
   "umastatus.level.9": "\u00A7aC"
 }
- 
