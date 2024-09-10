@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import javax.annotation.Nullable;
-
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -16,8 +15,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.registry.training.SupportContainer;
@@ -27,6 +24,10 @@ import net.tracen.umapyoi.registry.training.TrainingSupport;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class TrainingItem extends Item implements SupportContainer {
     private final SupportType type;
     private final Supplier<TrainingSupport> support;
@@ -65,16 +66,15 @@ public class TrainingItem extends Item implements SupportContainer {
             return InteractionResultHolder.fail(itemInHand);
         }
     }
-    
+
     protected SupportStack getSupport() {
         return Suppliers.memoize(() -> new SupportStack(this.support.get(), this.level)).get();
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(this.getSupport().getDescription());
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        tooltipComponents.add(this.getSupport().getDescription());
     }
 
     @Override

@@ -1,19 +1,19 @@
 package net.tracen.umapyoi.block;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+import com.mojang.serialization.MapCodec;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
@@ -22,21 +22,32 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.block.entity.SupportAlbumPedestalBlockEntity;
 
-public class SupportAlbumPedestalBlock extends BaseEntityBlock {
-    public SupportAlbumPedestalBlock() {
-        super(Properties.copy(Blocks.STONE).noOcclusion());
-    }
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+public class SupportAlbumPedestalBlock extends AbstractPedestalBlock
+{
+    public static final MapCodec<SupportAlbumPedestalBlock> CODEC = simpleCodec(p -> new SupportAlbumPedestalBlock());
 
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos,
-            Player player) {
-        return BlockRegistry.UMA_PEDESTAL.get().getCloneItemStack(state, target, level, pos, player);
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
+    @SuppressWarnings("deprecation")
+    public SupportAlbumPedestalBlock() {
+        super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+        return BlockRegistry.UMA_PEDESTAL.toStack();
+    }
+
+    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
@@ -48,49 +59,30 @@ public class SupportAlbumPedestalBlock extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn,
-            BlockHitResult result) {
-        if (!world.isClientSide) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (!level.isClientSide) {
+            BlockEntity tileEntity = level.getBlockEntity(pos);
             if (tileEntity instanceof SupportAlbumPedestalBlockEntity blockEntity) {
-                ItemStack heldStack = player.getItemInHand(handIn);
-                ItemStack offhandStack = player.getOffhandItem();
-                if (blockEntity.isEmpty()) {
-                    if (!offhandStack.isEmpty()) {
-                        if (handIn.equals(InteractionHand.MAIN_HAND) && (heldStack.getItem() instanceof BlockItem)) {
-                            return InteractionResult.PASS; // Pass to off-hand if that item is placeable
-                        }
-                    }
-                    if (heldStack.isEmpty()) {
-                        return InteractionResult.PASS;
-                    } else if (blockEntity.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
-                        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.END_PORTAL_FRAME_FILL,
-                                SoundSource.BLOCKS, 1.0F, 0.8F);
-                        return InteractionResult.SUCCESS;
-                    }
-                } else {
-                    if (heldStack.isEmpty()) {
-                        if (!player.getInventory().add(blockEntity.removeItem())) {
-                            Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(),
-                                    blockEntity.removeItem());
-                        }
-
-                        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP,
-                                SoundSource.BLOCKS, 0.25F, 0.5F);
-                        return InteractionResult.SUCCESS;
-                    } else {
-                        player.displayClientMessage(Component.translatable("umapyoi.uma_pedestal.cannot_add_item"),
-                                true);
-                        return InteractionResult.PASS;
-                    }
-
-                }
+                return interactBEWithoutItem(level, pos, player, blockEntity.isEmpty(), blockEntity.removeItem(),
+                                             blockEntity
+                );
             }
         }
         return InteractionResult.SUCCESS;
     }
 
-    @SuppressWarnings("deprecation")
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!level.isClientSide) {
+            BlockEntity tileEntity = level.getBlockEntity(pos);
+            if (tileEntity instanceof SupportAlbumPedestalBlockEntity blockEntity) {
+                return interactBEWithItem(stack, level, pos, player, hand, blockEntity, false);
+            }
+        }
+        return ItemInteractionResult.SUCCESS;
+    }
+
     @Override
     public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
@@ -106,13 +98,15 @@ public class SupportAlbumPedestalBlock extends BaseEntityBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-            BlockEntityType<T> blockEntity) {
+                                                                  BlockEntityType<T> blockEntity) {
 
         if (level.isClientSide) {
             return createTickerHelper(blockEntity, BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
-                    SupportAlbumPedestalBlockEntity::animationTick);
+                                      SupportAlbumPedestalBlockEntity::animationTick
+            );
         }
         return createTickerHelper(blockEntity, BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
-                SupportAlbumPedestalBlockEntity::workingTick);
+                                  SupportAlbumPedestalBlockEntity::workingTick
+        );
     }
 }

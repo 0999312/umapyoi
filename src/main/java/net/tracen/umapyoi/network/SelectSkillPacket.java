@@ -1,50 +1,63 @@
 package net.tracen.umapyoi.network;
 
-import java.util.function.Supplier;
-
-import net.minecraft.network.FriendlyByteBuf;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.handling.ServerPayloadContext;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
-public class SelectSkillPacket {
-    private final String message;
+import javax.annotation.ParametersAreNonnullByDefault;
 
-    public SelectSkillPacket(FriendlyByteBuf buffer) {
-        message = buffer.readUtf(Short.MAX_VALUE);
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+public record SelectSkillPacket(String message) implements CustomPacketPayload
+{
+    public static final Type<SelectSkillPacket> TYPE = new Type<>(
+            ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "select_skill")
+    );
+    public static final StreamCodec<ByteBuf, SelectSkillPacket> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.STRING_UTF8,
+            SelectSkillPacket::message,
+            SelectSkillPacket::new
+    );
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 
-    public SelectSkillPacket(String message) {
-        this.message = message;
+    public static void handle(SelectSkillPacket payload, IPayloadContext context) {
+        if (context instanceof ServerPayloadContext serverContext) {
+            context.enqueueWork(() ->
+                                {
+                                    ServerPlayer player = serverContext.player();
+                                    if (player.isSpectator()) {
+                                        return;
+                                    }
+                                    ItemStack umaSoul = UmapyoiAPI.getUmaSoul(player);
+                                    if (!umaSoul.isEmpty()) {
+
+                                        if (payload.message.equals("latter")) {
+                                            UmaSoulUtils.selectLatterSkill(umaSoul);
+                                        }
+                                        else if (payload.message.equals("former")) {
+                                            UmaSoulUtils.selectFormerSkill(umaSoul);
+                                        }
+                                        else {
+                                            Umapyoi.getLogger().warn("Some one send a weird packet.");
+                                        }
+
+                                    }
+
+                                });
+        }
     }
-
-    public void toBytes(FriendlyByteBuf buf) {
-        buf.writeUtf(this.message);
-    }
-
-    public void handler(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ServerPlayer player = ctx.get().getSender();
-            if (player.isSpectator())
-                return;
-            ItemStack umaSoul = UmapyoiAPI.getUmaSoul(player);
-            if (!umaSoul.isEmpty()) {
-
-                if (this.message.equals("latter")) {
-                    UmaSoulUtils.selectLatterSkill(umaSoul);
-                } else if (this.message.equals("former")) {
-                    UmaSoulUtils.selectFormerSkill(umaSoul);
-                } else {
-                    Umapyoi.getLogger().warn("Some one send a weird packet.");
-                }
-
-            }
-
-        });
-        ctx.get().setPacketHandled(true);
-    }
-
 }

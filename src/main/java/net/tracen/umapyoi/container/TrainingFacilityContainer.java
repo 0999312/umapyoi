@@ -2,6 +2,7 @@ package net.tracen.umapyoi.container;
 
 import java.util.Objects;
 
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,16 +13,20 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.TrainingFacilityBlockEntity;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class TrainingFacilityContainer extends AbstractContainerMenu {
 
     public final TrainingFacilityBlockEntity tileEntity;
@@ -69,7 +74,7 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
 
-        if (slot != null && slot.hasItem()) {
+        if (slot.hasItem()) {
             ItemStack itemStack1 = slot.getItem();
             itemStack = itemStack1.copy();
 
@@ -80,7 +85,7 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
 
                 slot.onQuickCraft(itemStack1, itemStack);
             } else if (index >= 7) {
-                if (index >= 7 && index < 43) {
+                if (index < 43) {
                     if (!this.moveItemStackTo(itemStack1, 0, 7, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -171,11 +176,12 @@ public class TrainingFacilityContainer extends AbstractContainerMenu {
         }
     }
 
-    public static class TrainingUmaSlot extends SlotItemHandler {
+    public static class TrainingUmaSlot extends SlotItemHandler
+    {
         private final TrainingFacilityBlockEntity tileEntity;
 
         public TrainingUmaSlot(TrainingFacilityBlockEntity tileEntity, IItemHandler itemHandler, int index,
-                int xPosition, int yPosition) {
+                               int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
             this.tileEntity = tileEntity;
         }

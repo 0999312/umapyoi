@@ -23,6 +23,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerListener;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.UmaSelectMenu;
 import net.tracen.umapyoi.container.UmaSelectMenu.SelectComparator;
@@ -153,7 +154,7 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         if (name.length() <= 50 && !this.name.equalsIgnoreCase(name)) {
             this.name = name;
             this.selectIndex = -1;
-            NetPacketHandler.INSTANCE.sendToServer(new EmptyResultPacket());
+            PacketDistributor.sendToServer(EmptyResultPacket.packet());
         }
     }
     
@@ -323,7 +324,7 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
                     Minecraft.getInstance().getSoundManager()
                             .play(SimpleSoundInstance.forUI(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
                     this.selectIndex = l;
-                    NetPacketHandler.INSTANCE.sendToServer(
+                    PacketDistributor.sendToServer(
                             new SetupResultPacket(this.getResults().get(this.getSelectIndex()).toString()));
                     return true;
                 }
