@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.Lists;
 
-import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -44,7 +43,7 @@ import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.GachaUtils;
 
-public class SilverSupportAlbumPedestalBlockEntity extends SyncedBlockEntity implements Gachable{
+public class SilverSupportAlbumPedestalBlockEntity extends AbstractPedestalBlockEntity implements Gachable{
 
     public int time;
     public float flip;
@@ -220,10 +219,12 @@ public class SilverSupportAlbumPedestalBlockEntity extends SyncedBlockEntity imp
         return inventory.getStackInSlot(0);
     }
 
+    @Override
     public boolean isEmpty() {
         return inventory.getStackInSlot(0).isEmpty();
     }
 
+    @Override
     public boolean addItem(ItemStack itemStack) {
         if (isEmpty() && !itemStack.isEmpty()) {
             inventory.setStackInSlot(0, itemStack.split(1));

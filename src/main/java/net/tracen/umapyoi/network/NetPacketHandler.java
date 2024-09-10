@@ -1,32 +1,40 @@
 package net.tracen.umapyoi.network;
 
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.tracen.umapyoi.Umapyoi;
 
-public class NetPacketHandler {
-    public static SimpleChannel INSTANCE;
+@EventBusSubscriber(modid = Umapyoi.MODID, bus = EventBusSubscriber.Bus.MOD)
+public class NetPacketHandler
+{
     public static final String PROTOCOL_VERSION = "1.0";
-    private static int ID = 0;
 
-    public static int nextID() {
-        return ID++;
-    }
-
-    public static void registerMessage() {
-        INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(Umapyoi.MODID, "network"),
-                () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
-
-        INSTANCE.messageBuilder(UseSkillPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
-                .encoder(UseSkillPacket::toBytes).decoder(UseSkillPacket::new).consumerNetworkThread(UseSkillPacket::handler).add();
-        INSTANCE.messageBuilder(SelectSkillPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
-                .encoder(SelectSkillPacket::toBytes).decoder(SelectSkillPacket::new)
-                .consumerNetworkThread(SelectSkillPacket::handler).add();
-        
-        INSTANCE.messageBuilder(SetupResultPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
-                .encoder(SetupResultPacket::toBytes).decoder(SetupResultPacket::new)
-                .consumerNetworkThread(SetupResultPacket::handler).add();
-        INSTANCE.messageBuilder(EmptyResultPacket.class, nextID(), NetworkDirection.PLAY_TO_SERVER)
-                .encoder(EmptyResultPacket::toBytes).decoder(EmptyResultPacket::new)
-                .consumerNetworkThread(EmptyResultPacket::handler).add();
+    @SubscribeEvent
+    public static void onNetworkRegistry(final RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar(PROTOCOL_VERSION);
+        registrar.playToServer(
+                         UseSkillPacket.TYPE,
+                         UseSkillPacket.STREAM_CODEC,
+                         UseSkillPacket::handle
+                 )
+                 .playToServer(
+                         SelectSkillPacket.TYPE,
+                         SelectSkillPacket.STREAM_CODEC,
+                         SelectSkillPacket::handle
+                 )
+                 .playToServer(
+                         SetupResultPacket.TYPE,
+                         SetupResultPacket.STREAM_CODEC,
+                         SetupResultPacket::handle
+                 )
+                 .playToServer(
+                         EmptyResultPacket.TYPE,
+                         EmptyResultPacket.STREAM_CODEC,
+                         EmptyResultPacket::handle
+                 );
     }
 }

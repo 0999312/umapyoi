@@ -1,7 +1,10 @@
 package net.tracen.umapyoi.client;
 
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -10,21 +13,26 @@ import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
-public class ActionBarOverlay implements IGuiOverlay {
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+public class ActionBarOverlay implements LayeredDraw.Layer {
     public static final ActionBarOverlay INSTANCE = new ActionBarOverlay();
     private final Minecraft minecraft = Minecraft.getInstance();
 
     private ActionBarOverlay() {
     }
 
-    private static final ResourceLocation HUD = new ResourceLocation(Umapyoi.MODID, "textures/gui/actionbar.png");
+    private static final ResourceLocation HUD = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/gui/actionbar.png");
 
     @Override
-    public void render(ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int width, int height) {
+    public void render(GuiGraphics guiGraphics, DeltaTracker tracker) {
         if (!UmapyoiConfig.OVERLAY_SWITCH.get())
             return;
-        int x = width;
-        int y = height;
+
+        int x = guiGraphics.guiWidth();
+        int y = guiGraphics.guiHeight();
 
         Player player = minecraft.player;
         if (player.isSpectator())
@@ -47,5 +55,4 @@ public class ActionBarOverlay implements IGuiOverlay {
         String str = String.valueOf(ap);
         guiGraphics.drawString(this.minecraft.font, str, x - 8 - this.minecraft.font.width(str), y - 3 - apbar, 0xFFFFFF);
     }
-
 }

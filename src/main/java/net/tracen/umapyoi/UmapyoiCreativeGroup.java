@@ -80,7 +80,7 @@ public class UmapyoiCreativeGroup {
     private static void fillSupportCard(CreativeModeTab.Output output) {
         if (Minecraft.getInstance().getConnection() != null) {
             SupportCardItem.sortedCardDataList().forEach(card -> {
-                if (card.getKey().location().equals(new ResourceLocation(Umapyoi.MODID, "blank_card")))
+                if (card.getKey().location().equals(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "blank_card")))
                     return;
                 ItemStack result = ItemRegistry.SUPPORT_CARD.get().getDefaultInstance();
                 result.getOrCreateTag().putString("support_card", card.getKey().location().toString());

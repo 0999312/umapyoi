@@ -39,7 +39,7 @@ import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.GachaUtils;
 
-public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implements Gachable{
+public class SupportAlbumPedestalBlockEntity extends AbstractPedestalBlockEntity implements Gachable{
 
     public int time;
     public float flip;
@@ -215,10 +215,12 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
         return inventory.getStackInSlot(0);
     }
 
+    @Override
     public boolean isEmpty() {
         return inventory.getStackInSlot(0).isEmpty();
     }
 
+    @Override
     public boolean addItem(ItemStack itemStack) {
         if (isEmpty() && !itemStack.isEmpty()) {
             inventory.setStackInSlot(0, itemStack.split(1));

@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -24,6 +25,10 @@ import net.tracen.umapyoi.block.ThreeGoddessBlock;
 import net.tracen.umapyoi.block.entity.ThreeGoddessBlockEntity;
 import net.tracen.umapyoi.utils.ClientUtils;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddessBlockEntity> {
 	public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
 			"textures/model/three_goddesses.png");
@@ -64,7 +69,7 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
 
 	private void renderAnimation(ThreeGoddessBlockEntity tileEntity, float partialTicks, PoseStack poseStack,
 			MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-		ItemStack jewel = tileEntity.getInventory().getStackInSlot(0);
+		ItemStack jewel = tileEntity.getInventory().get(0);
 		ItemStack soul = tileEntity.getInventory().getStackInSlot(3);
 		if (jewel.isEmpty() && soul.isEmpty())
 			return;

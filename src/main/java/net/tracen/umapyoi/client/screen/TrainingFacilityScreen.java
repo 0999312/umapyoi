@@ -2,6 +2,7 @@ package net.tracen.umapyoi.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -12,6 +13,10 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.TrainingFacilityContainer;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFacilityContainer> {
     private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
             "textures/gui/training_snap.png");
@@ -26,7 +31,7 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
 
     @Override
     public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
-        this.renderBackground(graphic, mouseY, mouseY, partialTicks);
+        this.renderBackground(graphic, mouseX, mouseY, partialTicks);
         super.render(graphic, mouseX, mouseY, partialTicks);
         this.renderTooltip(graphic, mouseX, mouseY);
     }
@@ -104,9 +109,8 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
             ItemStack stack = this.getMenu().inventory.getStackInSlot(i);
             if (stack.getItem()instanceof SupportContainer support) {
                 switch (support.getSupportLevel(this.minecraft.level, stack)) {
-                case EASTER_EGG -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 171, 205, 26, 26);
-                case R -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 171, 205, 26, 26);
-                case SR -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 198, 205, 26, 26);
+                case EASTER_EGG, R -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 171, 205, 26, 26);
+                    case SR -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 198, 205, 26, 26);
                 case SSR -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 7 + (i - 1) * 27, this.topPos + 14, 225, 205, 26, 26);
                 default -> throw new IllegalArgumentException(
                         "Unexpected value: " + support.getSupportLevel(this.minecraft.level, stack));
@@ -119,9 +123,8 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
             ItemStack stack = this.getMenu().inventory.getStackInSlot(i);
             if (stack.getItem()instanceof SupportContainer support) {
                 switch (support.getSupportLevel(this.minecraft.level, stack)) {
-                case EASTER_EGG -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 171, 205, 26, 26);
-                case R -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 171, 205, 26, 26);
-                case SR -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 198, 205, 26, 26);
+                case EASTER_EGG, R -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 171, 205, 26, 26);
+                    case SR -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 198, 205, 26, 26);
                 case SSR -> graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 89 + (i - 4) * 27, this.topPos + 14, 225, 205, 26, 26);
                 default -> throw new IllegalArgumentException(
                         "Unexpected value: " + support.getSupportLevel(this.minecraft.level, stack));

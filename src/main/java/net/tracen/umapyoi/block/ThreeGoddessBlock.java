@@ -1,12 +1,13 @@
 package net.tracen.umapyoi.block;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+import com.mojang.serialization.MapCodec;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -24,18 +25,28 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.block.entity.ThreeGoddessBlockEntity;
 
-public class ThreeGoddessBlock extends BaseEntityBlock {
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+public class ThreeGoddessBlock extends BaseEntityBlock
+{
+    public static final MapCodec<ThreeGoddessBlock> CODEC = simpleCodec(p -> new ThreeGoddessBlock());
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
+    @SuppressWarnings("deprecation")
     public ThreeGoddessBlock() {
-        super(Properties.copy(Blocks.POLISHED_ANDESITE).noOcclusion());
+        super(Properties.ofLegacyCopy(Blocks.POLISHED_ANDESITE).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
@@ -53,7 +64,6 @@ public class ThreeGoddessBlock extends BaseEntityBlock {
         builder.add(FACING);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         pLevel.setBlock(pPos.above(), BlockRegistry.THREE_GODDESS_UPPER.get().defaultBlockState(), UPDATE_ALL);
@@ -67,23 +77,21 @@ public class ThreeGoddessBlock extends BaseEntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState state = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-        return state;
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn,
-            BlockHitResult result) {
-        if (!world.isClientSide) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (!level.isClientSide) {
+            BlockEntity tileEntity = level.getBlockEntity(pos);
             if (tileEntity instanceof ThreeGoddessBlockEntity blockEntity) {
-                NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
+                player.openMenu(blockEntity, pos);
             }
+            return InteractionResult.CONSUME;
         }
         return InteractionResult.SUCCESS;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
@@ -102,12 +110,14 @@ public class ThreeGoddessBlock extends BaseEntityBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-            BlockEntityType<T> blockEntity) {
+                                                                  BlockEntityType<T> blockEntity) {
         if (level.isClientSide) {
             return createTickerHelper(blockEntity, BlockEntityRegistry.THREE_GODDESS.get(),
-                    ThreeGoddessBlockEntity::animationTick);
+                                      ThreeGoddessBlockEntity::animationTick
+            );
         }
         return createTickerHelper(blockEntity, BlockEntityRegistry.THREE_GODDESS.get(),
-                ThreeGoddessBlockEntity::workingTick);
+                                  ThreeGoddessBlockEntity::workingTick
+        );
     }
 }

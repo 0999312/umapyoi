@@ -3,6 +3,7 @@ package net.tracen.umapyoi.block.entity;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
