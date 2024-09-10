@@ -24,4 +24,7 @@ public record UmaDataBasicStatus(int speed, int stamina, int strength, int guts,
 			ByteBufCodecs.INT, UmaDataBasicStatus::wisdom,
 			UmaDataBasicStatus::new
 	);
+	
+	public static final UmaDataBasicStatus DEFAULT_STATUS = new UmaDataBasicStatus(1, 1, 1, 1, 1);
+	public static final UmaDataBasicStatus DEFAULT_MAX_STATUS = new UmaDataBasicStatus(12, 12, 12, 12, 12);
 }

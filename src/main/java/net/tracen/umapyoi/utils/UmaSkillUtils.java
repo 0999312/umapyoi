@@ -4,8 +4,11 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.common.NeoForge;
 import net.tracen.umapyoi.events.SkillEvent;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.item.data.DataLocation;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
@@ -18,7 +21,7 @@ public class UmaSkillUtils {
         if (skill == null)
             return SupportStack.EMPTY;
         SupportStack result = new SupportStack(TrainingSupportRegistry.SKILL_SUPPORT.get(), 1);
-        result.getOrCreateTag().putString("skill", UmaSkillRegistry.REGISTRY.get().getKey(skill).toString());
+        result.getOrCreateTag().putString("skill", UmaSkillRegistry.REGISTRY.getKey(skill).toString());
         return result;
     }
 
@@ -34,7 +37,8 @@ public class UmaSkillUtils {
         if (skill == null)
             return ItemStack.EMPTY;
         ItemStack result = new ItemStack(ItemRegistry.SKILL_BOOK.get());
-        result.getOrCreateTag().putString("skill", UmaSkillRegistry.REGISTRY.get().getKey(skill).toString());
+        result.update(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(UmaSkillRegistry.BASIC_PACE.getId()), 
+        		loc -> new DataLocation(UmaSkillRegistry.REGISTRY.getKey(skill)));
         return result;
     }
     
@@ -47,9 +51,9 @@ public class UmaSkillUtils {
     public static void learnSkill(ItemStack stack, ResourceLocation skill) {
         if (!UmaSoulUtils.hasEmptySkillSlot(stack))
             return;
-        if (skill != null && UmaSkillRegistry.REGISTRY.get().containsKey(skill)) {
+        if (skill != null && UmaSkillRegistry.REGISTRY.containsKey(skill)) {
             ListTag skills = UmaSoulUtils.getSkills(stack);
-            UmaSkill skillItem = UmaSkillRegistry.REGISTRY.get().getValue(skill);
+            UmaSkill skillItem = UmaSkillRegistry.REGISTRY.get(skill);
             if(skillItem.getUpperSkill() !=null)
                 if (hasLearnedSkill(stack, skillItem.getUpperSkill()))
                     return;
@@ -62,7 +66,7 @@ public class UmaSkillUtils {
             if (!hasLearnedSkill(stack, skill))
                 skills.add(tag);
         }
-        MinecraftForge.EVENT_BUS.post(new SkillEvent.LearnSkillEvent(skill));
+        NeoForge.EVENT_BUS.post(new SkillEvent.LearnSkillEvent(skill));
     }
 
     public static boolean hasLearnedSkill(ItemStack stack, ResourceLocation skill) {
@@ -75,7 +79,7 @@ public class UmaSkillUtils {
         ListTag skills = UmaSoulUtils.getSkills(stack);
         UmaSkill target = null;
         for(int i = 0;i<skills.size();i++) {
-            target = UmaSkillRegistry.REGISTRY.get().getValue(ResourceLocation.tryParse(skills.get(i).getAsString()));
+            target = UmaSkillRegistry.REGISTRY.get(ResourceLocation.tryParse(skills.get(i).getAsString()));
             if(target.getUpperSkill() == null)
                 continue;
             if(target !=null && target.getUpperSkill().equals(skill))

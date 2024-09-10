@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
-import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.registry.umadata.Motivations;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
@@ -73,17 +72,8 @@ public class UmaSoulUtils {
                 : Motivations.valueOf(stack.getOrCreateTag().getString("motivation").toUpperCase());
     }
 
-    public static Growth getGrowth(ItemStack stack) {
-        return stack.getOrCreateTag().getString("growth").isBlank() ? Growth.UNTRAINED
-                : Growth.valueOf(stack.getOrCreateTag().getString("growth").toUpperCase());
-    }
-
     public static void setMotivation(ItemStack stack, Motivations motivation) {
         stack.getOrCreateTag().putString("motivation", motivation.name().toLowerCase());
-    }
-
-    public static void setGrowth(ItemStack stack, Growth growth) {
-        stack.getOrCreateTag().putString("growth", growth.name().toLowerCase());
     }
 
     public static ListTag getSkills(ItemStack stack) {

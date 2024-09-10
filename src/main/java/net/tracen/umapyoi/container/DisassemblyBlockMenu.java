@@ -20,6 +20,7 @@ import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.SupportCardItem;
 import net.tracen.umapyoi.item.UmaSoulItem;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 import net.tracen.umapyoi.utils.GachaRanking;
 
@@ -144,11 +145,11 @@ public class DisassemblyBlockMenu extends AbstractContainerMenu {
         boolean isSupport = inputSoul.getItem() instanceof SupportContainer;
         if (!(inputSoul.getItem() instanceof UmaSoulItem || isSupport))
             return ItemStack.EMPTY;
-        if(!inputSoul.getOrCreateTag().contains("ranking")) 
+        if(!inputSoul.has(DataComponentsTypeRegistry.GACHA_RANKING)) 
             return ItemStack.EMPTY;
         
         ItemStack result = ItemStack.EMPTY;
-        GachaRanking ranking = GachaRanking.valueOf(inputSoul.getOrCreateTag().getString("ranking").toUpperCase());
+        GachaRanking ranking = inputSoul.get(DataComponentsTypeRegistry.GACHA_RANKING).ranking();
         switch(ranking) {
             case SR : {
                 result = isSupport

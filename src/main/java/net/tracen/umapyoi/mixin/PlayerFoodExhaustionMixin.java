@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
-import net.tracen.umapyoi.registry.umadata.Growth;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
@@ -33,7 +33,7 @@ public class PlayerFoodExhaustionMixin {
     }
     
     private float getExactProperty(ItemStack stack, int num, double limit) {
-        var retiredValue = UmaSoulUtils.getGrowth(stack) == Growth.RETIRED ? 1.0D : 0.25D;
+        var retiredValue = stack.has(DataComponentsTypeRegistry.UMADATA_TRAINING) ? 1.0D : 0.25D;
         var totalProperty = propertyPercentage(stack, num);
         return (float) (UmaSoulUtils.getMotivation(stack).getMultiplier() * limit * retiredValue * totalProperty);
     }

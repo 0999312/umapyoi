@@ -218,7 +218,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     }
 
     public void createOtherFactors(ItemStack inputSoul, int ranking, List<UmaFactorStack> stackList) {
-        UmaFactorRegistry.REGISTRY.get().getValues().stream()
+        UmaFactorRegistry.REGISTRY.stream()
                 .filter(fac -> fac.getFactorType() == FactorType.OTHER && !(fac instanceof SkillFactor))
                 .forEach(fac -> {
                     int skillLevel = this.rand.nextInt(ranking > 19 ? 6 : 4);

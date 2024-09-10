@@ -16,7 +16,9 @@ import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.events.ApplyFactorEvent;
 import net.tracen.umapyoi.events.ApplyTrainingSupportEvent;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.umadata.Motivations;
+import net.tracen.umapyoi.registry.umadata.UmaDataExtraStatus;
 import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaSkillUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
@@ -71,15 +73,15 @@ public class CommonEvents {
     public static void onTrainingFinished(ApplyTrainingSupportEvent.Post event) {
         var umaSoul = event.getUmaSoul();
         UmaSkillUtils.syncActionPoint(umaSoul);
-        CompoundTag tag = umaSoul.getOrCreateTag();
-        tag.putInt("resultRanking", ResultRankingUtils.generateRanking(umaSoul));
+        umaSoul.update(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT, 
+        		data->new UmaDataExtraStatus(data.actionPoint(), ResultRankingUtils.generateRanking(umaSoul), data.motivation()));
     }
 
     @SubscribeEvent
     public static void onFactorFinished(ApplyFactorEvent.Post event) {
         var umaSoul = event.getUmaSoul();
         UmaSkillUtils.syncActionPoint(umaSoul);
-        CompoundTag tag = umaSoul.getOrCreateTag();
-        tag.putInt("resultRanking", ResultRankingUtils.generateRanking(umaSoul));
+        umaSoul.update(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT, 
+        		data->new UmaDataExtraStatus(data.actionPoint(), ResultRankingUtils.generateRanking(umaSoul), data.motivation()));
     }
 }
