@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.client.key;
 
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
 
 import com.mojang.blaze3d.platform.InputConstants;
@@ -29,15 +30,15 @@ public class SkillKeyMapping {
     @SubscribeEvent
     public static void onKeyboardInput(InputEvent.Key event) {
         if (KEY_USE_SKILL.isDown()) {
-            NetPacketHandler.INSTANCE.sendToServer(new UseSkillPacket("check check"));
+            PacketDistributor.sendToServer(new UseSkillPacket("check check"));
             return;
         }
         if (KEY_FORMER_SKILL.isDown()) {
-            NetPacketHandler.INSTANCE.sendToServer(new SelectSkillPacket("former"));
+            PacketDistributor.sendToServer(new SelectSkillPacket("former"));
             return;
         }
         if (KEY_LATTER_SKILL.isDown()) {
-            NetPacketHandler.INSTANCE.sendToServer(new SelectSkillPacket("latter"));
+            PacketDistributor.sendToServer(new SelectSkillPacket("latter"));
             return;
         }
     }

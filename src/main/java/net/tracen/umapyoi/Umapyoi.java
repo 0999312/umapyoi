@@ -32,7 +32,6 @@ public class Umapyoi {
     }
 
     public Umapyoi(IEventBus modEventBus, ModContainer modContainer) {
-        modEventBus.addListener(this::setup);
         UmapyoiCreativeGroup.CREATIVE_MODE_TABS.register(modEventBus);
         TrainingSupportRegistry.SUPPORTS.register(modEventBus);
         UmaSkillRegistry.SKILLS.register(modEventBus);
@@ -47,10 +46,6 @@ public class Umapyoi {
         DataComponentsTypeRegistry.DATA_COMPONENTS.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         modContainer.registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
-    }
-
-    private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(NetPacketHandler::registerMessage);
     }
 
     public static Logger getLogger() {
