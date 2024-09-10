@@ -27,4 +27,8 @@ public record UmaDataBasicStatus(int speed, int stamina, int strength, int guts,
 	
 	public static final UmaDataBasicStatus DEFAULT_STATUS = new UmaDataBasicStatus(1, 1, 1, 1, 1);
 	public static final UmaDataBasicStatus DEFAULT_MAX_STATUS = new UmaDataBasicStatus(12, 12, 12, 12, 12);
+	
+	public static UmaDataBasicStatus init(int[] data) {
+		return new UmaDataBasicStatus(data[0], data[1], data[2], data[3], data[4]);
+	}
 }

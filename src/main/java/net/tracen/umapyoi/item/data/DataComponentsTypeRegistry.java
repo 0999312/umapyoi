@@ -42,6 +42,13 @@ public class DataComponentsTypeRegistry {
 		        .networkSynchronized(UmaDataBasicStatus.STREAM)
 	);
 	
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<UmaDataBasicStatus>> UMADATA_STATUS_RATE = 
+			DATA_COMPONENTS.registerComponentType("umadata_status_rate", 
+					builder -> builder
+			        .persistent(UmaDataBasicStatus.CODEC)
+			        .networkSynchronized(UmaDataBasicStatus.STREAM)
+		);
+	
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<UmaDataExtraStatus>> UMADATA_EXTRA_STATUS = 
 		DATA_COMPONENTS.registerComponentType("umadata_extra_status", 
 				builder -> builder
