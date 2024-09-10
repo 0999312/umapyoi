@@ -151,7 +151,7 @@ public class UmaSoulUtils {
     }
 
     public static int getActionPoint(ItemStack stack) {
-        return Math.max(stack.getOrCreateTag().getInt("actionPoint"), 0);
+        return Math.max(stack.get(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS).actionPoint(), 0);
     }
 
     public static void setActionPoint(ItemStack stack, int ap) {
