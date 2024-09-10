@@ -20,18 +20,17 @@ public class FadedUmaSoulItem extends Item {
         super(Umapyoi.defaultItemProperties().stacksTo(1));
     }
 
-    @Override
-    public void appendHoverText(ItemStack pStack, Level pLevel, List<Component> pTooltipComponents,
-            TooltipFlag pIsAdvanced) {
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        pTooltipComponents.add(Component.translatable("tooltip.umapyoi.umadata.name",
-                UmaSoulUtils.getTranslatedUmaName(this.getUmaName(pStack))).withStyle(ChatFormatting.GRAY));
-    }
+	@Override
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents,
+			TooltipFlag tooltipFlag) {
+		tooltipComponents.add(Component.translatable("tooltip.umapyoi.umadata.name",
+            UmaSoulUtils.getTranslatedUmaName(this.getUmaName(stack))).withStyle(ChatFormatting.GRAY));
+	}
 
-    public ResourceLocation getUmaName(ItemStack pStack) {
-        if (pStack.getOrCreateTag().getString("name").isBlank())
+    public ResourceLocation getUmaName(ItemStack stack) {
+        if (stack.getOrCreateTag().getString("name").isBlank())
             return UmaData.DEFAULT_UMA_ID;
-        return Optional.ofNullable(ResourceLocation.tryParse(pStack.getOrCreateTag().getString("name")))
+        return Optional.ofNullable(ResourceLocation.tryParse(stack.getOrCreateTag().getString("name")))
                 .orElse(UmaData.DEFAULT_UMA_ID);
     }
 

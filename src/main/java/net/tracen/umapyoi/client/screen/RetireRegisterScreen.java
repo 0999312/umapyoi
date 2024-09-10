@@ -15,7 +15,7 @@ import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegisterMenu> {
 
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
+    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
             "textures/gui/retire_gui.png");
 
     public RetireRegisterScreen(RetireRegisterMenu screenContainer, Inventory inv, Component titleIn) {
@@ -28,7 +28,7 @@ public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegister
 
     @Override
     public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
-        this.renderBackground(graphic);
+        this.renderBackground(graphic, mouseY, mouseY, partialTicks);
         super.render(graphic, mouseX, mouseY, partialTicks);
         this.renderTooltip(graphic, mouseX, mouseY);
 

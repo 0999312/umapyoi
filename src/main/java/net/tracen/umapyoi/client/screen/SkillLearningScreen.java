@@ -17,7 +17,7 @@ import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public class SkillLearningScreen extends ItemCombinerScreen<SkillLearningMenu> {
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
+    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
             "textures/gui/skill_learning.png");
 
     public SkillLearningScreen(SkillLearningMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -37,7 +37,7 @@ public class SkillLearningScreen extends ItemCombinerScreen<SkillLearningMenu> {
                     : ItemStack.EMPTY;
             boolean has_retired = UmaSoulUtils.getGrowth(soul) == Growth.RETIRED;
             boolean has_learned = UmaSoulUtils.getSkills(soul)
-                    .contains(StringTag.valueOf(UmaSkillRegistry.REGISTRY.get().getKey(skill).toString()));
+                    .contains(StringTag.valueOf(UmaSkillRegistry.REGISTRY.getKey(skill).toString()));
             boolean has_learned_upper = skill.getUpperSkill() != null && 
                     UmaSoulUtils.getSkills(soul).contains(StringTag.valueOf(skill.getUpperSkill().toString()));
             boolean slot_needed = !soul.isEmpty() && !UmaSoulUtils.hasEmptySkillSlot(soul);

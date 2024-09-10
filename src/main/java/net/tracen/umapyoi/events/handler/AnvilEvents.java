@@ -2,17 +2,18 @@ package net.tracen.umapyoi.events.handler;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.event.AnvilUpdateEvent;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.utils.GachaRanking;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class AnvilEvents {
     @SubscribeEvent
     public static void onAnvilEgg(AnvilUpdateEvent event) {

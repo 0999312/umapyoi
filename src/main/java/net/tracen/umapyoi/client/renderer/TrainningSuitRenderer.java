@@ -13,8 +13,8 @@ public class TrainningSuitRenderer extends AbstractSuitRenderer {
 
     @Override
     protected ResourceLocation getTexture(boolean tanned) {
-        return tanned ? new ResourceLocation(Umapyoi.MODID, "textures/model/trainning_suit_tanned.png")
-                : new ResourceLocation(Umapyoi.MODID, "textures/model/trainning_suit.png");
+        return tanned ? ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/trainning_suit_tanned.png")
+                : ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/trainning_suit.png");
     }
 
     @Override
@@ -24,8 +24,8 @@ public class TrainningSuitRenderer extends AbstractSuitRenderer {
 
     @Override
     protected ResourceLocation getFlatTexture(boolean tanned) {
-        return tanned ? new ResourceLocation(Umapyoi.MODID, "textures/model/trainning_suit_tanned.png")
-                : new ResourceLocation(Umapyoi.MODID, "textures/model/trainning_suit.png");
+        return tanned ? ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/trainning_suit_tanned.png")
+                : ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/trainning_suit.png");
     }
 
 }

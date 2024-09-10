@@ -22,7 +22,7 @@ public class UmaSkill{
     private String descriptionId;
 
     public static final ResourceKey<Registry<UmaSkill>> REGISTRY_KEY = ResourceKey
-            .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "skill"));
+            .createRegistryKey(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "skill"));
 
     public UmaSkill(Builder builder) {
         this.type = builder.type;
@@ -54,12 +54,12 @@ public class UmaSkill{
     }
 
     public String toString() {
-        return UmaSkillRegistry.REGISTRY.get().getKey(this).toString();
+        return UmaSkillRegistry.REGISTRY.getKey(this).toString();
     }
 
     protected String getOrCreateDescriptionId() {
         if (this.descriptionId == null) {
-            this.descriptionId = Util.makeDescriptionId("uma_skill", UmaSkillRegistry.REGISTRY.get().getKey(this));
+            this.descriptionId = Util.makeDescriptionId("uma_skill", UmaSkillRegistry.REGISTRY.getKey(this));
         }
         return this.descriptionId;
     }

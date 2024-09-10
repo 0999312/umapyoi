@@ -18,8 +18,8 @@ public class SteelWillSkill extends UmaSkill {
         UmaStatusUtils.addMotivation(UmapyoiAPI.getUmaSoul(user));
         user.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 300, 1));
         user.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 300, 1));
-        if (user.hasEffect(MobEffectRegistry.PANICKING.get()))
-            user.removeEffect(MobEffectRegistry.PANICKING.get());
+        if (user.hasEffect(MobEffectRegistry.PANICKING))
+            user.removeEffect(MobEffectRegistry.PANICKING);
     }
 
 }

@@ -78,8 +78,8 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay,
-            float red, float green, float blue, float alpha) {
-        super.renderToBuffer(poseStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+    		int color) {
+        super.renderToBuffer(poseStack, buffer, packedLight, packedOverlay, color);
     }
 
     @Override

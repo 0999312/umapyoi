@@ -36,7 +36,7 @@ public class UmaSuitCuriosWrapper implements ICurio {
 
     @Override
     public SoundInfo getEquipSound(SlotContext slotContext) {
-        return new SoundInfo(SoundEvents.ARMOR_EQUIP_LEATHER, 1.0f, 1.0f);
+        return new SoundInfo(SoundEvents.ARMOR_EQUIP_LEATHER.value(), 1.0f, 1.0f);
     }
 
     @Override

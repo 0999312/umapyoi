@@ -86,8 +86,8 @@ public class SupportAlbumPedestalBlockRender implements BlockEntityRenderer<Supp
         float f6 = Mth.lerp(pPartialTick, pBlockEntity.oOpen, pBlockEntity.open);
         this.bookModel.setupAnim(f, Mth.clamp(f4, 0.0F, 1.0F), Mth.clamp(f5, 0.0F, 1.0F), f6);
         VertexConsumer vertexconsumer = pBufferSource.getBuffer(
-                RenderType.entitySolid(new ResourceLocation(Umapyoi.MODID, "textures/model/support_card_album.png")));
-        this.bookModel.render(pPoseStack, vertexconsumer, pPackedLight, pPackedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+                RenderType.entitySolid(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/support_card_album.png")));
+        this.bookModel.render(pPoseStack, vertexconsumer, pPackedLight, pPackedOverlay, -1);
         pPoseStack.popPose();
     }
 }

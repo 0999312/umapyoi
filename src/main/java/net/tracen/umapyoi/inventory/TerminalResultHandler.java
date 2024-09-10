@@ -2,7 +2,7 @@ package net.tracen.umapyoi.inventory;
 
 import javax.annotation.Nonnull;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 

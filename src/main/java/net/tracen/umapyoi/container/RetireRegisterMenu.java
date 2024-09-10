@@ -174,9 +174,9 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
 
     public List<UmaFactorStack> createResultFactors(ItemStack inputSoul, int ranking) {
         @NotNull
-        Stream<UmaFactor> status = UmaFactorRegistry.REGISTRY.get().getValues().stream()
+        Stream<UmaFactor> status = UmaFactorRegistry.REGISTRY.stream()
                 .filter(fac -> fac.getFactorType() == FactorType.STATUS);
-        long statusCount = UmaFactorRegistry.REGISTRY.get().getValues().stream()
+        long statusCount = UmaFactorRegistry.REGISTRY.stream()
                 .filter(fac -> fac.getFactorType() == FactorType.STATUS).count();
         StatusFactor statusFactor = (StatusFactor) status.skip(rand.nextLong(statusCount)).findFirst()
                 .orElse(UmaFactorRegistry.SPEED_FACTOR.get());
@@ -187,9 +187,9 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         var statusFactorStack = new UmaFactorStack(statusFactor,
                 rand.nextInt(i) + 1);
 
-        Stream<UmaFactor> extraStatus = UmaFactorRegistry.REGISTRY.get().getValues().stream()
+        Stream<UmaFactor> extraStatus = UmaFactorRegistry.REGISTRY.stream()
                 .filter(fac -> fac.getFactorType() == FactorType.EXTRASTATUS);
-        long extraStatusCount = UmaFactorRegistry.REGISTRY.get().getValues().stream()
+        long extraStatusCount = UmaFactorRegistry.REGISTRY.stream()
                 .filter(fac -> fac.getFactorType() == FactorType.EXTRASTATUS).count();
         UmaFactor extraStatusFactor = extraStatus.skip(rand.nextLong(extraStatusCount)).findFirst()
                 .orElse(UmaFactorRegistry.PHYSIQUE_FACTOR.get());

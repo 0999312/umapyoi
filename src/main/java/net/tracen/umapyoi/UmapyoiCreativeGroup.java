@@ -5,13 +5,13 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.SupportCardItem;
 import net.tracen.umapyoi.item.UmaSoulItem;
@@ -28,7 +28,7 @@ public class UmapyoiCreativeGroup {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
             .create(Registries.CREATIVE_MODE_TAB, Umapyoi.MODID);
 
-    public static final RegistryObject<CreativeModeTab> UMAPYOI_ITEMS = CREATIVE_MODE_TABS.register("umapyoi",
+    public static final Holder<CreativeModeTab> UMAPYOI_ITEMS = CREATIVE_MODE_TABS.register("umapyoi",
             () -> CreativeModeTab.builder().icon(ItemRegistry.HACHIMI_MID.get()::getDefaultInstance)
                     .title(Component.translatable("itemGroup.umapyoi")).displayItems((features, output) -> {
                         ItemRegistry.ITEMS.getEntries().forEach(item -> {

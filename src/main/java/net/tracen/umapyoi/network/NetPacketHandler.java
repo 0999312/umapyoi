@@ -1,9 +1,6 @@
 package net.tracen.umapyoi.network;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
 import net.tracen.umapyoi.Umapyoi;
 
 public class NetPacketHandler {

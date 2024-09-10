@@ -18,10 +18,10 @@ public class UmaFactor{
     private String descriptionId;
 
     public static final ResourceKey<Registry<UmaFactor>> REGISTRY_KEY = ResourceKey
-            .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "factor"));
+            .createRegistryKey(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "factor"));
 
     public static final Codec<UmaFactor> CODEC = ResourceLocation.CODEC
-            .xmap(loc -> UmaFactorRegistry.REGISTRY.get().getValue(loc), instance -> UmaFactorRegistry.REGISTRY.get().getKey(instance));
+            .xmap(loc -> UmaFactorRegistry.REGISTRY.get(loc), instance -> UmaFactorRegistry.REGISTRY.getKey(instance));
 
     public UmaFactor(FactorType type) {
         this.type = type;
@@ -36,7 +36,7 @@ public class UmaFactor{
     }
 
     public String toString() {
-        return UmaFactorRegistry.REGISTRY.get().getKey(this).toString();
+        return UmaFactorRegistry.REGISTRY.getKey(this).toString();
     }
 
     public Component getDescription() {
@@ -49,7 +49,7 @@ public class UmaFactor{
 
     protected String getOrCreateDescriptionId() {
         if (this.descriptionId == null) {
-            this.descriptionId = Util.makeDescriptionId("uma_factor", UmaFactorRegistry.REGISTRY.get().getKey(this));
+            this.descriptionId = Util.makeDescriptionId("uma_factor", UmaFactorRegistry.REGISTRY.getKey(this));
         }
         return this.descriptionId;
     }

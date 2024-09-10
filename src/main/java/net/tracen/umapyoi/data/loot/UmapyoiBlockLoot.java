@@ -9,7 +9,7 @@ import net.tracen.umapyoi.item.ItemRegistry;
 public class UmapyoiBlockLoot extends AbstartctBlockLoot {
 
     public UmapyoiBlockLoot() {
-        super(Set.of());
+        super();
     }
 
     @Override

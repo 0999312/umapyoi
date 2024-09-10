@@ -2,8 +2,8 @@ package net.tracen.umapyoi.effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
 
 @EventBusSubscriber
@@ -14,7 +14,7 @@ public class PanickingEffect extends MobEffect {
 
     @SubscribeEvent
     public static void onResumeAP(ResumeActionPointEvent event) {
-        if (event.getLivingEntity().hasEffect(MobEffectRegistry.PANICKING.get()))
+        if (event.getLivingEntity().hasEffect(MobEffectRegistry.PANICKING))
             event.setCanceled(true);
     }
 }

@@ -4,7 +4,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.events.SkillEvent;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;

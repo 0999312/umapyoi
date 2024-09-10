@@ -11,7 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 import net.tracen.umapyoi.events.ApplyTrainingSupportEvent;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 
@@ -67,9 +67,9 @@ public class SupportStack {
     }
 
     public boolean applySupport(ItemStack soul) {
-        if (!MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Pre(this, soul))) {
+        if (!NeoForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Pre(this, soul)).isCanceled()) {
             boolean result = this.getFactor().applySupport(soul, this);
-            return result && !MinecraftForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Post(this, soul));
+            return result && !NeoForge.EVENT_BUS.post(new ApplyTrainingSupportEvent.Post(this, soul)).isCanceled();
         } else
             return false;
     }
@@ -89,7 +89,7 @@ public class SupportStack {
 
     @Override
     public int hashCode() {
-        int code = 31 * Integer.hashCode(getLevel()) + TrainingSupportRegistry.REGISTRY.get().getKey(this.getFactor()).hashCode();
+        int code = 31 * Integer.hashCode(getLevel()) + TrainingSupportRegistry.REGISTRY.getKey(this.getFactor()).hashCode();
         if (tag != null)
             code = 31 * code + tag.hashCode();
         return code;

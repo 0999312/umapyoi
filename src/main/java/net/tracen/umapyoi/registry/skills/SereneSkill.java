@@ -17,8 +17,8 @@ public class SereneSkill extends UmaSkill {
     public void applySkill(Level level, LivingEntity user) {
         
         user.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 160, 0));
-        if (user.hasEffect(MobEffectRegistry.PANICKING.get()))
-            user.removeEffect(MobEffectRegistry.PANICKING.get());
+        if (user.hasEffect(MobEffectRegistry.PANICKING))
+            user.removeEffect(MobEffectRegistry.PANICKING);
     }
 
     @Override

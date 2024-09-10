@@ -2,13 +2,12 @@ package net.tracen.umapyoi.events.handler;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.client.ActionBarOverlay;
 import net.tracen.umapyoi.client.MotivationOverlay;
@@ -27,7 +26,7 @@ import net.tracen.umapyoi.client.renderer.blockentity.UmaStatuesBlockRender;
 import net.tracen.umapyoi.item.ItemRegistry;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientSetupEvents {
 
     @SubscribeEvent

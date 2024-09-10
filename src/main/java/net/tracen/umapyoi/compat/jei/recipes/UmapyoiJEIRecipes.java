@@ -53,7 +53,7 @@ public final class UmapyoiJEIRecipes {
         
         List<ItemStack> input = Lists.newArrayList();
         List<ItemStack> output = Lists.newArrayList(result);
-        keys.stream().filter(key->registry.get(key).getGachaRanking() == ranking).forEach(key->{
+        keys.stream().filter(key->registry.get(key).ranking() == ranking).forEach(key->{
             var initUmaSoul = UmaSoulUtils.initUmaSoul(ItemRegistry.UMA_SOUL.get().getDefaultInstance(), key, registry.get(key));
             UmaSoulUtils.setPhysique(initUmaSoul, 5);
             input.add(initUmaSoul);
@@ -81,7 +81,7 @@ public final class UmapyoiJEIRecipes {
         return key ->{
             var registry = ClientUtils.getClientUmaDataRegistry();
             for (GachaRanking gachaRanking : list) {
-                if(registry.get(key).getGachaRanking() == gachaRanking) 
+                if(registry.get(key).ranking() == gachaRanking) 
                     return true;
             }
             return false;

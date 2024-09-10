@@ -21,7 +21,7 @@ public class UmaFoodItem extends ItemFoodBase {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        ItemStack itemstack = this.isEdible() ? this.eatAsUma(stack, level, entity) : stack;
+        ItemStack itemstack = this.eatAsUma(stack, level, entity);
         if (stack.getCount() > 0) {
             if (entity instanceof Player) {
                 Player entityplayer = (Player) entity;
@@ -39,7 +39,7 @@ public class UmaFoodItem extends ItemFoodBase {
     private ItemStack eatAsUma(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player player) {
             if (UmapyoiAPI.getUmaSoul(player).isEmpty()) {
-                player.getFoodData().eat(this, stack, entity);
+            	player.getFoodData().eat(stack.getFoodProperties(entity));
                 if (!player.getAbilities().instabuild)
                     stack.shrink(1);
                 return stack;

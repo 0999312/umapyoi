@@ -1,8 +1,7 @@
 package net.tracen.umapyoi.events.handler;
 
-import java.util.UUID;
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -11,21 +10,28 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.tag.UmapyoiBlockTags;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class PassiveSkillEvents {
 
-    public static final UUID PASSIVEUUID = UUID.fromString("306e284a-8a74-11ee-b9d1-0242ac120002");
-
+    public static final ResourceLocation SKILL_HEIGHT = 
+    		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "passive_skill_height");
+    public static final ResourceLocation SKILL_TURF = 
+    		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "passive_skill_turf");
+    public static final ResourceLocation SKILL_DIRT = 
+    		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "passive_skill_dirt");
+    public static final ResourceLocation SKILL_SNOW = 
+    		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "passive_skill_snow");
+	
     @SubscribeEvent
     public static void testPassiveSkill_att(PlayerEvent.BreakSpeed event) {
         Player player = event.getEntity();
@@ -35,18 +41,18 @@ public class PassiveSkillEvents {
     }
 
     @SubscribeEvent
-    public static void passiveStepHeight(TickEvent.PlayerTickEvent event) {
-        var player = event.player;
-        AttributeInstance stepHeight = player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get());
-        var heightModifier = new AttributeModifier(PASSIVEUUID,
-                "passive_skill_height", 0.5D, Operation.ADDITION);
+    public static void passiveStepHeight(PlayerTickEvent event) {
+        var player = event.getEntity();
+        AttributeInstance stepHeight = player.getAttribute(Attributes.STEP_HEIGHT);
+        var heightModifier = new AttributeModifier(SKILL_HEIGHT
+                , 0.5D, Operation.ADD_VALUE);
         if (UmapyoiAPI.getUmaSoul(player).isEmpty()) {
             stepHeight.removeModifier(heightModifier);
             return;
         }
         
         if (UmaSoulUtils.hasSkill(UmapyoiAPI.getUmaSoul(player), UmaSkillRegistry.MOUNTAIN_CLIMBER.getId())) {
-            if (!stepHeight.hasModifier(heightModifier))
+            if (!stepHeight.hasModifier(SKILL_HEIGHT))
                 stepHeight.addTransientModifier(heightModifier);
         } else {
             stepHeight.removeModifier(heightModifier);
@@ -54,19 +60,18 @@ public class PassiveSkillEvents {
     }
 
     @SubscribeEvent
-    public static void passiveTurfRunner(TickEvent.PlayerTickEvent event) {
-        var player = event.player;
+    public static void passiveTurfRunner(PlayerTickEvent event) {
+        var player = event.getEntity();
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
-        var test_speed = new AttributeModifier(PASSIVEUUID,
-                "passive_skill_turf", 0.1D, Operation.MULTIPLY_TOTAL);
+        var test_speed = new AttributeModifier(SKILL_TURF, 0.1D, Operation.ADD_MULTIPLIED_TOTAL);
         if (UmapyoiAPI.getUmaSoul(player).isEmpty()) {
             movementSpeed.removeModifier(test_speed);
             return;
         }
 
         BlockPos groundPos = player.getY() % 1 < 0.5 ? player.blockPosition().below() : player.blockPosition();
-        BlockState groundBlock = event.player.level().getBlockState(groundPos);
+        BlockState groundBlock = player.level().getBlockState(groundPos);
 
         if (UmaSoulUtils.hasSkill(UmapyoiAPI.getUmaSoul(player), UmaSkillRegistry.TURF_RUNNER.getId())) {
             handleMovementModifier(movementSpeed, test_speed, groundBlock, UmapyoiBlockTags.TRACK_TURF);
@@ -74,19 +79,18 @@ public class PassiveSkillEvents {
     }
     
     @SubscribeEvent
-    public static void passiveDirtRunner(TickEvent.PlayerTickEvent event) {
-        var player = event.player;
+    public static void passiveDirtRunner(PlayerTickEvent event) {
+        var player = event.getEntity();
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
-        var test_speed = new AttributeModifier(PASSIVEUUID,
-                "passive_skill_dirt", 0.1D, Operation.MULTIPLY_TOTAL);
+        var test_speed = new AttributeModifier(SKILL_DIRT, 0.1D, Operation.ADD_MULTIPLIED_TOTAL);
         if (UmapyoiAPI.getUmaSoul(player).isEmpty()) {
             movementSpeed.removeModifier(test_speed);
             return;
         }
 
         BlockPos groundPos = player.getY() % 1 < 0.5 ? player.blockPosition().below() : player.blockPosition();
-        BlockState groundBlock = event.player.level().getBlockState(groundPos);
+        BlockState groundBlock = player.level().getBlockState(groundPos);
 
         if (UmaSoulUtils.hasSkill(UmapyoiAPI.getUmaSoul(player), UmaSkillRegistry.DIRT_RUNNER.getId())) {
             handleMovementModifier(movementSpeed, test_speed, groundBlock, UmapyoiBlockTags.TRACK_DIRT);
@@ -94,22 +98,21 @@ public class PassiveSkillEvents {
     }
     
     @SubscribeEvent
-    public static void passiveSnowRunner(TickEvent.PlayerTickEvent event) {
-        var player = event.player;
+    public static void passiveSnowRunner(PlayerTickEvent event) {
+    	var player = event.getEntity();
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
-        var test_speed = new AttributeModifier(PASSIVEUUID,
-                "passive_skill_snow", 0.1D, Operation.MULTIPLY_TOTAL);
+        var test_speed = new AttributeModifier(SKILL_SNOW, 0.1D, Operation.ADD_MULTIPLIED_TOTAL);
         if (UmapyoiAPI.getUmaSoul(player).isEmpty()) {
             movementSpeed.removeModifier(test_speed);
             return;
         }
 
         BlockPos groundPos = player.getY() % 1 < 0.5 ? player.blockPosition().below() : player.blockPosition();
-        BlockState groundBlock = event.player.level().getBlockState(groundPos);
+        BlockState groundBlock = player.level().getBlockState(groundPos);
 
         if (UmaSoulUtils.hasSkill(UmapyoiAPI.getUmaSoul(player), UmaSkillRegistry.SNOW_RUNNER.getId())) {
-            handleMovementModifier(movementSpeed, test_speed, groundBlock, event.player.getFeetBlockState(), UmapyoiBlockTags.TRACK_SNOW);
+            handleMovementModifier(movementSpeed, test_speed, groundBlock, player.getBlockStateOn(), UmapyoiBlockTags.TRACK_SNOW);
         }
     }
 
@@ -123,11 +126,11 @@ public class PassiveSkillEvents {
         if (groundBlock.isAir() && feetblock.isAir())
             return ;
         if (!groundBlock.is(tagIn) && !feetblock.is(tagIn)) {
-            if (attribute.hasModifier(modifier))
+            if (attribute.hasModifier(modifier.id()))
                 attribute.removeModifier(modifier);
             return ;
         }
-        if (!attribute.hasModifier(modifier))
+        if (!attribute.hasModifier(modifier.id()))
             attribute.addTransientModifier(modifier);
     }
 }

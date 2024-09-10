@@ -27,9 +27,9 @@ public class SupportCard{
             .apply(instance, SupportCard::new));
 
     public static final ResourceKey<Registry<SupportCard>> REGISTRY_KEY = ResourceKey
-            .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "support_card"));
+            .createRegistryKey(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "support_card"));
     
-    public static final ResourceLocation EMPTY_ID = new ResourceLocation(Umapyoi.MODID, "blank_card");
+    public static final ResourceLocation EMPTY_ID = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "blank_card");
     public static final SupportCard EMPTY = SupportCard.Builder.create().ranking(GachaRanking.EASTER_EGG).supportType(SupportType.GROUP).build();
 
     private final GachaRanking ranking;
@@ -62,7 +62,7 @@ public class SupportCard{
     public List<SupportStack> getSupportStacks() {
         List<SupportStack> result = Lists.newArrayList();
         this.getSupports().forEach(
-                sp -> result.add(new SupportStack(TrainingSupportRegistry.REGISTRY.get().getValue(sp.getFactor()),
+                sp -> result.add(new SupportStack(TrainingSupportRegistry.REGISTRY.get(sp.getFactor()),
                         sp.getLevel(), sp.getTag())));
         return result;
     }

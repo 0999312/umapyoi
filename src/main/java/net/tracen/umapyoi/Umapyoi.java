@@ -3,17 +3,17 @@ package net.tracen.umapyoi;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.container.ContainerRegistry;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.network.NetPacketHandler;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
@@ -31,8 +31,7 @@ public class Umapyoi {
         return new Item.Properties();
     }
 
-    public Umapyoi() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public Umapyoi(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::setup);
         UmapyoiCreativeGroup.CREATIVE_MODE_TABS.register(modEventBus);
         TrainingSupportRegistry.SUPPORTS.register(modEventBus);
@@ -45,8 +44,9 @@ public class Umapyoi {
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
         VillageRegistry.POI_TYPES.register(modEventBus);
         VillageRegistry.PROFESSIONS.register(modEventBus);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
+        DataComponentsTypeRegistry.DATA_COMPONENTS.register(modEventBus);
+        modContainer.registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

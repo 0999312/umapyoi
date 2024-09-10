@@ -165,11 +165,18 @@
   "umadata.umapyoi.el_condor_pasa": "神鹰",
   
   "umadata.umapyoi.cheval_grand": "高尚骏逸",
-  "umadata.umapyoi.verxina": "极锋",
+  "umadata.umapyoi.verxina": "极峰",
   "umadata.umapyoi.vivlos": "强击",
   
-  "umadata.umapyoi.fuji_kiseki": "富士奇迹",
+  "umadata.umapyoi.fuji_kiseki": "富士奇石",
   "umadata.umapyoi.fujimasa_march": "藤正进行曲",
+  
+  "umadata.umapyoi.hokko_tarumae_swim": "[海边粉彩・地方偶像] 北港火山",
+  "umadata.umapyoi.mejiro_palmer": "目白善信",
+  "umadata.umapyoi.transcend": "创升",
+  "umadata.umapyoi.durandal": "多旺达",
+  "umadata.umapyoi.calstone_light_o": "金镇之光",
+  "umadata.umapyoi.daiichi_ruby": "第一红宝石",
   
   "tooltip.umapyoi.umadata.name": "马娘姓名：%s",
   "tooltip.umapyoi.support_card.name": "支援卡：%s",

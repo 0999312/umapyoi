@@ -30,7 +30,7 @@ import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class UmaStatuesBlockRender implements BlockEntityRenderer<UmaStatueBlockEntity> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation(Umapyoi.MODID, "textures/model/three_goddesses.png");
+    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/three_goddesses.png");
     private final SimpleBedrockModel model;
 
     public UmaStatuesBlockRender(BlockEntityRendererProvider.Context context) {
@@ -71,12 +71,12 @@ public class UmaStatuesBlockRender implements BlockEntityRenderer<UmaStatueBlock
         
         VertexConsumer vertexConsumer = buffer
                 .getBuffer(TestRenderType.test(tileEntity.isEmpty() ? TEXTURE : ClientUtils.getTexture(UmaSoulUtils.getName(item))));
-        model.renderToBuffer(poseStack, vertexConsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
+        model.renderToBuffer(poseStack, vertexConsumer, combinedLight, combinedOverlay);
         
         if(model.isEmissive()) {
             VertexConsumer emissiveConsumer = buffer
                     .getBuffer(RenderType.entityTranslucentEmissive(tileEntity.isEmpty() ? TEXTURE : ClientUtils.getEmissiveTexture(UmaSoulUtils.getName(item))));
-            model.renderEmissiveParts(poseStack, emissiveConsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
+            model.renderEmissiveParts(poseStack, emissiveConsumer, combinedLight, combinedOverlay, -1);
         }
         
         poseStack.popPose();

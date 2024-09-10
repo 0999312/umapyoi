@@ -11,7 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 import net.tracen.umapyoi.events.ApplyFactorEvent;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 
@@ -55,9 +55,9 @@ public class UmaFactorStack {
     }
 
     public void applyFactor(ItemStack soul) {
-        if (!MinecraftForge.EVENT_BUS.post(new ApplyFactorEvent.Pre(this, soul))) {
+        if (!NeoForge.EVENT_BUS.post(new ApplyFactorEvent.Pre(this, soul)).isCanceled()) {
             this.getFactor().applyFactor(soul, this);
-            MinecraftForge.EVENT_BUS.post(new ApplyFactorEvent.Post(this, soul));
+            NeoForge.EVENT_BUS.post(new ApplyFactorEvent.Post(this, soul));
         }
     }
 
@@ -76,7 +76,7 @@ public class UmaFactorStack {
 
     @Override
     public int hashCode() {
-        int code = 31 * Integer.hashCode(getLevel()) + UmaFactorRegistry.REGISTRY.get().getKey(this.getFactor()).hashCode();
+        int code = 31 * Integer.hashCode(getLevel()) + UmaFactorRegistry.REGISTRY.getKey(this.getFactor()).hashCode();
         if (tag != null)
             code = 31 * code + tag.hashCode();
         return code;

@@ -1,11 +1,11 @@
 package net.tracen.umapyoi.events;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.eventbus.api.Cancelable;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.ICancellableEvent;
 import net.tracen.umapyoi.registry.training.SupportStack;
 
-public abstract class ApplyTrainingSupportEvent extends Event {
+public abstract class ApplyTrainingSupportEvent extends Event implements ICancellableEvent{
     private final SupportStack support;
     private final ItemStack soul;
 
@@ -22,7 +22,6 @@ public abstract class ApplyTrainingSupportEvent extends Event {
         return this.soul;
     }
 
-    @Cancelable
     public static class Pre extends ApplyTrainingSupportEvent {
         public Pre(SupportStack stack, ItemStack soul) {
             super(stack, soul);

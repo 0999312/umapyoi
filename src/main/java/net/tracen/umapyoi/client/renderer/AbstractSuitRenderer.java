@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
 import net.tracen.umapyoi.events.client.RenderingUmaSuitEvent;
@@ -61,7 +61,7 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                         return;
                     if (!(stacksHandler).getRenders().get(0))
                         return;
-
+                    
                     flat_flag = ClientUtils.getClientUmaDataRegistry()
                             .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
                             .get().is(UmapyoiUmaDataTags.FLAT_CHEST);
@@ -77,8 +77,8 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                 var pojo = ClientUtil.getModelPOJO(flat_flag ? getFlatModel() : getModel());
                 if (baseModel.needRefresh(pojo))
                     baseModel.loadModel(pojo);
-                if (MinecraftForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Pre(entity, baseModel, partialTicks,
-                        matrixStack, renderTypeBuffer, light)))
+                if (NeoForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Pre(entity, baseModel, partialTicks,
+                        matrixStack, renderTypeBuffer, light)).isCanceled())
                     return;
                 baseModel.setModelProperties(entity);
                 baseModel.head.visible = false;
@@ -101,8 +101,8 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                 baseModel.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
                 baseModel.renderToBuffer(matrixStack, vertexconsumer, light,
-                        LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1, 1, 1, 1);
-                MinecraftForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Post(entity, baseModel, partialTicks,
+                        LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
+                NeoForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Post(entity, baseModel, partialTicks,
                         matrixStack, renderTypeBuffer, light));
             });
         });

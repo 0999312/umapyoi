@@ -39,7 +39,7 @@ import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> implements ContainerListener {
 
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
+    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
             "textures/gui/select_test.png");
 
     private EditBox searchBox;

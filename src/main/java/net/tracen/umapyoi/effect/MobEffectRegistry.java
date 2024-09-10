@@ -1,14 +1,14 @@
 package net.tracen.umapyoi.effect;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.Umapyoi;
 
 public class MobEffectRegistry {
-    public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS,
+    public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(BuiltInRegistries.MOB_EFFECT,
             Umapyoi.MODID);
 
-    public static final RegistryObject<MobEffect> PANICKING = EFFECTS.register("panicking", PanickingEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> PANICKING = EFFECTS.register("panicking", PanickingEffect::new);
 }

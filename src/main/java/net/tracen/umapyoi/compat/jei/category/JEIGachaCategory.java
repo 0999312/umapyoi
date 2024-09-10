@@ -32,7 +32,7 @@ public class JEIGachaCategory implements IRecipeCategory<JEISimpleRecipe> {
 
     public JEIGachaCategory(IGuiHelper helper) {
         title = Component.translatable("umapyoi.jei.gacha");
-        ResourceLocation backgroundImage = new ResourceLocation(Umapyoi.MODID, "textures/gui/jei_compat.png");
+        ResourceLocation backgroundImage = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/gui/jei_compat.png");
         background = helper.createDrawable(backgroundImage, 0, 0, 93, 46);
         chancedSlot = helper.createDrawable(backgroundImage, 93, 0, 18, 18);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK,

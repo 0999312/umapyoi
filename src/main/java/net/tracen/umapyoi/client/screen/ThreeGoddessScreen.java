@@ -19,7 +19,7 @@ import net.tracen.umapyoi.utils.ClientUtils;
 
 public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessContainer> {
 
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
+    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
             "textures/gui/three_goddess.png");
 
     public ThreeGoddessScreen(ThreeGoddessContainer screenContainer, Inventory inv, Component titleIn) {
@@ -32,7 +32,7 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
 
     @Override
     public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
-        this.renderBackground(graphic);
+        this.renderBackground(graphic, mouseY, mouseY, partialTicks);
         super.render(graphic, mouseX, mouseY, partialTicks);
         this.renderTooltip(graphic, mouseX, mouseY);
         this.renderModels(graphic);

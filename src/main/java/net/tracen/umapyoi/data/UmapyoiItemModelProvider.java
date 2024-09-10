@@ -4,7 +4,7 @@ import cn.mcmod_mmf.mmlib.data.AbstractItemModelProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
@@ -22,22 +22,22 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
                 return;
             if (item == ItemRegistry.UMA_PEDESTAL) {
                 withExistingParent(blockName(BlockRegistry.UMA_PEDESTAL),
-                        new ResourceLocation("umapyoi:block/pedestal"));
+                		ResourceLocation.tryParse("umapyoi:block/pedestal"));
                 return;
             }
             
             if (item == ItemRegistry.SILVER_UMA_PEDESTAL) {
                 withExistingParent(blockName(BlockRegistry.SILVER_UMA_PEDESTAL),
-                        new ResourceLocation("umapyoi:block/silver_pedestal"));
+                		ResourceLocation.tryParse("umapyoi:block/silver_pedestal"));
                 return;
             }
             
             if (item.get()instanceof BlockItem block
                     && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE))
-                itemBlock(block::getBlock);
+                toBlock(block::getBlock);
 
             else
-                normalItem(item);
+                basicItem(item.get());
         });
     }
 

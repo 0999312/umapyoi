@@ -1,13 +1,13 @@
 package net.tracen.umapyoi.events;
 
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.registries.DataPackRegistryEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.EventBusSubscriber.Bus;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
-@Mod.EventBusSubscriber(bus = Bus.MOD)
+@EventBusSubscriber(bus = Bus.MOD)
 public class DatapackEvents {
     
     @SubscribeEvent

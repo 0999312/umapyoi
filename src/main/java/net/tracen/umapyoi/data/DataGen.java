@@ -3,7 +3,6 @@ package net.tracen.umapyoi.data;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import cn.mcmod_mmf.mmlib.data.loot.LootTableProviderBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.RegistryAccess;
@@ -13,11 +12,10 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.data.builtin.SupportCardRegistry;
 import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
@@ -29,7 +27,7 @@ import net.tracen.umapyoi.data.tag.UmapyoiPOITagsProvider;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class DataGen {
     @SubscribeEvent
     public static void dataGen(GatherDataEvent event) {

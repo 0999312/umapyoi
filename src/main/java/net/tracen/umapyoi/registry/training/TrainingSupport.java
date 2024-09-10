@@ -17,10 +17,10 @@ public class TrainingSupport{
     private String descriptionId;
 
     public static final Codec<TrainingSupport> CODEC = ResourceLocation.CODEC
-            .xmap(loc -> TrainingSupportRegistry.REGISTRY.get().getValue(loc), instance -> TrainingSupportRegistry.REGISTRY.get().getKey(instance));
+            .xmap(loc -> TrainingSupportRegistry.REGISTRY.get(loc), instance -> TrainingSupportRegistry.REGISTRY.getKey(instance));
 
     public static final ResourceKey<Registry<TrainingSupport>> REGISTRY_KEY = ResourceKey
-            .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "training_support"));
+            .createRegistryKey(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "training_support"));
 
     public TrainingSupport() {
     }
@@ -30,7 +30,7 @@ public class TrainingSupport{
     }
 
     public String toString() {
-        return TrainingSupportRegistry.REGISTRY.get().getKey(this).toString();
+        return TrainingSupportRegistry.REGISTRY.getKey(this).toString();
     }
 
     public Component getDescription() {
@@ -43,7 +43,7 @@ public class TrainingSupport{
 
     protected String getOrCreateDescriptionId() {
         if (this.descriptionId == null) {
-            this.descriptionId = Util.makeDescriptionId("support", TrainingSupportRegistry.REGISTRY.get().getKey(this));
+            this.descriptionId = Util.makeDescriptionId("support", TrainingSupportRegistry.REGISTRY.getKey(this));
         }
         return this.descriptionId;
     }

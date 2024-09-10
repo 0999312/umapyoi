@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaData;
@@ -36,8 +36,12 @@ public class UmaDataTagProvider extends TagsProvider<UmaData> {
             .add(UmaDataRegistry.SILENCE_SUZUKA)
             .add(UmaDataRegistry.TAMAMO_CROSS_FESTIVAL)
             .add(UmaDataRegistry.GRASS_WONDER)
-            .add(UmaDataRegistry.HARU_URARA);
+            .add(UmaDataRegistry.MANHATTAN_CAFE_VALENTINE)
+            .add(UmaDataRegistry.GRASS_WONDER_UMANET)
+            .add(UmaDataRegistry.HARU_URARA)
+            .add(UmaDataRegistry.FUJIMASA_MARCH);
         this.tag(UmapyoiUmaDataTags.TANNED_SKIN).add(UmaDataRegistry.DARLEY_ARABIAN);
+        this.tag(UmapyoiUmaDataTags.ALTER_MODEL).add(UmaDataRegistry.TRANSCEND);
     }
 
 }

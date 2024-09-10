@@ -5,14 +5,13 @@ import java.util.stream.Stream;
 
 import cn.mcmod_mmf.mmlib.data.AbstractRecipeProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.item.ItemRegistry;
@@ -65,8 +64,8 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
         .define('J', ItemRegistry.JEWEL.get())
         .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.THREE_GODDESS.get()).pattern(" J ")
-                .pattern("JLJ").pattern("AAA").define('A', Tags.Items.STONE)
-                .define('L', Tags.Items.STORAGE_BLOCKS_QUARTZ).define('J', ItemRegistry.JEWEL.get())
+                .pattern("JLJ").pattern("AAA").define('A', Tags.Items.STONES)
+                .define('L', Items.QUARTZ_BLOCK).define('J', ItemRegistry.JEWEL.get())
                 .unlockedBy("has_item", has(ItemRegistry.JEWEL.get())).save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.REGISTER_LECTERN.get()).pattern(" J ")
@@ -75,7 +74,7 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.SILVER_UMA_PEDESTAL.get()).pattern("AJA")
-                .pattern("GAG").pattern("AAA").define('A', Tags.Items.STONE).define('G', Tags.Items.INGOTS_IRON)
+                .pattern("GAG").pattern("AAA").define('A', Tags.Items.STONES).define('G', Tags.Items.INGOTS_IRON)
                 .define('J', ItemRegistry.JEWEL.get()).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
                 .save(consumer);
 
@@ -90,7 +89,7 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
         
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, 
                 BlockRegistry.UMA_STATUES.get()).pattern(" J ").pattern(" A ").pattern("AAA")
-        .define('A', Tags.Items.STONE)
+        .define('A', Tags.Items.STONES)
         .define('J', ItemRegistry.JEWEL.get()).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
         .save(consumer);
         
@@ -98,7 +97,7 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .pattern("IJI")
                 .pattern("ILI")
                 .pattern(" I ")
-                .define('I', Tags.Items.LEATHER)
+                .define('I', Tags.Items.LEATHERS)
                 .define('L', Tags.Items.DYES_BLUE)
                 .define('J', ItemRegistry.JEWEL.get())
                 .unlockedBy("has_item", has(ItemRegistry.JEWEL.get())).save(consumer);

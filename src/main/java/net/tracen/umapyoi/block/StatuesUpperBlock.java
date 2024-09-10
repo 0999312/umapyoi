@@ -3,6 +3,7 @@ package net.tracen.umapyoi.block;
 import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -13,7 +14,10 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -21,16 +25,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class StatuesUpperBlock extends Block {
 
-    private final Supplier<Block> bottomBlock;
+    private final Holder<Block> bottomBlock;
     
     protected final VoxelShape shape;
     
-    public StatuesUpperBlock(Supplier<Block> bottom) {
+    public StatuesUpperBlock(Holder<Block> bottom) {
         this(bottom, Shapes.block());
     }
     
-    public StatuesUpperBlock(Supplier<Block> bottom, VoxelShape shape) {
-        super(Properties.copy(Blocks.STONE).noOcclusion());
+    public StatuesUpperBlock(Holder<Block> bottom, VoxelShape shape) {
+        super(Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F).noOcclusion());
         this.bottomBlock = bottom;
         this.shape = shape;
     }
@@ -38,7 +42,7 @@ public class StatuesUpperBlock extends Block {
     
     @Override
     public Item asItem() {
-        return this.bottomBlock.get().asItem();
+        return this.bottomBlock.value().asItem();
     }
 
     @Override
@@ -46,7 +50,7 @@ public class StatuesUpperBlock extends Block {
         return RenderShape.INVISIBLE;
     }
 
-    public Supplier<Block> getBottomBlock() {
+    public Holder<Block> getBottomBlock() {
         return bottomBlock;
     }
 
@@ -57,13 +61,12 @@ public class StatuesUpperBlock extends Block {
     
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        return pLevel.getBlockState(pPos.below()).is(this.getBottomBlock().get());
+        return pLevel.getBlockState(pPos.below()).is(this.getBottomBlock());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pLevel.getBlockState(pPos.below()).is(this.getBottomBlock().get())) {
+        if (pLevel.getBlockState(pPos.below()).is(this.getBottomBlock())) {
             pLevel.destroyBlock(pPos.below(), true);
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);

@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
 import net.tracen.umapyoi.container.UmaSelectMenu;
 
 public class EmptyResultPacket {

@@ -19,8 +19,8 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
@@ -48,15 +48,15 @@ public class ClientUtils {
     }
 
     public static ResourceLocation getModel(String modid, String name) {
-        return new ResourceLocation(modid, name);
+        return ResourceLocation.fromNamespaceAndPath(modid, name);
     }
 
     public static ResourceLocation getTexture(ResourceLocation name) {
-        return new ResourceLocation(name.getNamespace(), "textures/model/" + name.getPath() + ".png");
+        return ResourceLocation.fromNamespaceAndPath(name.getNamespace(), "textures/model/" + name.getPath() + ".png");
     }
     
     public static ResourceLocation getEmissiveTexture(ResourceLocation name) {
-        return new ResourceLocation(name.getNamespace(), "textures/model/" + name.getPath() + "_emissive.png");
+        return ResourceLocation.fromNamespaceAndPath(name.getNamespace(), "textures/model/" + name.getPath() + "_emissive.png");
     }
 
     public static Registry<UmaData> getClientUmaDataRegistry() {
@@ -86,14 +86,14 @@ public class ClientUtils {
             ResourceLocation texture) {
         guiGraphic.pose().pushPose();
         guiGraphic.pose().translate((double)p_283622_, (double)p_283401_, 50.0D);
-        guiGraphic.pose().mulPoseMatrix((new Matrix4f()).scaling((float)p_281360_, (float)p_281360_, (float)(-p_281360_)));
+        guiGraphic.pose().mulPose((new Matrix4f()).scaling((float)p_281360_, (float)p_281360_, (float)(-p_281360_)));
         guiGraphic.pose().mulPose(p_281880_);
         Lighting.setupForEntityInInventory();
         MultiBufferSource.BufferSource multibuffersource$buffersource = Minecraft.getInstance().renderBuffers()
                 .bufferSource();
         VertexConsumer vertexconsumer = multibuffersource$buffersource
                 .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(texture)));
-        pModel.renderToBuffer(guiGraphic.pose(), vertexconsumer, 15728880, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+        pModel.renderToBuffer(guiGraphic.pose(), vertexconsumer, 15728880, OverlayTexture.NO_OVERLAY);
         multibuffersource$buffersource.endBatch();
         guiGraphic.pose().popPose();
         Lighting.setupFor3DItems();

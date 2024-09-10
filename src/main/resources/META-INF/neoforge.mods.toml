@@ -1,9 +1,9 @@
 
 modLoader="javafml" 
-loaderVersion="[46,)"
-license="MIT License"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
 [[mods]]
-modId="umapyoi" #mandatory
+modId="${mod_id}" #mandatory
 version="${file.jarVersion}"
 displayName="Umapyoi" 
 credits="Japan Umamusume Training Center Academy (aka Tracen Academy)" 
@@ -13,34 +13,34 @@ description='''
 Ooooooooooh  (horsey-buds!) Oooooooh  (horsey-hop! horsey-hop!)
 Horsey horsey meowsy meowsy  3 2 1  Fight!!
 '''
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.umapyoi]] #optional
-    # the modid of the dependency
-    modId="forge" #mandatory
-    # Does this dependency have to exist - if not, ordering below must be specified
-    mandatory=true #mandatory
+
+[[dependencies.${mod_id}]]
+    modId="neoforge" 
+    type="required"
     # The version range of the dependency
-    versionRange="[46,)" #mandatory
+    versionRange="${neo_version_range}" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.umapyoi]]
+[[dependencies.${mod_id}]]
     modId="minecraft"
-    mandatory=true
-    versionRange="[1.20,1.20.2)"
+    type="required"
+    # This version range declares a minimum of the current minecraft version up to but not including the next major version
+    versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
-[[dependencies.umapyoi]]
+[[dependencies.${mod_id}]]
     modId="mysterious_mountain_lib"
-    mandatory=true
-    versionRange="[1.4.7-1.20.1,)"
-    ordering="AFTER"
+    type="required"
+    # This version range declares a minimum of the current minecraft version up to but not including the next major version
+    versionRange="[1.0.0-1.21,)"
+    ordering="NONE"
     side="BOTH"
-[[dependencies.umapyoi]]
+[[dependencies.${mod_id}]]
     modId="curios"
-    mandatory=true
-    versionRange="[5.3.4+1.20.1,)"
+    type="required"
+    versionRange="[9.0.5+1.21,)"
     ordering="AFTER"
     side="BOTH"

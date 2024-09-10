@@ -1,107 +1,100 @@
 plugins {
+    id 'java-library'
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-     // This should be below the net.minecraftforge.gradle plugin
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
+    id 'net.neoforged.moddev' version '1.0.17'
 }
 
-// Mixin
-apply plugin: 'org.spongepowered.mixin'
-
-mixin {
-    // MixinGradle Settings
-    add sourceSets.main, 'mixins.umapyoi.refmap.json'
+tasks.named('wrapper', Wrapper).configure {
+    // Define wrapper values here so as to not have to always do so when updating gradlew.properties.
+    // Switching this to Wrapper.DistributionType.ALL will download the full gradle sources that comes with
+    // documentation attached on cursor hover of gradle classes and methods. However, this comes with increased
+    // file size for Gradle. If you do switch this to ALL, run the Gradle wrapper task twice afterwards.
+    // (Verify by checking gradle/wrapper/gradle-wrapper.properties to see if distributionUrl now points to `-all`)
+    distributionType = Wrapper.DistributionType.BIN
 }
 
-version = '1.5.30-1.20.1'
-group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'umapyoi'
+version = mod_version
+group = mod_group_id
 
-// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+base {
+    archivesName = mod_id
+}
 
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
-    copyIdeResources = true
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+// Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+
+neoForge {
+    // Specify the version of NeoForge to use.
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    // This line is optional. Access Transformers are automatically detected
+    accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
-            workingDirectory project.file('run')
+            client()
 
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'umapyoi'
-            arg '-mixin.config=mixins.umapyoi.json'
-            // Export mixin-changed classes
-            property 'mixin.debug.export', 'true'
-			property 'mixin.env.remapRefMap', 'true'
-
-            mods {
-                umapyoi {
-                    source sourceSets.main
-                }
-            }
+            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'umapyoi'
-            arg '-mixin.config=mixins.umapyoi.json'
-            // Export mixin-changed classes
-            property 'mixin.debug.export', 'true'
-			property 'mixin.env.remapRefMap', 'true'
-
-            mods {
-                umapyoi {
-                    source sourceSets.main
-                }
-            }
+            server()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
+        // This run config launches GameTestServer and runs all registered gametests, then exits.
+        // By default, the server will crash when no gametests are provided.
+        // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'umapyoi'
-            arg '-mixin.config=mixins.umapyoi.json'
-            // Export mixin-changed classes
-            property 'mixin.debug.export', 'true'
-			property 'mixin.env.remapRefMap', 'true'
-
-            mods {
-                umapyoi {
-                    source sourceSets.main
-                }
-            }
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            
         }
 
         data {
-            workingDirectory project.file('run')
+            data()
 
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'umapyoi'
-            arg '-mixin.config=mixins.umapyoi.json'
-            // Export mixin-changed classes
-            property 'mixin.debug.export', 'true'
-			property 'mixin.env.remapRefMap', 'true'
+            // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
+            // gameDirectory = project.file('run-data')
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'umapyoi', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
 
-            mods {
-                umapyoi {
-                    source sourceSets.main
-                }
-            }
+        // applies to all the run configs above
+        configureEach {
+            // Recommended logging data for a userdev environment
+            // The markers can be added/remove as needed separated by commas.
+            // "SCAN": For mods scan.
+            // "REGISTRIES": For firing of registry events.
+            // "REGISTRYDUMP": For getting the contents of all registries.
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+            // Recommended logging level for the console
+            // You can set various levels here.
+            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        // define mod <-> source bindings
+        // these are used to tell the game which sources are for which mod
+        // mostly optional in a single mod project
+        // but multi mod projects should define one per mod
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
         }
     }
 }
@@ -109,67 +102,99 @@ minecraft {
 // Include resources generated by data generators.
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-repositories {
-    // Put repositories for dependencies here
-    // ForgeGradle automatically adds the Forge maven and Maven Central for you
+// Sets up a dependency configuration called 'localRuntime'.
+// This configuration should be used instead of 'runtimeOnly' to declare
+// a dependency that will be present for runtime testing but that is
+// "optional", meaning it will not be pulled by dependents of this mod.
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
 
+repositories {
+	mavenLocal()
     maven { url = "https://raw.github.com/0999312/MMMaven/main/repository" }
     maven {
-        url = "https://maven.theillusivec4.top/"
+        name = "OctoStudios"
+        url = "https://maven.octo-studios.com/releases"
     }
-
-    // Patchouli
-    maven { url = 'https://maven.blamejared.com' }
-
-    //maven {
-      // location of a maven mirror for JEI files, as a fallback
-      //name = "ModMaven"
-      //url = "https://modmaven.dev"
-    //}
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
 }
+
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.2.32'
-    // Apply Mixin AP
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
-    implementation fg.deobf("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:1.4.7-1.20.1")
-    // Compile against only the API artifact
-    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1:api"))
-    // Use the full Curios API jar at runtime
-    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1"))
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-83-FORGE")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-83-FORGE")
-
+    implementation ("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:${mmlib_version}")
+    implementation("top.theillusivec4.curios:curios-neoforge:9.0.5+1.21")
     // compile against the JEI API but do not include it at runtime
-    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
-    // at runtime, use the full JEI jar for Forge
-    runtimeOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
+    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    // at runtime, use the full JEI jar for NeoForge
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    compileOnly ("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    runtimeOnly ("vazkii.patchouli:Patchouli:${patchouli_version}")
 }
 
-// Example for how to get properties into the manifest for reading at runtime.
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "umapyoi",
-                "Specification-Vendor"    : "tracen_minecraft_group",
-                "Specification-Version"   : "0.0.2",
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "tracen_minecraft_group",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"            : "mixins.umapyoi.json"
-        ])
+// This block of code expands all declared replace properties in the specified resource targets.
+// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
+// When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
+// See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
     }
 }
 
-jar.finalizedBy('reobfJar')
+// This block of code expands all declared replace properties in the specified resource targets.
+// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
 
+// Include the output of "generateModMetadata" as an input directory for the build
+// this works with both building through Gradle and the IDE.
+sourceSets.main.resources.srcDir generateModMetadata
+// To avoid having to run "generateModMetadata" manually, make it run on every project reload
+neoForge.ideSyncTask generateModMetadata
+
+// Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            artifact jar
+        register('mavenJava', MavenPublication) {
+            from components.java
         }
     }
     repositories {
@@ -180,5 +205,13 @@ publishing {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
 }

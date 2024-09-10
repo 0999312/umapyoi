@@ -87,7 +87,7 @@ public class UmaSoulUtils {
     }
 
     public static ListTag getSkills(ItemStack stack) {
-        return stack.getOrCreateTag().getList("skills", Tag.TAG_STRING);
+        return stack.getList("skills", Tag.TAG_STRING);
     }
     
     public static boolean hasSkill(ItemStack stack, ResourceLocation skill) {
@@ -101,7 +101,8 @@ public class UmaSoulUtils {
     public static void addSkill(ItemStack stack, ResourceLocation skill) {
         ListTag result = UmaSoulUtils.getSkills(stack);
         result.add(StringTag.valueOf(skill.toString()));
-        stack.getOrCreateTag().put("skills", result);
+//        stack.getOrCreateTag().put("skills", result);
+//        stack.update(null, null, null)
     }
 
     public static int getSelectedSkillIndex(ItemStack stack) {

@@ -12,18 +12,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderArmEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderArmEvent;
+import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.events.client.RenderingUmaSoulEvent;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT)
+@EventBusSubscriber(value = Dist.CLIENT)
 public class ClientEvents {
 
     private static NonNullList<ItemStack> armor;
@@ -111,6 +111,6 @@ public class ClientEvents {
     }
 
     private static ResourceLocation getTexture(ResourceLocation name) {
-        return new ResourceLocation(name.getNamespace(), "textures/model/" + name.getPath() + ".png");
+        return ResourceLocation.tryBuild(name.getNamespace(), "textures/model/" + name.getPath() + ".png");
     }
 }

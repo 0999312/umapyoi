@@ -1,19 +1,12 @@
 package net.tracen.umapyoi.client.renderer.blockentity;
 
-import java.util.function.Function;
-
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.blaze3d.vertex.VertexFormat;
-import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 import com.mojang.math.Axis;
 import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
-import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -32,7 +25,7 @@ import net.tracen.umapyoi.block.entity.ThreeGoddessBlockEntity;
 import net.tracen.umapyoi.utils.ClientUtils;
 
 public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddessBlockEntity> {
-	public static final ResourceLocation TEXTURE = new ResourceLocation(Umapyoi.MODID,
+	public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
 			"textures/model/three_goddesses.png");
 	private final SimpleBedrockModel model;
 
@@ -65,7 +58,7 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
 		var pojo = ClientUtil.getModelPOJO(ClientUtils.THREE_GODDESS);
 		if (model.needRefresh(pojo))
 			model.loadModel(pojo);
-		model.renderToBuffer(poseStack, vertexconsumer, combinedLight, combinedOverlay, 1, 1, 1, 1);
+		model.renderToBuffer(poseStack, vertexconsumer, combinedLight, combinedOverlay);
 		poseStack.popPose();
 	}
 
@@ -90,25 +83,4 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
 		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 	}
 
-	private static class TestRenderType extends RenderType {
-		public TestRenderType(String pName, VertexFormat pFormat, Mode pMode, int pBufferSize,
-				boolean pAffectsCrumbling, boolean pSortOnUpload, Runnable pSetupState, Runnable pClearState) {
-			super(pName, pFormat, pMode, pBufferSize, pAffectsCrumbling, pSortOnUpload, pSetupState, pClearState);
-			// TODO Auto-generated constructor stub
-		}
-
-		private static final Function<ResourceLocation, RenderType> ENTITY_CUTOUT = Util.memoize((p_286173_) -> {
-			RenderType.CompositeState rendertype$compositestate = RenderType.CompositeState.builder()
-					.setShaderState(RENDERTYPE_ENTITY_CUTOUT_SHADER)
-					.setTextureState(new RenderStateShard.TextureStateShard(p_286173_, false, false))
-					.setTransparencyState(NO_TRANSPARENCY).setLightmapState(LIGHTMAP).setOverlayState(OVERLAY)
-					.createCompositeState(true);
-			return create("test_cutout", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, false,
-					rendertype$compositestate);
-		});
-
-		public static RenderType test(ResourceLocation texture) {
-			return ENTITY_CUTOUT.apply(texture);
-		}
-	}
 }

@@ -1,6 +1,6 @@
 package net.tracen.umapyoi.data.builtin;
 
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.tracen.umapyoi.Umapyoi;
@@ -54,7 +54,7 @@ public class SupportCardRegistry {
     
     public static final ResourceKey<SupportCard> SSR_RUDOLF_G = register("ssr_g_rudolf");
     public static final ResourceKey<SupportCard> SSR_MEJIRO_RAMONU_W = register("ssr_w_mejiro_ramonu");
-    public static void registerAll(BootstapContext<SupportCard> bootstrap) {
+    public static void registerAll(BootstrapContext<SupportCard> bootstrap) {
         
         bootstrap.register(R_TURF_TRAINING,
                 SupportCard.Builder.create()
@@ -98,7 +98,7 @@ public class SupportCardRegistry {
                 .ranking(GachaRanking.R)
                 .maxDamage(10)
                 .supportType(SupportType.STAMINA)
-                .addSupporter(new ResourceLocation(Umapyoi.MODID, "super_creek"))
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "super_creek"))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 1))
                 .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.NUTRITIONAL_SUPPLEMENTS.getId()))
                 .build());
@@ -128,7 +128,7 @@ public class SupportCardRegistry {
                 .ranking(GachaRanking.R)
                 .maxDamage(10)
                 .supportType(SupportType.GUTS)
-                .addSupporter(new ResourceLocation(Umapyoi.MODID, "ks_miracle"))
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "ks_miracle"))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 2))
                 .build());
         
@@ -207,7 +207,7 @@ public class SupportCardRegistry {
                 .ranking(GachaRanking.SSR)
                 .maxDamage(5)
                 .supportType(SupportType.STAMINA)
-                .addSupporter(new ResourceLocation(Umapyoi.MODID, "super_creek"))
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "super_creek"))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 3))
                 .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.BIG_EATER.getId()))
                 .build());
@@ -250,7 +250,7 @@ public class SupportCardRegistry {
                 .ranking(GachaRanking.SSR)
                 .maxDamage(5)
                 .supportType(SupportType.GUTS)
-                .addSupporter(new ResourceLocation(Umapyoi.MODID, "ks_miracle"))
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "ks_miracle"))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 3))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
                 .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.HEART_AND_SOUL.getId()))
@@ -261,7 +261,7 @@ public class SupportCardRegistry {
                 .ranking(GachaRanking.SSR)
                 .maxDamage(5)
                 .supportType(SupportType.WISDOM)
-                .addSupporter(new ResourceLocation(Umapyoi.MODID, "fine_motion"))
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "fine_motion"))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.WISDOM_SUPPORT.getId(), 3))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 1))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 2))
@@ -283,7 +283,7 @@ public class SupportCardRegistry {
                 .ranking(GachaRanking.SSR)
                 .maxDamage(5)
                 .supportType(SupportType.WISDOM)
-                .addSupporter(new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu"))
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "mejiro_ramonu"))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.WISDOM_SUPPORT.getId(), 4))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
                 .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 2))
@@ -291,7 +291,7 @@ public class SupportCardRegistry {
     }
 
     private static ResourceKey<SupportCard> register(String id) {
-        ResourceKey<SupportCard> loc = ResourceKey.create(SupportCard.REGISTRY_KEY, new ResourceLocation(Umapyoi.MODID, id));
+        ResourceKey<SupportCard> loc = ResourceKey.create(SupportCard.REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, id));
         return loc;
     }
 }

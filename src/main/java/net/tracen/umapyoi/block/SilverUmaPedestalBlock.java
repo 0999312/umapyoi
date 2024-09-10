@@ -27,7 +27,7 @@ import net.tracen.umapyoi.block.entity.SilverUmaPedestalBlockEntity;
 
 public class SilverUmaPedestalBlock extends BaseEntityBlock {
     public SilverUmaPedestalBlock() {
-        super(Properties.copy(Blocks.STONE).noOcclusion());
+        super(Properties.of(Blocks.STONE).noOcclusion());
     }
 
     @Override

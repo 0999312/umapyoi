@@ -28,8 +28,8 @@ public class SkillSupport extends TrainingSupport {
     @Override
     public Component getDescription(SupportStack stack) {
         ResourceLocation skill = ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"));
-        if (skill != null && UmaSkillRegistry.REGISTRY.get().containsKey(skill)) {
-            UmaSkill result = UmaSkillRegistry.REGISTRY.get().getValue(skill);
+        if (skill != null && UmaSkillRegistry.REGISTRY.containsKey(skill)) {
+            UmaSkill result = UmaSkillRegistry.REGISTRY.get(skill);
             return result.getDescription();
         }
         return super.getDescription(stack);

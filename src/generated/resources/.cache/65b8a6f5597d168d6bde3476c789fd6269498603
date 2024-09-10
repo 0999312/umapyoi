@@ -1,9 +1,10 @@
-// 1.20.1	2024-07-19T01:31:43.7446179	UmaData Registry
+// 1.20.1	2024-08-08T02:18:26.463855	UmaData Registry
 bc61cfddfb38307c7beadbfd4fac08e961306e33 data/umapyoi/umapyoi/umadata/admire_vega.json
 b50074724982f0fe6a3a3f26437532ca4a076ef1 data/umapyoi/umapyoi/umadata/agnus_tachyon.json
 066f99c7571ad3cd66250cc088095acd7637741e data/umapyoi/umapyoi/umadata/agnus_tachyon_swim.json
 7cc4e18e0823e0b8df5ea43da3aa2d10934e845c data/umapyoi/umapyoi/umadata/aston_machan.json
 ff51d18d203b592bc6ca8fc88e619a792c212c79 data/umapyoi/umapyoi/umadata/byerley_turk.json
+b7e7eff065a4aa8a45a058536f9724defb3985ee data/umapyoi/umapyoi/umadata/calstone_light_o.json
 48e3f3876b06064747e72ed01eb691787de01938 data/umapyoi/umapyoi/umadata/cheval_grand.json
 a4f2ff7742abafa58dbfc9e8fb6748c3f923edea data/umapyoi/umapyoi/umadata/common_uma.json
 91e3997812b5695f7908f5e0879726f78e9397d6 data/umapyoi/umapyoi/umadata/common_uma_a.json
@@ -12,10 +13,12 @@ a4f2ff7742abafa58dbfc9e8fb6748c3f923edea data/umapyoi/umapyoi/umadata/common_uma
 4cce925220019109a4ab92906bf3b70987e5d53a data/umapyoi/umapyoi/umadata/copano_rickey.json
 d9c2b4a0421960d235168d60059662fe091e0119 data/umapyoi/umapyoi/umadata/curren_chan.json
 49e40489f320076c0eb0b38bbcdcd1dfff58047b data/umapyoi/umapyoi/umadata/curren_chan_dress.json
+137b51613f20e685bb00abb2742bc6f176d44c5f data/umapyoi/umapyoi/umadata/daiichi_ruby.json
 6eb9bf681bb60aaff5ff5d9e7895a1204c62b634 data/umapyoi/umapyoi/umadata/daitaku_helios.json
 29ffffa07f89c21bff02ccfd1c921130133a0fbf data/umapyoi/umapyoi/umadata/daiwa_scarlet.json
 9cbbaa91517db2c9e1cdb08882b71707553d5f7a data/umapyoi/umapyoi/umadata/darley_arabian.json
 a76035077b8c35f4e3467a7ab398aeac7ff7e774 data/umapyoi/umapyoi/umadata/dumnheint.json
+533079d72960f7d716b848c47684a94b6c3adc5a data/umapyoi/umapyoi/umadata/durandal.json
 cc3058f50fdd0f021421854b89f7fc092d2a0268 data/umapyoi/umapyoi/umadata/el_condor_pasa.json
 00f7de65b269537ff745ea703c76f6f532fc62ef data/umapyoi/umapyoi/umadata/fine_motion.json
 572d3a34c00ac4474df828af6decd443c0aefbec data/umapyoi/umapyoi/umadata/fujimasa_march.json
@@ -30,6 +33,7 @@ f3cecd68bb5a2b7720e2f0c4328cd8cf0854ac37 data/umapyoi/umapyoi/umadata/grass_wond
 6840e2f971f109f520d5fd85484b31e5743cbc16 data/umapyoi/umapyoi/umadata/haru_urara.json
 a41beae04209c1bfe7fc45868626a5437c4c075e data/umapyoi/umapyoi/umadata/hishi_miracle.json
 1b3271f3bf5b88daa04cd3afbaabc5138c8ad222 data/umapyoi/umapyoi/umadata/hokko_tarumae.json
+85c216c357cdeceda6785f2db3409981fbfca358 data/umapyoi/umapyoi/umadata/hokko_tarumae_swim.json
 1f2f42a73702e6084e5873c64703830f45a1d0cd data/umapyoi/umapyoi/umadata/jungle_pocket.json
 fef54e08acbc5aa5cc2ee4e969911e4e9e072e1a data/umapyoi/umapyoi/umadata/kawakami_princess.json
 a6ab3d56b3add9a192d736591d96fabb0b3c6c1f data/umapyoi/umapyoi/umadata/king_halo.json
@@ -45,6 +49,7 @@ f64df3c6f72947203d0cf8a3cdfa3610e318e9d3 data/umapyoi/umapyoi/umadata/mayano_top
 1792df6a9a526c482138e07d00b5e38a782de3c5 data/umapyoi/umapyoi/umadata/meisho_dotou.json
 ca0f7430d28ff8e63f2954c6379ce88fb6599f97 data/umapyoi/umapyoi/umadata/mejiro_ardan.json
 e60ae070d5b610faab7eedd44e747537f348e3d3 data/umapyoi/umapyoi/umadata/mejiro_mcqueen.json
+61e86d442b0436f79e24838bc0aa93bbcce1190b data/umapyoi/umapyoi/umadata/mejiro_palmer.json
 493771a11cbc80ef3c0b1a00f7295c9a623b743b data/umapyoi/umapyoi/umadata/mihono_bourbon.json
 106aad76acb5c9d2f9a6446945b342ce823c792b data/umapyoi/umapyoi/umadata/mr_cb.json
 7644d90ff29ecf9c0c3c73ecd1744aae132c9b20 data/umapyoi/umapyoi/umadata/narita_taishin.json
@@ -71,6 +76,7 @@ f6727485b4c46cbe375e56af022c338c01522fef data/umapyoi/umapyoi/umadata/taiki_shut
 07cc99cb09b2b3636908d7967ffd8fb7f413ef0c data/umapyoi/umapyoi/umadata/tamamo_cross_festival.json
 1ae0309878e9ab6dc568395f64b67cec01c748c6 data/umapyoi/umapyoi/umadata/tm_opera_o.json
 09a516d613d2da144c51917d720b15c59ffec6af data/umapyoi/umapyoi/umadata/tokai_teio.json
+31459741a1838e14af98506fd14a2eea7bf22ce1 data/umapyoi/umapyoi/umadata/transcend.json
 4fff953d2a9e03a75862dd514b78533dffbe0aab data/umapyoi/umapyoi/umadata/twinturbo.json
 ce243491185081b9cff2d81cef9ac30d1979ac92 data/umapyoi/umapyoi/umadata/venus_park.json
 d5f2c7f66ec4ad7aed2bb062ea20ef6e3db96ce0 data/umapyoi/umapyoi/umadata/verxina.json

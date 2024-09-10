@@ -13,7 +13,7 @@ import net.tracen.umapyoi.container.TrainingFacilityContainer;
 import net.tracen.umapyoi.registry.training.SupportContainer;
 
 public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFacilityContainer> {
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
+    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
             "textures/gui/training_snap.png");
 
     public TrainingFacilityScreen(TrainingFacilityContainer screenContainer, Inventory inv, Component titleIn) {
@@ -26,7 +26,7 @@ public class TrainingFacilityScreen extends AbstractContainerScreen<TrainingFaci
 
     @Override
     public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
-        this.renderBackground(graphic);
+        this.renderBackground(graphic, mouseY, mouseY, partialTicks);
         super.render(graphic, mouseX, mouseY, partialTicks);
         this.renderTooltip(graphic, mouseX, mouseY);
     }

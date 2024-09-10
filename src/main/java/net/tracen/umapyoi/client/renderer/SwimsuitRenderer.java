@@ -13,8 +13,8 @@ public class SwimsuitRenderer extends AbstractSuitRenderer {
 
     @Override
     protected ResourceLocation getTexture(boolean tanned) {
-        return tanned ? new ResourceLocation(Umapyoi.MODID, "textures/model/swimsuit_tanned.png")
-                : new ResourceLocation(Umapyoi.MODID, "textures/model/swimsuit.png");
+        return tanned ? ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/swimsuit_tanned.png")
+                : ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/swimsuit.png");
     }
 
     @Override
@@ -24,8 +24,8 @@ public class SwimsuitRenderer extends AbstractSuitRenderer {
 
     @Override
     protected ResourceLocation getFlatTexture(boolean tanned) {
-        return tanned ? new ResourceLocation(Umapyoi.MODID, "textures/model/swimsuit_flat_tanned.png")
-                : new ResourceLocation(Umapyoi.MODID, "textures/model/swimsuit_flat.png");
+        return tanned ? ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/swimsuit_flat_tanned.png")
+                : ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/model/swimsuit_flat.png");
     }
 
 }

@@ -2,11 +2,10 @@ package net.tracen.umapyoi.events;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.eventbus.api.Cancelable;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.ICancellableEvent;
 
-@Cancelable
-public class ResumeActionPointEvent extends Event {
+public class ResumeActionPointEvent extends Event implements ICancellableEvent{
     private final LivingEntity entity;
     private final ItemStack soul;
 

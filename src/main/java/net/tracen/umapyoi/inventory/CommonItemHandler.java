@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
 public class CommonItemHandler implements IItemHandler {
     private final int slots_input;

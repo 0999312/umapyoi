@@ -1,7 +1,9 @@
 package net.tracen.umapyoi;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
+@EventBusSubscriber(modid = Umapyoi.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class UmapyoiConfig {
     
     public static final int DEFAULT_GACHA_PROBABILITY_SUM = 100;
@@ -9,43 +11,43 @@ public class UmapyoiConfig {
     public static final int DEFAULT_GACHA_PROBABILITY_SR = 20;
     public static final int DEFAULT_GACHA_PROBABILITY_SSR = 10;
     
-    public static ForgeConfigSpec COMMON_CONFIG;
+    public static ModConfigSpec COMMON_CONFIG;
     
-    public static ForgeConfigSpec.IntValue STAT_LIMIT_VALUE;
-    public static ForgeConfigSpec.DoubleValue STAT_LIMIT_REDUCTION_RATE;
+    public static ModConfigSpec.IntValue STAT_LIMIT_VALUE;
+    public static ModConfigSpec.DoubleValue STAT_LIMIT_REDUCTION_RATE;
     
-    public static ForgeConfigSpec.DoubleValue CHANCE_MOTIVATION_EFFECT;
-    public static ForgeConfigSpec.DoubleValue DAMAGE_MOTIVATION_EFFECT;
+    public static ModConfigSpec.DoubleValue CHANCE_MOTIVATION_EFFECT;
+    public static ModConfigSpec.DoubleValue DAMAGE_MOTIVATION_EFFECT;
     
-    public static ForgeConfigSpec.IntValue GACHA_PROBABILITY_SUM;
-    public static ForgeConfigSpec.IntValue GACHA_PROBABILITY_R;
-    public static ForgeConfigSpec.IntValue GACHA_PROBABILITY_SR;
-    public static ForgeConfigSpec.IntValue GACHA_PROBABILITY_SSR;
+    public static ModConfigSpec.IntValue GACHA_PROBABILITY_SUM;
+    public static ModConfigSpec.IntValue GACHA_PROBABILITY_R;
+    public static ModConfigSpec.IntValue GACHA_PROBABILITY_SR;
+    public static ModConfigSpec.IntValue GACHA_PROBABILITY_SSR;
 
-    public static ForgeConfigSpec CLIENT_CONFIG;
-    public static ForgeConfigSpec.BooleanValue VANILLA_ARMOR_RENDER;
-    public static ForgeConfigSpec.BooleanValue HIDE_PARTS_RENDER;
-    public static ForgeConfigSpec.BooleanValue ELYTRA_RENDER;
+    public static ModConfigSpec CLIENT_CONFIG;
+    public static ModConfigSpec.BooleanValue VANILLA_ARMOR_RENDER;
+    public static ModConfigSpec.BooleanValue HIDE_PARTS_RENDER;
+    public static ModConfigSpec.BooleanValue ELYTRA_RENDER;
 
-    public static ForgeConfigSpec.IntValue EAR_ANIMATION_INTERVAL;
-    public static ForgeConfigSpec.IntValue TAIL_ANIMATION_INTERVAL;
+    public static ModConfigSpec.IntValue EAR_ANIMATION_INTERVAL;
+    public static ModConfigSpec.IntValue TAIL_ANIMATION_INTERVAL;
 
-    public static ForgeConfigSpec.BooleanValue OVERLAY_SWITCH;
-    public static ForgeConfigSpec.BooleanValue TOOLTIP_SWITCH;
+    public static ModConfigSpec.BooleanValue OVERLAY_SWITCH;
+    public static ModConfigSpec.BooleanValue TOOLTIP_SWITCH;
     
-    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_SPEED;
-    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_STRENGTH_ATTACK;
-    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_STAMINA_HEALTH;
-    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_GUTS_ARMOR;
-    public static ForgeConfigSpec.DoubleValue UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS;
+    public static ModConfigSpec.DoubleValue UMASOUL_MAX_SPEED;
+    public static ModConfigSpec.DoubleValue UMASOUL_MAX_STRENGTH_ATTACK;
+    public static ModConfigSpec.DoubleValue UMASOUL_MAX_STAMINA_HEALTH;
+    public static ModConfigSpec.DoubleValue UMASOUL_MAX_GUTS_ARMOR;
+    public static ModConfigSpec.DoubleValue UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS;
     
-    public static ForgeConfigSpec.BooleanValue UMASOUL_SPEED_PRECENT_ENABLE;
-    public static ForgeConfigSpec.BooleanValue UMASOUL_STRENGTH_PRECENT_ENABLE;
-    public static ForgeConfigSpec.BooleanValue UMASOUL_STAMINA_PRECENT_ENABLE;
-    public static ForgeConfigSpec.BooleanValue UMASOUL_GUTS_PRECENT_ENABLE;
+    public static ModConfigSpec.BooleanValue UMASOUL_SPEED_PRECENT_ENABLE;
+    public static ModConfigSpec.BooleanValue UMASOUL_STRENGTH_PRECENT_ENABLE;
+    public static ModConfigSpec.BooleanValue UMASOUL_STAMINA_PRECENT_ENABLE;
+    public static ModConfigSpec.BooleanValue UMASOUL_GUTS_PRECENT_ENABLE;
 
     static {
-        ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
         COMMON_BUILDER.comment("General settings").push("general");
         
         UMASOUL_SPEED_PRECENT_ENABLE = COMMON_BUILDER.comment("Determines whether to add speed bouns as a percentage.",
@@ -119,7 +121,7 @@ public class UmapyoiConfig {
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
     static {
-        ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder CLIENT_BUILDER = new ModConfigSpec.Builder();
         CLIENT_BUILDER.comment("Client settings").push("client");
         VANILLA_ARMOR_RENDER = CLIENT_BUILDER.comment("Determines whether to render vanilla armor slot's model.",
                 "Player's armor won't render after closing this.").define("vanilla_armor_render", false);

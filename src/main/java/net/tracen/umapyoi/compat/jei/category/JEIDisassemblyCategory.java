@@ -23,7 +23,7 @@ public class JEIDisassemblyCategory implements IRecipeCategory<JEISimpleRecipe> 
 
     public JEIDisassemblyCategory(IGuiHelper helper) {
         title = Component.translatable("umapyoi.jei.disassembly");
-        ResourceLocation backgroundImage = new ResourceLocation(Umapyoi.MODID, "textures/gui/jei_compat.png");
+        ResourceLocation backgroundImage = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/gui/jei_compat.png");
         background = helper.createDrawable(backgroundImage, 0, 0, 93, 46);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
                 new ItemStack(BlockRegistry.DISASSEMBLY_BLOCK.get()));
