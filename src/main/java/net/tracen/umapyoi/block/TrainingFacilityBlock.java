@@ -38,8 +38,9 @@ public class TrainingFacilityBlock extends BaseEntityBlock {
 
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
+    @SuppressWarnings("deprecation")
     public TrainingFacilityBlock() {
-        super(Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion().noCollission());
+        super(Properties.ofLegacyCopy(Blocks.IRON_BLOCK).noOcclusion().noCollission());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 

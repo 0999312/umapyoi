@@ -36,8 +36,9 @@ public class SupportAlbumPedestalBlock extends AbstractPedestalBlock
         return CODEC;
     }
 
+    @SuppressWarnings("deprecation")
     public SupportAlbumPedestalBlock() {
-        super(Properties.ofFullCopy(Blocks.STONE).noOcclusion());
+        super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
     @SuppressWarnings("deprecation")

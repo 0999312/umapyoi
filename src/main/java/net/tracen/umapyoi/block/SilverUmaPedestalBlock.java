@@ -35,8 +35,9 @@ public class SilverUmaPedestalBlock extends AbstractPedestalBlock {
         return CODEC;
     }
 
+    @SuppressWarnings("deprecation")
     public SilverUmaPedestalBlock() {
-        super(Properties.ofFullCopy(Blocks.STONE).noOcclusion());
+        super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
     @SuppressWarnings("deprecation")

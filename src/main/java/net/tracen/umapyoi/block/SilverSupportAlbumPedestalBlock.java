@@ -37,10 +37,12 @@ public class SilverSupportAlbumPedestalBlock extends AbstractPedestalBlock
         return CODEC;
     }
 
+    @SuppressWarnings("deprecation")
     public SilverSupportAlbumPedestalBlock() {
-        super(Properties.ofFullCopy(Blocks.STONE).noOcclusion());
+        super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
         return BlockRegistry.SILVER_UMA_PEDESTAL.toStack();

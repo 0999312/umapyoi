@@ -2,12 +2,15 @@ package net.tracen.umapyoi.events.handler;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.client.ActionBarOverlay;
 import net.tracen.umapyoi.client.MotivationOverlay;
@@ -68,10 +71,10 @@ public class ClientSetupEvents {
     }
     
     @SubscribeEvent
-    public static void registerGuiOverlay(RegisterGuiOverlaysEvent event) {
-        event.registerBelowAll("umapyoi.skill_overlay", SkillOverlay.INSTANCE);
-        event.registerBelowAll("umapyoi.motivation_overlay", MotivationOverlay.INSTANCE);
-        event.registerBelowAll("umapyoi.action_bar", ActionBarOverlay.INSTANCE);
+    public static void registerGuiLayer(RegisterGuiLayersEvent event) {
+        event.registerBelowAll(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "skill_overlay"), SkillOverlay.INSTANCE);
+        event.registerBelowAll(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "motivation_overlay"), MotivationOverlay.INSTANCE);
+        event.registerBelowAll(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "action_bar"), ActionBarOverlay.INSTANCE);
     }
 
 }

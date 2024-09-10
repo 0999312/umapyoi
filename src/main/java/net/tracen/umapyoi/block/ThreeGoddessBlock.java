@@ -35,8 +35,9 @@ public class ThreeGoddessBlock extends BaseEntityBlock
     public static final MapCodec<ThreeGoddessBlock> CODEC = simpleCodec(p -> new ThreeGoddessBlock());
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
+    @SuppressWarnings("deprecation")
     public ThreeGoddessBlock() {
-        super(Properties.ofFullCopy(Blocks.POLISHED_ANDESITE).noOcclusion());
+        super(Properties.ofLegacyCopy(Blocks.POLISHED_ANDESITE).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 

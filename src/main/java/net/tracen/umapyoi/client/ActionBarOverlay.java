@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.client;
 
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,8 +12,11 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class ActionBarOverlay implements LayeredDraw.Layer {
     public static final ActionBarOverlay INSTANCE = new ActionBarOverlay();
     private final Minecraft minecraft = Minecraft.getInstance();
@@ -23,7 +27,7 @@ public class ActionBarOverlay implements LayeredDraw.Layer {
     private static final ResourceLocation HUD = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/gui/actionbar.png");
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, @NotNull DeltaTracker tracker) {
+    public void render(GuiGraphics guiGraphics, DeltaTracker tracker) {
         if (!UmapyoiConfig.OVERLAY_SWITCH.get())
             return;
 
