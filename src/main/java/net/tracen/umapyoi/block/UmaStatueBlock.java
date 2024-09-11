@@ -33,7 +33,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class UmaStatueBlock extends BaseEntityBlock {
+public class UmaStatueBlock extends BaseEntityBlock
+{
     public static final MapCodec<UmaStatueBlock> CODEC = simpleCodec(p -> new UmaStatueBlock());
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
@@ -49,6 +50,7 @@ public class UmaStatueBlock extends BaseEntityBlock {
         return CODEC;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
@@ -58,9 +60,8 @@ public class UmaStatueBlock extends BaseEntityBlock {
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
-    
-    
-    
+
+
     @Override
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         pLevel.setBlock(pPos.above(), BlockRegistry.UMA_STATUES_UPPER.get().defaultBlockState(), UPDATE_ALL);
@@ -72,29 +73,34 @@ public class UmaStatueBlock extends BaseEntityBlock {
         BlockEntity tileEntity = level.getBlockEntity(pos);
         if (tileEntity instanceof UmaStatueBlockEntity obon) {
             if (obon.isEmpty()) {
-//                if (heldStack.isEmpty()) {
-//                    return InteractionResult.PASS;
-//                } else
-                    if (obon.addItem(player.getAbilities().instabuild ? stack.copy() : stack)) {
-                    level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0F, 0.8F);
+                if (stack.isEmpty()) {
+                    return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
+                }
+                else if (obon.addItem(player.getAbilities().instabuild ? stack.copy() : stack)) {
+                    level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_PLACE,
+                                    SoundSource.BLOCKS, 1.0F, 0.8F
+                    );
                     return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
 
-            } else if (hand.equals(InteractionHand.MAIN_HAND)) {
+            }
+            else if (hand.equals(InteractionHand.MAIN_HAND)) {
                 if (!player.isCreative()) {
                     if (!player.getInventory().add(obon.removeItem())) {
                         Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), obon.removeItem());
                     }
-                } else {
+                }
+                else {
                     obon.removeItem();
                 }
-                level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 0.25F, 0.5F);
+                level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOOD_HIT, SoundSource.BLOCKS,
+                                0.25F, 0.5F
+                );
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
         }
         // Maybe no need to pass to default interaction
         return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
-
     }
 
     @Override
@@ -108,17 +114,17 @@ public class UmaStatueBlock extends BaseEntityBlock {
             super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
-    
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
-    
+
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return BlockEntityRegistry.UMA_STATUES.get().create(pos, state);
     }
-    
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
