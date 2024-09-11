@@ -23,7 +23,8 @@ public abstract class AbstractPedestalBlock extends BaseEntityBlock
     }
 
 
-    static InteractionResult interactBEWithoutItem(Level level, BlockPos pos, Player player, boolean empty, ItemStack itemStack, AbstractPedestalBlockEntity blockEntity) {
+
+    protected InteractionResult interactBEWithoutItem(Level level, BlockPos pos, Player player, boolean empty, ItemStack itemStack) {
         if (empty) {
             return InteractionResult.PASS;
         }
@@ -42,15 +43,19 @@ public abstract class AbstractPedestalBlock extends BaseEntityBlock
         }
     }
 
-    static ItemInteractionResult interactBEWithItem(ItemStack stack, Level level, BlockPos pos, Player player, InteractionHand hand, AbstractPedestalBlockEntity blockEntity, boolean checkBook) {
+    protected ItemInteractionResult interactBEWithItem(ItemStack stack, Level level, BlockPos pos, Player player, InteractionHand hand, AbstractPedestalBlockEntity blockEntity, boolean checkBook) {
+        // Wtf why useItemOn can use EMPTY item???
+        // sbmj
+        if (stack.isEmpty()) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
         if (blockEntity.isEmpty()) {
             if (hand == InteractionHand.MAIN_HAND && !player.getOffhandItem().isEmpty() && stack.getItem() instanceof BlockItem) {
                 return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
             }
 
             if (checkBook && stack.is(Items.BOOK)) {
-                level.destroyBlock(pos, false);
-                level.setBlock(pos, BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get().defaultBlockState(), UPDATE_ALL);
+                transformOnBook(level, pos);
             }
             else if (blockEntity.addItem(player.getAbilities().instabuild ? stack.copy() : stack)) {
                 level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.END_PORTAL_FRAME_FILL,
@@ -65,5 +70,8 @@ public abstract class AbstractPedestalBlock extends BaseEntityBlock
             player.displayClientMessage(Component.translatable("umapyoi.uma_pedestal.cannot_add_item"), true);
             return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
         }
+    }
+
+    protected void transformOnBook(Level level, BlockPos pos) {
     }
 }

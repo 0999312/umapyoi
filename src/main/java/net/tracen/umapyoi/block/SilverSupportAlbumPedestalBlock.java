@@ -42,11 +42,13 @@ public class SilverSupportAlbumPedestalBlock extends AbstractPedestalBlock
         super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
         return BlockRegistry.SILVER_UMA_PEDESTAL.toStack();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
@@ -62,8 +64,7 @@ public class SilverSupportAlbumPedestalBlock extends AbstractPedestalBlock
         if (!level.isClientSide) {
             BlockEntity tileEntity = level.getBlockEntity(pos);
             if (tileEntity instanceof SilverSupportAlbumPedestalBlockEntity blockEntity) {
-                return interactBEWithoutItem(level, pos, player, blockEntity.isEmpty(), blockEntity.removeItem(),
-                                             blockEntity
+                return interactBEWithoutItem(level, pos, player, blockEntity.isEmpty(), blockEntity.removeItem()
                 );
             }
         }

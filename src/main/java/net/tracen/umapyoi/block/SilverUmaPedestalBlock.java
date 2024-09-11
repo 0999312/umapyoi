@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.block.entity.SilverUmaPedestalBlockEntity;
-import net.tracen.umapyoi.block.entity.UmaPedestalBlockEntity;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
@@ -40,6 +39,7 @@ public class SilverUmaPedestalBlock extends AbstractPedestalBlock {
         super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
@@ -50,14 +50,14 @@ public class SilverUmaPedestalBlock extends AbstractPedestalBlock {
         return BlockEntityRegistry.SILVER_UMA_PEDESTAL.get().create(pos, state);
     }
 
-    // TODO copied from UmaPedestalBlock.java, need test
+    // DONE copied from UmaPedestalBlock.java, need test
+    // 他妈的果然写出问题了
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide) {
             BlockEntity tileEntity = level.getBlockEntity(pos);
-            if (tileEntity instanceof UmaPedestalBlockEntity blockEntity) {
-                return interactBEWithoutItem(level, pos, player, blockEntity.isEmpty(), blockEntity.removeItem(),
-                                             blockEntity
+            if (tileEntity instanceof SilverUmaPedestalBlockEntity blockEntity) {
+                return interactBEWithoutItem(level, pos, player, blockEntity.isEmpty(), blockEntity.removeItem()
                 );
             }
         }
@@ -68,7 +68,7 @@ public class SilverUmaPedestalBlock extends AbstractPedestalBlock {
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!level.isClientSide) {
             BlockEntity tileEntity = level.getBlockEntity(pos);
-            if (tileEntity instanceof UmaPedestalBlockEntity blockEntity) {
+            if (tileEntity instanceof SilverUmaPedestalBlockEntity blockEntity) {
                 return interactBEWithItem(stack, level, pos, player, hand, blockEntity, true);
             }
         }
@@ -97,5 +97,11 @@ public class SilverUmaPedestalBlock extends AbstractPedestalBlock {
         }
         return createTickerHelper(blockEntity, BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(),
                 SilverUmaPedestalBlockEntity::workingTick);
+    }
+
+    @Override
+    protected void transformOnBook(Level level, BlockPos pos) {
+        level.destroyBlock(pos, false);
+        level.setBlock(pos, BlockRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get().defaultBlockState(), UPDATE_ALL);
     }
 }
