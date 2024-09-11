@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "umapyoi:silver_uma_pedestal"
+    },
+    "G": {
+      "tag": "c:ingots/gold"
+    },
+    "J": [
+      {
+        "item": "umapyoi:crystal_gold"
+      },
+      {
+        "item": "umapyoi:horseshoe_gold"
+      }
+    ]
+  },
+  "pattern": [
+    " J ",
+    "GAG",
+    "GGG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:uma_pedestal"
+  }
+}

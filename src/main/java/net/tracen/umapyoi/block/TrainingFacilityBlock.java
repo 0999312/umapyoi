@@ -49,7 +49,6 @@ public class TrainingFacilityBlock extends BaseEntityBlock {
         return CODEC;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:stones"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    },
+    "L": {
+      "item": "minecraft:quartz_block"
+    }
+  },
+  "pattern": [
+    " J ",
+    "JLJ",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:three_goddess"
+  }
+}

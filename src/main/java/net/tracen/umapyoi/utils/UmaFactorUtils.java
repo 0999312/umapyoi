@@ -1,36 +1,28 @@
 package net.tracen.umapyoi.utils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.Tag;
-import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.registry.UmaFactorRegistry;
+import net.tracen.umapyoi.registry.factors.FactorData;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 
 public class UmaFactorUtils {
-    public static ListTag serializeNBT(List<UmaFactorStack> factors) {
-        ListTag result = new ListTag();
+    public static List<FactorData> serializeData(List<UmaFactorStack> factors) {
+    	List<FactorData> result = new ArrayList<FactorData>();
 
-        for (UmaFactorStack factor : factors) {
-            UmaFactorStack.CODEC.encodeStart(NbtOps.INSTANCE, factor)
-                    .resultOrPartial(error -> Umapyoi.getLogger().error("Failed to encode FactorStack : {}", error))
-                    .ifPresent(tag -> result.add(tag));
-        }
+        factors.forEach(factor->result.add(new FactorData(UmaFactorRegistry.REGISTRY.getKey(factor.getFactor()),
+        		factor.getLevel(), Optional.ofNullable(factor.getTag()))));
         return result;
     }
 
-    public static List<UmaFactorStack> deserializeNBT(CompoundTag compound) {
+    public static List<UmaFactorStack> deserializeData(List<FactorData> datas) {
         List<UmaFactorStack> list = Lists.newArrayList();
 
-        compound.getList("factors", Tag.TAG_COMPOUND).forEach(tag -> {
-            UmaFactorStack.CODEC.parse(NbtOps.INSTANCE, tag).resultOrPartial(error -> {
-                Umapyoi.getLogger().error("Failed to parse FactorStack : {}", error);
-            }).ifPresent(result -> list.add(result));
-        });
+        datas.forEach(data->list.add(new UmaFactorStack(UmaFactorRegistry.REGISTRY.get(data.id()), data.level(), data.tag())));
 
         return list;
     }

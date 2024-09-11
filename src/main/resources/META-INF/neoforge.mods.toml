@@ -4,10 +4,10 @@ loaderVersion="${loader_version_range}"
 license="${mod_license}"
 [[mods]]
 modId="${mod_id}" #mandatory
-version="${file.jarVersion}"
-displayName="Umapyoi" 
+version="${mod_version}"
+displayName="${mod_name}" 
 credits="Japan Umamusume Training Center Academy (aka Tracen Academy)" 
-authors="Tracen Academy Minecraft Group" 
+authors="${mod_authors}" 
 description='''
 (On your marks  Get set…  Go!)
 Ooooooooooh  (horsey-buds!) Oooooooh  (horsey-hop! horsey-hop!)

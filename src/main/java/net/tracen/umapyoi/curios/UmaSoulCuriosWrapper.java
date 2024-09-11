@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.NeoForge;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
-import net.tracen.umapyoi.registry.umadata.Growth;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -69,37 +69,29 @@ public class UmaSoulCuriosWrapper implements ICurio {
          if (!slotContext.identifier().equalsIgnoreCase("uma_soul"))
              return atts;
          CuriosApi.addSlotModifier(atts, "uma_suit", id, 1.0, AttributeModifier.Operation.ADD_VALUE);
-         if (UmaSoulUtils.getGrowth(getStack()) == Growth.UNTRAINED)
-             return atts;
          atts.put(Attributes.MOVEMENT_SPEED,
-                 new AttributeModifier(id, getExactProperty(StatusType.SPEED.getId(),
+                 new AttributeModifier(id, getExactProperty(StatusType.SPEED,
                 		 UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
                          UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
-         
-         atts.put(Attributes.SNEAKING_SPEED,
-                 new AttributeModifier(id, getExactProperty(StatusType.SPEED.getId(), 
-                		 UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
-                         UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-                                 : AttributeModifier.Operation.ADD_VALUE));
-         
+        
          atts.put(Attributes.ATTACK_DAMAGE,
-                 new AttributeModifier(id, getExactProperty(StatusType.STRENGTH.getId(),
+                 new AttributeModifier(id, getExactProperty(StatusType.STRENGTH,
                 		 UmapyoiConfig.UMASOUL_MAX_STRENGTH_ATTACK.get()),
                          UmapyoiConfig.UMASOUL_STRENGTH_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
          atts.put(Attributes.MAX_HEALTH,
-                 new AttributeModifier(id, getExactProperty(StatusType.STAMINA.getId(),
+                 new AttributeModifier(id, getExactProperty(StatusType.STAMINA,
                 		 UmapyoiConfig.UMASOUL_MAX_STAMINA_HEALTH.get()),
                          UmapyoiConfig.UMASOUL_STAMINA_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
          atts.put(Attributes.ARMOR,
-                 new AttributeModifier(id, getExactProperty(StatusType.GUTS.getId(),
+                 new AttributeModifier(id, getExactProperty(StatusType.GUTS,
                 		 UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR.get()),
                          UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
          atts.put(Attributes.ARMOR_TOUGHNESS,
-                 new AttributeModifier(id, getExactProperty(StatusType.GUTS.getId(),
+                 new AttributeModifier(id, getExactProperty(StatusType.GUTS,
                 		 UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS.get()),
                          UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
@@ -108,15 +100,32 @@ public class UmaSoulCuriosWrapper implements ICurio {
     }
 
 
-    public double getExactProperty(int num, double limit) {
-        var retiredValue = UmaSoulUtils.getGrowth(getStack()) == Growth.RETIRED ? 1.0D : 0.25D;
-        var propertyRate = 1.0D + (UmaSoulUtils.getPropertyRate(this.getStack())[num] / 100.0D);
-        var totalProperty = propertyPercentage(num);
+    public double getExactProperty(StatusType type, double limit) {
+        var retiredValue = !(this.getStack().has(DataComponentsTypeRegistry.UMADATA_TRAINING)) ? 1.0D : 0.25D;
+        int rate = 0;
+    	switch (type) {
+			case SPEED -> rate = UmaSoulUtils.getPropertyRate(this.getStack()).speed();
+			case STAMINA -> rate = UmaSoulUtils.getPropertyRate(this.getStack()).stamina();
+			case STRENGTH -> rate = UmaSoulUtils.getPropertyRate(this.getStack()).strength();
+			case GUTS -> rate = UmaSoulUtils.getPropertyRate(this.getStack()).guts();
+			case WISDOM -> rate = UmaSoulUtils.getPropertyRate(this.getStack()).wisdom();
+		}
+        var propertyRate = 1.0D + (rate / 100.0D);
+        var totalProperty = propertyPercentage(type);
         return UmaSoulUtils.getMotivation(this.getStack()).getMultiplier() * limit * propertyRate * retiredValue * totalProperty;
     }
 
-    private double propertyPercentage(int num) {
-        var x = UmaSoulUtils.getProperty(this.getStack())[num];
+    private double propertyPercentage(StatusType type) {
+    	int x = 0;
+    	switch (type) {
+			case SPEED -> x = UmaSoulUtils.getProperty(this.getStack()).speed();
+			case STAMINA -> x = UmaSoulUtils.getProperty(this.getStack()).stamina();
+			case STRENGTH -> x = UmaSoulUtils.getProperty(this.getStack()).strength();
+			case GUTS -> x = UmaSoulUtils.getProperty(this.getStack()).guts();
+			case WISDOM -> x = UmaSoulUtils.getProperty(this.getStack()).wisdom();
+		}
+        
+        
         var statLimit = UmapyoiConfig.STAT_LIMIT_VALUE.get();
         var denominator = 1 + Math.pow(Math.E, 
                 (x > statLimit ? (-0.125 * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get()) : -0.125) * 

@@ -24,22 +24,40 @@ public class PlayerFoodExhaustionMixin {
         if (!umaSoul.isEmpty()) {
             if (!player.getAbilities().invulnerable) {
                 if (!player.level().isClientSide()) {
-                    float exhaustionMultipler = 1.2F - this.getExactProperty(umaSoul, StatusType.STAMINA.getId(), 0.85F);
-                    player.getFoodData().addExhaustion(pExhaustion * exhaustionMultipler);
+                    double exhaustionMultipler = 1.2D - this.getExactProperty(umaSoul, StatusType.STAMINA, 0.85F);
+                    player.getFoodData().addExhaustion((float) (pExhaustion * exhaustionMultipler));
                 }
              }
             ci.cancel();
         }
     }
     
-    private float getExactProperty(ItemStack stack, int num, double limit) {
-        var retiredValue = stack.has(DataComponentsTypeRegistry.UMADATA_TRAINING) ? 1.0D : 0.25D;
-        var totalProperty = propertyPercentage(stack, num);
-        return (float) (UmaSoulUtils.getMotivation(stack).getMultiplier() * limit * retiredValue * totalProperty);
+    public double getExactProperty(ItemStack stack, StatusType type, double limit) {
+        var retiredValue = !(stack.has(DataComponentsTypeRegistry.UMADATA_TRAINING)) ? 1.0D : 0.25D;
+        int rate = 0;
+    	switch (type) {
+			case SPEED -> rate = UmaSoulUtils.getPropertyRate(stack).speed();
+			case STAMINA -> rate = UmaSoulUtils.getPropertyRate(stack).stamina();
+			case STRENGTH -> rate = UmaSoulUtils.getPropertyRate(stack).strength();
+			case GUTS -> rate = UmaSoulUtils.getPropertyRate(stack).guts();
+			case WISDOM -> rate = UmaSoulUtils.getPropertyRate(stack).wisdom();
+		}
+        var propertyRate = 1.0D + (rate / 100.0D);
+        var totalProperty = propertyPercentage(stack, type);
+        return UmaSoulUtils.getMotivation(stack).getMultiplier() * limit * propertyRate * retiredValue * totalProperty;
     }
 
-    private double propertyPercentage(ItemStack stack, int num) {
-        var x = UmaSoulUtils.getProperty(stack)[num];
+    private double propertyPercentage(ItemStack stack, StatusType type) {
+    	int x = 0;
+    	switch (type) {
+			case SPEED -> x = UmaSoulUtils.getProperty(stack).speed();
+			case STAMINA -> x = UmaSoulUtils.getProperty(stack).stamina();
+			case STRENGTH -> x = UmaSoulUtils.getProperty(stack).strength();
+			case GUTS -> x = UmaSoulUtils.getProperty(stack).guts();
+			case WISDOM -> x = UmaSoulUtils.getProperty(stack).wisdom();
+		}
+        
+        
         var statLimit = UmapyoiConfig.STAT_LIMIT_VALUE.get();
         var denominator = 1 + Math.pow(Math.E, 
                 (x > statLimit ? (-0.125 * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get()) : -0.125) * 

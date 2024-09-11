@@ -15,11 +15,14 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.SupportCardItem;
 import net.tracen.umapyoi.item.UmaSoulItem;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.item.data.DataLocation;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.factors.FactorType;
-import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
+import net.tracen.umapyoi.registry.training.card.SupportCard;
+import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.UmaFactorUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
@@ -53,15 +56,16 @@ public class UmapyoiCreativeGroup {
                     }).build());
 
     private static void fillFactorContainer(CreativeModeTab.Output output) {
-        for (UmaFactor factor : UmaFactorRegistry.REGISTRY.get().getValues()) {
-            if (factor == UmaFactorRegistry.SKILL_FACTOR.get() || factor.getFactorType() == FactorType.UNIQUE)
-                continue;
+        UmaFactorRegistry.REGISTRY.stream().forEach(factor->{
+        	if (factor == UmaFactorRegistry.SKILL_FACTOR.get() || factor.getFactorType() == FactorType.UNIQUE)
+                return;
             List<UmaFactorStack> stackList = Lists.newArrayList(new UmaFactorStack(factor, 1));
+            
             ItemStack result = ItemRegistry.UMA_FACTOR_ITEM.get().getDefaultInstance();
-            result.getOrCreateTag().putString("name", "umapyoi:common_uma");
-            result.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(stackList));
+            result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(UmaData.DEFAULT_UMA_ID));
+            result.set(DataComponentsTypeRegistry.FACTOR_DATA, UmaFactorUtils.serializeData(stackList));
             output.accept(result);
-        }
+        });
     }
 
     private static void fillUmaSoul(CreativeModeTab.Output output) {
@@ -82,18 +86,16 @@ public class UmapyoiCreativeGroup {
             SupportCardItem.sortedCardDataList().forEach(card -> {
                 if (card.getKey().location().equals(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "blank_card")))
                     return;
-                ItemStack result = ItemRegistry.SUPPORT_CARD.get().getDefaultInstance();
-                result.getOrCreateTag().putString("support_card", card.getKey().location().toString());
-                result.getOrCreateTag().putString("ranking", card.getValue().getGachaRanking().name().toLowerCase());
+                ItemStack result = SupportCard.init(card.getKey().location(), card.getValue());
                 output.accept(result);
             });
         }
     }
 
     private static void fillSkillBook(CreativeModeTab.Output output) {
-        for (ResourceLocation skill : UmaSkillRegistry.REGISTRY.get().getKeys()) {
+        for (ResourceLocation skill : UmaSkillRegistry.REGISTRY.keySet()) {
             ItemStack result = ItemRegistry.SKILL_BOOK.get().getDefaultInstance();
-            result.getOrCreateTag().putString("skill", skill.toString());
+            result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(skill));
             output.accept(result);
         }
     }

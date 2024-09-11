@@ -69,7 +69,7 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
 
 	private void renderAnimation(ThreeGoddessBlockEntity tileEntity, float partialTicks, PoseStack poseStack,
 			MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-		ItemStack jewel = tileEntity.getInventory().get(0);
+		ItemStack jewel = tileEntity.getInventory().getStackInSlot(0);
 		ItemStack soul = tileEntity.getInventory().getStackInSlot(3);
 		if (jewel.isEmpty() && soul.isEmpty())
 			return;

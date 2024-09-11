@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.ThreeGoddessContainer;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.ClientUtils;
 
@@ -32,7 +33,6 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
 
     @Override
     public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
-        this.renderBackground(graphic, mouseY, mouseY, partialTicks);
         super.render(graphic, mouseX, mouseY, partialTicks);
         this.renderTooltip(graphic, mouseX, mouseY);
         this.renderModels(graphic);
@@ -42,13 +42,13 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
         ItemStack fatherFactor = this.menu.inventory.getStackInSlot(1);
         ItemStack motherFactor = this.menu.inventory.getStackInSlot(2);
         if (!fatherFactor.isEmpty()) {
-            ResourceLocation name = new ResourceLocation(fatherFactor.getTag().getString("name"));
+            ResourceLocation name = fatherFactor.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
             renderModel(graphic, this.leftPos + 33, this.topPos + 55, 25, 
                     new Quaternionf().rotateXYZ((float)(Math.PI / 6), (float)(-Math.PI / 4F), 0),
                     name);
         }
         if (!motherFactor.isEmpty()) {
-            ResourceLocation name = new ResourceLocation(motherFactor.getTag().getString("name"));
+            ResourceLocation name = motherFactor.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
             renderModel(graphic, this.leftPos + 142, this.topPos + 55, 25, 
                     new Quaternionf().rotateXYZ((float)(Math.PI / 6), (float)(Math.PI / 4F), 0),
                     name);

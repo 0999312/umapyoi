@@ -3,14 +3,11 @@ package net.tracen.umapyoi.utils;
 import java.util.List;
 
 import net.minecraft.Util;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.StringTag;
-import net.minecraft.nbt.Tag;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
+import net.minecraft.world.item.Rarity;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.item.data.DataLocation;
 import net.tracen.umapyoi.item.data.GachaRankingData;
@@ -19,6 +16,7 @@ import net.tracen.umapyoi.registry.umadata.Motivations;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
 import net.tracen.umapyoi.registry.umadata.UmaDataExtraStatus;
+import net.tracen.umapyoi.registry.umadata.UmaDataSkills;
 import net.tracen.umapyoi.registry.umadata.UmaDataTranining;
 
 public class UmaSoulUtils {
@@ -34,14 +32,20 @@ public class UmaSoulUtils {
     public static ItemStack initUmaSoul(ItemStack stack, ResourceLocation name, UmaData data) {
         ItemStack result = stack.copy();
         result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(name));
-        result.set(DataComponentsTypeRegistry.GACHA_RANKING, new GachaRankingData(data.ranking()));
+        GachaRanking ranking = data.ranking();
+		result.set(DataComponentsTypeRegistry.GACHA_RANKING, new GachaRankingData(ranking));
         result.set(DataComponentsTypeRegistry.UMADATA_BASIC_STATUS, UmaDataBasicStatus.init(data.property()));
         result.set(DataComponentsTypeRegistry.UMADATA_MAX_BASIC_STATUS, UmaDataBasicStatus.init(data.maxProperty()));
         result.set(DataComponentsTypeRegistry.UMADATA_STATUS_RATE, UmaDataBasicStatus.init(data.propertyRate()));
+        result.set(DataComponentsTypeRegistry.UMADATA_SKILLS, new UmaDataSkills(UmaDataSkills.DEFAULT.skillSlot(), 0, 
+        		List.of(data.uniqueSkill())
+        		));
         result.set(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, 
         		new UmaDataExtraStatus(data.property()[4] * 200, 0, 
 				ResultRankingUtils.generateRanking(result), Motivations.NORMAL));
-        
+        result.set(DataComponents.RARITY, 
+        		ranking == GachaRanking.SSR ? Rarity.EPIC : ranking == GachaRanking.SR ? Rarity.UNCOMMON : Rarity.COMMON
+        		);
         result.set(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTranining(1, 6));
         return result;
     }
@@ -73,10 +77,12 @@ public class UmaSoulUtils {
 //                : new int[] { 1, 6, 4, 0 };
 //    }
 
-    public static int[] getMaxProperty(ItemStack stack) {
-        return stack.getOrCreateTag().getIntArray("maxProperty").length > 0
-                ? stack.getOrCreateTag().getIntArray("maxProperty")
-                : new int[] { 12, 12, 12, 12, 12 };
+    public static UmaDataBasicStatus getMaxProperty(ItemStack stack) {
+//        return stack.getOrCreateTag().getIntArray("maxProperty").length > 0
+//                ? stack.getOrCreateTag().getIntArray("maxProperty")
+//                : new int[] { 12, 12, 12, 12, 12 };
+    	return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_MAX_BASIC_STATUS.get(), 
+        		new UmaDataBasicStatus(12, 12, 12, 12, 12));
     }
 
     public static Motivations getMotivation(ItemStack stack) {
@@ -90,10 +96,14 @@ public class UmaSoulUtils {
 
     public static List<ResourceLocation> getSkills(ItemStack stack) {
 //        return stack.getList("skills", Tag.TAG_STRING);
-    	
+    	return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT).skills();
     }
     
     public static boolean hasSkill(ItemStack stack, ResourceLocation skill) {
+    	for(var loc : stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT).skills()) {
+    		if(skill.equals(loc))
+    			return true;
+    	}
 //        for(Tag tag : stack.getOrCreateTag().getList("skills", Tag.TAG_STRING)) {
 //            if(tag.getAsString().equals(skill.toString()))
 //                return true;
@@ -105,35 +115,41 @@ public class UmaSoulUtils {
 //        ListTag result = UmaSoulUtils.getSkills(stack);
 //        result.add(StringTag.valueOf(skill.toString()));
 //        stack.getOrCreateTag().put("skills", result);
-//        stack.update(null, null, null)
+        stack.update(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT,
+        		data->{
+        			data.skills().add(skill);
+        			return data;
+        		});
     }
 
     public static int getSelectedSkillIndex(ItemStack stack) {
-        return stack.getOrCreateTag().getInt("selectedSkill");
+        return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT).selectedSkill();
     }
 
-    public static void setSelectedSkill(ItemStack stack, int slots) {
-        stack.getOrCreateTag().putInt("selectedSkill", slots);
+    public static void setSelectedSkill(ItemStack stack, int slot) {
+//        stack.getOrCreateTag().putInt("selectedSkill", slots);
+    	stack.update(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT, 
+        		data->new UmaDataSkills(data.skillSlot(), slot, data.skills()));
     }
 
     public static ResourceLocation getSelectedSkill(ItemStack stack) {
-        String skill = UmaSoulUtils.getSkills(stack).getString(getSelectedSkillIndex(stack));
-        return skill.isBlank() ? UmaSkillRegistry.BASIC_PACE.getId() : ResourceLocation.tryParse(skill);
+        ResourceLocation skill = UmaSoulUtils.getSkills(stack).get(getSelectedSkillIndex(stack));
+        return skill == null ? UmaSkillRegistry.BASIC_PACE.getId() : skill;
     }
 
     public static int getSkillSlots(ItemStack stack) {
-        return getExtraProperty(stack)[2];
+        return stack.get(DataComponentsTypeRegistry.UMADATA_SKILLS).skillSlot();
     }
 
     public static void setSkillSlots(ItemStack stack, int slots) {
-        getExtraProperty(stack)[2] = slots;
+    	stack.update(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT, 
+        		data->new UmaDataSkills(slots, data.selectedSkill(), data.skills()));
     }
 
     public static boolean hasEmptySkillSlot(ItemStack stack) {
-        ListTag skills = UmaSoulUtils.getSkills(stack);
-        if (UmaSoulUtils.getSkillSlots(stack) <= skills.size())
-            return false;
-        return true;
+    	var slots = stack.get(DataComponentsTypeRegistry.UMADATA_SKILLS).skillSlot();
+    	var learned = stack.get(DataComponentsTypeRegistry.UMADATA_SKILLS).skills().size();
+    	return learned < slots;
     }
 
     public static void selectFormerSkill(ItemStack stack) {
@@ -155,7 +171,9 @@ public class UmaSoulUtils {
     }
 
     public static void setActionPoint(ItemStack stack, int ap) {
-        stack.getOrCreateTag().putInt("actionPoint", ap);
+//        stack.getOrCreateTag().putInt("actionPoint", ap);
+    	stack.update(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT, 
+    			data-> new UmaDataExtraStatus(ap, data.extraActionPoint(), data.resultRanking(), data.motivation()));
     }
 
     public static void addActionPoint(ItemStack stack, int ap) {
@@ -164,20 +182,26 @@ public class UmaSoulUtils {
     }
 
     public static int getMaxActionPoint(ItemStack stack) {
-        return getExtraProperty(stack)[3]
-                + getProperty(stack)[4] * (int) (200 * (1.0D + (UmaSoulUtils.getPropertyRate(stack)[4] / 100.0D)));
+        return stack.get(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS).extraActionPoint()
+                + getProperty(stack).wisdom() * (int) (200 * (1.0D + (UmaSoulUtils.getPropertyRate(stack).wisdom() / 100.0D)));
     }
 
+    public static int getExtraActionPoint(ItemStack stack) {
+        return Math.max(stack.get(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS).extraActionPoint(), 0);
+    }
+    
     public static void setExtraActionPoint(ItemStack stack, int ap) {
-        getExtraProperty(stack)[3] = ap;
+    	stack.update(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT, 
+    			data-> new UmaDataExtraStatus(data.actionPoint(), ap, data.resultRanking(), data.motivation()));
     }
 
     public static int getPhysique(ItemStack stack) {
-        return getExtraProperty(stack)[0];
+        return stack.get(DataComponentsTypeRegistry.UMADATA_TRAINING).physique();
     }
 
     public static void setPhysique(ItemStack stack, int phy) {
-        getExtraProperty(stack)[0] = phy;
+    	stack.update(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTranining(1, 6), 
+    			data-> new UmaDataTranining(phy, data.talent()));
     }
 
     public static void downPhysique(ItemStack stack) {
@@ -186,11 +210,12 @@ public class UmaSoulUtils {
     }
 
     public static int getLearningTimes(ItemStack stack) {
-        return getExtraProperty(stack)[1];
+        return stack.get(DataComponentsTypeRegistry.UMADATA_TRAINING).talent();
     }
 
     public static void setLearningTimes(ItemStack stack, int learns) {
-        getExtraProperty(stack)[1] = learns;
+        stack.update(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTranining(1, 6), 
+    			data-> new UmaDataTranining(data.physique(), learns));
     }
 
     public static void downLearningTimes(ItemStack stack) {

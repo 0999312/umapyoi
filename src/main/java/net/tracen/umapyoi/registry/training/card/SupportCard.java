@@ -7,9 +7,16 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.item.data.DataLocation;
+import net.tracen.umapyoi.item.data.GachaRankingData;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.training.SupportStack;
 import net.tracen.umapyoi.registry.training.SupportType;
@@ -46,6 +53,18 @@ public class SupportCard{
         this.supporters = supporters;
         this.maxDamage = maxDamage;
     }
+    
+    public static ItemStack init(ResourceLocation name, SupportCard card) {
+        ItemStack result = new ItemStack(ItemRegistry.SUPPORT_CARD.get());
+        result.set(DataComponents.MAX_DAMAGE, card.getMaxDamage());
+        result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(name));
+        GachaRanking ranking = card.getGachaRanking();
+		result.set(DataComponentsTypeRegistry.GACHA_RANKING, new GachaRankingData(ranking));
+        result.set(DataComponents.RARITY, 
+        		ranking == GachaRanking.SSR ? Rarity.EPIC : ranking == GachaRanking.SR ? Rarity.UNCOMMON : Rarity.COMMON
+        		);
+		return result;
+	}
 
     public GachaRanking getGachaRanking() {
         return ranking;

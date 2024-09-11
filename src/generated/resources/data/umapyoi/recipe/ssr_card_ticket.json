@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "umapyoi:blank_ticket"
+    },
+    {
+      "item": "umapyoi:horseshoe_rainbow"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:ssr_card_ticket"
+  }
+}

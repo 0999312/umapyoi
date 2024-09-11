@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.data;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -14,6 +15,7 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.tracen.umapyoi.Umapyoi;
@@ -47,7 +49,10 @@ public class DataGen {
                 SupportCardRegistry::registerAll);
 
         dataGenerator.addProvider(event.includeServer(),
-                new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, umaDataBuilder, Set.of(Umapyoi.MODID)) {
+                new DatapackBuiltinEntriesProvider(
+                		packOutput, 
+                		lookupProvider, 
+                		umaDataBuilder, Set.of(Umapyoi.MODID)) {
                     
                     @Override
                     public String getName() {
@@ -69,22 +74,20 @@ public class DataGen {
         dataGenerator.addProvider(event.includeServer(), blockTagProvider);
         dataGenerator.addProvider(event.includeServer(), new UmapyoiItemTagsProvider(packOutput, lookupProvider,
                 blockTagProvider.contentsGetter(), existingFileHelper));
-        dataGenerator.addProvider(event.includeServer(), DataGen.getLootTableProvider(packOutput));
+        dataGenerator.addProvider(event.includeServer(), DataGen.getLootTableProvider(packOutput, lookupProvider));
         dataGenerator.addProvider(event.includeServer(), new UmaDataTagProvider(packOutput,
-                lookupProvider.thenApply(r -> append(r, umaDataBuilder)), existingFileHelper));
+                lookupProvider.thenApply(r -> append(umaDataBuilder)), existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new UmapyoiPOITagsProvider(packOutput, lookupProvider, existingFileHelper));
-        dataGenerator.addProvider(event.includeServer(), new UmapyoiRecipeProvider(packOutput));
+        dataGenerator.addProvider(event.includeServer(), new UmapyoiRecipeProvider(packOutput, lookupProvider));
 
     }
 
-    private static LootTableProvider getLootTableProvider(PackOutput packOutput) {
-        LootTableProviderBuilder builder = LootTableProviderBuilder.create();
-        builder.addSubProvider(
-                new LootTableProvider.SubProviderEntry(UmapyoiBlockLoot::new, LootContextParamSets.BLOCK));
-        return builder.build(packOutput);
+    private static LootTableProvider getLootTableProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    	return new LootTableProvider(packOutput, 
+    			Set.of(), List.of(new LootTableProvider.SubProviderEntry(UmapyoiBlockLoot::new, LootContextParamSets.BLOCK)), lookupProvider);
     }
 
-    private static HolderLookup.Provider append(HolderLookup.Provider original, RegistrySetBuilder builder) {
-        return builder.buildPatch(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY), original);
+    private static HolderLookup.Provider append(RegistrySetBuilder builder) {
+        return builder.build(RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY));
     }
 }

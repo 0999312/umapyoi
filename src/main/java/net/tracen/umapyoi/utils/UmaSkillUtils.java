@@ -1,7 +1,7 @@
 package net.tracen.umapyoi.utils;
 
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.StringTag;
+import java.util.List;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
@@ -43,43 +43,39 @@ public class UmaSkillUtils {
     }
     
     public static void syncActionPoint(ItemStack stack) {
-        int max_ap = UmaSoulUtils.getProperty(stack)[4] * 200;
-        UmaSoulUtils.setMaxActionPoint(stack, max_ap);
-        UmaSoulUtils.setActionPoint(stack, max_ap);
+        UmaSoulUtils.setActionPoint(stack, UmaSoulUtils.getMaxActionPoint(stack));
     }
 
     public static void learnSkill(ItemStack stack, ResourceLocation skill) {
         if (!UmaSoulUtils.hasEmptySkillSlot(stack))
             return;
         if (skill != null && UmaSkillRegistry.REGISTRY.containsKey(skill)) {
-            ListTag skills = UmaSoulUtils.getSkills(stack);
+        	List<ResourceLocation> skills = UmaSoulUtils.getSkills(stack);
             UmaSkill skillItem = UmaSkillRegistry.REGISTRY.get(skill);
             if(skillItem.getUpperSkill() !=null)
                 if (hasLearnedSkill(stack, skillItem.getUpperSkill()))
                     return;
             
-            StringTag tag = StringTag.valueOf(skill.toString());
             int lowerSkillIndex = getLowerSkillIndex(stack, skill);
             if (lowerSkillIndex != -1)
-                skills.setTag(lowerSkillIndex, tag);
+                skills.set(lowerSkillIndex, skill);
             
             if (!hasLearnedSkill(stack, skill))
-                skills.add(tag);
+                skills.add(skill);
         }
         NeoForge.EVENT_BUS.post(new SkillEvent.LearnSkillEvent(skill));
     }
 
     public static boolean hasLearnedSkill(ItemStack stack, ResourceLocation skill) {
-        ListTag skills = UmaSoulUtils.getSkills(stack);
-        StringTag tag = StringTag.valueOf(skill.toString());
-        return skills.contains(tag);
+        List<ResourceLocation> skills = UmaSoulUtils.getSkills(stack);
+        return skills.contains(skill);
     }
     
     public static int getLowerSkillIndex(ItemStack stack, ResourceLocation skill) {
-        ListTag skills = UmaSoulUtils.getSkills(stack);
+    	List<ResourceLocation> skills = UmaSoulUtils.getSkills(stack);
         UmaSkill target = null;
         for(int i = 0;i<skills.size();i++) {
-            target = UmaSkillRegistry.REGISTRY.get(ResourceLocation.tryParse(skills.get(i).getAsString()));
+            target = UmaSkillRegistry.REGISTRY.get(skills.get(i));
             if(target.getUpperSkill() == null)
                 continue;
             if(target !=null && target.getUpperSkill().equals(skill))

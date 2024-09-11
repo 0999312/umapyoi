@@ -1,29 +1,32 @@
 package net.tracen.umapyoi.data;
 
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
 import cn.mcmod_mmf.mmlib.data.AbstractRecipeProvider;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
+import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.item.ItemRegistry;
 
 public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
 
-    public UmapyoiRecipeProvider(PackOutput gen) {
-        super(gen);
+    public UmapyoiRecipeProvider(PackOutput gen, CompletableFuture<HolderLookup.Provider> registries) {
+        super(gen, Umapyoi.MODID, registries);
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(RecipeOutput consumer) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.JEWEL.get())
                 .requires(Tags.Items.CROPS_CARROT)
                 .requires(Ingredient.fromValues(Stream.of(new Ingredient.TagValue(Tags.Items.GEMS_DIAMOND),

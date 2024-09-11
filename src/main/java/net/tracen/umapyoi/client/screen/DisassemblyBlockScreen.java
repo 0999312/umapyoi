@@ -23,7 +23,6 @@ public class DisassemblyBlockScreen extends AbstractContainerScreen<DisassemblyB
 
     @Override
     public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
-        this.renderBackground(graphic, mouseY, mouseY, partialTicks);
         super.render(graphic, mouseX, mouseY, partialTicks);
         this.renderTooltip(graphic, mouseX, mouseY);
     }

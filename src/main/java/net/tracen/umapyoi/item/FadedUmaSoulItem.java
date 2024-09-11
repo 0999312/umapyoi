@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
@@ -28,9 +28,9 @@ public class FadedUmaSoulItem extends Item {
 	}
 
     public ResourceLocation getUmaName(ItemStack stack) {
-        if (stack.getOrCreateTag().getString("name").isBlank())
+        if (!stack.has(DataComponentsTypeRegistry.DATA_LOCATION))
             return UmaData.DEFAULT_UMA_ID;
-        return Optional.ofNullable(ResourceLocation.tryParse(stack.getOrCreateTag().getString("name")))
+        return Optional.ofNullable(stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name())
                 .orElse(UmaData.DEFAULT_UMA_ID);
     }
 

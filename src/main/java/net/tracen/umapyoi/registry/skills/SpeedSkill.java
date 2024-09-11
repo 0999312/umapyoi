@@ -19,8 +19,8 @@ public class SpeedSkill extends UmaSkill {
     @Override
     public void applySkill(Level level, LivingEntity user) {
         ItemStack soul = UmapyoiAPI.getUmaSoul(user);
-        int skillTime = this.getSpeedTime() + (UmaSoulUtils.getProperty(soul)[4] >= 10 ? 80 : 0);
-        int skillLevel = this.getSkillLevel() - 1 + (UmaSoulUtils.getProperty(soul)[2] >= 10 ? 1 : 0);
+        int skillTime = this.getSpeedTime() + (UmaSoulUtils.getProperty(soul).wisdom() >= 10 ? 80 : 0);
+        int skillLevel = this.getSkillLevel() - 1 + (UmaSoulUtils.getProperty(soul).strength() >= 10 ? 1 : 0);
         user.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, skillTime, skillLevel));
     }
 

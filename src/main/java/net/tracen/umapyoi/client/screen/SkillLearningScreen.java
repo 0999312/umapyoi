@@ -2,7 +2,6 @@ package net.tracen.umapyoi.client.screen;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
-import net.minecraft.nbt.StringTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -10,9 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.SkillLearningMenu;
 import net.tracen.umapyoi.item.SkillBookItem;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
-import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 
@@ -35,11 +34,11 @@ public class SkillLearningScreen extends ItemCombinerScreen<SkillLearningMenu> {
             graphic.drawString(this.font, skill.getDescription(), 51, 20, 0x794016);
             ItemStack soul = this.getMenu().getSlot(0).hasItem() ? this.getMenu().getSlot(0).getItem()
                     : ItemStack.EMPTY;
-            boolean has_retired = UmaSoulUtils.getGrowth(soul) == Growth.RETIRED;
+            boolean has_retired = !soul.has(DataComponentsTypeRegistry.UMADATA_TRAINING);
             boolean has_learned = UmaSoulUtils.getSkills(soul)
-                    .contains(StringTag.valueOf(UmaSkillRegistry.REGISTRY.getKey(skill).toString()));
+                    .contains(UmaSkillRegistry.REGISTRY.getKey(skill));
             boolean has_learned_upper = skill.getUpperSkill() != null && 
-                    UmaSoulUtils.getSkills(soul).contains(StringTag.valueOf(skill.getUpperSkill().toString()));
+                    UmaSoulUtils.getSkills(soul).contains(skill.getUpperSkill());
             boolean slot_needed = !soul.isEmpty() && !UmaSoulUtils.hasEmptySkillSlot(soul);
             if (has_learned && has_learned_upper)
                 graphic.drawString(this.font, Component.translatable("umapyoi.skill.has_learned_skill"), 51, 31, 0x794016);

@@ -19,7 +19,7 @@ public class NutritionalSupplementsSkill extends UmaSkill {
     @Override
     public void applySkill(Level level, LivingEntity user) {
         ItemStack soul = UmapyoiAPI.getUmaSoul(user);
-        int skillTime = UmaSoulUtils.getProperty(soul)[4] >= 10 ? 180 : UmaSoulUtils.getProperty(soul)[4] >= 7 ? 120 : 80;
+        int skillTime = UmaSoulUtils.getProperty(soul).wisdom() >= 10 ? 180 : UmaSoulUtils.getProperty(soul).wisdom() >= 7 ? 120 : 80;
         user.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, skillTime, this.getSkillLevel() - 1));
         user.addEffect(new MobEffectInstance(MobEffects.SATURATION, skillTime / 2, this.getSkillLevel() - 1));
         user.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, skillTime / 2, 0));

@@ -41,13 +41,11 @@ public class SupportAlbumPedestalBlock extends AbstractPedestalBlock
         super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
         return BlockRegistry.UMA_PEDESTAL.toStack();
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;

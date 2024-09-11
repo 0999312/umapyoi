@@ -15,7 +15,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.tracen.umapyoi.block.entity.AbstractPedestalBlockEntity;
-import net.tracen.umapyoi.block.entity.UmaPedestalBlockEntity;
 
 public abstract class AbstractPedestalBlock extends BaseEntityBlock
 {

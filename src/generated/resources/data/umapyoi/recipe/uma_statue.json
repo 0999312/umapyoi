@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:stones"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    }
+  },
+  "pattern": [
+    " J ",
+    " A ",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:uma_statue"
+  }
+}

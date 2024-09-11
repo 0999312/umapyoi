@@ -41,7 +41,7 @@ public class PassiveSkillEvents {
     }
 
     @SubscribeEvent
-    public static void passiveStepHeight(PlayerTickEvent event) {
+    public static void passiveStepHeight(PlayerTickEvent.Post event) {
         var player = event.getEntity();
         AttributeInstance stepHeight = player.getAttribute(Attributes.STEP_HEIGHT);
         var heightModifier = new AttributeModifier(SKILL_HEIGHT
@@ -60,7 +60,7 @@ public class PassiveSkillEvents {
     }
 
     @SubscribeEvent
-    public static void passiveTurfRunner(PlayerTickEvent event) {
+    public static void passiveTurfRunner(PlayerTickEvent.Post event) {
         var player = event.getEntity();
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
@@ -79,7 +79,7 @@ public class PassiveSkillEvents {
     }
     
     @SubscribeEvent
-    public static void passiveDirtRunner(PlayerTickEvent event) {
+    public static void passiveDirtRunner(PlayerTickEvent.Post event) {
         var player = event.getEntity();
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
@@ -98,7 +98,7 @@ public class PassiveSkillEvents {
     }
     
     @SubscribeEvent
-    public static void passiveSnowRunner(PlayerTickEvent event) {
+    public static void passiveSnowRunner(PlayerTickEvent.Post event) {
     	var player = event.getEntity();
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:stones"
+    },
+    "G": {
+      "tag": "c:ingots/iron"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    }
+  },
+  "pattern": [
+    "AJA",
+    "GAG",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:silver_uma_pedestal"
+  }
+}

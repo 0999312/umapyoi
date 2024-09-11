@@ -5,15 +5,13 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.Lists;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -27,22 +25,24 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.inventory.CommonItemHandler;
-import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.GachaUtils;
 
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Umapyoi.MODID)
 public class SilverSupportAlbumPedestalBlockEntity extends AbstractPedestalBlockEntity implements Gachable{
 
     public int time;
@@ -59,8 +59,8 @@ public class SilverSupportAlbumPedestalBlockEntity extends AbstractPedestalBlock
 
     public static final int MAX_PROCESS_TIME = 200;
     private final ItemStackHandler inventory;
-    private final LazyOptional<IItemHandler> inputHandler;
-    private final LazyOptional<IItemHandler> outputHandler;
+    private final IItemHandler inputHandler;
+    private final IItemHandler outputHandler;
 
     protected final ContainerData tileData;
 
@@ -78,10 +78,24 @@ public class SilverSupportAlbumPedestalBlockEntity extends AbstractPedestalBlock
     public SilverSupportAlbumPedestalBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(), pos, state);
         this.inventory = createHandler();
-        this.inputHandler = LazyOptional.of(() -> new CommonItemHandler(inventory, Direction.UP,1,0));
-        this.outputHandler = LazyOptional.of(() -> new CommonItemHandler(inventory, Direction.DOWN,1,0));
+        this.inputHandler = new CommonItemHandler(inventory, Direction.UP,1,0);
+        this.outputHandler = new CommonItemHandler(inventory, Direction.DOWN,1,0);
         this.tileData = createIntArray();
     }
+    
+	@SubscribeEvent
+	public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+		event.registerBlockEntity(
+				Capabilities.ItemHandler.BLOCK,
+				BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
+				(be, context) -> {
+					if (context == Direction.UP) {
+						return be.inputHandler;
+					}
+					return be.outputHandler;
+				}
+		);
+	}
 
     public static void workingTick(Level level, BlockPos pos, BlockState state,
             SilverSupportAlbumPedestalBlockEntity blockEntity) {
@@ -202,12 +216,9 @@ public class SilverSupportAlbumPedestalBlockEntity extends AbstractPedestalBlock
                 .collect(Collectors.toCollection(Lists::newArrayList));
 
         ResourceLocation key = keys.stream().skip(keys.isEmpty() ? 0 : rand.nextInt(keys.size())).findFirst()
-                .orElse(new ResourceLocation(Umapyoi.MODID, "blank_card"));
+                .orElse(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "blank_card"));
         
-        ItemStack result = ItemRegistry.SUPPORT_CARD.get().getDefaultInstance();
-        result.getOrCreateTag().putString("support_card", key.toString());
-        result.getOrCreateTag().putString("ranking", registry.get(key).getGachaRanking().name().toLowerCase());
-        result.getOrCreateTag().putInt("maxDamage", registry.get(key).getMaxDamage());
+        ItemStack result = SupportCard.init(key, registry.get(key));
         return result;
     }
 
@@ -243,19 +254,6 @@ public class SilverSupportAlbumPedestalBlockEntity extends AbstractPedestalBlock
         return ItemStack.EMPTY;
     }
 
-    @Override
-    @Nonnull
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (cap.equals(ForgeCapabilities.ITEM_HANDLER)) {
-            if (side == null || side.equals(Direction.UP)) {
-                return inputHandler.cast();
-            } else {
-                return outputHandler.cast();
-            }
-        }
-        return super.getCapability(cap, side);
-    }
-
     public ItemStackHandler getInventory() {
         return inventory;
     }
@@ -269,33 +267,31 @@ public class SilverSupportAlbumPedestalBlockEntity extends AbstractPedestalBlock
     @Override
     public void setRemoved() {
         super.setRemoved();
-        inputHandler.invalidate();
-        outputHandler.invalidate();
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
-        inventory.deserializeNBT(compound.getCompound("Inventory"));
+	public void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
+		super.loadAdditional(compound, registries);
+        inventory.deserializeNBT(registries, compound.getCompound("Inventory"));
         recipeTime = compound.getInt("RecipeTime");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+	public void saveAdditional(CompoundTag compound, HolderLookup.Provider registries) {
+		super.saveAdditional(compound, registries);
         compound.putInt("RecipeTime", recipeTime);
-        compound.put("Inventory", inventory.serializeNBT());
+        compound.put("Inventory", inventory.serializeNBT(registries));
     }
 
-    private CompoundTag writeItems(CompoundTag compound) {
-        super.saveAdditional(compound);
-        compound.put("Inventory", inventory.serializeNBT());
+    private CompoundTag writeItems(CompoundTag compound, HolderLookup.Provider registries) {
+        super.saveAdditional(compound, registries);
+        compound.put("Inventory", inventory.serializeNBT(registries));
         return compound;
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        return writeItems(new CompoundTag());
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return writeItems(new CompoundTag(), registries);
     }
 
     private ItemStackHandler createHandler() {
@@ -338,8 +334,8 @@ public class SilverSupportAlbumPedestalBlockEntity extends AbstractPedestalBlock
     @Override
     public Predicate<? super ResourceLocation> getFilter(Level level, ItemStack input) {
         return resloc -> {
-            if (!input.getOrCreateTag().getString("name").isBlank()) {
-                return resloc.equals(ResourceLocation.tryParse(input.getOrCreateTag().getString("name")));
+        	if (input.has(DataComponentsTypeRegistry.DATA_LOCATION)) {
+                return resloc.equals(input.get(DataComponentsTypeRegistry.DATA_LOCATION).name());
             }
             if (input.is(UmapyoiItemTags.SR_CARD_TICKET))
                 return UmapyoiAPI.getSupportCardRegistry(level).get(resloc).getGachaRanking() == GachaRanking.SR;

@@ -1,6 +1,6 @@
-// 1.20.1	2024-03-07T01:03:52.6411757	Tags for minecraft:block mod id umapyoi
-adffc34291e2f9fa9aeee9c0345ceff6dbe1253f data/minecraft/tags/blocks/mineable/axe.json
-1289a5a9d134c97a58ebdbe3fb2e0a1e2c06bd5d data/minecraft/tags/blocks/mineable/pickaxe.json
-483b86e8f6fa6f025f458a8915b2a8b4645a08db data/umapyoi/tags/blocks/track/dirt.json
-45b84718284ec8d0a55cec33592469bdd56812e8 data/umapyoi/tags/blocks/track/snow.json
-1acc57ea6bc03df27d0c52b0cbd7a19b74582522 data/umapyoi/tags/blocks/track/turf.json
+// 1.21.1	2024-09-11T13:34:09.3283474	Tags for minecraft:block mod id umapyoi
+adffc34291e2f9fa9aeee9c0345ceff6dbe1253f data/minecraft/tags/block/mineable/axe.json
+1289a5a9d134c97a58ebdbe3fb2e0a1e2c06bd5d data/minecraft/tags/block/mineable/pickaxe.json
+483b86e8f6fa6f025f458a8915b2a8b4645a08db data/umapyoi/tags/block/track/dirt.json
+45b84718284ec8d0a55cec33592469bdd56812e8 data/umapyoi/tags/block/track/snow.json
+1acc57ea6bc03df27d0c52b0cbd7a19b74582522 data/umapyoi/tags/block/track/turf.json

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    },
+    "L": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "pattern": [
+    "IJI",
+    "ILI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:training_facility"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "item": "umapyoi:jewel"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "umapyoi:blank_ticket"
+  }
+}

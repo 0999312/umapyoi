@@ -1,14 +1,12 @@
 package net.tracen.umapyoi.block.entity;
 
 import java.util.List;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.jetbrains.annotations.NotNull;
 
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
@@ -26,26 +24,31 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.container.ThreeGoddessContainer;
 import net.tracen.umapyoi.inventory.ThreeGoddessItemHandler;
 import net.tracen.umapyoi.item.FadedUmaSoulItem;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.item.data.DataLocation;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.UmaFactorUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Umapyoi.MODID)
 public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuProvider {
 
     public static final int MAX_PROCESS_TIME = 200;
     private final ItemStackHandler inventory;
-    private final LazyOptional<IItemHandler> inputHandler;
-    private final LazyOptional<IItemHandler> outputHandler;
+    private final IItemHandler inputHandler;
+    private final IItemHandler outputHandler;
 
     protected final ContainerData tileData;
 
@@ -63,10 +66,24 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
     public ThreeGoddessBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.THREE_GODDESS.get(), pos, state);
         this.inventory = createHandler();
-        this.inputHandler = LazyOptional.of(() -> new ThreeGoddessItemHandler(inventory, Direction.UP));
-        this.outputHandler = LazyOptional.of(() -> new ThreeGoddessItemHandler(inventory, Direction.DOWN));
+        this.inputHandler = new ThreeGoddessItemHandler(inventory, Direction.UP);
+        this.outputHandler = new ThreeGoddessItemHandler(inventory, Direction.DOWN);
         this.tileData = createIntArray();
     }
+    
+	@SubscribeEvent
+	public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+		event.registerBlockEntity(
+				Capabilities.ItemHandler.BLOCK,
+				BlockEntityRegistry.THREE_GODDESS.get(),
+				(be, context) -> {
+					if (context == Direction.UP) {
+						return be.inputHandler;
+					}
+					return be.outputHandler;
+				}
+		);
+	}
 
     public static void workingTick(Level level, BlockPos pos, BlockState state, ThreeGoddessBlockEntity blockEntity) {
         if (level.isClientSide())
@@ -136,8 +153,8 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
         ItemStack right = this.inventory.getStackInSlot(2);
         Registry<UmaData> registry = UmapyoiAPI.getUmaDataRegistry(this.getLevel());
 
-        ResourceLocation name = ResourceLocation
-                .tryParse(this.inventory.getStackInSlot(0).getOrCreateTag().getString("name"));
+        ResourceLocation name = this.inventory.getStackInSlot(0).getOrDefault(DataComponentsTypeRegistry.DATA_LOCATION,
+        		new DataLocation(UmaData.DEFAULT_UMA_ID)).name();
         name = registry.containsKey(name) ? name : UmaData.DEFAULT_UMA_ID;
         
         UmaData data = registry.getOptional(name).orElse(UmaData.DEFAULT_UMA);
@@ -146,8 +163,10 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
                 .copy();
 
         if (!left.isEmpty() && !right.isEmpty()) {
-            UmaFactorUtils.deserializeNBT(left.getOrCreateTag()).forEach(fac -> fac.applyFactor(result));
-            UmaFactorUtils.deserializeNBT(right.getOrCreateTag()).forEach(fac -> fac.applyFactor(result));
+            UmaFactorUtils.deserializeData(left.get(DataComponentsTypeRegistry.FACTOR_DATA))
+            .forEach(fac -> fac.applyFactor(result));
+            UmaFactorUtils.deserializeData(right.get(DataComponentsTypeRegistry.FACTOR_DATA))
+            .forEach(fac -> fac.applyFactor(result));
         }
 
         return result;
@@ -171,19 +190,6 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
         return false;
     }
 
-    @Override
-    @Nonnull
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (cap.equals(ForgeCapabilities.ITEM_HANDLER)) {
-            if (side == null || !side.equals(Direction.DOWN)) {
-                return inputHandler.cast();
-            } else {
-                return outputHandler.cast();
-            }
-        }
-        return super.getCapability(cap, side);
-    }
-
     public ItemStackHandler getInventory() {
         return inventory;
     }
@@ -199,34 +205,33 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
     @Override
     public void setRemoved() {
         super.setRemoved();
-        inputHandler.invalidate();
-        outputHandler.invalidate();
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
-        inventory.deserializeNBT(compound.getCompound("Inventory"));
+	public void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
+		super.loadAdditional(compound, registries);
+        inventory.deserializeNBT(registries, compound.getCompound("Inventory"));
         recipeTime = compound.getInt("RecipeTime");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+	public void saveAdditional(CompoundTag compound, HolderLookup.Provider registries) {
+		super.saveAdditional(compound, registries);
         compound.putInt("RecipeTime", recipeTime);
-        compound.put("Inventory", inventory.serializeNBT());
+        compound.put("Inventory", inventory.serializeNBT(registries));
     }
 
-    private CompoundTag writeItems(CompoundTag compound) {
-        super.saveAdditional(compound);
-        compound.put("Inventory", inventory.serializeNBT());
+    private CompoundTag writeItems(CompoundTag compound, HolderLookup.Provider registries) {
+        super.saveAdditional(compound, registries);
+        compound.put("Inventory", inventory.serializeNBT(registries));
         return compound;
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        return writeItems(new CompoundTag());
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return writeItems(new CompoundTag(), registries);
     }
+
 
     private ItemStackHandler createHandler() {
         return new ItemStackHandler(4) {
@@ -238,31 +243,31 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
             public boolean isItemValid(int slot, @NotNull ItemStack stack) {
                 if(slot == 0) {
                     if (stack.is(ItemRegistry.BLANK_UMA_SOUL.get())) {
-                        String name = stack.getOrCreateTag().getString("name");
-                        return !(name.equals(this.getStackInSlot(1).getOrCreateTag().getString("name"))
-                                || name.equals(this.getStackInSlot(2).getOrCreateTag().getString("name")));
+                        ResourceLocation name = stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
+                        return !(name.equals(this.getStackInSlot(1).get(DataComponentsTypeRegistry.DATA_LOCATION).name())
+                                || name.equals(this.getStackInSlot(2).get(DataComponentsTypeRegistry.DATA_LOCATION).name()));
                     }
                     return false;
                 }
                 else if(slot == 1) {
                     boolean result = stack.is(ItemRegistry.UMA_FACTOR_ITEM.get());
                     boolean factorFlag = false;
-                    String name = stack.getOrCreateTag().getString("name");
+                    ResourceLocation name = stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
                     var soulStack = this.getStackInSlot(0);
-                    boolean soulFlag = !soulStack.isEmpty() && stack.getOrCreateTag().getString("name")
-                            .equals(soulStack.getOrCreateTag().getString("name"));
-                    factorFlag = name.equals(this.getStackInSlot(2).getOrCreateTag().getString("name"));
+                    boolean soulFlag = !soulStack.isEmpty() && stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name()
+                            .equals(soulStack.get(DataComponentsTypeRegistry.DATA_LOCATION).name());
+                    factorFlag = name.equals(this.getStackInSlot(2).get(DataComponentsTypeRegistry.DATA_LOCATION).name());
 
                     return result && !soulFlag && !factorFlag;
                 }
                 else if(slot == 2) {
                     boolean result = stack.is(ItemRegistry.UMA_FACTOR_ITEM.get());
                     boolean factorFlag = false;
-                    String name = stack.getOrCreateTag().getString("name");
+                    ResourceLocation name = stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
                     var soulStack = this.getStackInSlot(0);
-                    boolean soulFlag = !soulStack.isEmpty() && stack.getOrCreateTag().getString("name")
-                            .equals(soulStack.getOrCreateTag().getString("name"));
-                    factorFlag = name.equals(this.getStackInSlot(1).getOrCreateTag().getString("name"));
+                    boolean soulFlag = !soulStack.isEmpty() && stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name()
+                            .equals(soulStack.get(DataComponentsTypeRegistry.DATA_LOCATION).name());
+                    factorFlag = name.equals(this.getStackInSlot(1).get(DataComponentsTypeRegistry.DATA_LOCATION).name());
                     
                     return result && !soulFlag && !factorFlag;
                 }

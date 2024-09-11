@@ -1,9 +1,7 @@
 package net.tracen.umapyoi;
 
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-@EventBusSubscriber(modid = Umapyoi.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class UmapyoiConfig {
     
     public static final int DEFAULT_GACHA_PROBABILITY_SUM = 100;

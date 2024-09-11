@@ -6,13 +6,14 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.registry.factors.FactorData;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 import net.tracen.umapyoi.utils.UmaFactorUtils;
 
@@ -29,14 +30,14 @@ public class UmaFactorContainerItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        CompoundTag tag = stack.getOrCreateTag();
-        String buffer = "umadata." + tag.getString("name").replace(':', '.');
+        List<FactorData> datas = stack.get(DataComponentsTypeRegistry.FACTOR_DATA);
+        String buffer = "umadata." + stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name().toLanguageKey();
         tooltipComponents.add(Component.translatable("tooltip.umapyoi.umadata.name", I18n.get(buffer))
                 .withStyle(ChatFormatting.GRAY));
         if (Screen.hasShiftDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
             tooltipComponents.add(Component.translatable("tooltip.umapyoi.factors.factors_details")
                     .withStyle(ChatFormatting.AQUA));
-            List<UmaFactorStack> stackList = UmaFactorUtils.deserializeNBT(tag);
+            List<UmaFactorStack> stackList = UmaFactorUtils.deserializeData(datas);
 
             stackList.forEach(factor -> {
                 switch (factor.getFactor().getFactorType()) {

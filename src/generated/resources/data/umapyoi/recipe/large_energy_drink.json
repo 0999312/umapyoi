@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:crops/carrot"
+    },
+    {
+      "tag": "c:crops/carrot"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:dusts/glowstone"
+    },
+    {
+      "tag": "c:crops/nether_wart"
+    },
+    {
+      "tag": "forge:sugar"
+    },
+    {
+      "tag": "forge:water"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:large_energy_drink"
+  }
+}

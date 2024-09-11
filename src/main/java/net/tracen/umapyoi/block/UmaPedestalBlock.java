@@ -40,7 +40,6 @@ public class UmaPedestalBlock extends AbstractPedestalBlock
         super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;

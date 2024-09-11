@@ -1,17 +1,21 @@
 package net.tracen.umapyoi.block.entity;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.MenuProvider;
@@ -22,37 +26,48 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.TrainingFacilityContainer;
 import net.tracen.umapyoi.inventory.CommonItemHandler;
 import net.tracen.umapyoi.inventory.TerminalResultHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.UmaSoulItem;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.training.SupportContainer;
-import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Umapyoi.MODID)
 public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements MenuProvider {
 
     public static final int MAX_PROCESS_TIME = 260;
     private final ItemStackHandler inventory;
 
     protected final ContainerData tileData;
-    private final LazyOptional<IItemHandler> inputHandler;
-    private final LazyOptional<IItemHandler> outputHandler;
+    private final IItemHandler inputHandler;
+    private final IItemHandler outputHandler;
     private int recipeTime;
 
     public TrainingFacilityBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.TRAINING_FACILITY.get(), pos, state);
         this.inventory = createHandler();
-        this.inputHandler = LazyOptional.of(() -> new CommonItemHandler(inventory, Direction.UP,7,0));
-        this.outputHandler = LazyOptional.of(() -> new TerminalResultHandler(inventory, 0));
+        this.inputHandler = new CommonItemHandler(inventory, Direction.UP,7,0);
+        this.outputHandler = new TerminalResultHandler(inventory, 0);
         this.tileData = createIntArray();
     }
+    
+	@SubscribeEvent
+	public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+		event.registerBlockEntity(
+				Capabilities.ItemHandler.BLOCK,
+				BlockEntityRegistry.TRAINING_FACILITY.get(),
+				(be, context) -> {
+					if (context == Direction.UP) {
+						return be.inputHandler;
+					}
+					return be.outputHandler;
+				}
+		);
+	}
 
     public static void workingTick(Level level, BlockPos pos, BlockState state,
             TrainingFacilityBlockEntity blockEntity) {
@@ -91,8 +106,11 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
             if (supportItem.getItem() instanceof SupportContainer supports) {
                 if (supports.isConsumable(this.getLevel(), supportItem))
                     supportItem.shrink(1);
-                else if(supportItem.hurt(1, this.getLevel().getRandom(), null)) {
-                    this.getLevel().playSound(null, this.getBlockPos(), SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.BLOCKS, 1F, 1F);
+                
+                else {
+                	supportItem.hurtAndBreak(1, (ServerLevel) this.getLevel(), null, item->{
+                		this.getLevel().playSound(null, this.getBlockPos(), SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.BLOCKS, 1F, 1F);
+                	});
                     supportItem.shrink(1);
                     supportItem.setDamageValue(0);
                 }
@@ -105,7 +123,6 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         if (this.level == null)
             return ItemStack.EMPTY;
         ItemStack result = this.inventory.getStackInSlot(0).copy();
-        UmaSoulUtils.setGrowth(result, Growth.TRAINED);
         UmaSoulUtils.downPhysique(result);
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
@@ -126,7 +143,7 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
     private boolean hasInput() {
         ItemStack input = this.inventory.getStackInSlot(0);
         if (input.getItem() instanceof UmaSoulItem) {
-            if (UmaSoulUtils.getGrowth(input) != Growth.RETIRED && UmaSoulUtils.getPhysique(input) > 0) {
+            if (input.has(DataComponentsTypeRegistry.UMADATA_TRAINING) && UmaSoulUtils.getPhysique(input) > 0) {
                 for (int i = 1; i < 7; i++) {
                     ItemStack supportItem = this.inventory.getStackInSlot(i);
                     if (supportItem.getItem()instanceof SupportContainer supports) {
@@ -160,28 +177,28 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
-        inventory.deserializeNBT(compound.getCompound("Inventory"));
+	public void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
+		super.loadAdditional(compound, registries);
+        inventory.deserializeNBT(registries, compound.getCompound("Inventory"));
         recipeTime = compound.getInt("RecipeTime");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+	public void saveAdditional(CompoundTag compound, HolderLookup.Provider registries) {
+		super.saveAdditional(compound, registries);
         compound.putInt("RecipeTime", recipeTime);
-        compound.put("Inventory", inventory.serializeNBT());
+        compound.put("Inventory", inventory.serializeNBT(registries));
     }
 
-    private CompoundTag writeItems(CompoundTag compound) {
-        super.saveAdditional(compound);
-        compound.put("Inventory", inventory.serializeNBT());
+    private CompoundTag writeItems(CompoundTag compound, HolderLookup.Provider registries) {
+        super.saveAdditional(compound, registries);
+        compound.put("Inventory", inventory.serializeNBT(registries));
         return compound;
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        return writeItems(new CompoundTag());
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return writeItems(new CompoundTag(), registries);
     }
 
     private ItemStackHandler createHandler() {
@@ -194,7 +211,7 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
             @Override
             public boolean isItemValid(int slot, @NotNull ItemStack stack) {
                 if(slot == 0) {
-                    if(!(stack.is(ItemRegistry.UMA_SOUL.get()) && UmaSoulUtils.getGrowth(stack) != Growth.RETIRED))
+                    if(!(stack.is(ItemRegistry.UMA_SOUL.get()) && stack.has(DataComponentsTypeRegistry.UMADATA_TRAINING)))
                         return false;
                     for (int i = 1; i < 7; i++) {
                         ItemStack other = this.getStackInSlot(i);
@@ -231,19 +248,6 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
                 }
             }
         };
-    }
-    
-    @Override
-    @Nonnull
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (cap.equals(ForgeCapabilities.ITEM_HANDLER)) {
-            if (side == null || side.equals(Direction.UP)) {
-                return inputHandler.cast();
-            } else {
-                return outputHandler.cast();
-            }
-        }
-        return super.getCapability(cap, side);
     }
 
     private ContainerData createIntArray() {

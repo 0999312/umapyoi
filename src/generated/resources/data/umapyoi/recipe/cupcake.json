@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:crops/carrot"
+    },
+    {
+      "tag": "c:crops/wheat"
+    },
+    {
+      "tag": "c:eggs"
+    },
+    {
+      "tag": "forge:sugar"
+    },
+    {
+      "tag": "forge:milk"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:cupcake"
+  }
+}

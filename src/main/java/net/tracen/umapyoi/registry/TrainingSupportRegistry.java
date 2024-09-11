@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.registry.training.ExtraStatusSupport;
+import net.tracen.umapyoi.registry.training.ExtraAPSupport;
 import net.tracen.umapyoi.registry.training.SkillSupport;
 import net.tracen.umapyoi.registry.training.StatusSupport;
 import net.tracen.umapyoi.registry.training.TrainingSupport;
@@ -39,6 +39,6 @@ public class TrainingSupportRegistry {
             SkillSupport::new);
     
     public static final DeferredHolder<TrainingSupport, TrainingSupport> AP_SUPPORT = SUPPORTS.register("actionpoint_support",
-            () -> new ExtraStatusSupport(3));
+            () -> new ExtraAPSupport());
 
 }

@@ -9,9 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.RetireRegisterMenu;
 import net.tracen.umapyoi.item.UmaSoulItem;
+import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
-import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegisterMenu> {
 
@@ -28,10 +28,8 @@ public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegister
 
     @Override
     public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
-        this.renderBackground(graphic, mouseY, mouseY, partialTicks);
         super.render(graphic, mouseX, mouseY, partialTicks);
         this.renderTooltip(graphic, mouseX, mouseY);
-
     }
 
     @Override
@@ -53,16 +51,16 @@ public class RetireRegisterScreen extends AbstractContainerScreen<RetireRegister
             graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 74, this.topPos + 57, 176, 0, 29, 19);
 
         else if (input.getItem() instanceof UmaSoulItem) {
-            int[] status = UmaSoulUtils.getProperty(input);
-            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status[StatusType.SPEED.getId()]), this.leftPos + 21,
+            UmaDataBasicStatus status = UmaSoulUtils.getProperty(input);
+            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status.speed()), this.leftPos + 21,
                     this.topPos + 31, 0x40C100);
-            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status[StatusType.STAMINA.getId()]), this.leftPos + 52,
+            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status.stamina()), this.leftPos + 52,
                     this.topPos + 31, 0x40C100);
-            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status[StatusType.STRENGTH.getId()]), this.leftPos + 83,
+            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status.strength()), this.leftPos + 83,
                     this.topPos + 31, 0x40C100);
-            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status[StatusType.GUTS.getId()]), this.leftPos + 114,
+            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status.guts()), this.leftPos + 114,
                     this.topPos + 31, 0x40C100);
-            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status[StatusType.WISDOM.getId()]), this.leftPos + 146,
+            graphic.drawString(this.font, UmaStatusUtils.getStatusLevel(status.wisdom()), this.leftPos + 146,
                     this.topPos + 31, 0x40C100);
         }
     }

@@ -17,7 +17,9 @@ public class HealSkill extends UmaSkill {
     @Override
     public void applySkill(Level level, LivingEntity user) {
         ItemStack soul = UmapyoiAPI.getUmaSoul(user);
-        int skillTime = UmaSoulUtils.getProperty(soul)[4] >= 10 ? 200 : UmaSoulUtils.getProperty(soul)[4] >= 7 ? 160 : 120;
+        int skillTime = 
+    		UmaSoulUtils.getProperty(soul).wisdom() >= 10 ? 200 : 
+        	UmaSoulUtils.getProperty(soul).wisdom() >= 7 ? 160 : 120;
         user.addEffect(new MobEffectInstance(MobEffects.REGENERATION, skillTime, this.getSkillLevel() - 1));
     }
 

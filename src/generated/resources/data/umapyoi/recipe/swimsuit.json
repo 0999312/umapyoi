@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "tag": "c:leathers"
+    },
+    "J": {
+      "item": "umapyoi:jewel"
+    },
+    "L": {
+      "tag": "c:dyes/blue"
+    }
+  },
+  "pattern": [
+    "IJI",
+    "ILI",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:swimsuit"
+  }
+}

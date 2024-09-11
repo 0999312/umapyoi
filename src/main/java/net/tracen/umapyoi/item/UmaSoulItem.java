@@ -18,14 +18,14 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
-import net.tracen.umapyoi.registry.umadata.Growth;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaData;
+import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
 import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
-import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class UmaSoulItem extends Item {
     private static final Comparator<Entry<ResourceKey<UmaData>, UmaData>> COMPARATOR = new UmaDataComparator();
@@ -62,13 +62,15 @@ public class UmaSoulItem extends Item {
     
     @Override
     public boolean isFoil(ItemStack pStack) {
-        return UmaSoulUtils.getGrowth(pStack) == Growth.RETIRED;
+        return !pStack.has(DataComponentsTypeRegistry.UMADATA_TRAINING);
     }
     
     @Override
     public boolean isBarVisible(ItemStack pStack) {
+    	if(!pStack.has(DataComponentsTypeRegistry.UMADATA_TRAINING))
+    		return false;
         var physique = UmaSoulUtils.getPhysique(pStack);
-        return UmaSoulUtils.getGrowth(pStack) != Growth.RETIRED && physique != 5;
+        return physique != 5;
     }
     
     @Override
@@ -84,81 +86,41 @@ public class UmaSoulItem extends Item {
         float f = Math.max(0.0F, physique / stackMaxDamage);
         return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
     }
-    
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-//        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-//        int ranking = ResultRankingUtils.getRanking(stack);
-//        if(UmaSoulUtils.getGrowth(stack) == Growth.RETIRED)
-//            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.ranking", UmaStatusUtils.getStatusLevel(ranking))
-//                            .withStyle(ChatFormatting.GOLD));
-//        if (Screen.hasShiftDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
-//            tooltip.add(
-//                    Component.translatable("tooltip.umapyoi.uma_soul.soul_details").withStyle(ChatFormatting.AQUA));
-//            int[] property = UmaSoulUtils.getProperty(stack);
-//            int[] maxProperty = UmaSoulUtils.getMaxProperty(stack);
-//
-//            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.speed_details",
-//                    UmaStatusUtils.getStatusLevel(property[StatusType.SPEED.getId()]),
-//                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.SPEED.getId()]))
-//                            .withStyle(ChatFormatting.DARK_GREEN));
-//            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.stamina_details",
-//                    UmaStatusUtils.getStatusLevel(property[StatusType.STAMINA.getId()]),
-//                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.STAMINA.getId()]))
-//                            .withStyle(ChatFormatting.DARK_GREEN));
-//            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.strength_details",
-//                    UmaStatusUtils.getStatusLevel(property[StatusType.STRENGTH.getId()]),
-//                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.STRENGTH.getId()]))
-//                            .withStyle(ChatFormatting.DARK_GREEN));
-//            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.guts_details",
-//                    UmaStatusUtils.getStatusLevel(property[StatusType.GUTS.getId()]),
-//                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.GUTS.getId()]))
-//                            .withStyle(ChatFormatting.DARK_GREEN));
-//            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.wisdom_details",
-//                    UmaStatusUtils.getStatusLevel(property[StatusType.WISDOM.getId()]),
-//                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.WISDOM.getId()]))
-//                            .withStyle(ChatFormatting.DARK_GREEN));
-//        } else {
-//            tooltip.add(Component.translatable("tooltip.umapyoi.press_shift_for_details")
-//                    .withStyle(ChatFormatting.AQUA));
-//        }
-//    }
-    
+
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip,
     		TooltipFlag tooltipFlag) {
     	super.appendHoverText(stack, context, tooltip, tooltipFlag);
         int ranking = ResultRankingUtils.getRanking(stack);
-        if(UmaSoulUtils.getGrowth(stack) == Growth.RETIRED)
+        if(!stack.has(DataComponentsTypeRegistry.UMADATA_TRAINING))
             tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.ranking", UmaStatusUtils.getStatusLevel(ranking))
                             .withStyle(ChatFormatting.GOLD));
         if (Screen.hasShiftDown() || !UmapyoiConfig.TOOLTIP_SWITCH.get()) {
             tooltip.add(
                     Component.translatable("tooltip.umapyoi.uma_soul.soul_details").withStyle(ChatFormatting.AQUA));
-            int[] property = UmaSoulUtils.getProperty(stack);
-            int[] maxProperty = UmaSoulUtils.getMaxProperty(stack);
+            UmaDataBasicStatus property = UmaSoulUtils.getProperty(stack);
+            UmaDataBasicStatus maxProperty = UmaSoulUtils.getMaxProperty(stack);
 
             tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.speed_details",
-                    UmaStatusUtils.getStatusLevel(property[StatusType.SPEED.getId()]),
-                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.SPEED.getId()]))
+                    UmaStatusUtils.getStatusLevel(property.speed()),
+                    UmaStatusUtils.getStatusLevel(maxProperty.speed()))
                             .withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.stamina_details",
-                    UmaStatusUtils.getStatusLevel(property[StatusType.STAMINA.getId()]),
-                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.STAMINA.getId()]))
+                    UmaStatusUtils.getStatusLevel(property.stamina()),
+                    UmaStatusUtils.getStatusLevel(maxProperty.stamina()))
                             .withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.strength_details",
-                    UmaStatusUtils.getStatusLevel(property[StatusType.STRENGTH.getId()]),
-                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.STRENGTH.getId()]))
+                    UmaStatusUtils.getStatusLevel(property.strength()),
+                    UmaStatusUtils.getStatusLevel(maxProperty.strength()))
                             .withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.guts_details",
-                    UmaStatusUtils.getStatusLevel(property[StatusType.GUTS.getId()]),
-                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.GUTS.getId()]))
+                    UmaStatusUtils.getStatusLevel(property.guts()),
+                    UmaStatusUtils.getStatusLevel(maxProperty.guts()))
                             .withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.wisdom_details",
-                    UmaStatusUtils.getStatusLevel(property[StatusType.WISDOM.getId()]),
-                    UmaStatusUtils.getStatusLevel(maxProperty[StatusType.WISDOM.getId()]))
+                    UmaStatusUtils.getStatusLevel(property.wisdom()),
+                    UmaStatusUtils.getStatusLevel(maxProperty.wisdom()))
                             .withStyle(ChatFormatting.DARK_GREEN));
         } else {
             tooltip.add(Component.translatable("tooltip.umapyoi.press_shift_for_details")

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:seeds/wheat"
+    },
+    {
+      "item": "minecraft:glistering_melon_slice"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:crops/nether_wart"
+    },
+    {
+      "tag": "forge:water"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:royal_bitter"
+  }
+}

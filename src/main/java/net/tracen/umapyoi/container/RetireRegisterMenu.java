@@ -26,13 +26,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.UmaSoulItem;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.item.data.DataLocation;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.factors.FactorType;
 import net.tracen.umapyoi.registry.factors.SkillFactor;
 import net.tracen.umapyoi.registry.factors.StatusFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
-import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaFactorUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
@@ -68,7 +69,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     protected boolean hasResult() {
         ItemStack inputSoul = this.inputSlots.getItem(0);
         if (inputSoul.getItem() instanceof UmaSoulItem) {
-            return UmaSoulUtils.getGrowth(inputSoul) == Growth.TRAINED;
+            return inputSoul.has(DataComponentsTypeRegistry.UMADATA_TRAINING);
         }
         return false;
     }
@@ -78,7 +79,8 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         this.resultSlots.awardUsedRecipes(player, this.getRelevantItems());
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
         if (inputSoul.getItem() instanceof UmaSoulItem) {
-            UmaSoulUtils.setGrowth(inputSoul, Growth.RETIRED);
+//            UmaSoulUtils.setGrowth(inputSoul, Growth.RETIRED);
+        	inputSoul.remove(DataComponentsTypeRegistry.UMADATA_TRAINING);
             this.inputSlots.setItem(0, inputSoul);
             this.access.execute((level, pos) -> {
                 player.playSound(SoundEvents.PLAYER_LEVELUP, 1F, 1F);
@@ -167,8 +169,8 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         this.rand.setSeed(this.getFactorSeed().get());
         List<UmaFactorStack> stackList = createResultFactors(inputSoul, ranking);
 
-        result.getOrCreateTag().putString("name", UmaSoulUtils.getName(inputSoul).toString());
-        result.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(stackList));
+        result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(UmaSoulUtils.getName(inputSoul)));
+        result.set(DataComponentsTypeRegistry.FACTOR_DATA, UmaFactorUtils.serializeData(stackList));
         return result;
     }
 
@@ -180,7 +182,16 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
                 .filter(fac -> fac.getFactorType() == FactorType.STATUS).count();
         StatusFactor statusFactor = (StatusFactor) status.skip(rand.nextLong(statusCount)).findFirst()
                 .orElse(UmaFactorRegistry.SPEED_FACTOR.get());
-        var statusProperty = UmaSoulUtils.getProperty(inputSoul)[statusFactor.getStatusType().getId()];
+        
+        int statusProperty = 0;
+    	switch (statusFactor.getStatusType()) {
+			case SPEED -> statusProperty = UmaSoulUtils.getProperty(inputSoul).speed();
+			case STAMINA -> statusProperty = UmaSoulUtils.getProperty(inputSoul).stamina();
+			case STRENGTH -> statusProperty = UmaSoulUtils.getProperty(inputSoul).strength();
+			case GUTS -> statusProperty = UmaSoulUtils.getProperty(inputSoul).guts();
+			case WISDOM -> statusProperty = UmaSoulUtils.getProperty(inputSoul).wisdom();
+		}
+    	
         var i = statusProperty > 19 ? 5 :
                 statusProperty > 10 ? 3 :
                 2;
@@ -196,7 +207,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         var extraStatusFactorStack = new UmaFactorStack(extraStatusFactor, rand.nextInt(ranking > 18 ? 3 : 2) + 1);
 
         UmaFactorStack uniqueFactor = new UmaFactorStack(UmaFactorRegistry.UNIQUE_SKILL_FACTOR.get(), 1);
-        uniqueFactor.getOrCreateTag().putString("skill", UmaSoulUtils.getSkills(inputSoul).get(0).getAsString());
+        uniqueFactor.getOrCreateTag().putString("skill", UmaSoulUtils.getSkills(inputSoul).get(0).toString());
 
         List<UmaFactorStack> stackList = Lists.newArrayList(statusFactorStack, extraStatusFactorStack, uniqueFactor);
 
@@ -211,7 +222,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
             if (skillLevel == 0)
                 return;
             UmaFactorStack skillFactor = new UmaFactorStack(UmaFactorRegistry.SKILL_FACTOR.get(), skillLevel);
-            skillFactor.getOrCreateTag().putString("skill", skillTag.getAsString());
+            skillFactor.getOrCreateTag().putString("skill", skillTag.toString());
             stackList.add(skillFactor);
         });
 

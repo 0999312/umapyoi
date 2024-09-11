@@ -1,6 +1,9 @@
 package net.tracen.umapyoi.item.data;
 
+import java.util.List;
+
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.Umapyoi;
@@ -70,10 +73,10 @@ public class DataComponentsTypeRegistry {
 		        .networkSynchronized(UmaDataTranining.STREAM)
 	);
 		
-	public static final DeferredHolder<DataComponentType<?>, DataComponentType<FactorData>> FACTOR_DATA = 
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<FactorData>>> FACTOR_DATA = 
 		DATA_COMPONENTS.registerComponentType("factor_data", 
 				builder -> builder
-		        .persistent(FactorData.CODEC)
-		        .networkSynchronized(FactorData.STREAM)
+		        .persistent(FactorData.CODEC.listOf())
+		        .networkSynchronized(FactorData.STREAM.apply(ByteBufCodecs.list()))
 	);
 }

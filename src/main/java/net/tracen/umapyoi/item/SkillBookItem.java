@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 
@@ -32,7 +33,7 @@ public class SkillBookItem extends Item {
 
     public UmaSkill getSkill(ItemStack stack) {
         ResourceLocation skillID = Optional
-                .ofNullable(ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill")))
+                .ofNullable(stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name())
                 .orElse(UmaSkillRegistry.BASIC_PACE.getId());
         return UmaSkillRegistry.REGISTRY.get(skillID);
     }

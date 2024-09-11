@@ -1,16 +1,15 @@
 package net.tracen.umapyoi.data.loot;
 
-import java.util.Set;
-
 import cn.mcmod_mmf.mmlib.data.loot.AbstartctBlockLoot;
+import net.minecraft.core.HolderLookup;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 
 public class UmapyoiBlockLoot extends AbstartctBlockLoot {
 
-    public UmapyoiBlockLoot() {
-        super();
-    }
+	public UmapyoiBlockLoot(HolderLookup.Provider provider) {
+		super(provider);
+	}
 
     @Override
     public void addTables() {

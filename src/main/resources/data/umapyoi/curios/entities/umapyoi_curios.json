@@ -1,4 +1,4 @@
 {
-  "entities": ["player"],
+  "entities": ["minecraft:player"],
   "slots": ["uma_soul", "uma_suit"]
 }

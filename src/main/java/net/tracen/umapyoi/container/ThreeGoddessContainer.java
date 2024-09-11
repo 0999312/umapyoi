@@ -3,6 +3,7 @@ package net.tracen.umapyoi.container;
 import java.util.Objects;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -12,14 +13,15 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.ThreeGoddessBlockEntity;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 
 public class ThreeGoddessContainer extends AbstractContainerMenu {
 
@@ -134,9 +136,15 @@ public class ThreeGoddessContainer extends AbstractContainerMenu {
         @Override
         public boolean mayPlace(ItemStack stack) {
             if (stack.is(ItemRegistry.BLANK_UMA_SOUL.get())) {
-                String name = stack.getOrCreateTag().getString("name");
-                return !(name.equals(this.getItemHandler().getStackInSlot(1).getOrCreateTag().getString("name"))
-                        || name.equals(this.getItemHandler().getStackInSlot(2).getOrCreateTag().getString("name")));
+            	if(this.getItemHandler().getStackInSlot(1).isEmpty() && this.getItemHandler().getStackInSlot(2).isEmpty()) 
+            		return true;
+                ResourceLocation name = stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
+                return !(
+                		name.equals(this.getItemHandler().getStackInSlot(1).get(DataComponentsTypeRegistry.DATA_LOCATION).name())
+                        || 
+                        name.equals(this.getItemHandler().getStackInSlot(2).get(DataComponentsTypeRegistry.DATA_LOCATION).name())
+                        );
+                
             }
             return false;
         }
@@ -157,20 +165,20 @@ public class ThreeGoddessContainer extends AbstractContainerMenu {
         public boolean mayPlace(ItemStack stack) {
             boolean result = stack.is(ItemRegistry.UMA_FACTOR_ITEM.get());
             boolean factorFlag = false;
-            String name = stack.getOrCreateTag().getString("name");
+            ResourceLocation name = stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
             var soulStack = this.getItemHandler().getStackInSlot(0);
-            boolean soulFlag = !soulStack.isEmpty() && stack.getOrCreateTag().getString("name")
-                    .equals(soulStack.getOrCreateTag().getString("name"));
+            boolean soulFlag = !soulStack.isEmpty() && stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name()
+                    .equals(soulStack.get(DataComponentsTypeRegistry.DATA_LOCATION).name());
 
             switch (this.getSlotIndex()) {
             case 1: {
-                factorFlag = name
-                        .equals(this.getItemHandler().getStackInSlot(2).getOrCreateTag().getString("name"));
+                factorFlag = !this.getItemHandler().getStackInSlot(2).isEmpty() && name
+                        .equals(this.getItemHandler().getStackInSlot(2).get(DataComponentsTypeRegistry.DATA_LOCATION).name());
                 break;
             }
             case 2: {
-                factorFlag = name
-                        .equals(this.getItemHandler().getStackInSlot(1).getOrCreateTag().getString("name"));
+                factorFlag = !this.getItemHandler().getStackInSlot(1).isEmpty() && name
+                        .equals(this.getItemHandler().getStackInSlot(1).get(DataComponentsTypeRegistry.DATA_LOCATION).name());
                 break;
             }
             default:

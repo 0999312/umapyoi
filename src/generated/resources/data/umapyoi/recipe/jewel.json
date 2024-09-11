@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:crops/carrot"
+    },
+    [
+      {
+        "tag": "c:gems/diamond"
+      },
+      {
+        "tag": "c:gems/emerald"
+      }
+    ]
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:jewel"
+  }
+}
