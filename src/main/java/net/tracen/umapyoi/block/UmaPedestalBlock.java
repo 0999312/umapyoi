@@ -40,6 +40,7 @@ public class UmaPedestalBlock extends AbstractPedestalBlock
         super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
@@ -55,8 +56,7 @@ public class UmaPedestalBlock extends AbstractPedestalBlock
         if (!level.isClientSide) {
             BlockEntity tileEntity = level.getBlockEntity(pos);
             if (tileEntity instanceof UmaPedestalBlockEntity blockEntity) {
-                return interactBEWithoutItem(level, pos, player, blockEntity.isEmpty(), blockEntity.removeItem(),
-                                             blockEntity
+                return interactBEWithoutItem(level, pos, player, blockEntity.isEmpty(), blockEntity.removeItem()
                 );
             }
         }
@@ -98,5 +98,11 @@ public class UmaPedestalBlock extends AbstractPedestalBlock
         return createTickerHelper(blockEntity, BlockEntityRegistry.UMA_PEDESTAL.get(),
                                   UmaPedestalBlockEntity::workingTick
         );
+    }
+
+    @Override
+    protected void transformOnBook(Level level, BlockPos pos) {
+        level.destroyBlock(pos, false);
+        level.setBlock(pos, BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get().defaultBlockState(), UPDATE_ALL);
     }
 }
