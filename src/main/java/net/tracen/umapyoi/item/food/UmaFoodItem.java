@@ -1,11 +1,14 @@
 package net.tracen.umapyoi.item.food;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 import cn.mcmod_mmf.mmlib.item.ItemFoodBase;
 import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.Umapyoi;
@@ -15,7 +18,10 @@ public class UmaFoodItem extends ItemFoodBase {
     private final Consumer<ItemStack> consumer;
 
     public UmaFoodItem(Consumer<ItemStack> consumer, FoodInfo info) {
-        super(Umapyoi.defaultItemProperties(), info);
+        super(Umapyoi.defaultItemProperties().food(
+        		new FoodProperties(info.getAmount(), info.getCalories(), info.isAlwaysEat(), info.getEatTime(), 
+        				Optional.empty(), List.of())
+        		), info);
         this.consumer = consumer;
     }
 

@@ -90,6 +90,9 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         if (level == null) {
             return false;
         }
+        
+        if(level.isClientSide())
+        	return false;
 
         ++recipeTime;
         if (recipeTime < MAX_PROCESS_TIME) {
@@ -100,20 +103,17 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
 
         ItemStack resultStack = getResultItem();
         this.inventory.setStackInSlot(0, resultStack);
-
+        
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
             if (supportItem.getItem() instanceof SupportContainer supports) {
                 if (supports.isConsumable(this.getLevel(), supportItem))
                     supportItem.shrink(1);
-                
-                else {
-                	supportItem.hurtAndBreak(1, (ServerLevel) this.getLevel(), null, item->{
-                		this.getLevel().playSound(null, this.getBlockPos(), SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.BLOCKS, 1F, 1F);
+                else 
+                	supportItem.hurtAndBreak(1, (ServerLevel) this.getLevel(), null, item -> {
+                		this.getLevel().playSound(null, this.getBlockPos(), 
+                				SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.BLOCKS, 1F, 1F);
                 	});
-                    supportItem.shrink(1);
-                    supportItem.setDamageValue(0);
-                }
             }
         }
         return true;

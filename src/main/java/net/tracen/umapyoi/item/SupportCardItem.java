@@ -58,12 +58,6 @@ public class SupportCardItem extends Item implements SupportContainer {
 		return pRepair.is(UmapyoiItemTags.HORSESHOE) || super.isValidRepairItem(pToRepair, pRepair);
 	}
 
-//    @Override
-//    public Rarity getRarity(ItemStack pStack) {
-//        GachaRanking ranking = GachaRanking.getGachaRanking(pStack);
-//        return ranking == GachaRanking.SSR ? Rarity.EPIC : ranking == GachaRanking.SR ? Rarity.UNCOMMON : Rarity.COMMON;
-//    }
-
 	@Override
 	public String getDescriptionId(ItemStack pStack) {
 		return Util.makeDescriptionId("support_card", this.getSupportCardID(pStack)) + ".name";

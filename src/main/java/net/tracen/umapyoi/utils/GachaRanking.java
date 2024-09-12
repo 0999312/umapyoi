@@ -12,7 +12,7 @@ public enum GachaRanking {
             .xmap(string -> GachaRanking.valueOf(string.toUpperCase()), instance -> instance.name().toLowerCase());
     
     public static GachaRanking getGachaRanking(ItemStack stack) {
-        return stack.has(DataComponentsTypeRegistry.GACHA_RANKING) ? GachaRanking.R
+        return !stack.has(DataComponentsTypeRegistry.GACHA_RANKING) ? GachaRanking.R
                 : stack.get(DataComponentsTypeRegistry.GACHA_RANKING).ranking();
     }
 }

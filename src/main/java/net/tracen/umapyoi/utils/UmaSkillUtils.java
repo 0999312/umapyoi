@@ -47,7 +47,7 @@ public class UmaSkillUtils {
     }
 
     public static void learnSkill(ItemStack stack, ResourceLocation skill) {
-        if (!UmaSoulUtils.hasEmptySkillSlot(stack))
+        if (UmaSoulUtils.hasEmptySkillSlot(stack))
             return;
         if (skill != null && UmaSkillRegistry.REGISTRY.containsKey(skill)) {
         	List<ResourceLocation> skills = UmaSoulUtils.getSkills(stack);
