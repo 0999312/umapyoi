@@ -2,7 +2,7 @@ package net.tracen.umapyoi.client.screen;
 
 import org.joml.Quaternionf;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.platform.Lighting;
 
 import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
@@ -31,31 +31,36 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
 		this.imageWidth = 176;
 		this.imageHeight = 220;
 	}
-
+	
 	@Override
-	public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
-		super.render(graphic, mouseX, mouseY, partialTicks);
-		this.renderTooltip(graphic, mouseX, mouseY);
+	protected void renderBg(GuiGraphics graphic, float partialTicks, int mouseX, int mouseY) {
+		graphic.blit(BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		this.renderModels(graphic);
+		// Render progress bar
+		int l = this.menu.getProgressionScaled();
+		graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 9, this.topPos + 112, 0, 220, l + 1, 5);
+
 	}
 
 	protected void renderModels(GuiGraphics graphic) {
 		ItemStack fatherFactor = this.menu.inventory.getStackInSlot(1);
 		ItemStack motherFactor = this.menu.inventory.getStackInSlot(2);
+        Lighting.setupForEntityInInventory();
 		if (!fatherFactor.isEmpty()) {
 			ResourceLocation name = fatherFactor
 					.getOrDefault(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(UmaData.DEFAULT_UMA_ID))
 					.name();
-			renderModel(graphic, this.leftPos + 33, this.topPos + 55, 25,
+			this.renderModel(graphic, this.leftPos + 33, this.topPos + 55, 25,
 					new Quaternionf().rotateXYZ((float) (Math.PI / 6), (float) (-Math.PI / 4F), 0), name);
 		}
 		if (!motherFactor.isEmpty()) {
 			ResourceLocation name = motherFactor
 					.getOrDefault(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(UmaData.DEFAULT_UMA_ID))
 					.name();
-			renderModel(graphic, this.leftPos + 142, this.topPos + 55, 25,
+			this.renderModel(graphic, this.leftPos + 142, this.topPos + 55, 25,
 					new Quaternionf().rotateXYZ((float) (Math.PI / 6), (float) (Math.PI / 4F), 0), name);
 		}
+        Lighting.setupFor3DItems();
 	}
 
 	protected void renderModel(GuiGraphics graphic, int pPosX, int pPosY, int pScale, Quaternionf pQuaternion,
@@ -67,26 +72,17 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
 	}
 
 	@Override
+	public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
+		super.render(graphic, mouseX, mouseY, partialTicks);
+		this.renderTooltip(graphic, mouseX, mouseY);
+	}
+	
+	@Override
 	protected void renderLabels(GuiGraphics graphic, int mouseX, int mouseY) {
 		graphic.drawString(this.font, this.title,
 				(this.imageWidth / 2) - (this.font.width(this.title.getVisualOrderText()) / 2), this.titleLabelY - 3,
 				0xFFFFFF);
 		graphic.drawString(this.font, this.playerInventoryTitle, 8, this.imageHeight - 96 + 2, 4210752, false);
-	}
-
-	@Override
-	protected void renderBg(GuiGraphics graphic, float partialTicks, int mouseX, int mouseY) {
-		// Render UI background
-		if (this.minecraft == null) {
-			return;
-		}
-		RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-		graphic.blit(BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-
-		// Render progress bar
-		int l = this.menu.getProgressionScaled();
-		graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 9, this.topPos + 112, 0, 220, l + 1, 5);
-
 	}
 
 }

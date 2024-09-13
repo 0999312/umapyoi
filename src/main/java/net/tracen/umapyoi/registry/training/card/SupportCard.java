@@ -57,6 +57,7 @@ public class SupportCard{
     public static ItemStack init(ResourceLocation name, SupportCard card) {
         ItemStack result = new ItemStack(ItemRegistry.SUPPORT_CARD.get());
         result.set(DataComponents.MAX_DAMAGE, card.getMaxDamage());
+        result.set(DataComponents.DAMAGE, 0);
         result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(name));
         GachaRanking ranking = card.getGachaRanking();
 		result.set(DataComponentsTypeRegistry.GACHA_RANKING, new GachaRankingData(ranking));

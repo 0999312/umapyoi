@@ -6,13 +6,13 @@
       "item": "minecraft:honey_bottle"
     },
     {
-      "tag": "forge:sugar"
+      "tag": "c:sugar"
     },
     {
-      "tag": "forge:sugar"
+      "tag": "c:sugar"
     },
     {
-      "tag": "forge:water"
+      "tag": "c:water"
     }
   ],
   "result": {

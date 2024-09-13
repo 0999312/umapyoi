@@ -50,7 +50,6 @@ public class UmaStatueBlock extends BaseEntityBlock
         return CODEC;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;

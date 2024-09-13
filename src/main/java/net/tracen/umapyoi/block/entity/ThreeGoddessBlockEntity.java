@@ -241,11 +241,22 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
             }
             @Override
             public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-                if(slot == 0) {
+                ItemStack motherSlot = this.getStackInSlot(2);
+				ItemStack fatherSlot = this.getStackInSlot(1);
+				ResourceLocation fatherName = fatherSlot.getOrDefault(
+						DataComponentsTypeRegistry.DATA_LOCATION,
+						new DataLocation(UmaData.DEFAULT_UMA_ID)
+						).name();
+				ResourceLocation motherName = motherSlot.getOrDefault(
+						DataComponentsTypeRegistry.DATA_LOCATION,
+						new DataLocation(UmaData.DEFAULT_UMA_ID)
+						).name();
+				if(slot == 0) {
                     if (stack.is(ItemRegistry.BLANK_UMA_SOUL.get())) {
                         ResourceLocation name = stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
-                        return !(name.equals(this.getStackInSlot(1).get(DataComponentsTypeRegistry.DATA_LOCATION).name())
-                                || name.equals(this.getStackInSlot(2).get(DataComponentsTypeRegistry.DATA_LOCATION).name()));
+                       
+						return !((fatherSlot.isEmpty()? false :name.equals(fatherName))
+                                || name.equals(motherName));
                     }
                     return false;
                 }
@@ -256,7 +267,7 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
                     var soulStack = this.getStackInSlot(0);
                     boolean soulFlag = !soulStack.isEmpty() && stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name()
                             .equals(soulStack.get(DataComponentsTypeRegistry.DATA_LOCATION).name());
-                    factorFlag = name.equals(this.getStackInSlot(2).get(DataComponentsTypeRegistry.DATA_LOCATION).name());
+                    factorFlag = motherSlot.isEmpty()? false : name.equals(motherName);
 
                     return result && !soulFlag && !factorFlag;
                 }
@@ -267,7 +278,8 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
                     var soulStack = this.getStackInSlot(0);
                     boolean soulFlag = !soulStack.isEmpty() && stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name()
                             .equals(soulStack.get(DataComponentsTypeRegistry.DATA_LOCATION).name());
-                    factorFlag = name.equals(this.getStackInSlot(1).get(DataComponentsTypeRegistry.DATA_LOCATION).name());
+                    
+					factorFlag = fatherSlot.isEmpty()? false : name.equals(fatherName);
                     
                     return result && !soulFlag && !factorFlag;
                 }

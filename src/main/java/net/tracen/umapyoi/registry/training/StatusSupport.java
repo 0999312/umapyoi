@@ -55,7 +55,7 @@ public class StatusSupport extends TrainingSupport {
 			return true;
 		}
 		case WISDOM -> {
-			soul.update(DataComponentsTypeRegistry.UMADATA_MAX_BASIC_STATUS, UmaSoulUtils.getProperty(soul),
+			soul.update(DataComponentsTypeRegistry.UMADATA_BASIC_STATUS, UmaSoulUtils.getProperty(soul),
 					data -> {
 						return new UmaDataBasicStatus(data.speed(), data.stamina(), data.strength(), data.guts(),
 								Math.min(soul.get(DataComponentsTypeRegistry.UMADATA_MAX_BASIC_STATUS).wisdom(),

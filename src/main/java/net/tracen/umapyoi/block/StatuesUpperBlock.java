@@ -78,7 +78,7 @@ public class StatuesUpperBlock extends Block
     }
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-        if (!pLevel.isClientSide) {
+        if (!pLevel.isClientSide()) {
             if (!pState.canSurvive(pLevel, pPos)) {
                 pLevel.removeBlock(pPos, false);
             }

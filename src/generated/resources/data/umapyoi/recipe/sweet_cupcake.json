@@ -15,13 +15,13 @@
       "tag": "c:eggs"
     },
     {
-      "tag": "forge:sugar"
+      "tag": "c:sugar"
     },
     {
-      "tag": "forge:sugar"
+      "tag": "c:sugar"
     },
     {
-      "tag": "forge:milk"
+      "tag": "c:milk"
     }
   ],
   "result": {

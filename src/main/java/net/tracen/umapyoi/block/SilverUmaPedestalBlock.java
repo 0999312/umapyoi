@@ -39,7 +39,6 @@ public class SilverUmaPedestalBlock extends AbstractPedestalBlock {
         super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
@@ -50,8 +49,6 @@ public class SilverUmaPedestalBlock extends AbstractPedestalBlock {
         return BlockEntityRegistry.SILVER_UMA_PEDESTAL.get().create(pos, state);
     }
 
-    // DONE copied from UmaPedestalBlock.java, need test
-    // 他妈的果然写出问题了
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide) {

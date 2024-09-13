@@ -18,10 +18,10 @@
       "tag": "c:crops/nether_wart"
     },
     {
-      "tag": "forge:sugar"
+      "tag": "c:sugar"
     },
     {
-      "tag": "forge:water"
+      "tag": "c:water"
     }
   ],
   "result": {

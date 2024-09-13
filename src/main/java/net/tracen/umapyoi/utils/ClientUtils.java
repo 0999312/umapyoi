@@ -10,6 +10,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.model.Model;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -82,20 +83,24 @@ public class ClientUtils {
         }
     }
 
-    public static void renderModelInInventory(GuiGraphics guiGraphic, int p_283622_, int p_283401_, int p_281360_, Quaternionf p_281880_, Model pModel,
+    public static void renderModelInInventory(
+    		GuiGraphics guiGraphic, 
+    		int x, 
+    		int y, 
+    		int scale, 
+    		Quaternionf pose, Model pModel,
             ResourceLocation texture) {
+
         guiGraphic.pose().pushPose();
-        guiGraphic.pose().translate((double)p_283622_, (double)p_283401_, 50.0D);
-        guiGraphic.pose().mulPose((new Matrix4f()).scaling((float)p_281360_, (float)p_281360_, (float)(-p_281360_)));
-        guiGraphic.pose().mulPose(p_281880_);
-        Lighting.setupForEntityInInventory();
-        MultiBufferSource.BufferSource multibuffersource$buffersource = Minecraft.getInstance().renderBuffers()
-                .bufferSource();
-        VertexConsumer vertexconsumer = multibuffersource$buffersource
+        guiGraphic.pose().translate((double)x, (double)y, 50.0D);
+        guiGraphic.pose().scale(scale, scale, -scale);
+        guiGraphic.pose().mulPose(pose);
+        MultiBufferSource.BufferSource buffersource = guiGraphic.bufferSource();
+        VertexConsumer vertexconsumer = buffersource
                 .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(texture)));
-        pModel.renderToBuffer(guiGraphic.pose(), vertexconsumer, 15728880, OverlayTexture.NO_OVERLAY);
-        multibuffersource$buffersource.endBatch();
+        pModel.renderToBuffer(guiGraphic.pose(), vertexconsumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+        guiGraphic.flush();
         guiGraphic.pose().popPose();
-        Lighting.setupFor3DItems();
+
      }
 }

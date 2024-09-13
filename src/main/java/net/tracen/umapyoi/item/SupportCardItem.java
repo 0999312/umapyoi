@@ -49,11 +49,6 @@ public class SupportCardItem extends Item implements SupportContainer {
 	}
 
 	@Override
-	public boolean isDamageable(ItemStack stack) {
-		return this.getMaxDamage(stack) > 0;
-	}
-
-	@Override
 	public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
 		return pRepair.is(UmapyoiItemTags.HORSESHOE) || super.isValidRepairItem(pToRepair, pRepair);
 	}
