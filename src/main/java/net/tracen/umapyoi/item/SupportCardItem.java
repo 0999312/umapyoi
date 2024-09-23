@@ -2,7 +2,6 @@ package net.tracen.umapyoi.item;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -11,8 +10,9 @@ import com.google.common.base.Suppliers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.Holder.Reference;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -33,14 +33,14 @@ import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class SupportCardItem extends Item implements SupportContainer {
-	private static final Comparator<Entry<ResourceKey<SupportCard>, SupportCard>> COMPARATOR = new CardDataComparator();
+	private static final Comparator<Reference<SupportCard>> COMPARATOR = new CardDataComparator();
 
 	public SupportCardItem() {
 		super(Umapyoi.defaultItemProperties().stacksTo(1));
 	}
 
-	public static Stream<Entry<ResourceKey<SupportCard>, SupportCard>> sortedCardDataList() {
-		return ClientUtils.getClientSupportCardRegistry().entrySet().stream().sorted(SupportCardItem.COMPARATOR);
+	public static Stream<Reference<SupportCard>> sortedCardDataList(HolderLookup.Provider provider) {
+		return provider.lookupOrThrow(SupportCard.REGISTRY_KEY).listElements().sorted(SupportCardItem.COMPARATOR);
 	}
 
 	@Override
@@ -162,15 +162,14 @@ public class SupportCardItem extends Item implements SupportContainer {
 		return true;
 	}
 
-	private static class CardDataComparator implements Comparator<Entry<ResourceKey<SupportCard>, SupportCard>> {
+	private static class CardDataComparator implements Comparator<Reference<SupportCard>> {
 		@Override
-		public int compare(Entry<ResourceKey<SupportCard>, SupportCard> left,
-				Entry<ResourceKey<SupportCard>, SupportCard> right) {
-			var leftRanking = left.getValue().getGachaRanking();
-			var rightRanking = right.getValue().getGachaRanking();
+		public int compare(Reference<SupportCard> left, Reference<SupportCard> right) {
+			var leftRanking = left.value().getGachaRanking();
+			var rightRanking = right.value().getGachaRanking();
 			if (leftRanking == rightRanking) {
-				String leftName = left.getKey().location().toString();
-				String rightName = right.getKey().location().toString();
+				String leftName = left.key().location().toString();
+				String rightName = right.key().location().toString();
 				return leftName.compareToIgnoreCase(rightName);
 			}
 			return leftRanking.compareTo(rightRanking);

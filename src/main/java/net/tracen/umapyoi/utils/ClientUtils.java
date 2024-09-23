@@ -2,10 +2,8 @@ package net.tracen.umapyoi.utils;
 
 import java.util.List;
 
-import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
-import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

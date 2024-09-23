@@ -2,14 +2,14 @@ package net.tracen.umapyoi.item;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.Holder.Reference;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,24 +21,21 @@ import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
-import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public class UmaSoulItem extends Item {
-    private static final Comparator<Entry<ResourceKey<UmaData>, UmaData>> COMPARATOR = new UmaDataComparator();
+    private static final Comparator<Reference<UmaData>> COMPARATOR = new UmaDataComparator();
     
     public UmaSoulItem() {
         super(Umapyoi.defaultItemProperties().stacksTo(1));
     }
 
-    public static Stream<Entry<ResourceKey<UmaData>, UmaData>> sortedUmaDataList() {
-        return ClientUtils.getClientUmaDataRegistry().entrySet().stream().sorted(UmaSoulItem.COMPARATOR);
+    public static Stream<Reference<UmaData>> sortedUmaDataList(HolderLookup.Provider provider) {
+        return provider.lookupOrThrow(UmaData.REGISTRY_KEY).listElements().sorted(UmaSoulItem.COMPARATOR);
     }
-
-    
     
     @Override
     public Component getName(ItemStack pStack) {
@@ -46,15 +43,7 @@ public class UmaSoulItem extends Item {
         if(ranking == GachaRanking.EASTER_EGG) return super.getName(pStack).copy().withStyle(ChatFormatting.GREEN);
         return super.getName(pStack);
     }
-//
-//    @Override
-//    public Rarity getRarity(ItemStack pStack) {
-//        GachaRanking ranking = GachaRanking.getGachaRanking(pStack);
-//        return ranking == GachaRanking.SSR || ranking == GachaRanking.EASTER_EGG ? Rarity.EPIC : ranking == GachaRanking.SR ? Rarity.UNCOMMON : Rarity.COMMON;
-//    }
     
-    
-
     @Override
     public String getDescriptionId(ItemStack pStack) {
         return Util.makeDescriptionId("umadata", UmaSoulUtils.getName(pStack));
@@ -128,14 +117,14 @@ public class UmaSoulItem extends Item {
         }
       }
 
-    private static class UmaDataComparator implements Comparator<Entry<ResourceKey<UmaData>, UmaData>> {
+    private static class UmaDataComparator implements Comparator<Reference<UmaData>> {
         @Override
-        public int compare(Entry<ResourceKey<UmaData>, UmaData> left, Entry<ResourceKey<UmaData>, UmaData> right) {
-            var leftRanking = left.getValue().ranking();
-            var rightRanking = right.getValue().ranking();
+        public int compare(Reference<UmaData> left, Reference<UmaData> right) {
+            var leftRanking = left.value().ranking();
+            var rightRanking = right.value().ranking();
             if(leftRanking == rightRanking) {
-                String leftName = left.getKey().location().toString();
-                String rightName = right.getKey().location().toString();
+                String leftName = left.key().location().toString();
+                String rightName = right.key().location().toString();
                 return leftName.compareToIgnoreCase(rightName);
             }
             return leftRanking.compareTo(rightRanking);

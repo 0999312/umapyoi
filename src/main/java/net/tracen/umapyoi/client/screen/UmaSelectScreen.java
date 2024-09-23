@@ -79,12 +79,14 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         pMenu.registerUpdateListener(this::containerChanged);
 
     }
-
+    
+    @Override
     public void render(GuiGraphics pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+        this.renderFg(pPoseStack, pMouseX, pMouseY, pPartialTick);
         this.renderTooltip(pPoseStack, pMouseX, pMouseY);
     }
-
+    
     public void renderFg(GuiGraphics pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
         this.searchBox.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
     }
@@ -110,14 +112,19 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         this.searchBox.setResponder(this::onNameChanged);
         this.searchBox.setValue("");
         this.addWidget(this.searchBox);
-        this.setInitialFocus(this.searchBox);
-        this.searchBox.setEditable(false);
+        this.searchBox.setEditable(this.displayRecipes);
     }
-
+    
+    @Override
     public void resize(Minecraft pMinecraft, int pWidth, int pHeight) {
         String s = this.searchBox.getValue();
         this.init(pMinecraft, pWidth, pHeight);
         this.searchBox.setValue(s);
+    }
+    
+    @Override
+    protected void setInitialFocus() {
+    	this.setInitialFocus(this.searchBox);
     }
 
     @Override
@@ -126,12 +133,14 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         this.subInit();
         this.menu.addSlotListener(this);
     }
-
+    
+    @Override
     public void removed() {
         super.removed();
         this.menu.removeSlotListener(this);
     }
-
+    
+    @Override
     public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {
         if (pKeyCode == 256) {
             this.minecraft.player.closeContainer();
@@ -153,19 +162,19 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         }
     }
     
-    protected void renderBg(GuiGraphics pPoseStack, float pPartialTick, int pX, int pY) {
+    protected void renderBg(GuiGraphics guiGraphics, float pPartialTick, int pX, int pY) {
         
         int i = this.leftPos;
         int j = this.topPos;
-        pPoseStack.blit(BACKGROUND_TEXTURE, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        guiGraphics.blit(BACKGROUND_TEXTURE, i, j, 0, 0, this.imageWidth, this.imageHeight);
         int k = (int) (41.0F * this.scrollOffs);
-        pPoseStack.blit(BACKGROUND_TEXTURE, i + 116, j + 31 + k, 176 + (this.isScrollBarActive() ? 0 : SCROLLER_WIDTH), 0,
+        guiGraphics.blit(BACKGROUND_TEXTURE, i + 116, j + 31 + k, 176 + (this.isScrollBarActive() ? 0 : SCROLLER_WIDTH), 0,
                 SCROLLER_WIDTH, SCROLLER_HEIGHT);
         int l = this.leftPos + RECIPES_X;
         int i1 = this.topPos + RECIPES_Y;
         int j1 = this.startIndex + SCROLLER_WIDTH;
-        this.renderButtons(pPoseStack, pX, pY, l, i1, j1);
-        this.renderRecipes(pPoseStack, l, i1, j1);
+        this.renderButtons(guiGraphics, pX, pY, l, i1, j1);
+        this.renderRecipes(guiGraphics, l, i1, j1);
     }
 
     protected void renderTooltip(GuiGraphics pPoseStack, int pX, int pY) {

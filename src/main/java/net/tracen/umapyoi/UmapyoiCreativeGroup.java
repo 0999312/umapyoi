@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -34,17 +33,18 @@ public class UmapyoiCreativeGroup {
     public static final Holder<CreativeModeTab> UMAPYOI_ITEMS = CREATIVE_MODE_TABS.register("umapyoi",
             () -> CreativeModeTab.builder().icon(ItemRegistry.HACHIMI_MID.get()::getDefaultInstance)
                     .title(Component.translatable("itemGroup.umapyoi")).displayItems((features, output) -> {
+                    	features.holders();
                         ItemRegistry.ITEMS.getEntries().forEach(item -> {
                             if (item == ItemRegistry.UMA_FACTOR_ITEM) {
                                 fillFactorContainer(output);
                                 return;
                             }
                             if (item == ItemRegistry.UMA_SOUL) {
-                                fillUmaSoul(output);
+                                fillUmaSoul(features, output);
                                 return;
                             }
                             if (item == ItemRegistry.SUPPORT_CARD) {
-                                fillSupportCard(output);
+                                fillSupportCard(features, output);
                                 return;
                             }
                             if (item == ItemRegistry.SKILL_BOOK) {
@@ -68,28 +68,23 @@ public class UmapyoiCreativeGroup {
         });
     }
 
-    private static void fillUmaSoul(CreativeModeTab.Output output) {
-        if (Minecraft.getInstance().getConnection() != null) {
-            UmaSoulItem.sortedUmaDataList().forEach(
-                    entry -> {
-                        ItemStack initUmaSoul = UmaSoulUtils.initUmaSoul(ItemRegistry.UMA_SOUL.get().getDefaultInstance(),
-                            entry.getKey().location(), entry.getValue());
-                        UmaSoulUtils.setPhysique(initUmaSoul, 5);
-                        output.accept(initUmaSoul);
-                        }
-                    );
-        }
+    private static void fillUmaSoul(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
+    	UmaSoulItem.sortedUmaDataList(parameters.holders()).forEach(entry->{
+          ItemStack initUmaSoul = UmaSoulUtils.initUmaSoul(ItemRegistry.UMA_SOUL.get().getDefaultInstance(),
+	          entry.key().location(), entry.value());
+	      UmaSoulUtils.setPhysique(initUmaSoul, 5);
+	      output.accept(initUmaSoul);
+    	});
     }
 
-    private static void fillSupportCard(CreativeModeTab.Output output) {
-        if (Minecraft.getInstance().getConnection() != null) {
-            SupportCardItem.sortedCardDataList().forEach(card -> {
-                if (card.getKey().location().equals(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "blank_card")))
-                    return;
-                ItemStack result = SupportCard.init(card.getKey().location(), card.getValue());
-                output.accept(result);
-            });
-        }
+    private static void fillSupportCard(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {	
+        SupportCardItem.sortedCardDataList(parameters.holders()).forEach(card -> {
+            if (card.getKey().location().equals(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "blank_card")))
+                return;
+            ItemStack result = SupportCard.init(card.getKey().location(), card.value());
+            output.accept(result);
+        });
+        
     }
 
     private static void fillSkillBook(CreativeModeTab.Output output) {
