@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-13T13:45:29.625261	Recipes
+// 1.21.1	2024-09-28T06:41:56.530376	Recipes
 c784ae52f6dc21c7aa839ff594140619bde2095a data/umapyoi/advancement/recipes/combat/summer_uniform.json
 ab021c19f27e14b05f43eafa04f6fb79b1bf49e9 data/umapyoi/advancement/recipes/combat/swimsuit.json
 7d0efe273a4f606086073c09c3031a8f9a7687d8 data/umapyoi/advancement/recipes/combat/trainning_suit.json
@@ -27,6 +27,7 @@ a5dfd5d97577a6c00b3491ec338d19d746a9780e data/umapyoi/advancement/recipes/misc/s
 9d7c211e58c157e6e4e2c122abcc20bd543cb5d7 data/umapyoi/advancement/recipes/misc/sr_uma_ticket.json
 11f5e40b71969d9f3e356c9cef864d1a7171dd98 data/umapyoi/advancement/recipes/misc/ssr_card_ticket.json
 2e5189850018a57f586b281019eed3520460f852 data/umapyoi/advancement/recipes/misc/ssr_uma_ticket.json
+2c04908522a4ff38c8091a99761631586fc59162 data/umapyoi/advancement/recipes/misc/trainers_manual.json
 a50baf38805c71b5d245aa2fe5532d81da68483c data/umapyoi/advancement/recipes/misc/uma_ticket.json
 2b773a73abca49840aa083062e2802847b4269ee data/umapyoi/recipe/blank_ticket.json
 82abc17a28eff9245d961cd1f80a281260546159 data/umapyoi/recipe/card_ticket.json
@@ -50,6 +51,7 @@ e3f24f05fd4e2b95f067ef9369ce78b68585f464 data/umapyoi/recipe/ssr_card_ticket.jso
 02165864cca74ce34399e5e2f03c5b09908c82cf data/umapyoi/recipe/sweet_cupcake.json
 38bb806401725ea49dc9759bac5d3c0fc4a66847 data/umapyoi/recipe/swimsuit.json
 9c8f47ffbd210132b9fc164d198c59ba419c5cf2 data/umapyoi/recipe/three_goddess.json
+3c79e54d2bda3dc3ceb5a432efd6dbdb409253d3 data/umapyoi/recipe/trainers_manual.json
 25f4931d2ca6451f3c4b837a9d4b59c28dbdb608 data/umapyoi/recipe/training_facility.json
 2b9cc11810da6953c8b0100afbc7d7bedcd94e4b data/umapyoi/recipe/trainning_suit.json
 08c724047d3e231fa3811acc31e0dcb3f459f269 data/umapyoi/recipe/uma_pedestal.json

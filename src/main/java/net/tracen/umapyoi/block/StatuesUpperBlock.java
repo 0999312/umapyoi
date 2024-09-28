@@ -87,11 +87,11 @@ public class StatuesUpperBlock extends Block
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        return level.getBlockState(pos.below()).useWithoutItem(level, player, hitResult);
+        return level.getBlockState(pos.below()).useWithoutItem(level, player, hitResult.withPosition(pos.below()));
     }
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        return level.getBlockState(pos.below()).useItemOn(stack, level, player, hand, hitResult);
+        return level.getBlockState(pos.below()).useItemOn(stack, level, player, hand, hitResult.withPosition(pos.below()));
     }
 }

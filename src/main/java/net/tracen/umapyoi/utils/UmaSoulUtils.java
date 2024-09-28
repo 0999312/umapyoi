@@ -56,37 +56,22 @@ public class UmaSoulUtils {
     }
 
     public static UmaDataBasicStatus getProperty(ItemStack stack) {
-//        return stack.getOrCreateTag().getIntArray("property").length > 0
-//                ? stack.getOrCreateTag().getIntArray("property")
-//                : new int[] { 1, 1, 1, 1, 1 };
     	return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_BASIC_STATUS.get(), 
         		new UmaDataBasicStatus(1, 1, 1, 1, 1));
     }
 
     public static UmaDataBasicStatus getPropertyRate(ItemStack stack) {
-//        return stack.getOrCreateTag().getIntArray("propertyRate").length > 0
-//                ? stack.getOrCreateTag().getIntArray("propertyRate")
-//                : new int[] { 0, 0, 0, 0, 0 };
     	return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_STATUS_RATE.get(), 
         		new UmaDataBasicStatus(0, 0, 0, 0, 0));
     }
 
-//    public static int[] getExtraProperty(ItemStack stack) {
-//        return stack.getOrCreateTag().getIntArray("extraProperty").length > 0
-//                ? stack.getOrCreateTag().getIntArray("extraProperty")
-//                : new int[] { 1, 6, 4, 0 };
-//    }
-
     public static UmaDataBasicStatus getMaxProperty(ItemStack stack) {
-//        return stack.getOrCreateTag().getIntArray("maxProperty").length > 0
-//                ? stack.getOrCreateTag().getIntArray("maxProperty")
-//                : new int[] { 12, 12, 12, 12, 12 };
     	return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_MAX_BASIC_STATUS.get(), 
         		new UmaDataBasicStatus(12, 12, 12, 12, 12));
     }
 
     public static Motivations getMotivation(ItemStack stack) {
-        return stack.get(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS).motivation();
+        return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT).motivation();
     }
 
     public static void setMotivation(ItemStack stack, Motivations motivation) {
@@ -95,7 +80,6 @@ public class UmaSoulUtils {
     }
 
     public static List<ResourceLocation> getSkills(ItemStack stack) {
-//        return stack.getList("skills", Tag.TAG_STRING);
     	return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT).skills();
     }
     
@@ -104,17 +88,11 @@ public class UmaSoulUtils {
     		if(skill.equals(loc))
     			return true;
     	}
-//        for(Tag tag : stack.getOrCreateTag().getList("skills", Tag.TAG_STRING)) {
-//            if(tag.getAsString().equals(skill.toString()))
-//                return true;
-//        }
+
         return false;
     }
 
     public static void addSkill(ItemStack stack, ResourceLocation skill) {
-//        ListTag result = UmaSoulUtils.getSkills(stack);
-//        result.add(StringTag.valueOf(skill.toString()));
-//        stack.getOrCreateTag().put("skills", result);
         stack.update(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT,
         		data->{
         			data.skills().add(skill);
@@ -127,7 +105,6 @@ public class UmaSoulUtils {
     }
 
     public static void setSelectedSkill(ItemStack stack, int slot) {
-//        stack.getOrCreateTag().putInt("selectedSkill", slots);
     	stack.update(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT, 
         		data->new UmaDataSkills(data.skillSlot(), slot, data.skills()));
     }
@@ -171,7 +148,6 @@ public class UmaSoulUtils {
     }
 
     public static void setActionPoint(ItemStack stack, int ap) {
-//        stack.getOrCreateTag().putInt("actionPoint", ap);
     	stack.update(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT, 
     			data-> new UmaDataExtraStatus(ap, data.extraActionPoint(), data.resultRanking(), data.motivation()));
     }

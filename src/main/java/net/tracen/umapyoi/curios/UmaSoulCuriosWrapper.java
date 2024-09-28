@@ -125,7 +125,6 @@ public class UmaSoulCuriosWrapper implements ICurio {
 			case WISDOM -> x = UmaSoulUtils.getProperty(this.getStack()).wisdom();
 		}
         
-        
         var statLimit = UmapyoiConfig.STAT_LIMIT_VALUE.get();
         var denominator = 1 + Math.pow(Math.E, 
                 (x > statLimit ? (-0.125 * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get()) : -0.125) * 

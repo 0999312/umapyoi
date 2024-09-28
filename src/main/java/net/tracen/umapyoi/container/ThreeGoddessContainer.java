@@ -22,6 +22,8 @@ import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.ThreeGoddessBlockEntity;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.item.data.DataLocation;
+import net.tracen.umapyoi.registry.umadata.UmaData;
 
 public class ThreeGoddessContainer extends AbstractContainerMenu {
 
@@ -138,11 +140,14 @@ public class ThreeGoddessContainer extends AbstractContainerMenu {
             if (stack.is(ItemRegistry.BLANK_UMA_SOUL.get())) {
             	if(this.getItemHandler().getStackInSlot(1).isEmpty() && this.getItemHandler().getStackInSlot(2).isEmpty()) 
             		return true;
-                ResourceLocation name = stack.get(DataComponentsTypeRegistry.DATA_LOCATION).name();
+            	DataLocation defaultloc = new DataLocation(UmaData.DEFAULT_UMA_ID);
+                ResourceLocation name = stack.getOrDefault(DataComponentsTypeRegistry.DATA_LOCATION, defaultloc).name();
                 return !(
-                		name.equals(this.getItemHandler().getStackInSlot(1).get(DataComponentsTypeRegistry.DATA_LOCATION).name())
+                		name.equals(this.getItemHandler().getStackInSlot(1)
+                				.getOrDefault(DataComponentsTypeRegistry.DATA_LOCATION, defaultloc).name())
                         || 
-                        name.equals(this.getItemHandler().getStackInSlot(2).get(DataComponentsTypeRegistry.DATA_LOCATION).name())
+                        name.equals(this.getItemHandler().getStackInSlot(2)
+                        		.getOrDefault(DataComponentsTypeRegistry.DATA_LOCATION, defaultloc).name())
                         );
                 
             }

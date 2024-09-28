@@ -8,7 +8,9 @@ import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
 
 public final class ResultRankingUtils {
     public static int getRanking(ItemStack soul) {
-        return soul.get(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS.get()).resultRanking();
+    	if(soul.has(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS.get()))
+    		return soul.get(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS.get()).resultRanking();
+    	return 0;
     }
 
     public static int generateRanking(ItemStack soul) {

@@ -3,7 +3,7 @@
     "landing_text": "book.umapyoi.trainers_manual.landing_text",
     "subtitle": "book.umapyoi.trainers_manual.subtitle",
     "version": 0,
-    "creative_tab": "umapyoi",
+    "creative_tab": "umapyoi:umapyoi",
     "filler_texture": "umapyoi:textures/book_images/book_filler.png",
     "book_texture":"umapyoi:textures/gui/book_scr.png",
     "model":"umapyoi:manual_closed",

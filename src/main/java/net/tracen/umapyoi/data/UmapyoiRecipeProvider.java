@@ -10,14 +10,18 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.item.ItemRegistry;
+import vazkii.patchouli.api.PatchouliAPI;
 
 public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
 
@@ -32,6 +36,14 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .requires(Ingredient.fromValues(Stream.of(new Ingredient.TagValue(Tags.Items.GEMS_DIAMOND),
                         new Ingredient.TagValue(Tags.Items.GEMS_EMERALD))))
                 .unlockedBy("has_item", has(Tags.Items.CROPS_CARROT)).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PatchouliAPI.get().getBookStack(
+        		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "trainers_manual")))
+        .requires(ItemTags.BOOKSHELF_BOOKS)
+        .requires(ItemRegistry.JEWEL.get())
+        .unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
+        .save(consumer.withConditions(new ModLoadedCondition(PatchouliAPI.MOD_ID)), 
+        		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "trainers_manual"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.BLANK_TICKET.get(), 2).requires(Items.PAPER).requires(Items.PAPER)
         .requires(Tags.Items.GEMS_LAPIS).requires(ItemRegistry.JEWEL.get())
