@@ -2,7 +2,6 @@ package net.tracen.umapyoi.item;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
@@ -10,9 +9,10 @@ import javax.annotation.Nullable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Holder.Reference;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -24,10 +24,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
+import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.curios.UmaSoulCapProvider;
 import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.registry.umadata.UmaData;
-import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
@@ -35,14 +35,14 @@ import net.tracen.umapyoi.utils.UmaStatusUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class UmaSoulItem extends Item {
-    private static final Comparator<Entry<ResourceKey<UmaData>, UmaData>> COMPARATOR = new UmaDataComparator();
+    private static final Comparator<Reference<UmaData>> COMPARATOR = new UmaDataComparator();
     
     public UmaSoulItem() {
         super(Umapyoi.defaultItemProperties().stacksTo(1));
     }
 
-    public static Stream<Entry<ResourceKey<UmaData>, UmaData>> sortedUmaDataList() {
-        return ClientUtils.getClientUmaDataRegistry().entrySet().stream().sorted(UmaSoulItem.COMPARATOR);
+    public static Stream<Reference<UmaData>> sortedUmaDataList(HolderLookup.Provider provider) {
+        return UmapyoiAPI.getUmaDataRegistry(provider).listElements().sorted(UmaSoulItem.COMPARATOR);
     }
     
     @Override
@@ -135,14 +135,14 @@ public class UmaSoulItem extends Item {
         }
     }
 
-    private static class UmaDataComparator implements Comparator<Entry<ResourceKey<UmaData>, UmaData>> {
+    private static class UmaDataComparator implements Comparator<Reference<UmaData>> {
         @Override
-        public int compare(Entry<ResourceKey<UmaData>, UmaData> left, Entry<ResourceKey<UmaData>, UmaData> right) {
-            var leftRanking = left.getValue().getGachaRanking();
-            var rightRanking = right.getValue().getGachaRanking();
+        public int compare(Reference<UmaData> left, Reference<UmaData> right) {
+            var leftRanking = left.value().getGachaRanking();
+            var rightRanking = right.value().getGachaRanking();
             if(leftRanking == rightRanking) {
-                String leftName = left.getKey().location().toString();
-                String rightName = right.getKey().location().toString();
+                String leftName = left.key().location().toString();
+                String rightName = right.key().location().toString();
                 return leftName.compareToIgnoreCase(rightName);
             }
             return leftRanking.compareTo(rightRanking);

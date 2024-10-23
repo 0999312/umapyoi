@@ -10,14 +10,17 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
+import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
 import net.tracen.umapyoi.events.client.RenderingUmaSoulEvent;
 import net.tracen.umapyoi.item.UmaSuitItem;
+import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -50,23 +53,7 @@ public class UmaSoulRenderer implements ICurioRenderer {
             return;
         if (entity.isInvisible() && !entity.isSpectator())
             return;
-        boolean suit_flag = false;
-
-        if (CuriosApi.getCuriosInventory(entity).isPresent()) {
-            var itemHandler = CuriosApi.getCuriosInventory(entity).orElse(null);
-            if (itemHandler.getStacksHandler("uma_suit").isPresent()) {
-                var stacksHandler = itemHandler.getStacksHandler("uma_suit").orElse(null);
-                IDynamicStackHandler stackHandler = stacksHandler.getStacks();
-                
-                if (stackHandler.getSlots() > 0 && stackHandler.getStackInSlot(0).getItem() instanceof UmaSuitItem) {
-                    suit_flag = stacksHandler.getRenders().get(0);
-                }
-            }
-        }
-        
-        ResourceLocation renderTarget = suit_flag
-                ? ClientUtils.getClientUmaDataRegistry().get(UmaSoulUtils.getName(stack)).getIdentifier()
-                : UmaSoulUtils.getName(stack);
+        ResourceLocation renderTarget = getRenderTarget(stack, entity);
         var pojo = ClientUtil.getModelPOJO(renderTarget);
         if (baseModel.needRefresh(pojo))
             baseModel.loadModel(pojo);
@@ -97,5 +84,35 @@ public class UmaSoulRenderer implements ICurioRenderer {
         MinecraftForge.EVENT_BUS.post(
                 new RenderingUmaSoulEvent.Post(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light));
     }
+
+	public static ResourceLocation getRenderTarget(ItemStack stack, LivingEntity entity) {
+		boolean suit_flag = false;
+        boolean alter_flag = false;
+        if (CuriosApi.getCuriosInventory(entity).isPresent()) {
+            var itemHandler = CuriosApi.getCuriosInventory(entity).orElse(null);
+            if (itemHandler.getStacksHandler("uma_suit").isPresent()) {
+                var stacksHandler = itemHandler.getStacksHandler("uma_suit").orElse(null);
+                IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                
+                if (stackHandler.getSlots() > 0 && stackHandler.getStackInSlot(0).getItem() instanceof UmaSuitItem) {
+                    suit_flag = stacksHandler.getRenders().get(0);
+                    
+                    alter_flag = ClientUtils.getClientUmaDataRegistry()
+                            .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stack)))
+                            .get().is(UmapyoiUmaDataTags.ALTER_MODEL);
+                }
+            }
+        }
+        
+        ResourceLocation renderTarget = suit_flag ? getSuitTarget(stack, alter_flag) : UmaSoulUtils.getName(stack);
+		return renderTarget;
+	}
+
+	private static ResourceLocation getSuitTarget(ItemStack stack, boolean alter) {
+		ResourceLocation identifier = ClientUtils.getClientUmaDataRegistry().get(UmaSoulUtils.getName(stack)).getIdentifier();
+		if(alter)
+			identifier = new ResourceLocation(identifier.getNamespace(), identifier.getPath()+"_alter");
+		return identifier;
+	}
 
 }

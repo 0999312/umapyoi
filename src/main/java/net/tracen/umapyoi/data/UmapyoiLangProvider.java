@@ -291,21 +291,17 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.RICE_SHOWER, "Rice Shower");
         addUma(UmaDataRegistry.SEIUN_SKY, "Seiun Sky");
         addUma(UmaDataRegistry.VODKA, "Vodka");
-
         addUma(UmaDataRegistry.MANHATTAN_CAFE, "Manhattan cafe");
         addUma(UmaDataRegistry.MEJIRO_ARDAN, "Mejiro Ardan");
-
         addUma(UmaDataRegistry.DAITAKU_HELIOS, "Daitaku Helios");
         addUma(UmaDataRegistry.SWEEP_TOSHO, "Sweep Tosho");
         addUma(UmaDataRegistry.GOLD_CITY, "Gold City");
-
         addUma(UmaDataRegistry.CURREN_CHAN, "Curren Chan");
         addUma(UmaDataRegistry.ASTON_MACHAN, "Aston Machan");
         addUma(UmaDataRegistry.SILENCE_SUZUKA, "Silence Suzuka");
         addUma(UmaDataRegistry.MR_CB, "Mr.CB");
         addUma(UmaDataRegistry.TAMAMO_CROSS_FESTIVAL, "[Ferocious Thunder] Tamamo Cross");
         addUma(UmaDataRegistry.GRASS_WONDER, "Grass Wonder");
-        
         addUma(UmaDataRegistry.NEO_UNIVERSE, "Neo Universe");
         addUma(UmaDataRegistry.NICE_NATURE, "Nice Nature");
         addUma(UmaDataRegistry.MAYANO_TOP_GUN, "Mayano Topgun");
@@ -313,15 +309,11 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.MEISHO_DOTOU, "Meisho Doto");
         addUma(UmaDataRegistry.KITASAN_BLACK, "Kitasan Black");
         addUma(UmaDataRegistry.SATONO_DIAMOND, "Satono Diamond");
-        addUma(UmaDataRegistry.COPANO_RICKEY, "Copano Rickey");
-        
+        addUma(UmaDataRegistry.COPANO_RICKEY, "Copano Rickey"); 
         addUma(UmaDataRegistry.CURREN_CHAN_DRESS, "[Calend's Ma Chérie] Curren Chan");
-        
         addUma(UmaDataRegistry.SYMBOLI_RUDOLF, "Symboli Rudolf");
         addUma(UmaDataRegistry.NARITA_TOP_ROAD, "Narita Top Road");
-        
         addUma(UmaDataRegistry.VENUS_PARK, "Venus Park");
-        
         addUma(UmaDataRegistry.AGNUS_TACHYON_SWIM, "[Lunatic Lab] Agnus Tachyon");
         addUma(UmaDataRegistry.MIHONO_BOURBON, "Mihono Bourbon");
         addUma(UmaDataRegistry.MATIKANETANNHAUSER, "Makikanetannhauser");
@@ -329,7 +321,6 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.TWIN_TURBO, "Twin Turbo");
         addUma(UmaDataRegistry.LITTLE_COCON, "Little Cocon");
         addUma(UmaDataRegistry.SAKURA_LAUREL, "Sakura Laurel");
-        
         addUma(UmaDataRegistry.NARITA_TAISHIN, "Narita Taishin");
         addUma(UmaDataRegistry.TM_OPERA_O, "TM Opera O");
         addUma(UmaDataRegistry.ADMIRE_VEGA, "Admire Vega");
@@ -340,30 +331,34 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.GODOLPHIN_BARB, "Godolphin Barb");
         addUma(UmaDataRegistry.BYERLEY_TURK, "Byerley Turk");
         addUma(UmaDataRegistry.FINE_MOTION, "Fine Motion");
-        addUma(UmaDataRegistry.SMART_FALCON, "Smart Falcon");
-        
+        addUma(UmaDataRegistry.SMART_FALCON, "Smart Falcon"); 
         addUma(UmaDataRegistry.HISHI_MIRACLE, "Hishi Miracle");
-
         addUma(UmaDataRegistry.GOLD_CITY_AUTUMN, "[Akizakura Danzatrice] Gold City");
         addUma(UmaDataRegistry.GRASS_WONDER_UMANET, "[Saint Jade Healer] Grass Wonder");
         addUma(UmaDataRegistry.SATONO_DIAMOND_FRENCH, "[Chevalier Blue] Satono Diamond");
         addUma(UmaDataRegistry.MANHATTAN_CAFE_VALENTINE, "[Willow Night] Manhattan cafe");
-        
         addUma(UmaDataRegistry.DAIWA_SCARLET, "Daiwa Scarlet");
-        addUma(UmaDataRegistry.WIN_VARIATION, "Win Variation");
-        
+        addUma(UmaDataRegistry.WIN_VARIATION, "Win Variation"); 
         addUma(UmaDataRegistry.EL_CONDOR_PASA, "El Condor Pasa");
         addUma(UmaDataRegistry.KING_HALO, "King Halo");
         addUma(UmaDataRegistry.KING_HALO_WEDDING, "[Evergreen Identity] King Halo");
         addUma(UmaDataRegistry.HOKKO_TARUMAE, "Hokko Tarumae");
         addUma(UmaDataRegistry.MATIKANETANNHAUSER_SPORTS, "[Blue Turbulence] Makikanetannhauser");
-        
         addUma(UmaDataRegistry.CHEVAL_GRAND, "Cheval Grand");
         addUma(UmaDataRegistry.VERXINA, "Verxina");
         addUma(UmaDataRegistry.VIVLOS, "Vivlos");
-        
         addUma(UmaDataRegistry.FUJI_KISEKI, "Fuji Kiseki");
         addUma(UmaDataRegistry.FUJIMASA_MARCH, "Fujimasa March");
+        addUma(UmaDataRegistry.HOKKO_TARUMAE_SWIM, "[Pastel Marine Locodol] Hokko Tarumae");
+        addUma(UmaDataRegistry.DURANDAL, "Durandal");
+        addUma(UmaDataRegistry.TRANSCEND, "Transcend");
+        addUma(UmaDataRegistry.CALSTONE_LIGHT_O, "Calstone Light O");
+        addUma(UmaDataRegistry.MEJIRO_PALMER, "Mejiro Palmer");
+        addUma(UmaDataRegistry.DAIICHI_RUBY, "Daiichi Ruby");
+        
+        addUma(UmaDataRegistry.STILL_IN_LOVE, "Still In Love");
+        addUma(UmaDataRegistry.HAPPY_MEEK, "Happy Meek");
+        addUma(UmaDataRegistry.KATSURAGI_ACE, "Katsuragi Ace");
         
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");

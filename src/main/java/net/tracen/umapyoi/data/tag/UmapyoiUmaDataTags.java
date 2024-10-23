@@ -9,6 +9,7 @@ public class UmapyoiUmaDataTags {
 
     public static final TagKey<UmaData> FLAT_CHEST = UmapyoiUmaDataTags.umapyoiUmaDataTag("chest/flat");
     public static final TagKey<UmaData> TANNED_SKIN = UmapyoiUmaDataTags.umapyoiUmaDataTag("skin/tanned");
+    public static final TagKey<UmaData> ALTER_MODEL = UmapyoiUmaDataTags.umapyoiUmaDataTag("model/alter");
 
     public static TagKey<UmaData> umapyoiUmaDataTag(String path) {
         return TagKey.create(UmaData.REGISTRY_KEY, new ResourceLocation(Umapyoi.MODID, path));

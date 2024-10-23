@@ -41,6 +41,7 @@ public class ClientEvents {
         } else {
             model.setAllVisible(true);
         }
+
     }
     
     @SubscribeEvent

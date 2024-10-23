@@ -215,14 +215,14 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             }
             
             if (this.hat.visible) {
-                if (this.leftEarHideParts != null)
+                if (this.leftEarHideParts != null && !this.leftEarHideParts.isEmpty())
                     this.leftEar.visible = false;
-                if (this.rightEarHideParts != null)
+                if (this.rightEarHideParts != null && !this.rightEarHideParts.isEmpty())
                     this.rightEar.visible = false;
             } else {
-                if (this.leftEarHideParts != null)
+                if (this.leftEarHideParts != null && !this.leftEarHideParts.isEmpty())
                     this.leftEar.visible = true;
-                if (this.rightEarHideParts != null)
+                if (this.rightEarHideParts != null && !this.rightEarHideParts.isEmpty())
                     this.rightEar.visible = true;
             }
         }

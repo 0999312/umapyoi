@@ -36,8 +36,12 @@ public class UmaDataTagProvider extends TagsProvider<UmaData> {
             .add(UmaDataRegistry.SILENCE_SUZUKA)
             .add(UmaDataRegistry.TAMAMO_CROSS_FESTIVAL)
             .add(UmaDataRegistry.GRASS_WONDER)
-            .add(UmaDataRegistry.HARU_URARA);
+            .add(UmaDataRegistry.MANHATTAN_CAFE_VALENTINE)
+            .add(UmaDataRegistry.GRASS_WONDER_UMANET)
+            .add(UmaDataRegistry.HARU_URARA)
+            .add(UmaDataRegistry.FUJIMASA_MARCH);
         this.tag(UmapyoiUmaDataTags.TANNED_SKIN).add(UmaDataRegistry.DARLEY_ARABIAN);
+        this.tag(UmapyoiUmaDataTags.ALTER_MODEL).add(UmaDataRegistry.TRANSCEND);
     }
 
 }

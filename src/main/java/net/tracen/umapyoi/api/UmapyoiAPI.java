@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.api;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -99,4 +100,11 @@ public class UmapyoiAPI {
         return level.registryAccess().registryOrThrow(SupportCard.REGISTRY_KEY);
     }
 
+    public static HolderLookup.RegistryLookup<UmaData> getUmaDataRegistry(HolderLookup.Provider provider) {
+        return provider.lookupOrThrow(UmaData.REGISTRY_KEY);
+    }
+
+    public static HolderLookup.RegistryLookup<SupportCard> getSupportCardRegistry(HolderLookup.Provider provider) {
+        return provider.lookupOrThrow(SupportCard.REGISTRY_KEY);
+    }
 }

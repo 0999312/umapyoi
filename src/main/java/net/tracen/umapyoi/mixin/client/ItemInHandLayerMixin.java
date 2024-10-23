@@ -20,7 +20,6 @@ import net.tracen.umapyoi.api.UmapyoiAPI;
 public class ItemInHandLayerMixin {
     // Correct coordinates by Mixin method
     @Inject(method = "renderArmWithItem", at = @At(value = "HEAD"))
-    
     private void renderArmWithItemHead(LivingEntity pLivingEntity, ItemStack pItemStack,
             ItemDisplayContext pTransformType, HumanoidArm pArm, PoseStack pPoseStack, MultiBufferSource pBuffer,
             int pPackedLight, CallbackInfo ci) {

@@ -61,7 +61,7 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                         return;
                     if (!(stacksHandler).getRenders().get(0))
                         return;
-
+                    
                     flat_flag = ClientUtils.getClientUmaDataRegistry()
                             .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
                             .get().is(UmapyoiUmaDataTags.FLAT_CHEST);

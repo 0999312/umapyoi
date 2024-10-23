@@ -54,6 +54,8 @@ public class ClientSetupEvents {
         BlockEntityRenderers.register(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), SilverUmaPedestalBlockRender::new);
         BlockEntityRenderers.register(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
                 SilverSupportAlbumPedestalBlockRender::new);
+        
+        
     }
 
     @SubscribeEvent
