@@ -96,28 +96,10 @@
   "item.umapyoi.card_ticket": "サポートカードガチャチケット",
   "item.umapyoi.uma_ticket": "ウマ娘ガチャチケット",
   
-<<<<<<< Updated upstream
-  "block.umapyoi.uma_statues": "ウマ娘像",
-  
-  "umadata.umapyoi.common_uma": "名無しウマ娘",
-  "umadata.umapyoi.common_uma_a": "名無しウマ娘",
-  "umadata.umapyoi.common_uma_b": "名無しウマ娘",
-  "umadata.umapyoi.common_uma_c": "名無しウマ娘",
-  "umadata.umapyoi.gold_ship": "ゴールドシップ",
-  "umadata.umapyoi.oguri_cap": "オグリキャップ",
-  "umadata.umapyoi.oguri_cap_xmas": "[キセキの白星]オグリキャップ",
-  "umadata.umapyoi.sakura_sayono_o": "サクラチヨノオー",
-  "umadata.umapyoi.agnus_tachyon": "アグネスタキオン",
-  "umadata.umapyoi.special_week": "スペシャルウィーク",
-  "umadata.umapyoi.tokai_teio": "トウカイテイオー",
-  "umadata.umapyoi.haru_urara": "ハルウララ",
-  "umadata.umapyoi.tamamo_cross": "タマモクロス",
-=======
   "umadata.umapyoi.common_uma": "鹿毛の名無しウマ娘",
   "umadata.umapyoi.common_uma_a": "佐目毛の名無しウマ娘",
   "umadata.umapyoi.common_uma_b": "葦毛の名無しウマ娘",
   "umadata.umapyoi.common_uma_c": "水色の名無しウマ娘", 
->>>>>>> Stashed changes
 
   "umadata.umapyoi.admire_vega": "アドマイヤベガ",
   "umadata.umapyoi.agnus_tachyon": "アグネスタキオン",
@@ -142,30 +124,6 @@
   "umadata.umapyoi.godolphin_barb": "ゴドルフィンバルブ",
   "umadata.umapyoi.gold_city": "ゴールドシチー",
   "umadata.umapyoi.gold_city_autumn": "[秋桜ダンツァトリーチェ] ゴールドシチー",
-<<<<<<< Updated upstream
-  "umadata.umapyoi.grass_wonder_umanet": "[Saint Jade Healer] グラスワンダー",
-  "umadata.umapyoi.jungle_pocket": "ジャングルポケット",
-  "umadata.umapyoi.narita_taishin": "ナリタタイシン",
-  "umadata.umapyoi.satono_diamond_french": "[セイントジェード・ヒーラー] サトノダイヤモンド",
-  "umadata.umapyoi.syameimaru_zheng": "射命丸 政",
-  "umadata.umapyoi.tm_opera_o": "テイエムオペラオー",
-  "umadata.umapyoi.smart_falcon": "スマートファルコン",
-  "umadata.umapyoi.manhattan_cafe_valentine": "[柳緑小夜] マンハッタンカフェ",
-  "umadata.umapyoi.mejiro_ramonu": "メジロラモーヌ",
-  
-  "umadata.umapyoi.cheval_grand": "シュヴァルグラン",
-  "umadata.umapyoi.verxina": "ヴィルシーナ",
-  "umadata.umapyoi.vivlos": "ヴィブロス",
-  
-  "umadata.umapyoi.hishi_miracle": "ヒシミラクル",
-  "umadata.umapyoi.daiwa_scarlet": "ダイワスカーレット",
-  "umadata.umapyoi.win_variation": "ウインバリアシオン",
-
-  "umadata.umapyoi.fuji_kiseki": "フジキセキ",
-  "umadata.umapyoi.fujimasa_march": "フジマサマーチ",
-  
-  "umadata.umapyoi.matikanetannhauser_sports": "[ブルー・タービュランス] マチカネタンホイザ",
-=======
   "umadata.umapyoi.gold_ship": "ゴールドシップ",
   "umadata.umapyoi.gold_ship_water": "[RUN！乱！ランチャー！！] ゴールドシップ",
   "umadata.umapyoi.grass_wonder": "グラスワンダー",
@@ -178,7 +136,6 @@
   "umadata.umapyoi.jungle_pocket": "ジャングルポケット",
   "umadata.umapyoi.katsuragi_ace": "カツラギエース",
   "umadata.umapyoi.kawakami_princess": "カワカミプリンセス",
->>>>>>> Stashed changes
   "umadata.umapyoi.king_halo": "キングヘイロー",
   "umadata.umapyoi.king_halo_wedding": "[Evergreen Identity] キングヘイロー",
   "umadata.umapyoi.kitasan_black": "キタサンブラック",
@@ -237,28 +194,6 @@
 
   "umadata.umapyoi.anshinzawa_sasami": "安心沢刺々美",
   "umadata.umapyoi.kiryuuin_aoi": "桐生院葵",
-  
-  "umadata.umapyoi.hokko_tarumae_swim": "[パステルマリン・ロコドル] ホッコータルマエ",
-  "umadata.umapyoi.mejiro_palmer": "メジロパーマー",
-  "umadata.umapyoi.transcend": "トランセンド",
-  "umadata.umapyoi.durandal": "デュランダル",
-  "umadata.umapyoi.calstone_light_o": "カルストンライトオ",
-  "umadata.umapyoi.daiichi_ruby": "ダイイチルビー",
-  
-  "umadata.umapyoi.katsuragi_ace": "カツラギエース",
-  "umadata.umapyoi.happy_meek": "ハッピーミーク",
-  "umadata.umapyoi.still_in_love": "スティルインラブ",
-  
-  "umadata.umapyoi.hokko_tarumae_swim": "[パステルマリン・ロコドル] ホッコータルマエ",
-  "umadata.umapyoi.mejiro_palmer": "メジロパーマー",
-  "umadata.umapyoi.transcend": "トランセンド",
-  "umadata.umapyoi.durandal": "デュランダル",
-  "umadata.umapyoi.calstone_light_o": "カルストンライトオ",
-  "umadata.umapyoi.daiichi_ruby": "ダイイチルビー",
-  
-  "umadata.umapyoi.katsuragi_ace": "カツラギエース",
-  "umadata.umapyoi.happy_meek": "ハッピーミーク",
-  "umadata.umapyoi.still_in_love": "スティルインラブ",
   
   "umapyoi.jei.disassembly": "移籍登録",
   "umapyoi.jei.gacha": "召喚",
@@ -413,31 +348,19 @@
   
   "tooltip.umapyoi.support_card.name": "サポートカード：%s",
   
-<<<<<<< Updated upstream
-  "umapyoi.uma_pedestal.cannot_add_item": "これ以上アイテムを追加できません。",
-  "umapyoi.not_enough_ap": "アクションPtが足りない。",
-  "umapyoi.skill.has_learned_skill": "このスキルは習得済みです。",
-  "umapyoi.skill.has_retired": "このウマ娘は引退です。",
-  "umapyoi.skill.slot_needed": "学習制限に達しました。"
-<<<<<<< Updated upstream
-=======
-=======
   "umapyoi.uma_pedestal.cannot_add_item": "これ以上アイテムを追加できません",
   "umapyoi.not_enough_ap": "アクションPtが足りません",
 
   "umapyoi.skill.slot_needed": "習得上限に達しました",
   "umapyoi.skill.passive": "これはパッシブスキルです",
+  "umapyoi.no_umasoul_equiped": "ウマ娘の魂を装備してください",
+  "umapyoi.learning.no_learning_time": "これ以上学習することができません",
+  "umapyoi.learning.can_not_learn": "この分野で学ぶことはもうないようです",
 
   "//":"↓1.20.1ではおそらく未使用 Probably unused in 1.20.1",
   "support.umapyoi.skill_support": "スキル獲得",
   "tooltip.umapyoi.umafactor.data": "%s (など) 合計 %d 個の因子を所持",
-  "umapyoi.no_umasoul_equiped": "ウマ娘の魂を装備してください",
-  "umapyoi.learning.no_learning_time": "これ以上は学習できません",
-  "umapyoi.learning.can_not_learn": "この分野はこれ以上学習できません",
   "umapyoi.skill.has_learned_skill": "このスキルは習得済です",
   "umapyoi.skill.has_retired": "このウマ娘は殿堂入りしています"
   
-
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 }
