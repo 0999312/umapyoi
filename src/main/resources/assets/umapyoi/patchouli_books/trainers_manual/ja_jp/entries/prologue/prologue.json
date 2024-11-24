@@ -6,15 +6,15 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "伝説によると、私たちがこの地に足を踏み入れる前、「馬の耳と神の力」を持つ人々の一団がここに住んでいたそうです。 これらの人々は、「三女神」に導かれてここに来たと主張しました。 村人たちは彼らを「ウマ娘」と呼びました。彼らは全員が女性であり、優れた馬のようなスピードを持っていたからです。 $(br)彼らは果てしない草原を駆け抜け、痕跡だけを残して遠くに消えていった……"
+            "text": "伝説によると、私たちがこの地に足を踏み入れる前に「馬の耳と神の力を持つ人々」の一団がここに住んでいました。その人々は、「三女神」に導かれてここに来たと主張しました。村人は、優れた馬のような速さを持ち、全員が女性であった彼女たちのことを「ウマ娘」と呼びました。$(br)彼女たちは果てしない草原を駆け抜け、蹄跡だけを残してどこかへと消えていきました…"
         },
         {
             "type": "patchouli:text",
-            "text": "Because of this presence, some villagers began to believe in the Three Goddesses, hoping that they would be given equal power by the Goddesses. These villagers not only built statues of the Three Goddesses and offered carrots, a favorite of the Umamusume, to the statues, but also carved jewels in the shape of the carrots and offered them to the goddesses."
+            "text": "このような存在から、一部の村人は三女神を信仰するようになり、自分たちも三女神から同等の力を授かりたいと願うようになりました。彼らは三女神の像を建て、ウマ娘の好物であるニンジンを供えるだけでなく、ニンジンの形をした宝石を彫って女神に捧げました。"
         },
         {
             "type": "patchouli:text",
-            "text": "Once when offering a jewel to the statue of the goddess, the jewel suddenly and violently changed into a crystal like a flame. The priest held up the crystal in front of the crowd, and in an instant it became \"Umamusume\". The congregation exclaimed. $(p)Today, with the will of \"Umamusume\", we continue to run in this unknown land......"
+            "text": "あるとき、女神像に宝石を捧げたところ、宝石は突如炎のような結晶に変化しました。 司祭は群衆の前で結晶を掲げると、それは一瞬にして「ウマ娘」となり、大衆は歓喜の声を上げました。$(p)今日も「ウマ娘」の意思とともに、未知の大地で私たちは走り続ける…"
         }
     ]
 }
