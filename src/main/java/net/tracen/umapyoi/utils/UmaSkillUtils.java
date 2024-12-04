@@ -63,7 +63,7 @@ public class UmaSkillUtils {
             if (!hasLearnedSkill(stack, skill))
                 skills.add(skill);
         }
-        NeoForge.EVENT_BUS.post(new SkillEvent.LearnSkillEvent(skill));
+        NeoForge.EVENT_BUS.post(new SkillEvent.LearnSkillEvent(skill, stack));
     }
 
     public static boolean hasLearnedSkill(ItemStack stack, ResourceLocation skill) {

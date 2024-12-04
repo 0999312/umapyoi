@@ -38,6 +38,12 @@ public class UmaSoulCuriosWrapper implements ICurio {
     public ItemStack getStack() {
         return stack;
     }
+    
+//    @Override
+//    public boolean canEquip(SlotContext slotContext) {
+//    	// TODO Auto-generated method stub
+//    	return ICurio.super.canEquip(slotContext);
+//    }
 
     @Override
     public void curioTick(SlotContext slotContext) {

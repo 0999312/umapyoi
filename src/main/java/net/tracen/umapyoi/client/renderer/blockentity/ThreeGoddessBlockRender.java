@@ -4,6 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import cn.mcmod_mmf.mmlib.client.model.SimpleBedrockModel;
+import cn.mcmod_mmf.mmlib.client.render.sections.BlockEntitySectionGeometryRenderer;
+import cn.mcmod_mmf.mmlib.client.render.sections.SectionGeometryRenderContext;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
@@ -11,6 +13,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +22,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.event.AddSectionGeometryEvent.SectionRenderingContext;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.ThreeGoddessBlock;
@@ -29,7 +33,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddessBlockEntity> {
+public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddessBlockEntity>, BlockEntitySectionGeometryRenderer<ThreeGoddessBlockEntity> {
 	public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID,
 			"textures/model/three_goddesses.png");
 	private final SimpleBedrockModel model;
@@ -86,6 +90,20 @@ public class ThreeGoddessBlockRender implements BlockEntityRenderer<ThreeGoddess
 		matrixStackIn.translate(0.5D, f1 + 3.0D, 0.5D);
 		matrixStackIn.mulPose(Axis.YP.rotation(f));
 		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
+	}
+
+	@Override
+	public void renderSectionGeometry(ThreeGoddessBlockEntity tileEntity, SectionRenderingContext context, PoseStack poseStack,
+			BlockPos arg3, BlockPos arg4, SectionGeometryRenderContext renderContext) {
+		Level world = tileEntity.getLevel();
+		boolean flag = world != null;
+		BlockState blockstate = flag ? tileEntity.getBlockState()
+				: BlockRegistry.THREE_GODDESS.get().defaultBlockState();
+		if (blockstate.getBlock() instanceof ThreeGoddessBlock) {
+			Direction direction = tileEntity.getBlockState().getValue(ThreeGoddessBlock.FACING);
+			renderModel(tileEntity, direction, poseStack, renderContext.getUncachedDynamicCutoutBufferSource(
+					TEXTURE), renderContext.getPackedLight(), OverlayTexture.NO_OVERLAY);
+		}
 	}
 
 }

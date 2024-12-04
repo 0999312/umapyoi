@@ -2,6 +2,7 @@ package net.tracen.umapyoi.events;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.ICancellableEvent;
@@ -24,9 +25,15 @@ public abstract class SkillEvent extends Event implements ICancellableEvent{
     }
 
     public static class LearnSkillEvent extends SkillEvent {
-        public LearnSkillEvent(ResourceLocation skill) {
+    	private final ItemStack umasoul;
+        public LearnSkillEvent(ResourceLocation skill, ItemStack umasoul) {
             super(skill);
+            this.umasoul = umasoul;
         }
+        
+		public ItemStack getUmaSoul() {
+			return umasoul;
+		}
     }
 
     public static class UseSkillEvent extends SkillEvent {

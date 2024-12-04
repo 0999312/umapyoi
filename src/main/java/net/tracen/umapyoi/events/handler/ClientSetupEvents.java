@@ -1,6 +1,9 @@
 package net.tracen.umapyoi.events.handler;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
+import cn.mcmod_mmf.mmlib.client.render.sections.dynamic.DynamicChunkBuffers;
+import cn.mcmod_mmf.mmlib.client.render.sections.events.ReloadDynamicChunkBufferEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -27,6 +30,7 @@ import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaPedestalBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaStatuesBlockRender;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.utils.ClientUtils;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
@@ -44,23 +48,41 @@ public class ClientSetupEvents {
                     UmaUniformRenderer.WinterUniformRenderer::new);
             CuriosRendererRegistry.register(ItemRegistry.SWIMSUIT.get(),
                     SwimsuitRenderer::new);
-
+            
+            BlockEntityRenderers.register(BlockEntityRegistry.THREE_GODDESS.get(), ThreeGoddessBlockRender::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.UMA_PEDESTAL.get(), UmaPedestalBlockRender::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
+            		SupportAlbumPedestalBlockRender::new);
+            
+            BlockEntityRenderers.register(BlockEntityRegistry.UMA_STATUES.get(), UmaStatuesBlockRender::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), SilverUmaPedestalBlockRender::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
+                    SilverSupportAlbumPedestalBlockRender::new);
         });
-
-        BlockEntityRenderers.register(BlockEntityRegistry.THREE_GODDESS.get(), ThreeGoddessBlockRender::new);
-        BlockEntityRenderers.register(BlockEntityRegistry.UMA_PEDESTAL.get(), UmaPedestalBlockRender::new);
-        BlockEntityRenderers.register(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
-        		SupportAlbumPedestalBlockRender::new);
-        
-        BlockEntityRenderers.register(BlockEntityRegistry.UMA_STATUES.get(), UmaStatuesBlockRender::new);
-        BlockEntityRenderers.register(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), SilverUmaPedestalBlockRender::new);
-        BlockEntityRenderers.register(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
-                SilverSupportAlbumPedestalBlockRender::new);
     }
+    
+    @SubscribeEvent
+    public static void onReloadDynamicChunkBuffers(ReloadDynamicChunkBufferEvent event) {
+        DynamicChunkBuffers.markTranslucentChunkBuffer(UmaStatuesBlockRender.TEXTURE);
+        DynamicChunkBuffers.markTranslucentChunkBuffer(ThreeGoddessBlockRender.TEXTURE);
+        
+        if(Minecraft.getInstance().getConnection() != null) {
+	        ClientUtils.getClientUmaDataRegistry().keySet().forEach(loc->{
+	        	var texture = ClientUtils.getTexture(loc);
+	        	var emissiveTexture = ClientUtils.getEmissiveTexture(loc);
+	        	DynamicChunkBuffers.markTranslucentChunkBuffer(texture);
+	        	DynamicChunkBuffers.markTranslucentChunkBuffer(emissiveTexture);
+	        });
+        }
+        
+    }
+    
+
 
     @SubscribeEvent
     public static void resourceLoadingListener(final RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new BedrockModelResourceLoader("models/umapyoi"));
+        
     }
     
     @SubscribeEvent

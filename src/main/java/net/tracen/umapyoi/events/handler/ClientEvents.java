@@ -2,7 +2,9 @@ package net.tracen.umapyoi.events.handler;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import cn.mcmod_mmf.mmlib.client.render.sections.dynamic.DynamicChunkBuffers;
 import cn.mcmod_mmf.mmlib.utils.ClientUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.NonNullList;
@@ -15,19 +17,32 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RenderArmEvent;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.events.client.RenderingUmaSoulEvent;
+import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 @EventBusSubscriber(value = Dist.CLIENT)
 public class ClientEvents {
 
     private static NonNullList<ItemStack> armor;
-
+    
+    @SubscribeEvent
+    public static void onPlayerLoggedIn(ClientPlayerNetworkEvent.LoggingIn event) {
+        if(event.getConnection() != null) {
+	        ClientUtils.getClientUmaDataRegistry().keySet().forEach(loc->{
+	        	var texture = ClientUtils.getTexture(loc);
+	        	DynamicChunkBuffers.markTranslucentChunkBuffer(texture);
+	        });
+	        Minecraft.getInstance().levelRenderer.allChanged();
+        }
+	}
+    
     @SubscribeEvent
     public static void preUmaSoulRendering(RenderingUmaSoulEvent.Pre event) {
         LivingEntity entity = event.getWearer();
