@@ -41,34 +41,34 @@ public class UmaStatuesBlockRender
 	public void render(UmaStatueBlockEntity tileEntity, float partialTicks, PoseStack poseStack,
 			MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
 
-		Level world = tileEntity.getLevel();
-		boolean flag = world != null;
-		BlockState blockstate = flag ? tileEntity.getBlockState() : BlockRegistry.UMA_STATUES.get().defaultBlockState();
-		if (blockstate.getBlock() instanceof UmaStatueBlock) {
-			Direction direction = tileEntity.getBlockState().getValue(UmaStatueBlock.FACING);
-			poseStack.pushPose();
-			poseStack.translate(0.5D, 1.5D, 0.5D);
-
-			poseStack.mulPose(Axis.YN.rotationDegrees(direction.toYRot()));
-			poseStack.mulPose(Axis.XP.rotationDegrees(180));
-			ItemStack item = tileEntity.getStoredItem();
-			var pojo = tileEntity.isEmpty() ? ClientUtil.getModelPOJO(ClientUtils.UMA_STATUES)
-					: ClientUtil.getModelPOJO(UmaSoulUtils.getName(item));
-
-			if (model.needRefresh(pojo))
-				model.loadModel(pojo);
-
-			var leftArm = model.getChild("left_arm") != null ? model.getChild("left_arm") : new BedrockPart();
-			var rightArm = model.getChild("right_arm") != null ? model.getChild("right_arm") : new BedrockPart();
-			leftArm.zRot = ClientUtil.convertRotation(-5);
-			rightArm.zRot = ClientUtil.convertRotation(5);
-
-			if (model.isEmissive()) {
-				VertexConsumer emissiveConsumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(
-						tileEntity.isEmpty() ? TEXTURE : ClientUtils.getEmissiveTexture(UmaSoulUtils.getName(item))));
-				model.renderEmissiveParts(poseStack, emissiveConsumer, combinedLight, OverlayTexture.NO_OVERLAY, -1);
-			}
-		}
+//		Level world = tileEntity.getLevel();
+//		boolean flag = world != null;
+//		BlockState blockstate = flag ? tileEntity.getBlockState() : BlockRegistry.UMA_STATUES.get().defaultBlockState();
+//		if (blockstate.getBlock() instanceof UmaStatueBlock) {
+//			Direction direction = tileEntity.getBlockState().getValue(UmaStatueBlock.FACING);
+//			poseStack.pushPose();
+//			poseStack.translate(0.5D, 1.5D, 0.5D);
+//
+//			poseStack.mulPose(Axis.YN.rotationDegrees(direction.toYRot()));
+//			poseStack.mulPose(Axis.XP.rotationDegrees(180));
+//			ItemStack item = tileEntity.getStoredItem();
+//			var pojo = tileEntity.isEmpty() ? ClientUtil.getModelPOJO(ClientUtils.UMA_STATUES)
+//					: ClientUtil.getModelPOJO(UmaSoulUtils.getName(item));
+//
+//			if (model.needRefresh(pojo))
+//				model.loadModel(pojo);
+//
+//			var leftArm = model.getChild("left_arm") != null ? model.getChild("left_arm") : new BedrockPart();
+//			var rightArm = model.getChild("right_arm") != null ? model.getChild("right_arm") : new BedrockPart();
+//			leftArm.zRot = ClientUtil.convertRotation(-5);
+//			rightArm.zRot = ClientUtil.convertRotation(5);
+//
+//			if (model.isEmissive()) {
+//				VertexConsumer emissiveConsumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(
+//						tileEntity.isEmpty() ? TEXTURE : ClientUtils.getEmissiveTexture(UmaSoulUtils.getName(item))));
+//				model.renderEmissiveParts(poseStack, emissiveConsumer, combinedLight, OverlayTexture.NO_OVERLAY, -1);
+//			}
+//		}
 
 	}
 
