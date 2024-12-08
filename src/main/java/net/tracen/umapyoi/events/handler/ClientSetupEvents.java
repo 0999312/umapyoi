@@ -1,9 +1,6 @@
 package net.tracen.umapyoi.events.handler;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
-import cn.mcmod_mmf.mmlib.client.render.sections.dynamic.DynamicChunkBuffers;
-import cn.mcmod_mmf.mmlib.client.render.sections.events.ReloadDynamicChunkBufferEvent;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -30,7 +27,6 @@ import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaPedestalBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaStatuesBlockRender;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.utils.ClientUtils;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
@@ -60,29 +56,10 @@ public class ClientSetupEvents {
                     SilverSupportAlbumPedestalBlockRender::new);
         });
     }
-    
-    @SubscribeEvent
-    public static void onReloadDynamicChunkBuffers(ReloadDynamicChunkBufferEvent event) {
-        DynamicChunkBuffers.markTranslucentChunkBuffer(UmaStatuesBlockRender.TEXTURE);
-        DynamicChunkBuffers.markTranslucentChunkBuffer(ThreeGoddessBlockRender.TEXTURE);
-        
-        if(Minecraft.getInstance().getConnection() != null) {
-	        ClientUtils.getClientUmaDataRegistry().keySet().forEach(loc->{
-	        	var texture = ClientUtils.getTexture(loc);
-	        	var emissiveTexture = ClientUtils.getEmissiveTexture(loc);
-	        	DynamicChunkBuffers.markTranslucentChunkBuffer(texture);
-	        	DynamicChunkBuffers.markTranslucentChunkBuffer(emissiveTexture);
-	        });
-        }
-        
-    }
-    
-
 
     @SubscribeEvent
     public static void resourceLoadingListener(final RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new BedrockModelResourceLoader("models/umapyoi"));
-        
     }
     
     @SubscribeEvent
