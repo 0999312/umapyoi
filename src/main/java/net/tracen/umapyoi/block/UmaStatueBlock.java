@@ -60,7 +60,7 @@ public class UmaStatueBlock extends BaseEntityBlock {
         if (tileEntity instanceof UmaStatueBlockEntity obon) {
             ItemStack heldStack = player.getItemInHand(handIn);
 
-            if (obon.isEmpty()) {
+            if (obon.isPlaceable(heldStack)) {
                 if (heldStack.isEmpty()) {
                     return InteractionResult.PASS;
                 } else if (obon.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
