@@ -1,12 +1,12 @@
 {
-    "name": "うまぴょいModについて",
+    "name": "Umapyoi Modについて",
     "icon": "minecraft:writable_book",
     "category": "umapyoi:prologue",
     "sortnum": 1,
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "うまぴょいModをご利用いただき誠にありがとうございます。 このモジュールは、「ウマ娘 プリティーダービー」をテーマにした「繁殖と継承」をゲームプレイの核としています。$(p)「ウマ娘」になって、Minecraft で大冒険に出かけましょう!"
+            "text": "Umapyoi Modをご利用いただき誠にありがとうございます。このモジュールは、「ウマ娘 プリティーダービー」をテーマとして、「繁殖と継承」をゲームプレイの核としています。$(p)「ウマ娘」になって、Minecraftで大冒険に出かけましょう!"
         },
         {
             "type": "patchouli:text",
