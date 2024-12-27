@@ -11,6 +11,7 @@ import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.events.ApplyFactorEvent;
 import net.tracen.umapyoi.events.ApplyTrainingSupportEvent;
+import net.tracen.umapyoi.events.SkillEvent;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.umadata.Motivations;
 import net.tracen.umapyoi.registry.umadata.UmaDataExtraStatus;
@@ -55,7 +56,8 @@ public class CommonEvents {
         var umaSoul = event.getUmaSoul();
         UmaSkillUtils.syncActionPoint(umaSoul);
         umaSoul.update(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT, 
-        		data->new UmaDataExtraStatus(data.actionPoint(), data.extraActionPoint(), ResultRankingUtils.generateRanking(umaSoul), data.motivation()));
+        		data->new UmaDataExtraStatus(data.actionPoint(), data.extraActionPoint(), 
+        				ResultRankingUtils.generateRanking(umaSoul), data.motivation()));
     }
 
     @SubscribeEvent
@@ -63,6 +65,16 @@ public class CommonEvents {
         var umaSoul = event.getUmaSoul();
         UmaSkillUtils.syncActionPoint(umaSoul);
         umaSoul.update(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT, 
-        		data->new UmaDataExtraStatus(data.actionPoint(), data.extraActionPoint(), ResultRankingUtils.generateRanking(umaSoul), data.motivation()));
+        		data->new UmaDataExtraStatus(data.actionPoint(), data.extraActionPoint(), 
+        				ResultRankingUtils.generateRanking(umaSoul), data.motivation()));
+    }
+    
+    @SubscribeEvent
+    public static void onSkillLearned(SkillEvent.LearnSkillEvent event) {
+        var umaSoul = event.getUmaSoul();
+        UmaSkillUtils.syncActionPoint(umaSoul);
+        umaSoul.update(DataComponentsTypeRegistry.UMADATA_EXTRA_STATUS, UmaDataExtraStatus.DEFAULT, 
+        		data->new UmaDataExtraStatus(data.actionPoint(), data.extraActionPoint(), 
+        				ResultRankingUtils.generateRanking(umaSoul), data.motivation()));
     }
 }

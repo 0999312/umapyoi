@@ -13,6 +13,8 @@ description='''
 Ooooooooooh  (horsey-buds!) Oooooooh  (horsey-hop! horsey-hop!)
 Horsey horsey meowsy meowsy  3 2 1  Fight!!
 '''
+[[mixins]]
+config="mixins.umapyoi.json"
 
 [[dependencies.${mod_id}]]
     modId="neoforge" 

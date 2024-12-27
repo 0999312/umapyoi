@@ -70,7 +70,7 @@ public class UmaStatuesBlockRender implements BlockEntityRenderer<UmaStatueBlock
         rightArm.zRot = ClientUtil.convertRotation(5);
         
         VertexConsumer vertexConsumer = buffer
-                .getBuffer(TestRenderType.test(tileEntity.isEmpty() ? TEXTURE : ClientUtils.getTexture(UmaSoulUtils.getName(item))));
+                .getBuffer(RenderType.entityTranslucent(tileEntity.isEmpty() ? TEXTURE : ClientUtils.getTexture(UmaSoulUtils.getName(item))));
         model.renderToBuffer(poseStack, vertexConsumer, combinedLight, combinedOverlay);
         
         if(model.isEmissive()) {
@@ -81,31 +81,5 @@ public class UmaStatuesBlockRender implements BlockEntityRenderer<UmaStatueBlock
         
         poseStack.popPose();
     }
-    private static class TestRenderType extends RenderType{
-	    public TestRenderType(String pName, VertexFormat pFormat, Mode pMode, int pBufferSize,
-				boolean pAffectsCrumbling, boolean pSortOnUpload, Runnable pSetupState, Runnable pClearState) {
-			super(pName, pFormat, pMode, pBufferSize, pAffectsCrumbling, pSortOnUpload, pSetupState, pClearState);
-			// TODO Auto-generated constructor stub
-		}
-
-		private static final Function<ResourceLocation, RenderType> 
-	    ENTITY_TRANSLUCENT_CULL = Util.memoize((p_286165_) -> {
-	       RenderType.CompositeState rendertype$compositestate = 
-	       RenderType.CompositeState.builder()
-	       .setShaderState(RenderType.RENDERTYPE_ENTITY_TRANSLUCENT_SHADER)
-	       .setTextureState(new RenderStateShard.TextureStateShard(p_286165_, false, false))
-	       .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-	       .setCullState(NO_CULL)
-	       .setLightmapState(LIGHTMAP)
-	       .setOverlayState(OVERLAY)
-	       .createCompositeState(true);
-	       return RenderType.create(
-	         "test_render", 
-	         DefaultVertexFormat.NEW_ENTITY, 
-	         VertexFormat.Mode.QUADS, 256, false, false, rendertype$compositestate);
-	    });
-		public static RenderType test(ResourceLocation texture) {
-			return ENTITY_TRANSLUCENT_CULL.apply(texture);
-		}
-    }
+    
 }

@@ -26,13 +26,13 @@ import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 
-public class UmaSoulItem extends Item {
+public class UmaSoulItem extends Item{
     private static final Comparator<Reference<UmaData>> COMPARATOR = new UmaDataComparator();
     
     public UmaSoulItem() {
         super(Umapyoi.defaultItemProperties().stacksTo(1));
     }
-
+    
     public static Stream<Reference<UmaData>> sortedUmaDataList(HolderLookup.Provider provider) {
         return provider.lookupOrThrow(UmaData.REGISTRY_KEY).listElements().sorted(UmaSoulItem.COMPARATOR);
     }
