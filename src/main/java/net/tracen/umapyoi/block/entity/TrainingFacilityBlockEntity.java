@@ -102,6 +102,9 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         recipeTime = 0;
 
         ItemStack resultStack = getResultItem();
+        if(resultStack.isEmpty())
+        	return true;
+        
         this.inventory.setStackInSlot(0, resultStack);
         
         for (int i = 1; i < 7; i++) {

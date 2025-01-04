@@ -51,8 +51,7 @@ public class SkillLearningMenu extends ItemCombinerMenu {
 
                 UmaSkill skill = UmaSkillRegistry.REGISTRY.get(skillRL);
                 boolean result = UmaSkillUtils.hasLearnedSkill(inputSoul, skillRL);
-                return UmaSoulUtils.getProperty(inputSoul).wisdom() >= skill
-                        .getRequiredWisdom() && !result;
+                return UmaSoulUtils.getProperty(inputSoul).wisdom() >= skill.getRequiredWisdom() && !result;
             }
         }
         return false;
@@ -108,9 +107,12 @@ public class SkillLearningMenu extends ItemCombinerMenu {
     }
 
     private ItemStack getResultItem() {
-        ItemStack result = this.inputSlots.getItem(0).copy();
-        ItemStack supportItem = this.inputSlots.getItem(1).copy();
-        if (supportItem.getItem()instanceof SkillBookItem skillBook) {
+        ItemStack input = this.inputSlots.getItem(0);
+        ItemStack result = ItemStack.EMPTY;
+        if(!input.isEmpty())
+        	result = input.copy();
+        ItemStack supportItem = this.inputSlots.getItem(1);
+        if (supportItem.getItem() instanceof SkillBookItem skillBook) {
             UmaSkillUtils.learnSkill(result, UmaSkillRegistry.REGISTRY.getKey(skillBook.getSkill(supportItem)));
         }
         return result;

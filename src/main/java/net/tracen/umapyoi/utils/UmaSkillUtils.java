@@ -47,10 +47,9 @@ public class UmaSkillUtils {
     }
 
     public static void learnSkill(ItemStack stack, ResourceLocation skill) {
-        if (UmaSoulUtils.hasEmptySkillSlot(stack))
+        if (!UmaSoulUtils.hasEmptySkillSlot(stack))
             return;
         if (skill != null && UmaSkillRegistry.REGISTRY.containsKey(skill)) {
-        	List<ResourceLocation> skills = UmaSoulUtils.getSkills(stack);
             UmaSkill skillItem = UmaSkillRegistry.REGISTRY.get(skill);
             if(skillItem.getUpperSkill() !=null)
                 if (hasLearnedSkill(stack, skillItem.getUpperSkill()))
@@ -58,10 +57,11 @@ public class UmaSkillUtils {
             
             int lowerSkillIndex = getLowerSkillIndex(stack, skill);
             if (lowerSkillIndex != -1)
-                skills.set(lowerSkillIndex, skill);
+            	UmaSoulUtils.setSkill(stack, lowerSkillIndex, skill);
             
             if (!hasLearnedSkill(stack, skill))
-                skills.add(skill);
+                UmaSoulUtils.addSkill(stack, skill);
+            
         }
         NeoForge.EVENT_BUS.post(new SkillEvent.LearnSkillEvent(skill, stack));
     }

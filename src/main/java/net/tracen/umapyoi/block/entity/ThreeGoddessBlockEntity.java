@@ -136,11 +136,12 @@ public class ThreeGoddessBlockEntity extends SyncedBlockEntity implements MenuPr
         recipeTime = 0;
 
         ItemStack resultStack = getResultItem();
+        if(resultStack.isEmpty())
+        	return true;
         
         this.inventory.setStackInSlot(3, resultStack.copy());
-        
         this.inventory.getStackInSlot(0).shrink(1);
-        
+
         this.getLevel().playSound(null, this.getBlockPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.BLOCKS, 1F, 1F);
         return true;
     }

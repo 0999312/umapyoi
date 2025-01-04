@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.Util;
@@ -91,12 +92,24 @@ public class UmaSoulUtils {
 
         return false;
     }
+    
+    public static void setSkill(ItemStack stack, int index, ResourceLocation skill) {
+        stack.update(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT,
+        		data->{
+        			List<ResourceLocation> skills = new ArrayList<ResourceLocation>();
+        			skills.addAll(data.skills());
+        			skills.set(index, skill);
+        			return new UmaDataSkills(data.skillSlot(), data.selectedSkill(), skills);
+        		});
+    }
 
     public static void addSkill(ItemStack stack, ResourceLocation skill) {
         stack.update(DataComponentsTypeRegistry.UMADATA_SKILLS, UmaDataSkills.DEFAULT,
         		data->{
-        			data.skills().add(skill);
-        			return data;
+        			List<ResourceLocation> skills = new ArrayList<ResourceLocation>();
+        			skills.addAll(data.skills());
+        			skills.add(skill);
+        			return new UmaDataSkills(data.skillSlot(), data.selectedSkill(), skills);
         		});
     }
 

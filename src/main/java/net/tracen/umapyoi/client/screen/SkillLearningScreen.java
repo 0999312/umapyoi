@@ -40,7 +40,7 @@ public class SkillLearningScreen extends ItemCombinerScreen<SkillLearningMenu> {
             boolean has_learned_upper = skill.getUpperSkill() != null && 
                     UmaSoulUtils.getSkills(soul).contains(skill.getUpperSkill());
             boolean slot_needed = !soul.isEmpty() && !UmaSoulUtils.hasEmptySkillSlot(soul);
-            if (has_learned && has_learned_upper)
+            if (has_learned || has_learned_upper)
                 graphic.drawString(this.font, Component.translatable("umapyoi.skill.has_learned_skill"), 51, 31, 0x794016);
             else if (has_retired)
                 graphic.drawString(this.font, Component.translatable("umapyoi.skill.has_retired"), 51, 31, 0x794016);
