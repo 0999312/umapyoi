@@ -76,7 +76,7 @@ public class UmaSoulRenderer implements ICurioRenderer {
         if (baseModel.needRefresh(pojo))
             baseModel.loadModel(pojo);
         VertexConsumer vertexConsumer = renderTypeBuffer
-                .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(renderTarget)));
+                .getBuffer(RenderType.entityCutout(ClientUtils.getTexture(renderTarget)));
         baseModel.setModelProperties(entity);
         baseModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
         if (NeoForge.EVENT_BUS.post(
