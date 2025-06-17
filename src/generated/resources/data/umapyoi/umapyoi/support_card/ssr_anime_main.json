@@ -1,0 +1,35 @@
+{
+  "type": "group",
+  "max_damage": 5,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:special_week",
+    "umapyoi:tokai_teio",
+    "umapyoi:kitasan_black"
+  ],
+  "supports": [
+    {
+      "level": 3,
+      "support": "umapyoi:speed_support"
+    },
+    {
+      "level": 3,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:strength_support"
+    },
+    {
+      "level": 3,
+      "support": "umapyoi:guts_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:heart_and_soul"
+      }
+    }
+  ]
+}

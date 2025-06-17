@@ -29,6 +29,9 @@
   "advancement.umapyoi.skill_book.title": "技能书",
   "entity.minecraft.villager.umapyoi.trainer": "训练员",
   "itemGroup.umapyoi": "马儿蹦跳",
+  "itemGroup.umapyoi.blank_souls": "褪色马娘之魂",
+  "itemGroup.umapyoi.cards": "支援卡",
+  "itemGroup.umapyoi.souls": "马娘之魂",
   "curios.identifier.uma_soul": "马娘之魂",
   "curios.identifier.uma_suit": "马娘服饰",
   "item.umapyoi.blank_uma_soul": "褪色马娘之魂",
@@ -79,6 +82,9 @@
   "item.umapyoi.medium_energy_drink": "活力40",
   
   "item.umapyoi.swimsuit": "特雷森制式泳装",
+
+  "item.umapyoi.naginata": "薙刀",
+  "item.umapyoi.baseball_bat": "金属球棒",
   
   "umadata.umapyoi.mejiro_mcqueen": "目白麦昆",
   "umadata.umapyoi.copano_rickey": "小林历奇",
@@ -177,7 +183,52 @@
   "umadata.umapyoi.durandal": "多旺达",
   "umadata.umapyoi.calstone_light_o": "金镇之光",
   "umadata.umapyoi.daiichi_ruby": "第一红宝石",
+
+  "umadata.umapyoi.katsuragi_ace": "葛城王牌",
+  "umadata.umapyoi.happy_meek": "快乐米可",
+  "umadata.umapyoi.still_in_love": "爱如往昔",
   
+  "umadata.umapyoi.rhein_kraft": "莱茵力量",
+  
+  "umadata.umapyoi.buena_vista": "迷人景致",
+  "umadata.umapyoi.eishin_flash": "荣进闪耀",
+  
+  "umadata.umapyoi.agnes_digital": "爱丽数码",
+  
+  "umadata.umapyoi.yamanin_zephyr": "也文摄辉",
+  "umadata.umapyoi.satono_crown": "里见皇冠",
+  "umadata.umapyoi.miya_yomogi": "西宫艾叶",
+  
+  "umadata.umapyoi.almond_eye": "杏目",
+  
+  "umadata.umapyoi.fusaichi_pandora": "房一潘多拉",
+  
+  "support_card.umapyoi.ssr_kiryuuin_aoi.name": "[共行同一条路！] 桐生院葵",
+  "support_card.umapyoi.ssr_anime_main.name": "[今后也会！] 不断铭刻之人",
+  "support_card.umapyoi.ssr_acupunctuist.name": "[要来扎一针吗？] 安心泽刺刺美",
+  "support_card.umapyoi.r_tm_opera.name": "[特雷森学院] 好歌剧",
+  "support_card.umapyoi.r_acupunctuist.name": "[笹针师] 安心泽刺刺美",
+  "support_card.umapyoi.ssr_team_sirius.name": "[被编织下去的思念] ＜天狼星＞队",
+  "support_card.umapyoi.ssr_three_goddesses.name": "[向着永无止境的荣光] 作为先祖的引导者们",
+  "support_card.umapyoi.ssr_orfevre.name": "[唯吾，称霸。] 黄金巨匠",
+  "support_card.umapyoi.ssr_mejiro_mcqueen_stamina.name": "[心，随晚风远行]目白麦昆",
+  "support_card.umapyoi.ssr_neo_universe_wisdom.name": "[致V.E.R.2285的你]新宇宙",
+  "support_card.umapyoi.ssr_satono_diamond_stamina.name": "[越过那个背影] 里间光钻",
+
+  "uma_skill.umapyoi.rapid": "快速",
+  "uma_skill.umapyoi.divine_speed": "神速",
+  "uma_skill.umapyoi.top_umamusme": "日本第一的赛马娘",
+
+  "support.umapyoi.random_status_support": "随机属性增加",
+  "support.umapyoi.acupuncturist_support": "笹针事件",
+  "support.umapyoi.memory_support": "记忆力提升",
+
+  "umadata.umapyoi.orfevre": "黄金巨匠",
+  "umadata.umapyoi.narita_brian": "成田白仁",
+  "umadata.umapyoi.kiryuuin_aoi": "桐生院葵",
+  "umadata.umapyoi.anshinzawa_sasami": "安心泽刺刺美",
+  "umadata.umapyoi.winning_ticket": "胜利奖券",
+
   "tooltip.umapyoi.umadata.name": "马娘姓名：%s",
   "tooltip.umapyoi.support_card.name": "支援卡：%s",
   "tooltip.umapyoi.supports": "支援项：",
@@ -254,6 +305,11 @@
   "support.umapyoi.wisdom_support": "智力提升",
   "support.umapyoi.actionpoint_support": "行动力提升",
   
+  "item.umapyoi.common_costume.name": "白色T恤",
+  "item.umapyoi.kindergarten_uniform.name": "幼儿园服饰",
+  "item.umapyoi.starting_future.name": "Starting Future",
+  "item.umapyoi.kasamatsu_training_uniform.name": "笠松特雷森训练服",
+  
   "tooltip.umapyoi.umafactor.data": "拥有%s（等）总共%d个因子",
   "tooltip.umapyoi.uma_soul.ranking": "评级：%s",
   "uma_factor.umapyoi.guts_factor": "毅力",
@@ -302,6 +358,8 @@
   "uma_skill.umapyoi.dirt_runner": "泥地行者",
   "uma_skill.umapyoi.turf_runner": "草地行者",
   "uma_skill.umapyoi.mountain_climber": "登山家",
+
+  "uma_skill.umapyoi.inquisitive_mind": "探求心",
  
   "umapyoi.motivation.bad": "极差",
   "umapyoi.motivation.down": "不佳",

@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.registry.skills.DivineSpeedSkill;
 import net.tracen.umapyoi.registry.skills.HealSkill;
 import net.tracen.umapyoi.registry.skills.LastLegSkill;
 import net.tracen.umapyoi.registry.skills.LowHealthBuffSkill;
@@ -14,6 +15,7 @@ import net.tracen.umapyoi.registry.skills.SereneSkill;
 import net.tracen.umapyoi.registry.skills.SkillType;
 import net.tracen.umapyoi.registry.skills.SpeedSkill;
 import net.tracen.umapyoi.registry.skills.SteelWillSkill;
+import net.tracen.umapyoi.registry.skills.TopUmamusumeSkill;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 import net.tracen.umapyoi.registry.skills.passive.PassiveSkill;
 
@@ -75,5 +77,17 @@ public class UmaSkillRegistry {
             () -> new PassiveSkill(new UmaSkill.Builder().level(1).requiredWisdom(2)));
 
     public static final DeferredHolder<UmaSkill, UmaSkill> SNOW_RUNNER = SKILLS.register("snow_runner",
+            () -> new PassiveSkill(new UmaSkill.Builder().level(1).requiredWisdom(2)));
+    
+    public static final DeferredHolder<UmaSkill, UmaSkill> RAPID = SKILLS.register("rapid",
+            () -> new DivineSpeedSkill(new UmaSkill.Builder().level(1).requiredWisdom(2).upperSkill(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "divine_speed")).type(SkillType.BUFF), 200));
+    
+    public static final DeferredHolder<UmaSkill, UmaSkill> DIVINE_SPEED = SKILLS.register("divine_speed",
+            () -> new DivineSpeedSkill(new UmaSkill.Builder().level(2).requiredWisdom(5).actionPoint(900).type(SkillType.BUFF), 400));
+    
+    public static final DeferredHolder<UmaSkill, UmaSkill> TOP_UMAMUSUME = SKILLS.register("top_umamusme",
+            () -> new TopUmamusumeSkill(new UmaSkill.Builder().level(3).type(SkillType.BUFF).actionPoint(1200).requiredWisdom(8).nonInheritable()));
+    
+    public static final DeferredHolder<UmaSkill, UmaSkill> INQUISITIVE_MIND = SKILLS.register("inquisitive_mind",
             () -> new PassiveSkill(new UmaSkill.Builder().level(1).requiredWisdom(2)));
 }

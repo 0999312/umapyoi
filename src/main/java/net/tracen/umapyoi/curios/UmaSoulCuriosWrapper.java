@@ -14,7 +14,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.NeoForge;
 import net.tracen.umapyoi.UmapyoiConfig;
+import net.tracen.umapyoi.events.ApplyUmasoulAttributeEvent;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
+import net.tracen.umapyoi.events.SettingPropertyEvent;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
@@ -39,11 +41,6 @@ public class UmaSoulCuriosWrapper implements ICurio {
         return stack;
     }
     
-//    @Override
-//    public boolean canEquip(SlotContext slotContext) {
-//    	// TODO Auto-generated method stub
-//    	return ICurio.super.canEquip(slotContext);
-//    }
 
     @Override
     public void curioTick(SlotContext slotContext) {
@@ -72,41 +69,43 @@ public class UmaSoulCuriosWrapper implements ICurio {
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext,
     		ResourceLocation id) {
     	 Multimap<Holder<Attribute>, AttributeModifier> atts = LinkedHashMultimap.create();
+    	 var user = slotContext.entity();
          if (!slotContext.identifier().equalsIgnoreCase("uma_soul"))
              return atts;
          CuriosApi.addSlotModifier(atts, "uma_suit", id, 1.0, AttributeModifier.Operation.ADD_VALUE);
          atts.put(Attributes.MOVEMENT_SPEED,
-                 new AttributeModifier(id, getExactProperty(StatusType.SPEED,
+                 new AttributeModifier(id, getExactProperty(user, StatusType.SPEED,
                 		 UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
                          UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
         
          atts.put(Attributes.ATTACK_DAMAGE,
-                 new AttributeModifier(id, getExactProperty(StatusType.STRENGTH,
+                 new AttributeModifier(id, getExactProperty(user, StatusType.STRENGTH,
                 		 UmapyoiConfig.UMASOUL_MAX_STRENGTH_ATTACK.get()),
                          UmapyoiConfig.UMASOUL_STRENGTH_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
-         atts.put(Attributes.MAX_HEALTH,
-                 new AttributeModifier(id, getExactProperty(StatusType.STAMINA,
+         atts.put(Attributes.MAX_HEALTH, 
+                 new AttributeModifier(id, getExactProperty(user, StatusType.STAMINA,
                 		 UmapyoiConfig.UMASOUL_MAX_STAMINA_HEALTH.get()),
                          UmapyoiConfig.UMASOUL_STAMINA_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
          atts.put(Attributes.ARMOR,
-                 new AttributeModifier(id, getExactProperty(StatusType.GUTS,
+                 new AttributeModifier(id, getExactProperty(user, StatusType.GUTS,
                 		 UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR.get()),
                          UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
          atts.put(Attributes.ARMOR_TOUGHNESS,
-                 new AttributeModifier(id, getExactProperty(StatusType.GUTS,
+                 new AttributeModifier(id, getExactProperty(user, StatusType.GUTS,
                 		 UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS.get()),
                          UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                                  : AttributeModifier.Operation.ADD_VALUE));
-
-         return atts;
+         ApplyUmasoulAttributeEvent event = new ApplyUmasoulAttributeEvent(this.getStack(), slotContext, id, atts);
+         NeoForge.EVENT_BUS.post(event);
+         return event.getAttributes();
     }
 
 
-    public double getExactProperty(StatusType type, double limit) {
+    public double getExactProperty(LivingEntity user, StatusType type, double limit) {
         var retiredValue = !(this.getStack().has(DataComponentsTypeRegistry.UMADATA_TRAINING)) ? 1.0D : 0.25D;
         int rate = 0;
     	switch (type) {
@@ -118,7 +117,9 @@ public class UmaSoulCuriosWrapper implements ICurio {
 		}
         var propertyRate = 1.0D + (rate / 100.0D);
         var totalProperty = propertyPercentage(type);
-        return UmaSoulUtils.getMotivation(this.getStack()).getMultiplier() * limit * propertyRate * retiredValue * totalProperty;
+        SettingPropertyEvent event = new SettingPropertyEvent(user, this.getStack(), retiredValue, propertyRate, totalProperty);
+        NeoForge.EVENT_BUS.post(event);
+        return event.getResultProperty() * limit;
     }
 
     private double propertyPercentage(StatusType type) {

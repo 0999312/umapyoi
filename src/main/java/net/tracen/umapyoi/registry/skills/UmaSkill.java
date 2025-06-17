@@ -19,6 +19,7 @@ public class UmaSkill{
     private final int level;
     private final SoundEvent sound;
     private final ResourceLocation upperSkill;
+    private final boolean inheritable;
     private String descriptionId;
 
     public static final ResourceKey<Registry<UmaSkill>> REGISTRY_KEY = ResourceKey
@@ -31,6 +32,7 @@ public class UmaSkill{
         this.actionPoint = builder.actionPoint;
         this.sound = builder.sound;
         this.upperSkill = builder.upperSkill;
+        this.inheritable = builder.inheritable;
     }
 
     public SkillType getType() {
@@ -80,13 +82,18 @@ public class UmaSkill{
         return upperSkill;
     }
     
-    public static class Builder {
+    public boolean isInheritable() {
+		return inheritable;
+	}
+
+	public static class Builder {
         private SkillType type = SkillType.BUFF;
         private int requiredWisdom = 0;
         private int actionPoint = 200;
         private int level = 1;
         private SoundEvent sound = SoundEvents.PLAYER_ATTACK_SWEEP;
         private ResourceLocation upperSkill;
+        private boolean inheritable = true;
         public Builder type(SkillType type) {
             this.type = type;
             return this;
@@ -109,6 +116,11 @@ public class UmaSkill{
         
         public Builder level(int level) {
             this.level = level;
+            return this;
+        }
+        
+        public Builder nonInheritable() {
+            this.inheritable = false;
             return this;
         }
 

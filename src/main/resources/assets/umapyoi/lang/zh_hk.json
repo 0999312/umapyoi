@@ -3,7 +3,7 @@
   "advancement.umapyoi.blank_uma_soul.title": "Starting Future",
   "advancement.umapyoi.gold_pedestal.desc": "升級你的馬娘召喚基座。",
   "advancement.umapyoi.gold_pedestal.title": "獲得升級，但是基座。",
-  "advancement.umapyoi.inheritance.desc": "完成一名馬娘的育成並得到她的意志。",
+  "advancement.umapyoi.inheritance.desc": "完成一名馬孃的育成並得到她的意志。",
   "advancement.umapyoi.inheritance.title": "託付",
   "advancement.umapyoi.register_lectern.desc": "合成一個育成登記台結束育成。",
   "advancement.umapyoi.register_lectern.title": "你和她的三年結束了？",
@@ -25,8 +25,13 @@
   "advancement.umapyoi.uma_ticket.title": "廢紙",
   "advancement.umapyoi.support_pedestal.desc": "在召喚基座上使用一本書，得到支援基座。",
   "advancement.umapyoi.support_pedestal.title": "抽卡下井！",
+  "advancement.umapyoi.skill_book.desc": "在地牢或訓練員村民處得到技能書。",
+  "advancement.umapyoi.skill_book.title": "技能書",
   "entity.minecraft.villager.umapyoi.trainer": "訓練員",
   "itemGroup.umapyoi": "馬兒蹦跳",
+  "itemGroup.umapyoi.blank_souls": "褪色馬娘之魂",
+  "itemGroup.umapyoi.cards": "支援卡",
+  "itemGroup.umapyoi.souls": "馬娘之魂",
   "curios.identifier.uma_soul": "馬娘之魂",
   "curios.identifier.uma_suit": "馬娘服飾",
   "item.umapyoi.blank_uma_soul": "褪色馬娘之魂",
@@ -51,7 +56,7 @@
   "item.umapyoi.sweet_cupcake": "甜紙杯蛋糕",
   "item.umapyoi.trainning_suit": "特雷森訓練服",
   "item.umapyoi.uma_soul": "馬娘之魂",
-  "item.umapyoi.uma_factor_item": "馬娘的意志",
+  "item.umapyoi.uma_factor_item": "馬孃的意志",
   "item.umapyoi.winter_uniform": "特雷森秋季校服",
   "item.umapyoi.wisdom_high_item": "智力秘傳書",
   "item.umapyoi.wisdom_low_item": "智力記事本",
@@ -77,6 +82,9 @@
   "item.umapyoi.medium_energy_drink": "活力40",
   
   "item.umapyoi.swimsuit": "特雷森制式泳裝",
+
+  "item.umapyoi.naginata": "薙刀",
+  "item.umapyoi.baseball_bat": "金屬球棒",
   
   "umadata.umapyoi.mejiro_mcqueen": "目白麥昆",
   "umadata.umapyoi.copano_rickey": "小林歷奇",
@@ -89,8 +97,8 @@
   "umadata.umapyoi.narita_top_road": "成田路",
   
   "umadata.umapyoi.gold_ship": "黃金船",
-  "umadata.umapyoi.oguri_cap": "小栗帽",
-  "umadata.umapyoi.oguri_cap_xmas": "[奇蹟的白星]小栗帽",
+  "umadata.umapyoi.oguri_cap": "小慄帽",
+  "umadata.umapyoi.oguri_cap_xmas": "[奇蹟的白星]小慄帽",
   "umadata.umapyoi.sakura_chiyono_o": "櫻花千代王",
   "umadata.umapyoi.agnus_tachyon": "愛麗速子",
   "umadata.umapyoi.special_week": "特別周",
@@ -117,7 +125,7 @@
   "umadata.umapyoi.curren_chan_dress": "[朔月Ma・chérie] 真機伶",
   
   "umadata.umapyoi.kitasan_black": "北部玄駒",
-  "umadata.umapyoi.satono_diamond": "里見光鑽",
+  "umadata.umapyoi.satono_diamond": "裏見光鑽",
   "umadata.umapyoi.nice_nature": "優秀素質",
   "umadata.umapyoi.mayano_top_gun": "摩耶重炮",
   "umadata.umapyoi.neo_universe": "新宇宙",
@@ -145,14 +153,14 @@
   "umadata.umapyoi.grass_wonder_umanet": "[聖翠治癒師] 草上飛",
   "umadata.umapyoi.jungle_pocket": "森林寶穴",
   "umadata.umapyoi.narita_taishin": "成田大進",
-  "umadata.umapyoi.satono_diamond_french": "[蔚藍騎士] 里見光鑽",
+  "umadata.umapyoi.satono_diamond_french": "[蔚藍騎士] 裏見光鑽",
   "umadata.umapyoi.syameimaru_zheng": "射命丸 政",
   "umadata.umapyoi.tm_opera_o": "好歌劇",
   "umadata.umapyoi.smart_falcon": "醒目飛鷹",
   "umadata.umapyoi.manhattan_cafe_valentine": "[柳綠小夜] 曼城茶座",
-  "umadata.umapyoi.mejiro_ramonu": "目白高峰",
+  "umadata.umapyoi.mejiro_ramonu": "目白高峯",
   
-  "umadata.umapyoi.hishi_miracle": "菱鉆奇寶",
+  "umadata.umapyoi.hishi_miracle": "菱鑽奇寶",
   "umadata.umapyoi.daiwa_scarlet": "大和赤驥",
   "umadata.umapyoi.win_variation": "凱旋芭蕾",
   
@@ -161,11 +169,11 @@
   "umadata.umapyoi.king_halo_wedding": "[Evergreen Identity] 聖王光環",
   "umadata.umapyoi.hokko_tarumae": "北港火山",
   "umadata.umapyoi.el_condor_pasa": "神鷹",
-
+  
   "umadata.umapyoi.cheval_grand": "高尚駿逸",
-  "umadata.umapyoi.verxina": "極鋒",
+  "umadata.umapyoi.verxina": "極峯",
   "umadata.umapyoi.vivlos": "強擊",
-
+  
   "umadata.umapyoi.fuji_kiseki": "富士奇石",
   "umadata.umapyoi.fujimasa_march": "藤正進行曲",
   
@@ -175,8 +183,53 @@
   "umadata.umapyoi.durandal": "多旺達",
   "umadata.umapyoi.calstone_light_o": "金鎮之光",
   "umadata.umapyoi.daiichi_ruby": "第一紅寶石",
+
+  "umadata.umapyoi.katsuragi_ace": "葛城王牌",
+  "umadata.umapyoi.happy_meek": "快樂米可",
+  "umadata.umapyoi.still_in_love": "愛如往昔",
   
+  "umadata.umapyoi.rhein_kraft": "萊茵力量",
+  
+  "umadata.umapyoi.buena_vista": "迷人景緻",
+  "umadata.umapyoi.eishin_flash": "榮進閃耀",
+  
+  "umadata.umapyoi.agnes_digital": "愛麗數碼",
+  
+  "umadata.umapyoi.yamanin_zephyr": "也文攝輝",
+  "umadata.umapyoi.satono_crown": "裏見皇冠",
+  "umadata.umapyoi.miya_yomogi": "西宮艾葉",
+  
+  "umadata.umapyoi.almond_eye": "杏目",
+  "umadata.umapyoi.fusaichi_pandora": "房一潘多拉",
+
+  "support_card.umapyoi.ssr_kiryuuin_aoi.name": "[共行同一條路！] 桐生院葵",
+  "support_card.umapyoi.ssr_anime_main.name": "[今後也會！] 不斷銘刻之人",
+  "support_card.umapyoi.ssr_acupunctuist.name": "[要來扎一針嗎？] 安心澤刺刺美",
+  "support_card.umapyoi.r_tm_opera.name": "[特雷森學院] 好歌劇",
+  "support_card.umapyoi.r_acupunctuist.name": "[笹針師] 安心澤刺刺美",
+  "support_card.umapyoi.ssr_team_sirius.name": "[被編織下去的思念] ＜天狼星＞隊",
+  "support_card.umapyoi.ssr_three_goddesses.name": "[向着永無止境的榮光] 作為先祖的引導者們",
+  "support_card.umapyoi.ssr_orfevre.name": "[唯吾，稱霸。] 黃金巨匠",
+  "support_card.umapyoi.ssr_mejiro_mcqueen_stamina.name": "[心，隨晚風遠行]目白麥昆",
+  "support_card.umapyoi.ssr_neo_universe_wisdom.name": "[致V.E.R.2285的你]新宇宙",
+  "support_card.umapyoi.ssr_satono_diamond_stamina.name": "[越過那個背影] 裏間光鑽",
+
+  "uma_skill.umapyoi.rapid": "快速",
+  "uma_skill.umapyoi.divine_speed": "神速",
+  "uma_skill.umapyoi.top_umamusme": "日本第一的賽馬娘",
+
+  "support.umapyoi.random_status_support": "隨機屬性增加",
+  "support.umapyoi.acupuncturist_support": "笹針事件",
+  "support.umapyoi.memory_support": "記憶力提升",
+
+  "umadata.umapyoi.orfevre": "黃金巨匠",
+  "umadata.umapyoi.narita_brian": "成田白仁",
+  "umadata.umapyoi.kiryuuin_aoi": "桐生院葵",
+  "umadata.umapyoi.anshinzawa_sasami": "安心澤刺刺美",
+  "umadata.umapyoi.winning_ticket": "勝利獎券",
+
   "tooltip.umapyoi.umadata.name": "馬娘姓名：%s",
+  "tooltip.umapyoi.support_card.name": "支援卡：%s",
   "tooltip.umapyoi.supports": "支援項：",
   "tooltip.umapyoi.supporters": "支援者：",
   
@@ -221,16 +274,16 @@
   "support_card.umapyoi.r_agnus_tachyon.name": "[特雷森學院] 愛麗速子",
   "support_card.umapyoi.r_kitasan_black.name": "[特雷森學院] 北部玄駒",
   "support_card.umapyoi.r_ks_miracle.name": "[特雷森學院] 凱斯奇蹟",
-  "support_card.umapyoi.r_oguri_cap.name": "[特雷森學院] 小栗帽",
+  "support_card.umapyoi.r_oguri_cap.name": "[特雷森學院] 小慄帽",
   "support_card.umapyoi.r_super_creek.name": "[特雷森學院] 超級溪流",
   "support_card.umapyoi.sr_agnus_tachyon.name": "[關於生物A的實驗研究] 愛麗速子",
   "support_card.umapyoi.ssr_agnus_tachyon.name": "[Q!=0] 愛麗速子",
   "support_card.umapyoi.ssr_kitasan_black.name": "[被逼近的熱量所推動] 北部玄駒",
   "support_card.umapyoi.ssr_ks_miracle.name": "[To you] 凱斯奇蹟",
-  "support_card.umapyoi.ssr_oguri_cap.name": "[要得到愛呦] 小栗帽",
+  "support_card.umapyoi.ssr_oguri_cap.name": "[要得到愛呦] 小慄帽",
   "support_card.umapyoi.ssr_super_creek.name": "[一粒的安寧] 超級溪流",
   "support_card.umapyoi.ssr_fine_motion.name": "[連指尖都飽含感激] 美妙姿勢",
-  "support_card.umapyoi.ssr_w_mejiro_ramonu.name": "[絢爛] 目白高峰",
+  "support_card.umapyoi.ssr_w_mejiro_ramonu.name": "[絢爛] 目白高峯",
   "support_card.umapyoi.ssr_g_rudolf.name": "[絕對皇帝] 魯道夫象徵",
 
   "support_card.umapyoi.blank_card.name": "空白支援卡",
@@ -250,6 +303,10 @@
   "support.umapyoi.strength_support": "力量提升",
   "support.umapyoi.wisdom_support": "智力提升",
   "support.umapyoi.actionpoint_support": "行動力提升",
+  
+  "item.umapyoi.common_costume.name": "白色T恤",
+  "item.umapyoi.kindergarten_uniform.name": "幼兒園服飾",
+  "item.umapyoi.starting_future.name": "Starting Future",
   
   "tooltip.umapyoi.umafactor.data": "擁有%s（等）總共%d個因子",
   "tooltip.umapyoi.uma_soul.ranking": "評級：%s",
@@ -299,6 +356,8 @@
   "uma_skill.umapyoi.dirt_runner": "泥地行者",
   "uma_skill.umapyoi.turf_runner": "草地行者",
   "uma_skill.umapyoi.mountain_climber": "登山家",
+
+  "uma_skill.umapyoi.inquisitive_mind": "探求心",
  
   "umapyoi.motivation.bad": "極差",
   "umapyoi.motivation.down": "不佳",
@@ -306,20 +365,16 @@
   "umapyoi.motivation.normal": "普通",
   "umapyoi.motivation.perfect": "絕佳",
   
-  "tooltip.umapyoi.press_shift_for_details": "按 Shift 鍵了解詳情。",
-  "tooltip.umapyoi.support_card.press_ctrl_for_supporters": "按 Ctrl 鍵了解支援者詳情。",
-  "tooltip.umapyoi.support_card.press_shift_for_supports": "按 Shift 鍵了解支援內容詳情。",
-  "tooltip.umapyoi.uma_soul.soul_details": "馬娘的屬性:",
+  "tooltip.umapyoi.press_shift_for_details": "按 Shift 鍵瞭解詳情。",
+  "tooltip.umapyoi.support_card.press_ctrl_for_supporters": "按 Ctrl 鍵瞭解支援者詳情。",
+  "tooltip.umapyoi.support_card.press_shift_for_supports": "按 Shift 鍵瞭解支援內容詳情。",
+  "tooltip.umapyoi.uma_soul.soul_details": "馬孃的屬性:",
   "tooltip.umapyoi.uma_soul.speed_details": "速度： %s / %s",
   "tooltip.umapyoi.uma_soul.stamina_details": "耐力： %s / %s",
   "tooltip.umapyoi.uma_soul.strength_details": "力量： %s / %s",
   "tooltip.umapyoi.uma_soul.guts_details": "毅力： %s / %s",
   "tooltip.umapyoi.uma_soul.wisdom_details": "智力： %s / %s",
   "tooltip.umapyoi.factors.factors_details": "因子：",
-
-  "advancement.umapyoi.skill_book.desc": "在地牢或訓練員村民處得到技能書。",
-  "advancement.umapyoi.skill_book.title": "技能書",
-  "tooltip.umapyoi.support_card.name": "支援卡：%s",
 
   "umapyoi.uma_pedestal.cannot_add_item": "無法添加更多物品。",
   "umapyoi.skill.no_require": "沒有需求。",

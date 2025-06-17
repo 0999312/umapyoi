@@ -1,0 +1,25 @@
+{
+  "type": "stamina",
+  "max_damage": 5,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:satono_diamond"
+  ],
+  "supports": [
+    {
+      "level": 3,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:guts_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:steel_will"
+      }
+    }
+  ]
+}

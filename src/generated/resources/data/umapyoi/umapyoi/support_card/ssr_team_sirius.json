@@ -1,0 +1,34 @@
+{
+  "type": "group",
+  "max_damage": 1,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:mejiro_mcqueen",
+    "umapyoi:rice_shower",
+    "umapyoi:winning_ticket",
+    "umapyoi:narita_brian",
+    "umapyoi:silence_suzuka",
+    "umapyoi:special_week"
+  ],
+  "supports": [
+    {
+      "level": 3,
+      "support": "umapyoi:speed_support"
+    },
+    {
+      "level": 3,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 3,
+      "support": "umapyoi:strength_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:top_umamusme"
+      }
+    }
+  ]
+}

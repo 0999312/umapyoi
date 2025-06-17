@@ -103,6 +103,27 @@ public class UmaDataRegistry {
     
     public static final ResourceKey<UmaData> DAIICHI_RUBY = register("daiichi_ruby");
     
+    public static final ResourceKey<UmaData> KATSURAGI_ACE = register("katsuragi_ace");
+    public static final ResourceKey<UmaData> HAPPY_MEEK = register("happy_meek");
+    public static final ResourceKey<UmaData> STILL_IN_LOVE = register("still_in_love");
+    
+    public static final ResourceKey<UmaData> RHEIN_KRAFT = register("rhein_kraft");
+    
+    public static final ResourceKey<UmaData> BUENA_VISTA = register("buena_vista");
+    
+    public static final ResourceKey<UmaData> KS_MIRACLE = register("ks_miracle");
+    public static final ResourceKey<UmaData> EISHIN_FLASH = register("eishin_flash");
+    
+    public static final ResourceKey<UmaData> AGNES_DIGITAL = register("agnes_digital");
+    
+    public static final ResourceKey<UmaData> YAMANIN_ZEPHYR = register("yamanin_zephyr");
+    public static final ResourceKey<UmaData> SATONO_CROWN = register("satono_crown");
+    
+    public static final ResourceKey<UmaData> MIYA_YOMOGI = register("miya_yomogi");
+    
+    public static final ResourceKey<UmaData> ALMOND_EYE = register("almond_eye");
+    public static final ResourceKey<UmaData> FUSAICHI_PANDORA = register("fusaichi_pandora");
+    
     public static void registerAll(BootstrapContext<UmaData> bootstrap) {
 
         bootstrap.register(COMMON_UMA, UmaData.createNewUmamusume("common_uma", GachaRanking.R));
@@ -200,6 +221,25 @@ public class UmaDataRegistry {
         bootstrap.register(CALSTONE_LIGHT_O, UmaData.createNewUmamusume("calstone_light_o", GachaRanking.SR, new int[] {15, 0, 15, 0, 0}));
         
         bootstrap.register(DAIICHI_RUBY, UmaData.createNewUmamusume("daiichi_ruby", GachaRanking.SR, new int[] {0, 0, 20, 0, 10}));
+        
+        bootstrap.register(KATSURAGI_ACE, UmaData.createNewUmamusume("katsuragi_ace", GachaRanking.SR, new int[] {10, 0, 10, 10, 0}));
+        bootstrap.register(HAPPY_MEEK, UmaData.createNewUmamusume("happy_meek", GachaRanking.SR, new int[] {6, 6, 6, 6, 6}));
+        bootstrap.register(STILL_IN_LOVE, UmaData.createNewUmamusume("still_in_love", GachaRanking.SR, new int[] {20, 0, 0, 10, 0}));
+
+        bootstrap.register(RHEIN_KRAFT, UmaData.createNewUmamusume("rhein_kraft", GachaRanking.SR, new int[] {0, 0, 15, 15, 0}));
+        
+        bootstrap.register(BUENA_VISTA, UmaData.createNewUmamusume("buena_vista", GachaRanking.SR, new int[] {0, 0, 15, 15, 0}));
+    	
+    	bootstrap.register(KS_MIRACLE, UmaData.createNewUmamusume("ks_miracle", GachaRanking.SR, new int[] {15, 0, 0, 15, 0}));
+        bootstrap.register(EISHIN_FLASH, UmaData.createNewUmamusume("eishin_flash", GachaRanking.SR, new int[] {0, 0, 10, 0, 20}));
+        
+        bootstrap.register(MIYA_YOMOGI, UmaData.createNewUmamusume("miya_yomogi", GachaRanking.EASTER_EGG, new int[] {10, 0, 0, 20, 20}));
+    	
+    	bootstrap.register(YAMANIN_ZEPHYR, UmaData.createNewUmamusume("yamanin_zephyr", GachaRanking.SR, new int[] {10, 0, 0, 10, 10}));
+        bootstrap.register(SATONO_CROWN, UmaData.createNewUmamusume("satono_crown", GachaRanking.SR, new int[] {0, 0, 15, 15, 0}));
+        
+        bootstrap.register(ALMOND_EYE, UmaData.createNewUmamusume("almond_eye", GachaRanking.SSR, new int[] {10, 5, 10, 10, 5}));
+        bootstrap.register(FUSAICHI_PANDORA, UmaData.createNewUmamusume("fusaichi_pandora", GachaRanking.SR, new int[] {0, 0, 15, 15, 0}));
     }
 
     private static ResourceKey<UmaData> register(String id) {

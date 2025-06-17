@@ -1,0 +1,18 @@
+{
+  "type": "stamina",
+  "max_damage": 10,
+  "ranking": "r",
+  "supporters": [
+    "umapyoi:tm_opera_o"
+  ],
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:actionpoint_support"
+    }
+  ]
+}

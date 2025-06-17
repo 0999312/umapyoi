@@ -41,4 +41,13 @@ public class TrainingSupportRegistry {
     public static final DeferredHolder<TrainingSupport, TrainingSupport> AP_SUPPORT = SUPPORTS.register("actionpoint_support",
             () -> new ExtraAPSupport());
 
+//    public static final DeferredHolder<TrainingSupport, TrainingSupport> MEMORY_SUPPORT = SUPPORTS.register("memory_support",
+//            () -> new ExtraStatusSupport());
+//    
+//    public static final DeferredHolder<TrainingSupport, TrainingSupport> RANDOM_STATUS_SUPPORT = SUPPORTS.register("random_status_support",
+//            RandomStatusSupport::new);
+//
+//    public static final DeferredHolder<TrainingSupport, TrainingSupport> ACUPUNCTUIST_SUPPORT = SUPPORTS.register("acupuncturist_support",
+//            BorealisSupport::new);
+
 }

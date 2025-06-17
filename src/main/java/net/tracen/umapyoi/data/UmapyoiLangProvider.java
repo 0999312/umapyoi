@@ -186,6 +186,12 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addSkill(UmaSkillRegistry.TURF_RUNNER, "Turf Runner");
         addSkill(UmaSkillRegistry.DIRT_RUNNER, "Dirt Runner");
         addSkill(UmaSkillRegistry.SNOW_RUNNER, "Snow Runner");
+        
+        addSkill(UmaSkillRegistry.RAPID, "Rapid");
+        addSkill(UmaSkillRegistry.DIVINE_SPEED, "Divine Speed");
+        addSkill(UmaSkillRegistry.TOP_UMAMUSUME, "Japan's #1 Umamusume");
+        
+        addSkill(UmaSkillRegistry.INQUISITIVE_MIND, "Inquisitive Mind");
 
         add("container.umapyoi.three_goddess", "Three Goddesses Statue");
         add("container.umapyoi.training_facility", "Training Terminal");
@@ -356,11 +362,50 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.MEJIRO_PALMER, "Mejiro Palmer");
         addUma(UmaDataRegistry.DAIICHI_RUBY, "Daiichi Ruby");
         
-        add(Util.makeDescriptionId("umadata", ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "super_creek")), "Super Creek");
-        add(Util.makeDescriptionId("umadata", ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "ks_miracle")), "K.S. Miracle");
-        add(Util.makeDescriptionId("umadata", ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");
+        addUma(UmaDataRegistry.STILL_IN_LOVE, "Still In Love");
+        addUma(UmaDataRegistry.HAPPY_MEEK, "Happy Meek");
+        addUma(UmaDataRegistry.KATSURAGI_ACE, "Katsuragi Ace");
+        addUma(UmaDataRegistry.RHEIN_KRAFT, "Rhein Kraft");
+        
+        addUma(UmaDataRegistry.BUENA_VISTA, "Buena Vista");
+        
+        addUma(UmaDataRegistry.KS_MIRACLE, "K.S. Miracle");
+        addUma(UmaDataRegistry.EISHIN_FLASH, "Eishin Flash");
+        
+        addUma(UmaDataRegistry.AGNES_DIGITAL, "Agnes Digital");
+        
+        addUma(UmaDataRegistry.SATONO_CROWN, "Satono Crown");
+        addUma(UmaDataRegistry.YAMANIN_ZEPHYR, "Yamanin Zephyr");
+        
+        addUma(UmaDataRegistry.MIYA_YOMOGI, "Miya Yomogi");
+        addUma(UmaDataRegistry.ALMOND_EYE, "Almond Eye");
+        
+        addUma(UmaDataRegistry.FUSAICHI_PANDORA, "Fusaichi Pandora");
+        
+        add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "super_creek")), "Super Creek");
+        add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");
+        
+        add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "winning_ticket")), "Winning Ticket");
+        add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "narita_brian")), "Narita Brian");
+        add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "orfevre")), "Orfevre");
+        
+        add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "kiryuuin_aoi")), "Kiryuuin Aoi");
+        add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "anshinzawa_sasami")), "Anshinzawa Sasami");
 
         addSupportCard(SupportCard.EMPTY_ID, "Blank Support Card");
+        
+        addSupportCard(SupportCardRegistry.R_TM_OPERA, "[Tracen Academy] TM Opera O");
+//        addSupportCard(SupportCardRegistry.R_ACUPUNCTUIST, "[Acupunctuist] Anshinzawa Sasami");
+//        addSupportCard(SupportCardRegistry.SSR_ACUPUNCTUIST, "[Want a Stab?] Anshinzawa Sasami");
+//        addSupportCard(SupportCardRegistry.SSR_THREE_GODDESSES, "[In Pursuit of Eternal Glory] The Progenitors & Guides");
+        addSupportCard(SupportCardRegistry.SSR_TEAM_SIRIUS, "[Accumulating Feelings] Team Sirius");
+        addSupportCard(SupportCardRegistry.SSR_ORFEVRE, "[Unconditional Subjugation] Orfevre");
+        
+        addSupportCard(SupportCardRegistry.SSR_ANIME_MAIN, "[Into the future!] Timeless Icons");
+        addSupportCard(SupportCardRegistry.SSR_NEO_UNIVERSE_WIDSOM, "[My dear V.E.R.2285] Neo Universe");
+        addSupportCard(SupportCardRegistry.SSR_MEJIRO_MCQUEEN_STAMINA, "[My heart on a night breeze] Mejiro McQueen");
+        addSupportCard(SupportCardRegistry.SSR_SATONO_DIAMOND_STAMINA, "[Surpassing That Back] Satono Diamond");
+//        addSupportCard(SupportCardRegistry.SSR_KIRYUUIN_AOI, "[Together on the Same Path!] Kiryuuin Aoi");
         
         addSupportCard(SupportCardRegistry.BASIC_SPEED_CARD, "[Basic Training] Speed Training");
         addSupportCard(SupportCardRegistry.BASIC_STAMINA_CARD, "[Basic Training] Stamina Training");

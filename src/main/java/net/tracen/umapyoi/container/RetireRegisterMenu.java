@@ -29,11 +29,13 @@ import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.item.data.DataLocation;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
+import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.factors.FactorType;
 import net.tracen.umapyoi.registry.factors.SkillFactor;
 import net.tracen.umapyoi.registry.factors.StatusFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
+import net.tracen.umapyoi.registry.skills.UmaSkill;
 import net.tracen.umapyoi.utils.ResultRankingUtils;
 import net.tracen.umapyoi.utils.UmaFactorUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
@@ -218,12 +220,20 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
 
     public void createSkillFactors(ItemStack inputSoul, int ranking, List<UmaFactorStack> stackList) {
         UmaSoulUtils.getSkills(inputSoul).stream().skip(1).forEach(skillTag -> {
-            int skillLevel = this.rand.nextInt(ranking > 19 ? 6 : 4);
-            if (skillLevel == 0)
-                return;
-            UmaFactorStack skillFactor = new UmaFactorStack(UmaFactorRegistry.SKILL_FACTOR.get(), skillLevel);
-            skillFactor.getOrCreateTag().putString("skill", skillTag.toString());
-            stackList.add(skillFactor);
+            if (skillTag != null && UmaSkillRegistry.REGISTRY.containsKey(skillTag)) {
+                UmaSkill result = UmaSkillRegistry.REGISTRY.get(skillTag);
+                if(!result.isInheritable())
+                	return;
+                
+	            int skillLevel = this.rand.nextInt(ranking > 19 ? 6 : 4);
+	            if (skillLevel == 0)
+	                return;
+	            
+	            UmaFactorStack skillFactor = new UmaFactorStack(UmaFactorRegistry.SKILL_FACTOR.get(), skillLevel);
+	            
+	            skillFactor.getOrCreateTag().putString("skill", skillTag.toString());
+	            stackList.add(skillFactor);
+            }
         });
 
     }

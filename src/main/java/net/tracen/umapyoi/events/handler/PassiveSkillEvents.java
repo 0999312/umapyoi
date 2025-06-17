@@ -17,6 +17,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.tag.UmapyoiBlockTags;
+import net.tracen.umapyoi.events.ApplyUmasoulAttributeEvent;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
@@ -31,7 +32,20 @@ public class PassiveSkillEvents {
     		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "passive_skill_dirt");
     public static final ResourceLocation SKILL_SNOW = 
     		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "passive_skill_snow");
+    public static final ResourceLocation SKILL_IM = 
+    		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "passive_inquisitive_mind");
 	
+    @SubscribeEvent
+    public static void testPassiveSkill_im(ApplyUmasoulAttributeEvent event) {
+        var soul = event.getUmaSoul();
+        if (UmaSoulUtils.hasSkill(soul, UmaSkillRegistry.INQUISITIVE_MIND.getId())) {
+        	var speedFlag = UmaSoulUtils.getProperty(soul).speed() >= 12;
+        	var wisdomFlag = UmaSoulUtils.getProperty(soul).wisdom() >= 12;
+        	event.getAttributes().put(Attributes.ATTACK_SPEED, new AttributeModifier(SKILL_IM,
+        			speedFlag && wisdomFlag ? 0.075D :0.05D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+        }
+    }
+    
     @SubscribeEvent
     public static void testPassiveSkill_att(PlayerEvent.BreakSpeed event) {
         Player player = event.getEntity();

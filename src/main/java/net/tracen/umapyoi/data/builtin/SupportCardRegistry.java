@@ -54,8 +54,159 @@ public class SupportCardRegistry {
     
     public static final ResourceKey<SupportCard> SSR_RUDOLF_G = register("ssr_g_rudolf");
     public static final ResourceKey<SupportCard> SSR_MEJIRO_RAMONU_W = register("ssr_w_mejiro_ramonu");
+    
+//    public static final ResourceKey<SupportCard> R_ACUPUNCTUIST = register("r_acupunctuist");
+//    public static final ResourceKey<SupportCard> SSR_ACUPUNCTUIST = register("ssr_acupunctuist");
+//    public static final ResourceKey<SupportCard> SSR_THREE_GODDESSES = register("ssr_three_goddesses");
+    public static final ResourceKey<SupportCard> SSR_TEAM_SIRIUS = register("ssr_team_sirius");
+    public static final ResourceKey<SupportCard> SSR_ANIME_MAIN = register("ssr_anime_main");
+    public static final ResourceKey<SupportCard> SSR_ORFEVRE = register("ssr_orfevre");
+    
+    public static final ResourceKey<SupportCard> SSR_NEO_UNIVERSE_WIDSOM = register("ssr_neo_universe_wisdom");
+    public static final ResourceKey<SupportCard> SSR_MEJIRO_MCQUEEN_STAMINA = register("ssr_mejiro_mcqueen_stamina");
+    public static final ResourceKey<SupportCard> R_TM_OPERA = register("r_tm_opera");
+    
+    public static final ResourceKey<SupportCard> SSR_SATONO_DIAMOND_STAMINA = register("ssr_satono_diamond_stamina");
+//    public static final ResourceKey<SupportCard> SSR_KIRYUUIN_AOI = register("ssr_kiryuuin_aoi");
+    
     public static void registerAll(BootstrapContext<SupportCard> bootstrap) {
         
+        bootstrap.register(SSR_ANIME_MAIN,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(5)
+                .supportType(SupportType.GROUP)
+                .addSupporter(UmaDataRegistry.SPECIAL_WEEK.location())
+                .addSupporter(UmaDataRegistry.TOKAI_TEIO.location())
+                .addSupporter(UmaDataRegistry.KITASAN_BLACK.location())
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 3))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 3))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 2))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 3))
+                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.HEART_AND_SOUL.getId()))
+                .build());
+    	
+//        bootstrap.register(SSR_KIRYUUIN_AOI,
+//                SupportCard.Builder.create()
+//                .ranking(GachaRanking.SSR)
+//                .maxDamage(3)
+//                .supportType(SupportType.FRIENDSHIP)
+//                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "kiryuuin_aoi"))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 1))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.MEMORY_SUPPORT.getId(), 1))
+//                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.STEEL_WILL.getId()))
+//                .build());
+    	
+        bootstrap.register(SSR_SATONO_DIAMOND_STAMINA,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(5)
+                .supportType(SupportType.STAMINA)
+                .addSupporter(UmaDataRegistry.SATONO_DIAMOND.location())
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 3))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 2))
+                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.STEEL_WILL.getId()))
+                .build());
+    	
+        bootstrap.register(SSR_NEO_UNIVERSE_WIDSOM,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(5)
+                .supportType(SupportType.WISDOM)
+                .addSupporter(UmaDataRegistry.NEO_UNIVERSE.location())
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.WISDOM_SUPPORT.getId(), 3))
+                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.ADV_LOWHEALTH_BUFF.getId()))
+                .build());
+        
+    	
+//        bootstrap.register(SSR_THREE_GODDESSES,
+//                SupportCard.Builder.create()
+//                .ranking(GachaRanking.SSR)
+//                .maxDamage(2)
+//                .supportType(SupportType.GROUP)
+//                .addSupporter(UmaDataRegistry.DARLEY_ARABIAN.location())
+//                .addSupporter(UmaDataRegistry.GODOLPHIN_BARB.location())
+//                .addSupporter(UmaDataRegistry.BYERLEY_TURK.location())
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 2))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 1))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 1))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.WISDOM_SUPPORT.getId(), 2))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.MEMORY_SUPPORT.getId(), 1))
+//                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.DIVINE_SPEED.getId()))
+//                .build());
+        
+        bootstrap.register(SSR_TEAM_SIRIUS,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(1)
+                .supportType(SupportType.GROUP)
+                .addSupporter(UmaDataRegistry.MEJIRO_MCQUEEN.location())
+                .addSupporter(UmaDataRegistry.RICE_SHOWER.location())
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "winning_ticket"))
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "narita_brian"))
+                .addSupporter(UmaDataRegistry.SILENCE_SUZUKA.location())
+                .addSupporter(UmaDataRegistry.SPECIAL_WEEK.location())
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 3))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 3))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 3))
+
+                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.TOP_UMAMUSUME.getId()))
+                .build());
+    	
+        bootstrap.register(SSR_ORFEVRE,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(5)
+                .supportType(SupportType.GUTS)
+                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "orfevre"))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.SPEED_SUPPORT.getId(), 2))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STRENGTH_SUPPORT.getId(), 1))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 3))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 1))
+                .addSupport(UmaSkillUtils.getSkillSupportEnrty(UmaSkillRegistry.DIVINE_SPEED.getId()))
+                .build());
+    	
+        bootstrap.register(SSR_MEJIRO_MCQUEEN_STAMINA,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.SSR)
+                .maxDamage(5)
+                .supportType(SupportType.STAMINA)
+                .addSupporter(UmaDataRegistry.MEJIRO_MCQUEEN.location())
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 4))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.GUTS_SUPPORT.getId(), 2))
+                .build());
+        
+//        bootstrap.register(SSR_ACUPUNCTUIST,
+//                SupportCard.Builder.create()
+//                .ranking(GachaRanking.SSR)
+//                .maxDamage(3)
+//                .supportType(SupportType.FRIENDSHIP)
+//                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "anshinzawa_sasami"))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.RANDOM_STATUS_SUPPORT.getId(), 2))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.ACUPUNCTUIST_SUPPORT.getId(), 1))
+//                .build());
+//        
+//        bootstrap.register(R_ACUPUNCTUIST,
+//                SupportCard.Builder.create()
+//                .ranking(GachaRanking.R)
+//                .maxDamage(3)
+//                .supportType(SupportType.FRIENDSHIP)
+//                .addSupporter(ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "anshinzawa_sasami"))
+//                .addSupport(new SupportEntry(TrainingSupportRegistry.ACUPUNCTUIST_SUPPORT.getId(), 1))
+//                .build());
+    	
+        bootstrap.register(R_TM_OPERA,
+                SupportCard.Builder.create()
+                .ranking(GachaRanking.R)
+                .maxDamage(10)
+                .supportType(SupportType.STAMINA)
+                .addSupporter(UmaDataRegistry.TM_OPERA_O.location())
+                .addSupport(new SupportEntry(TrainingSupportRegistry.STAMINA_SUPPORT.getId(), 1))
+                .addSupport(new SupportEntry(TrainingSupportRegistry.AP_SUPPORT.getId(), 1))
+                .build());
+    	
         bootstrap.register(R_TURF_TRAINING,
                 SupportCard.Builder.create()
                 .ranking(GachaRanking.R)

@@ -18,9 +18,14 @@ public class SkillFactor extends UmaFactor {
     @Override
     public void applyFactor(ItemStack soul, UmaFactorStack stack) {
         ResourceLocation skill = ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"));
-        Random rand = new Random();
-        if (rand.nextFloat() < (stack.getLevel() * 0.25))
-            UmaSkillUtils.learnSkill(soul, skill);
+        if (skill != null && UmaSkillRegistry.REGISTRY.containsKey(skill)) {
+            UmaSkill result = UmaSkillRegistry.REGISTRY.get(skill);
+	        if(!result.isInheritable())
+	        	return;
+	        Random rand = new Random();
+	        if (rand.nextFloat() < (stack.getLevel() * 0.25))
+	            UmaSkillUtils.learnSkill(soul, skill);
+        }
     }
 
     @Override
@@ -28,6 +33,7 @@ public class SkillFactor extends UmaFactor {
         ResourceLocation skill = ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"));
         if (skill != null && UmaSkillRegistry.REGISTRY.containsKey(skill)) {
             UmaSkill result = UmaSkillRegistry.REGISTRY.get(skill);
+            
             return result.getDescription().copy().append(" ")
                     .append(Component.translatable("enchantment.level." + stack.getLevel()));
         }
