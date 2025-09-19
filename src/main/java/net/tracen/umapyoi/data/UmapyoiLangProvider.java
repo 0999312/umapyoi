@@ -130,6 +130,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("itemGroup.umapyoi.blank_souls", "Faded Umamusume Souls");
         add("itemGroup.umapyoi.cards", "Support Card");
         
+        add("tooltip.umapyoi.uma_soul.should_retire", "Couldn't continue training anymore, maybe it's time to retire.");
+        
         addTooltip(".umadata.name", "Umamusume's Name:%s");
         addTooltip(".support_card.name", "Support Card:%s");
         addTooltip(".umafactor.data", "Has %s and %d more factors.");
@@ -440,6 +442,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addUma(UmaDataRegistry.HISHI_AKEBONO, "Hishi Akebono");
         addUma(UmaDataRegistry.SHENONE_SUZUNA, "Shenone Suzuna");
+        
+        addUma(UmaDataRegistry.VIVLOS_SWIM, "[Éclat d'été] Vivlos");
         
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");

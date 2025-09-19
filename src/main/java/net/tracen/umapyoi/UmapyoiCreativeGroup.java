@@ -11,6 +11,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+import net.tracen.umapyoi.item.FadedUmaSoulItem;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.SupportCardItem;
 import net.tracen.umapyoi.item.UmaCostumeItem;
@@ -131,10 +132,11 @@ public class UmapyoiCreativeGroup {
     private static void fillBlankSoul(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
         UmaSoulItem.sortedUmaDataList(features.holders()).forEach(
             entry -> {	
-                ItemStack result = ItemRegistry.BLANK_UMA_SOUL.get().getDefaultInstance();
-                result.getOrCreateTag().putString("name", entry.key().location().toString());
-                result.getOrCreateTag().putString("identifier", entry.value().getIdentifier().toString());
-                result.getOrCreateTag().putString("ranking", entry.value().getGachaRanking().toString().toLowerCase());
+//                ItemStack result = ItemRegistry.BLANK_UMA_SOUL.get().getDefaultInstance();
+//                result.getOrCreateTag().putString("name", entry.key().location().toString());
+//                result.getOrCreateTag().putString("identifier", entry.value().getIdentifier().toString());
+//                result.getOrCreateTag().putString("ranking", entry.value().getGachaRanking().toString().toLowerCase());
+                ItemStack result = FadedUmaSoulItem.genUmaSoul(entry.key().location().toString(), entry.value());
                 output.accept(result);
             }
         );

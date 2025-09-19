@@ -1,6 +1,7 @@
 {
-  "parent": "block/cube_all",
+  "parent": "minecraft:item/generated",
   "textures": {
+    "layer0": "umapyoi:item/uma_statue",
     "particle": "block/stone"
   }
 }

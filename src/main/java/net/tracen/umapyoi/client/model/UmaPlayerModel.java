@@ -248,6 +248,7 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     public void setAllVisible(boolean pVisible) {
         super.setAllVisible(pVisible);
         this.hat.visible = pVisible;
+        this.cape.visible = pVisible;
         this.tail.visible = pVisible;
     }
 

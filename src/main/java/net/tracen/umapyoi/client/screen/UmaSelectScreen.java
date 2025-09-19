@@ -321,6 +321,8 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
             int k = this.startIndex + SCROLLER_WIDTH;
 
             for (int l = this.startIndex; l < k; ++l) {
+            	if(l >= this.getResults().size())
+                	return super.mouseClicked(pMouseX, pMouseY, pButton);
                 int i1 = l - this.startIndex;
                 double d0 = pMouseX - (double) (i + i1 % RECIPES_COLUMNS * RECIPES_IMAGE_SIZE_WIDTH);
                 double d1 = pMouseY - (double) (j + i1 / RECIPES_COLUMNS * 18);

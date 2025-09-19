@@ -13,7 +13,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Holder.Reference;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -80,31 +79,35 @@ public class UmaSoulItem extends Item {
         return UmaSoulUtils.getGrowth(pStack) == Growth.RETIRED;
     }
     
-    @Override
-    public boolean isBarVisible(ItemStack pStack) {
-        var physique = UmaSoulUtils.getPhysique(pStack);
-        return UmaSoulUtils.getGrowth(pStack) != Growth.RETIRED && physique != 5;
-    }
-    
-    @Override
-    public int getBarWidth(ItemStack pStack) {
-        var physique = UmaSoulUtils.getPhysique(pStack);
-        return Math.round(13.0F - (5 - physique) * 13.0F / 5);
-    }
-    
-    @Override
-    public int getBarColor(ItemStack pStack) {
-        float stackMaxDamage = 5;
-        var physique = UmaSoulUtils.getPhysique(pStack);
-        float f = Math.max(0.0F, physique / stackMaxDamage);
-        return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
-    }
+//    TODO: 暂时删除，直到更好的版本出来或者决定彻底告别耐久条。
+//    @Override
+//    public boolean isBarVisible(ItemStack pStack) {
+//        var physique = UmaSoulUtils.getPhysique(pStack);
+//        return UmaSoulUtils.getGrowth(pStack) != Growth.RETIRED && physique != 5;
+//    }
+//    
+//    @Override
+//    public int getBarWidth(ItemStack pStack) {
+//        var physique = UmaSoulUtils.getPhysique(pStack);
+//        return Math.round(13.0F - (5 - physique) * 13.0F / 5);
+//    }
+//    
+//    @Override
+//    public int getBarColor(ItemStack pStack) {
+//        float stackMaxDamage = 5;
+//        var physique = UmaSoulUtils.getPhysique(pStack);
+//        float f = Math.max(0.0F, physique / stackMaxDamage);
+//        return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
+//    }
     
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         int ranking = ResultRankingUtils.getRanking(stack);
+        if(UmaSoulUtils.getGrowth(stack) == Growth.TRAINED && UmaSoulUtils.getPhysique(stack) <= 0)
+            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.should_retire", UmaStatusUtils.getStatusLevel(ranking))
+                            .withStyle(ChatFormatting.GRAY));
         
         if(UmaSoulUtils.getGrowth(stack) == Growth.RETIRED)
             tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.ranking", UmaStatusUtils.getStatusLevel(ranking))

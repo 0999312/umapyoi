@@ -18,7 +18,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.item.ItemRegistry;
 
 public class UmasoulIngredient extends Ingredient {
@@ -86,7 +85,6 @@ public class UmasoulIngredient extends Ingredient {
 
         @Override
         public UmasoulIngredient parse(FriendlyByteBuf buffer) {
-        	Umapyoi.getLogger().info("START PARSE");
             Set<Item> items = Stream.generate(() -> buffer.readRegistryIdUnsafe(ForgeRegistries.ITEMS))
                     .limit(buffer.readVarInt()).collect(Collectors.toSet());
             RequestUma request = RequestUma.fromNetwork(buffer);
@@ -116,7 +114,6 @@ public class UmasoulIngredient extends Ingredient {
 
         @Override
         public void write(FriendlyByteBuf buffer, UmasoulIngredient ingredient) {
-        	Umapyoi.getLogger().info("START WRITE");
             buffer.writeVarInt(ingredient.items.size());
             for (Item item : ingredient.items)
                 buffer.writeRegistryIdUnsafe(ForgeRegistries.ITEMS, item);

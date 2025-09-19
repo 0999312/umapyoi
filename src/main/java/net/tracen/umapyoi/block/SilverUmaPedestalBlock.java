@@ -47,7 +47,8 @@ public class SilverUmaPedestalBlock extends BaseEntityBlock {
             BlockEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof SilverUmaPedestalBlockEntity blockEntity) {
                 ItemStack heldStack = player.getItemInHand(handIn);
-                ItemStack offhandStack = player.getOffhandItem();
+                ItemStack offhandStack = handIn.equals(InteractionHand.MAIN_HAND) ? 
+                		player.getOffhandItem() : player.getMainHandItem();
                 if (blockEntity.isEmpty()) {
                     if (!offhandStack.isEmpty()) {
                         if (handIn.equals(InteractionHand.MAIN_HAND) && !(heldStack.getItem() instanceof BlockItem)) {

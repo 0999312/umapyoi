@@ -172,7 +172,7 @@
   
   "umadata.umapyoi.cheval_grand": "高尚駿逸",
   "umadata.umapyoi.verxina": "極峯",
-  "umadata.umapyoi.vivlos": "強擊",
+  "umadata.umapyoi.vivlos": "比布魯斯",
   
   "umadata.umapyoi.fuji_kiseki": "富士奇石",
   "umadata.umapyoi.fujimasa_march": "藤正進行曲",
@@ -209,6 +209,8 @@
   
   "umadata.umapyoi.hishi_akebono": "菱曙",
   "umadata.umapyoi.shenone_suzuna": "雪望音 鈴奈",
+  
+  "umadata.umapyoi.vivlos_swim": "[Éclat d'été] 比布魯斯",
 
   "support_card.umapyoi.ssr_kiryuuin_aoi.name": "[共行同一條路！] 桐生院葵",
   "support_card.umapyoi.ssr_anime_main.name": "[今後也會！] 不斷銘刻之人",
@@ -411,6 +413,7 @@
   "tooltip.umapyoi.uma_soul.guts_details": "毅力： %s / %s",
   "tooltip.umapyoi.uma_soul.wisdom_details": "智力： %s / %s",
   "tooltip.umapyoi.factors.factors_details": "因子：",
+  "tooltip.umapyoi.uma_soul.should_retire": "無法繼續訓練了，或許該育成登記了。",
 
   "umapyoi.uma_pedestal.cannot_add_item": "無法添加更多物品。",
   "umapyoi.skill.no_require": "沒有需求。",

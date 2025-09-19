@@ -211,6 +211,8 @@
   "umadata.umapyoi.hishi_akebono": "菱曙",
   "umadata.umapyoi.shenone_suzuna": "雪望音 铃奈",
   
+  "umadata.umapyoi.vivlos_swim": "[Éclat d'été] 强击",
+  
   "support_card.umapyoi.ssr_kiryuuin_aoi.name": "[共行同一条路！] 桐生院葵",
   "support_card.umapyoi.ssr_anime_main.name": "[今后也会！] 不断铭刻之人",
   "support_card.umapyoi.ssr_acupunctuist.name": "[要来扎一针吗？] 安心泽刺刺美",
@@ -413,6 +415,7 @@
   "tooltip.umapyoi.uma_soul.guts_details": "毅力： %s / %s",
   "tooltip.umapyoi.uma_soul.wisdom_details": "智力： %s / %s",
   "tooltip.umapyoi.factors.factors_details": "因子：",
+  "tooltip.umapyoi.uma_soul.should_retire": "无法继续训练了，或许该育成登记了。",
 
   "umapyoi.uma_pedestal.cannot_add_item": "无法添加更多物品。",
   "umapyoi.skill.no_require": "没有需求。",

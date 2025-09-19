@@ -84,7 +84,7 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
 
         ItemStack resultStack = getResultItem();
         this.inventory.setStackInSlot(0, resultStack);
-
+        this.getLevel().playSound(null, this.getBlockPos(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 1F, 1F);
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
             if (supportItem.getItem() instanceof SupportContainer supports) {

@@ -57,7 +57,7 @@ public class SupportAlbumPedestalBlock extends BaseEntityBlock {
                 ItemStack offhandStack = player.getOffhandItem();
                 if (blockEntity.isEmpty()) {
                     if (!offhandStack.isEmpty()) {
-                        if (handIn.equals(InteractionHand.MAIN_HAND) && (heldStack.getItem() instanceof BlockItem)) {
+                        if (handIn.equals(InteractionHand.MAIN_HAND) && !(heldStack.getItem() instanceof BlockItem)) {
                             return InteractionResult.PASS; // Pass to off-hand if that item is placeable
                         }
                     }
