@@ -18,6 +18,7 @@ import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.events.ApplyUmasoulAttributeEvent;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
 import net.tracen.umapyoi.events.SettingPropertyEvent;
+import net.tracen.umapyoi.registry.UmapyoiAttributesRegistry;
 import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
@@ -76,7 +77,7 @@ public class UmaSoulCuriosWrapper implements ICurio {
                     UmaSoulUtils.getMaxActionPoint(this.getStack())));
         }
     }
-
+    
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid) {
         Multimap<Attribute, AttributeModifier> atts = LinkedHashMultimap.create();
@@ -86,8 +87,9 @@ public class UmaSoulCuriosWrapper implements ICurio {
         CuriosApi.addSlotModifier(atts, "uma_suit", uuid, 1.0, AttributeModifier.Operation.ADDITION);
         if (UmaSoulUtils.getGrowth(getStack()) == Growth.UNTRAINED)
             return atts;
-        atts.put(Attributes.MOVEMENT_SPEED,
-                new AttributeModifier(uuid, "speed_running_bonus",
+        
+        atts.put(UmapyoiAttributesRegistry.SPRINT_SPEED.get(),
+                new AttributeModifier(uuid, "sprint_speed_running_bonus",
                         getExactProperty(user, StatusType.SPEED, UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
                         UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                                 : AttributeModifier.Operation.ADDITION));
@@ -118,6 +120,15 @@ public class UmaSoulCuriosWrapper implements ICurio {
                         getExactProperty(user, StatusType.GUTS, UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS.get()),
                         UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                                 : AttributeModifier.Operation.ADDITION));
+        if(user.getAttribute(UmapyoiAttributesRegistry.SPRINT_SPEED.get())!=null) {
+        	atts.put(Attributes.MOVEMENT_SPEED,
+                new AttributeModifier(uuid, "speed_running_bonus",
+                        user.isSprinting() 
+                        		? user.getAttributeValue(UmapyoiAttributesRegistry.SPRINT_SPEED.get())
+                        		: 0 ,
+                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                                : AttributeModifier.Operation.ADDITION));
+        }
         ApplyUmasoulAttributeEvent event = new ApplyUmasoulAttributeEvent(this.getStack(), slotContext, uuid, atts);
 		MinecraftForge.EVENT_BUS.post(event);
         return event.getAttributes();

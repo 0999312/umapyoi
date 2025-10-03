@@ -32,6 +32,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
 
     @Override
     protected void addTranslations() {
+    	add("attribute.umapyoi.generic.sprint_speed", "Sprint Speed");
+    	
         add(ItemRegistry.HACHIMI_MID.get(), "Hachimi Drink");
         add(ItemRegistry.HACHIMI_BIG.get(), "Hachimi Extreme");
         add(ItemRegistry.ROYAL_BITTER.get(), "Royal BitterJuice");

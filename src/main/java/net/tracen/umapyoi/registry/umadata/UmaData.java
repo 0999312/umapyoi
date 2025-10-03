@@ -10,6 +10,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.utils.GachaRanking;
 
 public class UmaData {
@@ -19,12 +20,12 @@ public class UmaData {
     public static final Codec<UmaData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ResourceLocation.CODEC.fieldOf("identifier").forGetter(UmaData::getIdentifier),
             GachaRanking.CODEC.optionalFieldOf("ranking", GachaRanking.EASTER_EGG).forGetter(UmaData::getGachaRanking),
-            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).fieldOf("property").forGetter(UmaData::property),
-            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).fieldOf("maxProperty")
+            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("property", new int[] { 1, 1, 1, 1, 1 }).forGetter(UmaData::property),
+            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("maxProperty", new int[] { 18, 18, 18, 18, 18 })
                     .forGetter(UmaData::maxProperty),
-            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).fieldOf("propertyRate")
+            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("propertyRate", new int[] { 0, 0, 0, 0, 0 })
                     .forGetter(UmaData::propertyRate),
-            ResourceLocation.CODEC.fieldOf("uniqueSkill").forGetter(UmaData::uniqueSkill))
+            ResourceLocation.CODEC.optionalFieldOf("uniqueSkill", UmaSkillRegistry.BASIC_PACE.getId()).forGetter(UmaData::uniqueSkill))
             .apply(instance, UmaData::new));
 
     public static final ResourceKey<Registry<UmaData>> REGISTRY_KEY = ResourceKey

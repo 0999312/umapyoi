@@ -14,8 +14,6 @@ import net.tracen.umapyoi.utils.ClientUtils;
 public record CosmeticData(ResourceLocation model, Optional<ResourceLocation> flatModel,
 		Optional<ResourceLocation> texture, Optional<ResourceLocation> flatTexture) {
 
-
-
 	public static final Codec<CosmeticData> CODEC = RecordCodecBuilder.create(instance -> instance
 			.group(ResourceLocation.CODEC.fieldOf("model").forGetter(CosmeticData::model),
 					ResourceLocation.CODEC.optionalFieldOf("flatModel").forGetter(CosmeticData::flatModel),
