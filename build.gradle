@@ -22,7 +22,7 @@ mixin {
     debug.export = true
 }
 
-version = '1.10.63-1.20.1'
+version = '1.10.64-1.20.1'
 group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'umapyoi'
 

@@ -1,4 +1,4 @@
-package net.tracen.umapyoi.item;
+package net.tracen.umapyoi.item.factor;
 
 import java.util.List;
 
