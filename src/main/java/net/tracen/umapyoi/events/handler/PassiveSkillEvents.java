@@ -16,10 +16,12 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.tag.UmapyoiBlockTags;
 import net.tracen.umapyoi.events.ApplyUmasoulAttributeEvent;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
+import net.tracen.umapyoi.registry.UmapyoiAttributesRegistry;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
@@ -27,6 +29,7 @@ import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 public class PassiveSkillEvents {
 
     public static final UUID PASSIVEUUID = UUID.fromString("306e284a-8a74-11ee-b9d1-0242ac120002");
+    public static final UUID SPRINTUUID = UUID.fromString("0591c346-7c25-4171-b2bd-66e9824f1c90");
 
     @SubscribeEvent
     public static void testPassiveSkill_im(ApplyUmasoulAttributeEvent event) {
@@ -45,6 +48,28 @@ public class PassiveSkillEvents {
         var soul = UmapyoiAPI.getUmaSoul(player);
         if (UmaSoulUtils.hasSkill(soul, UmaSkillRegistry.DIG_SPEED.getId()))
             event.setNewSpeed(event.getOriginalSpeed() * 1.1F);
+    }
+    
+    @SubscribeEvent
+    public static void sprintSpeedTick(TickEvent.PlayerTickEvent event) {
+        var player = event.player;
+        AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+
+        var speedModifier = new AttributeModifier(SPRINTUUID,
+                "sprint_speed_bonus", player.getAttributeValue(UmapyoiAttributesRegistry.SPRINT_SPEED.get()), 
+                UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
+                        : AttributeModifier.Operation.ADDITION);
+        if (UmapyoiAPI.getUmaSoul(player).isEmpty()) {
+            movementSpeed.removeModifier(speedModifier);
+            return;
+        }
+
+        if (player.isSprinting()) {
+            if (!movementSpeed.hasModifier(speedModifier))
+            	movementSpeed.addTransientModifier(speedModifier);
+        } else {
+        	movementSpeed.removeModifier(speedModifier);
+        }
     }
 
     @SubscribeEvent
@@ -69,7 +94,7 @@ public class PassiveSkillEvents {
     @SubscribeEvent
     public static void passiveTurfRunner(TickEvent.PlayerTickEvent event) {
         var player = event.player;
-        AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        AttributeInstance movementSpeed = player.getAttribute(UmapyoiAttributesRegistry.SPRINT_SPEED.get());
 
         var test_speed = new AttributeModifier(PASSIVEUUID,
                 "passive_skill_turf", 0.1D, Operation.MULTIPLY_TOTAL);
@@ -89,7 +114,7 @@ public class PassiveSkillEvents {
     @SubscribeEvent
     public static void passiveDirtRunner(TickEvent.PlayerTickEvent event) {
         var player = event.player;
-        AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        AttributeInstance movementSpeed = player.getAttribute(UmapyoiAttributesRegistry.SPRINT_SPEED.get());
 
         var test_speed = new AttributeModifier(PASSIVEUUID,
                 "passive_skill_dirt", 0.1D, Operation.MULTIPLY_TOTAL);
@@ -109,7 +134,7 @@ public class PassiveSkillEvents {
     @SubscribeEvent
     public static void passiveSnowRunner(TickEvent.PlayerTickEvent event) {
         var player = event.player;
-        AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        AttributeInstance movementSpeed = player.getAttribute(UmapyoiAttributesRegistry.SPRINT_SPEED.get());
 
         var test_speed = new AttributeModifier(PASSIVEUUID,
                 "passive_skill_snow", 0.1D, Operation.MULTIPLY_TOTAL);

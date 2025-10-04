@@ -377,7 +377,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.VENUS_PARK, "Venus Park");
         addUma(UmaDataRegistry.AGNUS_TACHYON_SWIM, "[Lunatic Lab] Agnus Tachyon");
         addUma(UmaDataRegistry.MIHONO_BOURBON, "Mihono Bourbon");
-        addUma(UmaDataRegistry.MATIKANETANNHAUSER, "Makikanetannhauser");
+        addUma(UmaDataRegistry.MATIKANETANNHAUSER, "Matikanetannhauser");
         addUma(UmaDataRegistry.KAWAKAMI_PRINCESS, "Kawakami Princess");
         addUma(UmaDataRegistry.TWIN_TURBO, "Twin Turbo");
         addUma(UmaDataRegistry.LITTLE_COCON, "Little Cocon");
@@ -446,6 +446,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.SHENONE_SUZUNA, "Shenone Suzuna");
         
         addUma(UmaDataRegistry.VIVLOS_SWIM, "[Éclat d'été] Vivlos");
+        
+        addUma(UmaDataRegistry.MARUZENSKY, "Maruzensky");
         
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");

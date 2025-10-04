@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
@@ -18,10 +16,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.factors.FactorType;
-import net.tracen.umapyoi.registry.factors.UmaFactorStack;
-import net.tracen.umapyoi.utils.UmaFactorUtils;
 
 public class UmaFactorAmplifierItem extends Item {
+	// TODO: 实现overrideStackedOnOther对指定FactorType的因子进行随机等级增长。
+	// 是否指定某个因子根据后续设计考虑。
+	
 	private final FactorType type;
 	public UmaFactorAmplifierItem(FactorType type) {
 		super(Umapyoi.defaultItemProperties());
@@ -30,9 +29,9 @@ public class UmaFactorAmplifierItem extends Item {
 	
 	@Override
 	public boolean overrideStackedOnOther(ItemStack pStack, Slot pSlot, ClickAction pAction, Player pPlayer) {
-		ItemStack stack = pSlot.getItem();
-		CompoundTag tag = stack.getOrCreateTag();
-		List<UmaFactorStack> stackList = UmaFactorUtils.deserializeNBT(tag);
+//		ItemStack stack = pSlot.getItem();
+//		CompoundTag tag = stack.getOrCreateTag();
+//		List<UmaFactorStack> stackList = UmaFactorUtils.deserializeNBT(tag);
 //		stackList.stream().filter(factor->factor.getFactor().getFactorType() == this.getFactorType() && factor.getLevel()).findAny();
 		return super.overrideStackedOnOther(pStack, pSlot, pAction, pPlayer);
 	}

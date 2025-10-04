@@ -120,15 +120,7 @@ public class UmaSoulCuriosWrapper implements ICurio {
                         getExactProperty(user, StatusType.GUTS, UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS.get()),
                         UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                                 : AttributeModifier.Operation.ADDITION));
-        if(user.getAttribute(UmapyoiAttributesRegistry.SPRINT_SPEED.get())!=null) {
-        	atts.put(Attributes.MOVEMENT_SPEED,
-                new AttributeModifier(uuid, "speed_running_bonus",
-                        user.isSprinting() 
-                        		? user.getAttributeValue(UmapyoiAttributesRegistry.SPRINT_SPEED.get())
-                        		: 0 ,
-                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
-                                : AttributeModifier.Operation.ADDITION));
-        }
+
         ApplyUmasoulAttributeEvent event = new ApplyUmasoulAttributeEvent(this.getStack(), slotContext, uuid, atts);
 		MinecraftForge.EVENT_BUS.post(event);
         return event.getAttributes();

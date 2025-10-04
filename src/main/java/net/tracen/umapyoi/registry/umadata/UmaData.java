@@ -14,16 +14,19 @@ import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.utils.GachaRanking;
 
 public class UmaData {
-    public static final ResourceLocation DEFAULT_UMA_ID = new ResourceLocation(Umapyoi.MODID, "common_uma");
+    private static final int[] EMPTY_PROPERTY_RATE = new int[] { 0, 0, 0, 0, 0 };
+	private static final int[] DEFAULT_MAX_PROPERTY = new int[] { 18, 18, 18, 18, 18 };
+	private static final int[] DEFAULT_PROPERTY = new int[] { 1, 1, 1, 1, 1 };
+	public static final ResourceLocation DEFAULT_UMA_ID = new ResourceLocation(Umapyoi.MODID, "common_uma");
     public static final UmaData DEFAULT_UMA = UmaData.createNewUmamusume("common_uma", GachaRanking.R);
 
     public static final Codec<UmaData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ResourceLocation.CODEC.fieldOf("identifier").forGetter(UmaData::getIdentifier),
             GachaRanking.CODEC.optionalFieldOf("ranking", GachaRanking.EASTER_EGG).forGetter(UmaData::getGachaRanking),
-            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("property", new int[] { 1, 1, 1, 1, 1 }).forGetter(UmaData::property),
-            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("maxProperty", new int[] { 18, 18, 18, 18, 18 })
+            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("property", DEFAULT_PROPERTY).forGetter(UmaData::property),
+            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("maxProperty", DEFAULT_MAX_PROPERTY)
                     .forGetter(UmaData::maxProperty),
-            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("propertyRate", new int[] { 0, 0, 0, 0, 0 })
+            Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream).optionalFieldOf("propertyRate", EMPTY_PROPERTY_RATE)
                     .forGetter(UmaData::propertyRate),
             ResourceLocation.CODEC.optionalFieldOf("uniqueSkill", UmaSkillRegistry.BASIC_PACE.getId()).forGetter(UmaData::uniqueSkill))
             .apply(instance, UmaData::new));
@@ -66,7 +69,7 @@ public class UmaData {
     }
 
     public int[] propertyRate() {
-        return propertyRate != null ? propertyRate : new int[] { 0, 0, 0, 0, 0 };
+        return propertyRate != null ? propertyRate : EMPTY_PROPERTY_RATE;
     }
 
     public ResourceLocation uniqueSkill() {
@@ -74,13 +77,13 @@ public class UmaData {
     }
 
     public static UmaData createNewUmamusume(String name, GachaRanking ranking) {
-        return new UmaData(new ResourceLocation(Umapyoi.MODID, name), ranking, new int[] { 1, 1, 1, 1, 1 },
-                new int[] { 18, 18, 18, 18, 18 }, new int[] { 0, 0, 0, 0, 0 },
+        return new UmaData(new ResourceLocation(Umapyoi.MODID, name), ranking, DEFAULT_PROPERTY,
+                DEFAULT_MAX_PROPERTY, EMPTY_PROPERTY_RATE,
                 new ResourceLocation(Umapyoi.MODID, "basic_pace"));
     }
 
     public static UmaData createNewUmamusume(String name, GachaRanking ranking, int[] rate) {
-        return new UmaData(new ResourceLocation(Umapyoi.MODID, name), ranking, new int[] { 1, 1, 1, 1, 1 },
-                new int[] { 18, 18, 18, 18, 18 }, rate, new ResourceLocation(Umapyoi.MODID, "basic_pace"));
+        return new UmaData(new ResourceLocation(Umapyoi.MODID, name), ranking, DEFAULT_PROPERTY,
+                DEFAULT_MAX_PROPERTY, rate, new ResourceLocation(Umapyoi.MODID, "basic_pace"));
     }
 }
