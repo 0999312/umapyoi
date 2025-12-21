@@ -27,6 +27,16 @@ public class SkillFactor extends UmaFactor {
 	            UmaSkillUtils.learnSkill(soul, skill);
         }
     }
+    
+    @Override
+    public Component getDescriptionDetail(UmaFactorStack stack) {
+        ResourceLocation skill = ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"));
+        if (skill != null && UmaSkillRegistry.REGISTRY.get().containsKey(skill)) {
+            UmaSkill result = UmaSkillRegistry.REGISTRY.get().getValue(skill);
+            return result.getDescriptionDetail();
+        }
+        return Component.empty();
+    }
 
     @Override
     public Component getDescription(UmaFactorStack stack) {

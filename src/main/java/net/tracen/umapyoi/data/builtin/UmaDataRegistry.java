@@ -136,9 +136,16 @@ public class UmaDataRegistry {
     
     public static final ResourceKey<UmaData> MARUZENSKY = register("maruzensky");
     
+    public static final ResourceKey<UmaData> AGNES_DIGITAL_KYOSHI = register("agnes_digital_kyoshi");
+    public static final ResourceKey<UmaData> DANTSU_FLAME = register("dantsu_flame");
+    
     public static void registerAll(BootstapContext<UmaData> bootstrap) {
     	
         bootstrap.register(AGNES_DIGITAL, UmaData.createNewUmamusume("agnes_digital", GachaRanking.SR, new int[] {8, 8, 7, 0, 7}));
+        
+        bootstrap.register(AGNES_DIGITAL_KYOSHI, UmaData.createNewUmamusume("agnes_digital", GachaRanking.SSR, new int[] {10, 10, 10, 10, 0}));
+        
+        bootstrap.register(DANTSU_FLAME, UmaData.createNewUmamusume("dantsu_flame", GachaRanking.SR, new int[] {0, 10, 0, 20, 0}));
         
         bootstrap.register(COMMON_UMA, UmaData.createNewUmamusume("common_uma", GachaRanking.R));
         bootstrap.register(COMMON_UMA_A, UmaData.createNewUmamusume("common_uma_a", GachaRanking.R));

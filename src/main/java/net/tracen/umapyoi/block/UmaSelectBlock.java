@@ -14,7 +14,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CraftingTableBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,7 +25,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tracen.umapyoi.container.UmaSelectMenu;
 
-public class UmaSelectBlock extends CraftingTableBlock {
+public class UmaSelectBlock extends Block {
     private static final Component CONTAINER_TITLE = Component.translatable("container.umapyoi.umaselect");
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

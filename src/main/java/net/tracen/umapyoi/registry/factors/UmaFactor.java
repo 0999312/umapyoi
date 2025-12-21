@@ -16,6 +16,7 @@ import net.tracen.umapyoi.registry.UmaFactorRegistry;
 public class UmaFactor{
     private final FactorType type;
     private String descriptionId;
+    private String detailId;
 
     public static final ResourceKey<Registry<UmaFactor>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "factor"));
@@ -68,4 +69,19 @@ public class UmaFactor{
 	public int getMaxLevel() {
 		return this.getFactorType().getMaxLevel();
 	}
+	
+	public Component getDescriptionDetail(UmaFactorStack stack) {
+        return Component.translatable(this.getDetailDescriptionId());
+    }
+
+    protected String getOrCreateDescriptionDetail() {
+    	if (this.detailId == null) {
+    		this.detailId =  this.getDescriptionId() + ".desc";
+    	}
+    	return this.detailId;
+    }
+    
+    public String getDetailDescriptionId() {
+        return this.getOrCreateDescriptionDetail();
+    }
 }

@@ -29,7 +29,7 @@ public class SkillBookItem extends Item {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         tooltip.add(this.getSkill(stack).getDescription().copy().withStyle(ChatFormatting.GRAY));
-        if(flagIn.isAdvanced() || UmapyoiConfig.DISPLAY_SKILL_DETAIL.get()) {
+        if(flagIn.isAdvanced() || UmapyoiConfig.DISPLAY_DETAIL.get()) {
         	tooltip.add(this.getSkill(stack).getDescriptionDetail().copy().withStyle(ChatFormatting.DARK_GRAY));
         }
     }

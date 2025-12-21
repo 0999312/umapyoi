@@ -216,6 +216,9 @@
   
   "umadata.umapyoi.maruzensky": "丸善斯基",
   
+  "umadata.umapyoi.agnes_digital_kyoshi": "[爱丽♡僵尸] 爱丽数码",
+  "umadata.umapyoi.dantsu_flame": "烈焰快驹",
+  
   "support_card.umapyoi.ssr_kiryuuin_aoi.name": "[共行同一条路！] 桐生院葵",
   "support_card.umapyoi.ssr_anime_main.name": "[今后也会！] 不断铭刻之人",
   "support_card.umapyoi.ssr_acupunctuist.name": "[要来扎一针吗？] 安心泽刺刺美",
@@ -341,6 +344,23 @@
   "uma_factor.umapyoi.white_stamina_factor": "耐力的经验",
   "uma_factor.umapyoi.white_strength_factor": "力量的经验",
   "uma_factor.umapyoi.white_wisdom_factor": "智力的经验",
+  
+  "uma_factor.umapyoi.actions_factor.desc": "提升最大行动力。",
+  "uma_factor.umapyoi.guts_factor.desc": "提升初始毅力和毅力上限。",
+  "uma_factor.umapyoi.memory_factor.desc": "增加最大可学习技能数。",
+  "uma_factor.umapyoi.physique_factor.desc": "增加可训练次数。",
+  "uma_factor.umapyoi.speed_factor.desc": "提升初始速度和速度上限。",
+  "uma_factor.umapyoi.stamina_factor.desc": "提升初始耐力和耐力上限。",
+  "uma_factor.umapyoi.strength_factor.desc": "提升初始力量和力量上限。",
+  "uma_factor.umapyoi.telent_factor.desc": "增加可使用训练书次数。",
+  "uma_factor.umapyoi.white_actions_factor.desc": "略微提升最大行动力。",
+  "uma_factor.umapyoi.white_guts_factor.desc": "提升初始毅力和毅力上限。",
+  "uma_factor.umapyoi.white_speed_factor.desc": "提升初始速度和速度上限。",
+  "uma_factor.umapyoi.white_stamina_factor.desc": "提升初始耐力和耐力上限。",
+  "uma_factor.umapyoi.white_strength_factor.desc": "提升初始力量和力量上限。",
+  "uma_factor.umapyoi.white_telent_factor.desc": "增加最大可学习技能数。",
+  "uma_factor.umapyoi.white_wisdom_factor.desc": "提升初始智力和智力上限。",
+  "uma_factor.umapyoi.wisdom_factor.desc": "提升初始智力和智力上限。",
   
   "umapyoi.no_umasoul_equiped": "您还不是马娘，请装备马娘之魂。",
   "umapyoi.learning.no_learning_time": "这个马娘已经无法学习更多知识了。",

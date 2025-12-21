@@ -11,5 +11,5 @@ public class UmapyoiAttributesRegistry {
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, Umapyoi.MODID);
 
     public static final RegistryObject<Attribute> SPRINT_SPEED = ATTRIBUTES.register("sprint_speed",
-            () -> new RangedAttribute("attribute.umapyoi.generic.sprint_speed", (double)0.7F, 0.0D, 1024.0D).setSyncable(true));
+            () -> new RangedAttribute("attribute.umapyoi.generic.sprint_speed", 0.7D, 0.0D, 1024.0D).setSyncable(true));
 }

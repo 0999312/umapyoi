@@ -185,6 +185,25 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addFactor(UmaFactorRegistry.WHITE_WISDOM_FACTOR, "Wit Experiences");
         addFactor(UmaFactorRegistry.WHITE_TELENT_FACTOR, "Effective Learning");
         addFactor(UmaFactorRegistry.WHITE_ACTIONS_FACTOR, "Action Planning");
+        
+        addFactorDetail(UmaFactorRegistry.SPEED_FACTOR, "Increase starting speed & max speed.");
+        addFactorDetail(UmaFactorRegistry.STAMINA_FACTOR, "Increase starting stamina & max stamina.");
+        addFactorDetail(UmaFactorRegistry.STRENGTH_FACTOR, "Increase starting power & max power.");
+        addFactorDetail(UmaFactorRegistry.GUTS_FACTOR, "Increase starting guts & max guts.");
+        addFactorDetail(UmaFactorRegistry.WISDOM_FACTOR, "Increase starting wit & max wit.");
+        
+        addFactorDetail(UmaFactorRegistry.PHYSIQUE_FACTOR, "Add more training times.");
+        addFactorDetail(UmaFactorRegistry.TELENT_FACTOR, "Add more times for using training books.");
+        addFactorDetail(UmaFactorRegistry.MEMORY_FACTOR, "Add more skill slots.");
+        addFactorDetail(UmaFactorRegistry.ACTIONS_FACTOR, "Increase Max Action Pt");
+        
+        addFactorDetail(UmaFactorRegistry.WHITE_SPEED_FACTOR, "Increase starting speed & max speed.");
+        addFactorDetail(UmaFactorRegistry.WHITE_STAMINA_FACTOR, "Increase starting stamina & max stamina.");
+        addFactorDetail(UmaFactorRegistry.WHITE_STRENGTH_FACTOR, "Increase starting power & max power.");
+        addFactorDetail(UmaFactorRegistry.WHITE_GUTS_FACTOR, "Increase starting guts & max guts.");
+        addFactorDetail(UmaFactorRegistry.WHITE_WISDOM_FACTOR, "Increase starting wit & max wit.");
+        addFactorDetail(UmaFactorRegistry.WHITE_TELENT_FACTOR, "Add more skill slots.");
+        addFactorDetail(UmaFactorRegistry.WHITE_ACTIONS_FACTOR, "Slightly increase Max Action Pt");
 
         addSkill(UmaSkillRegistry.BASIC_PACE, "Basic Pace");
         addSkill(UmaSkillRegistry.LAST_LEG, "Homestretch Haste");
@@ -449,6 +468,9 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addUma(UmaDataRegistry.MARUZENSKY, "Maruzensky");
         
+        addUma(UmaDataRegistry.AGNES_DIGITAL_KYOSHI, "[Oirai♡Kyonshii] Agnes Digital");
+        addUma(UmaDataRegistry.DANTSU_FLAME, "Dantsu Flame");
+        
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");
         
@@ -611,5 +633,13 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
 
     private void addFactor(UmaFactor key, String name) {
         add(key.getDescriptionId(), name);
+    }
+    
+    private void addFactorDetail(Supplier<UmaFactor> key, String name) {
+    	addFactorDetail(key.get(), name);
+    }
+    
+    private void addFactorDetail(UmaFactor key, String name) {
+        add(key.getDetailDescriptionId(), name);
     }
 }

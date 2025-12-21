@@ -29,4 +29,14 @@ public class UniqueSkillFactor extends UmaFactor {
         return super.getDescription(stack);
     }
 
+    @Override
+    public Component getDescriptionDetail(UmaFactorStack stack) {
+        ResourceLocation skill = ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"));
+        if (skill != null && UmaSkillRegistry.REGISTRY.get().containsKey(skill)) {
+            UmaSkill result = UmaSkillRegistry.REGISTRY.get().getValue(skill);
+            return result.getDescriptionDetail();
+        }
+        return Component.empty();
+    }
+
 }

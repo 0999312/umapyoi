@@ -13,7 +13,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tracen.umapyoi.UmapyoiConfig;
@@ -50,21 +52,30 @@ public class PassiveSkillEvents {
             event.setNewSpeed(event.getOriginalSpeed() * 1.1F);
     }
     
-    @SubscribeEvent
-    public static void sprintSpeedTick(TickEvent.PlayerTickEvent event) {
-        var player = event.player;
-        AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void sprintSpeedTick(LivingEvent.LivingTickEvent event) {
+        var living = event.getEntity();
+        AttributeInstance sprintSpeed = living.getAttribute(UmapyoiAttributesRegistry.SPRINT_SPEED.get());
+        
+        if(sprintSpeed == null)
+        	return;
+        
+        AttributeInstance movementSpeed = living.getAttribute(Attributes.MOVEMENT_SPEED);
+        
 
         var speedModifier = new AttributeModifier(SPRINTUUID,
-                "sprint_speed_bonus", player.getAttributeValue(UmapyoiAttributesRegistry.SPRINT_SPEED.get()), 
+                "sprint_speed_bonus", 
+                sprintSpeed.getValue() - sprintSpeed.getBaseValue()
+                , 
                 UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                         : AttributeModifier.Operation.ADDITION);
-        if (UmapyoiAPI.getUmaSoul(player).isEmpty()) {
+        
+        if (UmapyoiAPI.getUmaSoul(living).isEmpty()) {
             movementSpeed.removeModifier(speedModifier);
             return;
         }
 
-        if (player.isSprinting()) {
+        if (living.isSprinting()) {
             if (!movementSpeed.hasModifier(speedModifier))
             	movementSpeed.addTransientModifier(speedModifier);
         } else {
