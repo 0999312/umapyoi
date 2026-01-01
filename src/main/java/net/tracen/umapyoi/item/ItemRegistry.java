@@ -51,6 +51,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> UMA_SELECT_BLOCK = register("uma_select_block",
             () -> new BlockItem(BlockRegistry.UMA_SELECT_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
+    public static final RegistryObject<Item> RACE_REGISTER_BLOCK = register("race_register_block",
+            () -> new BlockItem(BlockRegistry.RACE_REGISTER_BLOCK.get(), Umapyoi.defaultItemProperties()));
+
     public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul", FadedUmaSoulItem::new);
     public static final RegistryObject<Item> UMA_SOUL_DISPLAY = register("uma_soul_display", ItemRegistry::newMaterial);
     public static final RegistryObject<Item> UMA_SOUL = register("uma_soul", UmaSoulItem::new);
@@ -133,6 +136,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> SKILL_BOOK = register("skill_book", SkillBookItem::new);
 
     public static final RegistryObject<Item> SUPPORT_CARD = register("support_card", SupportCardItem::new);
+    public static final RegistryObject<Item> UMA_RACING_SLIP = register("race_slip", UmaRacingSlipItem::new);
 
     public static final RegistryObject<Item> HACHIMI_MID = register("hachimi_mid",
             () -> new UmaDrinkItem(UmaStatusUtils::addMotivation,

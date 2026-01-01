@@ -29,4 +29,7 @@ public class ContainerRegistry {
     
     public static final RegistryObject<MenuType<UmaSelectMenu>> UMA_SELECT_MENU = CONTAINER_TYPES
             .register("uma_select_menu", () -> new MenuType<>((UmaSelectMenu::new), FeatureFlags.DEFAULT_FLAGS));
+
+    public static final RegistryObject<MenuType<RaceContainer>> RACE_REGISTER = CONTAINER_TYPES
+            .register("race_container", () -> IForgeMenuType.create(RaceContainer::new));
 }

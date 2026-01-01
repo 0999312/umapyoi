@@ -195,4 +195,8 @@ public class UmaSoulUtils {
         int learns = Math.max(getLearningTimes(stack) - 1, 0);
         setLearningTimes(stack, learns);
     }
+
+    public static boolean hasUmaSoulDebut(ItemStack soul) {
+        return soul.getOrCreateTag().contains("has_debut") && soul.getOrCreateTag().getBoolean("has_debut");
+    }
 }
