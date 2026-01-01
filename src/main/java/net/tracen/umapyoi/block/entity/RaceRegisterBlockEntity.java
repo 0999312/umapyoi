@@ -243,7 +243,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         LootDataManager manager = Objects.requireNonNull(this.level.getServer()).getLootData();
         LootTable table = manager.getLootTable(raceID);
         if (table == LootTable.EMPTY) {
-            Umapyoi.getLogger().debug("There doesn't exist an loot table for {}", lootSpecify);
+            Umapyoi.getLogger().debug("There doesn't exist a loot table for {}, falling back to generic race loot table", raceID);
             if (race == null) {
                 Umapyoi.getLogger().error("No such race! {}", raceID);
                 return ItemStack.EMPTY;
