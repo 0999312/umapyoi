@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 
 public class UniversalIOItemHandler implements IItemHandler {
     // This class implements a Universal Input/Output Item Handler.
-    // Constrains: all slot number < inputs is input, otherwise output.
+    // Constrains: all slot numbers < inputs is input, otherwise output.
 
     private final int slots_input;
     private final IItemHandler itemHandler;
