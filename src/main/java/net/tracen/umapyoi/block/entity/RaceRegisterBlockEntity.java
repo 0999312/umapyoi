@@ -49,7 +49,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     // No additional synchronized logic because provided by SyncedBlockEntity
     // Update by inventoryChanged (custom logic in SyncedBlockEntity, which is the super of this class)
 
-    private final int MAX_RECIPE_TIME = 260; //13 seconds;
+    public static final int MAX_RECIPE_TIME = 260; //13 seconds;
 
     private final ItemStackHandler inventory;
     private final LazyOptional<IItemHandler> IOHandler;

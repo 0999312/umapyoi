@@ -144,6 +144,6 @@ public class RaceContainer extends AbstractContainerMenu {
     @OnlyIn(Dist.CLIENT)
     public float getProgression() {
         int i = this.containerData.get(0);
-        return i / (float) TrainingFacilityBlockEntity.MAX_PROCESS_TIME;
+        return i / (float) RaceRegisterBlockEntity.MAX_RECIPE_TIME;
     }
 }
