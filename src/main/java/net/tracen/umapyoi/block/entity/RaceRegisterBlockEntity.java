@@ -218,12 +218,13 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         if (stack == ItemStack.EMPTY) { // sanity check
             return false;
         }
-        stack.shrink(1);
-        ItemStack resultStack = getResultItem();
 
         ResourceLocation raceID = getRaceID(this.inventory.getStackInSlot(1));
-
         Race race = RaceRegistry.REGISTRY.get().getValue(raceID);
+
+        stack.shrink(1);
+        ItemStack resultStack = getResultItem(raceID);
+
         if (race != null) {
             Umapyoi.getLogger().info("Follow up");
             race.followUp(this.inventory.getStackInSlot(0));
@@ -238,9 +239,8 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         return true;
     }
 
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(ResourceLocation raceID) {
         if (this.level == null) return ItemStack.EMPTY;
-        ResourceLocation raceID = getRaceID(this.inventory.getStackInSlot(1));
 
         Race race = RaceRegistry.REGISTRY.get().getValue(raceID);
         ResourceLocation lootSpecify = new ResourceLocation(raceID.getNamespace(), "race/id/" + raceID.getPath());
