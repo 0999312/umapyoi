@@ -245,7 +245,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         Race race = RaceRegistry.REGISTRY.get().getValue(raceID);
         ResourceLocation lootSpecify = new ResourceLocation(raceID.getNamespace(), "race/id/" + raceID.getPath());
         LootDataManager manager = Objects.requireNonNull(this.level.getServer()).getLootData();
-        LootTable table = manager.getLootTable(raceID);
+        LootTable table = manager.getLootTable(lootSpecify);
         if (table == LootTable.EMPTY) {
             Umapyoi.getLogger().debug("There doesn't exist a loot table for {}, falling back to generic race loot table", raceID);
             if (race == null) {
