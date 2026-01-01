@@ -26,9 +26,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.container.RaceContainer;
 import net.tracen.umapyoi.inventory.UniversalIOItemHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
@@ -36,6 +36,7 @@ import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.registry.races.RaceRegistry;
 import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -75,7 +76,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     }
 
     private ItemStackHandler createHandler() {
-        return new ItemStackHandler(4) {
+        return new ItemStackHandler(6) {
             @Override
             protected void onContentsChanged(int slot) {
                 inventoryChanged();
@@ -172,14 +173,39 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         }
     }
 
+    public ItemStack insertItemToSlot(int slot, @NotNull ItemStack stack)
+    {
+        if (stack.isEmpty()) return ItemStack.EMPTY;
+        ItemStack existing = this.inventory.getStackInSlot(slot);
+        int limit = Math.min(this.inventory.getSlotLimit(slot), existing.getMaxStackSize());
+
+        if (!existing.isEmpty()) {
+            if (!ItemHandlerHelper.canItemStacksStack(stack, existing)) return stack;
+            limit -= existing.getCount();
+        }
+
+        if (limit <= 0) return stack;
+        boolean reachedLimit = stack.getCount() > limit;
+
+        if (existing.isEmpty()) {
+            this.inventory.setStackInSlot(slot, reachedLimit ? ItemHandlerHelper.copyStackWithSize(stack, limit) : stack);
+        } else {
+            existing.grow(reachedLimit ? limit : stack.getCount());
+        }
+
+        return reachedLimit ? ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - limit) : ItemStack.EMPTY;
+    }
+
     private boolean processRecipe() {
         if (level == null) return false;
 
         if (recipeTime == 0) {
             // other sanity check, no further process during non-empty output area
-            for (int i = 2; i < 4; i++) {
-                if (!this.inventory.getStackInSlot(i).isEmpty()) return false;
+            int cnt = 0;
+            for (int i = 2; i < 6; i++) {
+                if (!this.inventory.getStackInSlot(i).isEmpty()) cnt++;
             }
+            if (cnt == 4) return false;
         }
 
         recipeTime++;
@@ -189,8 +215,6 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         recipeTime = 0; // done logic
         ItemStack resultStack = getResultItem();
 
-        ItemStack originalUmaSoul = this.inventory.getStackInSlot(0);
-        this.inventory.setStackInSlot(0, ItemStack.EMPTY);
         this.inventory.getStackInSlot(1).shrink(1);
 
         ResourceLocation raceID = getRaceID(this.inventory.getStackInSlot(1));
@@ -198,12 +222,15 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         Race race = RaceRegistry.REGISTRY.get().getValue(raceID);
         if (race != null) {
             Umapyoi.getLogger().info("Follow up");
-            race.followUp(originalUmaSoul);
+            race.followUp(this.inventory.getStackInSlot(0));
         }
         // todo: increase uma soul status here (generic)
-        this.inventory.setStackInSlot(2, originalUmaSoul);
-        this.inventory.setStackInSlot(3, resultStack);
 
+        // this.inventory.setStackInSlot(3, resultStack);
+        for (int i = 2; i < 6 && !resultStack.isEmpty(); i++) {
+            resultStack = this.insertItemToSlot(i, resultStack);
+        }
+        this.setChanged();
         return true;
     }
 
@@ -251,7 +278,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
 
     public NonNullList<ItemStack> getDroppableInventory() {
         NonNullList<ItemStack> drops = NonNullList.create();
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 6; ++i) {
             drops.add(inventory.getStackInSlot(i));
         }
         return drops;

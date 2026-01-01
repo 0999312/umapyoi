@@ -76,8 +76,8 @@ public class RaceContainer extends AbstractContainerMenu {
             }
         });
 
-        for (int j = 2; j <= 3; j++) {
-            this.addSlot(new SlotItemHandler(this.inventory, j, (j - 2) * 17 + 138, 19));
+        for (int j = 0; j <= 3; j++) {
+            this.addSlot(new SlotItemHandler(this.inventory, j + 2, (j & 1) * 17 + 138, 19 + (j / 2) * 18));
         }
 
         int startPlayerInvY = 120;
@@ -96,7 +96,8 @@ public class RaceContainer extends AbstractContainerMenu {
     }
 
     @Override
-    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
+    @Nonnull
+    public ItemStack quickMoveStack(@Nonnull Player pPlayer, int pIndex) {
         ItemStack stack = ItemStack.EMPTY;
         Slot slot = this.slots.get(pIndex);
 
@@ -104,17 +105,18 @@ public class RaceContainer extends AbstractContainerMenu {
             ItemStack stack1 = slot.getItem();
             stack = stack1.copy();
 
-            if (pIndex >= 0 && pIndex < 4) {
+            if (pIndex >= 0 && pIndex < 6) {
                 // from container to player inventory
-                if (!this.moveItemStackTo(stack1, 4, 4 + 36, true)) {
+                if (!this.moveItemStackTo(stack1, 6, 6 + 36, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onQuickCraft(stack1, stack);
-            } else if (pIndex >= 4) {
+            } else if (pIndex >= 6) {
                 // from player inventory to container
-                if (pIndex < 4 + 36) {
-                    if (!this.moveItemStackTo(stack1, 0, 3, false)) {
+                if (pIndex < 6 + 36) {
+                    // only move from 0 to 1
+                    if (!this.moveItemStackTo(stack1, 0, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
