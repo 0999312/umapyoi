@@ -213,9 +213,13 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         if (recipeTime < MAX_RECIPE_TIME) return false;
 
         recipeTime = 0; // done logic
-        ItemStack resultStack = getResultItem();
 
-        this.inventory.getStackInSlot(1).shrink(1);
+        ItemStack stack = this.inventory.getStackInSlot(1);
+        if (stack == ItemStack.EMPTY) { // sanity check
+            return false;
+        }
+        stack.shrink(1);
+        ItemStack resultStack = getResultItem();
 
         ResourceLocation raceID = getRaceID(this.inventory.getStackInSlot(1));
 
