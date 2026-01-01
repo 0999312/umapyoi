@@ -17,6 +17,7 @@ import net.tracen.umapyoi.utils.RaceRanking;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 
 
 public class UmaRacingSlipItem extends Item {
@@ -68,7 +69,8 @@ public class UmaRacingSlipItem extends Item {
 
     public static ResourceLocation getRaceID(ItemStack stack) {
         if (stack.getOrCreateTag().contains("race"))
-            return ResourceLocation.tryParse(stack.getOrCreateTag().getString("race"));
+            return Optional.ofNullable(ResourceLocation.tryParse(stack.getOrCreateTag().getString("race")))
+                    .orElseGet(RaceRegistry.DEFAULT::getId); // sanity check (if nbt has been incorrectly modified through command)
         return RaceRegistry.DEFAULT.getId();
     }
 
