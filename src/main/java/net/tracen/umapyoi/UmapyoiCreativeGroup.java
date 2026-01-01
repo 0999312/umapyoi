@@ -202,7 +202,7 @@ public class UmapyoiCreativeGroup {
 
     private static void fillSlip(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
         RaceRegistry.REGISTRY.get().getEntries().stream().sorted(RACE_COMPARATOR).forEachOrdered(race -> {
-            Umapyoi.getLogger().info("{}", race.getKey());
+            Umapyoi.getLogger().debug("{}", race.getKey());
             if (race.getKey().location().equals(RaceRegistry.DEFAULT.getId())) return;
             ItemStack result = ItemRegistry.UMA_RACING_SLIP.get().getDefaultInstance();
             result.getOrCreateTag().putString("race", race.getKey().location().toString());
