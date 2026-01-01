@@ -239,7 +239,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         ResourceLocation raceID = getRaceID(this.inventory.getStackInSlot(1));
 
         Race race = RaceRegistry.REGISTRY.get().getValue(raceID);
-        ResourceLocation lootSpecify = new ResourceLocation(Umapyoi.MODID, "race/id/" + raceID.getPath());
+        ResourceLocation lootSpecify = new ResourceLocation(raceID.getNamespace(), "race/id/" + raceID.getPath());
         LootDataManager manager = Objects.requireNonNull(this.level.getServer()).getLootData();
         LootTable table = manager.getLootTable(raceID);
         if (table == LootTable.EMPTY) {
