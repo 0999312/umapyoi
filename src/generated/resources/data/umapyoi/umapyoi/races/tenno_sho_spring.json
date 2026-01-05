@@ -1,0 +1,15 @@
+{
+  "field": "umapyoi:kyoto",
+  "id": "umapyoi:tenno_sho_spring",
+  "length": 3200,
+  "ranking": "gi",
+  "surface": "turf",
+  "tags": [
+    "umapyoi:senior_spring_triple_crown",
+    "umapyoi:eight_great_races"
+  ],
+  "time": 8,
+  "year": [
+    "senior"
+  ]
+}

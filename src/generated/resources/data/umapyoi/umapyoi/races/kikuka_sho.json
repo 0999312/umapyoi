@@ -1,0 +1,15 @@
+{
+  "field": "umapyoi:kyoto",
+  "id": "umapyoi:kikuka_sho",
+  "length": 2000,
+  "ranking": "gi",
+  "surface": "turf",
+  "tags": [
+    "umapyoi:triple_crown",
+    "umapyoi:eight_great_races"
+  ],
+  "time": 20,
+  "year": [
+    "classic"
+  ]
+}

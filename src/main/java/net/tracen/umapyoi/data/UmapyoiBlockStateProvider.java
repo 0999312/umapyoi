@@ -3,6 +3,8 @@ package net.tracen.umapyoi.data;
 import cn.mcmod_mmf.mmlib.data.AbstractBlockStateProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
@@ -27,6 +29,13 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                 models().getExistingFile(new ResourceLocation("umapyoi:block/register_lectern")));
         horizontalBlock(BlockRegistry.UMA_SELECT_BLOCK.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/uma_select_block")));
+        /* horizontalBlock(BlockRegistry.RACE_REGISTER_BLOCK.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/race_register"))); */
+        getVariantBuilder(BlockRegistry.RACE_REGISTER_BLOCK.get()).forAllStates(state ->
+            ConfiguredModel.builder()
+                    .modelFile(models().getExistingFile(new ResourceLocation(Umapyoi.MODID, "block/race_register")))
+                    .rotationY((state.getValue(BlockStateProperties.HORIZONTAL_FACING).get2DDataValue() * 90) % 360)
+                    .build());
         simpleBlock(BlockRegistry.SKILL_LEARNING_TABLE.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/skill_learning_table")));
 

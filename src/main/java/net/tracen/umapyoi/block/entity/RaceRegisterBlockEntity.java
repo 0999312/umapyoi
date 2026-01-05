@@ -29,6 +29,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.container.RaceContainer;
 import net.tracen.umapyoi.inventory.UniversalIOItemHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
@@ -220,14 +221,14 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         }
 
         ResourceLocation raceID = getRaceID(this.inventory.getStackInSlot(1));
-        Race race = RaceRegistry.REGISTRY.get().getValue(raceID);
+        Race race = UmapyoiAPI.getRaceRegistry(this.level).get(raceID);
 
         stack.shrink(1);
         ItemStack resultStack = getResultItem(raceID);
 
         if (race != null) {
             Umapyoi.getLogger().info("Follow up");
-            race.followUp(this.inventory.getStackInSlot(0));
+            race.followUp(this.inventory.getStackInSlot(0), this.level);
         }
         // todo: increase uma soul status here (generic)
 
@@ -242,7 +243,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     public ItemStack getResultItem(ResourceLocation raceID) {
         if (this.level == null) return ItemStack.EMPTY;
 
-        Race race = RaceRegistry.REGISTRY.get().getValue(raceID);
+        Race race = UmapyoiAPI.getRaceRegistry(this.level).get(raceID);
         ResourceLocation lootSpecify = new ResourceLocation(raceID.getNamespace(), "race/id/" + raceID.getPath());
         LootDataManager manager = Objects.requireNonNull(this.level.getServer()).getLootData();
         LootTable table = manager.getLootTable(lootSpecify);
@@ -275,7 +276,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         if (!umaSoulConstraint(stackSoul)) return false;
         if (!raceConstraint(stackRace)) return false;
         if (this.level == null) return false;
-        Race race = RaceRegistry.REGISTRY.get().getValue(getRaceID(stackRace));
+        Race race = UmapyoiAPI.getRaceRegistry(this.level).get(getRaceID(stackRace));
         if (race == null) return false;
         return race.isAvailableToUmaSoul(stackSoul);
     }

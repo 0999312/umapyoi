@@ -23,9 +23,7 @@ import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.registry.races.RaceRegistry;
-import net.tracen.umapyoi.utils.RaceRanking;
-import net.tracen.umapyoi.utils.UmaFactorUtils;
-import net.tracen.umapyoi.utils.UmaSoulUtils;
+import net.tracen.umapyoi.utils.*;
 
 public class UmapyoiCreativeGroup {
 
@@ -179,35 +177,12 @@ public class UmapyoiCreativeGroup {
         }
     }
 
-    private static class RaceComparator implements Comparator<Map.Entry<ResourceKey<Race>, Race>> {
-        @Override
-        public int compare(Map.Entry<ResourceKey<Race>, Race> o1, Map.Entry<ResourceKey<Race>, Race> o2) {
-            RaceRanking leftRanking = o1.getValue().ranking;
-            RaceRanking rightRanking = o2.getValue().ranking;
-            if (leftRanking == rightRanking) {
-                int leftDistance = o1.getValue().length;
-                int rightDistance = o2.getValue().length;
-                if (leftDistance == rightDistance) {
-                    String leftName = o1.getKey().location().toString();
-                    String rightName = o2.getKey().location().toString();
-                    return leftName.compareToIgnoreCase(rightName);
-                }
-                return leftDistance - rightDistance;
-            }
-            return leftRanking.compareTo(rightRanking);
-        }
-    }
-
-    private static final RaceComparator RACE_COMPARATOR = new RaceComparator();
-
     private static void fillSlip(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
-        RaceRegistry.REGISTRY.get().getEntries().stream().sorted(RACE_COMPARATOR).forEachOrdered(race -> {
-            Umapyoi.getLogger().debug("{}", race.getKey());
-            if (race.getKey().location().equals(RaceRegistry.DEFAULT.getId())) return;
+        UmaRacingSlipItem.sortedRaceList(features.holders()).forEachOrdered(race -> {
+            Umapyoi.getLogger().debug("{}", race.key());
+            if (race.key().location().equals(RaceRegistry.DEFAULT.location())) return;
             ItemStack result = ItemRegistry.UMA_RACING_SLIP.get().getDefaultInstance();
-            result.getOrCreateTag().putString("race", race.getKey().location().toString());
-            result.getOrCreateTag().putString("race_ranking", race.getValue().ranking.name().toLowerCase());
-            result.getOrCreateTag().putInt("race_length", race.getValue().length);
+            result.getOrCreateTag().putString("race", race.key().location().toString());
             output.accept(result);
         });
     }

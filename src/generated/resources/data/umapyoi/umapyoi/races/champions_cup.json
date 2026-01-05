@@ -1,0 +1,15 @@
+{
+  "field": "umapyoi:chukyo",
+  "id": "umapyoi:champions_cup",
+  "length": 1800,
+  "ranking": "gi",
+  "surface": "dirt",
+  "tags": [
+    "umapyoi:dirt"
+  ],
+  "time": 23,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

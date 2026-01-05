@@ -22,7 +22,9 @@ import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.UmapyoiAttributesRegistry;
+import net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry;
 import net.tracen.umapyoi.registry.races.RaceRegistry;
+import net.tracen.umapyoi.registry.races.Tags.RaceTagRegistry;
 import net.tracen.umapyoi.villager.VillageRegistry;
 
 import org.slf4j.Logger;
@@ -52,7 +54,6 @@ public class Umapyoi {
         VillageRegistry.POI_TYPES.register(modEventBus);
         VillageRegistry.PROFESSIONS.register(modEventBus);
         RecipeSerializerRegistry.RECIPE_SERIALIZER.register(modEventBus);
-        RaceRegistry.RACES.register(modEventBus);
         modEventBus.addListener(this::onEntityAttributeModification);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);

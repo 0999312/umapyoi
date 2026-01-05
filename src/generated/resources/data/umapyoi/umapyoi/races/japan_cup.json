@@ -1,0 +1,15 @@
+{
+  "field": "umapyoi:tokyo",
+  "id": "umapyoi:japan_cup",
+  "length": 2400,
+  "ranking": "gi",
+  "surface": "turf",
+  "tags": [
+    "umapyoi:senior_autumn_triple_crown"
+  ],
+  "time": 22,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

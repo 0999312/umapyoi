@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.block;
 
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,9 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -20,19 +19,24 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkHooks;
+import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.block.entity.RaceRegisterBlockEntity;
-import net.tracen.umapyoi.block.entity.TrainingFacilityBlockEntity;
 
 import javax.annotation.Nullable;
 import javax.annotation.Nonnull;
 
+@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = Umapyoi.MODID)
 public class RaceRegisterBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public RaceRegisterBlock() {
-        super(Properties.copy(Blocks.IRON_BLOCK));
+        super(Properties.copy(Blocks.IRON_BLOCK).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
@@ -89,4 +93,14 @@ public class RaceRegisterBlock extends BaseEntityBlock {
     }
 
     // todo for future: customize render here
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
+
+    @SubscribeEvent
+    public static void registerBlockColor(RegisterColorHandlersEvent.Block event) {
+        event.register((state, level, pos, index) -> BiomeColors.getAverageGrassColor(level, pos), BlockRegistry.RACE_REGISTER_BLOCK.get());
+    }
 }

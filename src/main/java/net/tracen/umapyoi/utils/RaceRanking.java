@@ -2,6 +2,7 @@ package net.tracen.umapyoi.utils;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 
 public enum RaceRanking {
@@ -20,15 +21,4 @@ public enum RaceRanking {
 
     public static final Codec<RaceRanking> CODEC = Codec.STRING
             .xmap(string -> RaceRanking.valueOf(string.toUpperCase()), instance -> instance.name().toLowerCase());
-
-    public static RaceRanking getRaceRanking(ItemStack stack) {
-        try {
-            if (stack.getOrCreateTag().contains("race_ranking")) {
-                return RaceRanking.valueOf(stack.getOrCreateTag().getString("race_ranking").toUpperCase());
-            }
-        } catch (IllegalArgumentException _ignored) {
-            return DEBUT;
-        }
-        return DEBUT;
-    }
 }

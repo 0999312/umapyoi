@@ -31,6 +31,12 @@ import net.tracen.umapyoi.data.tag.UmapyoiBlockTagProvider;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTagsProvider;
 import net.tracen.umapyoi.data.tag.UmapyoiPOITagsProvider;
 import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
+import net.tracen.umapyoi.registry.races.Field.RaceField;
+import net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry;
+import net.tracen.umapyoi.registry.races.Race;
+import net.tracen.umapyoi.registry.races.RaceRegistry;
+import net.tracen.umapyoi.registry.races.Tags.RaceTag;
+import net.tracen.umapyoi.registry.races.Tags.RaceTagRegistry;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
@@ -56,6 +62,15 @@ public class DataGen {
         
         final RegistrySetBuilder CostumeBuilder = new RegistrySetBuilder().add(CosmeticData.REGISTRY_KEY,
                 CostumeDataRegistry::registerAll);
+
+        final RegistrySetBuilder raceBuilder = new RegistrySetBuilder().add(Race.REGISTRY_KEY,
+                RaceRegistry::registerAll);
+
+        final RegistrySetBuilder raceFieldBuilder = new RegistrySetBuilder().add(RaceField.REGISTRY_KEY,
+                RaceFieldRegistry::registerAll);
+
+        final RegistrySetBuilder raceTagBuilder = new RegistrySetBuilder().add(RaceTag.REGISTRY_KEY,
+                RaceTagRegistry::registerAll);
 
         dataGenerator.addProvider(event.includeServer(),
                 new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, umaDataBuilder, Set.of(Umapyoi.MODID)) {
@@ -84,6 +99,29 @@ public class DataGen {
                     }
                 });
 
+        dataGenerator.addProvider(event.includeServer(),
+                new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, raceBuilder, Set.of(Umapyoi.MODID)) {
+                    @Override
+                    public String getName() {
+                        return "Race Registry";
+                    }
+                });
+
+        dataGenerator.addProvider(event.includeServer(),
+                new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, raceFieldBuilder, Set.of(Umapyoi.MODID)) {
+                    @Override
+                    public String getName() {
+                        return "Race Field Registry";
+                    }
+                });
+
+        dataGenerator.addProvider(event.includeServer(),
+                new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, raceTagBuilder, Set.of(Umapyoi.MODID)) {
+                    @Override
+                    public String getName() {
+                        return "Race Tag Registry";
+                    }
+                });
 
         UmapyoiBlockTagProvider blockTagProvider = new UmapyoiBlockTagProvider(packOutput, lookupProvider,
                 existingFileHelper);

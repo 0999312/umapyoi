@@ -1,0 +1,16 @@
+{
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:takarazuka_kinen",
+  "length": 2200,
+  "ranking": "gi",
+  "surface": "turf",
+  "tags": [
+    "umapyoi:senior_spring_triple_crown",
+    "umapyoi:grand_prix"
+  ],
+  "time": 12,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}
