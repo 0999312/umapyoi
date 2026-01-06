@@ -5,7 +5,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.world.item.ItemStack;
 
 public enum Surface {
-    TURF(ChatFormatting.GOLD), DIRT(ChatFormatting.GREEN);
+    TURF(ChatFormatting.GREEN), DIRT(ChatFormatting.GOLD);
 
     public final ChatFormatting color;
     Surface(ChatFormatting color) {
