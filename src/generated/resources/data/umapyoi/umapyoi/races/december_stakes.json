@@ -3,11 +3,12 @@
   "id": "umapyoi:december_stakes",
   "length": 1800,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 23,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

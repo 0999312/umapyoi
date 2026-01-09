@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:hakodate",
   "id": "umapyoi:tomoe_sho",
   "length": 1800,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 13,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

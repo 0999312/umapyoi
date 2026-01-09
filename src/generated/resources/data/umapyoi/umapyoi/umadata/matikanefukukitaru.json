@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    1,
+    4,
+    6,
+    6
+  ],
   "identifier": "umapyoi:matikanefukukitaru",
+  "position": "late_surger",
   "propertyRate": [
     0,
     20,
@@ -7,5 +14,10 @@
     0,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    1,
+    5
+  ]
 }

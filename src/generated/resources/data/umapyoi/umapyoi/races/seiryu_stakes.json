@@ -1,8 +1,13 @@
 {
+  "attribute_correction": [
+    0,
+    1
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:seiryu_stakes",
   "length": 1600,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 9,

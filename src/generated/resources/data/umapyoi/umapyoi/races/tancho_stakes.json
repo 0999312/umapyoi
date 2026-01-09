@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    1
+  ],
   "field": "umapyoi:sapporo",
   "id": "umapyoi:tancho_stakes",
   "length": 2600,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 17,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

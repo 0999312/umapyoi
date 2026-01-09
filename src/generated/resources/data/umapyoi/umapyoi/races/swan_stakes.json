@@ -3,11 +3,12 @@
   "id": "umapyoi:swan_stakes",
   "length": 1400,
   "ranking": "gii",
+  "reference_level": 30,
   "surface": "turf",
   "tags": [],
   "time": 20,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

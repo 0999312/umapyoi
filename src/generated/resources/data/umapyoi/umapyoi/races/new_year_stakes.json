@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:nakayama",
   "id": "umapyoi:new_year_stakes",
   "length": 1600,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 1,

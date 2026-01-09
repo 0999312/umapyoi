@@ -1,4 +1,7 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:senryo_sho",
   "length": 1600,

@@ -1,13 +1,18 @@
 {
+  "attribute_correction": [
+    3,
+    4
+  ],
   "field": "umapyoi:ohi",
   "id": "umapyoi:jbc_sprint",
   "length": 1200,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "dirt",
   "tags": [],
   "time": 21,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    3
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:wakaba_stakes",
   "length": 2000,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 6,

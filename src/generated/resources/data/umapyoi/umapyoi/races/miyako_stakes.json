@@ -3,11 +3,12 @@
   "id": "umapyoi:miyako_stakes",
   "length": 1800,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "dirt",
   "tags": [],
   "time": 21,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

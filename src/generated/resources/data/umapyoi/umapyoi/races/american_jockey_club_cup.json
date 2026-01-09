@@ -1,8 +1,13 @@
 {
+  "attribute_correction": [
+    1,
+    3
+  ],
   "field": "umapyoi:nakayama",
   "id": "umapyoi:american_jockey_club_cup",
   "length": 2200,
   "ranking": "gii",
+  "reference_level": 30,
   "surface": "turf",
   "tags": [],
   "time": 2,

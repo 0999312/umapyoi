@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:chukyo",
   "id": "umapyoi:chukyo_junior_stakes",
   "length": 1600,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 14,

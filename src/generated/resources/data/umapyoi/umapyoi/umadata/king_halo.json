@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    6,
+    5,
+    5,
+    4
+  ],
   "identifier": "umapyoi:king_halo",
+  "position": "late_surger",
   "propertyRate": [
     0,
     20,
@@ -7,5 +14,10 @@
     0,
     10
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

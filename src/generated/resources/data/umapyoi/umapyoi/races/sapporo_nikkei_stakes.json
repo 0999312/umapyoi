@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    1
+  ],
   "field": "umapyoi:sapporo",
   "id": "umapyoi:sapporo_nikkei_stakes",
   "length": 2600,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 15,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

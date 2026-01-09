@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:niigata",
   "id": "umapyoi:ibis_summer_dash",
   "length": 1000,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "turf",
   "tags": [],
   "time": 14,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

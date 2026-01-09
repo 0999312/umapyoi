@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:mainichi_okan",
   "length": 1800,
   "ranking": "gii",
+  "reference_level": 30,
   "surface": "turf",
   "tags": [],
   "time": 19,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

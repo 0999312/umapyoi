@@ -1,8 +1,13 @@
 {
+  "attribute_correction": [
+    1,
+    3
+  ],
   "field": "umapyoi:nakayama",
   "id": "umapyoi:st_lite_kinen",
   "length": 2200,
   "ranking": "gii",
+  "reference_level": 30,
   "surface": "turf",
   "tags": [],
   "time": 18,

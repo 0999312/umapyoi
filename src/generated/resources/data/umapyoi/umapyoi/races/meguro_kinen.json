@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    1
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:meguro_kinen",
   "length": 2500,
   "ranking": "gii",
+  "reference_level": 30,
   "surface": "turf",
   "tags": [],
   "time": 10,

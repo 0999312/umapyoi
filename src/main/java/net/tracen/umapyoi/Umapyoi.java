@@ -13,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
+import net.tracen.umapyoi.command.CommandRegistry;
 import net.tracen.umapyoi.container.ContainerRegistry;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
@@ -54,6 +55,7 @@ public class Umapyoi {
         VillageRegistry.POI_TYPES.register(modEventBus);
         VillageRegistry.PROFESSIONS.register(modEventBus);
         RecipeSerializerRegistry.RECIPE_SERIALIZER.register(modEventBus);
+        CommandRegistry.ARGUMENT_TYPES.register(modEventBus);
         modEventBus.addListener(this::onEntityAttributeModification);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);

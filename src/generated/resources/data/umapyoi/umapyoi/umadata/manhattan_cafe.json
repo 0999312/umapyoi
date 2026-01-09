@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    0,
+    1,
+    5,
+    1
+  ],
   "identifier": "umapyoi:manhattan_cafe",
+  "position": "late_surger",
   "propertyRate": [
     0,
     30,
@@ -7,5 +14,10 @@
     0,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

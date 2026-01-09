@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    1,
+    6,
+    6,
+    5
+  ],
   "identifier": "umapyoi:el_condor_pasa",
+  "position": "pace_chaser",
   "propertyRate": [
     20,
     0,
@@ -7,5 +14,10 @@
     0,
     10
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    5,
+    5
+  ]
 }

@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    2,
+    6,
+    6,
+    5
+  ],
   "identifier": "umapyoi:oguri_cap",
+  "position": "late_surger",
   "propertyRate": [
     15,
     15,
@@ -7,5 +14,10 @@
     0,
     10
   ],
-  "ranking": "ssr"
+  "ranking": "ssr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:andromeda_stakes",
   "length": 2000,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 22,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

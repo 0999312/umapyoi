@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    4
+  ],
   "field": "umapyoi:kawasaki",
   "id": "umapyoi:zen_nippon_junior_yushun",
   "length": 1600,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "dirt",
   "tags": [],
   "time": 24,

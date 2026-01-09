@@ -1,15 +1,19 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:mile_championship",
   "length": 1600,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "turf",
   "tags": [
     "umapyoi:mile"
   ],
   "time": 22,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

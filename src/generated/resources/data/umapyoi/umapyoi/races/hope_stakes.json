@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:nakayama",
   "id": "umapyoi:hope_stakes",
   "length": 2000,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "turf",
   "tags": [],
   "time": 24,

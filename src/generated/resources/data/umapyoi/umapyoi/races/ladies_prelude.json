@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:ohi",
   "id": "umapyoi:ladies_prelude",
   "length": 1800,
   "ranking": "gii",
+  "reference_level": 30,
   "surface": "dirt",
   "tags": [],
   "time": 19,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

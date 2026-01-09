@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:ohi",
   "id": "umapyoi:tck_jo_o_hai",
   "length": 1800,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "dirt",
   "tags": [],
   "time": 2,

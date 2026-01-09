@@ -3,11 +3,12 @@
   "id": "umapyoi:onuma_stakes",
   "length": 1700,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "dirt",
   "tags": [],
   "time": 12,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

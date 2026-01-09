@@ -1,3 +1,9 @@
 {
-  "id": "umapyoi:hanshin"
+  "dirts": [],
+  "id": "umapyoi:hanshin",
+  "synthetics": [],
+  "turfs": [
+    "mile",
+    "sprint"
+  ]
 }

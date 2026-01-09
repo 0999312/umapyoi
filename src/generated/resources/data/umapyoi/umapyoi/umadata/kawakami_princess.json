@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    3,
+    5,
+    6,
+    1
+  ],
   "identifier": "umapyoi:kawakami_princess",
+  "position": "late_surger",
   "propertyRate": [
     0,
     10,
@@ -7,5 +14,10 @@
     20,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

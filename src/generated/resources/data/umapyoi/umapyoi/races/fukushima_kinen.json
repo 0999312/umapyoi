@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    1
+  ],
   "field": "umapyoi:fukushima",
   "id": "umapyoi:fukushima_kinen",
   "length": 2000,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "turf",
   "tags": [],
   "time": 21,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

@@ -1,8 +1,13 @@
 {
+  "attribute_correction": [
+    1,
+    3
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:saudi_arabia_royal_cup",
   "length": 1600,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "turf",
   "tags": [],
   "time": 19,

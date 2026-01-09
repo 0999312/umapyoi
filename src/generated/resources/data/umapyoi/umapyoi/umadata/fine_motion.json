@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    1,
+    6,
+    6,
+    4
+  ],
   "identifier": "umapyoi:fine_motion",
+  "position": "pace_chaser",
   "propertyRate": [
     0,
     0,
@@ -7,5 +14,10 @@
     0,
     15
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

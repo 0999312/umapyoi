@@ -40,7 +40,7 @@ public class RaceContainer extends AbstractContainerMenu {
     }
 
     public RaceContainer(final int i, final Inventory playerInv, final FriendlyByteBuf data) {
-        this(i, playerInv, getTileEntity(playerInv, data), new SimpleContainerData(1));
+        this(i, playerInv, getTileEntity(playerInv, data), new SimpleContainerData(2));
     }
 
     public static class UmaSoulSlot extends SlotItemHandler {
@@ -143,7 +143,6 @@ public class RaceContainer extends AbstractContainerMenu {
 
     @OnlyIn(Dist.CLIENT)
     public float getProgression() {
-        int i = this.containerData.get(0);
-        return i / (float) RaceRegisterBlockEntity.MAX_RECIPE_TIME;
+        return this.containerData.get(0) / (float) this.containerData.get(1);
     }
 }

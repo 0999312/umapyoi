@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    2,
+    4,
+    6,
+    5
+  ],
   "identifier": "umapyoi:mejiro_ryan",
+  "position": "pace_chaser",
   "propertyRate": [
     0,
     0,
@@ -7,5 +14,10 @@
     0,
     10
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

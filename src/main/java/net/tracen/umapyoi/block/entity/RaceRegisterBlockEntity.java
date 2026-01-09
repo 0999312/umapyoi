@@ -33,15 +33,18 @@ import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.container.RaceContainer;
 import net.tracen.umapyoi.inventory.UniversalIOItemHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.registry.races.Field.RaceField;
 import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.registry.races.RaceRegistry;
 import net.tracen.umapyoi.registry.umadata.Growth;
+import net.tracen.umapyoi.utils.RaceRanking;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static net.tracen.umapyoi.item.UmaRacingSlipItem.getRaceID;
@@ -50,11 +53,12 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     // No additional synchronized logic because provided by SyncedBlockEntity
     // Update by inventoryChanged (custom logic in SyncedBlockEntity, which is the super of this class)
 
-    public static final int MAX_RECIPE_TIME = 260; //13 seconds;
+    // public static final int MAX_RECIPE_TIME = 260; //13 seconds;
 
     private final ItemStackHandler inventory;
     private final LazyOptional<IItemHandler> IOHandler;
     private int recipeTime;
+    private int maxRecipeTime = 0;
     protected final ContainerData tileData;
 
     public RaceRegisterBlockEntity(BlockPos pos, BlockState state) {
@@ -62,6 +66,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         this.inventory = createHandler();
         this.IOHandler = LazyOptional.of(() -> new UniversalIOItemHandler(inventory, 2));
         this.tileData = createIntArray();
+        this.maxRecipeTime = 0;
     }
 
     public ItemStackHandler getInventory() {
@@ -139,17 +144,22 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         return new ContainerData() {
             @Override
             public int get(int index) {
-                return index == 0 ? RaceRegisterBlockEntity.this.recipeTime : 0;
+                return switch(index) {
+                    case 0 -> RaceRegisterBlockEntity.this.recipeTime;
+                    case 1 -> RaceRegisterBlockEntity.this.maxRecipeTime;
+                    default -> 0;
+                };
             }
 
             @Override
             public void set(int index, int value) {
                 if (index == 0) RaceRegisterBlockEntity.this.recipeTime = value;
+                if (index == 1) RaceRegisterBlockEntity.this.maxRecipeTime = value;
             }
 
             @Override
             public int getCount() {
-                return 1;
+                return 2;
             }
         };
     }
@@ -198,7 +208,10 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     }
 
     private boolean processRecipe() {
-        if (level == null) return false;
+        if (level == null) {
+            this.maxRecipeTime = 0;
+            return false;
+        }
 
         if (recipeTime == 0) {
             // other sanity check, no further process during non-empty output area
@@ -206,36 +219,53 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
             for (int i = 2; i < 6; i++) {
                 if (!this.inventory.getStackInSlot(i).isEmpty()) cnt++;
             }
-            if (cnt == 4) return false;
+            if (cnt == 4) {
+                this.maxRecipeTime = 0;
+                return false;
+            }
         }
-
-        recipeTime++;
-
-        if (recipeTime < MAX_RECIPE_TIME) return false;
-
-        recipeTime = 0; // done logic
 
         ItemStack stack = this.inventory.getStackInSlot(1);
         if (stack == ItemStack.EMPTY) { // sanity check
+            this.maxRecipeTime = 0;
             return false;
         }
 
         ResourceLocation raceID = getRaceID(this.inventory.getStackInSlot(1));
         Race race = UmapyoiAPI.getRaceRegistry(this.level).get(raceID);
+        if (race == null) {
+            this.maxRecipeTime = 0;
+            return false;
+        }
+
+        this.maxRecipeTime = race.length(this.inventory.getStackInSlot(0)) * 3 / 20;
+
+        recipeTime++;
+
+        if (recipeTime < this.maxRecipeTime) return false;
+
+        recipeTime = 0; // done logic
 
         stack.shrink(1);
         ItemStack resultStack = getResultItem(raceID);
-
-        if (race != null) {
-            Umapyoi.getLogger().info("Follow up");
-            race.followUp(this.inventory.getStackInSlot(0), this.level);
+        long maxSize = Math.round(resultStack.getCount() * race.getUmaFactorCorrection(this.inventory.getStackInSlot(0), this.level));
+        ArrayList<ItemStack> listItems = new ArrayList<>();
+        while (maxSize >= 0 && listItems.size() < 4) {
+            int cnt = Math.toIntExact(Math.min(resultStack.getMaxStackSize(), maxSize));
+            listItems.add(resultStack.copyWithCount(cnt));
+            maxSize -= cnt;
         }
+
+        Umapyoi.getLogger().info("Follow up");
+        race.followUp(this.inventory.getStackInSlot(0), this.level);
         // todo: increase uma soul status here (generic)
 
         // this.inventory.setStackInSlot(3, resultStack);
-        for (int i = 2; i < 6 && !resultStack.isEmpty(); i++) {
-            resultStack = this.insertItemToSlot(i, resultStack);
-        }
+        listItems.forEach((fillStack) -> {
+            for (int i = 2; i < 6 && !fillStack.isEmpty(); i++) {
+                fillStack = this.insertItemToSlot(i, fillStack);
+            }
+        });
         this.setChanged();
         return true;
     }
@@ -244,17 +274,34 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         if (this.level == null) return ItemStack.EMPTY;
 
         Race race = UmapyoiAPI.getRaceRegistry(this.level).get(raceID);
+        if (race != null) {
+            Umapyoi.getLogger().debug("Run {} with following properties: Distance={}, Surface={}", raceID, race.distance(this.inventory.getStackInSlot(0)), race.surface(this.inventory.getStackInSlot(0)));
+        }
         ResourceLocation lootSpecify = new ResourceLocation(raceID.getNamespace(), "race/id/" + raceID.getPath());
         LootDataManager manager = Objects.requireNonNull(this.level.getServer()).getLootData();
         LootTable table = manager.getLootTable(lootSpecify);
         if (table == LootTable.EMPTY) {
-            Umapyoi.getLogger().debug("There doesn't exist a loot table for {}, falling back to generic race loot table", raceID);
+            Umapyoi.getLogger().debug("There doesn't exist a loot table for {}, falling back to generic rank + field table", raceID);
             if (race == null) {
                 Umapyoi.getLogger().error("No such race! {}", raceID);
                 return ItemStack.EMPTY;
             }
-            table = manager.getLootTable(new ResourceLocation(Umapyoi.MODID, "race/generic/race_" +
-                    race.ranking.name().toLowerCase()));
+            ItemStack stackSoul = this.inventory.getStackInSlot(0);
+            RaceRanking rank = race.ranking;
+            if (stackSoul.equals(ItemStack.EMPTY)) {
+                Umapyoi.getLogger().error("Umasoul is no longer present.");
+                table = manager.getLootTable(new ResourceLocation(Umapyoi.MODID, "race/generic/race_" +
+                        rank.name().toLowerCase()));
+            } else {
+                ResourceLocation field = race.field(this.level, stackSoul).id();
+                table = manager.getLootTable(new ResourceLocation(field.getNamespace(), "race/generic/field/race_"
+                        + field.getPath() + "_" + rank.name().toLowerCase()));
+                if (table == LootTable.EMPTY) {
+                    Umapyoi.getLogger().debug("There doesn't exist a loot table for {} {}, falling back to generic table", field, rank);
+                    table = manager.getLootTable(new ResourceLocation(Umapyoi.MODID, "race/generic/race_" +
+                            rank.name().toLowerCase()));
+                }
+            }
         }
 
         LootParams lootParams = new LootParams.Builder((ServerLevel) this.level)

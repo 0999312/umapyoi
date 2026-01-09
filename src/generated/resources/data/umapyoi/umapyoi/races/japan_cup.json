@@ -3,13 +3,14 @@
   "id": "umapyoi:japan_cup",
   "length": 2400,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "turf",
   "tags": [
     "umapyoi:senior_autumn_triple_crown"
   ],
   "time": 22,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

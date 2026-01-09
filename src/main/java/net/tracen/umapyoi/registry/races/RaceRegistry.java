@@ -4,6 +4,7 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.utils.Distance;
 import net.tracen.umapyoi.utils.RaceRanking;
 import net.tracen.umapyoi.utils.Surface;
 import net.tracen.umapyoi.utils.Year;
@@ -37,6 +38,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(CHUKYO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -77,6 +79,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1200)
                     .setField(KOKURA)
+                    .addAttr(0)
                     ::create
     );
 
@@ -107,6 +110,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(NAKAYAMA)
+                    .addAttr(0)
                     ::create
     );
 
@@ -127,6 +131,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(NAKAYAMA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -147,6 +152,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1200)
                     .setField("kokuro")
+                    .addAttr(0)
                     ::create
     );
 
@@ -167,6 +173,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1800)
                     .setField(HANSHIN)
+                    .addAttr(2)
                     ::create
     );
 
@@ -177,6 +184,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(NAKAYAMA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -187,6 +195,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(TOKYO)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -197,6 +206,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1800)
                     .setField(TOKYO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -227,6 +237,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(TOKYO)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -257,6 +268,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(KYOTO)
+                    .addAttr(2)
                     ::create
     );
 
@@ -267,6 +279,7 @@ public class RaceRegistry {
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
                     .setField(KYOTO)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -277,6 +290,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1800)
                     .setField(KYOTO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -287,6 +301,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(KYOTO)
+                    .addAttr(2)
                     ::create
     );
 
@@ -307,6 +322,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(TOKYO)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -327,6 +343,7 @@ public class RaceRegistry {
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
                     .setField(TOKYO)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -337,6 +354,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(TOKYO)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -347,6 +365,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(KYOTO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -357,6 +376,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(NAKAYAMA)
+                    .addAttr(0)
                     ::create
     );
 
@@ -367,6 +387,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(CHUKYO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -377,6 +398,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1400)
                     .setField(TOKYO)
+                    .addAttr(1, 2)
                     ::create
     );
 
@@ -387,6 +409,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(KYOTO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -427,6 +450,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1800)
                     .setField(FUKUSHIMA)
+                    .addAttr(1)
                     ::create
     );
 
@@ -437,6 +461,7 @@ public class RaceRegistry {
                     .setSurface(Surface.DIRT)
                     .setLength(1400)
                     .setField(TOKYO)
+                    .addAttr(1)
                     ::create
     );
 
@@ -447,6 +472,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(KYOTO)
+                    .addAttr(2)
                     ::create
     );
 
@@ -457,6 +483,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(NAKAYAMA)
+                    .addAttr(0)
                     ::create
     );
 
@@ -467,6 +494,7 @@ public class RaceRegistry {
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
                     .setField(KAWASAKI)
+                    .addAttr(4)
                     ::create
     );
 
@@ -487,6 +515,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(HANSHIN)
+                    .addAttr(2)
                     ::create
     );
 
@@ -497,6 +526,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(HANSHIN)
+                    .addAttr(2)
                     ::create
     );
 
@@ -507,6 +537,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(HANSHIN)
+                    .addAttr(2)
                     ::create
     );
 
@@ -537,6 +568,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(HANSHIN)
+                    .addAttr(3)
                     ::create
     );
 
@@ -557,6 +589,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(NAKAYAMA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -587,6 +620,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1200)
                     .setField(KOKURA)
+                    .addAttr(0)
                     ::create
     );
 
@@ -597,6 +631,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(KYOTO)
+                    .addAttr(2)
                     ::create
     );
 
@@ -607,6 +642,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1400)
                     .setField(TOKYO)
+                    .addAttr(1, 2)
                     ::create
     );
 
@@ -617,6 +653,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(KYOTO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -627,6 +664,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(NAKAYAMA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -637,6 +675,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(NAKAYAMA)
+                    .addAttr(0)
                     ::create
     );
 
@@ -647,6 +686,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(NAKAYAMA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -667,6 +707,7 @@ public class RaceRegistry {
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
                     .setField(TOKYO)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -677,6 +718,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2200)
                     .setField(HANSHIN)
+                    .addAttr(0)
                     ::create
     );
 
@@ -707,6 +749,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(TOKYO)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -717,6 +760,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1800)
                     .setField(TOKYO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -727,6 +771,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(KYOTO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -767,6 +812,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1800)
                     .setField(HANSHIN)
+                    .addAttr(2)
                     ::create
     );
 
@@ -777,6 +823,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(HANSHIN)
+                    .addAttr(3)
                     ::create
     );
 
@@ -787,6 +834,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(NAKAYAMA)
+                    .addAttr(0)
                     ::create
     ); // todo: Full name: 弥生賞ディープインパクト記念(Yayoi Sho Deep Impact Kinen, 弥生赏大震撼纪念), Consider to change registry key or remove this comment
 
@@ -807,6 +855,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(HANSHIN)
+                    .addAttr(2)
                     ::create
     );
 
@@ -817,6 +866,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(NAKAYAMA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -877,6 +927,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1800)
                     .setField(TOKYO)
+                    .addAttr(0)
                     ::create
     );
 
@@ -887,6 +938,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(HANSHIN)
+                    .addAttr(2)
                     .addTags(TRIPLE_TIARA, EIGHT_GREAT_RACES)::create
     );
 
@@ -897,6 +949,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(NAKAYAMA)
+                    .addAttr(0)
                     .addTags(TRIPLE_CROWN, EIGHT_GREAT_RACES)::create
     );
 
@@ -907,6 +960,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(NAKAYAMA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -917,6 +971,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .setField(HANSHIN)
+                    .addAttr(2)
                     ::create
     );
 
@@ -927,6 +982,7 @@ public class RaceRegistry {
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
                     .setField(NAKAYAMA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -937,6 +993,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .setField(HANSHIN)
+                    .addAttr(3)
                     ::create
     );
 
@@ -1007,6 +1064,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -1017,6 +1075,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(2200)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1037,6 +1096,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -1047,6 +1107,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -1057,6 +1118,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(2200)
+                    .addAttr(0)
                     .addTags(SENIOR_SPRING_TRIPLE_CROWN, GRAND_PRIX)
                     ::create
     );
@@ -1078,6 +1140,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -1088,6 +1151,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1108,6 +1172,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1400)
+                    .addAttr(1, 2)
                     ::create
     );
 
@@ -1128,6 +1193,7 @@ public class RaceRegistry {
                     .setField(KAWASAKI)
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
+                    .addAttr(1, 4)
                     ::create
     );
 
@@ -1139,6 +1205,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .addTags(MILE)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -1149,6 +1216,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(3)
                     ::create
     );
 
@@ -1159,6 +1227,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(3)
                     ::create
     );
 
@@ -1169,6 +1238,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1199,6 +1269,7 @@ public class RaceRegistry {
                     .setField(CHUKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1209,6 +1280,7 @@ public class RaceRegistry {
                     .setField(NIIGATA)
                     .setSurface(Surface.TURF)
                     .setLength(1000)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1229,6 +1301,7 @@ public class RaceRegistry {
                     .setField(MORIOKA)
                     .setSurface(Surface.DIRT)
                     .setLength(2000)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1249,6 +1322,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(2000)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1259,6 +1333,7 @@ public class RaceRegistry {
                     .setField(FUKUSHIMA)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1289,6 +1364,7 @@ public class RaceRegistry {
                     .setField(FUKUSHIMA)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1299,6 +1375,7 @@ public class RaceRegistry {
                     .setField(HAKODATE)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1309,6 +1386,7 @@ public class RaceRegistry {
                     .setField(KAWASAKI)
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
+                    .addAttr(4)
                     ::create
     );
 
@@ -1319,6 +1397,7 @@ public class RaceRegistry {
                     .setField(HAKODATE)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1339,6 +1418,7 @@ public class RaceRegistry {
                     .setField(CHUKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1349,6 +1429,7 @@ public class RaceRegistry {
                     .setField(SAPPORO)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1359,6 +1440,7 @@ public class RaceRegistry {
                     .setField(KOKURA)
                     .setSurface(Surface.TURF)
                     .setLength(1200)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1379,6 +1461,7 @@ public class RaceRegistry {
                     .setField(MORIOKA)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1399,6 +1482,7 @@ public class RaceRegistry {
                     .setField(NIIGATA)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(4)
                     ::create
     );
 
@@ -1429,6 +1513,7 @@ public class RaceRegistry {
                     .setField(NIIGATA)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(4)
                     ::create
     );
 
@@ -1439,6 +1524,7 @@ public class RaceRegistry {
                     .setField(KOKURA)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1459,6 +1545,7 @@ public class RaceRegistry {
                     .setField(SAPPORO)
                     .setSurface(Surface.DIRT)
                     .setLength(1700)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1469,6 +1556,7 @@ public class RaceRegistry {
                     .setField(SAPPORO)
                     .setSurface(Surface.TURF)
                     .setLength(2600)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1499,6 +1587,7 @@ public class RaceRegistry {
                     .setField(NIIGATA)
                     .setSurface(Surface.TURF)
                     .setLength(1700)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1509,6 +1598,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(2200)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -1519,6 +1609,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(2400)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1540,6 +1631,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(2200)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -1562,6 +1654,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.DIRT)
                     .setLength(2000)
+                    .addAttr(1, 2)
                     ::create
     );
 
@@ -1572,6 +1665,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1582,6 +1676,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1592,6 +1687,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1602,6 +1698,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1622,6 +1719,7 @@ public class RaceRegistry {
                     .setField(NIIGATA)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(1, 2)
                     ::create
     );
 
@@ -1632,6 +1730,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1642,6 +1741,7 @@ public class RaceRegistry {
                     .setField(SAPPORO)
                     .setSurface(Surface.TURF)
                     .setLength(2600)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1662,6 +1762,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1673,6 +1774,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(2000)
                     .addTags(TRIPLE_TIARA)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1683,6 +1785,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(2, 4)
                     .addTags(TRIPLE_CROWN, EIGHT_GREAT_RACES)
                     ::create
     );
@@ -1715,6 +1818,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -1755,6 +1859,7 @@ public class RaceRegistry {
                     .setField(NIIGATA)
                     .setSurface(Surface.TURF)
                     .setLength(1000)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1765,6 +1870,7 @@ public class RaceRegistry {
                     .setField(MORIOKA)
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
+                    .addAttr(1, 4)
                     ::create
     );
 
@@ -1775,6 +1881,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1785,6 +1892,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(2400)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1795,6 +1903,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1805,6 +1914,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1815,6 +1925,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(3, 4)
                     ::create
     );
 
@@ -1835,6 +1946,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1400)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1876,6 +1988,7 @@ public class RaceRegistry {
                     .setSurface(Surface.TURF)
                     .setLength(1600)
                     .addTags(MILE)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1907,6 +2020,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1917,6 +2031,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1400)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1927,6 +2042,7 @@ public class RaceRegistry {
                     .setField(FUKUSHIMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1700)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1937,6 +2053,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -1957,6 +2074,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(2200)
+                    .addAttr(0)
                     ::create
     );
 
@@ -1967,6 +2085,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -1977,6 +2096,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(3, 4)
                     ::create
     );
 
@@ -1987,6 +2107,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(2000)
+                    .addAttr(1)
                     ::create
     );
 
@@ -1997,6 +2118,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(2500)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2017,6 +2139,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -2027,6 +2150,7 @@ public class RaceRegistry {
                     .setField(FUKUSHIMA)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2037,6 +2161,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1400)
+                    .addAttr(1, 2)
                     ::create
     );
 
@@ -2047,6 +2172,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(2500)
+                    .addAttr(1, 3)
                     .addTags(SENIOR_AUTUMN_TRIPLE_CROWN, GRAND_PRIX, EIGHT_GREAT_RACES)
                     ::create
     );
@@ -2058,6 +2184,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(2000)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2099,6 +2226,7 @@ public class RaceRegistry {
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
                     .addTags(DIRT)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2109,6 +2237,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(3600)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2119,6 +2248,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(3)
                     ::create
     );
 
@@ -2139,6 +2269,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2149,6 +2280,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2179,6 +2311,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2189,6 +2322,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     ); // 编者注: Rigel不是误拼 赛马娘动画中的Rigil队中的Rigil实际上是Rigil Kentaurus, 南门二 而Rigel是参宿七(Rigel A)
 
@@ -2219,6 +2353,7 @@ public class RaceRegistry {
                     .setField(CHUKYO)
                     .setSurface(Surface.TURF)
                     .setLength(2200)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2229,6 +2364,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(2200)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -2249,6 +2385,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1400)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2259,6 +2396,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2289,6 +2427,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(2400)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2299,6 +2438,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(0)
                     ::create
     );
 
@@ -2309,6 +2449,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(0)
                     ::create
     );
 
@@ -2329,6 +2470,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(3000)
+                    .addAttr(2, 4)
                     ::create
     );
 
@@ -2349,6 +2491,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2359,6 +2502,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2369,6 +2513,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2390,6 +2535,7 @@ public class RaceRegistry {
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
                     .addTags(DIRT)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -2450,6 +2596,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2460,6 +2607,7 @@ public class RaceRegistry {
                     .setField(KOKURA)
                     .setSurface(Surface.TURF)
                     .setLength(1200)
+                    .addAttr(0)
                     ::create
     );
 
@@ -2470,6 +2618,7 @@ public class RaceRegistry {
                     .setField(KAWASAKI)
                     .setSurface(Surface.DIRT)
                     .setLength(2100)
+                    .addAttr(1, 4)
                     ::create
     );
 
@@ -2480,6 +2629,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(2200)
+                    .addAttr(0)
                     ::create
     );
 
@@ -2490,6 +2640,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -2510,6 +2661,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(0)
                     ::create
     );
 
@@ -2530,6 +2682,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1400)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2551,6 +2704,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(3)
                     ::create
     );
 
@@ -2561,6 +2715,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(3000)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2571,6 +2726,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(2500)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -2581,6 +2737,7 @@ public class RaceRegistry {
                     .setField(FUNABASHI)
                     .setSurface(Surface.DIRT)
                     .setLength(2400)
+                    .addAttr(1)
                     ::create
     );
     /*
@@ -2602,6 +2759,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2612,6 +2770,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2622,6 +2781,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2642,6 +2802,7 @@ public class RaceRegistry {
                     .setField(KAWASAKI)
                     .setSurface(Surface.DIRT)
                     .setLength(2100)
+                    .addAttr(1, 4)
                     ::create
     );
 
@@ -2672,6 +2833,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2692,6 +2854,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.DIRT)
                     .setLength(2000)
+                    .addAttr(2, 1)
                     ::create
     );
 
@@ -2702,6 +2865,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2723,6 +2887,7 @@ public class RaceRegistry {
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(0)
                     ::create
     );
 
@@ -2733,6 +2898,7 @@ public class RaceRegistry {
                     .setField(FUKUSHIMA)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2743,6 +2909,7 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(3, 4)
                     ::create
     );
 
@@ -2753,6 +2920,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1600)
+                    .addAttr(0, 1)
                     ::create
     );
 
@@ -2773,6 +2941,7 @@ public class RaceRegistry {
                     .setField(HANSHIN)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2783,6 +2952,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2813,6 +2983,7 @@ public class RaceRegistry {
                     .setField(NAKAYAMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1200)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2833,6 +3004,7 @@ public class RaceRegistry {
                     .setField(FUKUSHIMA)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2843,6 +3015,7 @@ public class RaceRegistry {
                     .setField(FUKUSHIMA)
                     .setSurface(Surface.DIRT)
                     .setLength(1700)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2853,6 +3026,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(2500)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2873,6 +3047,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1800)
+                    .addAttr(0)
                     ::create
     );
 
@@ -2883,6 +3058,7 @@ public class RaceRegistry {
                     .setField(NIIGATA)
                     .setSurface(Surface.TURF)
                     .setLength(1000)
+                    .addAttr(2)
                     ::create
     );
 
@@ -2893,6 +3069,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.DIRT)
                     .setLength(1400)
+                    .addAttr(1)
                     ::create
     );
 
@@ -2913,6 +3090,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1600)
+                    .addAttr(1, 3)
                     ::create
     );
 
@@ -2933,6 +3111,7 @@ public class RaceRegistry {
                     .setField(TOKYO)
                     .setSurface(Surface.TURF)
                     .setLength(1400)
+                    .addAttr(1, 2)
                     ::create
     );
 
@@ -2943,6 +3122,7 @@ public class RaceRegistry {
                     .setField(NIIGATA)
                     .setSurface(Surface.TURF)
                     .setLength(2000)
+                    .addAttr(1, 2)
                     ::create
     );
 
@@ -3013,11 +3193,18 @@ public class RaceRegistry {
                     .setField(OHI)
                     .setSurface(Surface.DIRT)
                     .setLength(2000)
+                    .addAttr(1)
                     ::create
     );
 
-    public static final ResourceKey<Race> DEBUT_MILES = simpleRegister("debut_miles",
-            new RaceBuilder().setRanking(RaceRanking.DEBUT).setLength(1800)::create
+    public static final ResourceKey<Race> MAKE_DEBUT = simpleRegister("make_debut",
+            new RaceBuilder().setRanking(RaceRanking.DEBUT)
+                    .addYear(Year.JUNIOR)
+                    .setRanking(RaceRanking.DEBUT)
+                    .setSurface(Surface.ADAPTIVE)
+                    .setLength(Distance.CONST_ADAPTIVE)
+                    .setField(CONST_ADAPTIVE)
+                    ::create
     );
 
     private static HashMap<ResourceKey<Race>, Function<ResourceLocation, Race>> forDataGenMap;

@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:sapporo",
   "id": "umapyoi:elm_stakes",
   "length": 1700,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "dirt",
   "tags": [],
   "time": 15,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

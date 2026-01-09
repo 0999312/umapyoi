@@ -1,8 +1,13 @@
 {
+  "attribute_correction": [
+    3,
+    4
+  ],
   "field": "umapyoi:ohi",
   "id": "umapyoi:tokyo_sprint",
   "length": 1200,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "dirt",
   "tags": [],
   "time": 8,

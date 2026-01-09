@@ -1,4 +1,7 @@
 {
+  "attribute_correction": [
+    1
+  ],
   "field": "umapyoi:fukushima",
   "id": "umapyoi:kimmokusei_tokubetsu",
   "length": 1800,

@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    1,
+    3,
+    6,
+    6
+  ],
   "identifier": "umapyoi:narita_taishin",
+  "position": "end_closer",
   "propertyRate": [
     10,
     0,
@@ -7,5 +14,10 @@
     20,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

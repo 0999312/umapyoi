@@ -1,10 +1,22 @@
 {
+  "distance_aptitude": [
+    7,
+    7,
+    7,
+    7
+  ],
   "identifier": "umapyoi:byerley_turk",
+  "position": "pace_chaser",
   "propertyRate": [
     0,
     15,
     20,
     15,
     0
+  ],
+  "surface_aptitude": [
+    7,
+    7,
+    5
   ]
 }

@@ -3,11 +3,12 @@
   "id": "umapyoi:shinetsu_stakes",
   "length": 1400,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 19,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

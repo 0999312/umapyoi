@@ -1,4 +1,8 @@
 {
+  "attribute_correction": [
+    0,
+    1
+  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:platanus_sho",
   "length": 1600,

@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    3
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:osaka_hai",
   "length": 2000,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "turf",
   "tags": [],
   "time": 6,

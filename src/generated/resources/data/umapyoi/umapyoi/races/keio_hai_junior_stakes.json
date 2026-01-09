@@ -1,8 +1,13 @@
 {
+  "attribute_correction": [
+    1,
+    2
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:keio_hai_junior_stakes",
   "length": 1400,
   "ranking": "gii",
+  "reference_level": 30,
   "surface": "turf",
   "tags": [],
   "time": 21,

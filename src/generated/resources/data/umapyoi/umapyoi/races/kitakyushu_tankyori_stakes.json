@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:kokura",
   "id": "umapyoi:kitakyushu_tankyori_stakes",
   "length": 1200,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 4,

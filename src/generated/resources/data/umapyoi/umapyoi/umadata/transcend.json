@@ -1,4 +1,10 @@
 {
+  "distance_aptitude": [
+    0,
+    6,
+    6,
+    0
+  ],
   "identifier": "umapyoi:transcend",
   "propertyRate": [
     10,
@@ -7,5 +13,10 @@
     0,
     10
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    1,
+    6,
+    5
+  ]
 }

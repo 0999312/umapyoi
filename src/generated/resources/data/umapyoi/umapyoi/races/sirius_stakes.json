@@ -1,13 +1,18 @@
 {
+  "attribute_correction": [
+    1,
+    2
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:sirius_stakes",
   "length": 2000,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "dirt",
   "tags": [],
   "time": 18,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

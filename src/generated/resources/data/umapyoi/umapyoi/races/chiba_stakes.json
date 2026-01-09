@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:nakayama",
   "id": "umapyoi:chiba_stakes",
   "length": 1200,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "dirt",
   "tags": [],
   "time": 6,

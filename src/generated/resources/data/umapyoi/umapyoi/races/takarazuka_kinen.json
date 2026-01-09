@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:takarazuka_kinen",
   "length": 2200,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "turf",
   "tags": [
     "umapyoi:senior_spring_triple_crown",
@@ -10,7 +14,7 @@
   ],
   "time": 12,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

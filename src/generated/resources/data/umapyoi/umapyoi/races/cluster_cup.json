@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    1
+  ],
   "field": "umapyoi:morioka",
   "id": "umapyoi:cluster_cup",
   "length": 1200,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "dirt",
   "tags": [],
   "time": 16,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    6,
+    6,
+    4,
+    0
+  ],
   "identifier": "umapyoi:daiichi_ruby",
+  "position": "late_surger",
   "propertyRate": [
     0,
     0,
@@ -7,5 +14,10 @@
     0,
     10
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

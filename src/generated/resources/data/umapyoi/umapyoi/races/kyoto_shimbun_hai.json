@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:kyoto_shimbun_hai",
   "length": 2200,
   "ranking": "gii",
+  "reference_level": 30,
   "surface": "turf",
   "tags": [],
   "time": 9,

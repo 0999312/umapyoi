@@ -2,6 +2,7 @@ package net.tracen.umapyoi.utils;
 
 import java.util.List;
 
+import net.tracen.umapyoi.registry.races.Field.RaceField;
 import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.registry.races.Tags.RaceTag;
 import org.joml.Matrix4f;
@@ -83,6 +84,10 @@ public class ClientUtils {
 
     public static Registry<RaceTag> getRaceTagRegistry() {
         return Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(RaceTag.REGISTRY_KEY);
+    }
+
+    public static Registry<RaceField> getRaceFieldRegistry() {
+        return Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(RaceField.REGISTRY_KEY);
     }
 
     public static boolean isFlatUmamusume(ItemStack stack) {

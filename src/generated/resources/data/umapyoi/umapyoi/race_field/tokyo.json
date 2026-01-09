@@ -1,3 +1,13 @@
 {
-  "id": "umapyoi:tokyo"
+  "dirts": [
+    "mile",
+    "sprint"
+  ],
+  "id": "umapyoi:tokyo",
+  "synthetics": [],
+  "turfs": [
+    "medium",
+    "mile",
+    "sprint"
+  ]
 }

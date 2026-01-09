@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:hakodate",
   "id": "umapyoi:hakodate_kinen",
   "length": 2000,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "turf",
   "tags": [],
   "time": 13,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

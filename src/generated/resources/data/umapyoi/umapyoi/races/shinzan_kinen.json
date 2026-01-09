@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    0
+  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:shinzan_kinen",
   "length": 1600,
   "ranking": "giii",
+  "reference_level": 25,
   "surface": "turf",
   "tags": [],
   "time": 1,

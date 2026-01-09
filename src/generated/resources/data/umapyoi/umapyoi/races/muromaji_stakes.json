@@ -3,11 +3,12 @@
   "id": "umapyoi:muromaji_stakes",
   "length": 1200,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "dirt",
   "tags": [],
   "time": 20,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

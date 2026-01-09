@@ -1,8 +1,13 @@
 {
+  "attribute_correction": [
+    1,
+    3
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:nhk_mile_cup",
   "length": 1600,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "turf",
   "tags": [],
   "time": 9,

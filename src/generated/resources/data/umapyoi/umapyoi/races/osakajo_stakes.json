@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:osakajo_stakes",
   "length": 1800,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 5,

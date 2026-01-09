@@ -1,15 +1,19 @@
 {
+  "attribute_correction": [
+    1
+  ],
   "field": "umapyoi:chukyo",
   "id": "umapyoi:champions_cup",
   "length": 1800,
   "ranking": "gi",
+  "reference_level": 35,
   "surface": "dirt",
   "tags": [
     "umapyoi:dirt"
   ],
   "time": 23,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

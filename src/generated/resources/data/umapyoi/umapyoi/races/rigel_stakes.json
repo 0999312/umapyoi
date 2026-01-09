@@ -1,13 +1,17 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:rigel_stakes",
   "length": 1600,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 23,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

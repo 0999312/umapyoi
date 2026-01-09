@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    2
+  ],
   "field": "umapyoi:fukushima",
   "id": "umapyoi:azumakofuji_stakes",
   "length": 1700,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "dirt",
   "tags": [],
   "time": 7,

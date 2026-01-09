@@ -1,8 +1,13 @@
 {
+  "attribute_correction": [
+    2,
+    4
+  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:manyo_stakes",
   "length": 3000,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "turf",
   "tags": [],
   "time": 1,

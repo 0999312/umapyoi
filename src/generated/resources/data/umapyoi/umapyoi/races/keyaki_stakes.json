@@ -1,8 +1,12 @@
 {
+  "attribute_correction": [
+    1
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:keyaki_stakes",
   "length": 1400,
   "ranking": "op",
+  "reference_level": 15,
   "surface": "dirt",
   "tags": [],
   "time": 10,

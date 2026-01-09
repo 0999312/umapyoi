@@ -17,6 +17,7 @@ import net.tracen.umapyoi.item.UmaCostumeItem;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.item.UmaSuitItem;
 import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
+import net.tracen.umapyoi.registry.races.Field.RaceField;
 import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.registry.races.Tags.RaceTag;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
@@ -158,6 +159,11 @@ public class UmapyoiAPI {
     public static Registry<RaceTag> getRaceTagRegistry(Level level) {
         if (level.isClientSide()) return ClientUtils.getRaceTagRegistry();
         return level.registryAccess().registryOrThrow(RaceTag.REGISTRY_KEY);
+    }
+
+    public static Registry<RaceField> getRaceFieldRegistry(Level level) {
+        if (level.isClientSide()) return ClientUtils.getRaceFieldRegistry();
+        return level.registryAccess().registryOrThrow(RaceField.REGISTRY_KEY);
     }
 
     public static HolderLookup.RegistryLookup<Race> getRaceRegistry(HolderLookup.Provider provider) {

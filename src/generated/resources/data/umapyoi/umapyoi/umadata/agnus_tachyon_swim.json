@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    0,
+    3,
+    6,
+    5
+  ],
   "identifier": "umapyoi:agnus_tachyon",
+  "position": "pace_chaser",
   "propertyRate": [
     15,
     0,
@@ -7,5 +14,10 @@
     0,
     15
   ],
-  "ranking": "ssr"
+  "ranking": "ssr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }
