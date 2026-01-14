@@ -1,5 +1,12 @@
 {
   "id": "umapyoi:eight_great_races",
   "is_unique": true,
-  "max": 8
+  "max": 8,
+  "property_reward": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
 }

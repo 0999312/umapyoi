@@ -3,29 +3,26 @@ package net.tracen.umapyoi.registry.races;
 import com.google.common.base.Functions;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import cpw.mods.util.Lazy;
 import net.minecraft.core.Registry;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.races.Field.RaceField;
 import net.tracen.umapyoi.registry.races.Tags.RaceTag;
-import net.tracen.umapyoi.registry.races.Tags.RaceTagRegistry;
 import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.registry.umadata.Motivations;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.*;
 
 import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry.CONST_ADAPTIVE;
@@ -45,7 +42,11 @@ public class Race {
                     ResourceLocation.CODEC.listOf().fieldOf("tags").forGetter((r) -> r.tags.stream().toList()),
                     ResourceLocation.CODEC.fieldOf("field").forGetter(Race::field),
                     Codec.INT.listOf().optionalFieldOf("attribute_correction", List.of()).forGetter((r) -> r.attrCorr.stream().toList()),
-                    Codec.INT.optionalFieldOf("reference_level", 5).forGetter(Race::referenceLevel)
+                    Codec.INT.optionalFieldOf("reference_level", 5).forGetter(Race::referenceLevel),
+                    Codec.STRING.xmap(s -> Growth.valueOf(s.toUpperCase()), g -> g.name().toLowerCase()).listOf().optionalFieldOf("allow_status", List.of(Growth.TRAINED, Growth.RETIRED)).forGetter((r) -> r.allowStatus.stream().toList()),
+                    Codec.BOOL.optionalFieldOf("exclusive", true).forGetter(Race::exclusive),
+                    Codec.INT.optionalFieldOf("later_then", 0).forGetter(Race::laterThen),
+                    ResourceLocation.CODEC.listOf().optionalFieldOf("after_race", List.of()).forGetter((r) -> r.afterRace.stream().toList())
             ).apply(instance, Race::new)
     );
 
@@ -100,8 +101,15 @@ public class Race {
     private final double[] correction;
     public final int referenceLevel;
     public int referenceLevel() { return this.referenceLevel; }
-
-    public Race(ResourceLocation id, RaceRanking ranking, int length, int time, Set<Year> year, Surface surface, Set<ResourceLocation> tags, ResourceLocation field, Set<Integer> attrCorr, int referenceLevel) {
+    public final Set<Growth> allowStatus;
+    public final boolean exclusive;
+    public boolean exclusive() { return this.exclusive; }
+    public final int laterThen;
+    public int laterThen() { return this.laterThen; }
+    public final Set<ResourceLocation> afterRace;
+    public Race(ResourceLocation id, RaceRanking ranking, int length, int time, Set<Year> year, Surface surface,
+                Set<ResourceLocation> tags, ResourceLocation field, Set<Integer> attrCorr, int referenceLevel, Set<Growth> allowStatus,
+                boolean exclusive, int laterThen, Set<ResourceLocation> afterRace) {
         this.id = id;
         this.ranking = ranking;
         this.length = length;
@@ -120,23 +128,55 @@ public class Race {
                 attrCorr.contains(4) ? 1.05 : 1
         };
         this.referenceLevel = referenceLevel;
+        this.allowStatus = allowStatus;
+        this.exclusive = exclusive;
+        this.laterThen = laterThen;
+        this.afterRace = afterRace;
     }
 
-    public Race(ResourceLocation id, RaceRanking ranking, int length, int time, List<Year> year, Surface surface, List<ResourceLocation> tags, ResourceLocation field, List<Integer> attrCorr, int referenceLevel) {
+    public Race(ResourceLocation id, RaceRanking ranking, int length, int time, List<Year> year, Surface surface,
+                List<ResourceLocation> tags, ResourceLocation field, List<Integer> attrCorr, int referenceLevel, List<Growth> allowStatus,
+                boolean exclusive, int laterThen, List<ResourceLocation> afterRace) {
         this(id, ranking, length, time,
                 new HashSet<>(year),
                 surface,
                 new HashSet<>(tags),
                 field,
                 new HashSet<>(attrCorr),
-                referenceLevel
+                referenceLevel,
+                new HashSet<>(allowStatus),
+                exclusive, laterThen, new HashSet<>(afterRace)
         );
     }
 
     public boolean isAvailableToUmaSoul(ItemStack stack) {
         if (this.id.equals(RaceRegistry.DEFAULT.location())) return false;
-        return stack.is(ItemRegistry.UMA_SOUL.get()) && UmaSoulUtils.getGrowth(stack) == Growth.RETIRED &&
-                ((this.ranking == RaceRanking.DEBUT) ^ UmaSoulUtils.hasUmaSoulDebut(stack));
+        if (!(stack.is(ItemRegistry.UMA_SOUL.get()) &&
+                ((this.ranking == RaceRanking.DEBUT) ^ UmaSoulUtils.hasUmaSoulDebut(stack)))) return false;
+        CompoundTag tag = stack.getOrCreateTag();
+        int last = tag.getInt("last_attend_time");
+        if (this.exclusive) {
+            boolean canAttend = false;
+            for (Year year: this.year) {
+                if (last < year.ordinal() * 24 + this.time) {
+                    canAttend = true;
+                    break;
+                }
+            }
+            if (!canAttend) return false;
+        }
+        if (!this.afterRace.isEmpty()) {
+            CompoundTag attended = tag.getCompound("attended");
+            boolean canAttend = false;
+            for (String key: attended.getAllKeys()){
+                if (this.afterRace.contains(ResourceLocation.tryParse(key))) {
+                    canAttend = true;
+                    break;
+                }
+            }
+            if (!canAttend) return false;
+        }
+        return this.allowStatus.contains(UmaSoulUtils.getGrowth(stack)) && last >= laterThen;
     }
 
     public double getUmaFactorCorrection(ItemStack stack, Level world) {
@@ -164,18 +204,62 @@ public class Race {
         return totalProperties / this.referenceLevel * motivation.getMultiplier() * surfaceFactor * distanceFactor * fieldSituationFactor;
     }
 
+    public boolean isPassed(ItemStack stack, Level world) {
+        ResourceLocation nameLoc = UmaSoulUtils.getName(stack);
+        UmaData umaData = UmapyoiAPI.getUmaDataRegistry(world).getOptional(nameLoc).orElseGet(() -> {
+            Umapyoi.getLogger().info("Warning: {} doesn't exist.", nameLoc);
+            return UmaData.DEFAULT_UMA;
+        });
+        int[] propertiesAsLevel = UmaSoulUtils.getProperty(stack);
+        Position umaPosition = umaData.position();
+        double totalProperties = propertiesAsLevel[0] * (2 - umaPosition.speedFactor) * this.correction[0] + propertiesAsLevel[1]
+                * (2 - umaPosition.staminaFactor) * this.correction[1] + propertiesAsLevel[2] * this.correction[2] +
+                propertiesAsLevel[3] * this.correction[3] + propertiesAsLevel[4] * this.correction[4];
+        Motivations motivation = UmaSoulUtils.getMotivation(stack);
+        return totalProperties * motivation.getMultiplier() >= this.referenceLevel;
+    }
+
     public void followUp(ItemStack stack, Level level) {
-        Umapyoi.getLogger().debug("Tag: {}", this.tags);
-        tags.stream().map(UmapyoiAPI.getRaceTagRegistry(level)::get).filter(Objects::nonNull)
-                .forEach((t) -> t.applyToUmaSoul(stack, this));
+        CompoundTag tag = stack.getOrCreateTag();
+
+        if (this.isPassed(stack, level)) {
+            tags.stream().map(UmapyoiAPI.getRaceTagRegistry(level)::get).filter(Objects::nonNull)
+                    .forEach((t) -> t.applyToUmaSoul(stack, this));
+            ListTag list = tag.contains("won_races", CompoundTag.TAG_LIST) ? tag.getList("won_races", CompoundTag.TAG_STRING) : new ListTag();
+            boolean has = false;
+            for (int i = 0; i < list.size(); i++) {
+                ResourceLocation rl = ResourceLocation.tryParse(list.getString(i));
+                if (rl != null && rl.equals(this.id)) {
+                    has = true;
+                    break;
+                }
+            }
+            if (!has) {
+                list.add(StringTag.valueOf(this.id.toString()));
+            }
+            tag.put("won_races", list);
+        }
+
+        CompoundTag attended = tag.contains("attended", CompoundTag.TAG_COMPOUND) ? tag.getCompound("attended") : new CompoundTag();
+        int count = attended.getInt(this.id.toString()) + 1;
+        attended.putInt(this.id.toString(), count);
+        tag.put("attended", attended);
+
+        int lastAttend = tag.getInt("last_attend_time");
+        this.year.stream().filter(y -> (y.ordinal() * 24 + this.time) > lastAttend).min(Comparator.naturalOrder()).ifPresentOrElse(
+                y -> tag.putInt("last_attend_time", y.ordinal() * 24 + this.time),
+                () -> {
+                    Umapyoi.getLogger().error("Cannot calculate the right time.");
+                    tag.putInt("last_attend_time", lastAttend + 1);
+                }
+        );
+
         if (this.ranking == RaceRanking.DEBUT) {
-            stack.getOrCreateTag().putBoolean("has_debut", true);
+            tag.putBoolean("has_debut", true);
         }
     }
 
     public static class RaceBuilder {
-        private BiFunction<ItemStack, Race, Boolean> pred;
-        private Consumer<ItemStack> follow;
         private RaceRanking ranking;
         private int length;
         private int time;
@@ -185,6 +269,10 @@ public class Race {
         private ResourceLocation field;
         private final Set<Integer> attrCorr;
         private Integer referenceLevel;
+        private boolean exclusive;
+        private Set<Growth> allowStatus;
+        private int later;
+        private Set<ResourceLocation> afterRace;
 
         public RaceBuilder() {
             this.ranking = RaceRanking.DEBUT;
@@ -196,6 +284,10 @@ public class Race {
             this.field = new ResourceLocation(Umapyoi.MODID, "unknown");
             this.attrCorr = new HashSet<>();
             this.referenceLevel = null;
+            this.exclusive = true;
+            this.allowStatus = new HashSet<>(List.of(Growth.TRAINED, Growth.RETIRED));
+            this.later = 0;
+            this.afterRace = new HashSet<>();
         }
 
         public RaceBuilder setLength(int len) {
@@ -261,18 +353,42 @@ public class Race {
             return this;
         }
 
+        public RaceBuilder setAllowStatus(Growth... growth) {
+            this.allowStatus = Arrays.stream(growth).collect(Collectors.toSet());
+            return this;
+        }
+
+        public RaceBuilder addAllowStatus(Growth... growth) {
+            this.allowStatus.addAll(Arrays.stream(growth).toList());
+            return this;
+        }
+
+        public RaceBuilder setExclusive(boolean exclusive) {
+            this.exclusive = exclusive;
+            return this;
+        }
+
+        public RaceBuilder onlyIfLaterThen(int time) {
+            this.later = time;
+            return this;
+        }
+
+        public RaceBuilder onlyIfLaterThen(ResourceLocation... races){
+            this.afterRace.addAll(Arrays.stream(races).toList());
+            return this;
+        }
+
         public Race create(ResourceLocation id) {
             return new Race(id, this.ranking, this.length, this.time, this.year, this.surface, this.tags, this.field,
                     this.attrCorr, Optional.ofNullable(this.referenceLevel).orElseGet(() ->
                         switch (this.ranking) {
-                            case DEBUT -> 5;
-                            case PREOP -> 5;
+                            case DEBUT, PREOP -> 5;
                             case OP -> 15;
                             case GIII -> 25;
                             case GII -> 30;
                             case GI -> 35;
                         }
-            ));
+            ), this.allowStatus, this.exclusive, this.later, this.afterRace);
         }
     }
 }

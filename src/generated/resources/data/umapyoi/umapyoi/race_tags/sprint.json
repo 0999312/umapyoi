@@ -1,5 +1,12 @@
 {
   "id": "umapyoi:sprint",
   "is_unique": true,
-  "max": 2
+  "max": 2,
+  "property_reward": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
 }

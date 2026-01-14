@@ -12,29 +12,37 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.races.Race;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
-public record RaceTag(int maximum, ResourceLocation id, boolean isUnique) {
+public record RaceTag(int maximum, ResourceLocation id, boolean isUnique, int[] propertyReward) {
     public static final Codec<RaceTag> CODEC = RecordCodecBuilder.create(instance -> instance
             .group(
                     Codec.INT.fieldOf("max").forGetter(RaceTag::maximum),
                     ResourceLocation.CODEC.fieldOf("id").forGetter(RaceTag::id),
-                    Codec.BOOL.fieldOf("is_unique").forGetter(RaceTag::isUnique)
+                    Codec.BOOL.fieldOf("is_unique").forGetter(RaceTag::isUnique),
+                    Codec.INT_STREAM.xmap(IntStream::toArray, Arrays::stream)
+                            .optionalFieldOf("property_reward", new int[5])
+                            .forGetter(RaceTag::propertyReward)
             ).apply(instance, RaceTag::new));
 
     public static final ResourceKey<Registry<RaceTag>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(new ResourceLocation(Umapyoi.MODID, "race_tags"));
 
     public boolean applyToUmaSoul(ItemStack soul, Race race) {
+        boolean isFulfill;
         CompoundTag tagRace = soul.getOrCreateTagElement("attend_race_tag");
         if (!this.isUnique) {
             int current = tagRace.contains(this.id.toString(), CompoundTag.TAG_INT) ? tagRace.getInt(id.toString()) : 0;
+            if (current > this.maximum) return false;
             current++;
-            if (current > this.maximum) current = this.maximum;
             tagRace.putInt(this.id.toString(), current);
+            isFulfill = current == this.maximum;
         } else {
             ListTag tagList = tagRace.getList(this.id.toString(), Tag.TAG_STRING);
             int current = tagList.size();
@@ -44,6 +52,13 @@ public record RaceTag(int maximum, ResourceLocation id, boolean isUnique) {
             }
             tagList.add(StringTag.valueOf(race.id.toString()));
             tagRace.put(this.id.toString(), tagList);
+            isFulfill = tagList.size() == this.maximum;
+        }
+        if (isFulfill) {
+            int[] properties = UmaSoulUtils.getProperty(soul);
+            for (int i = 0; i < 5; i++) {
+                properties[i] += this.propertyReward[i];
+            }
         }
         soul.getOrCreateTag().put("attend_race_tag", tagRace);
         return true;

@@ -50,8 +50,7 @@ public class RaceContainer extends AbstractContainerMenu {
 
         @Override
         public boolean mayPlace(@Nonnull ItemStack stack) {
-            if (!stack.is(ItemRegistry.UMA_SOUL.get())) return false;
-            return UmaSoulUtils.getGrowth(stack) == Growth.RETIRED;
+            return stack.is(ItemRegistry.UMA_SOUL.get());
         }
 
         @Override

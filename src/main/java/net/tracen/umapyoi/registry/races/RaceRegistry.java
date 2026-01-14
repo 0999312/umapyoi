@@ -3,7 +3,9 @@ package net.tracen.umapyoi.registry.races;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.Distance;
 import net.tracen.umapyoi.utils.RaceRanking;
 import net.tracen.umapyoi.utils.Surface;
@@ -20,6 +22,8 @@ public class RaceRegistry {
     public static final ResourceKey<Race> DEFAULT = simpleRegister("undetermined_race",
            new RaceBuilder()::create
     );
+
+    // Classic Race
 
     public static final ResourceKey<Race> HAKODATE_JUNIOR_STAKES = simpleRegister("hakodate_junior_stakes",
             new RaceBuilder().setTime(7, true)
@@ -3197,13 +3201,200 @@ public class RaceRegistry {
                     ::create
     );
 
+    // Debut
+
     public static final ResourceKey<Race> MAKE_DEBUT = simpleRegister("make_debut",
             new RaceBuilder().setRanking(RaceRanking.DEBUT)
                     .addYear(Year.JUNIOR)
-                    .setRanking(RaceRanking.DEBUT)
                     .setSurface(Surface.ADAPTIVE)
                     .setLength(Distance.CONST_ADAPTIVE)
                     .setField(CONST_ADAPTIVE)
+                    ::create
+    );
+
+    // Final
+
+    public static final ResourceKey<Race> URA_FINALS = simpleRegister("ura_finals",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.SENIOR)
+                    .setTime(12, true)
+                    .setSurface(Surface.ADAPTIVE)
+                    .setLength(Distance.CONST_ADAPTIVE)
+                    .setField(CONST_ADAPTIVE)
+                    .setExclusive(false)
+                    // .onlyIfLaterThen(71)
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    // Monthly Race
+
+    public static final ResourceKey<Race> TAURUS_CUP = simpleRegister("taurus_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(5, false)
+                    .setSurface(Surface.TURF)
+                    .setField(TOKYO)
+                    .setLength(2400)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> GEMINI_CUP = simpleRegister("gemini_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(6, false)
+                    .setSurface(Surface.TURF)
+                    .setField(KYOTO)
+                    .setLength(3200)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> CANCER_CUP = simpleRegister("cancer_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(7, false)
+                    .setSurface(Surface.TURF)
+                    .setField(TOKYO)
+                    .setLength(1600)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> LEO_CUP = simpleRegister("leo_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(8, false)
+                    .setSurface(Surface.TURF)
+                    .setField(HANSHIN)
+                    .setLength(2200)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+
+    public static final ResourceKey<Race> VIRGO_CUP = simpleRegister("virgo_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(9, false)
+                    .setSurface(Surface.TURF)
+                    .setField(HANSHIN)
+                    .setLength(1600)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> LIBRA_CUP = simpleRegister("libra_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(10, false)
+                    .setSurface(Surface.TURF)
+                    .setField(KYOTO)
+                    .setLength(3000)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> SCORPIO_CUP = simpleRegister("scorpio_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(11, false)
+                    .setSurface(Surface.TURF)
+                    .setField(TOKYO)
+                    .setLength(2000)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> SAGITTARIUS_CUP = simpleRegister("sagittarius_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(12, false)
+                    .setSurface(Surface.TURF)
+                    .setField(NAKAYAMA)
+                    .setLength(2500)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> CAPRICORNUS_CUP = simpleRegister("capriconrnus_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(1, false)
+                    .setSurface(Surface.TURF)
+                    .setField(CHUKYO)
+                    .setLength(1200)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> AQUARIUS_CUP = simpleRegister("aquarius_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(2, false)
+                    .setSurface(Surface.DIRT)
+                    .setField(TOKYO)
+                    .setLength(1600)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> PISCES_CUP = simpleRegister("pisces_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(3, false)
+                    .setSurface(Surface.TURF)
+                    .setField(HANSHIN)
+                    .setLength(3200)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> ARIES_CUP = simpleRegister("aries_cup",
+            new RaceBuilder().setRanking(RaceRanking.GI)
+                    .addYear(Year.AFTER_REGULAR)
+                    .setTime(4, false)
+                    .setSurface(Surface.TURF)
+                    .setField(NAKAYAMA)
+                    .setLength(2000)
+                    .setExclusive(false)
+                    .setAllowStatus(Growth.RETIRED)
+                    .onlyIfLaterThen(URA_FINALS.location())
+                    .setReferenceLevel(30)
                     ::create
     );
 

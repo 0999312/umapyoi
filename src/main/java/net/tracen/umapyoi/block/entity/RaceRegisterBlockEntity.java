@@ -74,7 +74,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     }
 
     protected static boolean umaSoulConstraint(ItemStack stack) {
-        return stack.is(ItemRegistry.UMA_SOUL.get()) && UmaSoulUtils.getGrowth(stack) == Growth.RETIRED;
+        return stack.is(ItemRegistry.UMA_SOUL.get());
     }
 
     protected static boolean raceConstraint(ItemStack stack) {

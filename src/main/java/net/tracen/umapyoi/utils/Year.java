@@ -3,7 +3,7 @@ package net.tracen.umapyoi.utils;
 import com.mojang.serialization.Codec;
 
 public enum Year {
-    JUNIOR, CLASSIC, SENIOR;
+    JUNIOR, CLASSIC, SENIOR, AFTER_REGULAR;
 
     public static final Codec<Year> CODEC = Codec.STRING
             .xmap(string -> Year.valueOf(string.toUpperCase()), instance -> instance.name().toLowerCase());

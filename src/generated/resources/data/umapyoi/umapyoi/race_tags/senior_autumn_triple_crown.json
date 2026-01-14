@@ -1,5 +1,12 @@
 {
   "id": "umapyoi:senior_autumn_triple_crown",
   "is_unique": true,
-  "max": 3
+  "max": 3,
+  "property_reward": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
 }
