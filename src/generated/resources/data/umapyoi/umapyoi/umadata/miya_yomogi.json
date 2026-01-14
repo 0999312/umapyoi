@@ -1,10 +1,22 @@
 {
+  "distance_aptitude": [
+    4,
+    3,
+    2,
+    1
+  ],
   "identifier": "umapyoi:miya_yomogi",
+  "position": "pace_chaser",
   "propertyRate": [
     10,
     0,
     0,
     20,
     20
+  ],
+  "surface_aptitude": [
+    6,
+    5,
+    5
   ]
 }

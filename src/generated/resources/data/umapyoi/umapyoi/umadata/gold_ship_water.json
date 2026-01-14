@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    0,
+    4,
+    6,
+    6
+  ],
   "identifier": "umapyoi:gold_ship",
+  "position": "end_closer",
   "propertyRate": [
     0,
     0,
@@ -7,5 +14,10 @@
     0,
     20
   ],
-  "ranking": "ssr"
+  "ranking": "ssr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    4,
+    6,
+    6,
+    0
+  ],
   "identifier": "umapyoi:copano_rickey",
+  "position": "pace_chaser",
   "propertyRate": [
     0,
     0,
@@ -7,5 +14,10 @@
     0,
     20
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    1,
+    6,
+    5
+  ]
 }

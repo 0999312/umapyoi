@@ -20,6 +20,8 @@ public class ScreensRegistry {
             MenuScreens.register(ContainerRegistry.DISASSEMBLY_BLOCK.get(), DisassemblyBlockScreen::new);
 
             MenuScreens.register(ContainerRegistry.UMA_SELECT_MENU.get(), UmaSelectScreen::new);
+
+            MenuScreens.register(ContainerRegistry.RACE_REGISTER.get(), RaceScreen::new);
         });
     }
 }

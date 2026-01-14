@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    2,
+    6,
+    6,
+    0
+  ],
   "identifier": "umapyoi:vivlos",
+  "position": "late_surger",
   "propertyRate": [
     10,
     0,
@@ -7,5 +14,10 @@
     10,
     20
   ],
-  "ranking": "ssr"
+  "ranking": "ssr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    6,
+    3,
+    0,
+    0
+  ],
   "identifier": "umapyoi:curren_chan",
+  "position": "pace_chaser",
   "propertyRate": [
     10,
     0,
@@ -7,5 +14,10 @@
     0,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    1,
+    5
+  ]
 }

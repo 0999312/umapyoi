@@ -1,10 +1,22 @@
 {
+  "distance_aptitude": [
+    4,
+    3,
+    2,
+    1
+  ],
   "identifier": "umapyoi:shenone_suzuna",
+  "position": "pace_chaser",
   "propertyRate": [
     20,
     10,
     5,
     0,
     10
+  ],
+  "surface_aptitude": [
+    6,
+    5,
+    5
   ]
 }

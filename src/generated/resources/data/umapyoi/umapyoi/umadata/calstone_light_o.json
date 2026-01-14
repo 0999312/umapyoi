@@ -1,4 +1,10 @@
 {
+  "distance_aptitude": [
+    6,
+    3,
+    0,
+    0
+  ],
   "identifier": "umapyoi:calstone_light_o",
   "propertyRate": [
     15,
@@ -7,5 +13,10 @@
     0,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

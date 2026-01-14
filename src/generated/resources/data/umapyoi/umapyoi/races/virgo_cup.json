@@ -1,0 +1,20 @@
+{
+  "after_race": [
+    "umapyoi:ura_finals"
+  ],
+  "allow_status": [
+    "retired"
+  ],
+  "exclusive": false,
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:virgo_cup",
+  "length": 1600,
+  "ranking": "gi",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 17,
+  "year": [
+    "after_regular"
+  ]
+}

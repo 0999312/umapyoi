@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    1
+  ],
+  "field": "umapyoi:tokyo",
+  "id": "umapyoi:copa_republica_argentina",
+  "length": 2500,
+  "ranking": "gii",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 21,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

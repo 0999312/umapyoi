@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    1,
+    2,
+    6,
+    5
+  ],
   "identifier": "umapyoi:tokai_teio",
+  "position": "pace_chaser",
   "propertyRate": [
     20,
     10,
@@ -7,5 +14,10 @@
     0,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    3
+  ],
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:naruo_kinen",
+  "length": 2000,
+  "ranking": "giii",
+  "reference_level": 25,
+  "surface": "turf",
+  "tags": [],
+  "time": 11,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

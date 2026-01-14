@@ -1,0 +1,16 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:niigata",
+  "id": "umapyoi:idaten_stakes",
+  "length": 1000,
+  "ranking": "op",
+  "reference_level": 15,
+  "surface": "turf",
+  "tags": [],
+  "time": 10,
+  "year": [
+    "senior"
+  ]
+}

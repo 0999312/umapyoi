@@ -1,4 +1,16 @@
 {
+  "distance_aptitude": [
+    4,
+    4,
+    4,
+    4
+  ],
   "identifier": "umapyoi:common_uma_a",
-  "ranking": "r"
+  "position": "pace_chaser",
+  "ranking": "r",
+  "surface_aptitude": [
+    4,
+    4,
+    5
+  ]
 }

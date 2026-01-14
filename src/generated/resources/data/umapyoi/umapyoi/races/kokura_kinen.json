@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:kokura",
+  "id": "umapyoi:kokura_kinen",
+  "length": 2000,
+  "ranking": "giii",
+  "reference_level": 25,
+  "surface": "turf",
+  "tags": [],
+  "time": 15,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

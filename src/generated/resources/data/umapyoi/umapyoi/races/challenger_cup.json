@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    3
+  ],
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:challenger_cup",
+  "length": 2000,
+  "ranking": "giii",
+  "reference_level": 25,
+  "surface": "turf",
+  "tags": [],
+  "time": 23,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

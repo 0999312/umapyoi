@@ -37,4 +37,9 @@ public class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<UmaStatueBlockEntity>> UMA_STATUES = BLOCK_ENTITIES
             .register("uma_statues", () -> BlockEntityType.Builder
                     .of(UmaStatueBlockEntity::new, BlockRegistry.UMA_STATUES.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<RaceRegisterBlockEntity>> RACE_REGISTER_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("race_register_block_entity", () -> BlockEntityType.Builder
+                    .of(RaceRegisterBlockEntity::new, BlockRegistry.RACE_REGISTER_BLOCK.get()).build(null));
+    // todo: if cross-version upgrade (e.g. 1.20.1 -> 1.21) is allowed, pDataType must not be null. Remove this if cross-version is not considered.
 }

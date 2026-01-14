@@ -11,6 +11,10 @@ import net.minecraftforge.registries.RegisterEvent;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.recipe.UmasoulIngredient;
 import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
+import net.tracen.umapyoi.registry.races.Field.RaceField;
+import net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry;
+import net.tracen.umapyoi.registry.races.Race;
+import net.tracen.umapyoi.registry.races.Tags.RaceTag;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
@@ -22,6 +26,9 @@ public class DatapackEvents {
         event.dataPackRegistry(UmaData.REGISTRY_KEY, UmaData.CODEC, UmaData.CODEC);
         event.dataPackRegistry(SupportCard.REGISTRY_KEY, SupportCard.CODEC, SupportCard.CODEC);
         event.dataPackRegistry(CosmeticData.REGISTRY_KEY, CosmeticData.CODEC, CosmeticData.CODEC);
+        event.dataPackRegistry(Race.REGISTRY_KEY, Race.CODEC, Race.CODEC);
+        event.dataPackRegistry(RaceField.REGISTRY_KEY, RaceField.CODEC, RaceField.CODEC);
+        event.dataPackRegistry(RaceTag.REGISTRY_KEY, RaceTag.CODEC, RaceTag.CODEC);
     }
 
     @SubscribeEvent

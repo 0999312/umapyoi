@@ -1,0 +1,17 @@
+{
+  "field": "umapyoi:tokyo",
+  "id": "umapyoi:tenno_sho_autumn",
+  "length": 2000,
+  "ranking": "gi",
+  "reference_level": 35,
+  "surface": "turf",
+  "tags": [
+    "umapyoi:eight_great_races",
+    "umapyoi:senior_autumn_triple_crown"
+  ],
+  "time": 20,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

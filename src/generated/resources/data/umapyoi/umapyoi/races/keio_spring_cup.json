@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    1,
+    2
+  ],
+  "field": "umapyoi:tokyo",
+  "id": "umapyoi:keio_spring_cup",
+  "length": 1400,
+  "ranking": "gii",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 9,
+  "year": [
+    "senior"
+  ]
+}

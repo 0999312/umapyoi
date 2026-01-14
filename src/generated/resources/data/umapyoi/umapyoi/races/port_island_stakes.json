@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:port_island_stakes",
+  "length": 1600,
+  "ranking": "op",
+  "reference_level": 15,
+  "surface": "turf",
+  "tags": [],
+  "time": 18,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

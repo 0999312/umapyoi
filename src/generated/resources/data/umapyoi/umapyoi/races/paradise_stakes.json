@@ -1,0 +1,18 @@
+{
+  "attribute_correction": [
+    1,
+    2
+  ],
+  "field": "umapyoi:tokyo",
+  "id": "umapyoi:paradise_stakes",
+  "length": 1400,
+  "ranking": "op",
+  "reference_level": 15,
+  "surface": "turf",
+  "tags": [],
+  "time": 12,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

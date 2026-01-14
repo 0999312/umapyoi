@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    3,
+    3,
+    6,
+    6
+  ],
   "identifier": "umapyoi:mayano_top_gun",
+  "position": "pace_chaser",
   "propertyRate": [
     0,
     20,
@@ -7,5 +14,10 @@
     10,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    2,
+    5
+  ]
 }

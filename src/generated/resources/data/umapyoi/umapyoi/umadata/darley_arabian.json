@@ -1,10 +1,22 @@
 {
+  "distance_aptitude": [
+    7,
+    7,
+    7,
+    7
+  ],
   "identifier": "umapyoi:darley_arabian",
+  "position": "pace_chaser",
   "propertyRate": [
     10,
     10,
     10,
     10,
     10
+  ],
+  "surface_aptitude": [
+    7,
+    7,
+    5
   ]
 }

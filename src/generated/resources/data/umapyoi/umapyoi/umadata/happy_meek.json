@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    4,
+    3,
+    2,
+    1
+  ],
   "identifier": "umapyoi:happy_meek",
+  "position": "pace_chaser",
   "propertyRate": [
     6,
     6,
@@ -7,5 +14,10 @@
     6,
     6
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    5,
+    5
+  ]
 }

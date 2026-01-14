@@ -1,28 +1,29 @@
 package net.tracen.umapyoi;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.collect.Lists;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-import net.tracen.umapyoi.item.FadedUmaSoulItem;
-import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.item.SupportCardItem;
-import net.tracen.umapyoi.item.UmaCostumeItem;
-import net.tracen.umapyoi.item.UmaSoulItem;
+import net.tracen.umapyoi.item.*;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.factors.FactorType;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
-import net.tracen.umapyoi.utils.UmaFactorUtils;
-import net.tracen.umapyoi.utils.UmaSoulUtils;
+import net.tracen.umapyoi.registry.races.Race;
+import net.tracen.umapyoi.registry.races.RaceRegistry;
+import net.tracen.umapyoi.utils.*;
 
 public class UmapyoiCreativeGroup {
 
@@ -59,6 +60,9 @@ public class UmapyoiCreativeGroup {
                                 fillSkillBook(output);
                                 return;
                             }
+                            if (item == ItemRegistry.UMA_RACING_SLIP) {
+                                return;
+                            }
                             output.accept(item.get());
                         });
                     }).build());
@@ -91,6 +95,17 @@ public class UmapyoiCreativeGroup {
                         ItemRegistry.ITEMS.getEntries().forEach(item -> {
                             if (item == ItemRegistry.SUPPORT_CARD) {
                                 fillSupportCard(features, output);
+                                return;
+                            }
+                        });
+                    }).build());
+
+    public static final RegistryObject<CreativeModeTab> UMAPYOI_RACESLIPS = CREATIVE_MODE_TABS.register("umapyoi_raceslips",
+            () -> CreativeModeTab.builder().icon(ItemRegistry.UMA_RACING_SLIP.get()::getDefaultInstance)
+                    .title(Component.translatable("itemGroup.umapyoi.race_slips")).displayItems((features, output) -> {
+                        ItemRegistry.ITEMS.getEntries().forEach(item -> {
+                            if (item == ItemRegistry.UMA_RACING_SLIP) {
+                                fillSlip(features, output);
                                 return;
                             }
                         });
@@ -160,5 +175,15 @@ public class UmapyoiCreativeGroup {
             result.getOrCreateTag().putString("skill", skill.toString());
             output.accept(result);
         }
+    }
+
+    private static void fillSlip(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
+        UmaRacingSlipItem.sortedRaceList(features.holders()).forEachOrdered(race -> {
+            Umapyoi.getLogger().debug("{}", race.key());
+            if (race.key().location().equals(RaceRegistry.DEFAULT.location())) return;
+            ItemStack result = ItemRegistry.UMA_RACING_SLIP.get().getDefaultInstance();
+            result.getOrCreateTag().putString("race", race.key().location().toString());
+            output.accept(result);
+        });
     }
 }

@@ -1,4 +1,10 @@
 {
+  "distance_aptitude": [
+    1,
+    6,
+    5,
+    5
+  ],
   "identifier": "umapyoi:gold_city",
   "propertyRate": [
     10,
@@ -7,5 +13,10 @@
     0,
     15
   ],
-  "ranking": "ssr"
+  "ranking": "ssr",
+  "surface_aptitude": [
+    6,
+    3,
+    5
+  ]
 }

@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    1,
+    4,
+    6,
+    4
+  ],
   "identifier": "umapyoi:admire_vega",
+  "position": "end_closer",
   "propertyRate": [
     10,
     0,
@@ -7,5 +14,10 @@
     0,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

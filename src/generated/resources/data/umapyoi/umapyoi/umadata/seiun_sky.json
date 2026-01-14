@@ -1,4 +1,10 @@
 {
+  "distance_aptitude": [
+    0,
+    4,
+    6,
+    6
+  ],
   "identifier": "umapyoi:seiun_sky",
   "propertyRate": [
     0,
@@ -7,5 +13,10 @@
     0,
     20
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

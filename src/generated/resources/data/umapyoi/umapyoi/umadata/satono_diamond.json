@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    0,
+    4,
+    6,
+    6
+  ],
   "identifier": "umapyoi:satono_diamond",
+  "position": "late_surger",
   "propertyRate": [
     0,
     15,
@@ -7,5 +14,10 @@
     0,
     15
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

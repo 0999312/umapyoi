@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:fukushima",
+  "id": "umapyoi:fukushima_minyu_cup",
+  "length": 1700,
+  "ranking": "op",
+  "reference_level": 15,
+  "surface": "dirt",
+  "tags": [],
+  "time": 22,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

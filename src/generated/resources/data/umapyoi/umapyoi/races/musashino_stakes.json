@@ -1,0 +1,18 @@
+{
+  "attribute_correction": [
+    0,
+    1
+  ],
+  "field": "umapyoi:tokyo",
+  "id": "umapyoi:musashino_stakes",
+  "length": 1600,
+  "ranking": "giii",
+  "reference_level": 25,
+  "surface": "dirt",
+  "tags": [],
+  "time": 21,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

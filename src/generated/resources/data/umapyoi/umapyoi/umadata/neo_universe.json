@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    1,
+    5,
+    6,
+    5
+  ],
   "identifier": "umapyoi:neo_universe",
+  "position": "pace_chaser",
   "propertyRate": [
     0,
     0,
@@ -7,5 +14,10 @@
     0,
     30
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:kyoto",
+  "id": "umapyoi:kyoto_daishoten",
+  "length": 2400,
+  "ranking": "gii",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 19,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}

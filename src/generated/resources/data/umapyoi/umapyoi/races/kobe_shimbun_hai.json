@@ -1,0 +1,16 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:kobe_shimbun_hai",
+  "length": 2400,
+  "ranking": "gii",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 18,
+  "year": [
+    "classic"
+  ]
+}

@@ -1,5 +1,12 @@
 {
+  "distance_aptitude": [
+    6,
+    5,
+    1,
+    0
+  ],
   "identifier": "umapyoi:hishi_akebono",
+  "position": "pace_chaser",
   "propertyRate": [
     0,
     0,
@@ -7,5 +14,10 @@
     10,
     0
   ],
-  "ranking": "sr"
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    1,
+    5
+  ]
 }

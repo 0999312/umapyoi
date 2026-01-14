@@ -1,4 +1,16 @@
 {
+  "distance_aptitude": [
+    4,
+    4,
+    4,
+    4
+  ],
   "identifier": "umapyoi:common_uma_b",
-  "ranking": "r"
+  "position": "late_surger",
+  "ranking": "r",
+  "surface_aptitude": [
+    4,
+    4,
+    5
+  ]
 }
