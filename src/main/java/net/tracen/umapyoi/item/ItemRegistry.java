@@ -55,6 +55,12 @@ public class ItemRegistry {
     public static final RegistryObject<Item> RACE_REGISTER_BLOCK = register("race_register_block",
             () -> new BlockItem(BlockRegistry.RACE_REGISTER_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
+    public static final RegistryObject<Item> DERBY_STALLION_TABLE = register("derby_stallion_table",
+            () -> new BlockItem(BlockRegistry.DERBY_STALLION_TABLE.get(), Umapyoi.defaultItemProperties()));
+
+    public static final RegistryObject<Item> FACTOR_RESEARCH_TABLE = register("factor_research_table",
+            () -> new BlockItem(BlockRegistry.FACTOR_RESEARCH_TABLE.get(), Umapyoi.defaultItemProperties()));
+
     public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul", FadedUmaSoulItem::new);
     public static final RegistryObject<Item> UMA_SOUL_DISPLAY = register("uma_soul_display", ItemRegistry::newMaterial);
     public static final RegistryObject<Item> UMA_SOUL = register("uma_soul", UmaSoulItem::new);

@@ -65,7 +65,7 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
                 return super.mayPlace(pStack) && pStack.is(UMA_FACTOR_ITEM.get());
             }
         });
-        outputSlots = IntStream.range(0, 9).mapToObj(i -> new Slot(this.resultSlots, i, 8 + i * 18, 62) {
+        outputSlots = IntStream.range(0, 9).mapToObj(i -> new Slot(this.resultSlots, i, 62 + (i % 3) * 18, 62 + (i / 3) * 18) {
             public boolean mayPlace(@Nonnull ItemStack pStack) {
                 return false;
             }
@@ -83,12 +83,12 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(pPlayerInventory, j + i * 9 + 9, 8 + j * 18, 104 + i * 18));
+                this.addSlot(new Slot(pPlayerInventory, j + i * 9 + 7, 8 + j * 18, 134 + i * 18));
             }
         }
 
         for (int k = 0; k < 9; ++k) {
-            this.addSlot(new Slot(pPlayerInventory, k, 8 + k * 18, 162));
+            this.addSlot(new Slot(pPlayerInventory, k, 8 + k * 18, 192));
         }
 
         this.addDataSlot(this.factorSeed).set(this.player.getEnchantmentSeed());

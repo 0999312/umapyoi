@@ -17,7 +17,7 @@ public class DerbyStallionScreen extends AbstractContainerScreen<DerbyStallionMe
         this.leftPos = 0;
         this.topPos = 0;
         this.imageWidth = 176;
-        this.imageHeight = 186;
+        this.imageHeight = 216;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class DerbyStallionScreen extends AbstractContainerScreen<DerbyStallionMe
             return;
         }
         graphic.blit(BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-        graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 15, this.topPos + 23, 0, 93, 25, 28, 128, 128);
+        graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 15, this.topPos + 23, 88, 93, 25, 28, 128, 128);
 
         if (this.menu.getSlot(0).hasItem() && (!this.menu.getSlot(1).hasItem() || this.menu.isTaking()))
             graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 80, this.topPos + 37, 176, 0, 19, 25);
