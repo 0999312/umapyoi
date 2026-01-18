@@ -33,12 +33,8 @@ import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.container.RaceContainer;
 import net.tracen.umapyoi.inventory.UniversalIOItemHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.registry.races.Field.RaceField;
 import net.tracen.umapyoi.registry.races.Race;
-import net.tracen.umapyoi.registry.races.RaceRegistry;
-import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.RaceRanking;
-import net.tracen.umapyoi.utils.UmaSoulUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;

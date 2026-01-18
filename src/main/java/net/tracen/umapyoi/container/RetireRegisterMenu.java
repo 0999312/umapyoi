@@ -83,9 +83,8 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         if (inputSoul.getItem() instanceof UmaSoulItem) {
             UmaSoulUtils.setGrowth(inputSoul, Growth.RETIRED);
             this.inputSlots.setItem(0, inputSoul);
-            this.access.execute((level, pos) -> {
-                player.playSound(SoundEvents.PLAYER_LEVELUP, 1F, 1F);
-            });
+            if (player.level().isClientSide())
+                player.playSound(SoundEvents.PLAYER_LEVELUP, 1, 1);
         }
     }
     

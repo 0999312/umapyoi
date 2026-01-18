@@ -13,10 +13,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.RaceRegisterBlockEntity;
-import net.tracen.umapyoi.block.entity.TrainingFacilityBlockEntity;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.registry.umadata.Growth;
-import net.tracen.umapyoi.utils.UmaSoulUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
