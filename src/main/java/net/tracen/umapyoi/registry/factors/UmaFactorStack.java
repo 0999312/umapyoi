@@ -74,6 +74,13 @@ public class UmaFactorStack {
         return false;
     }
 
+    public boolean equalsFactorStackIgnoreVersion(UmaFactorStack other) {
+        if (other == this) return true;
+        if (other == null) return false;
+        UmaFactor thisFactor = this.factor;
+        return this.factor.withStackEquals(this, other);
+    }
+
     @Override
     public int hashCode() {
         int code = 31 * Integer.hashCode(getLevel()) + UmaFactorRegistry.REGISTRY.get().getKey(this.getFactor()).hashCode();

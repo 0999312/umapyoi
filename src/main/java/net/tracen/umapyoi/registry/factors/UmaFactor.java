@@ -84,4 +84,12 @@ public class UmaFactor{
     public String getDetailDescriptionId() {
         return this.getOrCreateDescriptionDetail();
     }
+
+    public boolean withStackEquals(UmaFactorStack left, UmaFactorStack right) {
+        return left.getFactor() == right.getFactor();
+    }
+
+    public int hashCode(UmaFactorStack stack) {
+        return this.hashCode();
+    }
 }

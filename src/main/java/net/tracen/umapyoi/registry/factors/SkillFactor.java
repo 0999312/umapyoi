@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.registry.factors;
 
+import java.util.Objects;
 import java.util.Random;
 
 import net.minecraft.network.chat.Component;
@@ -49,4 +50,17 @@ public class SkillFactor extends UmaFactor {
         return super.getDescription(stack);
     }
 
+    @Override
+    public boolean withStackEquals(UmaFactorStack left, UmaFactorStack right) {
+        return super.withStackEquals(left, right) &&
+                Objects.equals(ResourceLocation.tryParse(left.getOrCreateTag().getString("skill")), ResourceLocation.tryParse(right.getOrCreateTag().getString("skill")));
+    }
+
+    @Override
+    public int hashCode(UmaFactorStack stack) {
+        return Objects.hash(
+                super.hashCode(stack),
+                ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"))
+        );
+    }
 }

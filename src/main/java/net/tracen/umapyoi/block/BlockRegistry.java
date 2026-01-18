@@ -36,6 +36,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block> UMA_SELECT_BLOCK = BLOCKS.register("uma_select_block",
             UmaSelectBlock::new);
 
+    public static final RegistryObject<Block> DERBY_STALLION_TABLE = BLOCKS.register("derby_stallion_table",
+            DerbyStallionTableBlock::new);
+
+    public static final RegistryObject<Block> FACTOR_RESEARCH_TABLE = BLOCKS.register("factor_research_table",
+            FactorResearchTableBlock::new);
+
     public static final RegistryObject<Block> RACE_REGISTER_BLOCK = BLOCKS.register("race_register",
             RaceRegisterBlock::new);
 }
