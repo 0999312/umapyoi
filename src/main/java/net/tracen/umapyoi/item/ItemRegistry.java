@@ -11,6 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
+import net.tracen.umapyoi.item.factor.FactorReport;
 import net.tracen.umapyoi.item.factor.UmaFactorContainerItem;
 import net.tracen.umapyoi.item.food.EnergyDrinkMethods;
 import net.tracen.umapyoi.item.food.UmaDrinkItem;
@@ -189,6 +190,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> NAGINATA = register("naginata", GrassNaginataItem::new);
 
     public static final RegistryObject<Item> BASEBALL_BAT = register("baseball_bat", BaseballBatItem::new);
+
+    public static final RegistryObject<Item> FACTOR_REPORT = register("factor_report", FactorReport::new);
 
     private static <V extends Item> RegistryObject<V> register(String name, Supplier<V> item) {
         return ITEMS.register(name, item);

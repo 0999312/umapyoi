@@ -7,6 +7,8 @@ import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 import net.tracen.umapyoi.utils.UmaSkillUtils;
 
+import java.util.Objects;
+
 public class UniqueSkillFactor extends UmaFactor {
 
     public UniqueSkillFactor() {
@@ -39,4 +41,17 @@ public class UniqueSkillFactor extends UmaFactor {
         return Component.empty();
     }
 
+    @Override
+    public boolean withStackEquals(UmaFactorStack left, UmaFactorStack right) {
+        return super.withStackEquals(left, right) &&
+                Objects.equals(ResourceLocation.tryParse(left.getOrCreateTag().getString("skill")), ResourceLocation.tryParse(right.getOrCreateTag().getString("skill")));
+    }
+
+    @Override
+    public int hashCode(UmaFactorStack stack) {
+        return Objects.hash(
+                super.hashCode(stack),
+                ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"))
+        );
+    }
 }
