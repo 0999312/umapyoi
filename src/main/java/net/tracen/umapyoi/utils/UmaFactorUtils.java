@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
+import net.minecraft.util.Mth;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 
@@ -33,5 +34,24 @@ public class UmaFactorUtils {
         });
 
         return list;
+    }
+
+    public static UmaFactorStack cloneWithLevel(UmaFactorStack orig, int level, boolean forced) {
+        UmaFactorStack stack = new UmaFactorStack(orig.getFactor(), forced ? level : Mth.clamp(level, 1, orig.getFactor().getMaxLevel()));
+        stack.setTag(orig.getTag());
+        return stack;
+    }
+
+    public static UmaFactorStack merge(UmaFactorStack left, UmaFactorStack right) {
+        assert left.getFactor().withStackEquals(left, right);
+        CompoundTag tagLeft = left.getOrCreateTag().copy();
+        CompoundTag finalTag = tagLeft.merge(right.getOrCreateTag());
+        int level = Math.min(
+                left.getLevel() == right.getLevel() ? left.getLevel() + 1 : (Math.max(left.getLevel(), right.getLevel())),
+                left.getFactor().getMaxLevel()
+        );
+        UmaFactorStack rStack = new UmaFactorStack(left.getFactor(), level);
+        rStack.setTag(finalTag);
+        return rStack;
     }
 }

@@ -40,5 +40,4 @@ public class ExtraStatusFactor extends UmaFactor {
     public Component getDescription(UmaFactorStack stack) {
         return this.getFullDescription(stack.getLevel());
     }
-
 }
