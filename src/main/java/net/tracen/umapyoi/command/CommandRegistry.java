@@ -23,7 +23,7 @@ import net.tracen.umapyoi.command.utils.IntWithDefault;
 public class CommandRegistry {
     public static final DeferredRegister<ArgumentTypeInfo<?, ?>> ARGUMENT_TYPES = DeferredRegister.create(ForgeRegistries.COMMAND_ARGUMENT_TYPES, Umapyoi.MODID);
     public static final RegistryObject<ArgumentTypeInfo<?, ?>> INT_WITH_DEFAULT =
-            ARGUMENT_TYPES.register("int_with_defult", () -> ArgumentTypeInfos.registerByClass(IntWithDefault.class, IntWithDefault.IntWithDefaultArgumentInfo.INSTANCE));
+            ARGUMENT_TYPES.register("int_with_default", () -> ArgumentTypeInfos.registerByClass(IntWithDefault.class, IntWithDefault.IntWithDefaultArgumentInfo.INSTANCE));
 
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
