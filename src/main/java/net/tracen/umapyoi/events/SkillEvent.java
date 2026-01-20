@@ -40,11 +40,18 @@ public abstract class SkillEvent extends Event {
     public static class UseSkillEvent extends SkillEvent {
         private final Level level;
         private final Player user;
+        private int ap;
 
-        public UseSkillEvent(ResourceLocation skill, Level level, Player user) {
+        public UseSkillEvent(ResourceLocation skill, Level level, Player user, int ap) {
             super(skill);
             this.level = level;
             this.user = user;
+            this.ap = ap;
+        }
+
+        // Left for old api capabilities. DO NOT USE.
+        public UseSkillEvent(ResourceLocation skill, Level level, Player user) {
+            this(skill, level, user, UmaSkillRegistry.REGISTRY.get().getValue(skill).getActionPoint());
         }
 
         public Level getLevel() {
@@ -53,6 +60,14 @@ public abstract class SkillEvent extends Event {
 
         public Player getPlayer() {
             return user;
+        }
+
+        public void setAp(int ap) {
+            this.ap = ap;
+        }
+
+        public int getAp() {
+            return this.ap;
         }
     }
 

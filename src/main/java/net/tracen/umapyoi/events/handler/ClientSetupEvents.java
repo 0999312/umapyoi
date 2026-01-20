@@ -5,8 +5,10 @@ import java.util.Map;
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,6 +38,7 @@ import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaPedestalBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaStatuesBlockRender;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.utils.GachaRanking;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -109,4 +112,23 @@ public class ClientSetupEvents {
 		event.registerBelowAll("umapyoi.action_bar", ActionBarOverlay.INSTANCE);
 	}
 
+	@SubscribeEvent
+	public static void registerItemPredicates(FMLClientSetupEvent event) {
+		event.enqueueWork(() -> {
+			Umapyoi.getLogger().debug("Start predication register");
+			ItemProperties.register(
+					ItemRegistry.SUPPORT_CARD.get(),
+					new ResourceLocation(Umapyoi.MODID, "ranking"),
+					(stack, world, entity, seed) -> {
+						CompoundTag tag = stack.getOrCreateTag();
+						if (!tag.contains("ranking", CompoundTag.TAG_STRING)) return -1;
+						try {
+							return GachaRanking.valueOf(tag.getString("ranking").toUpperCase()).ordinal();
+						} catch (IllegalArgumentException ignore) {
+							return -1;
+						}
+					}
+			);
+		});
+	}
 }
