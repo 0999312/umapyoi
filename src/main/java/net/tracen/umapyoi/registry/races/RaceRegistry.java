@@ -3240,6 +3240,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3254,6 +3255,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3268,6 +3270,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3282,6 +3285,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3297,6 +3301,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3311,6 +3316,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3325,6 +3331,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3339,6 +3346,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3353,6 +3361,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3367,6 +3376,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3381,6 +3391,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 
@@ -3395,6 +3406,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(-2f)
                     ::create
     );
 

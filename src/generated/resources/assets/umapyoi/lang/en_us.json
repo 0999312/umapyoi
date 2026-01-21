@@ -436,10 +436,5 @@
   "umastatus.level.6": "§dE+",
   "umastatus.level.7": "§bD",
   "umastatus.level.8": "§bD+",
-  "umastatus.level.9": "§aC",
-  "tooltip.umapyoi.race.tier.hint": "Rank: ",
-  "tooltip.umapyoi.race.distance": "Distance",
-  "tooltip.umapyoi.race.unit": "m",
-  "container.umapyoi.race": "Race Field",
-  "itemGroup.umapyoi.race_slips": "Race Slips"
+  "umastatus.level.9": "§aC"
 }

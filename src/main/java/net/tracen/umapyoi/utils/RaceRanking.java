@@ -6,17 +6,19 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 
 public enum RaceRanking {
-    DEBUT(ChatFormatting.GREEN),
-    PREOP(ChatFormatting.YELLOW),
-    OP(ChatFormatting.GOLD),
-    GIII(ChatFormatting.DARK_GREEN),
-    GII(ChatFormatting.LIGHT_PURPLE),
-    GI(ChatFormatting.BLUE);
+    DEBUT(ChatFormatting.GREEN, "common"),
+    PREOP(ChatFormatting.YELLOW, "common"),
+    OP(ChatFormatting.GOLD, "common"),
+    GIII(ChatFormatting.DARK_GREEN, "common"),
+    GII(ChatFormatting.LIGHT_PURPLE, "g2"),
+    GI(ChatFormatting.BLUE, "g1");
 
     public final ChatFormatting color;
+    public final String textureSuffix;
 
-    RaceRanking(ChatFormatting color) {
+    RaceRanking(ChatFormatting color, String textureSuffix) {
         this.color = color;
+        this.textureSuffix = textureSuffix;
     }
 
     public static final Codec<RaceRanking> CODEC = Codec.STRING

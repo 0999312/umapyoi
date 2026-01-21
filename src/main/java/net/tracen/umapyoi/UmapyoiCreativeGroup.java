@@ -54,7 +54,7 @@ public class UmapyoiCreativeGroup {
                                 fillSkillBook(output);
                                 return;
                             }
-                            if (item == ItemRegistry.UMA_RACING_SLIP) {
+                            if (item == ItemRegistry.UMA_RACE_TICKET) {
                                 return;
                             }
                             output.accept(item.get());
@@ -94,12 +94,12 @@ public class UmapyoiCreativeGroup {
                         });
                     }).build());
 
-    public static final RegistryObject<CreativeModeTab> UMAPYOI_RACESLIPS = CREATIVE_MODE_TABS.register("umapyoi_raceslips",
-            () -> CreativeModeTab.builder().icon(ItemRegistry.UMA_RACING_SLIP.get()::getDefaultInstance)
-                    .title(Component.translatable("itemGroup.umapyoi.race_slips")).displayItems((features, output) -> {
+    public static final RegistryObject<CreativeModeTab> UMAPYOI_RACETICKETS = CREATIVE_MODE_TABS.register("umapyoi_racetickets",
+            () -> CreativeModeTab.builder().icon(ItemRegistry.UMA_RACE_TICKET.get()::getDefaultInstance)
+                    .title(Component.translatable("itemGroup.umapyoi.race_tickets")).displayItems((features, output) -> {
                         ItemRegistry.ITEMS.getEntries().forEach(item -> {
-                            if (item == ItemRegistry.UMA_RACING_SLIP) {
-                                fillSlip(features, output);
+                            if (item == ItemRegistry.UMA_RACE_TICKET) {
+                                fillTicket(features, output);
                                 return;
                             }
                         });
@@ -171,11 +171,11 @@ public class UmapyoiCreativeGroup {
         }
     }
 
-    private static void fillSlip(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
-        UmaRacingSlipItem.sortedRaceList(features.holders()).forEachOrdered(race -> {
+    private static void fillTicket(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
+        UmaRaceTicketItem.sortedRaceList(features.holders()).forEachOrdered(race -> {
             Umapyoi.getLogger().debug("{}", race.key());
             if (race.key().location().equals(RaceRegistry.DEFAULT.location())) return;
-            ItemStack result = ItemRegistry.UMA_RACING_SLIP.get().getDefaultInstance();
+            ItemStack result = ItemRegistry.UMA_RACE_TICKET.get().getDefaultInstance();
             result.getOrCreateTag().putString("race", race.key().location().toString());
             output.accept(result);
         });

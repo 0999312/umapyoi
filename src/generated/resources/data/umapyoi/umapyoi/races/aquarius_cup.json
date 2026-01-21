@@ -13,6 +13,7 @@
   "reference_level": 30,
   "surface": "dirt",
   "tags": [],
+  "texture_predicate_override": 6.0,
   "time": 3,
   "year": [
     "after_regular"
