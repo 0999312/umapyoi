@@ -13,14 +13,14 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 
 public class UmaDrinkItem extends ItemDrinkBase {
-    private final Consumer<ItemStack> consumer;
+    private final Consumer<LivingEntity> consumer;
 
-    public UmaDrinkItem(Consumer<ItemStack> consumer, FoodInfo info) {
+    public UmaDrinkItem(Consumer<LivingEntity> consumer, FoodInfo info) {
         super(Umapyoi.defaultItemProperties(), info);
         this.consumer = consumer;
     }
     
-    public UmaDrinkItem(Item.Properties properties, Consumer<ItemStack> consumer, FoodInfo info) {
+    public UmaDrinkItem(Item.Properties properties, Consumer<LivingEntity> consumer, FoodInfo info) {
         super(properties, info);
         this.consumer = consumer;
 	}
@@ -50,7 +50,7 @@ public class UmaDrinkItem extends ItemDrinkBase {
                     stack.shrink(1);
                 return stack;
             } else {
-                this.consumer.accept(UmapyoiAPI.getUmaSoul(player));
+                this.consumer.accept(player);
             }
         }
         return entity.eat(level, stack);

@@ -47,15 +47,17 @@ public class UseSkillPacket {
                     player.displayClientMessage(Component.translatable("umapyoi.unknown_skill"), true);
                     return;
                 }
-                if (MinecraftForge.EVENT_BUS
-                        .post(new SkillEvent.UseSkillEvent(selectedSkillName, player.level(), player)))
-                    return;
                 int ap = UmaSoulUtils.getActionPoint(umaSoul);
-                if (ap >= selectedSkill.getActionPoint()) {
+                SkillEvent.UseSkillEvent evt = new SkillEvent.UseSkillEvent(selectedSkillName, player.level(), player, selectedSkill.getActionPoint());
+                if (MinecraftForge.EVENT_BUS
+                        .post(evt))
+                    return;
+                int apNeeded = evt.getAp();
+                if (ap >= apNeeded) {
                     player.connection.send(new ClientboundSoundPacket(ForgeRegistries.SOUND_EVENTS.getHolder(selectedSkill.getSound()).get(), SoundSource.PLAYERS,
                             player.getX(), player.getY(), player.getZ(), 1F, 1F, player.getRandom().nextLong()));
                     selectedSkill.applySkill(player.level(), player);
-                    UmaSoulUtils.setActionPoint(umaSoul, ap - selectedSkill.getActionPoint());
+                    UmaSoulUtils.setActionPoint(umaSoul, ap - apNeeded);
                     MinecraftForge.EVENT_BUS.post(
                             new SkillEvent.ApplySkillEvent(UmaSkillRegistry.REGISTRY.get().getKey(selectedSkill), player.level(), player));
                 } else {

@@ -1,6 +1,32 @@
 {
   "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "umapyoi:item/support_card_r",
+      "predicate": {
+        "umapyoi:ranking": 0.0
+      }
+    },
+    {
+      "model": "umapyoi:item/support_card_sr",
+      "predicate": {
+        "umapyoi:ranking": 1.0
+      }
+    },
+    {
+      "model": "umapyoi:item/support_card_ssr",
+      "predicate": {
+        "umapyoi:ranking": 2.0
+      }
+    },
+    {
+      "model": "umapyoi:item/support_card_easter_egg",
+      "predicate": {
+        "umapyoi:ranking": 3.0
+      }
+    }
+  ],
   "textures": {
-    "layer0": "umapyoi:item/support_card"
+    "layer0": "umapyoi:item/support_card_ssr"
   }
 }

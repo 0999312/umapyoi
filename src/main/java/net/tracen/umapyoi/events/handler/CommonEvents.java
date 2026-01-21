@@ -1,6 +1,7 @@
 package net.tracen.umapyoi.events.handler;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -44,8 +45,13 @@ public class CommonEvents {
         if (event.getAmount() < UmapyoiConfig.DAMAGE_MOTIVATION_EFFECT.get())
             return;
         if (UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get() > 0) {
-            if (entityLiving.level().getRandom().nextDouble() <= UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get())
+            if (entityLiving.level().getRandom().nextDouble() <= UmapyoiConfig.CHANCE_MOTIVATION_EFFECT.get()) {
+                if (entityLiving.hasEffect(MobEffectRegistry.MOOD_BONUS.get())) {
+                    entityLiving.removeEffect(MobEffectRegistry.MOOD_BONUS.get());
+                    return;
+                }
                 entityLiving.addEffect(new MobEffectInstance(MobEffectRegistry.PANICKING.get(), 3600));
+            }
         }
 
     }

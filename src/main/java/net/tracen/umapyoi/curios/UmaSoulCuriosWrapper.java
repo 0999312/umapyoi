@@ -131,18 +131,22 @@ public class UmaSoulCuriosWrapper implements ICurio {
         var retiredValue = UmaSoulUtils.getGrowth(getStack()) == Growth.RETIRED ? 1.0D : 0.25D;
         var propertyRate = 1.0D + (UmaSoulUtils.getPropertyRate(this.getStack())[num] / 100.0D);
         var totalProperty = propertyPercentage(num);
-        SettingPropertyEvent event = new SettingPropertyEvent(user, this.getStack(), retiredValue, propertyRate, totalProperty);
+        SettingPropertyEvent event = new SettingPropertyEvent(user, this.getStack(), retiredValue, propertyRate, totalProperty, status);
         MinecraftForge.EVENT_BUS.post(event);
         return event.getResultProperty() * limit;
     }
 
+    public static double propertyPercentageByValue(int x) {
+        var statLimit = UmapyoiConfig.STAT_LIMIT_VALUE.get();
+        var denominator = 1 + Math.pow(Math.E,
+                (x > statLimit ? (-0.125 * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get()) : -0.125) *
+                        (x - statLimit)
+        );
+        return 1 / denominator;
+    }
+
     private double propertyPercentage(int num) {
         var x = UmaSoulUtils.getProperty(this.getStack())[num];
-        var statLimit = UmapyoiConfig.STAT_LIMIT_VALUE.get();
-        var denominator = 1 + Math.pow(Math.E, 
-                (x > statLimit ? (-0.125 * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get()) : -0.125) * 
-                (x - statLimit)
-                );
-        return 1 / denominator;
+        return propertyPercentageByValue(x);
     }
 }

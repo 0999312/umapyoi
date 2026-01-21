@@ -11,4 +11,5 @@ public class MobEffectRegistry {
             Umapyoi.MODID);
 
     public static final RegistryObject<MobEffect> PANICKING = EFFECTS.register("panicking", PanickingEffect::new);
+    public static final RegistryObject<MobEffect> MOOD_BONUS = EFFECTS.register("mood_bonus", MoodBonus::new);
 }
