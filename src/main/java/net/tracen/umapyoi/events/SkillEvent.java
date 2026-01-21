@@ -50,6 +50,7 @@ public abstract class SkillEvent extends Event {
         }
 
         // Left for old api capabilities. DO NOT USE.
+        @Deprecated
         public UseSkillEvent(ResourceLocation skill, Level level, Player user) {
             this(skill, level, user, UmaSkillRegistry.REGISTRY.get().getValue(skill).getActionPoint());
         }
