@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.tracen.umapyoi.advancements.trigger.TriggerRegistry;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.command.CommandRegistry;
@@ -60,6 +61,7 @@ public class Umapyoi {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(NetPacketHandler::registerMessage);
+        TriggerRegistry.registerAll(event);
     }
     
     private void onEntityAttributeModification(final EntityAttributeModificationEvent event) {
