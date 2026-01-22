@@ -143,7 +143,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> SKILL_BOOK = register("skill_book", SkillBookItem::new);
 
     public static final RegistryObject<Item> SUPPORT_CARD = register("support_card", SupportCardItem::new);
-    public static final RegistryObject<Item> UMA_RACING_SLIP = register("race_slip", UmaRacingSlipItem::new);
+    public static final RegistryObject<Item> UMA_RACE_TICKET = register("race_ticket", UmaRaceTicketItem::new);
 
     public static final RegistryObject<Item> HACHIMI_MID = register("hachimi_mid",
             () -> new UmaDrinkItem(UmaStatusUtils::addMotivation,

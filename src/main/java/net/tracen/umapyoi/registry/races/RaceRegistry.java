@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.function.Function;
 
 public class RaceRegistry {
+    public static final float PREDICATE_CHALLENGES = -2;
+    
     public static final ResourceKey<Race> DEFAULT = simpleRegister("undetermined_race",
            new RaceBuilder()::create
     );
@@ -3240,6 +3242,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3254,6 +3257,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3268,6 +3272,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3282,6 +3287,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3297,6 +3303,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3311,6 +3318,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3325,6 +3333,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3339,6 +3348,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3353,6 +3363,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3367,6 +3378,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3381,6 +3393,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 
@@ -3395,6 +3408,7 @@ public class RaceRegistry {
                     .setAllowStatus(Growth.RETIRED)
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
+                    .setTexture(PREDICATE_CHALLENGES)
                     ::create
     );
 

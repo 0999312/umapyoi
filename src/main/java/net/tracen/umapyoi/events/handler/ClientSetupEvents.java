@@ -38,6 +38,8 @@ import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaPedestalBlockRender;
 import net.tracen.umapyoi.client.renderer.blockentity.UmaStatuesBlockRender;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.UmaRaceTicketItem;
+import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.utils.GachaRanking;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
@@ -59,15 +61,15 @@ public class ClientSetupEvents {
 			CuriosRendererRegistry.register(ItemRegistry.UMA_COSTUME.get(), UmaCostumeRenderer::new);
 		});
 		event.enqueueWork(() -> {
-		BlockEntityRenderers.register(BlockEntityRegistry.THREE_GODDESS.get(), ThreeGoddessBlockRender::new);
-		BlockEntityRenderers.register(BlockEntityRegistry.UMA_PEDESTAL.get(), UmaPedestalBlockRender::new);
-		BlockEntityRenderers.register(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
-				SupportAlbumPedestalBlockRender::new);
+			BlockEntityRenderers.register(BlockEntityRegistry.THREE_GODDESS.get(), ThreeGoddessBlockRender::new);
+			BlockEntityRenderers.register(BlockEntityRegistry.UMA_PEDESTAL.get(), UmaPedestalBlockRender::new);
+			BlockEntityRenderers.register(BlockEntityRegistry.SUPPORT_ALBUM_PEDESTAL.get(),
+					SupportAlbumPedestalBlockRender::new);
 
-		BlockEntityRenderers.register(BlockEntityRegistry.UMA_STATUES.get(), UmaStatuesBlockRender::new);
-		BlockEntityRenderers.register(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), SilverUmaPedestalBlockRender::new);
-		BlockEntityRenderers.register(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
-				SilverSupportAlbumPedestalBlockRender::new);
+			BlockEntityRenderers.register(BlockEntityRegistry.UMA_STATUES.get(), UmaStatuesBlockRender::new);
+			BlockEntityRenderers.register(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), SilverUmaPedestalBlockRender::new);
+			BlockEntityRenderers.register(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
+					SilverSupportAlbumPedestalBlockRender::new);
 		});
 	}
 
@@ -127,6 +129,17 @@ public class ClientSetupEvents {
 						} catch (IllegalArgumentException ignore) {
 							return -1;
 						}
+					}
+			);
+
+			ItemProperties.register(
+					ItemRegistry.UMA_RACE_TICKET.get(),
+					new ResourceLocation(Umapyoi.MODID, "race_ranking"),
+					(stack, world, entity, seed) -> {
+						Race race = UmaRaceTicketItem.getRace(stack);
+						if (race == null) return 0;
+						if (race.texturePredicateOverride != null) return race.texturePredicateOverride;
+						return race.ranking.ordinal();
 					}
 			);
 		});

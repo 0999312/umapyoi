@@ -11,9 +11,15 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.weapon.UmaWeaponItem;
+import net.tracen.umapyoi.registry.races.RaceRegistry;
 import net.tracen.umapyoi.utils.GachaRanking;
+import net.tracen.umapyoi.utils.RaceRanking;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
+    private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = false;
 
     public UmapyoiItemModelProvider(PackOutput generator, ExistingFileHelper existingFileHelper) {
         super(generator, Umapyoi.MODID, existingFileHelper);
@@ -54,13 +60,59 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
                 }
                 return;
             }
+
+            if (item == ItemRegistry.UMA_RACE_TICKET) {
+                ItemModelBuilder base = withExistingParent(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), mcLoc("item/generated")).texture("layer0",
+                        modLoc("item/" + ForgeRegistries.ITEMS.getKey(item.get()).getPath() + "_common"));
+                for (RaceRanking ranking: RaceRanking.values()) {
+                    String path = ForgeRegistries.ITEMS.getKey(item.get()).getPath() + "_" + ranking.textureSuffix;
+                    withExistingParent(path, mcLoc("item/generated")).texture("layer0",
+                            modLoc("item/" + path));
+                    base.override()
+                            .predicate(new ResourceLocation(Umapyoi.MODID, "race_ranking"), (float) ranking.ordinal())
+                            .model(getExistingFile(modLoc("item/" + path)))
+                            .end();
+                }
+                String pathChampions = ForgeRegistries.ITEMS.getKey(item.get()).getPath() + "_champions";
+                withExistingParent(pathChampions, mcLoc("item/generated")).texture("layer0",
+                        modLoc("item/" + pathChampions));
+                base.override()
+                        .predicate(new ResourceLocation(Umapyoi.MODID, "race_ranking"), RaceRegistry.PREDICATE_CHALLENGES)
+                        .model(getExistingFile(modLoc("item/" + pathChampions)))
+                        .end();
+                return;
+            }
             
             if (item.get() instanceof BlockItem block
-                    && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE))
-                itemBlock(block::getBlock);
+                    && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE)){
+                try {
+                    itemBlock(block::getBlock);
+                } catch (IllegalStateException e) {
+                    if (!ALLOW_CONTINUE_WITH_MISSING_TEXTURE) throw e;
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    e.printStackTrace(pw);
+                    Umapyoi.getLogger().error("====== EXCEPTION FROM BLOCK MODEL REGISTRATION ======");
+                    for (String line: sw.toString().split("\n")) {
+                        Umapyoi.getLogger().error(line);
+                    }
+                }
+            }
 
-            else
-                normalItem(item);
+            else {
+                try {
+                    normalItem(item);
+                } catch (IllegalArgumentException e) {
+                    if (!ALLOW_CONTINUE_WITH_MISSING_TEXTURE) throw e;
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    e.printStackTrace(pw);
+                    Umapyoi.getLogger().error("====== EXCEPTION FROM ITEM MODEL REGISTRATION ======");
+                    for (String line: sw.toString().split("\n")) {
+                        Umapyoi.getLogger().error(line);
+                    }
+                }
+            }
         });
     }
 

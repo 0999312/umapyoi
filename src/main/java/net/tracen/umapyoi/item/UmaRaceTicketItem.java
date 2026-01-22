@@ -34,8 +34,8 @@ import java.util.stream.Collector;
 import java.util.stream.Stream;
 
 
-public class UmaRacingSlipItem extends Item {
-    public UmaRacingSlipItem() {
+public class UmaRaceTicketItem extends Item {
+    public UmaRaceTicketItem() {
         super(Umapyoi.defaultItemProperties());
     }
 
@@ -120,12 +120,16 @@ public class UmaRacingSlipItem extends Item {
     }
 
     public static Race getRace(ItemStack stack) {
+        return  getRace(stack, null);
+    }
+
+    public static Race getRace(ItemStack stack, Level world) {
         try {
             if (!stack.getOrCreateTag().contains("race")) return null;
             String rawTag = stack.getOrCreateTag().getString("race");
             ResourceLocation loc = ResourceLocation.tryParse(rawTag);
             if (loc == null) return null;
-            return ClientUtils.getRaceRegistry().get(loc);
+            return Optional.ofNullable(world).map(UmapyoiAPI::getRaceRegistry).orElse(ClientUtils.getRaceRegistry()).get(loc);
         } catch (Exception _ignored) {
             return null;
         }

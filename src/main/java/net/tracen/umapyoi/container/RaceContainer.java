@@ -68,7 +68,7 @@ public class RaceContainer extends AbstractContainerMenu {
         this.addSlot(new SlotItemHandler(this.inventory, 1, 25, 19){
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return stack.is(ItemRegistry.UMA_RACING_SLIP.get());
+                return stack.is(ItemRegistry.UMA_RACE_TICKET.get());
             }
         });
 

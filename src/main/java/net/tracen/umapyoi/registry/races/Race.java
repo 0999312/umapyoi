@@ -46,7 +46,8 @@ public class Race {
                     Codec.STRING.xmap(s -> Growth.valueOf(s.toUpperCase()), g -> g.name().toLowerCase()).listOf().optionalFieldOf("allow_status", List.of(Growth.TRAINED, Growth.RETIRED)).forGetter((r) -> r.allowStatus.stream().toList()),
                     Codec.BOOL.optionalFieldOf("exclusive", true).forGetter(Race::exclusive),
                     Codec.INT.optionalFieldOf("later_then", 0).forGetter(Race::laterThen),
-                    ResourceLocation.CODEC.listOf().optionalFieldOf("after_race", List.of()).forGetter((r) -> r.afterRace.stream().toList())
+                    ResourceLocation.CODEC.listOf().optionalFieldOf("after_race", List.of()).forGetter((r) -> r.afterRace.stream().toList()),
+                    Codec.FLOAT.optionalFieldOf("texture_predicate_override").forGetter(r -> Optional.ofNullable(r.texturePredicateOverride))
             ).apply(instance, Race::new)
     );
 
@@ -107,9 +108,13 @@ public class Race {
     public final int laterThen;
     public int laterThen() { return this.laterThen; }
     public final Set<ResourceLocation> afterRace;
+    public final Float texturePredicateOverride;
+    public Float texturePredicateOverride() {
+        return this.texturePredicateOverride;
+    }
     public Race(ResourceLocation id, RaceRanking ranking, int length, int time, Set<Year> year, Surface surface,
                 Set<ResourceLocation> tags, ResourceLocation field, Set<Integer> attrCorr, int referenceLevel, Set<Growth> allowStatus,
-                boolean exclusive, int laterThen, Set<ResourceLocation> afterRace) {
+                boolean exclusive, int laterThen, Set<ResourceLocation> afterRace, Float texturePredicateOverride) {
         this.id = id;
         this.ranking = ranking;
         this.length = length;
@@ -132,11 +137,12 @@ public class Race {
         this.exclusive = exclusive;
         this.laterThen = laterThen;
         this.afterRace = afterRace;
+        this.texturePredicateOverride = texturePredicateOverride;
     }
 
     public Race(ResourceLocation id, RaceRanking ranking, int length, int time, List<Year> year, Surface surface,
                 List<ResourceLocation> tags, ResourceLocation field, List<Integer> attrCorr, int referenceLevel, List<Growth> allowStatus,
-                boolean exclusive, int laterThen, List<ResourceLocation> afterRace) {
+                boolean exclusive, int laterThen, List<ResourceLocation> afterRace, Optional<Float> texture) {
         this(id, ranking, length, time,
                 new HashSet<>(year),
                 surface,
@@ -145,7 +151,7 @@ public class Race {
                 new HashSet<>(attrCorr),
                 referenceLevel,
                 new HashSet<>(allowStatus),
-                exclusive, laterThen, new HashSet<>(afterRace)
+                exclusive, laterThen, new HashSet<>(afterRace), texture.orElse(null)
         );
     }
 
@@ -273,6 +279,7 @@ public class Race {
         private Set<Growth> allowStatus;
         private int later;
         private Set<ResourceLocation> afterRace;
+        private Float texturePredicateOverride;
 
         public RaceBuilder() {
             this.ranking = RaceRanking.DEBUT;
@@ -288,6 +295,7 @@ public class Race {
             this.allowStatus = new HashSet<>(List.of(Growth.TRAINED, Growth.RETIRED));
             this.later = 0;
             this.afterRace = new HashSet<>();
+            this.texturePredicateOverride = null;
         }
 
         public RaceBuilder setLength(int len) {
@@ -378,6 +386,11 @@ public class Race {
             return this;
         }
 
+        public RaceBuilder setTexture(Float texturePredicateOverride) {
+            this.texturePredicateOverride = texturePredicateOverride;
+            return this;
+        }
+
         public Race create(ResourceLocation id) {
             return new Race(id, this.ranking, this.length, this.time, this.year, this.surface, this.tags, this.field,
                     this.attrCorr, Optional.ofNullable(this.referenceLevel).orElseGet(() ->
@@ -388,7 +401,7 @@ public class Race {
                             case GII -> 30;
                             case GI -> 35;
                         }
-            ), this.allowStatus, this.exclusive, this.later, this.afterRace);
+            ), this.allowStatus, this.exclusive, this.later, this.afterRace, this.texturePredicateOverride);
         }
     }
 }

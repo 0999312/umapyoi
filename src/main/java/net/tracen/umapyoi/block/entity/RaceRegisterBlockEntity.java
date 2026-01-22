@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static net.tracen.umapyoi.item.UmaRacingSlipItem.getRaceID;
+import static net.tracen.umapyoi.item.UmaRaceTicketItem.getRaceID;
 
 public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuProvider {
     // No additional synchronized logic because provided by SyncedBlockEntity
@@ -74,7 +74,7 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     }
 
     protected static boolean raceConstraint(ItemStack stack) {
-        return stack.is(ItemRegistry.UMA_RACING_SLIP.get());
+        return stack.is(ItemRegistry.UMA_RACE_TICKET.get());
     }
 
     private ItemStackHandler createHandler() {

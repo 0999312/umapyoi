@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "umapyoi:item/race_ticket_common",
+      "predicate": {
+        "umapyoi:race_ranking": 0.0
+      }
+    },
+    {
+      "model": "umapyoi:item/race_ticket_common",
+      "predicate": {
+        "umapyoi:race_ranking": 1.0
+      }
+    },
+    {
+      "model": "umapyoi:item/race_ticket_common",
+      "predicate": {
+        "umapyoi:race_ranking": 2.0
+      }
+    },
+    {
+      "model": "umapyoi:item/race_ticket_common",
+      "predicate": {
+        "umapyoi:race_ranking": 3.0
+      }
+    },
+    {
+      "model": "umapyoi:item/race_ticket_g2",
+      "predicate": {
+        "umapyoi:race_ranking": 4.0
+      }
+    },
+    {
+      "model": "umapyoi:item/race_ticket_g1",
+      "predicate": {
+        "umapyoi:race_ranking": 5.0
+      }
+    },
+    {
+      "model": "umapyoi:item/race_ticket_champions",
+      "predicate": {
+        "umapyoi:race_ranking": 6.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "umapyoi:item/race_ticket_common"
+  }
+}
