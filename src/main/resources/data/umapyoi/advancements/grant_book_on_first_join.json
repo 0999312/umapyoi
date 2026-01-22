@@ -1,7 +1,7 @@
 {
   "criteria": {
-    "tick": {
-      "trigger": "minecraft:tick"
+    "config_allow": {
+      "trigger": "umapyoi:grant_book_on_first_join"
     }
   },
   "rewards": {
