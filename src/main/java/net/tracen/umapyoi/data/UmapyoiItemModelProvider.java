@@ -11,6 +11,7 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.weapon.UmaWeaponItem;
+import net.tracen.umapyoi.registry.races.RaceRegistry;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.RaceRanking;
 
@@ -18,7 +19,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
-    private final boolean AllowContinueWithMissingTexture = true;
+    private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = false;
 
     public UmapyoiItemModelProvider(PackOutput generator, ExistingFileHelper existingFileHelper) {
         super(generator, Umapyoi.MODID, existingFileHelper);
@@ -76,7 +77,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
                 withExistingParent(pathChampions, mcLoc("item/generated")).texture("layer0",
                         modLoc("item/" + pathChampions));
                 base.override()
-                        .predicate(new ResourceLocation(Umapyoi.MODID, "race_ranking"), -2f)
+                        .predicate(new ResourceLocation(Umapyoi.MODID, "race_ranking"), RaceRegistry.PREDICATE_CHALLENGES)
                         .model(getExistingFile(modLoc("item/" + pathChampions)))
                         .end();
                 return;
@@ -87,7 +88,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
                 try {
                     itemBlock(block::getBlock);
                 } catch (IllegalStateException e) {
-                    if (!AllowContinueWithMissingTexture) throw e;
+                    if (!ALLOW_CONTINUE_WITH_MISSING_TEXTURE) throw e;
                     StringWriter sw = new StringWriter();
                     PrintWriter pw = new PrintWriter(sw);
                     e.printStackTrace(pw);
@@ -102,7 +103,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
                 try {
                     normalItem(item);
                 } catch (IllegalArgumentException e) {
-                    if (!AllowContinueWithMissingTexture) throw e;
+                    if (!ALLOW_CONTINUE_WITH_MISSING_TEXTURE) throw e;
                     StringWriter sw = new StringWriter();
                     PrintWriter pw = new PrintWriter(sw);
                     e.printStackTrace(pw);

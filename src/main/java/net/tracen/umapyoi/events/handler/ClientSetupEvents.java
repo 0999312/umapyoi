@@ -137,6 +137,7 @@ public class ClientSetupEvents {
 					new ResourceLocation(Umapyoi.MODID, "race_ranking"),
 					(stack, world, entity, seed) -> {
 						Race race = UmaRaceTicketItem.getRace(stack);
+						if (race == null) return 0;
 						if (race.texturePredicateOverride != null) return race.texturePredicateOverride;
 						return race.ranking.ordinal();
 					}
