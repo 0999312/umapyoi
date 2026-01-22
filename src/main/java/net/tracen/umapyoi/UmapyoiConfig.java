@@ -48,6 +48,8 @@ public class UmapyoiConfig {
     public static ForgeConfigSpec.BooleanValue UMASOUL_STAMINA_PRECENT_ENABLE;
     public static ForgeConfigSpec.BooleanValue UMASOUL_GUTS_PRECENT_ENABLE;
 
+    public static ForgeConfigSpec.BooleanValue GRANT_GUIDE_ON_FIRST_JOIN;
+
     static {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
         COMMON_BUILDER.comment("General settings").push("general");
@@ -122,7 +124,10 @@ public class UmapyoiConfig {
         STAT_LIMIT_REDUCTION_RATE = COMMON_BUILDER.comment("Determines the reduction for all base stat values.",
                 "If the threshold value is exceeded, the attribute effect will be reduced according to this value.")
                 .defineInRange("stat_limit_reduction", 0.6D, 0D, 1D);
-        
+
+        GRANT_GUIDE_ON_FIRST_JOIN = COMMON_BUILDER.comment("Determines if the guide would be given to player on their first join to world or not.")
+                        .define("grant_guide_on_first_join", true);
+
         COMMON_BUILDER.pop();
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
