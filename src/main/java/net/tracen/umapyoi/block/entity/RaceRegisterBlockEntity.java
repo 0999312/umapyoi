@@ -301,7 +301,6 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         }
 
         LootParams lootParams = new LootParams.Builder((ServerLevel) this.level)
-                .withParameter(LootContextParams.ORIGIN, this.worldPosition.getCenter())
                 .create(LootContextParamSets.EMPTY);
 
         ObjectArrayList<ItemStack> returns = table.getRandomItems(lootParams);
