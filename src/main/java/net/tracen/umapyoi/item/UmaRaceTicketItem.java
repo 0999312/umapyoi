@@ -104,6 +104,16 @@ public class UmaRaceTicketItem extends Item {
         return Util.makeDescriptionId("race", getRaceID(pStack)) + ".name";
     }
 
+    public static MutableComponent getRaceNameInRawComponent(@Nonnull ItemStack pStack) {
+        return Component.translatable(Util.makeDescriptionId("race", getRaceID(pStack)) + ".name");
+    }
+
+    public static MutableComponent getRaceNameInStyledComponent(@Nonnull ItemStack pStack) {
+        return getRaceNameInRawComponent(pStack).withStyle(
+                Optional.ofNullable(getRace(pStack)).map(r -> r.ranking).orElse(RaceRanking.DEBUT).color
+        );
+    }
+
     @Nonnull
     @Override
     public Component getName(@Nonnull ItemStack pStack) {

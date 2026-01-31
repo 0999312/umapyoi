@@ -7,6 +7,7 @@ import net.minecraft.Util;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.RegistryObject;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.data.builtin.CostumeDataRegistry;
@@ -19,6 +20,8 @@ import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
+import net.tracen.umapyoi.registry.races.Race;
+import net.tracen.umapyoi.registry.races.RaceRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 import net.tracen.umapyoi.registry.training.TrainingSupport;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
@@ -577,6 +580,9 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addAdvTitle("umapyoi.uma_ticket", "Wastepaper");
         addAdvDesc("umapyoi.uma_ticket", "Got the Blank Ticket.");
+
+        addRace(RaceRegistry.MAKE_DEBUT, "Twinkle Series Debut");
+        addRace(RaceRegistry.URA_FINALS, "URA Finale");
     }
 
     private void addSupportCard(ResourceKey<SupportCard> data, String name) {
@@ -585,6 +591,10 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
     
     private void addSupportCard(ResourceLocation key, String name) {
         add(Util.makeDescriptionId("support_card", key) + ".name", name);
+    }
+
+    private void addRace(ResourceKey<Race> race, String name) {
+        add(Util.makeDescriptionId("race", race.location()) + ".name", name);
     }
     
     private void addUma(ResourceKey<UmaData> data, String name) {

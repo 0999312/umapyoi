@@ -448,5 +448,8 @@
   "umapyoi.skill.has_learned_skill": "该技能已经学习过了。",
   "umapyoi.skill.has_retired": "该马娘已引退。",
   "umapyoi.skill.passive": "这是一个被动技能。",
-  "umapyoi.skill.slot_needed": "已达到学习上限。"
+  "umapyoi.skill.slot_needed": "已达到学习上限。",
+
+  "race.umapyoi.make_debut.name": "闪耀出道战",
+  "race.umapyoi.ura_finals.name": "URA决胜系列赛"
 }
