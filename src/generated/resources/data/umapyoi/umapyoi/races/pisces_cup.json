@@ -13,7 +13,7 @@
   "reference_level": 30,
   "surface": "turf",
   "tags": [],
-  "texture_predicate_override": 6.0,
+  "texture_predicate_override": "champions",
   "time": 5,
   "year": [
     "after_regular"

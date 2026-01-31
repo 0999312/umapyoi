@@ -47,7 +47,7 @@ public class Race {
                     Codec.BOOL.optionalFieldOf("exclusive", true).forGetter(Race::exclusive),
                     Codec.INT.optionalFieldOf("later_then", 0).forGetter(Race::laterThen),
                     ResourceLocation.CODEC.listOf().optionalFieldOf("after_race", List.of()).forGetter((r) -> r.afterRace.stream().toList()),
-                    Codec.FLOAT.optionalFieldOf("texture_predicate_override").forGetter(r -> Optional.ofNullable(r.texturePredicateOverride))
+                    Codec.STRING.optionalFieldOf("texture_predicate_override").forGetter(r -> Optional.ofNullable(r.texturePredicateOverride))
             ).apply(instance, Race::new)
     );
 
@@ -108,13 +108,13 @@ public class Race {
     public final int laterThen;
     public int laterThen() { return this.laterThen; }
     public final Set<ResourceLocation> afterRace;
-    public final Float texturePredicateOverride;
-    public Float texturePredicateOverride() {
+    public final String texturePredicateOverride;
+    public String texturePredicateOverride() {
         return this.texturePredicateOverride;
     }
     public Race(ResourceLocation id, RaceRanking ranking, int length, int time, Set<Year> year, Surface surface,
                 Set<ResourceLocation> tags, ResourceLocation field, Set<Integer> attrCorr, int referenceLevel, Set<Growth> allowStatus,
-                boolean exclusive, int laterThen, Set<ResourceLocation> afterRace, Float texturePredicateOverride) {
+                boolean exclusive, int laterThen, Set<ResourceLocation> afterRace, String texturePredicateOverride) {
         this.id = id;
         this.ranking = ranking;
         this.length = length;
@@ -142,7 +142,7 @@ public class Race {
 
     public Race(ResourceLocation id, RaceRanking ranking, int length, int time, List<Year> year, Surface surface,
                 List<ResourceLocation> tags, ResourceLocation field, List<Integer> attrCorr, int referenceLevel, List<Growth> allowStatus,
-                boolean exclusive, int laterThen, List<ResourceLocation> afterRace, Optional<Float> texture) {
+                boolean exclusive, int laterThen, List<ResourceLocation> afterRace, Optional<String> texture) {
         this(id, ranking, length, time,
                 new HashSet<>(year),
                 surface,
@@ -279,7 +279,7 @@ public class Race {
         private Set<Growth> allowStatus;
         private int later;
         private Set<ResourceLocation> afterRace;
-        private Float texturePredicateOverride;
+        private String texturePredicateOverride;
 
         public RaceBuilder() {
             this.ranking = RaceRanking.DEBUT;
@@ -386,7 +386,7 @@ public class Race {
             return this;
         }
 
-        public RaceBuilder setTexture(Float texturePredicateOverride) {
+        public RaceBuilder setTexture(String texturePredicateOverride) {
             this.texturePredicateOverride = texturePredicateOverride;
             return this;
         }

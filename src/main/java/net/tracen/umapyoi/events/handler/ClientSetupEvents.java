@@ -1,12 +1,16 @@
 package net.tracen.umapyoi.events.handler;
 
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.stream.Stream;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
+import cn.mcmod_mmf.mmlib.client.model.DynamicItemBakedModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.FileToIdConverter;
@@ -25,7 +29,9 @@ import net.tracen.umapyoi.client.ActionBarOverlay;
 import net.tracen.umapyoi.client.MotivationOverlay;
 import net.tracen.umapyoi.client.SkillOverlay;
 import net.tracen.umapyoi.client.key.SkillKeyMapping;
+import net.tracen.umapyoi.client.model.SupportCardItemModel;
 import net.tracen.umapyoi.client.model.UmaCostumeItemModel;
+import net.tracen.umapyoi.client.model.UmaRaceTicketItemModel;
 import net.tracen.umapyoi.client.renderer.SwimsuitRenderer;
 import net.tracen.umapyoi.client.renderer.TrainningSuitRenderer;
 import net.tracen.umapyoi.client.renderer.UmaCostumeRenderer;
@@ -80,6 +86,19 @@ public class ClientSetupEvents {
 					Umapyoi.getLogger().info("Found resource:{}", location.toString());
 					event.register(resolveCostumeLocation(location));
 				});
+
+		Stream.of("race_ticket", "support_card")
+				.forEachOrdered((domain) -> FileToIdConverter.json("models/item/" + domain)
+						.listMatchingResources(Minecraft.getInstance().getResourceManager())
+						.keySet()
+						.stream()
+						.map(loc -> resolveLocationGeneric(domain, loc))
+						.forEach(event::register));
+	}
+
+	private static ModelResourceLocation resolveLocationGeneric(String name, ResourceLocation location) {
+		return new ModelResourceLocation(location.getNamespace(),
+				name + "/" + location.getPath().substring(13 + name.length() ,location.getPath().length() - 5), "inventory");
 	}
 
 	private static ModelResourceLocation resolveCostumeLocation(ResourceLocation location) {
@@ -87,12 +106,18 @@ public class ClientSetupEvents {
 				"costume/" + location.getPath().substring(20,location.getPath().length()-5), "inventory");
 	}
 
-	@SubscribeEvent
-	public static void onBakedModel(ModelEvent.BakingCompleted event) {
-		ModelResourceLocation origin = new ModelResourceLocation(ItemRegistry.UMA_COSTUME.getId(), "inventory");
+	public static void onBakedModelSub(ModelEvent.BakingCompleted event, ModelResourceLocation origin,
+									   BiFunction<BakedModel, ModelBakery, DynamicItemBakedModel> constructor) {
 		Map<ResourceLocation, BakedModel> bakedTopLevelModels = event.getModelBakery().getBakedTopLevelModels();
 		bakedTopLevelModels.put(origin,
-				new UmaCostumeItemModel(bakedTopLevelModels.get(origin), event.getModelBakery()));
+				constructor.apply(bakedTopLevelModels.get(origin), event.getModelBakery()));
+	}
+
+	@SubscribeEvent
+	public static void onBakedModel(ModelEvent.BakingCompleted event) {
+		onBakedModelSub(event, new ModelResourceLocation(ItemRegistry.UMA_COSTUME.getId(), "inventory"), UmaCostumeItemModel::new);
+		onBakedModelSub(event, new ModelResourceLocation(ItemRegistry.UMA_RACE_TICKET.getId(), "inventory"), UmaRaceTicketItemModel::new);
+		onBakedModelSub(event, new ModelResourceLocation(ItemRegistry.SUPPORT_CARD.getId(), "inventory"), SupportCardItemModel::new);
 	}
 
 	@SubscribeEvent
@@ -112,36 +137,5 @@ public class ClientSetupEvents {
 		event.registerBelowAll("umapyoi.skill_overlay", SkillOverlay.INSTANCE);
 		event.registerBelowAll("umapyoi.motivation_overlay", MotivationOverlay.INSTANCE);
 		event.registerBelowAll("umapyoi.action_bar", ActionBarOverlay.INSTANCE);
-	}
-
-	@SubscribeEvent
-	public static void registerItemPredicates(FMLClientSetupEvent event) {
-		event.enqueueWork(() -> {
-			Umapyoi.getLogger().debug("Start predication register");
-			ItemProperties.register(
-					ItemRegistry.SUPPORT_CARD.get(),
-					new ResourceLocation(Umapyoi.MODID, "ranking"),
-					(stack, world, entity, seed) -> {
-						CompoundTag tag = stack.getOrCreateTag();
-						if (!tag.contains("ranking", CompoundTag.TAG_STRING)) return -1;
-						try {
-							return GachaRanking.valueOf(tag.getString("ranking").toUpperCase()).ordinal();
-						} catch (IllegalArgumentException ignore) {
-							return -1;
-						}
-					}
-			);
-
-			ItemProperties.register(
-					ItemRegistry.UMA_RACE_TICKET.get(),
-					new ResourceLocation(Umapyoi.MODID, "race_ranking"),
-					(stack, world, entity, seed) -> {
-						Race race = UmaRaceTicketItem.getRace(stack);
-						if (race == null) return 0;
-						if (race.texturePredicateOverride != null) return race.texturePredicateOverride;
-						return race.ranking.ordinal();
-					}
-			);
-		});
 	}
 }

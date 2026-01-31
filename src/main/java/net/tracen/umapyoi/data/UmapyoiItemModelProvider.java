@@ -11,12 +11,13 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.weapon.UmaWeaponItem;
-import net.tracen.umapyoi.registry.races.RaceRegistry;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.RaceRanking;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
     private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = false;
@@ -47,39 +48,51 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
             }
 
             if (item == ItemRegistry.SUPPORT_CARD) {
-                ItemModelBuilder base = withExistingParent(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), mcLoc("item/generated")).texture("layer0",
-                        modLoc("item/" + ForgeRegistries.ITEMS.getKey(item.get()).getPath() + "_ssr"));
+                String basePath = ForgeRegistries.ITEMS.getKey(item.get()).getPath();
+                ItemModelBuilder base = withExistingParent(basePath, mcLoc("item/generated")).texture("layer0",
+                        modLoc("item/" + basePath + "_ssr"));
                 for (GachaRanking rank: GachaRanking.values()) {
-                    String path = ForgeRegistries.ITEMS.getKey(item.get()).getPath() + "_" + rank.name().toLowerCase();
-                    withExistingParent(path, mcLoc("item/generated")).texture("layer0",
+                    String path = basePath + "_" + rank.name().toLowerCase();
+                    String[] sep = path.split("/");
+                    StringWriter builder = new StringWriter();
+                    builder.write("item/");
+                    for (int i = 0; i < sep.length - 1; i++){
+                        builder.write(sep[i]);
+                        builder.write('/');
+                    }
+                    builder.write("support_card/");
+                    builder.write(sep[sep.length - 1]);
+                    String finalPath = builder.toString();
+                    withExistingParent(finalPath, mcLoc("item/generated")).texture("layer0",
                             modLoc("item/" + path));
-                    base.override()
-                            .predicate(new ResourceLocation(Umapyoi.MODID, "ranking"), (float) rank.ordinal())
-                            .model(getExistingFile(modLoc("item/" + path)))
-                            .end();
                 }
                 return;
             }
 
             if (item == ItemRegistry.UMA_RACE_TICKET) {
-                ItemModelBuilder base = withExistingParent(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), mcLoc("item/generated")).texture("layer0",
-                        modLoc("item/" + ForgeRegistries.ITEMS.getKey(item.get()).getPath() + "_common"));
-                for (RaceRanking ranking: RaceRanking.values()) {
-                    String path = ForgeRegistries.ITEMS.getKey(item.get()).getPath() + "_" + ranking.textureSuffix;
-                    withExistingParent(path, mcLoc("item/generated")).texture("layer0",
+                String basePath = ForgeRegistries.ITEMS.getKey(item.get()).getPath();
+                withExistingParent(basePath, mcLoc("item/generated")).texture("layer0",
+                        modLoc("item/" + basePath + "_common"));
+
+                Stream.concat(
+                        Arrays.stream(RaceRanking.values()).map(r -> r.textureSuffix),
+                        Stream.of("champions")
+                ).forEachOrdered((suffix) -> {
+                    String path = basePath + "_" + suffix;
+                    String[] sep = path.split("/");
+                    StringWriter builder = new StringWriter();
+                    builder.write("item/");
+                    for (int i = 0; i < sep.length - 1; i++){
+                        builder.write(sep[i]);
+                        builder.write('/');
+                    }
+                    builder.write("race_ticket/");
+                    builder.write(sep[sep.length - 1]);
+                    String finalPath = builder.toString();
+                    Umapyoi.getLogger().debug("path: {}, reg: {}", path, finalPath);
+                    withExistingParent(finalPath, mcLoc("item/generated")).texture("layer0",
                             modLoc("item/" + path));
-                    base.override()
-                            .predicate(new ResourceLocation(Umapyoi.MODID, "race_ranking"), (float) ranking.ordinal())
-                            .model(getExistingFile(modLoc("item/" + path)))
-                            .end();
-                }
-                String pathChampions = ForgeRegistries.ITEMS.getKey(item.get()).getPath() + "_champions";
-                withExistingParent(pathChampions, mcLoc("item/generated")).texture("layer0",
-                        modLoc("item/" + pathChampions));
-                base.override()
-                        .predicate(new ResourceLocation(Umapyoi.MODID, "race_ranking"), RaceRegistry.PREDICATE_CHALLENGES)
-                        .model(getExistingFile(modLoc("item/" + pathChampions)))
-                        .end();
+                });
                 return;
             }
             
