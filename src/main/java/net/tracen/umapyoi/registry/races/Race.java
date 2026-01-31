@@ -12,6 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.item.ItemRegistry;
@@ -210,7 +212,7 @@ public class Race {
         return totalProperties / this.referenceLevel * motivation.getMultiplier() * surfaceFactor * distanceFactor * fieldSituationFactor;
     }
 
-    public boolean isPassed(ItemStack stack, Level world) {
+    public double getSelfProp(ItemStack stack, Level world) {
         ResourceLocation nameLoc = UmaSoulUtils.getName(stack);
         UmaData umaData = UmapyoiAPI.getUmaDataRegistry(world).getOptional(nameLoc).orElseGet(() -> {
             Umapyoi.getLogger().info("Warning: {} doesn't exist.", nameLoc);
@@ -222,7 +224,16 @@ public class Race {
                 * (2 - umaPosition.staminaFactor) * this.correction[1] + propertiesAsLevel[2] * this.correction[2] +
                 propertiesAsLevel[3] * this.correction[3] + propertiesAsLevel[4] * this.correction[4];
         Motivations motivation = UmaSoulUtils.getMotivation(stack);
-        return totalProperties * motivation.getMultiplier() >= this.referenceLevel;
+        return totalProperties * motivation.getMultiplier();
+    }
+
+    public double offScalar(ItemStack stack, Level world) {
+        double selfProp = this.getSelfProp(stack, world);
+        return Math.min(selfProp, this.referenceLevel) / Math.max(selfProp, this.referenceLevel);
+    }
+
+    public boolean isPassed(ItemStack stack, Level world) {
+        return this.getSelfProp(stack, world) >= this.referenceLevel;
     }
 
     public void followUp(ItemStack stack, Level level) {
