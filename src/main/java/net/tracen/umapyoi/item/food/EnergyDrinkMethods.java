@@ -9,7 +9,6 @@ import net.tracen.umapyoi.utils.UmaStatusUtils;
 public final class EnergyDrinkMethods {
     public static void royalBitter(LivingEntity entity) {
         ItemStack soul = UmapyoiAPI.getUmaSoul(entity);
-        UmaStatusUtils.downMotivation(soul);
         UmaSoulUtils.setActionPoint(soul, UmaSoulUtils.getMaxActionPoint(soul));
     }
     public static void smallEnergy(LivingEntity entity) {

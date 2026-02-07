@@ -156,7 +156,7 @@ public class ItemRegistry {
             .nutrients(4F, 4F, 0F, 0F, 0F).decayModifier(1.0F).heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final RegistryObject<Item> ROYAL_BITTER = register("royal_bitter",
-            () -> new UmaDrinkItem(e -> {},
+            () -> new UmaDrinkItem(EnergyDrinkMethods::royalBitter,
                     FoodInfo.builder().name("royal_bitter").alwaysEat().amountAndCalories(2, 0.6F).water(50F)
                             .nutrients(0F, 2F, 2F, 0F, 0F)
                             .heatCapacity(1F).cookingTemp(480F).build()));
