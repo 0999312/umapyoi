@@ -11,13 +11,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.RaceRegisterBlockEntity;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.utils.Position;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
+
+import static net.tracen.umapyoi.block.entity.RaceRegisterBlockEntity.DATA_SLOT_SIZE;
 
 public class RaceContainer extends AbstractContainerMenu {
     public final RaceRegisterBlockEntity tileEntity;
@@ -37,7 +41,7 @@ public class RaceContainer extends AbstractContainerMenu {
     }
 
     public RaceContainer(final int i, final Inventory playerInv, final FriendlyByteBuf data) {
-        this(i, playerInv, getTileEntity(playerInv, data), new SimpleContainerData(2));
+        this(i, playerInv, getTileEntity(playerInv, data), new SimpleContainerData(DATA_SLOT_SIZE));
     }
 
     public static class UmaSoulSlot extends SlotItemHandler {
@@ -64,23 +68,23 @@ public class RaceContainer extends AbstractContainerMenu {
         assert tileEntity.getLevel() != null;
         this.canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
 
-        this.addSlot(new UmaSoulSlot(this.inventory, 0, 8, 19));
-        this.addSlot(new SlotItemHandler(this.inventory, 1, 25, 19){
+        this.addSlot(new UmaSoulSlot(this.inventory, 0, 26, 83));
+        this.addSlot(new SlotItemHandler(this.inventory, 1, 44, 83){
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return stack.is(ItemRegistry.UMA_RACE_TICKET.get());
             }
         });
 
-        for (int j = 0; j <= 3; j++) {
-            this.addSlot(new SlotItemHandler(this.inventory, j + 2, (j & 1) * 17 + 138, 19 + (j / 2) * 18));
+        for (int j = 0; j < 4; j++) {
+            // actually, I am not so sure that if bit ops optimization still works in java
+            this.addSlot(new SlotItemHandler(this.inventory, j + 2, (j & 1) * 18 + 98, 75 + (j >> 1) * 18));
         }
 
-        int startPlayerInvY = 120;
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 9; ++column) {
                 this.addSlot(new Slot(playerInv, 9 + (row * 9) + column, 8 + (column * 18),
-                        startPlayerInvY + (row * 18)));
+                        120 + (row * 18))); // inline playerInventoryY=120 for opt.
             }
         }
 
@@ -138,7 +142,46 @@ public class RaceContainer extends AbstractContainerMenu {
     }
 
     @OnlyIn(Dist.CLIENT)
+    public int getProgressInTick() {
+        return this.containerData.get(0);
+    }
+
+    @OnlyIn(Dist.CLIENT)
     public float getProgression() {
-        return this.containerData.get(0) / (float) this.containerData.get(1);
+        return this.getProgressInTick() / (float) this.containerData.get(1);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public boolean shallSoulWin() {
+        return this.containerData.get(2) != 0;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public long getWinnerReplaceSeed() {
+        return ((long) this.containerData.get(3)) | ((long) this.containerData.get(4) << 32);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getAnimationTickMod(int modVal) {
+        return Math.floorMod(this.containerData.get(0), modVal);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getGoalType() {
+        int indices = this.containerData.get(5);
+        if (indices == -1) indices = 0;
+        return (indices < 0 ? -indices : Math.min(5 - indices, 3));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public double getBaseScaleFactor() {
+        int valueInInt = this.containerData.get(6);
+        long valueInLong = valueInInt & 0xffffffffL;
+        return valueInLong / (double) ((1L << 32) - 1);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public Position getSoulTactic() {
+        return Position.values()[this.containerData.get(8)];
     }
 }
