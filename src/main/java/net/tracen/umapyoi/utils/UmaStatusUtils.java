@@ -1,13 +1,14 @@
 package net.tracen.umapyoi.utils;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
-import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.events.MotivationEvent;
 import net.tracen.umapyoi.registry.umadata.Motivations;
 
 import javax.annotation.Nullable;
@@ -33,38 +34,45 @@ public class UmaStatusUtils {
         return Component.translatable("umastatus.level." + level);
     }
 
-    public static void addMotivation(ItemStack stack) {
-        Motivations motivation = UmaSoulUtils.getMotivation(stack);
-        switch (motivation) {
-            case PERFECT, GOOD -> UmaSoulUtils.setMotivation(stack, Motivations.PERFECT);
-            case NORMAL -> UmaSoulUtils.setMotivation(stack, Motivations.GOOD);
-            case DOWN -> UmaSoulUtils.setMotivation(stack, Motivations.NORMAL);
-            case BAD -> UmaSoulUtils.setMotivation(stack, Motivations.DOWN);
-            default -> throw new IllegalArgumentException("Unexpected motivation value: " + motivation);
-        }
+    public static Motivations getMotivationAfterOffset(Motivations original, int offset) {
+        int originalLevel = original.ordinal();
+        int newLevel = Mth.clamp(originalLevel - offset, 0, Motivations.values().length - 1);
+        return Motivations.values()[newLevel];
     }
 
-    public static void addMotivation(@Nullable LivingEntity entity) {
+    public static void changeMotivation(ItemStack stack, int level) {
+        UmaSoulUtils.setMotivation(stack, getMotivationAfterOffset(UmaSoulUtils.getMotivation(stack), level));
+    }
+
+    public static void addMotivation(ItemStack stack) {
+        changeMotivation(stack, 1);
+    }
+
+    public static void changeMotivation(@Nullable LivingEntity entity, int addMotivLevel) {
         ItemStack stack = UmapyoiAPI.getUmaSoul(entity);
         if (stack.isEmpty()) return;
         Motivations motivation = UmaSoulUtils.getMotivation(stack);
-        if (entity != null && motivation == Motivations.PERFECT) {
+        boolean triggerMood = entity != null && motivation == Motivations.PERFECT && addMotivLevel > 0;
+        Motivations resultMotivation = getMotivationAfterOffset(motivation, addMotivLevel);
+
+        MotivationEvent evt = new MotivationEvent(motivation, resultMotivation, triggerMood, stack, entity);
+        if (MinecraftForge.EVENT_BUS.post(evt)) return;
+
+        if (evt.getDoTriggerBonus()) {
             int level = Optional.ofNullable(entity.getEffect(MobEffectRegistry.MOOD_BONUS.get()))
                     .map(MobEffectInstance::getAmplifier).orElse(-1) + 1;
             entity.addEffect(new MobEffectInstance(MobEffectRegistry.MOOD_BONUS.get(), 1200, level));
         }
-        addMotivation(stack);
+
+        UmaSoulUtils.setMotivation(stack, evt.getAfter());
+    }
+
+    public static void addMotivation(@Nullable LivingEntity entity) {
+        changeMotivation(entity, 1);
     }
 
     public static void downMotivation(ItemStack stack) {
-        Motivations motivation = UmaSoulUtils.getMotivation(stack);
-        switch (motivation) {
-            case PERFECT -> UmaSoulUtils.setMotivation(stack, Motivations.GOOD);
-            case GOOD -> UmaSoulUtils.setMotivation(stack, Motivations.NORMAL);
-            case NORMAL -> UmaSoulUtils.setMotivation(stack, Motivations.DOWN);
-            case DOWN, BAD -> UmaSoulUtils.setMotivation(stack, Motivations.BAD);
-            default -> throw new IllegalArgumentException("Unexpected motivation value: " + motivation);
-        }
+        changeMotivation(stack, -1);
     }
 
 }

@@ -15,7 +15,7 @@ public class TopUmamusumeSkill extends UmaSkill {
 
     @Override
     public void applySkill(Level level, LivingEntity user) {
-        UmaStatusUtils.addMotivation(UmapyoiAPI.getUmaSoul(user));
+        UmaStatusUtils.addMotivation(user);
         user.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 300, 1));
         user.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1));
     }

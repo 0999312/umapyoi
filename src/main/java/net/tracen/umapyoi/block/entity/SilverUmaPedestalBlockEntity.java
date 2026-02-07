@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraftforge.common.MinecraftForge;
+import net.tracen.umapyoi.events.GachaEvent;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.Lists;
@@ -121,6 +123,8 @@ public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements G
                 .filter(this.getFilter(getLevel(), getStoredItem()))
                 .collect(Collectors.toCollection(Lists::newArrayList));
 
+        RandomSource copyRand = rand.fork();
+
         ResourceLocation holder = keys.stream().skip(keys.isEmpty() ? 0 : rand.nextInt(keys.size())).findFirst()
                 .orElse(UmaData.DEFAULT_UMA_ID);
 
@@ -130,7 +134,9 @@ public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements G
 //        result.getOrCreateTag().putString("identifier", data.getIdentifier().toString());
 //        result.getOrCreateTag().putString("ranking", data.getGachaRanking().toString().toLowerCase());
         ItemStack result = FadedUmaSoulItem.genUmaSoul(holder.toString(), registry.get(holder));
-        return result;
+        GachaEvent.UmaSoulGachaEvent evt = new GachaEvent.UmaSoulGachaEvent(getStoredItem(), keys, holder, result, copyRand);
+        MinecraftForge.EVENT_BUS.post(evt);
+        return evt.getOutput();
     }
 
     private boolean canWork() {

@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
+import net.minecraftforge.common.MinecraftForge;
+import net.tracen.umapyoi.events.RetireEvent;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.Lists;
@@ -80,9 +82,12 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         resultStack.onCraftedBy(player.level(), player, resultStack.getCount());
         this.resultSlots.awardUsedRecipes(player, this.getRelevantItems());
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
+        ItemStack inputSoulCopy = inputSoul.copy();
         if (inputSoul.getItem() instanceof UmaSoulItem) {
             UmaSoulUtils.setGrowth(inputSoul, Growth.RETIRED);
-            this.inputSlots.setItem(0, inputSoul);
+            RetireEvent.Post evt = new RetireEvent.Post(inputSoulCopy, inputSoul, resultStack);
+            MinecraftForge.EVENT_BUS.post(evt);
+            this.inputSlots.setItem(0, evt.getStackSoulPost());
             if (player.level().isClientSide())
                 player.playSound(SoundEvents.PLAYER_LEVELUP, 1, 1);
         }
@@ -160,7 +165,6 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     }
 
     private ItemStack getResultItem() {
-        ItemStack result = ItemRegistry.UMA_FACTOR_ITEM.get().getDefaultInstance();
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
         if (!(inputSoul.getItem() instanceof UmaSoulItem))
             return ItemStack.EMPTY;
@@ -168,10 +172,10 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
 
         this.rand.setSeed(this.getFactorSeed().get());
         List<UmaFactorStack> stackList = createResultFactors(inputSoul, ranking);
+        RetireEvent.Pre evt = new RetireEvent.Pre(this.getFactorSeed().get(), stackList, inputSoul);
 
-        result.getOrCreateTag().putString("name", UmaSoulUtils.getName(inputSoul).toString());
-        result.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(stackList));
-        return result;
+        if (MinecraftForge.EVENT_BUS.post(evt)) return ItemStack.EMPTY;
+        return evt.getOutputStack();
     }
 
     public List<UmaFactorStack> createResultFactors(ItemStack inputSoul, int ranking) {
