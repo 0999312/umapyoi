@@ -36,7 +36,7 @@ public class UmaStatusUtils {
 
     public static Motivations getMotivationAfterOffset(Motivations original, int offset) {
         int originalLevel = original.ordinal();
-        int newLevel = Mth.clamp(originalLevel - offset, 0, Motivations.values().length);
+        int newLevel = Mth.clamp(originalLevel - offset, 0, Motivations.values().length - 1);
         return Motivations.values()[newLevel];
     }
 
