@@ -47,6 +47,20 @@ public class UmapyoiItemTagsProvider extends ItemTagsProvider {
         tag(UmapyoiItemTags.HORSESHOE).add(ItemRegistry.HORSESHOE_GOLD.get())
             .add(ItemRegistry.HORSESHOE_SILVER.get()).add(ItemRegistry.HORSESHOE_RAINBOW.get());
         tag(Tags.Items.CROPS_CARROT).addOptional(ResourceLocation.tryParse("tfc:food/carrot"));
+
+        tag(UmapyoiItemTags.getMotivationFoodTag(1))
+                .add(ItemRegistry.HACHIMI_MID.get())
+                .add(ItemRegistry.CUPCAKE.get());
+
+        tag(UmapyoiItemTags.getMotivationFoodTag(2))
+                .add(ItemRegistry.HACHIMI_BIG.get())
+                .add(ItemRegistry.SWEET_CUPCAKE.get());
+
+        tag(UmapyoiItemTags.getMotivationFoodTag(-1))
+                .add(ItemRegistry.ROYAL_BITTER.get());
+
+        tag(UmapyoiItemTags.SLOW_METABOLISM)
+                .add(ItemRegistry.HACHIMI_BIG.get()).add(ItemRegistry.SWEET_CUPCAKE.get());
     }
 
 }

@@ -4,6 +4,7 @@ import cn.mcmod_mmf.mmlib.utils.TagUtils;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.registry.umadata.Motivations;
 
 public class UmapyoiItemTags {
     public static final TagKey<Item> SHOULD_RENDER = TagUtils.modItemTag(Umapyoi.MODID, "should_render");
@@ -30,4 +31,12 @@ public class UmapyoiItemTags {
     public static final TagKey<Item> BAMBOO = TagUtils.forgeItemTag("bamboo");
     
     public static final TagKey<Item> VEGETABLES_CARROT = TagUtils.forgeItemTag("vegetables/carrot");
+
+    public static TagKey<Item> getMotivationFoodTag(int level) {
+        int moodCnt = Motivations.values().length;
+        assert (1 - moodCnt <= level && level <= moodCnt - 1) && (level != 0);
+        return TagUtils.modItemTag(Umapyoi.MODID, "motivation_" + (level < 0 ? "down" : "up") + "_" + Math.abs(level));
+    }
+
+    public static final TagKey<Item> SLOW_METABOLISM = TagUtils.modItemTag(Umapyoi.MODID, "fatique");
 }

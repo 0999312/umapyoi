@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
-    private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = false;
+    private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = true;
 
     public UmapyoiItemModelProvider(PackOutput generator, ExistingFileHelper existingFileHelper) {
         super(generator, Umapyoi.MODID, existingFileHelper);
