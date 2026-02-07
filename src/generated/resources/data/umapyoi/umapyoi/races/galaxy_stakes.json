@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:galaxy_stakes",
   "length": 1400,

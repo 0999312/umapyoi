@@ -38,5 +38,5 @@ public class UmapyoiItemTags {
         return TagUtils.modItemTag(Umapyoi.MODID, "motivation_" + (level < 0 ? "down" : "up") + "_" + Math.abs(level));
     }
 
-    public static final TagKey<Item> SLOW_METABOLISM = TagUtils.modItemTag(Umapyoi.MODID, "fatique");
+    public static final TagKey<Item> SLOW_METABOLISM = TagUtils.modItemTag(Umapyoi.MODID, "slow_metabolism");
 }
