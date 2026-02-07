@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraftforge.common.MinecraftForge;
+import net.tracen.umapyoi.events.GachaEvent;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.Lists;
@@ -196,11 +198,13 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
 
         RandomSource rand = this.getLevel().getRandom();
         Registry<SupportCard> registry = UmapyoiAPI.getSupportCardRegistry(this.getLevel());
-        
+
         @NotNull
         Collection<ResourceLocation> keys = registry.keySet().stream()
                 .filter(this.getFilter(getLevel(), getStoredItem()))
                 .collect(Collectors.toCollection(Lists::newArrayList));
+
+        RandomSource copyRand = rand.fork();
 
         ResourceLocation key = keys.stream().skip(keys.isEmpty() ? 0 : rand.nextInt(keys.size())).findFirst()
                 .orElse(new ResourceLocation(Umapyoi.MODID, "blank_card"));
@@ -209,7 +213,9 @@ public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implement
         result.getOrCreateTag().putString("support_card", key.toString());
         result.getOrCreateTag().putString("ranking", registry.get(key).getGachaRanking().name().toLowerCase());
         result.getOrCreateTag().putInt("maxDamage", registry.get(key).getMaxDamage());
-        return result;
+        GachaEvent.UmaSoulGachaEvent evt = new GachaEvent.UmaSoulGachaEvent(getStoredItem(), keys, key, result, copyRand);
+        MinecraftForge.EVENT_BUS.post(evt);
+        return evt.getOutput();
     }
 
     private boolean canWork() {
