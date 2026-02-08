@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:brazil_cup",
   "length": 2100,

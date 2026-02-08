@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:funabashi",
   "id": "umapyoi:kashiwa_kinen",
   "length": 1600,

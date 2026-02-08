@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:adaptive",
   "id": "umapyoi:make_debut",
   "length": -1,

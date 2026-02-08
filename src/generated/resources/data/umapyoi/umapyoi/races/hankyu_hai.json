@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:hankyu_hai",
   "length": 1400,

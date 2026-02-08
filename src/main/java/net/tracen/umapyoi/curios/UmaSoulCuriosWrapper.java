@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.tracen.umapyoi.UmapyoiConfig;
+import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.events.ApplyUmasoulAttributeEvent;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
 import net.tracen.umapyoi.events.SettingPropertyEvent;
@@ -24,6 +25,7 @@ import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.event.CurioChangeEvent;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
 public class UmaSoulCuriosWrapper implements ICurio {
@@ -87,18 +89,18 @@ public class UmaSoulCuriosWrapper implements ICurio {
         CuriosApi.addSlotModifier(atts, "uma_suit", uuid, 1.0, AttributeModifier.Operation.ADDITION);
         if (UmaSoulUtils.getGrowth(getStack()) == Growth.UNTRAINED)
             return atts;
-        
+
+        boolean hasFatique = user.hasEffect(MobEffectRegistry.SLOW_METABOLISM.get());
+
         atts.put(UmapyoiAttributesRegistry.SPRINT_SPEED.get(),
                 new AttributeModifier(uuid, "sprint_speed_running_bonus",
-                        getExactProperty(user, StatusType.SPEED, UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
-                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
-                                : AttributeModifier.Operation.ADDITION));
-        
+                        hasFatique ? 0 : getExactProperty(user, StatusType.SPEED, UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
+                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL : AttributeModifier.Operation.ADDITION));
+
         atts.put(ForgeMod.SWIM_SPEED.get(),
                 new AttributeModifier(uuid, "speed_swiming_bonus",
-                        getExactProperty(user, StatusType.SPEED, UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
-                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
-                                : AttributeModifier.Operation.ADDITION));
+                        hasFatique ? 0 : getExactProperty(user, StatusType.SPEED, UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
+                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL : AttributeModifier.Operation.ADDITION));
         
         atts.put(Attributes.ATTACK_DAMAGE,
                 new AttributeModifier(uuid, "strength_attack_bonus",
@@ -107,12 +109,12 @@ public class UmaSoulCuriosWrapper implements ICurio {
                                 : AttributeModifier.Operation.ADDITION));
         atts.put(Attributes.MAX_HEALTH,
                 new AttributeModifier(uuid, "strength_attack_bonus",
-                        getExactProperty(user, StatusType.STAMINA, UmapyoiConfig.UMASOUL_MAX_STAMINA_HEALTH.get()),
+                        getExactProperty(user, StatusType.STAMINA, UmapyoiConfig.UMASOUL_MAX_STAMINA_HEALTH.get()) * (hasFatique ? 1.05 : 1),
                         UmapyoiConfig.UMASOUL_STAMINA_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                                 : AttributeModifier.Operation.ADDITION));
         atts.put(Attributes.ARMOR,
                 new AttributeModifier(uuid, "guts_armor_bonus",
-                        getExactProperty(user, StatusType.GUTS, UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR.get()),
+                        getExactProperty(user, StatusType.GUTS, UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR.get()) * (hasFatique ? 1.05 : 1),
                         UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                                 : AttributeModifier.Operation.ADDITION));
         atts.put(Attributes.ARMOR_TOUGHNESS,

@@ -146,14 +146,13 @@ public class ItemRegistry {
     public static final RegistryObject<Item> UMA_RACE_TICKET = register("race_ticket", UmaRaceTicketItem::new);
 
     public static final RegistryObject<Item> HACHIMI_MID = register("hachimi_mid",
-            () -> new UmaDrinkItem(UmaStatusUtils::addMotivation,
+            () -> new UmaDrinkItem(e -> {},
                     FoodInfo.builder().name("hachimi_mid").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
                             .nutrients(2F, 2F, 0F, 0F, 0F).decayModifier(1.0F).heatCapacity(1F).cookingTemp(480F)
                             .build()));
 
-    public static final RegistryObject<Item> HACHIMI_BIG = register("hachimi_big", () -> new UmaDrinkItem(entity -> {
-        UmaStatusUtils.changeMotivation(entity, 2);
-    }, FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(4, 0.8F).water(60F)
+    public static final RegistryObject<Item> HACHIMI_BIG = register("hachimi_big", () -> new UmaDrinkItem(e -> {},
+            FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(4, 0.8F).water(60F)
             .nutrients(4F, 4F, 0F, 0F, 0F).decayModifier(1.0F).heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final RegistryObject<Item> ROYAL_BITTER = register("royal_bitter",
@@ -163,14 +162,13 @@ public class ItemRegistry {
                             .heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final RegistryObject<Item> CUPCAKE = register("cupcake",
-            () -> new UmaFoodItem(UmaStatusUtils::addMotivation,
+            () -> new UmaFoodItem(e -> {},
                     FoodInfo.builder().name("cupcake").amountAndCalories(5, 0.6F).water(0F)
                             .nutrients(2F, 2F, 2F, 0F, 2F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F)
                             .build()));
 
-    public static final RegistryObject<Item> SWEET_CUPCAKE = register("sweet_cupcake", () -> new UmaFoodItem(entity -> {
-        UmaStatusUtils.changeMotivation(entity, 2);
-    }, FoodInfo.builder().name("sweet_cupcake").amountAndCalories(7, 0.6F).water(0F).nutrients(4F, 4F, 2F, 0F, 4F)
+    public static final RegistryObject<Item> SWEET_CUPCAKE = register("sweet_cupcake", () -> new UmaFoodItem(e -> {},
+            FoodInfo.builder().name("sweet_cupcake").amountAndCalories(7, 0.6F).water(0F).nutrients(4F, 4F, 2F, 0F, 4F)
             .decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
     
     public static final RegistryObject<Item> SMALL_ENERGY_DRINK = register("small_energy_drink",
