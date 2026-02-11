@@ -17,12 +17,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.block.Gate;
+import net.tracen.umapyoi.block.GateDoor;
 import net.tracen.umapyoi.block.ThreeGoddessBlock;
 import net.tracen.umapyoi.block.entity.GateEntity;
 
 public class GateRender implements BlockEntityRenderer<GateEntity> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation(Umapyoi.MODID, "textures/model/gate.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(Umapyoi.MODID, "textures/model/gate_door.png");
     private final SimpleBedrockModel model;
 
     public GateRender(BlockEntityRendererProvider.Context ctx) {
@@ -41,7 +41,7 @@ public class GateRender implements BlockEntityRenderer<GateEntity> {
         Level world = tileEntity.getLevel();
         if (world == null) return;
         BlockState state = tileEntity.getBlockState();
-        if (state.getBlock() instanceof Gate) {
+        if (state.getBlock() instanceof GateDoor) {
             Direction direction = tileEntity.getBlockState().getValue(ThreeGoddessBlock.FACING);
             renderModel(tileEntity, direction, poseStack, multiBufferSource, i, i1, v);
         }
@@ -55,12 +55,12 @@ public class GateRender implements BlockEntityRenderer<GateEntity> {
         poseStack.mulPose(Axis.YN.rotationDegrees(direction.toYRot() + 180));
         poseStack.mulPose(Axis.XP.rotationDegrees(180));
         poseStack.translate(0d, 0d, 7d/16d);
-        BedrockModelPOJO pojo = ClientUtil.getModelPOJO(new ResourceLocation(Umapyoi.MODID, "gate"));
+        BedrockModelPOJO pojo = ClientUtil.getModelPOJO(new ResourceLocation(Umapyoi.MODID, "gate_door"));
         if (model.needRefresh(pojo)) model.loadModel(pojo);
         BlockState state = tileEntity.getBlockState();
         boolean isOpen;
         try {
-            isOpen = state.getValue(Gate.OPEN);
+            isOpen = state.getValue(GateDoor.OPEN);
         } catch (IllegalArgumentException ignore) {
             isOpen = false;
         }

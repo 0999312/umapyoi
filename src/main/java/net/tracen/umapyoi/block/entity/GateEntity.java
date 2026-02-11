@@ -5,7 +5,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.tracen.umapyoi.block.Gate;
+import net.tracen.umapyoi.block.GateDoor;
 
 import javax.annotation.Nonnull;
 
@@ -29,7 +29,7 @@ public class GateEntity extends BlockEntity {
 
     public static boolean safeGetOpen(BlockState state) {
         try {
-            return state.getValue(Gate.OPEN);
+            return state.getValue(GateDoor.OPEN);
         } catch (IllegalArgumentException e) {
             return false;
         }

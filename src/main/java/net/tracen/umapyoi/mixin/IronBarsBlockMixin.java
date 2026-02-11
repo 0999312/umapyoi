@@ -5,7 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.tracen.umapyoi.block.Gate;
+import net.tracen.umapyoi.block.GateDoor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,9 +38,9 @@ public class IronBarsBlockMixin {
     @Unique
     private static boolean umapyoi$isFaceSturdy(BlockState instance, BlockGetter blockGetter, BlockPos blockPos, Direction direction){
         if (instance.isFaceSturdy(blockGetter, blockPos, direction)) return true;
-        if (instance.getBlock() instanceof Gate) {
+        if (instance.getBlock() instanceof GateDoor) {
             try {
-                Direction facing = instance.getValue(Gate.FACING);
+                Direction facing = instance.getValue(GateDoor.FACING);
                 return switch (facing) {
                     case SOUTH, NORTH -> direction == Direction.EAST || direction == Direction.WEST;
                     case EAST, WEST -> direction == Direction.NORTH || direction == Direction.SOUTH;

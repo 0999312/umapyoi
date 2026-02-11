@@ -1,17 +1,12 @@
 package net.tracen.umapyoi.block;
 
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -31,7 +26,7 @@ import net.tracen.umapyoi.registry.SoundRegistry;
 
 import javax.annotation.Nullable;
 
-public class Gate extends BaseEntityBlock {
+public class GateDoor extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -78,7 +73,7 @@ public class Gate extends BaseEntityBlock {
             Block.box(7, 0, 0, 15.5, 24, 1)
     );
 
-    public Gate() {
+    public GateDoor() {
         super(Properties.copy(Blocks.IRON_BARS).noOcclusion());
     }
 

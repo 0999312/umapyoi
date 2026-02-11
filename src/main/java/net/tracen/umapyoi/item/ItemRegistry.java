@@ -61,7 +61,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> FACTOR_RESEARCH_TABLE = register("factor_research_table",
             () -> new BlockItem(BlockRegistry.FACTOR_RESEARCH_TABLE.get(), Umapyoi.defaultItemProperties()));
 
-    public static final RegistryObject<Item> GATE = register("gate", () -> new BlockItem(BlockRegistry.GATE.get(),
+    public static final RegistryObject<Item> GATE = register("gate_door", () -> new BlockItem(BlockRegistry.GATE.get(),
             Umapyoi.defaultItemProperties()));
 
     public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul", FadedUmaSoulItem::new);
