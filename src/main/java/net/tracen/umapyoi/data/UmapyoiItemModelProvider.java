@@ -47,7 +47,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
             Umapyoi.getLogger().warn("One last time: DO NOT proceed to production in this mode.");
         }
         ItemRegistry.ITEMS.getEntries().forEach((item) -> {
-            if (item == ItemRegistry.HACHIMI_MID || item == ItemRegistry.UMA_SOUL_DISPLAY || item == ItemRegistry.HACHIMI_BIG || item == ItemRegistry.GATE)
+            if (item == ItemRegistry.HACHIMI_MID || item == ItemRegistry.UMA_SOUL_DISPLAY || item == ItemRegistry.HACHIMI_BIG || item == ItemRegistry.GATE_DOOR)
                 return;
             
             if (item.get() instanceof UmaWeaponItem)
@@ -115,7 +115,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
             }
             
             if (item.get() instanceof BlockItem block
-                    && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE || item == ItemRegistry.GATE)){
+                    && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE || item == ItemRegistry.GATE_DOOR)){
                 try {
                     itemBlock(block::getBlock);
                 } catch (IllegalStateException e) {

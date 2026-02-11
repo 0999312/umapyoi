@@ -45,6 +45,6 @@ public class BlockEntityRegistry {
 
     public static final RegistryObject<BlockEntityType<GateEntity>> GATE =
             BLOCK_ENTITIES.register("gate_entity", () -> BlockEntityType.Builder.of(
-                    GateEntity::new, BlockRegistry.GATE.get()
+                    GateEntity::new, BlockRegistry.GATE_DOOR.get()
             ).build(null));
 }
