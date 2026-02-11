@@ -20,10 +20,7 @@ import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.network.NetPacketHandler;
 import net.tracen.umapyoi.recipe.RecipeSerializerRegistry;
-import net.tracen.umapyoi.registry.TrainingSupportRegistry;
-import net.tracen.umapyoi.registry.UmaFactorRegistry;
-import net.tracen.umapyoi.registry.UmaSkillRegistry;
-import net.tracen.umapyoi.registry.UmapyoiAttributesRegistry;
+import net.tracen.umapyoi.registry.*;
 import net.tracen.umapyoi.villager.VillageRegistry;
 
 import org.slf4j.Logger;
@@ -54,6 +51,7 @@ public class Umapyoi {
         VillageRegistry.PROFESSIONS.register(modEventBus);
         RecipeSerializerRegistry.RECIPE_SERIALIZER.register(modEventBus);
         CommandRegistry.ARGUMENT_TYPES.register(modEventBus);
+        SoundRegistry.SOUNDS.register(modEventBus);
         modEventBus.addListener(this::onEntityAttributeModification);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);

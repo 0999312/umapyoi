@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:marguerite_stakes",
   "length": 1200,

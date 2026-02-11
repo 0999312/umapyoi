@@ -42,4 +42,9 @@ public class BlockEntityRegistry {
             BLOCK_ENTITIES.register("race_register_block_entity", () -> BlockEntityType.Builder
                     .of(RaceRegisterBlockEntity::new, BlockRegistry.RACE_REGISTER_BLOCK.get()).build(null));
     // todo: if cross-version upgrade (e.g. 1.20.1 -> 1.21) is allowed, pDataType must not be null. Remove this if cross-version is not considered.
+
+    public static final RegistryObject<BlockEntityType<GateEntity>> GATE =
+            BLOCK_ENTITIES.register("gate_entity", () -> BlockEntityType.Builder.of(
+                    GateEntity::new, BlockRegistry.GATE.get()
+            ).build(null));
 }
