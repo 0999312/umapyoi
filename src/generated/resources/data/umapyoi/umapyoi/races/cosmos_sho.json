@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:sapporo",
   "id": "umapyoi:cosmos_sho",
   "length": 1800,

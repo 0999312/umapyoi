@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:niigata",
   "id": "umapyoi:tanigawadake_stakes",
   "length": 1600,

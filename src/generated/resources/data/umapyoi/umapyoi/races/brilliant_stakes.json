@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:brilliant_stakes",
   "length": 2100,
