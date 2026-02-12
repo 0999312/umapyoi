@@ -103,7 +103,7 @@ public class FactorResearchMenu extends ItemCombinerMenu {
                                 (rightStack.getLevel() > leftStatusSingle.getLevel() ? rightStack : leftStatusSingle))
                         .orElse(leftStatusSingle));
             }
-            ItemStack returnItem = isFactorItem(left) ? left.copyWithCount(1) : new ItemStack(ItemRegistry.FACTOR_REPORT.get(), 1);
+            ItemStack returnItem = isFactorItem(left) ? left.copyWithCount(1) : new ItemStack(ItemRegistry.FACTOR_SHARD.get(), 1);
             // todo: I am not sure about it, but, it seems that both can be simply copied with left.copyWithCount(1)
             returnItem.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(outputs));
             this.resultSlots.setItem(0, returnItem);
@@ -127,7 +127,7 @@ public class FactorResearchMenu extends ItemCombinerMenu {
         return stack.is(UMA_FACTOR_ITEM.get());
     }
     private static boolean isFactorResearch(ItemStack stack) {
-        return stack.is(ItemRegistry.FACTOR_REPORT.get());
+        return stack.is(ItemRegistry.FACTOR_SHARD.get());
     }
 
     @Nonnull

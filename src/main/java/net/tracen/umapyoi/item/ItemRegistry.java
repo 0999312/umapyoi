@@ -193,7 +193,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> BASEBALL_BAT = register("baseball_bat", BaseballBatItem::new);
 
-    public static final RegistryObject<Item> FACTOR_REPORT = register("factor_report", FactorReport::new);
+    public static final RegistryObject<Item> FACTOR_SHARD = register("uma_factor_shard", FactorReport::new);
 
     private static <V extends Item> RegistryObject<V> register(String name, Supplier<V> item) {
         return ITEMS.register(name, item);

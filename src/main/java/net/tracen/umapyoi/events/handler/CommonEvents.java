@@ -133,6 +133,7 @@ public class CommonEvents {
                     timer.tick();
                     if (timer.getCurrentTick() >= 20) {
                         for (ServerPlayer serverplayer : level.players()) {
+//                        	serverplayer.
                             if (!serverplayer.isSpectator()) {
                                 if (serverplayer.isSleeping()) {
                                     if (serverplayer.hasEffect(MobEffectRegistry.NIGHT_OWL.get())) {
