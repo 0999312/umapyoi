@@ -30,13 +30,9 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                 models().getExistingFile(new ResourceLocation("umapyoi:block/register_lectern")));
         horizontalBlock(BlockRegistry.UMA_SELECT_BLOCK.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/uma_select_block")));
-        /* horizontalBlock(BlockRegistry.RACE_REGISTER_BLOCK.get(),
-                models().getExistingFile(new ResourceLocation("umapyoi:block/race_register"))); */
-        getVariantBuilder(BlockRegistry.RACE_REGISTER_BLOCK.get()).forAllStates(state ->
-            ConfiguredModel.builder()
-                    .modelFile(models().getExistingFile(new ResourceLocation(Umapyoi.MODID, "block/race_register")))
-                    .rotationY((state.getValue(BlockStateProperties.HORIZONTAL_FACING).get2DDataValue() * 90) % 360)
-                    .build());
+        horizontalBlock(BlockRegistry.RACE_REGISTER_BLOCK.get(),
+                models().getExistingFile(new ResourceLocation("umapyoi:block/race_register")));
+
 
         getVariantBuilder(BlockRegistry.GATE.get()).forAllStates(state ->
                 ConfiguredModel.builder()
