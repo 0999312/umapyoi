@@ -12,12 +12,10 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -51,23 +49,74 @@ public class Gate extends Block {
             Block.box(0, 10, 15, 16, 16, 16)
     );
 
-    protected static final VoxelShape UP_BASE = Shapes.or(
+    protected static final VoxelShape MID_BASE = Shapes.or(
             Block.box(0, 0, 0, 1, 16, 1),
             Block.box(15, 0, 0, 16, 16, 1),
             Block.box(0, 0, 15, 1, 16, 16),
             Block.box(15, 0, 15, 16, 16, 16)
     );
 
-    protected static final VoxelShape UP_NS_AABB = Shapes.or(
-            UP_BASE,
+    protected static final VoxelShape MID_NS_AABB = Shapes.or(
+            MID_BASE,
             Block.box(0, 0, 0, 1, 6, 16),
             Block.box(15, 0, 0, 16, 6, 16)
     );
 
-    protected static final VoxelShape UP_EW_AABB = Shapes.or(
-            UP_BASE,
+    protected static final VoxelShape MID_EW_AABB = Shapes.or(
+            MID_BASE,
             Block.box(0, 0, 0, 16, 6, 1),
             Block.box(0, 0, 15, 16, 6, 16)
+    );
+
+    protected static final VoxelShape HIGH_BASE = Shapes.or(
+            Block.box(0, 0, 0, 1, 10, 1),
+            Block.box(15, 0, 0, 16, 10, 1),
+            Block.box(0, 0, 15, 1, 10, 16),
+            Block.box(15, 0, 15, 16, 10, 16),
+            Block.box(0, 9, 0, 1, 10, 16),
+            Block.box(0, 9, 0, 16, 10, 1),
+            Block.box(0,9, 15,16, 10, 16),
+            Block.box(15,9, 0,16, 10, 16)
+    );
+
+    protected static final VoxelShape HIGH_NS_AABB = Shapes.or(
+            HIGH_BASE,
+            Block.box(0, 4, 0, 16, 5, 1),
+            Block.box(0, 4, 15, 16, 5, 16),
+            Block.box(0, 5, 0, 1, 6, 16),
+            Block.box(15, 5, 0, 16, 6, 16),
+            Block.box(4, 3, -0.5, 12, 5, 1.5),
+            Block.box(4, 3, 14.5, 12, 5, 16.5)
+    );
+
+    protected static final VoxelShape HIGH_EW_AABB = Shapes.or(
+            HIGH_BASE,
+            Block.box(0, 4, 0, 1, 5, 16),
+            Block.box(15, 4, 0, 16, 5, 16),
+            Block.box(0, 5, 0, 16, 6, 11),
+            Block.box(0, 5, 15, 16, 6, 16),
+            Block.box(-0.5, 3, 4, 1.5, 5, 12),
+            Block.box(14.5, 3, 4, 16.5, 5, 12)
+    );
+
+    protected static final VoxelShape HIGH_N_AABB = Shapes.or(
+            HIGH_NS_AABB,
+            Block.box(6, 5, 0, 10, 9, 1)
+    );
+
+    protected static final VoxelShape HIGH_E_AABB = Shapes.or(
+            HIGH_EW_AABB,
+            Block.box(15, 5, 6, 16, 9, 10)
+    );
+
+    protected static final VoxelShape HIGH_S_AABB = Shapes.or(
+            HIGH_NS_AABB,
+            Block.box(6, 5, 15, 10, 9, 16)
+    );
+
+    protected static final VoxelShape HIGH_W_AABB = Shapes.or(
+            HIGH_EW_AABB,
+            Block.box(0, 5, 6, 1, 9, 10)
     );
 
     public Gate() {
@@ -80,13 +129,21 @@ public class Gate extends Block {
         return switch (pState.getValue(PART)) {
             case LOWER -> switch (direction) {
                 case NORTH, SOUTH -> LOW_NS_AABB;
-                default -> LOW_EW_AABB;
+                case EAST, WEST -> LOW_EW_AABB;
+                default -> Block.box(0, 0, 0, 16, 16, 16);
             };
             case MIDDLE -> switch (direction) {
-                case NORTH, SOUTH -> UP_NS_AABB;
-                default -> LOW_NS_AABB;
+                case NORTH, SOUTH -> MID_NS_AABB;
+                case EAST, WEST -> MID_EW_AABB;
+                default -> Block.box(0, 0, 0, 16, 16, 16);
             };
-            default -> Block.box(0, 0, 0, 16, 16, 16);
+            case UPPER -> switch (direction) {
+                case NORTH -> HIGH_N_AABB;
+                case EAST -> HIGH_E_AABB;
+                case SOUTH -> HIGH_S_AABB;
+                case WEST -> HIGH_W_AABB;
+                default -> Block.box(0, 0, 0, 16, 16, 16);
+            };
         };
     }
 
