@@ -37,12 +37,7 @@ import net.tracen.umapyoi.client.renderer.TrainningSuitRenderer;
 import net.tracen.umapyoi.client.renderer.UmaCostumeRenderer;
 import net.tracen.umapyoi.client.renderer.UmaSoulRenderer;
 import net.tracen.umapyoi.client.renderer.UmaUniformRenderer;
-import net.tracen.umapyoi.client.renderer.blockentity.SilverSupportAlbumPedestalBlockRender;
-import net.tracen.umapyoi.client.renderer.blockentity.SilverUmaPedestalBlockRender;
-import net.tracen.umapyoi.client.renderer.blockentity.SupportAlbumPedestalBlockRender;
-import net.tracen.umapyoi.client.renderer.blockentity.ThreeGoddessBlockRender;
-import net.tracen.umapyoi.client.renderer.blockentity.UmaPedestalBlockRender;
-import net.tracen.umapyoi.client.renderer.blockentity.UmaStatuesBlockRender;
+import net.tracen.umapyoi.client.renderer.blockentity.*;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.UmaRaceTicketItem;
 import net.tracen.umapyoi.registry.races.Race;
@@ -76,6 +71,7 @@ public class ClientSetupEvents {
 			BlockEntityRenderers.register(BlockEntityRegistry.SILVER_UMA_PEDESTAL.get(), SilverUmaPedestalBlockRender::new);
 			BlockEntityRenderers.register(BlockEntityRegistry.SILVER_SUPPORT_ALBUM_PEDESTAL.get(),
 					SilverSupportAlbumPedestalBlockRender::new);
+			BlockEntityRenderers.register(BlockEntityRegistry.GATE.get(), GateRender::new);
 		});
 	}
 

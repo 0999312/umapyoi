@@ -20,7 +20,6 @@ import net.tracen.umapyoi.item.weapon.BaseballBatItem;
 import net.tracen.umapyoi.item.weapon.GrassNaginataItem;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.training.SupportType;
-import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Umapyoi.MODID);
@@ -52,7 +51,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> UMA_SELECT_BLOCK = register("uma_select_block",
             () -> new BlockItem(BlockRegistry.UMA_SELECT_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
-    public static final RegistryObject<Item> RACE_REGISTER_BLOCK = register("race_register_block",
+    public static final RegistryObject<Item> RACE_REGISTER_BLOCK = register("race_register",
             () -> new BlockItem(BlockRegistry.RACE_REGISTER_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
     public static final RegistryObject<Item> DERBY_STALLION_TABLE = register("derby_stallion_table",
@@ -60,6 +59,11 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> FACTOR_RESEARCH_TABLE = register("factor_research_table",
             () -> new BlockItem(BlockRegistry.FACTOR_RESEARCH_TABLE.get(), Umapyoi.defaultItemProperties()));
+
+    public static final RegistryObject<Item> GATE_DOOR = register("gate_door", () -> new BlockItem(BlockRegistry.GATE_DOOR.get(),
+            Umapyoi.defaultItemProperties()));
+
+    public static final RegistryObject<Item> GATE = register("gate", () -> new BlockItem(BlockRegistry.GATE.get(), Umapyoi.defaultItemProperties()));
 
     public static final RegistryObject<Item> BLANK_UMA_SOUL = register("blank_uma_soul", FadedUmaSoulItem::new);
     public static final RegistryObject<Item> UMA_SOUL_DISPLAY = register("uma_soul_display", ItemRegistry::newMaterial);

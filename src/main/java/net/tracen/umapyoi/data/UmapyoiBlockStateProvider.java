@@ -8,6 +8,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
+import net.tracen.umapyoi.block.Gate;
 
 public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
 
@@ -36,6 +37,15 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                     .modelFile(models().getExistingFile(new ResourceLocation(Umapyoi.MODID, "block/race_register")))
                     .rotationY((state.getValue(BlockStateProperties.HORIZONTAL_FACING).get2DDataValue() * 90) % 360)
                     .build());
+
+        getVariantBuilder(BlockRegistry.GATE.get()).forAllStates(state ->
+                ConfiguredModel.builder()
+                        .modelFile(models().getExistingFile(
+                                new ResourceLocation(Umapyoi.MODID, "block/gate_" + state.getValue(Gate.PART).name().toLowerCase())
+                        ))
+                        .rotationY((state.getValue(BlockStateProperties.HORIZONTAL_FACING).get2DDataValue() * 90 + 180) % 360)
+                        .build());
+
         simpleBlock(BlockRegistry.SKILL_LEARNING_TABLE.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/skill_learning_table")));
 
@@ -56,6 +66,8 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                 models().getExistingFile(new ResourceLocation("umapyoi:block/three_goddess")));
         simpleBlock(BlockRegistry.UMA_STATUES_UPPER.get(),
                 models().getExistingFile(new ResourceLocation("umapyoi:block/uma_statue")));
+        simpleBlock(BlockRegistry.GATE_DOOR.get(),
+                models().getExistingFile(new ResourceLocation(Umapyoi.MODID, "block/gate_door")));
     }
 
 }
