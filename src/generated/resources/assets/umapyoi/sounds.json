@@ -1,0 +1,14 @@
+{
+  "gate_close": {
+    "sounds": [
+      "umapyoi:gate_close"
+    ],
+    "subtitle": "sound.umapyoi.gate_close"
+  },
+  "gate_open": {
+    "sounds": [
+      "umapyoi:gate_open"
+    ],
+    "subtitle": "sound.umapyoi.gate_open"
+  }
+}

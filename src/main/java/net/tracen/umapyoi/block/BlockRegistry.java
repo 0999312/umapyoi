@@ -44,4 +44,8 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> RACE_REGISTER_BLOCK = BLOCKS.register("race_register",
             RaceRegisterBlock::new);
+
+    public static final RegistryObject<Block> GATE_DOOR = BLOCKS.register("gate_door", GateDoor::new);
+
+    public static final RegistryObject<Block> GATE = BLOCKS.register("gate", Gate::new);
 }

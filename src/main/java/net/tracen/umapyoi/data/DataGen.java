@@ -54,6 +54,7 @@ public class DataGen {
         dataGenerator.addProvider(event.includeClient(), new UmapyoiLangProvider(packOutput));
         dataGenerator.addProvider(event.includeServer(), new BetterCombatProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new TFCFoodDataProvider(packOutput, existingFileHelper));
+        dataGenerator.addProvider(event.includeServer(), new UmapyoiSoundDefinitionProvider(packOutput, existingFileHelper));
         final RegistrySetBuilder umaDataBuilder = new RegistrySetBuilder().add(UmaData.REGISTRY_KEY,
                 UmaDataRegistry::registerAll);
 

@@ -17,10 +17,13 @@ import net.tracen.umapyoi.utils.RaceRanking;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
-    private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = false;
+    // DO NOT turn this on in production. DEVELOPMENT SWITCH ONLY
+    private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = true;
 
     public UmapyoiItemModelProvider(PackOutput generator, ExistingFileHelper existingFileHelper) {
         super(generator, Umapyoi.MODID, existingFileHelper);
@@ -28,8 +31,23 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
 
     @Override
     protected void registerModels() {
+        if (ALLOW_CONTINUE_WITH_MISSING_TEXTURE) {
+            Umapyoi.getLogger().warn("Warning: Current allow continue with missing texture is turned on");
+            Umapyoi.getLogger().warn("This option shall only be turned on in DEVELOP ENVIRONMENT");
+            Umapyoi.getLogger().warn("If you wish to continue, enter \"yes\" in standard input.");
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter \"yes\" to continue: ");
+            String line = scanner.nextLine();
+            if (!Objects.equals(line, "yes")) {
+                Umapyoi.getLogger().error("User has aborted the data generation.");
+                throw new IllegalStateException("User aborted data generation.");
+            }
+            Umapyoi.getLogger().warn("User wish to proceed data generation. WE HAVE WARNED YOU.");
+            Umapyoi.getLogger().warn("One last time: DO NOT proceed to production in this mode.");
+        }
         ItemRegistry.ITEMS.getEntries().forEach((item) -> {
-            if (item == ItemRegistry.HACHIMI_MID || item == ItemRegistry.UMA_SOUL_DISPLAY || item == ItemRegistry.HACHIMI_BIG)
+            if (item == ItemRegistry.HACHIMI_MID || item == ItemRegistry.UMA_SOUL_DISPLAY || item == ItemRegistry.HACHIMI_BIG || item == ItemRegistry.GATE_DOOR)
                 return;
             
             if (item.get() instanceof UmaWeaponItem)
@@ -97,7 +115,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
             }
             
             if (item.get() instanceof BlockItem block
-                    && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE)){
+                    && !(item == ItemRegistry.THREE_GODDESS || item == ItemRegistry.UMA_STATUE || item == ItemRegistry.GATE_DOOR)){
                 try {
                     itemBlock(block::getBlock);
                 } catch (IllegalStateException e) {
