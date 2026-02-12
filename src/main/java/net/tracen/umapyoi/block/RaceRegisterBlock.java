@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,6 +20,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,6 +39,26 @@ import javax.annotation.Nonnull;
 public class RaceRegisterBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
+    protected static final VoxelShape SHAPE = Shapes.or(
+    		Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), 
+    		Block.box(4.0D, 6.0D, 11.0D, 16.0D, 15.0D, 14.0D)
+    );
+    
+    protected static final VoxelShape SHAPE_WEST = Shapes.or(
+    		Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), 
+    		Block.box(11.0D, 6.0D, 0.0D, 14.0D, 15.0D, 12.0D)
+    );
+    
+    protected static final VoxelShape SHAPE_SOUTH = Shapes.or(
+    		Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), 
+    		Block.box(0.0D, 6.0D, 2.0D, 12.0D, 15.0D, 5.0D)
+    );
+    
+    protected static final VoxelShape SHAPE_EAST = Shapes.or(
+    		Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), 
+    		Block.box(2.0D, 6.0D, 4.0D, 5.0D, 15.0D, 16.0D)
+    );
+    
     public RaceRegisterBlock() {
         super(Properties.copy(Blocks.IRON_BLOCK).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
@@ -92,13 +116,27 @@ public class RaceRegisterBlock extends BaseEntityBlock {
         return BlockEntityRegistry.RACE_REGISTER_BLOCK_ENTITY.get().create(pos, state);
     }
 
-    // todo for future: customize render here
-
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
-
+    
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        switch ((Direction) state.getValue(FACING)) {
+        case NORTH:
+            return SHAPE;
+        case SOUTH:
+            return SHAPE_SOUTH;
+        case EAST:
+            return SHAPE_EAST;
+        case WEST:
+            return SHAPE_WEST;
+        default:
+            return SHAPE;
+        }
+    }
+    
     @SubscribeEvent
     public static void registerBlockColor(RegisterColorHandlersEvent.Block event) {
         event.register((state, level, pos, index) -> BiomeColors.getAverageGrassColor(level, pos), BlockRegistry.RACE_REGISTER_BLOCK.get());

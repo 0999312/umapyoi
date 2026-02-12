@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static net.tracen.umapyoi.block.BlockRegistry.DERBY_STALLION_TABLE;
-import static net.tracen.umapyoi.item.ItemRegistry.FACTOR_REPORT;
+import static net.tracen.umapyoi.item.ItemRegistry.FACTOR_SHARD;
 import static net.tracen.umapyoi.item.ItemRegistry.UMA_FACTOR_ITEM;
 
 public class DerbyStallionMenu extends AbstractContainerMenu {
@@ -200,7 +200,7 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
             hasResult.set(1);
             int i = 0;
             List<ItemStack> returnStacks = evt.getListOfReturn().stream().map(s -> {
-                ItemStack returnStack = new ItemStack(FACTOR_REPORT.get(), 1);
+                ItemStack returnStack = new ItemStack(FACTOR_SHARD.get(), 1);
                 CompoundTag tag = returnStack.getOrCreateTag();
                 tag.put("factors", UmaFactorUtils.serializeNBT(List.of(s)));
                 return returnStack;
