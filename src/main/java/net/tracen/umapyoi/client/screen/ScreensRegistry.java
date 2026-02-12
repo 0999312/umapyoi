@@ -23,7 +23,7 @@ public class ScreensRegistry {
 
             MenuScreens.register(ContainerRegistry.RACE_REGISTER.get(), RaceScreen::new);
 
-            MenuScreens.register(ContainerRegistry.DERBY_STALLION_MENU.get(), DerbyStallionScreen::new);
+            MenuScreens.register(ContainerRegistry.FACTOR_DECOMPOSE_MENU.get(), FactorDecomposeScreen::new);
             MenuScreens.register(ContainerRegistry.FACTOR_RESEARCH_MENU.get(), FactorResearchScreen::new);
         });
     }

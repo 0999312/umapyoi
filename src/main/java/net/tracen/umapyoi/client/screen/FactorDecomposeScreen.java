@@ -6,13 +6,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.container.DerbyStallionMenu;
+import net.tracen.umapyoi.container.FactorDecomposeMenu;
 
-public class DerbyStallionScreen extends AbstractContainerScreen<DerbyStallionMenu> {
+public class FactorDecomposeScreen extends AbstractContainerScreen<FactorDecomposeMenu> {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
-            "textures/gui/derby_stallion.png");
+            "textures/gui/factor_decompose.png");
 
-    public DerbyStallionScreen(DerbyStallionMenu screenContainer, Inventory inv, Component titleIn) {
+    public FactorDecomposeScreen(FactorDecomposeMenu screenContainer, Inventory inv, Component titleIn) {
         super(screenContainer, inv, titleIn);
         this.leftPos = 0;
         this.topPos = 0;

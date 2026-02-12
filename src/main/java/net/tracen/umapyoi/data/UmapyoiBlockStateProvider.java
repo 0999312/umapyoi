@@ -64,6 +64,10 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                 models().getExistingFile(new ResourceLocation("umapyoi:block/uma_statue")));
         simpleBlock(BlockRegistry.GATE_DOOR.get(),
                 models().getExistingFile(new ResourceLocation(Umapyoi.MODID, "block/gate_door")));
+        horizontalBlock(BlockRegistry.FACTOR_RESEARCH_TABLE.get(),
+                models().getExistingFile(new ResourceLocation(Umapyoi.MODID, "block/factor_research_table")));
+        horizontalBlock(BlockRegistry.FACTOR_DECOMPOSE_TABLE.get(),
+                models().getExistingFile(new ResourceLocation(Umapyoi.MODID, "block/factor_decompose_table")));
     }
 
 }

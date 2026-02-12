@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:chukyo",
   "id": "umapyoi:procyon_stakes",
   "length": 1400,

@@ -1,0 +1,22 @@
+{
+  "distance_aptitude": [
+    3,
+    6,
+    6,
+    2
+  ],
+  "identifier": "umapyoi:stardust",
+  "position": "runaway",
+  "propertyRate": [
+    10,
+    15,
+    0,
+    0,
+    15
+  ],
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
+}

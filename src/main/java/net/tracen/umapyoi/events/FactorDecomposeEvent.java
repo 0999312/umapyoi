@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static net.tracen.umapyoi.container.DerbyStallionMenu.AllowContinueDefaultLogic;
-import static net.tracen.umapyoi.container.DerbyStallionMenu.DefaultAlgResultStacks;
+import static net.tracen.umapyoi.container.FactorDecomposeMenu.AllowContinueDefaultLogic;
+import static net.tracen.umapyoi.container.FactorDecomposeMenu.DefaultAlgResultStacks;
 
 /**
  * This event would be posted whenever a player tries to decompose a factor item inside the derby stallion table.<br>
@@ -27,7 +27,7 @@ import static net.tracen.umapyoi.container.DerbyStallionMenu.DefaultAlgResultSta
  * logicOfGenerateResultStacks -> List&lt;UmaFactorStack&gt;: a function (overridable) implements default generation
  */
 @Cancelable
-public class DerbyStallionEvent extends Event {
+public class FactorDecomposeEvent extends Event {
     private final ItemStack inputStack;
     public final int randomSeed;
     private ItemStack replaceStack;
@@ -42,13 +42,12 @@ public class DerbyStallionEvent extends Event {
         return DefaultAlgResultStacks(stack, random);
     }
 
-    public DerbyStallionEvent(ItemStack inputStack, int random) {
+    public FactorDecomposeEvent(ItemStack inputStack, int random) {
         this.inputStack = inputStack;
         this.replaceStack = inputStack;
         this.randomSeed = random;
         this.listOfReturn = null;
         this.defaultReturnVal = this.logicOfAllowContinueCheck(inputStack) ? this.logicOfGenerateResultStacks(inputStack, random) : null;
-        Umapyoi.getLogger().debug("IN: {}", this.logicOfAllowContinueCheck(inputStack));
     }
 
     public ItemStack getCopyOfInput() {

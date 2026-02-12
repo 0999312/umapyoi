@@ -54,8 +54,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item> RACE_REGISTER_BLOCK = register("race_register",
             () -> new BlockItem(BlockRegistry.RACE_REGISTER_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
-    public static final RegistryObject<Item> DERBY_STALLION_TABLE = register("derby_stallion_table",
-            () -> new BlockItem(BlockRegistry.DERBY_STALLION_TABLE.get(), Umapyoi.defaultItemProperties()));
+    public static final RegistryObject<Item> FACTOR_DECOMPOSE_TABLE = register("factor_decompose_table",
+            () -> new BlockItem(BlockRegistry.FACTOR_DECOMPOSE_TABLE.get(), Umapyoi.defaultItemProperties()));
 
     public static final RegistryObject<Item> FACTOR_RESEARCH_TABLE = register("factor_research_table",
             () -> new BlockItem(BlockRegistry.FACTOR_RESEARCH_TABLE.get(), Umapyoi.defaultItemProperties()));

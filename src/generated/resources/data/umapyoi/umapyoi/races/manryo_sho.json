@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:manryo_sho",
   "length": 1400,

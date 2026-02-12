@@ -12,6 +12,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -28,7 +29,7 @@ import javax.annotation.Nullable;
 
 public class Gate extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final EnumProperty<ThreeBlockPart> PART = EnumProperty.create("part", ThreeBlockPart.class);
+    public static final EnumProperty<ThreeBlockPart> PART = ThreeBlockPart.PART;
 
     protected static final VoxelShape LOW_BASE = Shapes.or(
             Block.box(0, 4, 0, 1, 10, 1),
@@ -215,7 +216,7 @@ public class Gate extends Block {
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         BlockPos blockpos = pPos.below();
         BlockState blockstate = pLevel.getBlockState(blockpos);
-        return pState.getValue(PART) == ThreeBlockPart.LOWER ? blockstate.isFaceSturdy(pLevel, blockpos, Direction.UP) : blockstate.is(this);
+        return pState.getValue(PART) == ThreeBlockPart.LOWER || blockstate.is(this);
     }
 
     @Override

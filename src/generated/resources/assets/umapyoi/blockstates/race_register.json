@@ -2,18 +2,18 @@
   "variants": {
     "facing=east": {
       "model": "umapyoi:block/race_register",
-      "y": 270
+      "y": 90
     },
     "facing=north": {
+      "model": "umapyoi:block/race_register"
+    },
+    "facing=south": {
       "model": "umapyoi:block/race_register",
       "y": 180
     },
-    "facing=south": {
-      "model": "umapyoi:block/race_register"
-    },
     "facing=west": {
       "model": "umapyoi:block/race_register",
-      "y": 90
+      "y": 270
     }
   }
 }
