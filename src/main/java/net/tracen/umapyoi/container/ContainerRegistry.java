@@ -30,8 +30,8 @@ public class ContainerRegistry {
     public static final RegistryObject<MenuType<UmaSelectMenu>> UMA_SELECT_MENU = CONTAINER_TYPES
             .register("uma_select_menu", () -> new MenuType<>((UmaSelectMenu::new), FeatureFlags.DEFAULT_FLAGS));
 
-    public static final RegistryObject<MenuType<DerbyStallionMenu>> DERBY_STALLION_MENU = CONTAINER_TYPES
-            .register("derby_stallion_menu", () -> new MenuType<>(DerbyStallionMenu::new, FeatureFlags.DEFAULT_FLAGS));
+    public static final RegistryObject<MenuType<FactorDecomposeMenu>> FACTOR_DECOMPOSE_MENU = CONTAINER_TYPES
+            .register("factor_decompose_menu", () -> new MenuType<>(FactorDecomposeMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
     public static final RegistryObject<MenuType<FactorResearchMenu>> FACTOR_RESEARCH_MENU = CONTAINER_TYPES
             .register("factor_research_menu", () -> new MenuType<>(FactorResearchMenu::new, FeatureFlags.DEFAULT_FLAGS));

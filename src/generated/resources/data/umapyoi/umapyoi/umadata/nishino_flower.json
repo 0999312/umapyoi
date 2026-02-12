@@ -1,0 +1,23 @@
+{
+  "distance_aptitude": [
+    6,
+    6,
+    2,
+    0
+  ],
+  "identifier": "umapyoi:nishino_flower",
+  "position": "pace_chaser",
+  "propertyRate": [
+    15,
+    0,
+    15,
+    0,
+    0
+  ],
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    1,
+    5
+  ]
+}

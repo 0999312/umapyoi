@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "attribute_correction": [
     0,
     1

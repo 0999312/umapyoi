@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:tenno_sho_autumn",
   "length": 2000,

@@ -31,46 +31,46 @@ public class GateDoor extends BaseEntityBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    protected static final VoxelShape SOUTH_AABB = Block.box(0, 4, 7, 16, 16, 10);
-    protected static final VoxelShape NORTH_AABB = Block.box(0, 4, 6, 16, 16, 9);
-    protected static final VoxelShape WEST_AABB = Block.box(6, 4, 0, 9, 16, 16);
-    protected static final VoxelShape EAST_AABB = Block.box(7, 4, 0, 10, 16, 16);
-    protected static final VoxelShape SOUTH_COLLISION_AABB = Block.box(0, 0, 7, 16, 24, 10);
-    protected static final VoxelShape NORTH_COLLISION_AABB = Block.box(0, 0, 6, 16, 24, 9);
-    protected static final VoxelShape WEST_COLLISION_AABB = Block.box(6, 0, 0, 9, 24, 16);
-    protected static final VoxelShape EAST_COLLISION_AABB = Block.box(7, 0, 0, 10, 24, 16);
+    protected static final VoxelShape SOUTH_AABB = Block.box(0, 4, 0, 16, 16, 3);
+    protected static final VoxelShape NORTH_AABB = Block.box(0, 4, 13, 16, 16, 16);
+    protected static final VoxelShape WEST_AABB = Block.box(13, 4, 0, 16, 16, 16);
+    protected static final VoxelShape EAST_AABB = Block.box(0, 4, 0, 3, 16, 16);
+    protected static final VoxelShape SOUTH_COLLISION_AABB = Block.box(0, 0, 0, 16, 24, 3);
+    protected static final VoxelShape NORTH_COLLISION_AABB = Block.box(0, 0, 13, 16, 24, 16);
+    protected static final VoxelShape WEST_COLLISION_AABB = Block.box(13, 0, 0, 16, 24, 16);
+    protected static final VoxelShape EAST_COLLISION_AABB = Block.box(0, 0, 0, 3, 24, 16);
 
     protected static final VoxelShape SOUTH_OPEN_AABB = Shapes.or(
-            Block.box(15, 4, 7, 16, 16, 15.5),
-            Block.box(0, 4, 7, 1, 16, 15.5)
+            Block.box(15, 4, 0, 16, 16, 8.5),
+            Block.box(0, 4, 0, 1, 16, 8.5)
     );
     protected static final VoxelShape NORTH_OPEN_AABB = Shapes.or(
-            Block.box(15, 4, 0.5, 16, 16, 9),
-            Block.box(0, 4, 0.5, 1, 16, 9)
+            Block.box(15, 4, 8.5, 16, 16, 16),
+            Block.box(0, 4, 8.5, 1, 16, 16)
     );
     protected static final VoxelShape WEST_OPEN_AABB = Shapes.or(
-            Block.box(0.5, 4, 15, 9, 16, 16),
-            Block.box(0.5, 4, 0, 9, 16, 1)
+            Block.box(8.5, 4, 15, 16, 16, 16),
+            Block.box(8.5, 4, 0, 16, 16, 1)
     );
     protected static final VoxelShape EAST_OPEN_AABB = Shapes.or(
-            Block.box(7, 4, 15, 15.5, 16, 16),
-            Block.box(7, 4, 0, 15.5, 16, 1)
+            Block.box(0, 4, 15, 8.5, 16, 16),
+            Block.box(0, 4, 0, 8.5, 16, 1)
     );
     protected static final VoxelShape SOUTH_OPEN_COLLISION_AABB = Shapes.or(
-            Block.box(15, 0, 7, 16, 24, 15.5),
-            Block.box(0, 0, 7, 1, 24, 15.5)
+            Block.box(15, 0, 0, 16, 24, 8.5),
+            Block.box(0, 0, 0, 1, 24, 8.5)
     );
     protected static final VoxelShape NORTH_OPEN_COLLISION_AABB = Shapes.or(
-            Block.box(15, 0, 0.5, 16, 24, 9),
-            Block.box(0, 0, 0.5, 1, 24, 9)
+            Block.box(15, 0, 8.5, 16, 24, 16),
+            Block.box(0, 0, 8.5, 1, 24, 16)
     );
     protected static final VoxelShape WEST_OPEN_COLLISION_AABB = Shapes.or(
-            Block.box(0.5, 0, 15, 9, 24, 16),
-            Block.box(0.5, 0, 0, 9, 24, 1)
+            Block.box(8.5, 0, 15, 16, 24, 16),
+            Block.box(8.5, 0, 0, 16, 24, 1)
     );
     protected static final VoxelShape EAST_OPEN_COLLISION_AABB = Shapes.or(
-            Block.box(7, 0, 15, 15.5, 24, 16),
-            Block.box(7, 0, 0, 15.5, 24, 1)
+            Block.box(0, 0, 15, 8.5, 24, 16),
+            Block.box(0, 0, 0, 8.5, 24, 1)
     );
 
     public GateDoor() {

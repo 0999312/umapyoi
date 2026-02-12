@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.tracen.umapyoi.events.DerbyStallionEvent;
+import net.tracen.umapyoi.events.FactorDecomposeEvent;
 import net.tracen.umapyoi.registry.factors.FactorType;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 import net.tracen.umapyoi.utils.UmaFactorUtils;
@@ -22,11 +22,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static net.tracen.umapyoi.block.BlockRegistry.DERBY_STALLION_TABLE;
+import static net.tracen.umapyoi.block.BlockRegistry.FACTOR_DECOMPOSE_TABLE;
 import static net.tracen.umapyoi.item.ItemRegistry.FACTOR_SHARD;
 import static net.tracen.umapyoi.item.ItemRegistry.UMA_FACTOR_ITEM;
 
-public class DerbyStallionMenu extends AbstractContainerMenu {
+public class FactorDecomposeMenu extends AbstractContainerMenu {
     protected final ContainerLevelAccess access;
     protected final Player player;
 
@@ -46,7 +46,7 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
         @Override
         public void setChanged() {
             super.setChanged();
-            DerbyStallionMenu.this.slotsChanged(this);
+            FactorDecomposeMenu.this.slotsChanged(this);
         }
     };
 
@@ -54,8 +54,8 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
         return this.isTaking.get() != 0;
     }
 
-    public DerbyStallionMenu(@Nullable MenuType<?> pType, int pContainerId, Inventory pPlayerInventory,
-                             ContainerLevelAccess pAccess) {
+    public FactorDecomposeMenu(@Nullable MenuType<?> pType, int pContainerId, Inventory pPlayerInventory,
+                               ContainerLevelAccess pAccess) {
         super(pType, pContainerId);
         this.access = pAccess;
         this.player = pPlayerInventory.player;
@@ -72,18 +72,18 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
 
             public boolean mayPickup(@Nonnull Player pPlayer) {
                 return !this.getItem().isEmpty() &&
-                        (isTaking() || DerbyStallionMenu.this.hasResult.get() != 0);
+                        (isTaking() || FactorDecomposeMenu.this.hasResult.get() != 0);
             }
 
             public void onTake(@Nonnull Player pPlayer, @Nonnull ItemStack itemStack) {
-                DerbyStallionMenu.this.factorSeed.set(pPlayer.getEnchantmentSeed());
-                DerbyStallionMenu.this.onTake(pPlayer, itemStack);
+                FactorDecomposeMenu.this.factorSeed.set(pPlayer.getEnchantmentSeed());
+                FactorDecomposeMenu.this.onTake(pPlayer, itemStack);
             }
         }).peek(this::addSlot).toList();
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(pPlayerInventory, j + i * 9 + 7, 8 + j * 18, 134 + i * 18));
+                this.addSlot(new Slot(pPlayerInventory, j + i * 9 + 9, 8 + j * 18, 134 + i * 18));
             }
         }
 
@@ -96,11 +96,11 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
         this.addDataSlot(this.hasResult).set(0);
     }
 
-    public DerbyStallionMenu(int pContainerId, Inventory pPlayerInventory, ContainerLevelAccess pAccess) {
-        this(ContainerRegistry.DERBY_STALLION_MENU.get(), pContainerId, pPlayerInventory, pAccess);
+    public FactorDecomposeMenu(int pContainerId, Inventory pPlayerInventory, ContainerLevelAccess pAccess) {
+        this(ContainerRegistry.FACTOR_DECOMPOSE_MENU.get(), pContainerId, pPlayerInventory, pAccess);
     }
 
-    public DerbyStallionMenu(int i, Inventory inventory) {
+    public FactorDecomposeMenu(int i, Inventory inventory) {
         this(i, inventory, ContainerLevelAccess.NULL);
     }
 
@@ -148,7 +148,7 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(@Nonnull Player pPlayer) {
         return this.access.evaluate((level, pos) ->
-                level.getBlockState(pos).is(DERBY_STALLION_TABLE.get()) &&
+                level.getBlockState(pos).is(FACTOR_DECOMPOSE_TABLE.get()) &&
                         pPlayer.distanceToSqr(
                                 (double) pos.getX() + 0.5D,
                                 (double) pos.getY() + 0.5D,
@@ -192,7 +192,7 @@ public class DerbyStallionMenu extends AbstractContainerMenu {
 
     public void createResult() {
         if (isTaking()) return;
-        DerbyStallionEvent evt = new DerbyStallionEvent(this.inputSlots.getItem(0), this.factorSeed.get());
+        FactorDecomposeEvent evt = new FactorDecomposeEvent(this.inputSlots.getItem(0), this.factorSeed.get());
         if (!this.canProceedToResult() || MinecraftForge.EVENT_BUS.post(evt) || evt.getListOfReturn() == null) {
             this.resultSlots.clearContent();
             hasResult.set(0);
