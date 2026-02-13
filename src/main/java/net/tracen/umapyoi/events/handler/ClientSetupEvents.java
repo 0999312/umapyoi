@@ -39,9 +39,6 @@ import net.tracen.umapyoi.client.renderer.UmaSoulRenderer;
 import net.tracen.umapyoi.client.renderer.UmaUniformRenderer;
 import net.tracen.umapyoi.client.renderer.blockentity.*;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.item.UmaRaceTicketItem;
-import net.tracen.umapyoi.registry.races.Race;
-import net.tracen.umapyoi.utils.GachaRanking;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
