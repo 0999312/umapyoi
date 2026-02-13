@@ -23,7 +23,6 @@ import net.minecraft.world.level.storage.loot.LootDataManager;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -387,7 +386,6 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     public int getRaceVariant() {
         ItemStack stackRace = this.inventory.getStackInSlot(1);
         if (stackRace.isEmpty()) return -1;
-        Level level = Optional.ofNullable(this.level).orElse(Minecraft.getInstance().level);
         if (level == null) return -1;
         Race race = UmapyoiAPI.getRaceRegistry(level).get(getRaceID(stackRace));
         if (race == null) return -1;
@@ -423,10 +421,9 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
     public int getSoulTactic() {
         ItemStack stackSoul = this.inventory.getStackInSlot(0);
         if (stackSoul.isEmpty()) return Position.FRONT_RUNNER.ordinal();
-        Level world = this.level == null ? Minecraft.getInstance().level : this.level;
-        if (world == null) return Position.FRONT_RUNNER.ordinal();
+        if (level == null) return Position.FRONT_RUNNER.ordinal();
         ResourceLocation nameLoc = UmaSoulUtils.getName(stackSoul);
-        UmaData umaData = UmapyoiAPI.getUmaDataRegistry(world).getOptional(nameLoc).orElseGet(() -> {
+        UmaData umaData = UmapyoiAPI.getUmaDataRegistry(level).getOptional(nameLoc).orElseGet(() -> {
             Umapyoi.getLogger().info("Warning: {} doesn't exist.", nameLoc);
             return UmaData.DEFAULT_UMA;
         });
