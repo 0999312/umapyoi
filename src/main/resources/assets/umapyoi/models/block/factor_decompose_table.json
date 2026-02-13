@@ -1,7 +1,7 @@
 {
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
-	"render_type": "minecraft:translucent",
+	"render_type": "minecraft:cutout",
 	"texture_size": [4, 4],
 	"textures": {
 		"0": "umapyoi:block/factor_decompose_table",
@@ -21,8 +21,8 @@
 			}
 		},
 		{
-			"from": [5, 1.135, 1],
-			"to": [16, 2.135, 12],
+			"from": [5, 2.235, 1],
+			"to": [16, 2.235, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [16, 1, 12]},
 			"faces": {
 				"up": {"uv": [12, 15.75, 8.25, 12], "texture": "#0"}
@@ -98,5 +98,37 @@
 				"down": {"uv": [0, 11.75, 0.5, 12.25], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -180, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, -180, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 120, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 120, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [22.5, 135, 0],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"head": {
+			"translation": [0, 14.75, 0]
+		},
+		"fixed": {
+			"translation": [0, 0, -1.75],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
 }

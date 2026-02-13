@@ -2,8 +2,6 @@ package net.tracen.umapyoi.utils;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.Tag;
-import net.minecraft.world.item.ItemStack;
 
 public enum RaceRanking {
     DEBUT(ChatFormatting.GREEN, "common"),

@@ -1,11 +1,6 @@
 package net.tracen.umapyoi;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
-
-import java.util.List;
-import java.util.stream.IntStream;
 
 public class UmapyoiConfig {
     

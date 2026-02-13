@@ -12,7 +12,6 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.recipe.UmasoulIngredient;
 import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
 import net.tracen.umapyoi.registry.races.Field.RaceField;
-import net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry;
 import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.registry.races.Tags.RaceTag;
 import net.tracen.umapyoi.registry.training.card.SupportCard;

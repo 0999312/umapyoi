@@ -3,7 +3,6 @@ package net.tracen.umapyoi.events;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.Cancelable;
 import net.minecraftforge.eventbus.api.Event;
-import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 
 import javax.annotation.Nullable;
