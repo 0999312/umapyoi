@@ -10,7 +10,7 @@ import net.tracen.umapyoi.container.FactorResearchMenu;
 
 public class FactorResearchScreen extends ItemCombinerScreen<FactorResearchMenu> {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Umapyoi.MODID,
-            "textures/gui/skill_learning.png");
+            "textures/gui/factor_research.png");
 
     public FactorResearchScreen(FactorResearchMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle, BACKGROUND_TEXTURE);

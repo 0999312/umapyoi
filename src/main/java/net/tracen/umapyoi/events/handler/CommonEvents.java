@@ -1,26 +1,22 @@
 package net.tracen.umapyoi.events.handler;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.commands.EffectCommands;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.ServerStatsCounter;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.levelgen.PhantomSpawner;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.capability.CapabilityRegistry;
@@ -101,7 +97,7 @@ public class CommonEvents {
         if (!stack.isEdible()) return;
         LivingEntity entity = evt.getEntity();
         if (entity == null) return;
-        if (entity.level().isClientSide) return;
+        if (entity.level().isClientSide()) return;
         Level world = entity.level();
         if (UmapyoiAPI.getUmaSoul(entity).isEmpty()) return;
 

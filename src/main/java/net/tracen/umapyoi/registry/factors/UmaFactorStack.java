@@ -78,7 +78,7 @@ public class UmaFactorStack {
         if (other == this) return true;
         if (other == null) return false;
         UmaFactor thisFactor = this.factor;
-        return this.factor.withStackEquals(this, other);
+        return thisFactor.withStackEquals(this, other);
     }
 
     @Override

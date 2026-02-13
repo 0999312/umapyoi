@@ -59,13 +59,13 @@ public class FactorDecomposeMenu extends AbstractContainerMenu {
         super(pType, pContainerId);
         this.access = pAccess;
         this.player = pPlayerInventory.player;
-        this.addSlot(new Slot(this.inputSlots, 0, 80, 18) {
+        this.addSlot(new Slot(this.inputSlots, 0, 44, 94) {
             @Override
             public boolean mayPlace(ItemStack pStack) {
                 return super.mayPlace(pStack) && pStack.is(UMA_FACTOR_ITEM.get());
             }
         });
-        outputSlots = IntStream.range(0, 9).mapToObj(i -> new Slot(this.resultSlots, i, 62 + (i % 3) * 18, 62 + (i / 3) * 18) {
+        outputSlots = IntStream.range(0, 9).mapToObj(i -> new Slot(this.resultSlots, i, 98 + (i % 3) * 18, 76 + (i / 3) * 18) {
             public boolean mayPlace(@Nonnull ItemStack pStack) {
                 return false;
             }
@@ -83,12 +83,12 @@ public class FactorDecomposeMenu extends AbstractContainerMenu {
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(pPlayerInventory, j + i * 9 + 9, 8 + j * 18, 134 + i * 18));
+                this.addSlot(new Slot(pPlayerInventory, j + i * 9 + 9, 8 + j * 18, 144 + i * 18));
             }
         }
 
         for (int k = 0; k < 9; ++k) {
-            this.addSlot(new Slot(pPlayerInventory, k, 8 + k * 18, 192));
+            this.addSlot(new Slot(pPlayerInventory, k, 8 + k * 18, 202));
         }
 
         this.addDataSlot(this.factorSeed).set(this.player.getEnchantmentSeed());

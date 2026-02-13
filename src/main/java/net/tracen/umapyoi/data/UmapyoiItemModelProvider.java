@@ -17,8 +17,6 @@ import net.tracen.umapyoi.utils.RaceRanking;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
@@ -34,15 +32,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
         if (ALLOW_CONTINUE_WITH_MISSING_TEXTURE) {
             Umapyoi.getLogger().warn("Warning: Current allow continue with missing texture is turned on");
             Umapyoi.getLogger().warn("This option shall only be turned on in DEVELOP ENVIRONMENT");
-            Umapyoi.getLogger().warn("If you wish to continue, enter \"yes\" in standard input.");
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter \"yes\" to continue: ");
-            String line = scanner.nextLine();
-            if (!Objects.equals(line, "yes")) {
-                Umapyoi.getLogger().error("User has aborted the data generation.");
-                throw new IllegalStateException("User aborted data generation.");
-            }
             Umapyoi.getLogger().warn("User wish to proceed data generation. WE HAVE WARNED YOU.");
             Umapyoi.getLogger().warn("One last time: DO NOT proceed to production in this mode.");
         }

@@ -17,7 +17,7 @@ public class FactorDecomposeScreen extends AbstractContainerScreen<FactorDecompo
         this.leftPos = 0;
         this.topPos = 0;
         this.imageWidth = 176;
-        this.imageHeight = 216;
+        this.imageHeight = 226;
     }
 
     @Override
@@ -40,9 +40,9 @@ public class FactorDecomposeScreen extends AbstractContainerScreen<FactorDecompo
             return;
         }
         graphic.blit(BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-        graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 15, this.topPos + 23, 88, 93, 25, 28, 128, 128);
+//        graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 15, this.topPos + 23, 88, 93, 25, 28, 128, 128);
 
         if (this.menu.getSlot(0).hasItem() && (!this.menu.getSlot(1).hasItem() || this.menu.isTaking()))
-            graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 80, this.topPos + 37, 176, 0, 19, 25);
+            graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 69, this.topPos + 94, 176, 0, 22, 15);
     }
 }

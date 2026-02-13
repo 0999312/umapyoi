@@ -4,7 +4,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 
