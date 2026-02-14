@@ -245,23 +245,22 @@ public class FactorDecomposeMenu extends AbstractContainerMenu {
     }
 
     protected void onTake(Player player, ItemStack resultStack) {
-        if (isTaking()) {
-            boolean isEmpty = this.resultSlots.isEmpty();
-            isTaking.set(isEmpty ? 0 : 1);
-            if (isEmpty) {
-                this.createResult();
+        if (!isTaking()) {
+            ItemStack factorItem = this.inputSlots.getItem(0);
+            if (factorItem.is(UMA_FACTOR_ITEM.get())) {
+                isTaking.set(1);
+                resultStack.onCraftedBy(player.level(), player, resultStack.getCount());
+                this.resultSlots.awardUsedRecipes(player, List.of(factorItem));
+                factorItem.shrink(1);
+                this.inputSlots.setItem(0, factorItem);
+                if (player.level().isClientSide())
+                    player.playSound(SoundEvents.PLAYER_LEVELUP, 1F, 1F);
             }
-            return;
         }
-        ItemStack factorItem = this.inputSlots.getItem(0);
-        if (factorItem.is(UMA_FACTOR_ITEM.get())) {
-            isTaking.set(1);
-            resultStack.onCraftedBy(player.level(), player, resultStack.getCount());
-            this.resultSlots.awardUsedRecipes(player, List.of(factorItem));
-            factorItem.shrink(1);
-            this.inputSlots.setItem(0, factorItem);
-            if (player.level().isClientSide())
-                player.playSound(SoundEvents.PLAYER_LEVELUP, 1F, 1F);
+        boolean isEmpty = this.resultSlots.isEmpty();
+        isTaking.set(isEmpty ? 0 : 1);
+        if (isEmpty) {
+            this.createResult();
         }
     }
 }

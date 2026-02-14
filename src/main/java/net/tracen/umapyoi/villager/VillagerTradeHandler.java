@@ -14,10 +14,8 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.villager.itemlisting.RandomItemOrderItemListing;
-import net.tracen.umapyoi.villager.itemlisting.RandomPriceOrderItemListing;
-import net.tracen.umapyoi.villager.itemlisting.RandomPriceSellItemListing;
-import net.tracen.umapyoi.villager.itemlisting.SkillBooksItemListing;
+import net.tracen.umapyoi.utils.RaceRanking;
+import net.tracen.umapyoi.villager.itemlisting.*;
 
 @Mod.EventBusSubscriber
 public class VillagerTradeHandler {
@@ -115,6 +113,10 @@ public class VillagerTradeHandler {
                         new ItemStack(ItemRegistry.STRENGTH_HIGH_ITEM.get()),
                         new ItemStack(ItemRegistry.MENTALITY_HIGH_ITEM.get()),
                         new ItemStack(ItemRegistry.WISDOM_HIGH_ITEM.get())), 2, 2, 5, 6, 30, 0.2F));
+
+        for (int i = 1; i <= 5; i++) {
+            addVillageTrade(event, "trainer", i, new RaceTicketItemListing(i));
+        }
     }
 
     @SubscribeEvent

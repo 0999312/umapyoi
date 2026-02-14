@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 0.0,
+        "max": 2.0
+      },
+      "bonus_rolls": 0.0,
+      "entries": [{
+        "type": "minecraft:item",
+        "name": "umapyoi:race_ticket",
+        "functions": [
+          {
+            "function": "umapyoi:race_ticket_random",
+            "least": "giii",
+            "most": "giii"
+          }
+        ]
+      }]
+    }
+  ]
+}

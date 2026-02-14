@@ -27,4 +27,7 @@ public class RecipeSerializerRegistry {
     
     public static final RegistryObject<RecipeSerializer<?>> SHAPELESS_COSTUME = RECIPE_SERIALIZER
             .register("shapeless_costume", () -> ShapelessCostumeRecipe.SERIALIZER);
+
+    public static final RegistryObject<RecipeSerializer<?>> SHAPELESS_RACE_TICKET = RECIPE_SERIALIZER
+            .register("shapeless_race_ticket", () -> ShapelessRaceTicketRecipe.SERIALIZER);
 }
