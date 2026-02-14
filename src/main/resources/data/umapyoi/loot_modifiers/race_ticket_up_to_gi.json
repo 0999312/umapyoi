@@ -9,6 +9,14 @@
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/ancient_city"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/ancient_city_ice_box"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/bastion_bridge"
         },
         {
@@ -34,10 +42,6 @@
         {
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/jungle_temple"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:chests/jungle_temple_dispenser"
         },
         {
           "condition": "forge:loot_table_id",
