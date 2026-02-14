@@ -15,5 +15,5 @@
     }
   ],
   "lootTable": "umapyoi:race/ticket/race_ticket_end",
-  "type": "umapyoi:add_loot_table"
+  "type": "mysterious_mountain_lib:add_loot_table"
 }

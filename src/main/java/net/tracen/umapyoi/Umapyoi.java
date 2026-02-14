@@ -16,7 +16,6 @@ import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.command.CommandRegistry;
 import net.tracen.umapyoi.container.ContainerRegistry;
-import net.tracen.umapyoi.data.loot.GLMRegistry;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.data.loot.LootFunctionRegistry;
@@ -55,7 +54,6 @@ public class Umapyoi {
         CommandRegistry.ARGUMENT_TYPES.register(modEventBus);
         SoundRegistry.SOUNDS.register(modEventBus);
         LootFunctionRegistry.LOOT_FUNCTIONS.register(modEventBus);
-        GLMRegistry.GLM.register(modEventBus);
         modEventBus.addListener(this::onEntityAttributeModification);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
