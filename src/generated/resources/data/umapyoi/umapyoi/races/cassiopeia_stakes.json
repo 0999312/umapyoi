@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:cassiopeia_stakes",
   "length": 1800,
@@ -8,7 +12,7 @@
   "tags": [],
   "time": 20,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

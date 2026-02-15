@@ -46,7 +46,7 @@ public class FactorDecomposeScreen extends AbstractContainerScreen<FactorDecompo
 
     @Override
     protected void renderLabels(GuiGraphics graphic, int mouseX, int mouseY) {
-        graphic.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY - 3, 0xFFFFFF);
+        graphic.drawString(this.font, this.title, (this.imageWidth / 2) - (this.font.width(this.title.getVisualOrderText()) / 2), this.titleLabelY - 3, 0xFFFFFF);
         graphic.drawString(this.font, this.playerInventoryTitle, 8, this.imageHeight - 96 + 2, 4210752, false);
     }
 

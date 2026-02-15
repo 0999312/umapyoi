@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:japan_cup",
   "length": 2400,
@@ -10,7 +14,7 @@
   ],
   "time": 22,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

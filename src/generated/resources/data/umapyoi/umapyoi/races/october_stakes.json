@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:october_stakes",
   "length": 2000,
@@ -8,7 +12,7 @@
   "tags": [],
   "time": 19,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

@@ -1,6 +1,10 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:chukyo",
-  "id": "umapyoi:falkon_stakes",
+  "id": "umapyoi:falcon_stakes",
   "length": 1400,
   "ranking": "giii",
   "reference_level": 25,
