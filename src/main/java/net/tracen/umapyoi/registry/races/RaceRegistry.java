@@ -10,9 +10,9 @@ import net.tracen.umapyoi.utils.RaceRanking;
 import net.tracen.umapyoi.utils.Surface;
 import net.tracen.umapyoi.utils.Year;
 
-import static net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry.*;
+import static net.tracen.umapyoi.registry.races.field.RaceFieldRegistry.*;
 import static net.tracen.umapyoi.registry.races.Race.RaceBuilder;
-import static net.tracen.umapyoi.registry.races.Tags.RaceTagRegistry.*;
+import static net.tracen.umapyoi.registry.races.tags.RaceTagRegistry.*;
 
 import java.util.HashMap;
 import java.util.function.Function;
