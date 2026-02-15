@@ -7,7 +7,7 @@
   "synthetics": [],
   "turfs": [
     "medium",
-    "sprint",
-    "mile"
+    "mile",
+    "sprint"
   ]
 }

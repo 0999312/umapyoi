@@ -307,7 +307,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
 
         add("race.umapyoi.surface.turf", "Turf");
         add("race.umapyoi.surface.dirt", "Dirt");
-        add("race.umapyoi.surface.syntheic", "Syntheic");
+        add("race.umapyoi.surface.synthetic", "Synthetic");
         add("race.umapyoi.surface.adaptive", "Adaptive");
 
         addTooltip(".race.distance", "Distance: ");

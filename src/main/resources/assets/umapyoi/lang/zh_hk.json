@@ -404,13 +404,13 @@
   "tooltip.umapyoi.race.tier.hint": "級別: ",
   "race.umapyoi.tier.debut": "出道賽",
 
-  "tooltip.umapyoi.race.surface": "類型",
+  "tooltip.umapyoi.race.surface": "類型: ",
   "race.umapyoi.surface.turf": "草地",
   "race.umapyoi.surface.dirt": "砂地",
-  "race.umapyoi.surface.syntheic": "人工賽道",
+  "race.umapyoi.surface.synthetic": "人工賽道",
   "race.umapyoi.surface.adaptive": "自適應",
 
-  "tooltip.umapyoi.race.distance": "距離",
+  "tooltip.umapyoi.race.distance": "距離: ",
   "tooltip.umapyoi.race.distance.sprint": "短",
   "tooltip.umapyoi.race.distance.mile": "英里",
   "tooltip.umapyoi.race.distance.medium": "中",

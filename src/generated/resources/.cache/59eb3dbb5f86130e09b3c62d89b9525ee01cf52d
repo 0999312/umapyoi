@@ -1,5 +1,10 @@
-// 1.20.1	2024-03-07T00:55:21.4542208	Loot Tables
+// 1.20.1	2026-02-16T02:40:01.5965387	Loot Tables
 4ae210397e4de18a239b72e4f65fed0701ec0628 data/umapyoi/loot_tables/blocks/disassembly_block.json
+a2df4da895de7207bafbdcaa3b27db52f18da19f data/umapyoi/loot_tables/blocks/factor_decompose_table.json
+908fc9d752b86d758e2b89eed2723680d3139d06 data/umapyoi/loot_tables/blocks/factor_research_table.json
+2c01e1191ea45d84e9623a0a03f9164f45885d99 data/umapyoi/loot_tables/blocks/gate.json
+80710c66a3fa81f4364f0e13672f11d80a2f536b data/umapyoi/loot_tables/blocks/gate_door.json
+e0b511f4bd2bd9d0171dfedd53442f29b575634f data/umapyoi/loot_tables/blocks/race_register.json
 d1aa4cbb3550a43313e41055ad169f481a97ba0d data/umapyoi/loot_tables/blocks/register_lectern.json
 f34f4512a3bb377713c86e5090eeb42f26eb48e4 data/umapyoi/loot_tables/blocks/silver_support_album_pedestal.json
 4eea70877d371c2a9f1916f12a93e5a3e0e79ddb data/umapyoi/loot_tables/blocks/silver_uma_pedestal.json

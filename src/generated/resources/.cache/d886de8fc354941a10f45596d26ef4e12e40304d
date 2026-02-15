@@ -1,4 +1,4 @@
-// 1.20.1	2026-01-22T06:04:46.0911316	Item Models: umapyoi
+// 1.20.1	2026-02-16T02:40:01.584492	Item Models: umapyoi
 eb203ac61047f57a3d27c883fef827ffb672e86e assets/umapyoi/models/item/blank_ticket.json
 a160441d9de23d2cd1e654138352edb941f60bd3 assets/umapyoi/models/item/blank_uma_soul.json
 8942fac00e5e9760addae49b0928ca83558fbc4c assets/umapyoi/models/item/card_ticket.json
@@ -6,10 +6,10 @@ c022748e6b76ebe441bb2957abe4c64b30614b30 assets/umapyoi/models/item/crystal_gold
 8d08df2079722377a1e5b298959e118ed395c225 assets/umapyoi/models/item/crystal_rainbow.json
 c3be23da5bba05a70680fc8f1b6eced3062fa84e assets/umapyoi/models/item/crystal_silver.json
 3da459ae7f23b4b3a6b2847c1baa9f365e8888d4 assets/umapyoi/models/item/cupcake.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f assets/umapyoi/models/item/derby_stallion_table.json
 b6bb9f3e68f7a87a31f6feb8a21af606ee697065 assets/umapyoi/models/item/disassembly_block.json
-a163c9ce1e63e428f3fa804b66e491b455f18540 assets/umapyoi/models/item/factor_report.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f assets/umapyoi/models/item/factor_research_table.json
+e35a2e7c7acd3002845790bf1c0e2492fe13563f assets/umapyoi/models/item/factor_decompose_table.json
+a73ef62c0b49d047a33d85bb116794b3797ccef5 assets/umapyoi/models/item/factor_research_table.json
+bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f assets/umapyoi/models/item/gate.json
 75201d8fdba08b570e533adf5c8db317cda4de09 assets/umapyoi/models/item/horseshoe_gold.json
 ffbf957f29ab88f92a77823509bcac471b62e3cc assets/umapyoi/models/item/horseshoe_rainbow.json
 b43ea4199d6d746e136da7350144321deed9b86e assets/umapyoi/models/item/horseshoe_silver.json
@@ -20,11 +20,11 @@ b43ea4199d6d746e136da7350144321deed9b86e assets/umapyoi/models/item/horseshoe_si
 33d08372781b3cf659e4a53a935c6c25e302b731 assets/umapyoi/models/item/mentality_low_item.json
 60c96cbe8223e881462ee1def17ccd8b2c4cc7cb assets/umapyoi/models/item/mentality_mid_item.json
 61ba577fa24cfb43a4e1c9b16edb0e8210e99e1a assets/umapyoi/models/item/race_register.json
-dbfbc802cbe917c7d923fddeaa147a402cfa9f57 assets/umapyoi/models/item/race_ticket.json
-44f6fd56b5307c312f4dfad264feac4c1e8dd15a assets/umapyoi/models/item/race_ticket_champions.json
-84b6bce607e756aaee8f9fdd40276568e33ed049 assets/umapyoi/models/item/race_ticket_common.json
-ddd4a46707d7ab6d883fb258f3dd490a3905c837 assets/umapyoi/models/item/race_ticket_g1.json
-44406aa461bf05cdd7b6693f4bf4bd43e8f112ad assets/umapyoi/models/item/race_ticket_g2.json
+84b6bce607e756aaee8f9fdd40276568e33ed049 assets/umapyoi/models/item/race_ticket.json
+44f6fd56b5307c312f4dfad264feac4c1e8dd15a assets/umapyoi/models/item/race_ticket/race_ticket_champions.json
+84b6bce607e756aaee8f9fdd40276568e33ed049 assets/umapyoi/models/item/race_ticket/race_ticket_common.json
+ddd4a46707d7ab6d883fb258f3dd490a3905c837 assets/umapyoi/models/item/race_ticket/race_ticket_g1.json
+44406aa461bf05cdd7b6693f4bf4bd43e8f112ad assets/umapyoi/models/item/race_ticket/race_ticket_g2.json
 866d89ab71e61bc7b4494b7e3412d9690c0fe5e6 assets/umapyoi/models/item/register_lectern.json
 5f42fd9bb360deb5663ee7f7b069fa385d1f1088 assets/umapyoi/models/item/royal_bitter.json
 6862d5683f4bdcf308594c16fd2f35a6984af565 assets/umapyoi/models/item/silver_uma_pedestal.json
@@ -45,11 +45,11 @@ a035cff5275f21b0dfaf4a4d806048f06ecc369a assets/umapyoi/models/item/strength_hig
 923fc973b62b73a2513a04ae9d898e6aef9d185e assets/umapyoi/models/item/strength_low_item.json
 2954c41ec2e491923e481916e0f41d02e13afb1b assets/umapyoi/models/item/strength_mid_item.json
 c34794b1df3277944631d820447e92516912b5d5 assets/umapyoi/models/item/summer_uniform.json
-605c27630ad74a52ef8ac7a1390208816a6a08d4 assets/umapyoi/models/item/support_card.json
-3e52b69e7172abaef14c0692f361ba1d83dc6f9e assets/umapyoi/models/item/support_card_easter_egg.json
-7f0692cbfbaaa6660bc7f8ce32602ff78f547017 assets/umapyoi/models/item/support_card_r.json
-199d4a9c70c8dc5c6cdaa0e12fafb10dad7b2bfe assets/umapyoi/models/item/support_card_sr.json
-a2d1d932bb31150a1b37e435e041e9be3f38b3a0 assets/umapyoi/models/item/support_card_ssr.json
+a2d1d932bb31150a1b37e435e041e9be3f38b3a0 assets/umapyoi/models/item/support_card.json
+3e52b69e7172abaef14c0692f361ba1d83dc6f9e assets/umapyoi/models/item/support_card/support_card_easter_egg.json
+7f0692cbfbaaa6660bc7f8ce32602ff78f547017 assets/umapyoi/models/item/support_card/support_card_r.json
+199d4a9c70c8dc5c6cdaa0e12fafb10dad7b2bfe assets/umapyoi/models/item/support_card/support_card_sr.json
+a2d1d932bb31150a1b37e435e041e9be3f38b3a0 assets/umapyoi/models/item/support_card/support_card_ssr.json
 7f4c21d1346e1343f93f6ae67af687135d79dd44 assets/umapyoi/models/item/sweet_cupcake.json
 c2665a7f2725087c4e65d77f1aced9f20e584f8e assets/umapyoi/models/item/swimsuit.json
 3e9de809b42316c8d544cbd301a7499eb2b2ae5a assets/umapyoi/models/item/three_goddess.json
@@ -57,6 +57,7 @@ c318a1785973693d5f9cc9b50bf3cf1a02faed06 assets/umapyoi/models/item/training_fac
 e7c8b3cc8f80945a1fb1b32a277d0bd4c7c16928 assets/umapyoi/models/item/trainning_suit.json
 ffb55e1ee9eac7cb220f6bf66cf19da20608d439 assets/umapyoi/models/item/uma_costume.json
 95c77fd74c384110079e322a1005aeb91f4a5fa7 assets/umapyoi/models/item/uma_factor_item.json
+5e73b3ba283cdc10a9c88939b04f5664ce023af4 assets/umapyoi/models/item/uma_factor_shard.json
 8013bc4db5b34c070800d2ad5be4b22a8d2ad685 assets/umapyoi/models/item/uma_pedestal.json
 e3c3be787ef19b155ef9c8ab80ff830060a26984 assets/umapyoi/models/item/uma_select_block.json
 95d74bdc181e9a8739f503c5c37dfc0b384e648e assets/umapyoi/models/item/uma_soul.json

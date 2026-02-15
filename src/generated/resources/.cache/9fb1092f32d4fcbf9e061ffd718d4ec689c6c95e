@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-08T02:56:42.1409246	Recipes
+// 1.20.1	2026-02-16T02:40:01.6075746	Recipes
 b4ab59ad2d4d282adcf9049b8ab8514bd7d5c0c7 data/umapyoi/advancements/recipes/combat/baseball_bat.json
 524581bdb50f71aecc5e95ddf2d1d442b02a8b40 data/umapyoi/advancements/recipes/combat/naginata.json
 0a24939c82d7769035c051f47712647f493ec3ff data/umapyoi/advancements/recipes/combat/summer_uniform.json
@@ -33,6 +33,7 @@ d52047868410133e453541deb21655e0381fb9a6 data/umapyoi/advancements/recipes/misc/
 5ba5e276f1cc451cce297d0129b5de26749d3233 data/umapyoi/recipes/baseball_bat.json
 cd25613b95056a3a35affc8da1c7c053a970fbae data/umapyoi/recipes/blank_ticket.json
 1d75e695f2430ea4ab8523539483a51eaf88d523 data/umapyoi/recipes/card_ticket.json
+9918aa6fd79043476c0ff57d563ea9ff79195f73 data/umapyoi/recipes/craft_make_debut.json
 95908c15279f6a76550419581f407461a87f5370 data/umapyoi/recipes/cupcake.json
 cddf3ab25a6bcd0cef96c613f9053a40eb52322c data/umapyoi/recipes/disassembly_block.json
 4b7ea60b71d7d8d97c1932b0ba66ca982f1cc511 data/umapyoi/recipes/hachimi_big.json
