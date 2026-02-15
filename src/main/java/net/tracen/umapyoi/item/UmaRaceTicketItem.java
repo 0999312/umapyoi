@@ -217,10 +217,7 @@ public class UmaRaceTicketItem extends Item {
                     .map(rl ->
                             Component.literal(" ")
                                     .append(Component.translatable("race." + rl.id().getNamespace() + ".tags." + rl.id().getPath()))
-                                    .append(" (")
-                                    .append(Component.translatable("tooltip.umapyoi.race.tags.max"))
-                                    .append(Integer.toString(rl.maximum()))
-                                    .append(")").withStyle(ChatFormatting.DARK_GREEN)
+                                    .withStyle(ChatFormatting.DARK_GREEN)
                     )
                     .forEach(tooltip::add);
         }

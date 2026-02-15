@@ -268,7 +268,66 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         
         addSkillDetail(UmaSkillRegistry.TETHER, "Slightly lower the speed of other entities.");
         addSkillDetail(UmaSkillRegistry.DOMINATOR, "Lower the speed of other entities.");
+        
+        add("tooltip.umapyoi.race.time.junior", "Junior");
+        add("tooltip.umapyoi.race.time.classic", "Classic");
+        add("tooltip.umapyoi.race.time.senior", "Senior");
+        
+        add("race.umapyoi.tier.hint", "Tier: ");
+        
+        add("race.umapyoi.tier.debut", "Debut");
+        add("race.umapyoi.tier.preop", "Pre OP");
+        add("race.umapyoi.tier.op", "Open");
+        add("race.umapyoi.tier.giii", "GIII");
+        add("race.umapyoi.tier.gii", "GII");
+        add("race.umapyoi.tier.gi", "GI");
+        
+        add("race.umapyoi.surface.turf", "Turf");
+        add("race.umapyoi.surface.dirt", "Dirt");
+        add("race.umapyoi.surface.syntheic", "Syntheic");
+        add("race.umapyoi.surface.adaptive", "Adaptive");
+        
+        add("tooltip.umapyoi.race.distance", "Distance: ");
+        
+        add("tooltip.umapyoi.race.distance.sprint", "Sprint");
+        add("tooltip.umapyoi.race.distance.mile", "Mile");
+        add("tooltip.umapyoi.race.distance.medium", "Medium");
+        add("tooltip.umapyoi.race.distance.long", "Long");
+        add("tooltip.umapyoi.race.distance.adaptive", "Adaptive");
+        
+        add("tooltip.umapyoi.race.unit", "Meter");
 
+        add("tooltip.umapyoi.race.field", "Field: ");        
+        add("race.umapyoi.field.hakodate", "Hakodate");
+        add("race.umapyoi.field.chukyo", "Chukyo");
+        add("race.umapyoi.field.niigata", "Niigata");
+        add("race.umapyoi.field.sapporo", "Sapporo");
+        add("race.umapyoi.field.kokura", "Kokura");
+        add("race.umapyoi.field.hanshin", "Hanshin");
+        add("race.umapyoi.field.nakayama", "Nakayama");
+        add("race.umapyoi.field.tokyo", "Tokyo");
+        add("race.umapyoi.field.kyoto", "Kyoto");
+        add("race.umapyoi.field.fukushima", "Fukushima");
+        add("race.umapyoi.field.kawasaki", "Kawasaki");
+        add("race.umapyoi.field.funabashi", "Funabashi");
+        add("race.umapyoi.field.morioka", "Morioka");
+        add("race.umapyoi.field.ohi", "Ohi");
+        //
+        add("tooltip.umapyoi.race.gainable_tags", "Race Tags: ");
+        
+        add("race.umapyoi.tags.triple_tiara", "Triple Tiara");
+        add("race.umapyoi.tags.triple_crown", "Triple Crown");
+        add("race.umapyoi.tags.eight_great_races", "Eight Great Races");
+        
+        add("race.umapyoi.tags.senior_spring_triple_crown", "Senior Spring Triple Crown");
+        add("race.umapyoi.tags.senior_autumn_triple_crown", "Senior Autumn Triple Crown");
+        add("race.umapyoi.tags.grand_prix", "Spring-Autumn Grand Prix");
+        
+        add("race.umapyoi.tags.mile", "Spring-Autumn Mile");
+        add("race.umapyoi.tags.sprint", "Spring-Autumn Sprint");
+        add("race.umapyoi.tags.dirt", "Spring-Autumn Dirt");
+        
+        //
         add("container.umapyoi.three_goddess", "Three Goddesses Statue");
         add("container.umapyoi.training_facility", "Training Terminal");
         add("container.umapyoi.skill_learning", "Skill Learning Table");
@@ -582,6 +641,22 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
 
         addRace(RaceRegistry.MAKE_DEBUT, "Twinkle Series Debut");
         addRace(RaceRegistry.URA_FINALS, "URA Finale");
+        
+        addRace(RaceRegistry.AICHI_HAI, "AiChi Hai");
+        addRace(RaceRegistry.AKAMATSU_SHO, "Akamatsu Sho");
+        addRace(RaceRegistry.AKHAL_TEKE_STAKES, "AiChi Hai");
+        addRace(RaceRegistry.ALDEBARAN_STAKES, "Aldebaran Stakes");
+        addRace(RaceRegistry.ALL_COMERS, "All Comers");
+        addRace(RaceRegistry.AMERICAN_JOCKEY_CLUB_CUP, "American Jockey Club Cup");
+        
+        addRace(RaceRegistry.ANDROMEDA_STAKES, "Andromeda Stakes");
+        addRace(RaceRegistry.ANEMONE_STAKES, "Anemone Stakes");
+        addRace(RaceRegistry.ANTERES_STAKES, "Anteres Stakes");
+        addRace(RaceRegistry.AOBA_SHO, "Aoba Sho");
+        addRace(RaceRegistry.ALL_COMERS, "All Comers");
+        addRace(RaceRegistry.AMERICAN_JOCKEY_CLUB_CUP, "American Jockey Club Cup");
+        
+        addRace(RaceRegistry.HAKODATE_JUNIOR_STAKES, "Hakodate Junior Stakes");
     }
 
     private void addSupportCard(ResourceKey<SupportCard> data, String name) {

@@ -4,7 +4,6 @@ import cn.mcmod_mmf.mmlib.data.AbstractItemModelProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tracen.umapyoi.Umapyoi;
@@ -21,7 +20,7 @@ import java.util.stream.Stream;
 
 public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
     // DO NOT turn this on in production. DEVELOPMENT SWITCH ONLY
-    private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = true;
+    private final boolean ALLOW_CONTINUE_WITH_MISSING_TEXTURE = false;
 
     public UmapyoiItemModelProvider(PackOutput generator, ExistingFileHelper existingFileHelper) {
         super(generator, Umapyoi.MODID, existingFileHelper);
@@ -57,7 +56,7 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
 
             if (item == ItemRegistry.SUPPORT_CARD) {
                 String basePath = ForgeRegistries.ITEMS.getKey(item.get()).getPath();
-                ItemModelBuilder base = withExistingParent(basePath, mcLoc("item/generated")).texture("layer0",
+                withExistingParent(basePath, mcLoc("item/generated")).texture("layer0",
                         modLoc("item/" + basePath + "_ssr"));
                 for (GachaRanking rank: GachaRanking.values()) {
                     String path = basePath + "_" + rank.name().toLowerCase();
