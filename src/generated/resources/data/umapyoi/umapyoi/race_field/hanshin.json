@@ -3,7 +3,7 @@
   "id": "umapyoi:hanshin",
   "synthetics": [],
   "turfs": [
-    "sprint",
-    "mile"
+    "mile",
+    "sprint"
   ]
 }

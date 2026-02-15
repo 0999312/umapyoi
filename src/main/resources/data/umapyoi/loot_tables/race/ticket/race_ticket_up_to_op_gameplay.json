@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [{
+        "type": "minecraft:item",
+        "name": "umapyoi:race_ticket",
+        "functions": [
+          {
+            "function": "umapyoi:race_ticket_random",
+            "least": "preop",
+            "most": "op"
+          }
+        ]
+      }],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "umapyoi:race/ticket/race_ticket_up_to_op_gameplay"
+}

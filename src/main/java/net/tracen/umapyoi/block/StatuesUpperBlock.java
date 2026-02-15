@@ -1,29 +1,35 @@
 package net.tracen.umapyoi.block;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tracen.umapyoi.Umapyoi;
 
-public class StatuesUpperBlock extends Block {
-
+public class StatuesUpperBlock extends Block implements SimpleWaterloggedBlock {
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private final Supplier<Block> bottomBlock;
     
     protected final VoxelShape shape;
@@ -31,13 +37,46 @@ public class StatuesUpperBlock extends Block {
     public StatuesUpperBlock(Supplier<Block> bottom) {
         this(bottom, Shapes.block());
     }
-    
+
+    public final boolean canWaterlog;
+
     public StatuesUpperBlock(Supplier<Block> bottom, VoxelShape shape) {
+        this(bottom, shape, false);
+    }
+
+    public StatuesUpperBlock(Supplier<Block> bottom, VoxelShape shape, boolean canWaterlog) {
         super(Properties.copy(Blocks.STONE).noOcclusion());
         this.bottomBlock = bottom;
         this.shape = shape;
+        this.canWaterlog = canWaterlog;
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
     }
-    
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(WATERLOGGED);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, this.canWaterlog && fluidstate.is(Fluids.WATER));
+    }
+
+    @Override
+    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
+        if (this.canWaterlog && pState.getValue(WATERLOGGED)) {
+            pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+        }
+        return super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return this.canWaterlog && state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+
     @Override
     public PushReaction getPistonPushReaction(BlockState state){
         return PushReaction.BLOCK;
@@ -99,5 +138,21 @@ public class StatuesUpperBlock extends Block {
             BlockHitResult pHit) {
         return pLevel.getBlockState(pPos.below()).getBlock().use(pLevel.getBlockState(pPos.below()), pLevel,
                 pPos.below(), pPlayer, pHand, pHit);
+    }
+
+    @Override
+    public boolean canPlaceLiquid(BlockGetter pLevel, BlockPos pPos, BlockState pState, Fluid pFluid) {
+        return this.canWaterlog && SimpleWaterloggedBlock.super.canPlaceLiquid(pLevel, pPos, pState, pFluid);
+    }
+
+    @Override
+    public boolean placeLiquid(LevelAccessor pLevel, BlockPos pPos, BlockState pState, FluidState pFluidState) {
+        return this.canWaterlog && SimpleWaterloggedBlock.super.placeLiquid(pLevel, pPos, pState, pFluidState);
+    }
+
+    @Override
+    public ItemStack pickupBlock(LevelAccessor pLevel, BlockPos pPos, BlockState pState) {
+        if (!this.canWaterlog) return ItemStack.EMPTY;
+        return SimpleWaterloggedBlock.super.pickupBlock(pLevel, pPos, pState);
     }
 }

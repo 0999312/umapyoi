@@ -1,0 +1,16 @@
+{
+  "type": "umapyoi:shapeless_race_ticket",
+  "ingredients": [
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "umapyoi:blank_ticket"
+    }
+  ],
+  "race": "umapyoi:make_debut",
+  "result": {
+    "count": 1,
+    "item": "umapyoi:race_ticket"
+  }
+}
