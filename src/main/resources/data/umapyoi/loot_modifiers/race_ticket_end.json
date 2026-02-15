@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/end_city_treasure"
+        }
+      ]
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.5
+    }
+  ],
+  "lootTable": "umapyoi:race/ticket/race_ticket_end",
+  "type": "mysterious_mountain_lib:add_loot_table"
+}

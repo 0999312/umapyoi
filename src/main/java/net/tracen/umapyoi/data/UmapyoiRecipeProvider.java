@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.data;
 
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -9,13 +10,17 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
+import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.recipe.finished.FinishedShapelessRaceTicketRecipe;
+import net.tracen.umapyoi.registry.races.RaceRegistry;
 
 public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
 
@@ -186,8 +191,9 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .requires(Tags.Items.CROPS_CARROT).requires(Tags.Items.CROPS_WHEAT).requires(Tags.Items.EGGS)
                 .requires(UmapyoiItemTags.SUGAR).requires(UmapyoiItemTags.SUGAR).requires(UmapyoiItemTags.MILK)
                 .unlockedBy("has_item", has(Tags.Items.CROPS_CARROT)).save(consumer);
-        
-        
+
+        consumer.accept(new FinishedShapelessRaceTicketRecipe(new ResourceLocation(Umapyoi.MODID, "craft_make_debut"),
+                List.of(Ingredient.of(Items.EMERALD), Ingredient.of(ItemRegistry.BLANK_TICKET.get())), RaceRegistry.MAKE_DEBUT.location()));
     }
 
 }

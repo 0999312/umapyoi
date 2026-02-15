@@ -18,6 +18,7 @@ import net.tracen.umapyoi.command.CommandRegistry;
 import net.tracen.umapyoi.container.ContainerRegistry;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.data.loot.LootFunctionRegistry;
 import net.tracen.umapyoi.network.NetPacketHandler;
 import net.tracen.umapyoi.recipe.RecipeSerializerRegistry;
 import net.tracen.umapyoi.registry.*;
@@ -52,6 +53,7 @@ public class Umapyoi {
         RecipeSerializerRegistry.RECIPE_SERIALIZER.register(modEventBus);
         CommandRegistry.ARGUMENT_TYPES.register(modEventBus);
         SoundRegistry.SOUNDS.register(modEventBus);
+        LootFunctionRegistry.LOOT_FUNCTIONS.register(modEventBus);
         modEventBus.addListener(this::onEntityAttributeModification);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
@@ -60,6 +62,7 @@ public class Umapyoi {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(NetPacketHandler::registerMessage);
         TriggerRegistry.registerAll(event);
+        VillageRegistry.registerHeroOfTheVillage(event);
     }
     
     private void onEntityAttributeModification(final EntityAttributeModificationEvent event) {

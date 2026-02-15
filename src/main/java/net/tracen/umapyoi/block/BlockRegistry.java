@@ -31,7 +31,7 @@ public class BlockRegistry {
             UmaStatueBlock::new);
     
     public static final RegistryObject<Block> UMA_STATUES_UPPER = BLOCKS.register("uma_statues_upper",
-            ()->new StatuesUpperBlock(UMA_STATUES, Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D)));
+            ()->new StatuesUpperBlock(UMA_STATUES, Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D), true));
     
     public static final RegistryObject<Block> UMA_SELECT_BLOCK = BLOCKS.register("uma_select_block",
             UmaSelectBlock::new);
