@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:nakayama",
   "id": "umapyoi:nakayama_umamusume_stakes",
   "length": 1800,

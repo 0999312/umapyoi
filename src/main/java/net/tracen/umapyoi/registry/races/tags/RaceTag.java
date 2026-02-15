@@ -1,4 +1,4 @@
-package net.tracen.umapyoi.registry.races.Tags;
+package net.tracen.umapyoi.registry.races.tags;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

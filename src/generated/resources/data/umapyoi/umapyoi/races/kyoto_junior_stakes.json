@@ -1,9 +1,13 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "attribute_correction": [
     2
   ],
   "field": "umapyoi:kyoto",
-  "id": "umapyoi:kyoto_nisai_stakes",
+  "id": "umapyoi:kyoto_junior_stakes",
   "length": 2000,
   "ranking": "giii",
   "reference_level": 25,

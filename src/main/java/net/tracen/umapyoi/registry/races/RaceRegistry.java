@@ -10,9 +10,9 @@ import net.tracen.umapyoi.utils.RaceRanking;
 import net.tracen.umapyoi.utils.Surface;
 import net.tracen.umapyoi.utils.Year;
 
-import static net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry.*;
+import static net.tracen.umapyoi.registry.races.field.RaceFieldRegistry.*;
 import static net.tracen.umapyoi.registry.races.Race.RaceBuilder;
-import static net.tracen.umapyoi.registry.races.Tags.RaceTagRegistry.*;
+import static net.tracen.umapyoi.registry.races.tags.RaceTagRegistry.*;
 
 import java.util.HashMap;
 import java.util.function.Function;
@@ -156,7 +156,7 @@ public class RaceRegistry {
                     .setRanking(RaceRanking.GIII)
                     .setSurface(Surface.TURF)
                     .setLength(1200)
-                    .setField("kokuro")
+                    .setField(KOKURA)
                     .addAttr(0)
                     ::create
     );
@@ -299,7 +299,7 @@ public class RaceRegistry {
                     ::create
     );
 
-    public static final ResourceKey<Race> KYOTO_JUNIOR_STAKES = simpleRegister("kyoto_nisai_stakes",
+    public static final ResourceKey<Race> KYOTO_JUNIOR_STAKES = simpleRegister("kyoto_junior_stakes",
             new RaceBuilder().setTime(11, true)
                     .addYear(Year.JUNIOR)
                     .setRanking(RaceRanking.GIII)
@@ -790,7 +790,7 @@ public class RaceRegistry {
                     ::create
     );
 
-    public static final ResourceKey<Race> FALCON_STAKES = simpleRegister("falkon_stakes",
+    public static final ResourceKey<Race> FALCON_STAKES = simpleRegister("falcon_stakes",
             new RaceBuilder().setTime(3, true)
                     .addYear(Year.CLASSIC)
                     .setRanking(RaceRanking.GIII)
@@ -3351,7 +3351,7 @@ public class RaceRegistry {
                     ::create
     );
 
-    public static final ResourceKey<Race> CAPRICORNUS_CUP = simpleRegister("capriconrnus_cup",
+    public static final ResourceKey<Race> CAPRICORNUS_CUP = simpleRegister("capricornus_cup",
             new RaceBuilder().setRanking(RaceRanking.GI)
                     .addYear(Year.AFTER_REGULAR)
                     .setTime(1, false)

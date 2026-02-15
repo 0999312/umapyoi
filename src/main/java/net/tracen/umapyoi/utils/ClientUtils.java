@@ -2,9 +2,9 @@ package net.tracen.umapyoi.utils;
 
 import java.util.List;
 
-import net.tracen.umapyoi.registry.races.Field.RaceField;
+import net.tracen.umapyoi.registry.races.field.RaceField;
 import net.tracen.umapyoi.registry.races.Race;
-import net.tracen.umapyoi.registry.races.Tags.RaceTag;
+import net.tracen.umapyoi.registry.races.tags.RaceTag;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 

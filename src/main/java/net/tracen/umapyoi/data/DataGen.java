@@ -31,12 +31,12 @@ import net.tracen.umapyoi.data.tag.UmapyoiBlockTagProvider;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTagsProvider;
 import net.tracen.umapyoi.data.tag.UmapyoiPOITagsProvider;
 import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
-import net.tracen.umapyoi.registry.races.Field.RaceField;
-import net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry;
+import net.tracen.umapyoi.registry.races.field.RaceField;
+import net.tracen.umapyoi.registry.races.field.RaceFieldRegistry;
 import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.registry.races.RaceRegistry;
-import net.tracen.umapyoi.registry.races.Tags.RaceTag;
-import net.tracen.umapyoi.registry.races.Tags.RaceTagRegistry;
+import net.tracen.umapyoi.registry.races.tags.RaceTag;
+import net.tracen.umapyoi.registry.races.tags.RaceTagRegistry;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 

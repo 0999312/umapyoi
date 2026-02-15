@@ -9,14 +9,13 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.registry.races.Field.RaceField;
-import net.tracen.umapyoi.registry.races.Tags.RaceTag;
+import net.tracen.umapyoi.registry.races.field.RaceField;
+import net.tracen.umapyoi.registry.races.tags.RaceTag;
 import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.registry.umadata.Motivations;
 import net.tracen.umapyoi.registry.umadata.UmaData;
@@ -25,7 +24,7 @@ import net.tracen.umapyoi.utils.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static net.tracen.umapyoi.registry.races.Field.RaceFieldRegistry.CONST_ADAPTIVE;
+import static net.tracen.umapyoi.registry.races.field.RaceFieldRegistry.CONST_ADAPTIVE;
 
 public class Race {
     public static final ResourceKey<Registry<Race>> REGISTRY_KEY = ResourceKey

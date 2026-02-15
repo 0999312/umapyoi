@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:nadeshiko_sho",
   "length": 1400,

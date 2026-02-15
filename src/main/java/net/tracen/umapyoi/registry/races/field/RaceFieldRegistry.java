@@ -1,4 +1,4 @@
-package net.tracen.umapyoi.registry.races.Field;
+package net.tracen.umapyoi.registry.races.field;
 
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;

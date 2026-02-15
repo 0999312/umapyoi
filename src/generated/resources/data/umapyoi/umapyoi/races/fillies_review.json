@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:fillies_review",
   "length": 1400,
