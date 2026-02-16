@@ -10,10 +10,24 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.RegistryObject;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 
+import java.util.Comparator;
+
 public class UmaFactor{
+    public static class UmaFactorComparator implements Comparator<RegistryObject<UmaFactor>> {
+        public static UmaFactorComparator INSTANCE = new UmaFactorComparator();
+        @Override
+        public int compare(RegistryObject<UmaFactor> o1, RegistryObject<UmaFactor> o2) {
+            UmaFactor leftFactor = o1.get();
+            UmaFactor rightFactor = o2.get();
+            if (leftFactor.type != rightFactor.type) return leftFactor.type.compareTo(rightFactor.type);
+            return o1.getId() == null || o2.getId() == null ? 0 : o1.getId().compareTo(o2.getId());
+        }
+    }
+
     private final FactorType type;
     private String descriptionId;
     private String detailId;

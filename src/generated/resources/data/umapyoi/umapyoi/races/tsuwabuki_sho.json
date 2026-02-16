@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:chukyo",
   "id": "umapyoi:tsuwabuki_sho",
   "length": 1400,

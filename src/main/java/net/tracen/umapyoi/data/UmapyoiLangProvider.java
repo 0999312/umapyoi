@@ -148,6 +148,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("itemGroup.umapyoi.blank_souls", "Faded Umamusume Souls");
         add("itemGroup.umapyoi.cards", "Support Card");
         add("itemGroup.umapyoi.race_tickets", "Race Tickets");
+        add("itemGroup.umapyoi.factor_shards", "Factor Shards");
 
         addTooltip(".uma_soul.should_retire", "Couldn't continue training anymore, maybe it's time to retire.");
 
