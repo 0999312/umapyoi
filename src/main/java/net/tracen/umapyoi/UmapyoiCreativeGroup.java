@@ -57,6 +57,9 @@ public class UmapyoiCreativeGroup {
                             if (item == ItemRegistry.UMA_RACE_TICKET) {
                                 return;
                             }
+                            if (item == ItemRegistry.FACTOR_SHARD) {
+                                return;
+                            }
                             output.accept(item.get());
                         });
                     }).build());
@@ -100,6 +103,17 @@ public class UmapyoiCreativeGroup {
                         ItemRegistry.ITEMS.getEntries().forEach(item -> {
                             if (item == ItemRegistry.UMA_RACE_TICKET) {
                                 fillTicket(features, output);
+                                return;
+                            }
+                        });
+                    }).build());
+
+    public static final RegistryObject<CreativeModeTab> UMAPYOI_FACTORSHARDS = CREATIVE_MODE_TABS.register("umapyoi_factorshards",
+            () -> CreativeModeTab.builder().icon(ItemRegistry.FACTOR_SHARD.get()::getDefaultInstance)
+                    .title(Component.translatable("itemGroup.umapyoi.factor_shards")).displayItems((features, output) -> {
+                        ItemRegistry.ITEMS.getEntries().forEach(item -> {
+                            if (item == ItemRegistry.FACTOR_SHARD) {
+                                fillShards(features, output);
                                 return;
                             }
                         });
@@ -179,5 +193,18 @@ public class UmapyoiCreativeGroup {
             result.getOrCreateTag().putString("race", race.key().location().toString());
             output.accept(result);
         });
+    }
+
+    private static void fillShards(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
+        UmaFactorRegistry.FACTORS.getEntries().stream()
+                .filter(i -> i.get().getFactorType() != FactorType.UNIQUE)
+                .sorted(UmaFactor.UmaFactorComparator.INSTANCE)
+                .map(RegistryObject::get)
+                .map(i -> new UmaFactorStack(i, i.getMaxLevel()))
+                .map(i -> {
+                    ItemStack result = ItemRegistry.FACTOR_SHARD.get().getDefaultInstance();
+                    result.getOrCreateTag().put("factors", UmaFactorUtils.serializeNBT(List.of(i)));
+                    return result;
+                }).forEachOrdered(output::accept);
     }
 }

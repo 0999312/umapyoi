@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:fukushima",
   "id": "umapyoi:fukushima_tv_open",
   "length": 1200,

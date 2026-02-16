@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:kokura",
   "id": "umapyoi:kokura_nikkei_open",
   "length": 1800,

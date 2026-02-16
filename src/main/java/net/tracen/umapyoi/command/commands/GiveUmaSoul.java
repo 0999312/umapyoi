@@ -296,7 +296,7 @@ public class GiveUmaSoul {
             ctx.getSource().sendFailure(Component.translatable("umapyoi.command.parse.unknown.umadata", uma));
             return 0;
         }
-        ItemStack umaSoul = UmaSoulUtils.initUmaSoul(ItemRegistry.UMA_SOUL.get().getDefaultInstance(), uma, umaData);
+        ItemStack umaSoul = UmaSoulUtils.initUmaSoul(ItemRegistry.UMA_SOUL.get().getDefaultInstance(), uma, umaData).copy();
 
         UmaSoulUtils.setGrowth(umaSoul, growth);
         UmaSoulUtils.setMotivation(umaSoul, motivation);

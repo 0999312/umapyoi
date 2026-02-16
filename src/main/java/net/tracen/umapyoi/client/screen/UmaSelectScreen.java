@@ -307,7 +307,7 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         } else {
             Registry<UmaData> registry = ClientUtils.getClientUmaDataRegistry();
             var initUmaSoul = UmaSoulUtils.initUmaSoul(ItemRegistry.UMA_SOUL.get().getDefaultInstance(), name,
-                    registry.get(name));
+                    registry.get(name)).copy();
             UmaSoulUtils.setPhysique(initUmaSoul, 5);
             return initUmaSoul;
         }
