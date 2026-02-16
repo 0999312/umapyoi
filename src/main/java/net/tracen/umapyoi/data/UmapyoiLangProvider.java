@@ -147,6 +147,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("itemGroup.umapyoi.souls", "Umamusume Souls");
         add("itemGroup.umapyoi.blank_souls", "Faded Umamusume Souls");
         add("itemGroup.umapyoi.cards", "Support Card");
+        add("itemGroup.umapyoi.race_tickets", "Race Tickets");
 
         addTooltip(".uma_soul.should_retire", "Couldn't continue training anymore, maybe it's time to retire.");
 
@@ -306,7 +307,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
 
         add("race.umapyoi.surface.turf", "Turf");
         add("race.umapyoi.surface.dirt", "Dirt");
-        add("race.umapyoi.surface.syntheic", "Syntheic");
+        add("race.umapyoi.surface.synthetic", "Synthetic");
         add("race.umapyoi.surface.adaptive", "Adaptive");
 
         addTooltip(".race.distance", "Distance: ");
@@ -792,7 +793,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addRace(RaceRegistry.WASURENAGUSA_SHO, "Wasurenagusa Sho");
         addRace(RaceRegistry.MARINE_CUP, "Marine Cup");
         addRace(RaceRegistry.OAKS, "Oaks");
-        addRace(RaceRegistry.TOKYO_YUSHUN_JAPANESE_DERBY, "Tokyo Yushun Japanese Derby");
+        addRace(RaceRegistry.TOKYO_YUSHUN_JAPANESE_DERBY, "Tokyo Yushun (Japanese Derby)");
         addRace(RaceRegistry.AOI_STAKES, "Aoi Stakes");
         addRace(RaceRegistry.HOSU_STAKES, "Hosu Stakes");
         addRace(RaceRegistry.SHIRAYURI_STAKES, "Shirayuri Stakes");
