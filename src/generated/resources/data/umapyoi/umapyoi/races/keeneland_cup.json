@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:sapporo",
   "id": "umapyoi:keeneland_cup",
   "length": 1200,

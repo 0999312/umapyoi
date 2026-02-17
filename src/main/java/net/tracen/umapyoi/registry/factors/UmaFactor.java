@@ -21,10 +21,12 @@ public class UmaFactor{
         public static UmaFactorComparator INSTANCE = new UmaFactorComparator();
         @Override
         public int compare(RegistryObject<UmaFactor> o1, RegistryObject<UmaFactor> o2) {
-            UmaFactor leftFactor = o1.get();
-            UmaFactor rightFactor = o2.get();
+            return compare(o1.get(), o1.getId(), o2.get(), o2.getId());
+        }
+
+        public static int compare(UmaFactor leftFactor, ResourceLocation leftLocation, UmaFactor rightFactor, ResourceLocation rightLocation) {
             if (leftFactor.type != rightFactor.type) return leftFactor.type.compareTo(rightFactor.type);
-            return o1.getId() == null || o2.getId() == null ? 0 : o1.getId().compareTo(o2.getId());
+            return leftLocation == null || rightLocation == null ? 0 : leftLocation.compareTo(rightLocation);
         }
     }
 

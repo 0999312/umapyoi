@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:hakodate",
   "id": "umapyoi:hakodate_sprint_stakes",
   "length": 1200,

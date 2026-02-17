@@ -288,6 +288,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addTooltip(".race.time.junior", "Junior");
         addTooltip(".race.time.classic", "Classic");
         addTooltip(".race.time.senior", "Senior");
+        addTooltip(".race.time.after_regular", "After Twinkle Series");
 
         for (int i = 0; i < 12; i++) {
             String monthName = StringUtils.capitalize(Month.of(i + 1).name().toLowerCase());
