@@ -18,10 +18,7 @@ import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.registry.races.Race;
 import net.tracen.umapyoi.registry.races.RaceRegistry;
-import net.tracen.umapyoi.utils.ClientUtils;
-import net.tracen.umapyoi.utils.RaceRanking;
-import net.tracen.umapyoi.utils.Surface;
-import net.tracen.umapyoi.utils.Year;
+import net.tracen.umapyoi.utils.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -196,12 +193,16 @@ public class UmaRaceTicketItem extends Item {
                 Component.translatable("race.umapyoi.surface." + surface.name().toLowerCase()).withStyle(surface.color)
         ));
 
-        tooltip.add(Component.translatable("tooltip.umapyoi.race.distance")
-                .append(Component.translatable("tooltip.umapyoi.race.distance." + raceObj.distance.name().toLowerCase()))
-                .append(" ")
-                .append(Component.literal(Integer.toString(raceObj.length))
-                .append(Component.translatable("tooltip.umapyoi.race.unit")))
-        );
+        MutableComponent baseComponent = Component.translatable("tooltip.umapyoi.race.distance")
+                .append(Component.translatable("tooltip.umapyoi.race.distance." + raceObj.distance.name().toLowerCase()));
+
+        if (raceObj.distance != Distance.ADAPTIVE) {
+            baseComponent = baseComponent.append(" ")
+                    .append(Component.literal(Integer.toString(raceObj.length))
+                            .append(Component.translatable("tooltip.umapyoi.race.unit")));
+        }
+
+        tooltip.add(baseComponent);
 
         ResourceLocation locField = raceObj.field;
         tooltip.add(Component.translatable("tooltip.umapyoi.race.field").append(

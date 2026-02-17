@@ -104,7 +104,7 @@ public class FactorResearchScreen extends ItemCombinerScreen<FactorResearchMenu>
 
             List<UmaFactorStack> listFactors = FactorReport.getFactorStacks(this.menu.getSlot(1).getItem());
             ArrayList<Component> components = new ArrayList<>();
-            for (UmaFactorStack factor: listFactors) {
+            listFactors.stream().sorted(UmaFactorStack.UmaFactorStackComparator.INSTANCE).forEachOrdered(factor -> {
                 switch (factor.getFactor().getFactorType()) {
                     case STATUS -> components.add(factor.getDescription().copy().withStyle(ChatFormatting.BLUE));
                     case UNIQUE -> components.add(factor.getDescription().copy().withStyle(ChatFormatting.GREEN));
@@ -112,7 +112,7 @@ public class FactorResearchScreen extends ItemCombinerScreen<FactorResearchMenu>
                     default -> components.add(factor.getDescription().copy().withStyle(ChatFormatting.GRAY));
                 }
                 components.add(factor.getDescriptionDetail().copy().withStyle(ChatFormatting.DARK_GRAY));
-            }
+            });
             pGuiGraphics.renderComponentTooltip(this.font, components, pX, pY);
         }
     }

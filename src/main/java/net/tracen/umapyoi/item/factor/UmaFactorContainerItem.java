@@ -39,7 +39,7 @@ public class UmaFactorContainerItem extends Item {
                     .withStyle(ChatFormatting.AQUA));
             List<UmaFactorStack> stackList = UmaFactorUtils.deserializeNBT(tag);
 
-            stackList.forEach(factor -> {
+            stackList.stream().sorted(UmaFactorStack.UmaFactorStackComparator.INSTANCE).forEach(factor -> {
                 switch (factor.getFactor().getFactorType()) {
                 case STATUS -> tooltip.add(factor.getDescription().copy().withStyle(ChatFormatting.BLUE));
                 case UNIQUE -> tooltip.add(factor.getDescription().copy().withStyle(ChatFormatting.GREEN));

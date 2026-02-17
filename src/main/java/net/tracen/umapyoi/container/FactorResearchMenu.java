@@ -136,7 +136,7 @@ public class FactorResearchMenu extends ItemCombinerMenu {
         return ItemCombinerMenuSlotDefinition.create()
                 .withSlot(0, 27, 47, FactorResearchMenu::isSrcAvailable)
                 .withSlot(1, 76, 47, FactorResearchMenu::isFactorResearch)
-                .withResultSlot(2, 134, 47)
+                .withResultSlot(2, 134, 48)
                 .build();
     }
 
@@ -157,6 +157,6 @@ public class FactorResearchMenu extends ItemCombinerMenu {
         this.shrinkStackInSlot(0);
         this.shrinkStackInSlot(1);
         if (player.level().isClientSide)
-            player.playSound(SoundEvents.ANVIL_USE, 1F, 1F);
+            player.playSound(SoundEvents.AMETHYST_CLUSTER_BREAK, 1F, 1F);
     }
 }

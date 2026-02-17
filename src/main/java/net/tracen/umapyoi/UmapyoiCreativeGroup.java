@@ -198,6 +198,7 @@ public class UmapyoiCreativeGroup {
     private static void fillShards(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
         UmaFactorRegistry.FACTORS.getEntries().stream()
                 .filter(i -> i.get().getFactorType() != FactorType.UNIQUE)
+                .filter(i -> i != UmaFactorRegistry.SKILL_FACTOR)
                 .sorted(UmaFactor.UmaFactorComparator.INSTANCE)
                 .map(RegistryObject::get)
                 .map(i -> new UmaFactorStack(i, i.getMaxLevel()))
