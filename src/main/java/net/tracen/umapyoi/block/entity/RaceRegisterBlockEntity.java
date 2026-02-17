@@ -2,7 +2,6 @@ package net.tracen.umapyoi.block.entity;
 
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -47,8 +46,6 @@ import javax.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Optional;
-
 import static net.tracen.umapyoi.item.UmaRaceTicketItem.getRaceID;
 
 public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuProvider {

@@ -335,7 +335,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("race.umapyoi.field.morioka", "Morioka");
         add("race.umapyoi.field.ohi", "Ohi");
         add("race.umapyoi.field.adaptive", "Adaptive");
-        //
+        
         addTooltip(".race.gainable_tags", "Race Tags: ");
 
         add("race.umapyoi.tags.triple_tiara", "Triple Tiara");
@@ -350,7 +350,6 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("race.umapyoi.tags.sprint", "Spring-Autumn Sprint");
         add("race.umapyoi.tags.dirt", "Spring-Autumn Dirt");
 
-        //
         add("container.umapyoi.three_goddess", "Three Goddesses Statue");
         add("container.umapyoi.training_facility", "Training Terminal");
         add("container.umapyoi.skill_learning", "Skill Learning Table");
