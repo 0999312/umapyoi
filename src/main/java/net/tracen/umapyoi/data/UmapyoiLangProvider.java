@@ -591,6 +591,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.STARDUST, "Stardust");
         addUma(UmaDataRegistry.KING_HALO_CHEER, "[Cheerleader in Nobel White] King Halo");
         addUma(UmaDataRegistry.SAKURA_BAKUSHIN_O_SPORTS, "[Red Hot☆Leader] Sakura Bakushin O");
+        
+        addUma(UmaDataRegistry.INES_FUJIN, "Ines Fujin");
 
         add(Util.makeDescriptionId("umadata", new ResourceLocation(Umapyoi.MODID, "super_creek")), "Super Creek");
 

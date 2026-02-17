@@ -119,38 +119,39 @@ public class CommonEvents {
         }
     }
 
-    @SubscribeEvent
-    public static void onWorldTick(TickEvent.LevelTickEvent evt) {
-        if (evt.phase == TickEvent.Phase.END) {
-            Level world = evt.level;
-            if (world.isClientSide) return;
-            if (world instanceof ServerLevel level) {
-                level.getCapability(CapabilityRegistry.NIGHT_OWL_TIMER).ifPresent(timer -> {
-                    timer.tick();
-                    if (timer.getCurrentTick() >= 20) {
-                        for (ServerPlayer serverplayer : level.players()) {
-//                        	serverplayer.
-                            if (!serverplayer.isSpectator()) {
-                                if (serverplayer.isSleeping()) {
-                                    if (serverplayer.hasEffect(MobEffectRegistry.NIGHT_OWL.get())) {
-                                        serverplayer.removeEffect(MobEffectRegistry.NIGHT_OWL.get());
-                                    }
-                                } else {
-                                    ServerStatsCounter serverstatscounter = serverplayer.getStats();
-                                    int timeSinceRest = Mth.clamp(serverstatscounter.getValue(Stats.CUSTOM.get(Stats.TIME_SINCE_REST)), 1, Integer.MAX_VALUE);
-                                    if (timeSinceRest > 20 && level.getRandom().nextDouble() <= UmapyoiConfig.NIGHT_OWL_PROBABILITY_PER_SECOND.get()) {
-                                        MobEffectInstance effectInstance = new MobEffectInstance(MobEffectRegistry.NIGHT_OWL.get(), -1);
-                                        serverplayer.addEffect(effectInstance);
-                                    }
-                                }
-                            }
-                        }
-                        timer.reset();
-                    }
-                });
-            }
-        }
-    }
+// TODO: REWRITE
+//    @SubscribeEvent
+//    public static void onWorldTick(TickEvent.LevelTickEvent evt) {
+//        if (evt.phase == TickEvent.Phase.END) {
+//            Level world = evt.level;
+//            if (world.isClientSide) return;
+//            if (world instanceof ServerLevel level) {
+//                level.getCapability(CapabilityRegistry.NIGHT_OWL_TIMER).ifPresent(timer -> {
+//                    timer.tick();
+//                    if (timer.getCurrentTick() >= 20) {
+//                        for (ServerPlayer serverplayer : level.players()) {
+////                        	serverplayer.
+//                            if (!serverplayer.isSpectator()) {
+//                                if (serverplayer.isSleeping()) {
+//                                    if (serverplayer.hasEffect(MobEffectRegistry.NIGHT_OWL.get())) {
+//                                        serverplayer.removeEffect(MobEffectRegistry.NIGHT_OWL.get());
+//                                    }
+//                                } else {
+//                                    ServerStatsCounter serverstatscounter = serverplayer.getStats();
+//                                    int timeSinceRest = Mth.clamp(serverstatscounter.getValue(Stats.CUSTOM.get(Stats.TIME_SINCE_REST)), 1, Integer.MAX_VALUE);
+//                                    if (timeSinceRest > 20 && level.getRandom().nextDouble() <= UmapyoiConfig.NIGHT_OWL_PROBABILITY_PER_SECOND.get()) {
+//                                        MobEffectInstance effectInstance = new MobEffectInstance(MobEffectRegistry.NIGHT_OWL.get(), -1);
+//                                        serverplayer.addEffect(effectInstance);
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        timer.reset();
+//                    }
+//                });
+//            }
+//        }
+//    }
 
     @SubscribeEvent
     public static void onPlayerSlept(PlayerSleepInBedEvent evt) {

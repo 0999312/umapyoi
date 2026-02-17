@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:niigata",
   "id": "umapyoi:niigata_junior_stakes",
   "length": 1600,

@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:tenno_sho_spring",
   "length": 3200,

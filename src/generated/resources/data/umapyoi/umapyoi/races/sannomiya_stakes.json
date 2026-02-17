@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:sannomiya_stakes",
   "length": 1800,
