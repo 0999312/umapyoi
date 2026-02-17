@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:autumn_leaf_stakes",
   "length": 1200,
