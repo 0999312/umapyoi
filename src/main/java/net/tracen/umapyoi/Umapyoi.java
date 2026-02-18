@@ -1,14 +1,11 @@
 package net.tracen.umapyoi;
 
-import com.alrex.parcool.ParCool;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -18,7 +15,6 @@ import net.tracen.umapyoi.advancements.trigger.TriggerRegistry;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.command.CommandRegistry;
-import net.tracen.umapyoi.compat.sbw.SBWCompat;
 import net.tracen.umapyoi.container.ContainerRegistry;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
@@ -61,14 +57,6 @@ public class Umapyoi {
         modEventBus.addListener(this::onEntityAttributeModification);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
-        
-        if(ModList.get().isLoaded("superbwarfare")) {
-        	MinecraftForge.EVENT_BUS.register(SBWCompat.class);
-        }
-        
-        if(ModList.get().isLoaded("parcool")) {
-        	MinecraftForge.EVENT_BUS.register(ParCool.class);
-        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {
