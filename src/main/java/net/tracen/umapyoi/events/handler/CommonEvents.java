@@ -5,7 +5,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.ServerStatsCounter;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -15,11 +14,12 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
+import net.minecraftforge.event.entity.player.PlayerSpawnPhantomsEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
-import net.tracen.umapyoi.capability.CapabilityRegistry;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.events.ApplyFactorEvent;
@@ -119,39 +119,38 @@ public class CommonEvents {
         }
     }
 
-// TODO: REWRITE
-//    @SubscribeEvent
-//    public static void onWorldTick(TickEvent.LevelTickEvent evt) {
-//        if (evt.phase == TickEvent.Phase.END) {
-//            Level world = evt.level;
-//            if (world.isClientSide) return;
-//            if (world instanceof ServerLevel level) {
-//                level.getCapability(CapabilityRegistry.NIGHT_OWL_TIMER).ifPresent(timer -> {
-//                    timer.tick();
-//                    if (timer.getCurrentTick() >= 20) {
-//                        for (ServerPlayer serverplayer : level.players()) {
-////                        	serverplayer.
-//                            if (!serverplayer.isSpectator()) {
-//                                if (serverplayer.isSleeping()) {
-//                                    if (serverplayer.hasEffect(MobEffectRegistry.NIGHT_OWL.get())) {
-//                                        serverplayer.removeEffect(MobEffectRegistry.NIGHT_OWL.get());
-//                                    }
-//                                } else {
-//                                    ServerStatsCounter serverstatscounter = serverplayer.getStats();
-//                                    int timeSinceRest = Mth.clamp(serverstatscounter.getValue(Stats.CUSTOM.get(Stats.TIME_SINCE_REST)), 1, Integer.MAX_VALUE);
-//                                    if (timeSinceRest > 20 && level.getRandom().nextDouble() <= UmapyoiConfig.NIGHT_OWL_PROBABILITY_PER_SECOND.get()) {
-//                                        MobEffectInstance effectInstance = new MobEffectInstance(MobEffectRegistry.NIGHT_OWL.get(), -1);
-//                                        serverplayer.addEffect(effectInstance);
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        timer.reset();
-//                    }
-//                });
-//            }
-//        }
-//    }
+    @SubscribeEvent
+    public static void onWorldTick(TickEvent.LevelTickEvent evt) {
+        if (evt.phase == TickEvent.Phase.END) {
+            Level world = evt.level;
+            if (world.isClientSide) return;
+            if (world instanceof ServerLevel level) {
+                for (ServerPlayer player: level.players()) {
+                    if (player.isSpectator()) continue;
+                    if (player.isSleeping()) {
+                        if (player.hasEffect(MobEffectRegistry.NIGHT_OWL.get()))
+                            player.removeEffect(MobEffectRegistry.NIGHT_OWL.get());
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onPhantomEvent(PlayerSpawnPhantomsEvent event) {
+        Player player = event.getEntity();
+        if (player.isSpectator()) return;
+        if (player.isSleeping()) return;
+        if (player instanceof ServerPlayer serverplayer) {
+            if (UmapyoiAPI.getUmaSoul(serverplayer).isEmpty()) return;
+            ServerStatsCounter serverstatscounter = serverplayer.getStats();
+            int timeSinceRest = serverstatscounter.getValue(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
+            if (timeSinceRest >= 72000) {
+                MobEffectInstance effectInstance = new MobEffectInstance(MobEffectRegistry.NIGHT_OWL.get(), -1);
+                serverplayer.addEffect(effectInstance);
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onPlayerSlept(PlayerSleepInBedEvent evt) {
