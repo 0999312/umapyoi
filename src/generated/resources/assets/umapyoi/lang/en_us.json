@@ -584,7 +584,7 @@
   "tooltip.umapyoi.uma_soul.aptitude.medium": "Medium %s",
   "tooltip.umapyoi.uma_soul.aptitude.miles": "Mile %s",
   "tooltip.umapyoi.uma_soul.aptitude.short": "Short %s",
-  "tooltip.umapyoi.uma_soul.aptitude.strategy": "Strategy: ",
+  "tooltip.umapyoi.uma_soul.aptitude.strategy": "Strategy: %s",
   "tooltip.umapyoi.uma_soul.aptitude.strategy.end_closer": "End",
   "tooltip.umapyoi.uma_soul.aptitude.strategy.front_runner": "Front",
   "tooltip.umapyoi.uma_soul.aptitude.strategy.late_surger": "Late",

@@ -295,9 +295,6 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         if (this.level == null) return ItemStack.EMPTY;
 
         Race race = UmapyoiAPI.getRaceRegistry(this.level).get(raceID);
-        if (race != null) {
-            Umapyoi.getLogger().debug("Run {} with following properties: Distance={}, Surface={}", raceID, race.distance(this.inventory.getStackInSlot(0)), race.surface(this.inventory.getStackInSlot(0)));
-        }
         ResourceLocation lootSpecify = new ResourceLocation(raceID.getNamespace(), "race/id/" + raceID.getPath());
         LootDataManager manager = Objects.requireNonNull(this.level.getServer()).getLootData();
         LootTable table = manager.getLootTable(lootSpecify);
@@ -404,7 +401,6 @@ public class RaceRegisterBlockEntity extends SyncedBlockEntity implements MenuPr
         Race race = UmapyoiAPI.getRaceRegistry(this.level).get(getRaceID(stackRace));
         if (race == null) return 1d;
         double retValue = race.offScalar(stackSoul, this.level);
-        Umapyoi.getLogger().debug("Render scale = {}", retValue);
         return retValue;
     }
 

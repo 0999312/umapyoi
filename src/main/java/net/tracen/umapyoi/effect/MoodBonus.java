@@ -41,7 +41,6 @@ public class MoodBonus extends MobEffect {
         MobEffect thisEffect = MobEffectRegistry.MOOD_BONUS.get();
         LivingEntity entity = event.getPlayer();
         if (!entity.hasEffect(thisEffect)) return;
-        Umapyoi.getLogger().debug("{}, {}", event.getAp(), event.getAp() / 2);
         event.setAp(event.getAp() / 2);
     }
 }

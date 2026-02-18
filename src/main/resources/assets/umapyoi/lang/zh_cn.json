@@ -546,7 +546,7 @@
   "tooltip.umapyoi.uma_soul.aptitude.miles": "一里 %s",
   "tooltip.umapyoi.uma_soul.aptitude.medium": "中 %s",
   "tooltip.umapyoi.uma_soul.aptitude.long": "长 %s",
-  "tooltip.umapyoi.uma_soul.aptitude.strategy": "跑法: ",
+  "tooltip.umapyoi.uma_soul.aptitude.strategy": "跑法: %s",
   "tooltip.umapyoi.uma_soul.aptitude.strategy.front_runner": "领头",
   "tooltip.umapyoi.uma_soul.aptitude.strategy.pace_chaser": "前列",
   "tooltip.umapyoi.uma_soul.aptitude.strategy.late_surger": "居中",

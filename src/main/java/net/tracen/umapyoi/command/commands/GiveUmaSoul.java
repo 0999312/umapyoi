@@ -190,7 +190,6 @@ public class GiveUmaSoul {
         if (subsLeft.isEmpty()) return previous;
         for (int i = 0; i < subsLeft.size(); i++) {
             SubCommand<T> thisRound = subsLeft.get(i);
-            Umapyoi.getLogger().debug("Init {} in {}/{}", thisRound.name, i + 1, subsLeft.size());
             int finalI = i;
             var inner = thisRound.build(innerNode -> {
                     List<SubCommand<T>> removes = IntStream.range(0, subsLeft.size()).filter(j -> j != finalI).mapToObj(subsLeft::get).toList();
@@ -199,7 +198,6 @@ public class GiveUmaSoul {
                         thisRound.argumentExtraction(ctx, beforeInit);
                         return beforeInit;
                     }, finalizer).executes(ctx -> {
-                        Umapyoi.getLogger().debug("Call Execute");
                         T beforeInit = initializer.apply(ctx);
                         thisRound.argumentExtraction(ctx, beforeInit);
                         return finalizer.apply(beforeInit);

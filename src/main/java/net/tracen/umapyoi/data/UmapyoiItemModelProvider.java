@@ -100,7 +100,6 @@ public class UmapyoiItemModelProvider extends AbstractItemModelProvider {
                     builder.write("race_ticket/");
                     builder.write(sep[sep.length - 1]);
                     String finalPath = builder.toString();
-                    Umapyoi.getLogger().debug("path: {}, reg: {}", path, finalPath);
                     withExistingParent(finalPath, mcLoc("item/generated")).texture("layer0",
                             modLoc("item/" + path));
                 });

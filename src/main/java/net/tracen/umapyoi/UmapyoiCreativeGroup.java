@@ -187,7 +187,6 @@ public class UmapyoiCreativeGroup {
 
     private static void fillTicket(CreativeModeTab.ItemDisplayParameters features, CreativeModeTab.Output output) {
         UmaRaceTicketItem.sortedRaceList(features.holders()).forEachOrdered(race -> {
-            Umapyoi.getLogger().debug("{}", race.key());
             if (race.key().location().equals(RaceRegistry.DEFAULT.location())) return;
             ItemStack result = ItemRegistry.UMA_RACE_TICKET.get().getDefaultInstance();
             result.getOrCreateTag().putString("race", race.key().location().toString());
