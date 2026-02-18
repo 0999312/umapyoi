@@ -1,15 +1,15 @@
-// 1.20.1	2026-02-18T12:24:06.8696086	Race Field Registry
+// 1.20.1	2026-02-18T14:02:16.2121592	Race Field Registry
 8e21fdc20d4225929b76faaf03055c6b2940abaa data/umapyoi/umapyoi/race_field/chukyo.json
 be2ecf75477ca696ed25eeb892261c8e6db507bb data/umapyoi/umapyoi/race_field/fukushima.json
 e0abafa028c6e8756f5ea3964000101946f63ade data/umapyoi/umapyoi/race_field/funabashi.json
 ceca1996a18ecf7437ee96ab6c40a611397096d4 data/umapyoi/umapyoi/race_field/hakodate.json
-0862dee1ad031e5c96c90cbe07600f1234baeb9c data/umapyoi/umapyoi/race_field/hanshin.json
+1712aa084fb90a30d658be608d469fc28eb810d1 data/umapyoi/umapyoi/race_field/hanshin.json
 1bff716204ef33024216890143541bf95931ae64 data/umapyoi/umapyoi/race_field/kawasaki.json
 4a2aa3c778ca6bbb7fb5e6e34fa043589c191eb8 data/umapyoi/umapyoi/race_field/kokura.json
-48491b6abf84ca6b3ed203dd7e7c2b78a56df72d data/umapyoi/umapyoi/race_field/kyoto.json
+d820a830f45349ad7a07a22f692181ced3e9dfa1 data/umapyoi/umapyoi/race_field/kyoto.json
 87b1d60a614841b605e3647f8a6d230cb8b489af data/umapyoi/umapyoi/race_field/morioka.json
-ddac392e31b2d8a4f15defb58ccf79c40d00d42f data/umapyoi/umapyoi/race_field/nakayama.json
+a83a1285ea77b4856b915ce1f1a8d1c7eee93305 data/umapyoi/umapyoi/race_field/nakayama.json
 93c031ff4c43eae46d07741989ba68ef9f55aa80 data/umapyoi/umapyoi/race_field/niigata.json
 688c170a8619185ad78582ed8cba85e47718f975 data/umapyoi/umapyoi/race_field/ohi.json
 153c6cc0a7194d33201f0c2ac361cf35f5be8b96 data/umapyoi/umapyoi/race_field/sapporo.json
-1fc71b15e6a813a9b80f2ba0e344834413fa270d data/umapyoi/umapyoi/race_field/tokyo.json
+0839e107e4a42e7208b39050307e2988711ae355 data/umapyoi/umapyoi/race_field/tokyo.json

@@ -201,11 +201,6 @@ public class Race {
         double totalProperties = propertiesAsLevel[0] * (2 - umaPosition.speedFactor) * this.correction[0] + propertiesAsLevel[1]
                 * (2 - umaPosition.staminaFactor) * this.correction[1] + propertiesAsLevel[2] * this.correction[2] +
                 propertiesAsLevel[3] * this.correction[3] + propertiesAsLevel[4] * this.correction[4];
-        Umapyoi.getLogger().debug("Properties: {} / {}", totalProperties, this.referenceLevel);
-        Umapyoi.getLogger().debug("Motivation: {}", motivation.getMultiplier());
-        Umapyoi.getLogger().debug("Surface distance field total: {} {} {} {}", surfaceFactor, distanceFactor,
-                fieldSituationFactor, totalProperties / this.referenceLevel * motivation.getMultiplier() * surfaceFactor
-                        * distanceFactor * fieldSituationFactor);
         return totalProperties / this.referenceLevel * motivation.getMultiplier() * surfaceFactor * distanceFactor * fieldSituationFactor;
     }
 
