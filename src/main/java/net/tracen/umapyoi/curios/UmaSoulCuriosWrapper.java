@@ -108,7 +108,7 @@ public class UmaSoulCuriosWrapper implements ICurio {
                         UmapyoiConfig.UMASOUL_STRENGTH_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                                 : AttributeModifier.Operation.ADDITION));
         atts.put(Attributes.MAX_HEALTH,
-                new AttributeModifier(uuid, "strength_attack_bonus",
+                new AttributeModifier(uuid, "stamina_health_bonus",
                         getExactProperty(user, StatusType.STAMINA, UmapyoiConfig.UMASOUL_MAX_STAMINA_HEALTH.get()) * (hasFatique ? 1.05 : 1),
                         UmapyoiConfig.UMASOUL_STAMINA_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                                 : AttributeModifier.Operation.ADDITION));
