@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
+    }
+  },
+  "pattern": [
+    "BB"
+  ],
+  "result": {
+    "item": "umapyoi:gate_door"
+  },
+  "show_notification": true
+}

@@ -1,6 +1,8 @@
 package net.tracen.umapyoi.utils;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 
 public enum Aptitude {
     G(.1d,.1d),
@@ -22,4 +24,17 @@ public enum Aptitude {
             Aptitude.values()[i] :
             (i < 0 ? G : S),
             Aptitude::ordinal);
+
+    public Component styledComponent() {
+        return Component.literal(this.name()).withStyle(switch (this) {
+            case G -> ChatFormatting.GRAY;
+            case F -> ChatFormatting.BLUE;
+            case E -> ChatFormatting.DARK_PURPLE;
+            case D -> ChatFormatting.AQUA;
+            case C -> ChatFormatting.GREEN;
+            case B -> ChatFormatting.LIGHT_PURPLE;
+            case A -> ChatFormatting.RED;
+            case S -> ChatFormatting.GOLD;
+        });
+    }
 }

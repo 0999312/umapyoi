@@ -98,6 +98,7 @@ public class UmaRaceTicketItem extends Item {
     @Deprecated
     @Nonnull
     public String getDescriptionId(@Nonnull ItemStack pStack) {
+        if (getRaceID(pStack).equals(RaceRegistry.DEFAULT.location())) return super.getDescriptionId(pStack);
         return Util.makeDescriptionId("race", getRaceID(pStack)) + ".name";
     }
 
@@ -114,6 +115,7 @@ public class UmaRaceTicketItem extends Item {
     @Nonnull
     @Override
     public Component getName(@Nonnull ItemStack pStack) {
+        if (getRaceID(pStack).equals(RaceRegistry.DEFAULT.location())) return super.getName(pStack);
         return Component.translatable(this.getDescriptionId(pStack)).withStyle(
                 Optional.ofNullable(getRace(pStack)).map(r -> r.ranking).orElse(RaceRanking.DEBUT).color
         );
@@ -142,7 +144,7 @@ public class UmaRaceTicketItem extends Item {
         }
     }
 
-    private class ComponentCollector implements Collector<MutableComponent, MutableComponent, MutableComponent> {
+    private static class ComponentCollector implements Collector<MutableComponent, MutableComponent, MutableComponent> {
         @Override
         public Supplier<MutableComponent> supplier() {
             return Component::empty;

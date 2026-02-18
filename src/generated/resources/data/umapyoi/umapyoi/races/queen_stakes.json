@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:sapporo",
   "id": "umapyoi:queen_stakes",
   "length": 1800,

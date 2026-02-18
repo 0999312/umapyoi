@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:mochinoki_sho",
   "length": 1800,
