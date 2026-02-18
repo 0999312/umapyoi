@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:sapporo",
   "id": "umapyoi:sapporo_junior_stakes",
   "length": 1800,

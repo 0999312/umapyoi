@@ -173,6 +173,22 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addTooltip(".uma_soul.guts_details", "Guts: %s / %s");
         addTooltip(".uma_soul.wisdom_details", "Wit: %s / %s");
 
+        addTooltip(".uma_soul.aptitude.details", "Aptitudes:");
+        addTooltip(".uma_soul.aptitude.turf", "Turf %s");
+        addTooltip(".uma_soul.aptitude.dirt", "Dirt %s");
+        addTooltip(".uma_soul.aptitude.synthetic", "Synthetic %s");
+        addTooltip(".uma_soul.aptitude.short", "Short %s");
+        addTooltip(".uma_soul.aptitude.miles", "Mile %s");
+        addTooltip(".uma_soul.aptitude.medium", "Medium %s");
+        addTooltip(".uma_soul.aptitude.long", "Long %s");
+        addTooltip(".uma_soul.aptitude.strategy", "Strategy: ");
+
+        addTooltip(".uma_soul.aptitude.strategy.front_runner", "Front");
+        addTooltip(".uma_soul.aptitude.strategy.pace_chaser", "Pace");
+        addTooltip(".uma_soul.aptitude.strategy.late_surger", "Late");
+        addTooltip(".uma_soul.aptitude.strategy.end_closer", "End");
+        addTooltip(".uma_soul.aptitude.strategy.runaway", "Runaway");
+
         addSupport(TrainingSupportRegistry.SPEED_SUPPORT, "Speed Increase");
         addSupport(TrainingSupportRegistry.STAMINA_SUPPORT, "Stamina Increase");
         addSupport(TrainingSupportRegistry.STRENGTH_SUPPORT, "Power Increase");
