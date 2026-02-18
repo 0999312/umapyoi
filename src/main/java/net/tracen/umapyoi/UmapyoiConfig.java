@@ -50,7 +50,6 @@ public class UmapyoiConfig {
 
     public static ForgeConfigSpec.DoubleValue SLOW_METABOLISM_PROBABILITY;
     public static ForgeConfigSpec.LongValue NIGHT_OWL_THRESHOLD;
-    public static ForgeConfigSpec.DoubleValue NIGHT_OWL_PROBABILITY_PER_SECOND;
     public static ForgeConfigSpec.DoubleValue NIGHT_OWL_PROBABILITY_DOWN_MOTIVATION;
 
     public static ForgeConfigSpec.BooleanValue GRANT_GUIDE_ON_FIRST_JOIN;
@@ -135,9 +134,6 @@ public class UmapyoiConfig {
 
         NIGHT_OWL_THRESHOLD = COMMON_BUILDER.comment("Determines how long of sleepless time before Night Owl effect may occur, unit: tick")
                 .defineInRange("night_owl_threshold", 72000L, 0L, Long.MAX_VALUE);
-
-        NIGHT_OWL_PROBABILITY_PER_SECOND = COMMON_BUILDER.comment("Determines the probability of getting Night Owl effect per second after being sleepless for Night Owl Threshold")
-                .defineInRange("night_owl_probability_per_second", 0.01d, 0d, 1d);
 
         NIGHT_OWL_PROBABILITY_DOWN_MOTIVATION = COMMON_BUILDER.comment("Determines the probability of motivation down per second")
                 .defineInRange("night_owl_probability_down_motivation", 0.01d, 0d, 1d);

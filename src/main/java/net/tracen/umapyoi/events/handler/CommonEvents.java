@@ -145,7 +145,7 @@ public class CommonEvents {
             if (UmapyoiAPI.getUmaSoul(serverplayer).isEmpty()) return;
             ServerStatsCounter serverstatscounter = serverplayer.getStats();
             int timeSinceRest = serverstatscounter.getValue(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
-            if (timeSinceRest >= 72000) {
+            if (timeSinceRest >= UmapyoiConfig.NIGHT_OWL_THRESHOLD.get()) {
                 MobEffectInstance effectInstance = new MobEffectInstance(MobEffectRegistry.NIGHT_OWL.get(), -1);
                 serverplayer.addEffect(effectInstance);
             }
