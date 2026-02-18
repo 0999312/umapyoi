@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraftforge.common.Tags;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
@@ -139,6 +140,21 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .pattern("ILI").define('I', Tags.Items.INGOTS_IRON).define('L', Items.CRAFTING_TABLE)
                 .define('J', ItemRegistry.JEWEL.get()).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.FACTOR_RESEARCH_TABLE.get()).pattern("BJF")
+                        .pattern("SSS").define('B', Items.BOOK).define('J', ItemRegistry.JEWEL.get())
+                        .define('F', ItemRegistry.UMA_FACTOR_ITEM.get()).define('S', Tags.Items.STONE)
+                .unlockedBy("has_item", has(ItemRegistry.JEWEL.get())).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.FACTOR_DECOMPOSE_TABLE.get()).pattern("PJF")
+                .pattern("SSS").define('P', Items.PAPER).define('J', ItemRegistry.JEWEL.get())
+                .define('F', ItemRegistry.UMA_FACTOR_ITEM.get()).define('S', Tags.Items.STONE)
+                .unlockedBy("has_item", has(ItemRegistry.JEWEL.get())).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.RACE_REGISTER_BLOCK.get()).pattern("ITI")
+                        .pattern("ICI").define('I', Tags.Items.INGOTS_IRON).define('T', ItemRegistry.UMA_RACE_TICKET.get())
+                        .define('C', Items.CRAFTING_TABLE).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
+                        .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.SUMMER_UNIFORM.get()).pattern("IJI")
                 .pattern("ILI").pattern("ILI").define('I', Items.PURPLE_WOOL).define('L', Items.WHITE_WOOL)

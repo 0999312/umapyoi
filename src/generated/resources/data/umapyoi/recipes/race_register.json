@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "T": {
+      "item": "umapyoi:race_ticket"
+    }
+  },
+  "pattern": [
+    "ITI",
+    "ICI"
+  ],
+  "result": {
+    "item": "umapyoi:race_register"
+  },
+  "show_notification": true
+}
