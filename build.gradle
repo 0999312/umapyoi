@@ -114,6 +114,7 @@ mixin {
     // MixinGradle Settings
     add sourceSets.main, 'umapyoi.mixins.refmap.json'
     config 'umapyoi.mixins.json'
+    config 'umapyoi.parcool.mixins.json'
 
     // Specify options for dev run configs
     debug {
@@ -182,7 +183,7 @@ dependencies {
     //compileOnly fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.9')
     //runtimeOnly fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.9')
     //implementation fg.deobf("maven.modrinth:superb-warfare:DdiwkiSV")
-    //implementation fg.deobf("maven.modrinth:parcool:K5wlAFul")
+    implementation fg.deobf("maven.modrinth:parcool:K5wlAFul")
 }
 
 

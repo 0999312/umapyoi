@@ -54,6 +54,11 @@ public class UmapyoiConfig {
 
     public static ForgeConfigSpec.BooleanValue GRANT_GUIDE_ON_FIRST_JOIN;
 
+    public static ForgeConfigSpec.BooleanValue ENABLE_PARCOOL_COMPATIBILITY;
+    public static ForgeConfigSpec.DoubleValue MIN_EXHAUSTION_PENALTY;
+    public static ForgeConfigSpec.DoubleValue MAX_EXHAUSTION_PENALTY;
+    public static ForgeConfigSpec.DoubleValue MAX_PARCOOL_STAMINA_BONUS;
+
     static {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
         COMMON_BUILDER.comment("General settings").push("general");
@@ -141,6 +146,18 @@ public class UmapyoiConfig {
         GRANT_GUIDE_ON_FIRST_JOIN = COMMON_BUILDER.comment("Determines if the guide would be given to player on their first join to the world or not.")
                         .define("grant_guide_on_first_join", true);
 
+        COMMON_BUILDER.pop();
+        COMMON_BUILDER.comment("Compatibility").push("compatibility");
+        COMMON_BUILDER.comment("Parcool!").push("parcool");
+        ENABLE_PARCOOL_COMPATIBILITY = COMMON_BUILDER.comment("Enables compatibility support for mod Parcool!")
+                .define("enable_parcool_compatibility", true);
+        MIN_EXHAUSTION_PENALTY = COMMON_BUILDER.comment("Minimum exhaustion penalty on speed when tries to sprint while exhausted with a uma soul.")
+                        .defineInRange("min_exhaustion_penalty", 0d, 0d, 1d);
+        MAX_EXHAUSTION_PENALTY = COMMON_BUILDER.comment("Maximum exhaustion penalty on speed when tries to sprint while exhausted with a uma soul.")
+                .defineInRange("max_exhaustion_penalty", 0.75d, 0d, 1d);
+        MAX_PARCOOL_STAMINA_BONUS = COMMON_BUILDER.comment("Maximum parcool stamina bonus by the stamina attribute of uma soul")
+                        .defineInRange("max_parcool_stamina_bonus", 2000d, 0d, Double.MAX_VALUE);
+        COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
