@@ -59,6 +59,11 @@ public class UmapyoiConfig {
     public static ForgeConfigSpec.DoubleValue MAX_EXHAUSTION_PENALTY;
     public static ForgeConfigSpec.DoubleValue MAX_PARCOOL_STAMINA_BONUS;
 
+    public static ForgeConfigSpec.IntValue TOPLEFT_COORD_SKILL_X;
+    public static ForgeConfigSpec.IntValue TOPLEFT_COORD_SKILL_Y;
+    public static ForgeConfigSpec.IntValue TOPLEFT_COORD_MOTIVATION_Y;
+    public static ForgeConfigSpec.IntValue TOPLEFT_COORD_MOTIVATION_X;
+
     static {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
         COMMON_BUILDER.comment("General settings").push("general");
@@ -190,6 +195,15 @@ public class UmapyoiConfig {
                 .defineInRange("ear_animation_interval", 100, 10, Integer.MAX_VALUE);
         TAIL_ANIMATION_INTERVAL = CLIENT_BUILDER.comment("Determining the interval tick between twice tail animation.")
                 .defineInRange("tail_animation_interval", 200, 10, Integer.MAX_VALUE);
+
+        TOPLEFT_COORD_SKILL_X = CLIENT_BUILDER.comment("The x-coordinate of the top-left coordinate of skill overlay. Default: 102")
+                .defineInRange("top_left_skill_x", 102, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        TOPLEFT_COORD_SKILL_Y = CLIENT_BUILDER.comment("The y-coordinate of the top-left coordinate of skill overlay. Default: -21")
+                .defineInRange("top_left_skill_y", -21, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        TOPLEFT_COORD_MOTIVATION_X = CLIENT_BUILDER.comment("The x-coordinate of the top-left coordinate of motivation overlay. Default: 102")
+                .defineInRange("top_left_motivation_x", 118, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        TOPLEFT_COORD_MOTIVATION_Y = CLIENT_BUILDER.comment("The y-coordinate of the top-left coordinate of motivation overlay. Default: -21")
+                .defineInRange("top_left_motivation_y", -37, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
         CLIENT_BUILDER.pop();
         CLIENT_CONFIG = CLIENT_BUILDER.build();
