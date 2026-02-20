@@ -73,7 +73,7 @@ public class UmaStatueBlock extends BaseEntityBlock implements SimpleWaterlogged
 		if (tileEntity instanceof UmaStatueBlockEntity status) {
 			ItemStack heldStack = player.getItemInHand(handIn);
 
-			if (status.isEmpty()) {
+			if (status.isEmpty() || status.isCostumeEmpty()) {
 				if (heldStack.isEmpty()) {
 					return InteractionResult.PASS;
 				} else if (status.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
@@ -105,6 +105,7 @@ public class UmaStatueBlock extends BaseEntityBlock implements SimpleWaterlogged
 			BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 			if (tileEntity instanceof UmaStatueBlockEntity obon) {
 				Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), obon.getStoredItem());
+				Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), obon.getCostume());
 				worldIn.updateNeighbourForOutputSignal(pos, this);
 			}
 			super.onRemove(state, worldIn, pos, newState, isMoving);

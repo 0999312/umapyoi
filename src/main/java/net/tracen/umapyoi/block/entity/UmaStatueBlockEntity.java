@@ -16,6 +16,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.UmaCostumeItem;
+import net.tracen.umapyoi.item.UmaSuitItem;
 
 public class UmaStatueBlockEntity extends SyncedBlockEntity {
     private final ItemStackHandler inventory;
@@ -32,6 +34,11 @@ public class UmaStatueBlockEntity extends SyncedBlockEntity {
     public void load(CompoundTag compound) {
         super.load(compound);
         inventory.deserializeNBT(compound.getCompound("Inventory"));
+        if (inventory.getSlots() < 2) {
+            ItemStack item = inventory.getStackInSlot(0);
+            inventory.setSize(2);
+            inventory.setStackInSlot(0, item);
+        }
     }
 
     @Override
@@ -46,10 +53,20 @@ public class UmaStatueBlockEntity extends SyncedBlockEntity {
             inventoryChanged();
             return true;
         }
+        if (isCostumeEmpty() && !isEmpty() && (itemStack.getItem() instanceof UmaSuitItem || itemStack.getItem() instanceof UmaCostumeItem)) {
+            inventory.setStackInSlot(1, itemStack.split(1));
+            inventoryChanged();
+            return true;
+        }
         return false;
     }
 
     public ItemStack removeItem() {
+        if (!isCostumeEmpty()) {
+            ItemStack item = getCostume().split(1);
+            inventoryChanged();
+            return item;
+        }
         if (!isEmpty()) {
             ItemStack item = getStoredItem().split(1);
             inventoryChanged();
@@ -70,6 +87,14 @@ public class UmaStatueBlockEntity extends SyncedBlockEntity {
         return inventory.getStackInSlot(0).isEmpty();
     }
 
+    public ItemStack getCostume() {
+        return inventory.getStackInSlot(1);
+    }
+
+    public boolean isCostumeEmpty() {
+        return inventory.getStackInSlot(1).isEmpty();
+    }
+
     @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
@@ -86,7 +111,7 @@ public class UmaStatueBlockEntity extends SyncedBlockEntity {
     }
 
     private ItemStackHandler createHandler() {
-        return new ItemStackHandler() {
+        return new ItemStackHandler(2) {
             @Override
             public int getSlotLimit(int slot) {
                 return 1;
