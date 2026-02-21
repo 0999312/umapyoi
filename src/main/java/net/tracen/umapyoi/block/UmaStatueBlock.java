@@ -49,13 +49,13 @@ public class UmaStatueBlock extends BaseEntityBlock implements SimpleWaterlogged
 		return SHAPE;
 	}
 
-	@SuppressWarnings("deprecation")
+	/* @SuppressWarnings("deprecation")
 	@Override
 	public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
 		return super.canSurvive(pState, pLevel, pPos)
 				&& (pLevel.getBlockState(pPos.above()).is(BlockRegistry.UMA_STATUES_UPPER.get())
 						|| pLevel.getBlockState(pPos.above()).isAir());
-	}
+	} */
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -73,7 +73,7 @@ public class UmaStatueBlock extends BaseEntityBlock implements SimpleWaterlogged
 		if (tileEntity instanceof UmaStatueBlockEntity status) {
 			ItemStack heldStack = player.getItemInHand(handIn);
 
-			if (status.isEmpty()) {
+			if (status.isEmpty() || status.isCostumeEmpty()) {
 				if (heldStack.isEmpty()) {
 					return InteractionResult.PASS;
 				} else if (status.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
@@ -105,6 +105,7 @@ public class UmaStatueBlock extends BaseEntityBlock implements SimpleWaterlogged
 			BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 			if (tileEntity instanceof UmaStatueBlockEntity obon) {
 				Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), obon.getStoredItem());
+				Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), obon.getCostume());
 				worldIn.updateNeighbourForOutputSignal(pos, this);
 			}
 			super.onRemove(state, worldIn, pos, newState, isMoving);
@@ -139,10 +140,15 @@ public class UmaStatueBlock extends BaseEntityBlock implements SimpleWaterlogged
 
 	@Override
 	public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
+		if (pDirection == Direction.UP) {
+			if (!pNeighborState.is(BlockRegistry.UMA_STATUES_UPPER.get())) {
+				return pState.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+			}
+		}
 		if (pState.getValue(WATERLOGGED)) {
 			pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
 		}
-		return super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
+		return !pState.canSurvive(pLevel, pPos) ? (pState.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState()) : super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
 	}
 
 	@Override

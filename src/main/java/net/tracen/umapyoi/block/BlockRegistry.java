@@ -1,6 +1,7 @@
 package net.tracen.umapyoi.block;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -16,7 +17,7 @@ public class BlockRegistry {
             SupportAlbumPedestalBlock::new);
     public static final RegistryObject<Block> THREE_GODDESS = BLOCKS.register("three_goddess", ThreeGoddessBlock::new);
     public static final RegistryObject<Block> THREE_GODDESS_UPPER = BLOCKS.register("three_goddess_upper",
-            ()->new StatuesUpperBlock(THREE_GODDESS));
+            ()->new StatuesUpperBlock(THREE_GODDESS, Shapes.block(), true));
     public static final RegistryObject<Block> TRAINING_FACILITY = BLOCKS.register("training_facility",
             TrainingFacilityBlock::new);
     public static final RegistryObject<Block> SKILL_LEARNING_TABLE = BLOCKS.register("skill_learning_table",
