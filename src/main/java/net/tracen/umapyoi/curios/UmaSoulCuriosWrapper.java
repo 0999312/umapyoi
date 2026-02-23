@@ -123,7 +123,7 @@ public class UmaSoulCuriosWrapper implements ICurio {
                         UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.MULTIPLY_TOTAL
                                 : AttributeModifier.Operation.ADDITION));
 
-        ApplyUmasoulAttributeEvent event = new ApplyUmasoulAttributeEvent(this.getStack(), slotContext, uuid, atts);
+        ApplyUmasoulAttributeEvent event = new ApplyUmasoulAttributeEvent(user, this.getStack(), slotContext, uuid, atts, this::getExactProperty);
 		MinecraftForge.EVENT_BUS.post(event);
         return event.getAttributes();
     }

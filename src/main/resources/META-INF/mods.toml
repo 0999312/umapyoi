@@ -44,3 +44,9 @@ Horsey horsey meowsy meowsy  3 2 1  Fight!!
     versionRange="[5.3.4+1.20.1,)"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.umapyoi]]
+    modId="superbwarfare"
+    mandatory=false
+    versionRange="[0.8.7.1,)"
+    ordering="AFTER"
+    side="BOTH"

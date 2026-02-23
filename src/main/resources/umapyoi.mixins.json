@@ -8,7 +8,9 @@
     "PlayerFoodExhaustionMixin"
   ],
   "client": [
-    "client.ItemInHandLayerMixin"
+    "client.ItemInHandLayerMixin",
+    "client.HumanoidArmorLayerMixin",
+    "client.ElytraLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

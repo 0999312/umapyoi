@@ -1,127 +1,70 @@
 package net.tracen.umapyoi.events.handler;
 
-import java.util.Map;
-
-import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import cn.mcmod_mmf.mmlib.client.model.pojo.BedrockModelPOJO;
-import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.EquipmentSlot.Type;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderArmEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.client.model.UmaCostumeModelUtils;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.data.tag.UmapyoiCostumeDataTags;
-import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.events.client.RenderingUmaSoulEvent;
 import net.tracen.umapyoi.item.UmaCostumeItem;
 import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
 import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
+import cn.mcmod_mmf.mmlib.client.model.pojo.BedrockModelPOJO;
+import cn.mcmod_mmf.mmlib.utils.ClientUtil;
+
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class ClientEvents {
-
-    private static Map<EquipmentSlot, ItemStack> armor;
 
     @SubscribeEvent
     public static void preUmaSoulRendering(RenderingUmaSoulEvent.Pre event) {
         LivingEntity entity = event.getWearer();
         var model = event.getModel();
-        boolean hideHair = false;
+
         if (UmapyoiAPI.isUmaSuitRendering(entity)) {
             model.setAllVisible(false);
-            model.head.visible = true;
-            model.tail.visible = true;
-            if(UmapyoiAPI.isUmaSuitHasHat(entity)) {
-        		ResourceLocation loc = UmaCostumeItem.getCostumeID(UmapyoiAPI.getUmaSuit(entity));
-        		var costumeData = ClientUtils.getClientCosmeticDataRegistry().getHolder(
-        				ResourceKey.create(CosmeticData.REGISTRY_KEY, loc)
-        		);
-        		if(costumeData.get().is(UmapyoiCostumeDataTags.HAT_HIDEHAIR)) {
-        			hideHair = true;
-        			model.longHairParts.forEach(part -> part.visible = false);
-            	}else {
-            		model.longHairParts.forEach(part -> part.visible = true);
-            	}
-            	model.hideHat();
+            model.setHeadVisible(true);
+            model.setTailVisible(true);
+            if (UmapyoiAPI.isUmaSuitHasHat(entity)) {
+                ResourceLocation loc = UmaCostumeItem.getCostumeID(UmapyoiAPI.getUmaSuit(entity));
+                var costumeData = ClientUtils.getClientCosmeticDataRegistry().getHolder(
+                        ResourceKey.create(CosmeticData.REGISTRY_KEY, loc)
+                );
+                if (costumeData.get().is(UmapyoiCostumeDataTags.HAT_HIDEHAIR)) {
+                    model.setLongHairPartsVisible(false);
+                }
+                model.setHatAndEarsVisible(false, true);
             }
             else {
-            	model.showHat();
-            	
+                model.setHatAndEarsVisible(true, true);
             }
-        } else {
-            model.setAllVisible(true);
         }
-		if(hideHair) {
-			model.longHairParts.forEach(part -> part.visible = false);
-    	}else {
-    		model.longHairParts.forEach(part -> part.visible = true);
-    	}
-        model.showEars();
     }
     
     @SubscribeEvent
     public static <T extends LivingEntity, M extends EntityModel<T>> void onPlayerRendering(RenderLivingEvent.Pre<T, M> event) {
-        LivingEntity player = event.getEntity();
-        ItemStack umasoul = UmapyoiAPI.getRenderingUmaSoul(event.getEntity());
-        if (!umasoul.isEmpty()) {
-        	if(event.getRenderer().getModel() instanceof HumanoidModel humanoid) {
+        ItemStack umaSoul = UmapyoiAPI.getRenderingUmaSoul(event.getEntity());
+        if (!umaSoul.isEmpty()) {
+        	if (event.getRenderer().getModel() instanceof HumanoidModel<?> humanoid) {
         		humanoid.setAllVisible(false);
-            if (!UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && !umasoul.isEmpty()) {
-            	//TODO: 重写这个方法以适配不同实体
-            	
-                armor = Maps.newHashMap();
-
-            	for(EquipmentSlot slot : EquipmentSlot.values()) {
-            		if(slot.getType() == Type.HAND)
-            			continue;
-            		ItemStack itemBySlot = player.getItemBySlot(slot);
-					armor.put(slot, itemBySlot);
-					
-					boolean renderElytry = UmapyoiConfig.ELYTRA_RENDER.get()
-							&& itemBySlot.getItem() instanceof ElytraItem;
-					boolean shouldRender = itemBySlot.is(UmapyoiItemTags.SHOULD_RENDER);
-					if (renderElytry || shouldRender)
-						player.setItemSlot(slot, itemBySlot);
-					else
-						player.setItemSlot(slot, ItemStack.EMPTY);
-            	}
-            	
-            	}
             }
-        }
-    }
-
-    @SubscribeEvent
-    public static <T extends LivingEntity, M extends EntityModel<T>> void onPlayerRenderingPost(RenderLivingEvent.Post<T, M>  event) {
-    	LivingEntity player = event.getEntity();
-        ItemStack umasoul = UmapyoiAPI.getRenderingUmaSoul(event.getEntity());
-        if (!UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && armor != null && !umasoul.isEmpty()) {
-        	for(EquipmentSlot slot : EquipmentSlot.values()) {
-        		if(slot.getType() == Type.HAND)
-        			continue;
-        		
-				player.setItemSlot(slot, armor.get(slot));
-        	}
         }
     }
 

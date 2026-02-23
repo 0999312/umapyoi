@@ -1,0 +1,15 @@
+{
+  "package": "net.tracen.umapyoi.compat.parcool.mixin",
+  "plugin": "net.tracen.umapyoi.compat.parcool.ParcoolMixinPlugin",
+  "compatibilityLevel": "JAVA_17",
+  "required": true,
+  "minVersion": "0.8",
+  "refmap": "umapyoi.mixins.refmap.json",
+  "mixins": [
+    "ActionProcessorMixin",
+    "OtherStaminaMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
