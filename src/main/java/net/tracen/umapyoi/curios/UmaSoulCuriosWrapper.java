@@ -25,7 +25,6 @@ import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.event.CurioChangeEvent;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
 public class UmaSoulCuriosWrapper implements ICurio {

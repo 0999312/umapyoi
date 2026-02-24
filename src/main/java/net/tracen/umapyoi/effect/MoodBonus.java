@@ -7,7 +7,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.events.SettingPropertyEvent;
 import net.tracen.umapyoi.events.SkillEvent;
 import net.tracen.umapyoi.utils.UmaSoulUtils;

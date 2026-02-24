@@ -13,7 +13,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;

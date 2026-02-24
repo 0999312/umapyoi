@@ -876,8 +876,9 @@
   "race.umapyoi.aries_cup.name": "白羊杯",
   "race.umapyoi.make_debut.name": "闪耀出道战",
   "race.umapyoi.ura_finals.name": "URA决胜系列赛",
-
-
+  "attribute.umapyoi.generic.exhaustion_penalty": "疲劳惩罚",
+  "setting.umapyoi.discard": "取消",
+  "setting.umapyoi.save": "保存",
   "gui.umapyoi.multiple_factor": "拥有多因子",
   "gui.umapyoi.hover_for_tooltip": "在此处悬浮以查看",
 

@@ -1,7 +1,6 @@
 package net.tracen.umapyoi.compat.parcool;
 
 import net.minecraftforge.fml.loading.LoadingModList;
-import net.tracen.umapyoi.UmapyoiConfig;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;

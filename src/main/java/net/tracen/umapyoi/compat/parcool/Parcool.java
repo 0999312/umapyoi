@@ -6,7 +6,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.events.ApplyUmasoulAttributeEvent;
-import net.tracen.umapyoi.events.SkillEvent;
 import net.tracen.umapyoi.registry.UmapyoiAttributesRegistry;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
 

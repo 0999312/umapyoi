@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:muromaji_stakes",
   "length": 1200,

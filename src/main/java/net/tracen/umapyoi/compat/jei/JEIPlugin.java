@@ -1,21 +1,14 @@
 package net.tracen.umapyoi.compat.jei;
 
 import java.util.List;
-import java.util.Objects;
-
 import com.google.common.collect.Lists;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
-import mezz.jei.api.recipe.IRecipeManager;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import mezz.jei.api.registration.ISubtypeRegistration;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.DifferenceIngredient;
 import net.tracen.umapyoi.Umapyoi;
@@ -25,8 +18,6 @@ import net.tracen.umapyoi.compat.jei.recipes.JEISimpleRecipe;
 import net.tracen.umapyoi.compat.jei.recipes.UmapyoiJEIRecipes;
 import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.item.UmaRaceTicketItem;
-import net.tracen.umapyoi.registry.races.RaceRegistry;
 import net.tracen.umapyoi.utils.GachaRanking;
 
 @JeiPlugin

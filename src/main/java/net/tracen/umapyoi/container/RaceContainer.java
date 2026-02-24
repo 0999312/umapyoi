@@ -11,7 +11,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.RaceRegisterBlockEntity;
 import net.tracen.umapyoi.item.ItemRegistry;

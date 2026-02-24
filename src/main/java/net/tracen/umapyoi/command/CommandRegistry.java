@@ -2,12 +2,10 @@ package net.tracen.umapyoi.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.synchronization.ArgumentTypeInfo;
 import net.minecraft.commands.synchronization.ArgumentTypeInfos;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -27,7 +25,7 @@ public class CommandRegistry {
 
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
-        CommandBuildContext ctx = event.getBuildContext();
+        //CommandBuildContext ctx = event.getBuildContext();
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
         LiteralArgumentBuilder<CommandSourceStack> rootBuilder = Commands.literal("umapyoi");
 

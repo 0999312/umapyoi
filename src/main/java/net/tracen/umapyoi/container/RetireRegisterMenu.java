@@ -27,7 +27,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tracen.umapyoi.block.BlockRegistry;
-import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
@@ -39,7 +38,6 @@ import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 import net.tracen.umapyoi.registry.umadata.Growth;
 import net.tracen.umapyoi.utils.ResultRankingUtils;
-import net.tracen.umapyoi.utils.UmaFactorUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class RetireRegisterMenu extends AbstractContainerMenu {
@@ -187,7 +185,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         StatusFactor statusFactor = (StatusFactor) status.skip(rand.nextLong(statusCount)).findFirst()
                 .orElse(UmaFactorRegistry.SPEED_FACTOR.get());
         var statusProperty = UmaSoulUtils.getProperty(inputSoul)[statusFactor.getStatusType().getId()];
-        var i = statusProperty > 18 ? statusFactor.getMaxLevel() + 1 :
+        var i = statusProperty > 18 ? statusFactor.getMaxLevel():
                 statusProperty > 10 ? 3 :
                 2;
         var statusFactorStack = new UmaFactorStack(statusFactor,

@@ -1,6 +1,5 @@
 package net.tracen.umapyoi.client.screen;
 
-import com.google.common.collect.HashBasedTable;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -15,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.RaceContainer;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.item.UmaRaceTicketItem;
 import net.tracen.umapyoi.utils.Position;
 
 import javax.annotation.Nonnull;

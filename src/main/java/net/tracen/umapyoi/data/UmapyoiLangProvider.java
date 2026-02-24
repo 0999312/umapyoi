@@ -37,6 +37,10 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
     @Override
     protected void addTranslations() {
     	add("attribute.umapyoi.generic.sprint_speed", "Sprint Speed");
+    	add("attribute.umapyoi.generic.exhaustion_penalty", "Exhaustion Penalty");
+    	add("key.umapyoi.configure", "Configure HUD");
+    	add("setting.umapyoi.save", "Save");
+    	add("setting.umapyoi.discard", "Discard");
 
         add(ItemRegistry.HACHIMI_MID.get(), "Hachimi Drink");
         add(ItemRegistry.HACHIMI_BIG.get(), "Hachimi Extreme");

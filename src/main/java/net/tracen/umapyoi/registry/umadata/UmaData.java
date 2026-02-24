@@ -1,9 +1,6 @@
 package net.tracen.umapyoi.registry.umadata;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 
 import com.mojang.serialization.Codec;
@@ -17,7 +14,6 @@ import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.utils.Aptitude;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.Position;
-import net.tracen.umapyoi.utils.Surface;
 
 public class UmaData {
     private static final int[] EMPTY_PROPERTY_RATE = new int[] { 0, 0, 0, 0, 0 };

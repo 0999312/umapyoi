@@ -8,13 +8,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.container.FactorResearchMenu;
 import net.tracen.umapyoi.item.factor.FactorReport;
 import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

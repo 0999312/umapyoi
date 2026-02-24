@@ -1,4 +1,4 @@
-// 1.20.1	2026-02-16T02:40:01.6050639	Block States: umapyoi
+// 1.20.1	2026-02-23T10:14:16.0978142	Block States: umapyoi
 8061bcfa9249d0a0625f70c05b275ca57756f44f assets/umapyoi/blockstates/disassembly_block.json
 a0af227ad6f0194c8376a5972f0a4f59dd1c19ef assets/umapyoi/blockstates/factor_decompose_table.json
 9b8c8c5314fba1546c8e33ed15a34961faf0208c assets/umapyoi/blockstates/factor_research_table.json
@@ -10,7 +10,7 @@ a6a2903161c9ad5d5fa075b6105abc8e1b443ce3 assets/umapyoi/blockstates/silver_suppo
 a6a2903161c9ad5d5fa075b6105abc8e1b443ce3 assets/umapyoi/blockstates/silver_uma_pedestal.json
 32e9d4b11fdfd72e12120538d90cd5ffe3fe33b7 assets/umapyoi/blockstates/skill_learning_table.json
 2494c11ee06f28ae6c155c3a7fc4c60820dc06b0 assets/umapyoi/blockstates/support_album_pedestal.json
-3178e1263b04b738860730653384183faca09c91 assets/umapyoi/blockstates/three_goddess.json
+8a0a5ab411848b0b561a1d5125db4e11d6af6dc3 assets/umapyoi/blockstates/three_goddess.json
 4aa1395557674cf8f32822a687ad098c44d7a575 assets/umapyoi/blockstates/three_goddess_upper.json
 eebd3046be8b516ca6e5cfb065771763c7d54e28 assets/umapyoi/blockstates/training_facility.json
 2494c11ee06f28ae6c155c3a7fc4c60820dc06b0 assets/umapyoi/blockstates/uma_pedestal.json

@@ -47,14 +47,14 @@ public class OverlayScreen extends Screen {
     protected void init() {
         super.init();
         this.x = this.width / 2;
-        this.buttonSave = Button.builder(Component.literal("Save"), b -> {
+        this.buttonSave = Button.builder(Component.translatable("setting.umapyoi.save"), b -> {
             UmapyoiConfig.TOPLEFT_COORD_SKILL_X.set((int) (this.skillX + x) - x);
             UmapyoiConfig.TOPLEFT_COORD_SKILL_Y.set((int) (this.skillY + this.height) - this.height);
             UmapyoiConfig.TOPLEFT_COORD_MOTIVATION_X.set((int) (this.motivationX + x) - x);
             UmapyoiConfig.TOPLEFT_COORD_MOTIVATION_Y.set((int) (this.motivationY + this.height) - this.height);
             close();
         }).bounds(this.width / 2 - 75, 10, 70, 20).build();
-        this.buttonDiscard = Button.builder(Component.literal("Discard").withStyle(ChatFormatting.RED), b -> close())
+        this.buttonDiscard = Button.builder(Component.translatable("setting.umapyoi.discard").withStyle(ChatFormatting.RED), b -> close())
                 .bounds(this.width / 2 + 5, 10, 70, 20).build();
         this.addRenderableWidget(buttonSave);
         this.addRenderableWidget(buttonDiscard);

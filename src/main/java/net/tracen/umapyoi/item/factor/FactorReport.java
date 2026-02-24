@@ -25,7 +25,6 @@ public class FactorReport extends Item {
         return UmaFactorUtils.deserializeNBT(tag);
     }
 
-
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
@@ -36,8 +35,8 @@ public class FactorReport extends Item {
                 case EXTRASTATUS -> ChatFormatting.RED;
                 default -> ChatFormatting.GRAY;
             }));
-            if(UmapyoiConfig.DISPLAY_DETAIL.get()) {
-                pTooltipComponents.add(factor.getDescriptionDetail().copy().withStyle(ChatFormatting.DARK_GRAY));
+            if(pIsAdvanced.isAdvanced() || UmapyoiConfig.DISPLAY_DETAIL.get()) {
+            	pTooltipComponents.add(factor.getDescriptionDetail().copy().withStyle(ChatFormatting.DARK_GRAY));
             }
         });
     }

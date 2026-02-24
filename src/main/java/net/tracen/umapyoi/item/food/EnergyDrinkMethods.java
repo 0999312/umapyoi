@@ -4,7 +4,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
-import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public final class EnergyDrinkMethods {
     public static void royalBitter(LivingEntity entity) {

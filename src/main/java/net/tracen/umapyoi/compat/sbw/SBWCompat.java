@@ -19,8 +19,6 @@ import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
-import static com.atsuishio.superbwarfare.client.animation.AnimationHelper.renderPartOverBone;
-
 public class SBWCompat {
     @SubscribeEvent
     public static void onArmRendering(RenderPlayerArmEvent event) {

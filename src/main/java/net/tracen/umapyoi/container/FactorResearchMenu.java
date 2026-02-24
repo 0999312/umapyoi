@@ -10,7 +10,6 @@ import net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.factor.FactorReport;
@@ -156,7 +155,7 @@ public class FactorResearchMenu extends ItemCombinerMenu {
         this.resultSlots.awardUsedRecipes(player, this.getRelevantItems());
         this.shrinkStackInSlot(0);
         this.shrinkStackInSlot(1);
-        if (player.level().isClientSide)
+        if (player.level().isClientSide())
             player.playSound(SoundEvents.AMETHYST_CLUSTER_BREAK, 1F, 1F);
     }
 }
