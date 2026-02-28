@@ -55,7 +55,7 @@ public class GateRender implements BlockEntityRenderer<GateEntity> {
         poseStack.mulPose(Axis.YN.rotationDegrees(direction.toYRot() + 180));
         poseStack.mulPose(Axis.XP.rotationDegrees(180));
         // poseStack.translate(0d, 0d, 7d/16d);
-        BedrockModelPOJO pojo = ClientUtil.getModelPOJO(new ResourceLocation(Umapyoi.MODID, "gate_door"));
+        BedrockModelPOJO pojo = ClientUtil.getModelPOJO(new ResourceLocation(Umapyoi.MODID, "common/gate_door"));
         if (model.needRefresh(pojo)) model.loadModel(pojo);
         BlockState state = tileEntity.getBlockState();
         boolean isOpen;
