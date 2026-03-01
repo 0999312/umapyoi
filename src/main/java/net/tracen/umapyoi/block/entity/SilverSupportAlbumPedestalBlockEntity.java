@@ -213,7 +213,7 @@ public class SilverSupportAlbumPedestalBlockEntity extends SyncedBlockEntity imp
         result.getOrCreateTag().putString("support_card", key.toString());
         result.getOrCreateTag().putString("ranking", registry.get(key).getGachaRanking().name().toLowerCase());
         result.getOrCreateTag().putInt("maxDamage", registry.get(key).getMaxDamage());
-        GachaEvent.UmaSoulGachaEvent evt = new GachaEvent.UmaSoulGachaEvent(getStoredItem(), keys, key, result, copyRand);
+        GachaEvent.SupportCardGachaEvent evt = new GachaEvent.SupportCardGachaEvent(getStoredItem(), keys, key, result, copyRand);
         MinecraftForge.EVENT_BUS.post(evt);
         return evt.getOutput();
     }
