@@ -89,7 +89,7 @@ public class UmaSoulCuriosWrapper implements ICurio {
         if (UmaSoulUtils.getGrowth(getStack()) == Growth.UNTRAINED)
             return atts;
 
-        boolean hasFatique = user != null && user.hasEffect(MobEffectRegistry.SLOW_METABOLISM.get());
+        boolean hasFatique = user.hasEffect(MobEffectRegistry.SLOW_METABOLISM.get());
 
         atts.put(UmapyoiAttributesRegistry.SPRINT_SPEED.get(),
                 new AttributeModifier(uuid, "sprint_speed_running_bonus",

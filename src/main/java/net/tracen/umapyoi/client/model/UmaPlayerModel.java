@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -58,15 +57,6 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     @Override
     public void loadModel(BedrockModelPOJO pojo) {
         super.loadModel(pojo);
-
-        this.getModelMap().values().forEach(p -> p.setInitialPose(PartPose.offsetAndRotation(
-                p.x,
-                p.y,
-                p.z,
-                p.xRot,
-                p.yRot,
-                p.zRot
-        )));
         
         this.rightArmDown = this.getChild("right_arm_down");
         this.leftArmDown = this.getChild("left_arm_down");

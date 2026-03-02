@@ -17,7 +17,6 @@ import net.tracen.umapyoi.advancements.trigger.TriggerRegistry;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.command.CommandRegistry;
-import net.tracen.umapyoi.compat.epicFight.EpicFightCompat;
 import net.tracen.umapyoi.compat.parcool.Parcool;
 import net.tracen.umapyoi.compat.sbw.SBWCompat;
 import net.tracen.umapyoi.container.ContainerRegistry;
@@ -67,10 +66,6 @@ public class Umapyoi {
         }
         if (ModList.get().isLoaded("superbwarfare")) {
             MinecraftForge.EVENT_BUS.register(SBWCompat.class);
-        }
-        if (ModList.get().isLoaded("epicfight")) {
-            MinecraftForge.EVENT_BUS.register(EpicFightCompat.class);
-            FMLJavaModLoadingContext.get().getModEventBus().register(EpicFightCompat.Client.class);
         }
     }
 

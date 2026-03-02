@@ -45,8 +45,8 @@ public class ClientUtils {
     public static final ResourceLocation SUMMER_UNIFORM_FLAT = getModel("summer_uniform_flat");
     public static final ResourceLocation WINTER_UNIFORM_FLAT = getModel("winter_uniform_flat");
 
-    public static final ResourceLocation THREE_GODDESS = getModel("common/three_goddesses");
-    public static final ResourceLocation UMA_STATUES = getModel("common/uma_statue");
+    public static final ResourceLocation THREE_GODDESS = getModel("three_goddesses");
+    public static final ResourceLocation UMA_STATUES = getModel("uma_statue");
     
     public static final ResourceLocation SWIMSUIT = getModel("swimsuit");
     public static final ResourceLocation SWIMSUIT_FLAT = getModel("swimsuit_flat");

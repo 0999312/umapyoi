@@ -1,10 +1,7 @@
 package net.tracen.umapyoi.container;
 
-import java.lang.invoke.MethodHandles;
-import java.lang.reflect.Field;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
