@@ -1,0 +1,25 @@
+{
+  "identifier": "umapyoi:shenone_suzuna",
+  "maxProperty": [
+    18,
+    18,
+    18,
+    18,
+    18
+  ],
+  "property": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "propertyRate": [
+    20,
+    10,
+    5,
+    0,
+    10
+  ],
+  "uniqueSkill": "umapyoi:basic_pace"
+}

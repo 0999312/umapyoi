@@ -21,6 +21,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.data.builtin.SupportCardRegistry;
 import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
+import net.tracen.umapyoi.data.loot.UmaSkillLootTable;
 import net.tracen.umapyoi.data.loot.UmapyoiBlockLoot;
 import net.tracen.umapyoi.data.tag.UmaDataTagProvider;
 import net.tracen.umapyoi.data.tag.UmapyoiBlockTagProvider;
@@ -84,7 +85,10 @@ public class DataGen {
 
     private static LootTableProvider getLootTableProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
     	return new LootTableProvider(packOutput, 
-    			Set.of(), List.of(new LootTableProvider.SubProviderEntry(UmapyoiBlockLoot::new, LootContextParamSets.BLOCK)), lookupProvider);
+    			Set.of(UmaSkillLootTable.SIMPLE_SKILLS, UmaSkillLootTable.COMPLEX_SKILLS), List.of(
+    					new LootTableProvider.SubProviderEntry(UmapyoiBlockLoot::new, LootContextParamSets.BLOCK),
+    					new LootTableProvider.SubProviderEntry(UmaSkillLootTable::new, LootContextParamSets.CHEST)
+    					), lookupProvider);
     }
 
     private static HolderLookup.Provider append(RegistrySetBuilder builder) {

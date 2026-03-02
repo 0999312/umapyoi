@@ -89,7 +89,7 @@
   "item.umapyoi.stamina_high_item": "스테미나 비전서",
   "item.umapyoi.stamina_low_item": "스테미나 메모장",
   "item.umapyoi.stamina_mid_item": "스테미나 전술서",
-  "item.umapyoi.starting_futute.name": "스타팅 퓨처",
+  "item.umapyoi.starting_future.name": "스타팅 퓨처",
   "item.umapyoi.strength_high_item": "파워 비전서",
   "item.umapyoi.strength_low_item": "파워 메모장",
   "item.umapyoi.strength_mid_item": "파워 전술서",
@@ -375,5 +375,14 @@
   "umastatus.level.6": "\u00A7dE+",
   "umastatus.level.7": "\u00A7bD",
   "umastatus.level.8": "\u00A7bD+",
-  "umastatus.level.9": "\u00A7aC"
+  "umastatus.level.9": "\u00A7aC",
+
+  "item.umapyoi.kasamatsu_training_uniform.name": "가사마쓰 트레센 체육복",
+  "uma_skill.umapyoi.inquisitive_mind": "탐구심",
+  "umadata.umapyoi.agnes_digital": "아그네스 디지털",
+  "umadata.umapyoi.almond_eye": "아몬드 아이",
+  "umadata.umapyoi.fusaichi_pandora": "후사이치 판도라",
+  "umadata.umapyoi.miya_yomogi": "미야 요모기",
+  "umadata.umapyoi.satono_crown": "사토노 크라운",
+  "umadata.umapyoi.yamanin_zephyr": "야미닌 제퍼"
 }

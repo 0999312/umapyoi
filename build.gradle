@@ -4,7 +4,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.neoforged.moddev' version '1.0.17'
-    id "com.hypherionmc.modutils.modpublisher" version "2.1.7"
+    id "com.hypherionmc.modutils.modpublisher" version "2.1.8"
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -272,7 +272,7 @@ publisher {
     setArtifact(jar)
 
     // Add supported java versions. Currently only used by CurseForge
-    setJavaVersions("Java 21")
+    setJavaVersions([JavaVersion.VERSION_21])
 
     // Safety check to check if the artifact contains a valid mod metadata entry,
     // which could possibly mean that the jar is empty

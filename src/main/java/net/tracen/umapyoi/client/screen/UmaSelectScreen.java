@@ -322,13 +322,16 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
             int k = this.startIndex + SCROLLER_WIDTH;
 
             for (int l = this.startIndex; l < k; ++l) {
-                int i1 = l - this.startIndex;
+                if(l >= this.getResults().size())
+                	return super.mouseClicked(pMouseX, pMouseY, pButton);
+            	int i1 = l - this.startIndex;
                 double d0 = pMouseX - (double) (i + i1 % RECIPES_COLUMNS * RECIPES_IMAGE_SIZE_WIDTH);
                 double d1 = pMouseY - (double) (j + i1 / RECIPES_COLUMNS * 18);
                 if (d0 >= 0.0D && d1 >= 0.0D && d0 < 16.0D && d1 < 18.0D) {
                     Minecraft.getInstance().getSoundManager()
                             .play(SimpleSoundInstance.forUI(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
                     this.selectIndex = l;
+                    
                     PacketDistributor.sendToServer(
                             new SetupResultPacket(this.getResults().get(this.getSelectIndex()).toString()));
                     return true;

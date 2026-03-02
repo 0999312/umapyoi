@@ -13,6 +13,7 @@ import net.tracen.umapyoi.container.ContainerRegistry;
 import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.loot.LootFunctionRegistry;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
@@ -39,6 +40,7 @@ public class Umapyoi {
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
+        LootFunctionRegistry.LOOT_FUNCTION_TYPES.register(modEventBus);
         VillageRegistry.POI_TYPES.register(modEventBus);
         VillageRegistry.PROFESSIONS.register(modEventBus);
         DataComponentsTypeRegistry.DATA_COMPONENTS.register(modEventBus);

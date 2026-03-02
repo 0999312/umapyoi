@@ -7,13 +7,12 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.tracen.umapyoi.Umapyoi;
 
 @EventBusSubscriber(modid = Umapyoi.MODID, bus = EventBusSubscriber.Bus.MOD)
-public class NetPacketHandler
-{
-    public static final String PROTOCOL_VERSION = "1.0";
+public class NetPacketHandler {
+	public static final String PROTOCOL_VERSION = "1.0";
 
-    @SubscribeEvent
-    public static void onNetworkRegistry(final RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar(PROTOCOL_VERSION);
+	@SubscribeEvent
+	public static void onNetworkRegistry(final RegisterPayloadHandlersEvent event) {
+		final PayloadRegistrar registrar = event.registrar(PROTOCOL_VERSION);
         registrar.playToServer(
                          UseSkillPacket.TYPE,
                          UseSkillPacket.STREAM_CODEC,

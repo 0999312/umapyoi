@@ -1,5 +1,5 @@
 {
-	"format_version": "1.21.0",
+	"format_version": "1.12.0",
 	"minecraft:geometry": [
 		{
 			"description": {
@@ -1377,8 +1377,8 @@
 							"uv": {
 								"east": {"uv": [112, 63], "uv_size": [0, 1]},
 								"south": {"uv": [90, 87], "uv_size": [-8, 2]},
-								"up": {"uv": [79, 88], "uv_size": [2, -8], "uv_rotation": 270},
-								"down": {"uv": [79, 88], "uv_size": [2, -8], "uv_rotation": 270}
+								"up": {"uv": [82, 89], "uv_size": [8, -2]},
+								"down": {"uv": [82, 89], "uv_size": [8, -2]}
 							}
 						},
 						{
@@ -1390,8 +1390,8 @@
 							"uv": {
 								"east": {"uv": [112, 63], "uv_size": [0, 1]},
 								"south": {"uv": [90, 87], "uv_size": [-8, 2]},
-								"up": {"uv": [79, 88], "uv_size": [2, -8], "uv_rotation": 270},
-								"down": {"uv": [81, 88], "uv_size": [-2, -8], "uv_rotation": 270}
+								"up": {"uv": [82, 89], "uv_size": [8, -2]},
+								"down": {"uv": [82, 89], "uv_size": [8, -2]}
 							}
 						},
 						{
@@ -1805,20 +1805,6 @@
 								"west": {"uv": [75, 101], "uv_size": [-12, 12]},
 								"up": {"uv": [75, 94], "uv_size": [-6, 6]},
 								"down": {"uv": [81, 100], "uv_size": [-6, -6]}
-							}
-						}
-					]
-				},
-				{
-					"name": "bone4",
-					"parent": "right_leg",
-					"pivot": [-0.1, 0, 0],
-					"cubes": [
-						{
-							"origin": [-1.1, 0, -8],
-							"size": [1, 1, 1],
-							"uv": {
-								"north": {"uv": [0, 32], "uv_size": [1, 1]}
 							}
 						}
 					]

@@ -14,7 +14,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CraftingTableBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,7 +29,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class DisassemblyBlock extends CraftingTableBlock {
+public class DisassemblyBlock extends Block {
     private static final Component CONTAINER_TITLE = Component.translatable("container.umapyoi.disassembly_block");
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

@@ -10,7 +10,6 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -52,28 +51,6 @@ public class UmaSoulItem extends Item{
     @Override
     public boolean isFoil(ItemStack pStack) {
         return !pStack.has(DataComponentsTypeRegistry.UMADATA_TRAINING);
-    }
-    
-    @Override
-    public boolean isBarVisible(ItemStack pStack) {
-    	if(!pStack.has(DataComponentsTypeRegistry.UMADATA_TRAINING))
-    		return false;
-        var physique = UmaSoulUtils.getPhysique(pStack);
-        return physique != 5;
-    }
-    
-    @Override
-    public int getBarWidth(ItemStack pStack) {
-        var physique = UmaSoulUtils.getPhysique(pStack);
-        return Math.round(13.0F - (5 - physique) * 13.0F / 5);
-    }
-    
-    @Override
-    public int getBarColor(ItemStack pStack) {
-        float stackMaxDamage = 5;
-        var physique = UmaSoulUtils.getPhysique(pStack);
-        float f = Math.max(0.0F, physique / stackMaxDamage);
-        return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
     }
 
     @Override

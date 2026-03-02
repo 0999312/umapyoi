@@ -172,7 +172,7 @@
   
   "umadata.umapyoi.cheval_grand": "高尚駿逸",
   "umadata.umapyoi.verxina": "極峯",
-  "umadata.umapyoi.vivlos": "強擊",
+  "umadata.umapyoi.vivlos": "比布魯斯",
   
   "umadata.umapyoi.fuji_kiseki": "富士奇石",
   "umadata.umapyoi.fujimasa_march": "藤正進行曲",
@@ -201,6 +201,16 @@
   
   "umadata.umapyoi.almond_eye": "杏目",
   "umadata.umapyoi.fusaichi_pandora": "房一潘多拉",
+
+  "umadata.umapyoi.tyche": "幸神星",
+  "umadata.umapyoi.mejiro_ryan": "目白萊恩",
+
+  "umadata.umapyoi.nice_nature_cheer": "[RUN & WIN] 優秀素質",
+  
+  "umadata.umapyoi.hishi_akebono": "菱曙",
+  "umadata.umapyoi.shenone_suzuna": "雪望音 鈴奈",
+  
+  "umadata.umapyoi.vivlos_swim": "[Éclat d'été] 比布魯斯",
 
   "support_card.umapyoi.ssr_kiryuuin_aoi.name": "[共行同一條路！] 桐生院葵",
   "support_card.umapyoi.ssr_anime_main.name": "[今後也會！] 不斷銘刻之人",
@@ -358,6 +368,34 @@
   "uma_skill.umapyoi.mountain_climber": "登山家",
 
   "uma_skill.umapyoi.inquisitive_mind": "探求心",
+  
+  "uma_skill.umapyoi.dominator": "獨占力",
+  "uma_skill.umapyoi.tether": "束縛",
+
+  "uma_skill.umapyoi.adv_low_health_buff.desc": "提升速度和力量，低血量時提升更多。",
+  "uma_skill.umapyoi.adv_low_health_heal.desc": "恢復血量，低血量時恢復更多。",
+  "uma_skill.umapyoi.basic_pace.desc": "略微增加速度。",
+  "uma_skill.umapyoi.big_eater.desc": "恢復耐力並提升血量上限。",
+  "uma_skill.umapyoi.cooldown.desc": "恢復生命值。",
+  "uma_skill.umapyoi.deep_breaths.desc": "略微恢復血量。",
+  "uma_skill.umapyoi.dig_speed.desc": "提升挖掘速度。",
+  "uma_skill.umapyoi.dirt_runner.desc": "提升在泥地時的速度。",
+  "uma_skill.umapyoi.divine_speed.desc": "提升速度和抗性。",
+  "uma_skill.umapyoi.dominator.desc": "降低周圍實體的速度。",
+  "uma_skill.umapyoi.heart_and_soul.desc": "提升速度和力量。",
+  "uma_skill.umapyoi.inquisitive_mind.desc": "提升攻擊速度，智力一定時提升更多。",
+  "uma_skill.umapyoi.last_leg.desc": "略微提升速度和力量。",
+  "uma_skill.umapyoi.low_health_buff.desc": "略微提升速度和力量，低血量時提升更多。",
+  "uma_skill.umapyoi.low_health_heal.desc": "略微恢復血量，低血量時恢復更多。",
+  "uma_skill.umapyoi.mountain_climber.desc": "提升步高。",
+  "uma_skill.umapyoi.nutritional_supplements.desc": "略微恢復耐力並提升血量上限。",
+  "uma_skill.umapyoi.rapid.desc": "略微提升速度和抗性。",
+  "uma_skill.umapyoi.serene.desc": "略微恢復血量並消除焦躁。",
+  "uma_skill.umapyoi.snow_runner.desc": "提升在雪地時的速度。",
+  "uma_skill.umapyoi.steel_will.desc": "提升抗性和情緒狀態，消除焦躁。",
+  "uma_skill.umapyoi.tether.desc": "略微降低周圍實體的速度。",
+  "uma_skill.umapyoi.top_umamusme.desc": "提升速度，力量和情緒狀態。",
+  "uma_skill.umapyoi.turf_runner.desc": "提升在草地時的速度。",
  
   "umapyoi.motivation.bad": "極差",
   "umapyoi.motivation.down": "不佳",
@@ -375,6 +413,7 @@
   "tooltip.umapyoi.uma_soul.guts_details": "毅力： %s / %s",
   "tooltip.umapyoi.uma_soul.wisdom_details": "智力： %s / %s",
   "tooltip.umapyoi.factors.factors_details": "因子：",
+  "tooltip.umapyoi.uma_soul.should_retire": "無法繼續訓練了，或許該育成登記了。",
 
   "umapyoi.uma_pedestal.cannot_add_item": "無法添加更多物品。",
   "umapyoi.skill.no_require": "沒有需求。",

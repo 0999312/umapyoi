@@ -254,27 +254,27 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("umastatus.level.17", "§eSS");
         add("umastatus.level.18", "§eSS+");
         
-        add("umastatus.level.19", "§9UG-");
-        add("umastatus.level.20", "§9UG");
-        add("umastatus.level.21", "§9UG+");
-        add("umastatus.level.22", "§9UF-");
-        add("umastatus.level.23", "§9UF");
-        add("umastatus.level.24", "§9UF+");
-        add("umastatus.level.25", "§9UE");
-        add("umastatus.level.26", "§9UE+");
-        add("umastatus.level.27", "§9UD");
-        add("umastatus.level.28", "§9UD+");
-        add("umastatus.level.29", "§9UC");
-        add("umastatus.level.30", "§9UC+");
-        add("umastatus.level.31", "§9UB");
-        add("umastatus.level.32", "§9UB+");
-        add("umastatus.level.33", "§9UA");
-        add("umastatus.level.34", "§9UA+");
-        add("umastatus.level.35", "§9US");
-        add("umastatus.level.36", "§9US+");
-        add("umastatus.level.37", "§9USS");
-        add("umastatus.level.38", "§9USS+");
-        add("umastatus.level.39", "§6MAX");
+        add("umastatus.level.19", "§9U§7G-");
+        add("umastatus.level.20", "§9U§7G");
+        add("umastatus.level.21", "§9U§7G+");
+        add("umastatus.level.22", "§9U§5F-");
+        add("umastatus.level.23", "§9U§5F");
+        add("umastatus.level.24", "§9U§5F+");
+        add("umastatus.level.25", "§9U§dE");
+        add("umastatus.level.26", "§9U§dE+");
+        add("umastatus.level.27", "§9U§bD");
+        add("umastatus.level.28", "§9U§bD+");
+        add("umastatus.level.29", "§9U§aC");
+        add("umastatus.level.30", "§9U§aC+");
+        add("umastatus.level.31", "§9U§4B");
+        add("umastatus.level.32", "§9U§4B+");
+        add("umastatus.level.33", "§9U§cA");
+        add("umastatus.level.34", "§9U§cA+");
+        add("umastatus.level.35", "§9U§eS");
+        add("umastatus.level.36", "§9U§eS+");
+        add("umastatus.level.37", "§9U§eSS");
+        add("umastatus.level.38", "§9U§eSS+");
+        add("umastatus.level.39", "§eMAX");
         
         addUma(UmaDataRegistry.COMMON_UMA, "Nameless Bay Umamusume");
         addUma(UmaDataRegistry.COMMON_UMA_A, "Nameless Perlino Umamusume");
@@ -381,6 +381,16 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addUma(UmaDataRegistry.ALMOND_EYE, "Almond Eye");
         
         addUma(UmaDataRegistry.FUSAICHI_PANDORA, "Fusaichi Pandora");
+        
+        addUma(UmaDataRegistry.MEJIRO_RYAN, "Mejiro Ryan");
+        addUma(UmaDataRegistry.TYCHE, "Tyche");
+        
+        addUma(UmaDataRegistry.NICE_NATURE_CHEER, "[RUN & WIN] Nice Nature");
+        
+        addUma(UmaDataRegistry.HISHI_AKEBONO, "Hishi Akebono");
+        addUma(UmaDataRegistry.SHENONE_SUZUNA, "Shenone Suzuna");
+        
+        addUma(UmaDataRegistry.VIVLOS_SWIM, "[Éclat d'été] Vivlos");
         
         add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "super_creek")), "Super Creek");
         add(Util.makeDescriptionId("umadata", ResourceLocation.tryBuild(Umapyoi.MODID, "mejiro_ramonu")), "Mejiro Ramonu");

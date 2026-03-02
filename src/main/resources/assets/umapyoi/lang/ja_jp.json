@@ -52,7 +52,8 @@
   "item.umapyoi.card_ticket": "サポートカードガチャチケット",
   "item.umapyoi.uma_ticket": "ウマ娘ガチャチケット",
   
-  "block.umapyoi.uma_statues": "ウマ娘像",
+  "uma_skill.umapyoi.dominator": "独占力",
+  "uma_skill.umapyoi.tether": "束縛",
 
   "item.umapyoi.naginata": "なぎなた",
   "item.umapyoi.baseball_bat": "金属バット",
@@ -72,13 +73,11 @@
   "umadata.umapyoi.tamamo_cross": "タマモクロス",
 
   "umadata.umapyoi.admire_vega": "アドマイヤベガ",
-  "umadata.umapyoi.agnus_tachyon": "アグネスタキオン",
   "umadata.umapyoi.agnus_tachyon_swim": "[Lunatic Lab] アグネスタキオン",
   "umadata.umapyoi.aston_machan": "アストンマーチャン",
   "umadata.umapyoi.byerley_turk": "バイアリーターク",
   "umadata.umapyoi.calstone_light_o": "カルストンライトオ",
   "umadata.umapyoi.cheval_grand": "シュヴァルグラン",
-  "umadata.umapyoi.copano_rickey": "コパノリッキー",
   "umadata.umapyoi.curren_chan": "カレンチャン",
   "umadata.umapyoi.curren_chan_dress": "[朔月のマ・シェリ] カレンチャン",
   "umadata.umapyoi.daiichi_ruby": "ダイイチルビー",
@@ -88,18 +87,15 @@
   "umadata.umapyoi.dumnheint": "ダムハイト",
   "umadata.umapyoi.durandal": "デュランダル",
   "umadata.umapyoi.el_condor_pasa": "エルコンドルパサー",
-  "umadata.umapyoi.fine_motion": "ファインモーション",
   "umadata.umapyoi.fuji_kiseki": "フジキセキ",
   "umadata.umapyoi.fujimasa_march": "フジマサマーチ",
   "umadata.umapyoi.godolphin_barb": "ゴドルフィンバルブ",
   "umadata.umapyoi.gold_city": "ゴールドシチー",
   "umadata.umapyoi.gold_city_autumn": "[秋桜ダンツァトリーチェ] ゴールドシチー",
-  "umadata.umapyoi.gold_ship": "ゴールドシップ",
   "umadata.umapyoi.gold_ship_water": "[RUN！乱！ランチャー！！] ゴールドシップ",
   "umadata.umapyoi.grass_wonder": "グラスワンダー",
   "umadata.umapyoi.grass_wonder_umanet": "[セイントジェード・ヒーラー] グラスワンダー",
   "umadata.umapyoi.happy_meek": "ハッピーミーク",
-  "umadata.umapyoi.haru_urara": "ハルウララ",
   "umadata.umapyoi.hishi_miracle": "ヒシミラクル",
   "umadata.umapyoi.hokko_tarumae": "ホッコータルマエ",
   "umadata.umapyoi.hokko_tarumae_swim": "[パステルマリン・ロコドル] ホッコータルマエ",
@@ -173,6 +169,15 @@
   
   "umadata.umapyoi.fusaichi_pandora": "フサイチパンドラ",
 
+  "umadata.umapyoi.tyche": "ティケ",
+  "umadata.umapyoi.mejiro_ryan": "メジロライアン",
+
+  "umadata.umapyoi.nice_nature_cheer": "[RUN&WIN] ナイスネイチャ",
+
+  "umadata.umapyoi.hishi_akebono": "ヒシアケボノ",
+  "umadata.umapyoi.shenone_suzuna": "シェノネスズナ",
+  
+  "umadata.umapyoi.vivlos_swim": "[Éclat d'été] ヴィブロス",
   
   "umapyoi.jei.disassembly": "移籍登録",
   "umapyoi.jei.gacha": "召喚",

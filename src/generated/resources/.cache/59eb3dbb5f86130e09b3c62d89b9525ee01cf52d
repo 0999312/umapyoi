@@ -1,4 +1,4 @@
-// 1.21.1	2024-09-11T13:34:09.3294269	Loot Tables
+// 1.21.1	2025-09-11T03:19:53.4263618	Loot Tables
 4ae210397e4de18a239b72e4f65fed0701ec0628 data/umapyoi/loot_table/blocks/disassembly_block.json
 d1aa4cbb3550a43313e41055ad169f481a97ba0d data/umapyoi/loot_table/blocks/register_lectern.json
 f34f4512a3bb377713c86e5090eeb42f26eb48e4 data/umapyoi/loot_table/blocks/silver_support_album_pedestal.json
@@ -10,3 +10,5 @@ be92cec874a8011e0d9ea9717f8789a0102d9af0 data/umapyoi/loot_table/blocks/three_go
 75c0391ad8f2bc351f19ce18b338284128314c7f data/umapyoi/loot_table/blocks/uma_pedestal.json
 46aa7adb201bbc8d396f8efaf8139b74d1b217e7 data/umapyoi/loot_table/blocks/uma_select_block.json
 73de4c009078c4f643b0d77d30a5b1aebf556ae7 data/umapyoi/loot_table/blocks/uma_statues.json
+45628a8f35b5a069cba02a7ab1768490f9b2f99a data/umapyoi/loot_table/complex_skills.json
+1fc7a071c89809530ffdc231c17a49fa6b7aa900 data/umapyoi/loot_table/simple_skills.json
