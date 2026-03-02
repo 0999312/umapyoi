@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.container.IItemNameMutableMenu;
 import net.tracen.umapyoi.container.UmaSelectMenu;
 
 public class SetupResultPacket {
@@ -28,13 +29,13 @@ public class SetupResultPacket {
     public void handler(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
-            if (player.containerMenu instanceof UmaSelectMenu menu) {
+            if (player.containerMenu instanceof IItemNameMutableMenu menu) {
                 String s = SharedConstants.filterText(this.message);
                 Umapyoi.getLogger().info("Packet received:{}",s);
                 if (s.length() <= 50) {
                     menu.setItemName(ResourceLocation.tryParse(s));
                 }
-           }
+            }
             
         });
         ctx.get().setPacketHandled(true);

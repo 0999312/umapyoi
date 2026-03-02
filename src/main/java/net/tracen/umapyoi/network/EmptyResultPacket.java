@@ -5,6 +5,8 @@ import java.util.function.Supplier;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
+import net.tracen.umapyoi.container.IItemNameMutableMenu;
+import net.tracen.umapyoi.container.RaceSelectMenu;
 import net.tracen.umapyoi.container.UmaSelectMenu;
 
 public class EmptyResultPacket {
@@ -22,9 +24,9 @@ public class EmptyResultPacket {
     public void handler(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
-            if (player.containerMenu instanceof UmaSelectMenu menu) {
+            if (player.containerMenu instanceof IItemNameMutableMenu menu) {
                 menu.setItemName(null);
-           }
+        }
             
         });
         ctx.get().setPacketHandled(true);

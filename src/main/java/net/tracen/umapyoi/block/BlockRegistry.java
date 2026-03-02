@@ -37,6 +37,9 @@ public class BlockRegistry {
     public static final RegistryObject<Block> UMA_SELECT_BLOCK = BLOCKS.register("uma_select_block",
             UmaSelectBlock::new);
 
+    public static final RegistryObject<Block> RACE_SELECT_BLOCK = BLOCKS.register("race_select_block",
+            RaceSelectBlock::new);
+
     public static final RegistryObject<Block> FACTOR_DECOMPOSE_TABLE = BLOCKS.register("factor_decompose_table",
             FactorDecomposeTable::new);
 
