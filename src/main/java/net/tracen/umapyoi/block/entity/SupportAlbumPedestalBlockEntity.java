@@ -46,7 +46,7 @@ import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.GachaUtils;
 
-public class SupportAlbumPedestalBlockEntity extends SyncedBlockEntity implements Gachable{
+public class SupportAlbumPedestalBlockEntity extends AbstractPedestalBlockEntity implements Gachable{
 
     public int time;
     public float flip;
