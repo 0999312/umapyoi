@@ -9,12 +9,13 @@ on:
 name: Artifact Upload
 
 jobs:
+  build:
+    uses: ./.github/workflows/ci.yml
+
   upload:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Build
-        uses: ./.github/workflows/ci.yml
-
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
