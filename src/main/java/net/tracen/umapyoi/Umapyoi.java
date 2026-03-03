@@ -7,6 +7,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.tracen.umapyoi.advancements.trigger.TriggerRegistry;
 import net.tracen.umapyoi.block.BlockRegistry;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.container.ContainerRegistry;
@@ -43,6 +44,7 @@ public class Umapyoi {
         LootFunctionRegistry.LOOT_FUNCTION_TYPES.register(modEventBus);
         VillageRegistry.POI_TYPES.register(modEventBus);
         VillageRegistry.PROFESSIONS.register(modEventBus);
+        TriggerRegistry.TRIGGERS.register(modEventBus);
         DataComponentsTypeRegistry.DATA_COMPONENTS.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         modContainer.registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);
