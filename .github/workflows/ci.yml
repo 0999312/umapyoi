@@ -1,0 +1,45 @@
+on:
+  push:
+    branches:
+      - 1.20.1
+  pull_request:
+    branches:
+      - 1.20.1
+
+name: Mod Compilation
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set-up Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 17
+          distribution: temurin
+          java-package: jdk+fx
+
+      - name: Kill Gardle Daemon
+        run: bash ./gradlew --stop
+
+      - name: Cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build
+        run: bash ./gradlew build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: build-results
+          path: build/reobfJar/*.jar
