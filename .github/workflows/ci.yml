@@ -20,7 +20,7 @@ jobs:
         with:
           java-version: 17
           distribution: temurin
-          java-package: jdk+fx
+          java-package: jdk
 
       - name: Kill Gardle Daemon
         run: bash ./gradlew --stop
