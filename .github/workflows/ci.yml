@@ -25,7 +25,7 @@ jobs:
           distribution: temurin
           java-package: jdk
 
-      - name: Kill Gardle Daemon
+      - name: Kill Gradle Daemon
         run: bash ./gradlew --stop
 
       - name: Cache
