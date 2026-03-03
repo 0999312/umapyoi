@@ -1,10 +1,6 @@
 on:
-  push:
-    branches:
-      - 1.20.1
-  pull_request:
-    branches:
-      - 1.20.1
+  workflow_call:
+
 
 name: Mod Compilation
 
@@ -37,9 +33,3 @@ jobs:
 
       - name: Build
         run: bash ./gradlew build
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v6
-        with:
-          name: build-results
-          path: build/reobfJar/*.jar
