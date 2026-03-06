@@ -24,7 +24,7 @@ public enum Surface {
 
         @Override
         public int compare(Surface o1, Surface o2) {
-            Aptitude[] aptitudes = UmaSoulUtils.getSurfaceAptitudeReadonly(soul);
+            Aptitude[] aptitudes = UmaSoulUtils.getSurfaceAptitude(soul);
             Aptitude leftAptitude = aptitudes[o1.ordinal()];
             Aptitude rightAptitude = aptitudes[o2.ordinal()];
             if (leftAptitude != rightAptitude) {
@@ -42,7 +42,7 @@ public enum Surface {
         if (this == ADAPTIVE) {
             return AdaptiveCollapse(soul).GetMultiplier(soul);
         }
-        return UmaSoulUtils.getSurfaceAptitudeReadonly(soul)[this.ordinal()].surfaceFactor;
+        return UmaSoulUtils.getSurfaceAptitude(soul)[this.ordinal()].surfaceFactor;
     }
 
     public static final Codec<Surface> CODEC = Codec.STRING

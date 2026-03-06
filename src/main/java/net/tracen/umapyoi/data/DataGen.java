@@ -24,6 +24,7 @@ import net.tracen.umapyoi.data.builtin.SupportCardRegistry;
 import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
 import net.tracen.umapyoi.data.compat.BetterCombatProvider;
 import net.tracen.umapyoi.data.compat.TFCFoodDataProvider;
+import net.tracen.umapyoi.data.loot.UmaSkillLootTable;
 import net.tracen.umapyoi.data.loot.UmapyoiBlockLoot;
 import net.tracen.umapyoi.data.tag.CosmeticDataTagProvider;
 import net.tracen.umapyoi.data.tag.UmaDataTagProvider;
@@ -52,9 +53,9 @@ public class DataGen {
         dataGenerator.addProvider(event.includeClient(), new UmapyoiBlockStateProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(event.includeClient(), new UmapyoiItemModelProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(event.includeClient(), new UmapyoiLangProvider(packOutput));
+        dataGenerator.addProvider(event.includeClient(), new UmapyoiSoundDefinitionProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new BetterCombatProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new TFCFoodDataProvider(packOutput, existingFileHelper));
-        dataGenerator.addProvider(event.includeServer(), new UmapyoiSoundDefinitionProvider(packOutput, existingFileHelper));
         final RegistrySetBuilder umaDataBuilder = new RegistrySetBuilder().add(UmaData.REGISTRY_KEY,
                 UmaDataRegistry::registerAll);
 
@@ -143,6 +144,9 @@ public class DataGen {
         LootTableProviderBuilder builder = LootTableProviderBuilder.create();
         builder.addSubProvider(
                 new LootTableProvider.SubProviderEntry(UmapyoiBlockLoot::new, LootContextParamSets.BLOCK));
+        builder.addSubProvider(
+                new LootTableProvider.SubProviderEntry(UmaSkillLootTable::new, LootContextParamSets.CHEST)
+        );
         return builder.build(packOutput);
     }
 

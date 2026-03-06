@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:sapporo",
   "id": "umapyoi:uhb_sho",
   "length": 1200,
@@ -8,7 +12,7 @@
   "tags": [],
   "time": 15,
   "year": [
-    "senior",
-    "classic"
+    "classic",
+    "senior"
   ]
 }

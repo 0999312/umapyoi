@@ -121,6 +121,7 @@ public class ClientSetupEvents {
 		event.register(SkillKeyMapping.KEY_USE_SKILL);
 		event.register(SkillKeyMapping.KEY_FORMER_SKILL);
 		event.register(SkillKeyMapping.KEY_LATTER_SKILL);
+		event.register(SkillKeyMapping.KEY_CONFIGURE_GUI);
 	}
 
 	@SubscribeEvent

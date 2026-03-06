@@ -162,10 +162,8 @@ public class UmaRaceTicketItem extends Item {
 
     public static Race getRace(ItemStack stack, Level world) {
         try {
-            if (!stack.getOrCreateTag().contains("race")) return null;
-            String rawTag = stack.getOrCreateTag().getString("race");
-            ResourceLocation loc = ResourceLocation.tryParse(rawTag);
-            if (loc == null) return null;
+            ResourceLocation loc = getRaceID(stack);
+            if (loc.equals(RaceRegistry.DEFAULT.location())) return null;
             return Optional.ofNullable(world).map(UmapyoiAPI::getRaceRegistry).orElse(ClientUtils.getRaceRegistry()).get(loc);
         } catch (Exception _ignored) {
             return null;

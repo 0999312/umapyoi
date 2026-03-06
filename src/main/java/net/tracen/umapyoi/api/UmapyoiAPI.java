@@ -71,6 +71,7 @@ public class UmapyoiAPI {
         }
         
         var postEvent = new FindUmaSoulEvent.Post(entity, result);
+        MinecraftForge.EVENT_BUS.post(postEvent);
         return postEvent.getUmaSoul();
     }
     

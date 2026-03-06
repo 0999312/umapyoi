@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "attribute_correction": [
     1,
     3
@@ -16,7 +20,7 @@
   ],
   "time": 24,
   "year": [
-    "senior",
-    "classic"
+    "classic",
+    "senior"
   ]
 }

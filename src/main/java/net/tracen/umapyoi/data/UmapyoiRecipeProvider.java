@@ -155,19 +155,18 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                         .define('C', Items.CRAFTING_TABLE).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
                         .save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ItemRegistry.GATE_DOOR.get()).pattern("BB")
+                .define('B', Items.IRON_BARS).unlockedBy("has_item", has(Items.IRON_BARS)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ItemRegistry.GATE.get()).pattern("GYG")
+                .pattern("B B").pattern("B B").define('G', Items.GREEN_CONCRETE)
+                .define('Y', Items.YELLOW_CONCRETE).define('B', Items.IRON_BARS).unlockedBy("has_item", has(Items.IRON_BARS))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.SUMMER_UNIFORM.get()).pattern("IJI")
                 .pattern("ILI").pattern("ILI").define('I', Items.PURPLE_WOOL).define('L', Items.WHITE_WOOL)
                 .define('J', ItemRegistry.JEWEL.get()).unlockedBy("has_item", has(ItemRegistry.JEWEL.get()))
                 .save(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ItemRegistry.GATE_DOOR.get()).pattern("BB")
-                        .define('B', Items.IRON_BARS).unlockedBy("has_item", has(Items.IRON_BARS)).save(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ItemRegistry.GATE.get()).pattern("GYG")
-                        .pattern("B B").pattern("B B").define('G', Items.GREEN_CONCRETE)
-                        .define('Y', Items.YELLOW_CONCRETE).define('B', Items.IRON_BARS).unlockedBy("has_item", has(Items.IRON_BARS))
-                        .save(consumer);
-
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ItemRegistry.WINTER_UNIFORM.get()).pattern("IJI")
                 .pattern("III").pattern("III").define('I', Items.PURPLE_WOOL).define('J', ItemRegistry.JEWEL.get())
@@ -217,7 +216,7 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
                 .unlockedBy("has_item", has(Tags.Items.CROPS_CARROT)).save(consumer);
 
         consumer.accept(new FinishedShapelessRaceTicketRecipe(new ResourceLocation(Umapyoi.MODID, "craft_make_debut"),
-                List.of(Ingredient.of(Items.EMERALD), Ingredient.of(ItemRegistry.BLANK_TICKET.get())), RaceRegistry.MAKE_DEBUT.location()));
+                List.of(Ingredient.of(Tags.Items.GEMS_EMERALD), Ingredient.of(ItemRegistry.BLANK_TICKET.get())), RaceRegistry.MAKE_DEBUT.location()));
     }
 
 }

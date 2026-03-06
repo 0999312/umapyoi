@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:betelgeuse_stakes",
   "length": 1800,
@@ -8,7 +12,7 @@
   "tags": [],
   "time": 24,
   "year": [
-    "senior",
-    "classic"
+    "classic",
+    "senior"
   ]
 }

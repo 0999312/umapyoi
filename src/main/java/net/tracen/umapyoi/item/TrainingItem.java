@@ -83,9 +83,7 @@ public class TrainingItem extends Item implements SupportContainer {
     	if(pAction != ClickAction.SECONDARY || pPlayer.getCooldowns().isOnCooldown(pStack.getItem())) return false;
     	
     	ItemStack soul = pSlot.getItem();
-    	if(this.learning(pPlayer.level(), pPlayer, soul, pStack).getResult() == InteractionResult.SUCCESS)
-    		return true;
-    	return false;
+        return this.learning(pPlayer.level(), pPlayer, soul, pStack).getResult() == InteractionResult.SUCCESS;
     }
     
     protected SupportStack getSupport() {

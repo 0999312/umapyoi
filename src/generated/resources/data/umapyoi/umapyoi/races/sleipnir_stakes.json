@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:sleipnir_stakes",
   "length": 2100,
@@ -8,7 +12,7 @@
   "tags": [],
   "time": 11,
   "year": [
-    "senior",
-    "classic"
+    "classic",
+    "senior"
   ]
 }
