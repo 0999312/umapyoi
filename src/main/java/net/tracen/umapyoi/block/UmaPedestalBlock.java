@@ -25,7 +25,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.tracen.umapyoi.block.entity.BlockEntityRegistry;
 import net.tracen.umapyoi.block.entity.UmaPedestalBlockEntity;
 
-public class UmaPedestalBlock extends BaseEntityBlock {
+public class UmaPedestalBlock extends AbstractPedestalBlock {
     public UmaPedestalBlock() {
         super(Properties.copy(Blocks.STONE).noOcclusion());
     }
@@ -41,46 +41,23 @@ public class UmaPedestalBlock extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn,
-            BlockHitResult result) {
-        if (!world.isClientSide) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (!level.isClientSide) {
+            BlockEntity tileEntity = level.getBlockEntity(pos);
             if (tileEntity instanceof UmaPedestalBlockEntity blockEntity) {
-                ItemStack heldStack = player.getItemInHand(handIn);
-                ItemStack offhandStack = player.getOffhandItem();
-                if (blockEntity.isEmpty()) {
-                    if (!offhandStack.isEmpty()) {
-                        if (handIn.equals(InteractionHand.MAIN_HAND) && !(heldStack.getItem() instanceof BlockItem)) {
-                            return InteractionResult.PASS; // Pass to off-hand if that item is placeable
-                        }
-                    }
-                    if (heldStack.isEmpty()) {
-                        return InteractionResult.PASS;
-                    } else if (heldStack.is(Items.BOOK)) {
-                        world.destroyBlock(pos, false);
-                        world.setBlock(pos, BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get().defaultBlockState(), UPDATE_ALL);
-                    } else if (blockEntity.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
-                        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.END_PORTAL_FRAME_FILL,
-                                SoundSource.BLOCKS, 1.0F, 0.8F);
-                        return InteractionResult.SUCCESS;
-                    }
-                } else {
-                    if (heldStack.isEmpty()) {
-                        if (!player.getInventory().add(blockEntity.removeItem())) {
-                            Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(),
-                                    blockEntity.removeItem());
-                        }
+                return interactBEWithoutItem(level, pos, player, blockEntity.isEmpty(), blockEntity.removeItem()
+                );
+            }
+        }
+        return InteractionResult.SUCCESS;
+    }
 
-                        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP,
-                                SoundSource.BLOCKS, 0.25F, 0.5F);
-                        return InteractionResult.SUCCESS;
-                    } else {
-                        player.displayClientMessage(Component.translatable("umapyoi.uma_pedestal.cannot_add_item"),
-                                true);
-                        return InteractionResult.PASS;
-                    }
-
-                }
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!level.isClientSide) {
+            BlockEntity tileEntity = level.getBlockEntity(pos);
+            if (tileEntity instanceof UmaPedestalBlockEntity blockEntity) {
+                return interactBEWithItem(stack, level, pos, player, hand, blockEntity, true);
             }
         }
         return InteractionResult.SUCCESS;
@@ -109,5 +86,11 @@ public class UmaPedestalBlock extends BaseEntityBlock {
         }
         return createTickerHelper(blockEntity, BlockEntityRegistry.UMA_PEDESTAL.get(),
                 UmaPedestalBlockEntity::workingTick);
+    }
+
+    @Override
+    protected void transformOnBook(Level level, BlockPos pos) {
+        level.destroyBlock(pos, false);
+        level.setBlock(pos, BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get().defaultBlockState(), UPDATE_ALL);
     }
 }

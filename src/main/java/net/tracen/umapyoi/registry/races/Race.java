@@ -228,43 +228,64 @@ public class Race {
         return this.getSelfProp(stack, world) >= this.referenceLevel;
     }
 
+    public static void attendRace(ItemStack soul, ResourceLocation race) {
+        CompoundTag tag = soul.getOrCreateTag();
+        CompoundTag attended = tag.contains("attended", CompoundTag.TAG_COMPOUND) ? tag.getCompound("attended") : new CompoundTag();
+        int count = attended.getInt(race.toString()) + 1;
+        attended.putInt(race.toString(), count);
+        tag.put("attended", attended);
+    }
+
+    public static void winRace(ItemStack soul, ResourceLocation race) {
+        CompoundTag tag = soul.getOrCreateTag();
+        ListTag list = tag.contains("won_races", CompoundTag.TAG_LIST) ? tag.getList("won_races", CompoundTag.TAG_STRING) : new ListTag();
+        boolean has = false;
+        for (int i = 0; i < list.size(); i++) {
+            ResourceLocation rl = ResourceLocation.tryParse(list.getString(i));
+            if (rl != null && rl.equals(race)) {
+                has = true;
+                break;
+            }
+        }
+        if (!has) {
+            list.add(StringTag.valueOf(race.toString()));
+        }
+        tag.put("won_races", list);
+    }
+
+    public static void setLastAttend(ItemStack soul, int lastAttend) {
+        CompoundTag tag = soul.getOrCreateTag();
+        tag.putInt("last_attend_time", lastAttend);
+    }
+
+    public static void setDebut(ItemStack soul) {
+        CompoundTag tag = soul.getOrCreateTag();
+        tag.putBoolean("has_debut", true);
+    }
+
     public void followUp(ItemStack stack, Level level) {
         CompoundTag tag = stack.getOrCreateTag();
 
         if (this.isPassed(stack, level)) {
             tags.stream().map(UmapyoiAPI.getRaceTagRegistry(level)::get).filter(Objects::nonNull)
                     .forEach((t) -> t.applyToUmaSoul(stack, this));
-            ListTag list = tag.contains("won_races", CompoundTag.TAG_LIST) ? tag.getList("won_races", CompoundTag.TAG_STRING) : new ListTag();
-            boolean has = false;
-            for (int i = 0; i < list.size(); i++) {
-                ResourceLocation rl = ResourceLocation.tryParse(list.getString(i));
-                if (rl != null && rl.equals(this.id)) {
-                    has = true;
-                    break;
-                }
-            }
-            if (!has) {
-                list.add(StringTag.valueOf(this.id.toString()));
-            }
-            tag.put("won_races", list);
+
+            winRace(stack, this.id);
         }
 
-        CompoundTag attended = tag.contains("attended", CompoundTag.TAG_COMPOUND) ? tag.getCompound("attended") : new CompoundTag();
-        int count = attended.getInt(this.id.toString()) + 1;
-        attended.putInt(this.id.toString(), count);
-        tag.put("attended", attended);
+        attendRace(stack, this.id);
 
         int lastAttend = tag.getInt("last_attend_time");
         this.year.stream().filter(y -> (y.ordinal() * 24 + this.time) > lastAttend).min(Comparator.naturalOrder()).ifPresentOrElse(
-                y -> tag.putInt("last_attend_time", y.ordinal() * 24 + this.time),
+                y -> setLastAttend(stack, y.ordinal() * 24 + this.time),
                 () -> {
                     Umapyoi.getLogger().error("Cannot calculate the right time.");
-                    tag.putInt("last_attend_time", lastAttend + 1);
+                    setLastAttend(stack, lastAttend + 1);
                 }
         );
 
         if (this.ranking == RaceRanking.DEBUT) {
-            tag.putBoolean("has_debut", true);
+            setDebut(stack);
         }
     }
 

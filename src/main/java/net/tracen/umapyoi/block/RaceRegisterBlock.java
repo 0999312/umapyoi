@@ -35,7 +35,6 @@ import net.tracen.umapyoi.block.entity.RaceRegisterBlockEntity;
 import javax.annotation.Nullable;
 import javax.annotation.Nonnull;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = Umapyoi.MODID)
 public class RaceRegisterBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 

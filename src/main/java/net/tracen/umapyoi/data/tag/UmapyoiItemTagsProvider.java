@@ -12,6 +12,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.utils.RaceRanking;
 
 public class UmapyoiItemTagsProvider extends ItemTagsProvider {
 
@@ -61,6 +62,23 @@ public class UmapyoiItemTagsProvider extends ItemTagsProvider {
 
         tag(UmapyoiItemTags.SLOW_METABOLISM)
                 .add(ItemRegistry.HACHIMI_BIG.get()).add(ItemRegistry.SWEET_CUPCAKE.get());
+
+        tag(UmapyoiItemTags.getRaceMaterialTag(RaceRanking.PREOP))
+                .addTag(Tags.Items.INGOTS_COPPER);
+
+        tag(UmapyoiItemTags.getRaceMaterialTag(RaceRanking.OP))
+                .addTag(Tags.Items.INGOTS_IRON);
+
+        tag(UmapyoiItemTags.getRaceMaterialTag(RaceRanking.GIII))
+                .addTag(Tags.Items.INGOTS_GOLD);
+
+        tag(UmapyoiItemTags.getRaceMaterialTag(RaceRanking.GII))
+                .addTag(Tags.Items.GEMS_EMERALD);
+
+        tag(UmapyoiItemTags.getRaceMaterialTag(RaceRanking.GI))
+                .addTag(Tags.Items.GEMS_DIAMOND);
+
+        tag(UmapyoiItemTags.RACE_CHAMPIONS_MATERIAL).add(Items.ENDER_EYE);
     }
 
 }

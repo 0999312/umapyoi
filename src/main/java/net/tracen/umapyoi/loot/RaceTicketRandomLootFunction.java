@@ -1,4 +1,4 @@
-package net.tracen.umapyoi.data.loot;
+package net.tracen.umapyoi.loot;
 
 import com.google.gson.*;
 import net.minecraft.resources.ResourceLocation;
@@ -18,17 +18,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class RaceTicketRandomLootFunction implements LootItemFunction {
-    public final RaceRanking least;
-    public final RaceRanking most;
-    public final boolean mode;
-    public final Set<String> predicate;
-    public RaceTicketRandomLootFunction(RaceRanking least, RaceRanking most, boolean mode, Set<String> predicate) {
-        this.least = least;
-        this.most = most;
-        this.mode = mode;
-        this.predicate = predicate;
-    }
+public record RaceTicketRandomLootFunction(RaceRanking least, RaceRanking most, boolean mode,
+                                           Set<String> predicate) implements LootItemFunction {
 
     @Override
     public LootItemFunctionType getType() {

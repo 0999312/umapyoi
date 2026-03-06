@@ -48,7 +48,7 @@ public enum Distance {
         // MEDIUM > MILES > LONG > SPRINT
         @Override
         public int compare(Distance o1, Distance o2) {
-            Aptitude[] umaAptitudes = UmaSoulUtils.getDistanceAptitudeReadonly(stack);
+            Aptitude[] umaAptitudes = UmaSoulUtils.getDistanceAptitude(stack);
             Aptitude leftApt = umaAptitudes[o1.ordinal()];
             Aptitude rightApt = umaAptitudes[o2.ordinal()];
             if (leftApt != rightApt) {
@@ -67,7 +67,7 @@ public enum Distance {
         if (this == ADAPTIVE) {
             return AdaptiveEvaluation(umaSoul).GetMultiplier(umaSoul);
         }
-        return UmaSoulUtils.getDistanceAptitudeReadonly(umaSoul)[this.ordinal()].distanceFactor;
+        return UmaSoulUtils.getDistanceAptitude(umaSoul)[this.ordinal()].distanceFactor;
     }
 
     public static final Codec<Distance> CODEC = Codec.STRING.xmap(s -> Distance.valueOf(s.toUpperCase()), d -> d.name().toLowerCase());

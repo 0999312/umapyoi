@@ -6,6 +6,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -36,30 +37,57 @@ public class UmaRaceTicketItem extends Item {
         super(Umapyoi.defaultItemProperties());
     }
 
-    private static class RaceComparator implements Comparator<Holder.Reference<Race>> {
-        public static final RaceComparator INSTANCE = new RaceComparator();
+    public static class RacePairComparator implements Comparator<Map.Entry<ResourceLocation, Race>> {
+        private RacePairComparator() {}
+        public static final RacePairComparator INSTANCE = new RacePairComparator();
+
         @Override
-        public int compare(Holder.Reference<Race> o1, Holder.Reference<Race> o2) {
-            Year minLeft = o1.value().year.stream().min(Year::compareTo).orElse(null);
-            Year minRight = o2.value().year.stream().min(Year::compareTo).orElse(null);
+        public int compare(Map.Entry<ResourceLocation, Race> o1, Map.Entry<ResourceLocation, Race> o2) {
+            Year minLeft = o1.getValue().year.stream().min(Year::compareTo).orElse(null);
+            Year minRight = o2.getValue().year.stream().min(Year::compareTo).orElse(null);
             if (minLeft == null) return 1;
             if (minRight == null) return -1;
             if (minLeft != minRight) return minLeft.compareTo(minRight);
-            int timeLeft = o1.value().time;
-            int timeRight = o2.value().time;
+            int timeLeft = o1.getValue().time;
+            int timeRight = o2.getValue().time;
             if (timeLeft != timeRight) return timeLeft - timeRight;
-            RaceRanking rankLeft = o1.value().ranking;
-            RaceRanking rankRight = o2.value().ranking;
+            RaceRanking rankLeft = o1.getValue().ranking;
+            RaceRanking rankRight = o2.getValue().ranking;
             if (rankLeft != rankRight) return rankRight.compareTo(rankLeft);
-            Surface surfaceLeft = o1.value().surface;
-            Surface surfaceRight = o2.value().surface;
+            Surface surfaceLeft = o1.getValue().surface;
+            Surface surfaceRight = o2.getValue().surface;
             if (surfaceLeft != surfaceRight) return surfaceLeft.compareTo(surfaceRight);
-            int lengthLeft = o1.value().length;
-            int lengthRight = o2.value().length;
+            int lengthLeft = o1.getValue().length;
+            int lengthRight = o2.getValue().length;
             if (lengthLeft != lengthRight) return lengthRight - lengthLeft;
-            ResourceLocation locLeft = o1.key().location();
-            ResourceLocation locRight = o2.key().location();
+            ResourceLocation locLeft = o1.getKey();
+            ResourceLocation locRight = o2.getKey();
             return locLeft.compareTo(locRight);
+        }
+    }
+
+    public static class RaceEntryComparator implements Comparator<Map.Entry<ResourceKey<Race>, Race>> {
+        private RaceEntryComparator() {}
+        public static final RaceEntryComparator INSTANCE = new RaceEntryComparator();
+
+        @Override
+        public int compare(Map.Entry<ResourceKey<Race>, Race> o1, Map.Entry<ResourceKey<Race>, Race> o2) {
+            return RacePairComparator.INSTANCE.compare(
+                    new AbstractMap.SimpleEntry<>(o1.getKey().location(), o1.getValue()),
+                    new AbstractMap.SimpleEntry<>(o2.getKey().location(), o2.getValue())
+            );
+        }
+    }
+
+    public static class RaceComparator implements Comparator<Holder.Reference<Race>> {
+        private RaceComparator() {}
+        public static final RaceComparator INSTANCE = new RaceComparator();
+        @Override
+        public int compare(Holder.Reference<Race> o1, Holder.Reference<Race> o2) {
+            return RaceEntryComparator.INSTANCE.compare(
+                    new AbstractMap.SimpleEntry<>(o1.key(), o1.value()),
+                    new AbstractMap.SimpleEntry<>(o2.key(), o2.value())
+            );
         }
     }
 
@@ -134,10 +162,8 @@ public class UmaRaceTicketItem extends Item {
 
     public static Race getRace(ItemStack stack, Level world) {
         try {
-            if (!stack.getOrCreateTag().contains("race")) return null;
-            String rawTag = stack.getOrCreateTag().getString("race");
-            ResourceLocation loc = ResourceLocation.tryParse(rawTag);
-            if (loc == null) return null;
+            ResourceLocation loc = getRaceID(stack);
+            if (loc.equals(RaceRegistry.DEFAULT.location())) return null;
             return Optional.ofNullable(world).map(UmapyoiAPI::getRaceRegistry).orElse(ClientUtils.getRaceRegistry()).get(loc);
         } catch (Exception _ignored) {
             return null;

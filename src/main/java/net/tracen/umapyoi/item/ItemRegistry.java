@@ -51,6 +51,9 @@ public class ItemRegistry {
     public static final RegistryObject<Item> UMA_SELECT_BLOCK = register("uma_select_block",
             () -> new BlockItem(BlockRegistry.UMA_SELECT_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
+    public static final RegistryObject<Item> RACE_SELECT_BLOCK = register("race_select_block",
+            () -> new BlockItem(BlockRegistry.RACE_SELECT_BLOCK.get(), Umapyoi.defaultItemProperties()));
+
     public static final RegistryObject<Item> RACE_REGISTER_BLOCK = register("race_register",
             () -> new BlockItem(BlockRegistry.RACE_REGISTER_BLOCK.get(), Umapyoi.defaultItemProperties()));
 

@@ -42,7 +42,7 @@ import net.tracen.umapyoi.utils.ClientUtils;
 import net.tracen.umapyoi.utils.GachaRanking;
 import net.tracen.umapyoi.utils.GachaUtils;
 
-public class SilverUmaPedestalBlockEntity extends SyncedBlockEntity implements Gachable {
+public class SilverUmaPedestalBlockEntity extends AbstractPedestalBlockEntity implements Gachable {
 
     public static final int MAX_PROCESS_TIME = 200;
     private final ItemStackHandler inventory;

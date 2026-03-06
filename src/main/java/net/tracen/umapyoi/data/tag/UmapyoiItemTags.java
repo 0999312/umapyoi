@@ -5,6 +5,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.umadata.Motivations;
+import net.tracen.umapyoi.utils.RaceRanking;
 
 public class UmapyoiItemTags {
     public static final TagKey<Item> SHOULD_RENDER = TagUtils.modItemTag(Umapyoi.MODID, "should_render");
@@ -37,6 +38,12 @@ public class UmapyoiItemTags {
         assert (1 - moodCnt <= level && level <= moodCnt - 1) && (level != 0);
         return TagUtils.modItemTag(Umapyoi.MODID, "motivation_" + (level < 0 ? "down" : "up") + "_" + Math.abs(level));
     }
+
+    public static TagKey<Item> getRaceMaterialTag(RaceRanking ranking) {
+        return TagUtils.modItemTag(Umapyoi.MODID, "race_" + ranking.name().toLowerCase() + "_material");
+    }
+
+    public static final TagKey<Item> RACE_CHAMPIONS_MATERIAL = TagUtils.modItemTag(Umapyoi.MODID, "race_champions_material");
 
     public static final TagKey<Item> SLOW_METABOLISM = TagUtils.modItemTag(Umapyoi.MODID, "slow_metabolism");
 }

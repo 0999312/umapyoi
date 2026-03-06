@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:niigata",
   "id": "umapyoi:nst_sho",
   "length": 1800,
