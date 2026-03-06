@@ -1,14 +1,17 @@
 package net.tracen.umapyoi.advancements.trigger;
 
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.core.registries.Registries;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 
 public class TriggerRegistry {
     private static ArrayList<SimpleCriterionTrigger<?>> REGISTRY;
-
     public static GrantBookOnFirstJoin GRANT_BOOK_ON_FIRST_JOIN = (GrantBookOnFirstJoin) Register(new GrantBookOnFirstJoin());
 
     public static SimpleCriterionTrigger<?> Register(SimpleCriterionTrigger<?> trigger) {

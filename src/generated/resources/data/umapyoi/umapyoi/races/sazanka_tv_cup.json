@@ -1,4 +1,8 @@
 {
+  "allow_status": [
+    "retired",
+    "trained"
+  ],
   "field": "umapyoi:funabashi",
   "id": "umapyoi:sazanka_tv_cup",
   "length": 1800,
@@ -8,7 +12,7 @@
   "tags": [],
   "time": 18,
   "year": [
-    "senior",
-    "classic"
+    "classic",
+    "senior"
   ]
 }

@@ -2,7 +2,7 @@
   "type": "umapyoi:shapeless_race_ticket",
   "ingredients": [
     {
-      "item": "minecraft:emerald"
+      "tag": "forge:gems/emerald"
     },
     {
       "item": "umapyoi:blank_ticket"

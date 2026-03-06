@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "umapyoi:umaskill_with_level",
+              "level": 1
+            }
+          ],
+          "name": "umapyoi:skill_book",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "umapyoi:umaskill_with_level",
+              "level": 1
+            }
+          ],
+          "name": "umapyoi:skill_book",
+          "weight": 10
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 4.0,
+        "min": 0.0
+      }
+    }
+  ],
+  "random_sequence": "umapyoi:simple_skills"
+}

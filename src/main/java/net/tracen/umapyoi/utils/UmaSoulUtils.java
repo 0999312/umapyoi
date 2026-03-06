@@ -60,24 +60,24 @@ public class UmaSoulUtils {
     }
 
 
-    public static int[] getSurfaceAptitude(ItemStack stack) {
+    public static int[] getSurfaceAptitudeWritable(ItemStack stack) {
         return stack.getOrCreateTag().getIntArray("surfaceAptitude").length >= 3
                 ? stack.getOrCreateTag().getIntArray("surfaceAptitude")
                 : Arrays.stream(UmaData.DEFAULT_SURFACE_APTITUDE).map(Aptitude::ordinal).mapToInt(Integer::intValue).toArray();
     }
 
-    public static Aptitude[] getSurfaceAptitudeReadonly(ItemStack stack) {
-        return Arrays.stream(getSurfaceAptitude(stack)).mapToObj(v -> Aptitude.values()[v]).toArray(Aptitude[]::new);
+    public static Aptitude[] getSurfaceAptitude(ItemStack stack) {
+        return Arrays.stream(getSurfaceAptitudeWritable(stack)).mapToObj(v -> Aptitude.values()[v]).toArray(Aptitude[]::new);
     }
 
-    public static int[] getDistanceAptitude(ItemStack stack) {
+    public static int[] getDistanceAptitudeWritable(ItemStack stack) {
         return stack.getOrCreateTag().getIntArray("distanceAptitude").length >= 4
                 ? stack.getOrCreateTag().getIntArray("distanceAptitude")
                 : Arrays.stream(UmaData.DEFAULT_DISTANCE_APTITUDE).map(Aptitude::ordinal).mapToInt(Integer::intValue).toArray();
     }
 
-    public static Aptitude[] getDistanceAptitudeReadonly(ItemStack stack) {
-        return Arrays.stream(getDistanceAptitude(stack)).mapToObj(v -> Aptitude.values()[v]).toArray(Aptitude[]::new);
+    public static Aptitude[] getDistanceAptitude(ItemStack stack) {
+        return Arrays.stream(getDistanceAptitudeWritable(stack)).mapToObj(v -> Aptitude.values()[v]).toArray(Aptitude[]::new);
     }
 
     public static ResourceLocation getName(ItemStack stack) {

@@ -74,15 +74,14 @@ public class UmaStatueBlock extends BaseEntityBlock implements SimpleWaterlogged
 			ItemStack heldStack = player.getItemInHand(handIn);
 
 			if (status.isEmpty() || status.isCostumeEmpty()) {
-				if (heldStack.isEmpty()) {
-					return InteractionResult.PASS;
-				} else if (status.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
+				if (!heldStack.isEmpty() && status.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
 					worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_PLACE,
 							SoundSource.BLOCKS, 1.0F, 0.8F);
 					return InteractionResult.SUCCESS;
 				}
 
-			} else if (handIn.equals(InteractionHand.MAIN_HAND)) {
+			}
+			if (handIn.equals(InteractionHand.MAIN_HAND)) {
 				if (!player.isCreative()) {
 					if (!player.getInventory().add(status.removeItem())) {
 						Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), status.removeItem());

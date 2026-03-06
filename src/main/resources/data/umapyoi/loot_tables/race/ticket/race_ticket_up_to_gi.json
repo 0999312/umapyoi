@@ -15,7 +15,9 @@
           {
             "function": "umapyoi:race_ticket_random",
             "least": "giii",
-            "most": "gi"
+            "most": "gi",
+            "mode": false,
+            "predicate": ["champions"]
           }
         ]
       }]

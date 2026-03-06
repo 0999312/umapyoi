@@ -1,4 +1,4 @@
-package net.tracen.umapyoi.events;
+package net.tracen.umapyoi.events.handler;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
@@ -18,7 +18,7 @@ import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
 @Mod.EventBusSubscriber(bus = Bus.MOD)
-public class DatapackEvents {
+public class SetupEvents {
     
     @SubscribeEvent
     public static void onDatapackRegister(DataPackRegistryEvent.NewRegistry event) {
