@@ -1,0 +1,25 @@
+{
+  "type": "friendship",
+  "max_damage": 3,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:kiryuuin_aoi"
+  ],
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:actionpoint_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:memory_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:steel_will"
+      }
+    }
+  ]
+}

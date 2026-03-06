@@ -1,0 +1,21 @@
+{
+  "after_race": [
+    "umapyoi:ura_finals"
+  ],
+  "allow_status": [
+    "retired"
+  ],
+  "exclusive": false,
+  "field": "umapyoi:kyoto",
+  "id": "umapyoi:gemini_cup",
+  "length": 3200,
+  "ranking": "gi",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "texture_predicate_override": "champions",
+  "time": 11,
+  "year": [
+    "after_regular"
+  ]
+}

@@ -1,19 +1,12 @@
 {
+  "distance_aptitude": [
+    0,
+    2,
+    6,
+    6
+  ],
   "identifier": "umapyoi:tamamo_cross",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
+  "position": "late_surger",
   "propertyRate": [
     0,
     20,
@@ -22,5 +15,9 @@
     0
   ],
   "ranking": "sr",
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    6,
+    1,
+    5
+  ]
 }

@@ -1,0 +1,18 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:kyoto",
+  "id": "umapyoi:shuka_sho",
+  "length": 2000,
+  "ranking": "gi",
+  "reference_level": 35,
+  "surface": "turf",
+  "tags": [
+    "umapyoi:triple_tiara"
+  ],
+  "time": 20,
+  "year": [
+    "classic"
+  ]
+}

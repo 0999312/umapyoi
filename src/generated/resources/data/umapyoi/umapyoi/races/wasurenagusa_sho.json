@@ -1,0 +1,16 @@
+{
+  "attribute_correction": [
+    3
+  ],
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:wasurenagusa_sho",
+  "length": 2000,
+  "ranking": "op",
+  "reference_level": 15,
+  "surface": "turf",
+  "tags": [],
+  "time": 7,
+  "year": [
+    "classic"
+  ]
+}

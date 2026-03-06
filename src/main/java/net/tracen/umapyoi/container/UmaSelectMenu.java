@@ -27,7 +27,7 @@ import net.tracen.umapyoi.data.tag.UmapyoiItemTags;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.item.data.DataLocation;
 
-public class UmaSelectMenu extends AbstractContainerMenu {
+public class UmaSelectMenu extends AbstractContainerMenu implements IItemNameMutableMenu {
 
     private final ContainerLevelAccess access;
     private final Level level;

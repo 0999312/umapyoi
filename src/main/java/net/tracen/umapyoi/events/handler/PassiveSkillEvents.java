@@ -3,6 +3,7 @@ package net.tracen.umapyoi.events.handler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
@@ -10,19 +11,24 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.data.tag.UmapyoiBlockTags;
 import net.tracen.umapyoi.events.ApplyUmasoulAttributeEvent;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
+import net.tracen.umapyoi.registry.UmapyoiAttributesRegistry;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 @EventBusSubscriber
 public class PassiveSkillEvents {
+    public static final ResourceLocation SPRINT = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "sprint");
 
     public static final ResourceLocation SKILL_HEIGHT = 
     		ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "passive_skill_height");
@@ -52,6 +58,46 @@ public class PassiveSkillEvents {
         var soul = UmapyoiAPI.getUmaSoul(player);
         if (UmaSoulUtils.hasSkill(soul, UmaSkillRegistry.DIG_SPEED.getId()))
             event.setNewSpeed(event.getOriginalSpeed() * 1.1F);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void sprintSpeedTick(EntityTickEvent.Post event) {
+        var entity = event.getEntity();
+        if (!(entity instanceof LivingEntity living)) return;
+        AttributeInstance sprintSpeed = living.getAttribute(UmapyoiAttributesRegistry.SPRINT_SPEED);
+
+        if(sprintSpeed == null)
+            return;
+
+        AttributeInstance movementSpeed = living.getAttribute(Attributes.MOVEMENT_SPEED);
+
+
+        var speedModifier = new AttributeModifier(SPRINT,
+                sprintSpeed.getValue() - sprintSpeed.getBaseValue()
+                ,
+                UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? Operation.ADD_MULTIPLIED_TOTAL
+                        : Operation.ADD_VALUE);
+
+        if (UmapyoiAPI.getUmaSoul(living).isEmpty()) {
+            movementSpeed.removeModifier(speedModifier);
+            return;
+        }
+
+        if (living.isSprinting()) {
+            if (movementSpeed.hasModifier(speedModifier.id())) {
+                AttributeModifier oldModifier = movementSpeed.getModifier(speedModifier.id());
+                if (oldModifier != null) {
+                    if (oldModifier.amount() == speedModifier.amount() && oldModifier.operation() == speedModifier.operation()) {
+                        return;
+                    } else {
+                        movementSpeed.removeModifier(speedModifier);
+                    }
+                }
+            }
+            movementSpeed.addTransientModifier(speedModifier);
+        } else {
+            movementSpeed.removeModifier(speedModifier);
+        }
     }
 
     @SubscribeEvent

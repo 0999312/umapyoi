@@ -9,9 +9,13 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.block.BlockRegistry;
+import net.tracen.umapyoi.item.factor.FactorReport;
+import net.tracen.umapyoi.item.factor.UmaFactorContainerItem;
 import net.tracen.umapyoi.item.food.EnergyDrinkMethods;
 import net.tracen.umapyoi.item.food.UmaDrinkItem;
 import net.tracen.umapyoi.item.food.UmaFoodItem;
+import net.tracen.umapyoi.item.weapon.BaseballBatItem;
+import net.tracen.umapyoi.item.weapon.GrassNaginataItem;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.training.SupportType;
 import net.tracen.umapyoi.utils.UmaStatusUtils;
@@ -46,8 +50,25 @@ public class ItemRegistry {
     public static final DeferredItem<Item> UMA_SELECT_BLOCK = register("uma_select_block",
             () -> new BlockItem(BlockRegistry.UMA_SELECT_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
-    public static final DeferredItem<Item> BLANK_UMA_SOUL = register("blank_uma_soul", FadedUmaSoulItem::new);
+    public static final DeferredItem<Item> RACE_SELECT_BLOCK = register("race_select_block",
+            () -> new BlockItem(BlockRegistry.RACE_SELECT_BLOCK.get(), Umapyoi.defaultItemProperties()));
 
+    public static final DeferredItem<Item> RACE_REGISTER_BLOCK = register("race_register",
+            () -> new BlockItem(BlockRegistry.RACE_REGISTER_BLOCK.get(), Umapyoi.defaultItemProperties()));
+
+    public static final DeferredItem<Item> FACTOR_DECOMPOSE_TABLE = register("factor_decompose_table",
+            () -> new BlockItem(BlockRegistry.FACTOR_DECOMPOSE_TABLE.get(), Umapyoi.defaultItemProperties()));
+
+    public static final DeferredItem<Item> FACTOR_RESEARCH_TABLE = register("factor_research_table",
+            () -> new BlockItem(BlockRegistry.FACTOR_RESEARCH_TABLE.get(), Umapyoi.defaultItemProperties()));
+
+    public static final DeferredItem<Item> GATE_DOOR = register("gate_door", () -> new BlockItem(BlockRegistry.GATE_DOOR.get(),
+            Umapyoi.defaultItemProperties()));
+
+    public static final DeferredItem<Item> GATE = register("gate", () -> new BlockItem(BlockRegistry.GATE.get(), Umapyoi.defaultItemProperties()));
+
+    public static final DeferredItem<Item> BLANK_UMA_SOUL = register("blank_uma_soul", FadedUmaSoulItem::new);
+    public static final DeferredItem<Item> UMA_SOUL_DISPLAY = register("uma_soul_display", ItemRegistry::newMaterial);
     public static final DeferredItem<Item> UMA_SOUL = register("uma_soul", UmaSoulItem::new);
     public static final DeferredItem<Item> UMA_FACTOR_ITEM = register("uma_factor_item", UmaFactorContainerItem::new);
 
@@ -55,7 +76,8 @@ public class ItemRegistry {
     public static final DeferredItem<Item> WINTER_UNIFORM = register("winter_uniform", UmaSuitItem::new);
     public static final DeferredItem<Item> TRAINNING_SUIT = register("trainning_suit", UmaSuitItem::new);
     public static final DeferredItem<Item> SWIMSUIT = register("swimsuit", UmaSuitItem::new);
-//    public static final DeferredItem<Item> KINDERGARTEN_UNIFORM = register("kindergarten_uniform", UmaSuitItem::new);
+
+    public static final DeferredItem<Item> UMA_COSTUME = register("uma_costume", UmaCostumeItem::new);
 
     public static final DeferredItem<Item> JEWEL = register("jewel", ItemRegistry::newMaterial);
 
@@ -127,17 +149,15 @@ public class ItemRegistry {
     public static final DeferredItem<Item> SKILL_BOOK = register("skill_book", SkillBookItem::new);
 
     public static final DeferredItem<Item> SUPPORT_CARD = register("support_card", SupportCardItem::new);
+    public static final DeferredItem<Item> UMA_RACE_TICKET = register("race_ticket", UmaRaceTicketItem::new);
 
     public static final DeferredItem<Item> HACHIMI_MID = register("hachimi_mid",
-            () -> new UmaDrinkItem(UmaStatusUtils::addMotivation,
+            () -> new UmaDrinkItem(e -> {},
                     FoodInfo.builder().name("hachimi_mid").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
                             .nutrients(2F, 2F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F)
                             .build()));
 
-    public static final DeferredItem<Item> HACHIMI_BIG = register("hachimi_big", () -> new UmaDrinkItem(status -> {
-        UmaStatusUtils.addMotivation(status);
-        UmaStatusUtils.addMotivation(status);
-    }, FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(4, 0.8F).water(30F)
+    public static final DeferredItem<Item> HACHIMI_BIG = register("hachimi_big", () -> new UmaDrinkItem(status -> {}, FoodInfo.builder().name("hachimi_big").alwaysEat().amountAndCalories(4, 0.8F).water(30F)
             .nutrients(4F, 4F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final DeferredItem<Item> ROYAL_BITTER = register("royal_bitter",
@@ -147,15 +167,12 @@ public class ItemRegistry {
                             .heatCapacity(1F).cookingTemp(480F).build()));
 
     public static final DeferredItem<Item> CUPCAKE = register("cupcake",
-            () -> new UmaFoodItem(UmaStatusUtils::addMotivation,
+            () -> new UmaFoodItem(e -> {},
                     FoodInfo.builder().name("cupcake").amountAndCalories(5, 0.6F).water(0F)
                             .nutrients(2F, 2F, 0F, 0F, 0F).decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F)
                             .build()));
 
-    public static final DeferredItem<Item> SWEET_CUPCAKE = register("sweet_cupcake", () -> new UmaFoodItem(status -> {
-        UmaStatusUtils.addMotivation(status);
-        UmaStatusUtils.addMotivation(status);
-    }, FoodInfo.builder().name("sweet_cupcake").amountAndCalories(7, 0.6F).water(0F).nutrients(4F, 4F, 0F, 0F, 0F)
+    public static final DeferredItem<Item> SWEET_CUPCAKE = register("sweet_cupcake", () -> new UmaFoodItem(status -> {}, FoodInfo.builder().name("sweet_cupcake").amountAndCalories(7, 0.6F).water(0F).nutrients(4F, 4F, 0F, 0F, 0F)
             .decayModifier(1.5F).heatCapacity(1F).cookingTemp(480F).build()));
     
     public static final DeferredItem<Item> SMALL_ENERGY_DRINK = register("small_energy_drink",
@@ -175,6 +192,12 @@ public class ItemRegistry {
                     FoodInfo.builder().name("large_energy_drink").alwaysEat().amountAndCalories(2, 0.6F).water(30F)
                             .nutrients(2F, 2F, 0F, 0F, 0F)
                             .heatCapacity(1F).cookingTemp(480F).build()));
+
+    public static final DeferredItem<Item> NAGINATA = register("naginata", GrassNaginataItem::new);
+
+    public static final DeferredItem<Item> BASEBALL_BAT = register("baseball_bat", BaseballBatItem::new);
+
+    public static final DeferredItem<Item> FACTOR_SHARD = register("uma_factor_shard", FactorReport::new);
 
     private static <V extends Item> DeferredItem<V> register(String name, Supplier<V> item) {
         return ITEMS.register(name, item);

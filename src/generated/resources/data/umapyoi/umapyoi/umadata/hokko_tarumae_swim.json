@@ -1,19 +1,12 @@
 {
+  "distance_aptitude": [
+    1,
+    6,
+    6,
+    2
+  ],
   "identifier": "umapyoi:hokko_tarumae",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
+  "position": "pace_chaser",
   "propertyRate": [
     20,
     10,
@@ -22,5 +15,9 @@
     10
   ],
   "ranking": "ssr",
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    0,
+    6,
+    5
+  ]
 }

@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.network.handling.ServerPayloadContext;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.container.IItemNameMutableMenu;
 import net.tracen.umapyoi.container.UmaSelectMenu;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -40,12 +41,12 @@ public record EmptyResultPacket(String empty) implements CustomPacketPayload
     public static void handle(EmptyResultPacket payload, IPayloadContext context) {
         if (context instanceof ServerPayloadContext serverContext) {
             context.enqueueWork(() ->
-                                  {
-                                      ServerPlayer player = serverContext.player();
-                                      if (player.containerMenu instanceof UmaSelectMenu menu) {
-                                          menu.setItemName(null);
-                                      }
-                                  });
+                      {
+                          ServerPlayer player = serverContext.player();
+                          if (player.containerMenu instanceof IItemNameMutableMenu menu) {
+                              menu.setItemName(null);
+                          }
+                      });
         }
     }
 }

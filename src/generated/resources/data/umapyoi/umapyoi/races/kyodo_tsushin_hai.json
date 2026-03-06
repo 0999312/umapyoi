@@ -1,0 +1,16 @@
+{
+  "attribute_correction": [
+    0
+  ],
+  "field": "umapyoi:tokyo",
+  "id": "umapyoi:kyodo_tsushin_hai",
+  "length": 1800,
+  "ranking": "giii",
+  "reference_level": 25,
+  "surface": "turf",
+  "tags": [],
+  "time": 3,
+  "year": [
+    "classic"
+  ]
+}

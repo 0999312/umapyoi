@@ -1,19 +1,12 @@
 {
+  "distance_aptitude": [
+    6,
+    5,
+    1,
+    0
+  ],
   "identifier": "umapyoi:hishi_akebono",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
+  "position": "pace_chaser",
   "propertyRate": [
     0,
     0,
@@ -22,5 +15,9 @@
     0
   ],
   "ranking": "sr",
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    6,
+    1,
+    5
+  ]
 }

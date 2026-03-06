@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:sapporo",
+  "id": "umapyoi:sapporo_kinen",
+  "length": 2000,
+  "ranking": "gii",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 16,
+  "year": [
+    "senior",
+    "classic"
+  ]
+}

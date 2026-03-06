@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "G": {
+      "item": "minecraft:green_concrete"
+    },
+    "Y": {
+      "item": "minecraft:yellow_concrete"
+    }
+  },
+  "pattern": [
+    "GYG",
+    "B B",
+    "B B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "umapyoi:gate"
+  }
+}

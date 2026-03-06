@@ -6,6 +6,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import net.tracen.umapyoi.registry.umadata.UmaDataTraining;
 import org.jetbrains.annotations.NotNull;
 
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
@@ -130,10 +131,11 @@ public class TrainingFacilityBlockEntity extends SyncedBlockEntity implements Me
         for (int i = 1; i < 7; i++) {
             ItemStack supportItem = this.inventory.getStackInSlot(i);
             if (supportItem.getItem()instanceof SupportContainer supports) {
-                supports.getSupports(this.getLevel(), supportItem).forEach(support -> support.applySupport(result));
+                supports.getSupports(this.getLevel(), supportItem).forEach(support -> support.applySupport(result, this.level.getRandom()));
                 
             }
         }
+        result.update(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTraining(1, 6, false), data -> new UmaDataTraining(data.physique(), data.talent(), true));
         return result;
     }
 

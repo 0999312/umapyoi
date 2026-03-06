@@ -32,6 +32,10 @@ public class UmapyoiConfig {
 
     public static ModConfigSpec.BooleanValue OVERLAY_SWITCH;
     public static ModConfigSpec.BooleanValue TOOLTIP_SWITCH;
+
+    public static ModConfigSpec.BooleanValue DISPLAY_DETAIL;
+
+    public static ModConfigSpec.DoubleValue ACUPUNCTUIST_SUPPORT_CHANCE;
     
     public static ModConfigSpec.DoubleValue UMASOUL_MAX_SPEED;
     public static ModConfigSpec.DoubleValue UMASOUL_MAX_STRENGTH_ATTACK;
@@ -44,9 +48,24 @@ public class UmapyoiConfig {
     public static ModConfigSpec.BooleanValue UMASOUL_STAMINA_PRECENT_ENABLE;
     public static ModConfigSpec.BooleanValue UMASOUL_GUTS_PRECENT_ENABLE;
 
+    public static ModConfigSpec.DoubleValue SLOW_METABOLISM_PROBABILITY;
+    public static ModConfigSpec.LongValue NIGHT_OWL_THRESHOLD;
+    public static ModConfigSpec.DoubleValue NIGHT_OWL_PROBABILITY_DOWN_MOTIVATION;
+
+    public static ModConfigSpec.BooleanValue GRANT_GUIDE_ON_FIRST_JOIN;
+
+    public static ModConfigSpec.IntValue TOPLEFT_COORD_SKILL_X;
+    public static ModConfigSpec.IntValue TOPLEFT_COORD_SKILL_Y;
+    public static ModConfigSpec.IntValue TOPLEFT_COORD_MOTIVATION_Y;
+    public static ModConfigSpec.IntValue TOPLEFT_COORD_MOTIVATION_X;
+
     static {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
         COMMON_BUILDER.comment("General settings").push("general");
+
+        ACUPUNCTUIST_SUPPORT_CHANCE = COMMON_BUILDER
+                .comment("Determining the success chance of acupunctuist support.",
+                        "Set to 0 will only fail in trainning.").defineInRange("umasoul_max_speed", 0.4, 0.0, 1.0);
         
         UMASOUL_SPEED_PRECENT_ENABLE = COMMON_BUILDER.comment("Determines whether to add speed bouns as a percentage.",
                 "If enable, the bonus will be calculated as a percentage.").define("umasoul_speed_percent_enable", true);
@@ -114,6 +133,18 @@ public class UmapyoiConfig {
         STAT_LIMIT_REDUCTION_RATE = COMMON_BUILDER.comment("Determines the reduction for all base stat values.",
                 "If the threshold value is exceeded, the attribute effect will be reduced according to this value.")
                 .defineInRange("stat_limit_reduction", 0.6D, 0D, 1D);
+
+        SLOW_METABOLISM_PROBABILITY = COMMON_BUILDER.comment("Determines the probability of getting Slow Metabolism effect after player eaten certain food.")
+                .defineInRange("slow_metabolism_probability", 0.05d, 0d, 1d);
+
+        NIGHT_OWL_THRESHOLD = COMMON_BUILDER.comment("Determines how long of sleepless time before Night Owl effect may occur, unit: tick")
+                .defineInRange("night_owl_threshold", 72000L, 0L, Long.MAX_VALUE);
+
+        NIGHT_OWL_PROBABILITY_DOWN_MOTIVATION = COMMON_BUILDER.comment("Determines the probability of motivation down per second")
+                .defineInRange("night_owl_probability_down_motivation", 0.01d, 0d, 1d);
+
+        GRANT_GUIDE_ON_FIRST_JOIN = COMMON_BUILDER.comment("Determines if the guide would be given to player on their first join to the world or not.")
+                .define("grant_guide_on_first_join", true);
         
         COMMON_BUILDER.pop();
         COMMON_CONFIG = COMMON_BUILDER.build();
@@ -131,6 +162,9 @@ public class UmapyoiConfig {
         TOOLTIP_SWITCH = CLIENT_BUILDER.comment("Deciding whether to omit details.")
                 .comment("After enabling, some details need to be pressed to display.").define("tooltip_switch", true);
 
+        DISPLAY_DETAIL = CLIENT_BUILDER.comment("Deciding whether to always display skill or factor's details.")
+                .define("always_display_details", false);
+
         HIDE_PARTS_RENDER = CLIENT_BUILDER
                 .comment("Determines whether to render model's hiden parts.",
                         "Hiden parts like breasts won't render after closing this.")
@@ -144,6 +178,15 @@ public class UmapyoiConfig {
                 .defineInRange("ear_animation_interval", 100, 10, Integer.MAX_VALUE);
         TAIL_ANIMATION_INTERVAL = CLIENT_BUILDER.comment("Determining the interval tick between twice tail animation.")
                 .defineInRange("tail_animation_interval", 200, 10, Integer.MAX_VALUE);
+
+        TOPLEFT_COORD_SKILL_X = CLIENT_BUILDER.comment("The x-coordinate of the top-left coordinate of skill overlay. Default: 102")
+                .defineInRange("top_left_skill_x", 102, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        TOPLEFT_COORD_SKILL_Y = CLIENT_BUILDER.comment("The y-coordinate of the top-left coordinate of skill overlay. Default: -21")
+                .defineInRange("top_left_skill_y", -21, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        TOPLEFT_COORD_MOTIVATION_X = CLIENT_BUILDER.comment("The x-coordinate of the top-left coordinate of motivation overlay. Default: 102")
+                .defineInRange("top_left_motivation_x", 118, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        TOPLEFT_COORD_MOTIVATION_Y = CLIENT_BUILDER.comment("The y-coordinate of the top-left coordinate of motivation overlay. Default: -21")
+                .defineInRange("top_left_motivation_y", -37, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
         CLIENT_BUILDER.pop();
         CLIENT_CONFIG = CLIENT_BUILDER.build();

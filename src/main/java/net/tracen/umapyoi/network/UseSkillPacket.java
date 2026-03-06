@@ -45,55 +45,50 @@ public record UseSkillPacket(String message) implements CustomPacketPayload
     public static void handle(UseSkillPacket payload, IPayloadContext context) {
         if (context instanceof ServerPayloadContext serverCtx) {
             context.enqueueWork(() ->
-                                {
-                                    ServerPlayer player = serverCtx.player();
-                                    if (player.isSpectator()) {
-                                        return;
-                                    }
-                                    ItemStack umaSoul = UmapyoiAPI.getUmaSoul(player);
+            {
+                ServerPlayer player = serverCtx.player();
+                if (player.isSpectator()) {
+                    return;
+                }
+                ItemStack umaSoul = UmapyoiAPI.getUmaSoul(player);
 
-                                    if (!umaSoul.isEmpty()) {
-                                        ResourceLocation selectedSkillName = UmaSoulUtils.getSelectedSkill(umaSoul);
-                                        UmaSkill selectedSkill = UmaSkillRegistry.REGISTRY.get(selectedSkillName);
-                                        if (selectedSkill == null) {
-                                            player.displayClientMessage(Component.translatable("umapyoi.unknown_skill"),
-                                                                        true
-                                            );
-                                            return;
-                                        }
-                                        if (NeoForge.EVENT_BUS
-                                                .post(new SkillEvent.UseSkillEvent(
-                                                              selectedSkillName,
-                                                              player.level(),
-                                                              player
-                                                      )
-                                                ).isCanceled()) {
-                                            return;
-                                        }
-                                        int ap = UmaSoulUtils.getActionPoint(umaSoul);
-                                        if (ap >= selectedSkill.getActionPoint()) {
-                                            player.connection.send(new ClientboundSoundPacket(
-                                                    BuiltInRegistries.SOUND_EVENT.getHolder(
-                                                            selectedSkill.getSound().getLocation()).get(),
-                                                    SoundSource.PLAYERS,
-                                                    player.getX(), player.getY(), player.getZ(), 1F, 1F,
-                                                    player.getRandom().nextLong()
-                                            ));
-                                            selectedSkill.applySkill(player.level(), player);
-                                            UmaSoulUtils.setActionPoint(umaSoul, ap - selectedSkill.getActionPoint());
-                                            NeoForge.EVENT_BUS.post(
-                                                    new SkillEvent.ApplySkillEvent(
-                                                            UmaSkillRegistry.REGISTRY.getKey(selectedSkill),
-                                                            player.level(), player
-                                                    ));
-                                        }
-                                        else {
-                                            player.displayClientMessage(Component.translatable("umapyoi.not_enough_ap"),
-                                                                        true
-                                            );
-                                        }
-                                    }
-                                });
+                if (!umaSoul.isEmpty()) {
+                    ResourceLocation selectedSkillName = UmaSoulUtils.getSelectedSkill(umaSoul);
+                    UmaSkill selectedSkill = UmaSkillRegistry.REGISTRY.get(selectedSkillName);
+                    if (selectedSkill == null) {
+                        player.displayClientMessage(Component.translatable("umapyoi.unknown_skill"),
+                                                    true
+                        );
+                        return;
+                    }
+                    SkillEvent.UseSkillEvent evt = new SkillEvent.UseSkillEvent(selectedSkillName, player.level(), player, selectedSkill.getActionPoint());
+                    if (NeoForge.EVENT_BUS.post(evt).isCanceled()) {
+                        return;
+                    }
+                    int ap = UmaSoulUtils.getActionPoint(umaSoul);
+                    if (ap >= evt.getAp()) {
+                        player.connection.send(new ClientboundSoundPacket(
+                                BuiltInRegistries.SOUND_EVENT.getHolder(
+                                        selectedSkill.getSound().getLocation()).get(),
+                                SoundSource.PLAYERS,
+                                player.getX(), player.getY(), player.getZ(), 1F, 1F,
+                                player.getRandom().nextLong()
+                        ));
+                        selectedSkill.applySkill(player.level(), player);
+                        UmaSoulUtils.setActionPoint(umaSoul, ap - evt.getAp());
+                        NeoForge.EVENT_BUS.post(
+                                new SkillEvent.ApplySkillEvent(
+                                        UmaSkillRegistry.REGISTRY.getKey(selectedSkill),
+                                        player.level(), player
+                                ));
+                    }
+                    else {
+                        player.displayClientMessage(Component.translatable("umapyoi.not_enough_ap"),
+                                                    true
+                        );
+                    }
+                }
+            });
         }
     }
 }

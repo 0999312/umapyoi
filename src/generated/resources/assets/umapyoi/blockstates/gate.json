@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,part=lower": {
+      "model": "umapyoi:block/gate_lower",
+      "y": 90
+    },
+    "facing=east,part=middle": {
+      "model": "umapyoi:block/gate_middle",
+      "y": 90
+    },
+    "facing=east,part=upper": {
+      "model": "umapyoi:block/gate_upper",
+      "y": 90
+    },
+    "facing=north,part=lower": {
+      "model": "umapyoi:block/gate_lower"
+    },
+    "facing=north,part=middle": {
+      "model": "umapyoi:block/gate_middle"
+    },
+    "facing=north,part=upper": {
+      "model": "umapyoi:block/gate_upper"
+    },
+    "facing=south,part=lower": {
+      "model": "umapyoi:block/gate_lower",
+      "y": 180
+    },
+    "facing=south,part=middle": {
+      "model": "umapyoi:block/gate_middle",
+      "y": 180
+    },
+    "facing=south,part=upper": {
+      "model": "umapyoi:block/gate_upper",
+      "y": 180
+    },
+    "facing=west,part=lower": {
+      "model": "umapyoi:block/gate_lower",
+      "y": 270
+    },
+    "facing=west,part=middle": {
+      "model": "umapyoi:block/gate_middle",
+      "y": 270
+    },
+    "facing=west,part=upper": {
+      "model": "umapyoi:block/gate_upper",
+      "y": 270
+    }
+  }
+}

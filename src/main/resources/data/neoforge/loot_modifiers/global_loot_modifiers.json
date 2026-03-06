@@ -3,6 +3,11 @@
   "entries": [
     "umapyoi:skill_books",
     "umapyoi:rare_skill_books",
-    "umapyoi:chest_training_book"
+    "umapyoi:chest_training_book",
+    "umapyoi:race_ticket_up_to_op",
+    "umapyoi:race_ticket_up_to_giii",
+    "umapyoi:race_ticket_up_to_gii",
+    "umapyoi:race_ticket_up_to_gi",
+    "umapyoi:race_ticket_end"
     ]
 }

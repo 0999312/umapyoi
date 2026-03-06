@@ -19,14 +19,19 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.data.builtin.CostumeDataRegistry;
 import net.tracen.umapyoi.data.builtin.SupportCardRegistry;
 import net.tracen.umapyoi.data.builtin.UmaDataRegistry;
 import net.tracen.umapyoi.data.loot.UmaSkillLootTable;
 import net.tracen.umapyoi.data.loot.UmapyoiBlockLoot;
-import net.tracen.umapyoi.data.tag.UmaDataTagProvider;
-import net.tracen.umapyoi.data.tag.UmapyoiBlockTagProvider;
-import net.tracen.umapyoi.data.tag.UmapyoiItemTagsProvider;
-import net.tracen.umapyoi.data.tag.UmapyoiPOITagsProvider;
+import net.tracen.umapyoi.data.tag.*;
+import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
+import net.tracen.umapyoi.registry.races.Race;
+import net.tracen.umapyoi.registry.races.RaceRegistry;
+import net.tracen.umapyoi.registry.races.field.RaceField;
+import net.tracen.umapyoi.registry.races.field.RaceFieldRegistry;
+import net.tracen.umapyoi.registry.races.tags.RaceTag;
+import net.tracen.umapyoi.registry.races.tags.RaceTagRegistry;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 
@@ -42,12 +47,25 @@ public class DataGen {
         dataGenerator.addProvider(event.includeClient(), new UmapyoiBlockStateProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(event.includeClient(), new UmapyoiItemModelProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(event.includeClient(), new UmapyoiLangProvider(packOutput));
+        dataGenerator.addProvider(event.includeClient(), new UmapyoiSoundDefinitionProvider(packOutput, existingFileHelper));
 
         final RegistrySetBuilder umaDataBuilder = new RegistrySetBuilder().add(UmaData.REGISTRY_KEY,
                 UmaDataRegistry::registerAll);
 
         final RegistrySetBuilder supportCardBuilder = new RegistrySetBuilder().add(SupportCard.REGISTRY_KEY,
                 SupportCardRegistry::registerAll);
+
+        final RegistrySetBuilder CostumeBuilder = new RegistrySetBuilder().add(CosmeticData.REGISTRY_KEY,
+                CostumeDataRegistry::registerAll);
+
+        final RegistrySetBuilder raceBuilder = new RegistrySetBuilder().add(Race.REGISTRY_KEY,
+                RaceRegistry::registerAll);
+
+        final RegistrySetBuilder raceFieldBuilder = new RegistrySetBuilder().add(RaceField.REGISTRY_KEY,
+                RaceFieldRegistry::registerAll);
+
+        final RegistrySetBuilder raceTagBuilder = new RegistrySetBuilder().add(RaceTag.REGISTRY_KEY,
+                RaceTagRegistry::registerAll);
 
         dataGenerator.addProvider(event.includeServer(),
                 new DatapackBuiltinEntriesProvider(
@@ -70,6 +88,39 @@ public class DataGen {
                     }
                 });
 
+        dataGenerator.addProvider(event.includeServer(),
+                new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, CostumeBuilder, Set.of(Umapyoi.MODID)) {
+
+                    @Override
+                    public String getName() {
+                        return "Costume Registry";
+                    }
+                });
+
+        dataGenerator.addProvider(event.includeServer(),
+                new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, raceBuilder, Set.of(Umapyoi.MODID)) {
+                    @Override
+                    public String getName() {
+                        return "Race Registry";
+                    }
+                });
+
+        dataGenerator.addProvider(event.includeServer(),
+                new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, raceFieldBuilder, Set.of(Umapyoi.MODID)) {
+                    @Override
+                    public String getName() {
+                        return "Race Field Registry";
+                    }
+                });
+
+        dataGenerator.addProvider(event.includeServer(),
+                new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, raceTagBuilder, Set.of(Umapyoi.MODID)) {
+                    @Override
+                    public String getName() {
+                        return "Race Tag Registry";
+                    }
+                });
+
         UmapyoiBlockTagProvider blockTagProvider = new UmapyoiBlockTagProvider(packOutput, lookupProvider,
                 existingFileHelper);
         dataGenerator.addProvider(event.includeServer(), blockTagProvider);
@@ -78,6 +129,8 @@ public class DataGen {
         dataGenerator.addProvider(event.includeServer(), DataGen.getLootTableProvider(packOutput, lookupProvider));
         dataGenerator.addProvider(event.includeServer(), new UmaDataTagProvider(packOutput,
                 lookupProvider.thenApply(r -> append(umaDataBuilder)), existingFileHelper));
+        dataGenerator.addProvider(event.includeServer(), new CosmeticDataTagProvider(packOutput,
+                lookupProvider.thenApply(r -> append(CostumeBuilder)), existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new UmapyoiPOITagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new UmapyoiRecipeProvider(packOutput, lookupProvider));
 

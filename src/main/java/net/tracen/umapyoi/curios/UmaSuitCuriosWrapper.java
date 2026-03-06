@@ -20,8 +20,12 @@ public class UmaSuitCuriosWrapper implements ICurio {
 
     @Override
     public boolean canEquip(SlotContext slotContext) {
-    	return CuriosApi.getEntitySlots(slotContext.entity()).containsKey("uma_suit") 
-    			&& slotContext.identifier().equals("uma_suit");
+        return slotContext.identifier().equals("uma_suit");
+    }
+
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext) {
+        return slotContext.identifier().equals("uma_suit");
     }
 
     @Override

@@ -19,6 +19,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
 import net.tracen.umapyoi.events.client.RenderingUmaSoulEvent;
+import net.tracen.umapyoi.item.UmaCostumeItem;
 import net.tracen.umapyoi.item.UmaSuitItem;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.ClientUtils;
@@ -38,45 +39,27 @@ public class UmaSoulRenderer implements ICurioRenderer {
     public UmaSoulRenderer() {
         baseModel = new UmaPlayerModel<>();
     }
-    
+
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext,
-            PoseStack matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer,
-            int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw,
-            float headPitch) {
-        
+                                                                          PoseStack matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer,
+                                                                          int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw,
+                                                                          float headPitch) {
+
         if (!slotContext.visible())
             return;
-        
+
         LivingEntity entity = slotContext.entity();
         if (!(entity instanceof ArmorStand) && !slotContext.identifier().equalsIgnoreCase("uma_soul"))
             return;
         if (entity.isInvisible() && !entity.isSpectator())
             return;
-        boolean suit_flag = false;
-        boolean alter_flag = false;
-        if (CuriosApi.getCuriosInventory(entity).isPresent()) {
-            var itemHandler = CuriosApi.getCuriosInventory(entity).orElse(null);
-            if (itemHandler.getStacksHandler("uma_suit").isPresent()) {
-                var stacksHandler = itemHandler.getStacksHandler("uma_suit").orElse(null);
-                IDynamicStackHandler stackHandler = stacksHandler.getStacks();
-                
-                if (stackHandler.getSlots() > 0 && stackHandler.getStackInSlot(0).getItem() instanceof UmaSuitItem) {
-                    suit_flag = stacksHandler.getRenders().get(0);
-                    
-                    alter_flag = ClientUtils.getClientUmaDataRegistry()
-                            .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stack)))
-                            .get().is(UmapyoiUmaDataTags.ALTER_MODEL);
-                }
-            }
-        }
-        
-        ResourceLocation renderTarget = suit_flag ? getSuitTarget(stack, alter_flag) : UmaSoulUtils.getName(stack);
+        ResourceLocation renderTarget = getRenderTarget(stack, entity);
         var pojo = ClientUtil.getModelPOJO(renderTarget);
         if (baseModel.needRefresh(pojo))
             baseModel.loadModel(pojo);
         VertexConsumer vertexConsumer = renderTypeBuffer
-                .getBuffer(RenderType.entityCutout(ClientUtils.getTexture(renderTarget)));
+                .getBuffer(RenderType.entityTranslucent(ClientUtils.getTexture(renderTarget)));
         baseModel.setModelProperties(entity);
         baseModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
         if (NeoForge.EVENT_BUS.post(
@@ -103,11 +86,35 @@ public class UmaSoulRenderer implements ICurioRenderer {
                 new RenderingUmaSoulEvent.Post(entity, baseModel, partialTicks, matrixStack, renderTypeBuffer, light));
     }
 
-	private ResourceLocation getSuitTarget(ItemStack stack, boolean alter) {
-		ResourceLocation identifier = ClientUtils.getClientUmaDataRegistry().get(UmaSoulUtils.getName(stack)).identifier();
-		if(alter)
-			identifier = ResourceLocation.fromNamespaceAndPath(identifier.getNamespace(), identifier.getPath()+"_alter");
-		return identifier;
-	}
+    public static ResourceLocation getRenderTarget(ItemStack stack, LivingEntity entity) {
+        boolean suit_flag = false;
+        boolean alter_flag = false;
+        if (CuriosApi.getCuriosInventory(entity).isPresent()) {
+            var itemHandler = CuriosApi.getCuriosInventory(entity).orElse(null);
+            if (itemHandler.getStacksHandler("uma_suit").isPresent()) {
+                var stacksHandler = itemHandler.getStacksHandler("uma_suit").orElse(null);
+                IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+
+                if (stackHandler.getSlots() > 0 && (stackHandler.getStackInSlot(0).getItem() instanceof UmaSuitItem ||
+                        stackHandler.getStackInSlot(0).getItem() instanceof UmaCostumeItem)) {
+                    suit_flag = stacksHandler.getRenders().get(0);
+
+                    alter_flag = ClientUtils.getClientUmaDataRegistry()
+                            .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stack)))
+                            .get().is(UmapyoiUmaDataTags.ALTER_MODEL);
+                }
+            }
+        }
+
+        ResourceLocation renderTarget = suit_flag ? getSuitTarget(stack, alter_flag) : UmaSoulUtils.getName(stack);
+        return renderTarget;
+    }
+
+    public static ResourceLocation getSuitTarget(ItemStack stack, boolean alter) {
+        ResourceLocation identifier = ClientUtils.getClientUmaDataRegistry().get(UmaSoulUtils.getName(stack)).identifier();
+        if(alter)
+            identifier = ResourceLocation.fromNamespaceAndPath(identifier.getNamespace(), identifier.getPath()+"_alter");
+        return identifier;
+    }
 
 }

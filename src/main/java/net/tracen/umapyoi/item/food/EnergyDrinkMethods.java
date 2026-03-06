@@ -6,7 +6,6 @@ import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public final class EnergyDrinkMethods {
     public static void royalBitter(ItemStack soul) {
-        UmaStatusUtils.downMotivation(soul);
         UmaSoulUtils.setActionPoint(soul, UmaSoulUtils.getMaxActionPoint(soul));
     }
     public static void smallEnergy(ItemStack soul) {

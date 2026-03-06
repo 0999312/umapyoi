@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "umapyoi:block/factor_decompose_table",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "umapyoi:block/factor_decompose_table"
+    },
+    "facing=south": {
+      "model": "umapyoi:block/factor_decompose_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "umapyoi:block/factor_decompose_table",
+      "y": 270
+    }
+  }
+}

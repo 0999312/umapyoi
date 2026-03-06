@@ -1,0 +1,43 @@
+{
+  "type": "group",
+  "max_damage": 2,
+  "ranking": "ssr",
+  "supporters": [
+    "umapyoi:darley_arabian",
+    "umapyoi:godolphin_barb",
+    "umapyoi:byerley_turk"
+  ],
+  "supports": [
+    {
+      "level": 2,
+      "support": "umapyoi:speed_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:stamina_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:strength_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:guts_support"
+    },
+    {
+      "level": 2,
+      "support": "umapyoi:wisdom_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:memory_support"
+    },
+    {
+      "level": 1,
+      "support": "umapyoi:skill_support",
+      "tag": {
+        "skill": "umapyoi:divine_speed"
+      }
+    }
+  ]
+}

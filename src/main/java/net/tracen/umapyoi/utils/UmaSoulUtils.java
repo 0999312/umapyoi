@@ -1,24 +1,27 @@
 package net.tracen.umapyoi.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.Level;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.api.UmapyoiAPI;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.item.data.DataLocation;
 import net.tracen.umapyoi.item.data.GachaRankingData;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
-import net.tracen.umapyoi.registry.umadata.Motivations;
-import net.tracen.umapyoi.registry.umadata.UmaData;
-import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
-import net.tracen.umapyoi.registry.umadata.UmaDataExtraStatus;
-import net.tracen.umapyoi.registry.umadata.UmaDataSkills;
-import net.tracen.umapyoi.registry.umadata.UmaDataTranining;
+import net.tracen.umapyoi.registry.races.UmaRaceHistory;
+import net.tracen.umapyoi.registry.umadata.*;
 
 public class UmaSoulUtils {
     
@@ -47,8 +50,31 @@ public class UmaSoulUtils {
         result.set(DataComponents.RARITY, 
         		ranking == GachaRanking.SSR ? Rarity.EPIC : ranking == GachaRanking.SR ? Rarity.UNCOMMON : Rarity.COMMON
         		);
-        result.set(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTranining(1, 6));
+        result.set(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTraining(1, 6, false));
+        result.set(DataComponentsTypeRegistry.UMADATA_APTITUDE, UmaDataAptitude.init(data.surfaceAptitude(), data.distanceAptitude()));
+        result.set(DataComponentsTypeRegistry.UMA_RACE_HISTORY, UmaRaceHistory.DEFAULT);
         return result;
+    }
+
+    public static Position getPosition(ItemStack stack, Level world) {
+        UmaData umaData = UmapyoiAPI.getUmaDataRegistry(world).getOptional(UmaSoulUtils.getName(stack)).orElseGet(() -> {
+            Umapyoi.getLogger().info("Warning: {} doesn't exist.", UmaSoulUtils.getName(stack));
+            return UmaData.DEFAULT_UMA;
+        });
+        return umaData.position();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static Position getPosition(ItemStack stack) {
+        return getPosition(stack, Minecraft.getInstance().level);
+    }
+
+    public static Aptitude[] getSurfaceAptitude(ItemStack stack) {
+        return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_APTITUDE, UmaDataAptitude.DEFAULT).getSurface();
+    }
+
+    public static Aptitude[] getDistanceAptitude(ItemStack stack) {
+        return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_APTITUDE, UmaDataAptitude.DEFAULT).getDistance();
     }
 
     public static ResourceLocation getName(ItemStack stack) {
@@ -57,7 +83,7 @@ public class UmaSoulUtils {
     }
 
     public static UmaDataBasicStatus getProperty(ItemStack stack) {
-    	return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_BASIC_STATUS.get(), 
+    	return stack.getOrDefault(DataComponentsTypeRegistry.UMADATA_BASIC_STATUS.get(),
         		new UmaDataBasicStatus(1, 1, 1, 1, 1));
     }
 
@@ -189,8 +215,8 @@ public class UmaSoulUtils {
     }
 
     public static void setPhysique(ItemStack stack, int phy) {
-    	stack.update(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTranining(1, 6), 
-    			data-> new UmaDataTranining(phy, data.talent()));
+    	stack.update(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTraining(1, 6, false),
+    			data-> new UmaDataTraining(phy, data.talent(), data.hasTrained()));
     }
 
     public static void downPhysique(ItemStack stack) {
@@ -203,12 +229,16 @@ public class UmaSoulUtils {
     }
 
     public static void setLearningTimes(ItemStack stack, int learns) {
-        stack.update(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTranining(1, 6), 
-    			data-> new UmaDataTranining(data.physique(), learns));
+        stack.update(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTraining(1, 6, false),
+    			data-> new UmaDataTraining(data.physique(), learns, data.hasTrained()));
     }
 
     public static void downLearningTimes(ItemStack stack) {
         int learns = Math.max(getLearningTimes(stack) - 1, 0);
         setLearningTimes(stack, learns);
+    }
+
+    public static boolean hasUmaSoulDebut(ItemStack stack) {
+        return stack.getOrDefault(DataComponentsTypeRegistry.UMA_RACE_HISTORY, UmaRaceHistory.DEFAULT).hasDebut();
     }
 }

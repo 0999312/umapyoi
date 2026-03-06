@@ -11,4 +11,7 @@ public class MobEffectRegistry {
             Umapyoi.MODID);
 
     public static final DeferredHolder<MobEffect, MobEffect> PANICKING = EFFECTS.register("panicking", PanickingEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> MOOD_BONUS = EFFECTS.register("mood_bonus", MoodBonus::new);
+    public static final DeferredHolder<MobEffect, MobEffect> SLOW_METABOLISM = EFFECTS.register("slow_metabolism", SlowMetabolismEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> NIGHT_OWL = EFFECTS.register("night_owl", NightOwlEffect::new);
 }

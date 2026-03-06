@@ -1,19 +1,12 @@
 {
+  "distance_aptitude": [
+    3,
+    6,
+    6,
+    2
+  ],
   "identifier": "umapyoi:silence_suzuka",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
+  "position": "runaway",
   "propertyRate": [
     20,
     0,
@@ -22,5 +15,9 @@
     0
   ],
   "ranking": "sr",
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

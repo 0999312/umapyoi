@@ -6,6 +6,9 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
+import net.neoforged.neoforge.common.NeoForge;
+import net.tracen.umapyoi.events.RetireEvent;
+import net.tracen.umapyoi.registry.umadata.UmaDataTraining;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.Lists;
@@ -71,7 +74,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     protected boolean hasResult() {
         ItemStack inputSoul = this.inputSlots.getItem(0);
         if (inputSoul.getItem() instanceof UmaSoulItem) {
-            return inputSoul.has(DataComponentsTypeRegistry.UMADATA_TRAINING);
+            return inputSoul.getOrDefault(DataComponentsTypeRegistry.UMADATA_TRAINING, new UmaDataTraining(1, 6, false)).hasTrained();
         }
         return false;
     }
@@ -80,9 +83,11 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         resultStack.onCraftedBy(player.level(), player, resultStack.getCount());
         this.resultSlots.awardUsedRecipes(player, this.getRelevantItems());
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
+        ItemStack inputSoulCopy = inputSoul.copy();
         if (inputSoul.getItem() instanceof UmaSoulItem) {
-//            UmaSoulUtils.setGrowth(inputSoul, Growth.RETIRED);
         	inputSoul.remove(DataComponentsTypeRegistry.UMADATA_TRAINING);
+            RetireEvent.Post evt = new RetireEvent.Post(inputSoulCopy, inputSoul, resultStack);
+            NeoForge.EVENT_BUS.post(evt);
             this.inputSlots.setItem(0, inputSoul);
             this.access.execute((level, pos) -> {
                 player.playSound(SoundEvents.PLAYER_LEVELUP, 1F, 1F);
@@ -162,7 +167,6 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
     }
 
     private ItemStack getResultItem() {
-        ItemStack result = ItemRegistry.UMA_FACTOR_ITEM.get().getDefaultInstance();
         ItemStack inputSoul = this.inputSlots.getItem(0).copy();
         if (!(inputSoul.getItem() instanceof UmaSoulItem))
             return ItemStack.EMPTY;
@@ -170,10 +174,10 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
 
         this.rand.setSeed(this.getFactorSeed().get());
         List<UmaFactorStack> stackList = createResultFactors(inputSoul, ranking);
+        RetireEvent.Pre evt = new RetireEvent.Pre(this.getFactorSeed().get(), stackList, inputSoul);
+        if (NeoForge.EVENT_BUS.post(evt).isCanceled()) return ItemStack.EMPTY;
 
-        result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(UmaSoulUtils.getName(inputSoul)));
-        result.set(DataComponentsTypeRegistry.FACTOR_DATA, UmaFactorUtils.serializeData(stackList));
-        return result;
+        return evt.getOutputStack();
     }
 
     public List<UmaFactorStack> createResultFactors(ItemStack inputSoul, int ranking) {
@@ -194,7 +198,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
 			case WISDOM -> statusProperty = UmaSoulUtils.getProperty(inputSoul).wisdom();
 		}
     	
-        var i = statusProperty > 19 ? 5 :
+        var i = statusProperty > 18 ? statusFactor.getMaxLevel() :
                 statusProperty > 10 ? 3 :
                 2;
         var statusFactorStack = new UmaFactorStack(statusFactor,
@@ -206,7 +210,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
                 .filter(fac -> fac.getFactorType() == FactorType.EXTRASTATUS).count();
         UmaFactor extraStatusFactor = extraStatus.skip(rand.nextLong(extraStatusCount)).findFirst()
                 .orElse(UmaFactorRegistry.PHYSIQUE_FACTOR.get());
-        var extraStatusFactorStack = new UmaFactorStack(extraStatusFactor, rand.nextInt(ranking > 18 ? 3 : 2) + 1);
+        var extraStatusFactorStack = new UmaFactorStack(extraStatusFactor, rand.nextInt(ranking > 18 ? extraStatusFactor.getMaxLevel() : 2) + 1);
 
         UmaFactorStack uniqueFactor = new UmaFactorStack(UmaFactorRegistry.UNIQUE_SKILL_FACTOR.get(), 1);
         uniqueFactor.getOrCreateTag().putString("skill", UmaSoulUtils.getSkills(inputSoul).get(0).toString());
@@ -225,7 +229,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
                 if(!result.isInheritable())
                 	return;
                 
-	            int skillLevel = this.rand.nextInt(ranking > 19 ? 6 : 4);
+	            int skillLevel = this.rand.nextInt(ranking > 18 ? 6 : 4);
 	            if (skillLevel == 0)
 	                return;
 	            
@@ -242,7 +246,7 @@ public class RetireRegisterMenu extends AbstractContainerMenu {
         UmaFactorRegistry.REGISTRY.stream()
                 .filter(fac -> fac.getFactorType() == FactorType.OTHER && !(fac instanceof SkillFactor))
                 .forEach(fac -> {
-                    int skillLevel = this.rand.nextInt(ranking > 19 ? 6 : 4);
+                    int skillLevel = this.rand.nextInt(ranking > 19 ? fac.getMaxLevel() + 1 : 4);
                     if (skillLevel == 0)
                         return;
 

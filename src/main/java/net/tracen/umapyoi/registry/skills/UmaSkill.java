@@ -70,6 +70,18 @@ public class UmaSkill{
         return this.getOrCreateDescriptionId();
     }
 
+    public Component getDescriptionDetail() {
+        return Component.translatable(this.getDetailDescriptionId());
+    }
+
+    protected String getOrCreateDescriptionDetail() {
+        return this.getDescriptionId()+".desc";
+    }
+
+    public String getDetailDescriptionId() {
+        return this.getOrCreateDescriptionDetail();
+    }
+
     public void applySkill(Level level, LivingEntity user) {
         Umapyoi.getLogger().error(String.format("Wait, %s is an empty skill! Call the dev!", this.toString()));
     }

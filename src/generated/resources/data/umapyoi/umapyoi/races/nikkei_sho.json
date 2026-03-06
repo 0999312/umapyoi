@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    1,
+    3
+  ],
+  "field": "umapyoi:nakayama",
+  "id": "umapyoi:nikkei_sho",
+  "length": 2500,
+  "ranking": "gii",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 6,
+  "year": [
+    "senior"
+  ]
+}

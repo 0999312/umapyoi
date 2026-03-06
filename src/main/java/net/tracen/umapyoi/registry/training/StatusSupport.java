@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.registry.training;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
@@ -15,7 +16,7 @@ public class StatusSupport extends TrainingSupport {
 	}
 
 	@Override
-	public boolean applySupport(ItemStack soul, SupportStack stack) {
+	public boolean applySupport(ItemStack soul, RandomSource rand, SupportStack stack) {
 		switch (statusType) {
 		case SPEED -> {
 			soul.update(DataComponentsTypeRegistry.UMADATA_BASIC_STATUS, UmaSoulUtils.getProperty(soul), data -> {

@@ -1,0 +1,16 @@
+{
+  "attribute_correction": [
+    1
+  ],
+  "field": "umapyoi:fukushima",
+  "id": "umapyoi:fukushima_mimpo_hai",
+  "length": 2000,
+  "ranking": "op",
+  "reference_level": 15,
+  "surface": "turf",
+  "tags": [],
+  "time": 7,
+  "year": [
+    "senior"
+  ]
+}

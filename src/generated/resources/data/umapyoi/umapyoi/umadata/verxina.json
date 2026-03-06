@@ -1,19 +1,12 @@
 {
+  "distance_aptitude": [
+    3,
+    6,
+    6,
+    0
+  ],
   "identifier": "umapyoi:verxina",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
+  "position": "pace_chaser",
   "propertyRate": [
     10,
     0,
@@ -22,5 +15,9 @@
     10
   ],
   "ranking": "sr",
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

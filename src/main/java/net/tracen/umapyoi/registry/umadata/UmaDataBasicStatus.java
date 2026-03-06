@@ -31,4 +31,8 @@ public record UmaDataBasicStatus(int speed, int stamina, int strength, int guts,
 	public static UmaDataBasicStatus init(int[] data) {
 		return new UmaDataBasicStatus(data[0], data[1], data[2], data[3], data[4]);
 	}
+
+	public int[] toArray() {
+		return new int[]{speed, stamina, strength, guts, wisdom};
+	}
 }

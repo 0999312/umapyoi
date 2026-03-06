@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -22,7 +23,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -38,11 +42,12 @@ public class UmaStatueBlock extends BaseEntityBlock
     public static final MapCodec<UmaStatueBlock> CODEC = simpleCodec(p -> new UmaStatueBlock());
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     @SuppressWarnings("deprecation")
     public UmaStatueBlock() {
         super(Properties.ofLegacyCopy(Blocks.STONE).noOcclusion());
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
     @Override
@@ -71,11 +76,9 @@ public class UmaStatueBlock extends BaseEntityBlock
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         BlockEntity tileEntity = level.getBlockEntity(pos);
         if (tileEntity instanceof UmaStatueBlockEntity obon) {
-            if (obon.isEmpty()) {
-                if (stack.isEmpty()) {
-                    return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
-                }
-                else if (obon.addItem(player.getAbilities().instabuild ? stack.copy() : stack)) {
+            if (obon.isEmpty() || obon.isCostumeEmpty()) {
+                if (!stack.isEmpty() && obon.addItem(player.getAbilities().instabuild ? stack.copy() : stack))
+                {
                     level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.STONE_PLACE,
                                     SoundSource.BLOCKS, 1.0F, 0.8F
                     );
@@ -83,7 +86,7 @@ public class UmaStatueBlock extends BaseEntityBlock
                 }
 
             }
-            else if (hand.equals(InteractionHand.MAIN_HAND)) {
+            if (hand.equals(InteractionHand.MAIN_HAND)) {
                 if (!player.isCreative()) {
                     if (!player.getInventory().add(obon.removeItem())) {
                         Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), obon.removeItem());
@@ -108,6 +111,7 @@ public class UmaStatueBlock extends BaseEntityBlock
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof UmaStatueBlockEntity obon) {
                 Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), obon.getStoredItem());
+                Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), obon.getCostume());
                 worldIn.updateNeighbourForOutputSignal(pos, this);
             }
             super.onRemove(state, worldIn, pos, newState, isMoving);
@@ -116,7 +120,17 @@ public class UmaStatueBlock extends BaseEntityBlock
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        BlockPos blockpos = context.getClickedPos();
+        Level level = context.getLevel();
+        if (blockpos.getY() < level.getMaxBuildHeight() - 1
+                && level.getBlockState(blockpos.above()).canBeReplaced(context)) {
+            FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+            return this.defaultBlockState()
+                    .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                    .setValue(WATERLOGGED, fluidstate.is(Fluids.WATER));
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -127,6 +141,24 @@ public class UmaStatueBlock extends BaseEntityBlock
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(FACING);
+        builder.add(FACING, WATERLOGGED);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
+        if (pDirection == Direction.UP) {
+            if (!pNeighborState.is(BlockRegistry.UMA_STATUES_UPPER.get())) {
+                return pState.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+            }
+        }
+        if (pState.getValue(WATERLOGGED)) {
+            pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+        }
+        return !pState.canSurvive(pLevel, pPos) ? (pState.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState()) : super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 }

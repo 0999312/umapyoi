@@ -13,22 +13,38 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.tracen.umapyoi.UmapyoiConfig;
+import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.events.ApplyUmasoulAttributeEvent;
 import net.tracen.umapyoi.events.ResumeActionPointEvent;
 import net.tracen.umapyoi.events.SettingPropertyEvent;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.registry.UmapyoiAttributesRegistry;
+import net.tracen.umapyoi.registry.umadata.UmaDataTraining;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
+import java.util.Optional;
+
 public class UmaSoulCuriosWrapper implements ICurio {
     private final ItemStack stack;
 
     public UmaSoulCuriosWrapper(ItemStack stack) {
         this.stack = stack;
+    }
+
+    @Override
+    public boolean canEquip(SlotContext slotContext) {
+        return slotContext.identifier().equals("uma_soul");
+    }
+
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext) {
+        return slotContext.identifier().equals("uma_soul");
     }
 
     @Override
@@ -40,16 +56,17 @@ public class UmaSoulCuriosWrapper implements ICurio {
     public ItemStack getStack() {
         return stack;
     }
-    
 
     @Override
     public void curioTick(SlotContext slotContext) {
-        if (!slotContext.identifier().equalsIgnoreCase("uma_soul"))
-            return;
-        LivingEntity entity = slotContext.entity();
-        Level commandSenderWorld = entity.getCommandSenderWorld();
         if (this.getStack().isEmpty())
             return;
+        if (!slotContext.identifier().equalsIgnoreCase("uma_soul"))
+            return;
+
+        LivingEntity entity = slotContext.entity();
+        Level commandSenderWorld = entity.getCommandSenderWorld();
+
         if (!commandSenderWorld.isClientSide()) {
             resumeActionPoint(entity);
         }
@@ -64,46 +81,54 @@ public class UmaSoulCuriosWrapper implements ICurio {
                     UmaSoulUtils.getMaxActionPoint(this.getStack())));
         }
     }
-    
-    @Override
-    public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext,
-    		ResourceLocation id) {
-    	 Multimap<Holder<Attribute>, AttributeModifier> atts = LinkedHashMultimap.create();
-    	 var user = slotContext.entity();
-         if (!slotContext.identifier().equalsIgnoreCase("uma_soul"))
-             return atts;
-         CuriosApi.addSlotModifier(atts, "uma_suit", id, 1.0, AttributeModifier.Operation.ADD_VALUE);
-         atts.put(Attributes.MOVEMENT_SPEED,
-                 new AttributeModifier(id, getExactProperty(user, StatusType.SPEED,
-                		 UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
-                         UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-                                 : AttributeModifier.Operation.ADD_VALUE));
-        
-         atts.put(Attributes.ATTACK_DAMAGE,
-                 new AttributeModifier(id, getExactProperty(user, StatusType.STRENGTH,
-                		 UmapyoiConfig.UMASOUL_MAX_STRENGTH_ATTACK.get()),
-                         UmapyoiConfig.UMASOUL_STRENGTH_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-                                 : AttributeModifier.Operation.ADD_VALUE));
-         atts.put(Attributes.MAX_HEALTH, 
-                 new AttributeModifier(id, getExactProperty(user, StatusType.STAMINA,
-                		 UmapyoiConfig.UMASOUL_MAX_STAMINA_HEALTH.get()),
-                         UmapyoiConfig.UMASOUL_STAMINA_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-                                 : AttributeModifier.Operation.ADD_VALUE));
-         atts.put(Attributes.ARMOR,
-                 new AttributeModifier(id, getExactProperty(user, StatusType.GUTS,
-                		 UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR.get()),
-                         UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-                                 : AttributeModifier.Operation.ADD_VALUE));
-         atts.put(Attributes.ARMOR_TOUGHNESS,
-                 new AttributeModifier(id, getExactProperty(user, StatusType.GUTS,
-                		 UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS.get()),
-                         UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-                                 : AttributeModifier.Operation.ADD_VALUE));
-         ApplyUmasoulAttributeEvent event = new ApplyUmasoulAttributeEvent(this.getStack(), slotContext, id, atts);
-         NeoForge.EVENT_BUS.post(event);
-         return event.getAttributes();
-    }
 
+    @Override
+    public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id) {
+        Multimap<Holder<Attribute>, AttributeModifier> atts = LinkedHashMultimap.create();
+        LivingEntity user = slotContext.entity();
+        if (!slotContext.identifier().equalsIgnoreCase("uma_soul"))
+            return atts;
+        CuriosApi.addSlotModifier(atts, "uma_suit", id, 1.0, AttributeModifier.Operation.ADD_VALUE);
+        if (!Optional.ofNullable(getStack().get(DataComponentsTypeRegistry.UMADATA_TRAINING)).map(UmaDataTraining::hasTrained).orElse(true))
+            return atts;
+
+        boolean hasFatique = user != null && user.hasEffect(MobEffectRegistry.SLOW_METABOLISM);
+
+        atts.put(UmapyoiAttributesRegistry.SPRINT_SPEED,
+                new AttributeModifier(id, 
+                        hasFatique ? 0 : getExactProperty(user, StatusType.SPEED, UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
+                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL : AttributeModifier.Operation.ADD_VALUE));
+
+        atts.put(NeoForgeMod.SWIM_SPEED,
+                new AttributeModifier(id, 
+                        hasFatique ? 0 : getExactProperty(user, StatusType.SPEED, UmapyoiConfig.UMASOUL_MAX_SPEED.get()),
+                        UmapyoiConfig.UMASOUL_SPEED_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL : AttributeModifier.Operation.ADD_VALUE));
+
+        atts.put(Attributes.ATTACK_DAMAGE,
+                new AttributeModifier(id, 
+                        getExactProperty(user, StatusType.STRENGTH, UmapyoiConfig.UMASOUL_MAX_STRENGTH_ATTACK.get()),
+                        UmapyoiConfig.UMASOUL_STRENGTH_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                : AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.MAX_HEALTH,
+                new AttributeModifier(id, 
+                        getExactProperty(user, StatusType.STAMINA, UmapyoiConfig.UMASOUL_MAX_STAMINA_HEALTH.get()) * (hasFatique ? 1.05 : 1),
+                        UmapyoiConfig.UMASOUL_STAMINA_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                : AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.ARMOR,
+                new AttributeModifier(id, 
+                        getExactProperty(user, StatusType.GUTS, UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR.get()) * (hasFatique ? 1.05 : 1),
+                        UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                : AttributeModifier.Operation.ADD_VALUE));
+        atts.put(Attributes.ARMOR_TOUGHNESS,
+                new AttributeModifier(id, 
+                        getExactProperty(user, StatusType.GUTS, UmapyoiConfig.UMASOUL_MAX_GUTS_ARMOR_TOUGHNESS.get()),
+                        UmapyoiConfig.UMASOUL_GUTS_PRECENT_ENABLE.get() ? AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                : AttributeModifier.Operation.ADD_VALUE));
+
+        ApplyUmasoulAttributeEvent event = new ApplyUmasoulAttributeEvent(user, this.getStack(), slotContext, id, atts, this::getExactProperty);
+        NeoForge.EVENT_BUS.post(event);
+        return event.getAttributes();
+    }
 
     public double getExactProperty(LivingEntity user, StatusType type, double limit) {
         var retiredValue = !(this.getStack().has(DataComponentsTypeRegistry.UMADATA_TRAINING)) ? 1.0D : 0.25D;
@@ -117,9 +142,18 @@ public class UmaSoulCuriosWrapper implements ICurio {
 		}
         var propertyRate = 1.0D + (rate / 100.0D);
         var totalProperty = propertyPercentage(type);
-        SettingPropertyEvent event = new SettingPropertyEvent(user, this.getStack(), retiredValue, propertyRate, totalProperty);
+        SettingPropertyEvent event = new SettingPropertyEvent(user, this.getStack(), retiredValue, propertyRate, totalProperty, type);
         NeoForge.EVENT_BUS.post(event);
         return event.getResultProperty() * limit;
+    }
+
+    public static double propertyPercentageByValue(int x) {
+        var statLimit = UmapyoiConfig.STAT_LIMIT_VALUE.get();
+        var denominator = 1 + Math.pow(Math.E,
+                (x > statLimit ? (-0.125 * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get()) : -0.125) *
+                        (x - statLimit)
+        );
+        return 1 / denominator;
     }
 
     private double propertyPercentage(StatusType type) {
@@ -132,10 +166,6 @@ public class UmaSoulCuriosWrapper implements ICurio {
 			case WISDOM -> x = UmaSoulUtils.getProperty(this.getStack()).wisdom();
 		}
         
-        var statLimit = UmapyoiConfig.STAT_LIMIT_VALUE.get();
-        var denominator = 1 + Math.pow(Math.E, 
-                (x > statLimit ? (-0.125 * UmapyoiConfig.STAT_LIMIT_REDUCTION_RATE.get()) : -0.125) * 
-                (x - statLimit));
-        return 1 / denominator;
+        return propertyPercentageByValue(x);
     }
 }

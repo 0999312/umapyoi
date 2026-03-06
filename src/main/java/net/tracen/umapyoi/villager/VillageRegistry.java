@@ -8,13 +8,17 @@ import com.google.common.collect.ImmutableSet;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.Umapyoi;
@@ -51,5 +55,9 @@ public class VillageRegistry {
 
     private static Collection<BlockState> assembleStates(Block block) {
         return block.getStateDefinition().getPossibleStates().stream().collect(Collectors.toList());
+    }
+
+    public static void registerHeroOfTheVillage(FMLCommonSetupEvent evt) {
+        GiveGiftToHero.GIFTS.put(TRAINER.get(), ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "race/ticket/race_ticket_up_to_op_gameplay")));
     }
 }

@@ -20,10 +20,7 @@ import net.tracen.umapyoi.UmapyoiConfig;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
-import net.tracen.umapyoi.utils.GachaRanking;
-import net.tracen.umapyoi.utils.ResultRankingUtils;
-import net.tracen.umapyoi.utils.UmaSoulUtils;
-import net.tracen.umapyoi.utils.UmaStatusUtils;
+import net.tracen.umapyoi.utils.*;
 
 public class UmaSoulItem extends Item{
     private static final Comparator<Reference<UmaData>> COMPARATOR = new UmaDataComparator();
@@ -34,6 +31,11 @@ public class UmaSoulItem extends Item{
     
     public static Stream<Reference<UmaData>> sortedUmaDataList(HolderLookup.Provider provider) {
         return provider.lookupOrThrow(UmaData.REGISTRY_KEY).listElements().sorted(UmaSoulItem.COMPARATOR);
+    }
+
+    @Override
+    public String getCreatorModId(ItemStack itemStack) {
+        return UmaSoulUtils.getName(itemStack).getNamespace();
     }
     
     @Override
@@ -88,6 +90,30 @@ public class UmaSoulItem extends Item{
                     UmaStatusUtils.getStatusLevel(property.wisdom()),
                     UmaStatusUtils.getStatusLevel(maxProperty.wisdom()))
                             .withStyle(ChatFormatting.DARK_GREEN));
+            tooltip.add(Component.literal(""));
+
+            tooltip.add(Component.translatable("tooltip.umapyoi.uma_soul.aptitude.details").withStyle(ChatFormatting.AQUA));
+            Aptitude[] surfaceAptitudes = UmaSoulUtils.getSurfaceAptitude(stack);
+            tooltip.add(
+                    Component.translatable("tooltip.umapyoi.uma_soul.aptitude.turf", surfaceAptitudes[0].styledComponent()).withStyle(ChatFormatting.GREEN)
+                            .append(" / ").withStyle(ChatFormatting.RESET)
+                            .append(Component.translatable("tooltip.umapyoi.uma_soul.aptitude.dirt", surfaceAptitudes[1].styledComponent()).withStyle(ChatFormatting.GOLD))
+                            .append(" / ").withStyle(ChatFormatting.RESET)
+                            .append(Component.translatable("tooltip.umapyoi.uma_soul.aptitude.synthetic", surfaceAptitudes[2].styledComponent()).withStyle(ChatFormatting.GOLD))
+            );
+            Aptitude[] distanceAptitudes = UmaSoulUtils.getDistanceAptitude(stack);
+            tooltip.add(
+                    Component.translatable("tooltip.umapyoi.uma_soul.aptitude.short", distanceAptitudes[0].styledComponent())
+                            .append(" / ")
+                            .append(Component.translatable("tooltip.umapyoi.uma_soul.aptitude.miles", distanceAptitudes[1].styledComponent())
+                                    .append(" / ")
+                                    .append(Component.translatable("tooltip.umapyoi.uma_soul.aptitude.medium", distanceAptitudes[2].styledComponent()))
+                                    .append(" / ")
+                                    .append(Component.translatable("tooltip.umapyoi.uma_soul.aptitude.long", distanceAptitudes[3].styledComponent())))
+            );
+            tooltip.add(
+                    Component.translatable("tooltip.umapyoi.uma_soul.aptitude.strategy", Component.translatable("tooltip.umapyoi.uma_soul.aptitude.strategy." + UmaSoulUtils.getPosition(stack).name().toLowerCase()))
+            );
         } else {
             tooltip.add(Component.translatable("tooltip.umapyoi.press_shift_for_details")
                     .withStyle(ChatFormatting.AQUA));

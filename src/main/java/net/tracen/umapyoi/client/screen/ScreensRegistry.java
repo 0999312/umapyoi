@@ -12,11 +12,18 @@ import net.tracen.umapyoi.container.ContainerRegistry;
 public class ScreensRegistry {
     @SubscribeEvent
     public static void screenRegistry(final RegisterMenuScreensEvent event) {
-            event.register(ContainerRegistry.THREE_GODDESS.get(), ThreeGoddessScreen::new);
-            event.register(ContainerRegistry.TRAINING_FACILITY.get(), TrainingFacilityScreen::new);
-            event.register(ContainerRegistry.SKILL_LEARNING_TABLE.get(), SkillLearningScreen::new);
-            event.register(ContainerRegistry.RETIRE_REGISTER.get(), RetireRegisterScreen::new);
-            event.register(ContainerRegistry.DISASSEMBLY_BLOCK.get(), DisassemblyBlockScreen::new);
-            event.register(ContainerRegistry.UMA_SELECT_MENU.get(), UmaSelectScreen::new);
+        event.register(ContainerRegistry.THREE_GODDESS.get(), ThreeGoddessScreen::new);
+        event.register(ContainerRegistry.TRAINING_FACILITY.get(), TrainingFacilityScreen::new);
+        event.register(ContainerRegistry.SKILL_LEARNING_TABLE.get(), SkillLearningScreen::new);
+        event.register(ContainerRegistry.RETIRE_REGISTER.get(), RetireRegisterScreen::new);
+        event.register(ContainerRegistry.DISASSEMBLY_BLOCK.get(), DisassemblyBlockScreen::new);
+
+        event.register(ContainerRegistry.UMA_SELECT_MENU.get(), UmaSelectScreen::new);
+        event.register(ContainerRegistry.RACE_SELECT_MENU.get(), RaceSelectScreen::new);
+
+        event.register(ContainerRegistry.RACE_REGISTER.get(), RaceScreen::new);
+
+        event.register(ContainerRegistry.FACTOR_DECOMPOSE_MENU.get(), FactorDecomposeScreen::new);
+        event.register(ContainerRegistry.FACTOR_RESEARCH_MENU.get(), FactorResearchScreen::new);
     }
 }
