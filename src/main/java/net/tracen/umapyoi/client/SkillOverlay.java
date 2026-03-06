@@ -3,6 +3,7 @@ package net.tracen.umapyoi.client;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.resources.ResourceLocation;
@@ -26,7 +27,7 @@ public class SkillOverlay implements LayeredDraw.Layer {
     private SkillOverlay() {
     }
 
-    private static final ResourceLocation HUD = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/gui/skill_hud.png");
+    public static final ResourceLocation HUD = ResourceLocation.fromNamespaceAndPath(Umapyoi.MODID, "textures/gui/skill_hud.png");
 
     @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
@@ -40,21 +41,27 @@ public class SkillOverlay implements LayeredDraw.Layer {
             return;
 
         if (!UmapyoiAPI.getUmaSoul(player).isEmpty()) {
-            guiGraphics.blit(HUD, x + 102, y - 21, 0, 0, 96, 20, 128, 64);
-            renderSkill(UmapyoiAPI.getUmaSoul(player), guiGraphics, x + 102, y - 21);
+            int xOffset = UmapyoiConfig.TOPLEFT_COORD_SKILL_X.get();
+            int yOffset = UmapyoiConfig.TOPLEFT_COORD_SKILL_Y.get();
+            guiGraphics.blit(HUD, x + xOffset, y + yOffset, 0, 0, 96, 20, 128, 64);
+            renderSkill(UmapyoiAPI.getUmaSoul(player), guiGraphics, x + xOffset, y + yOffset);
         }
     }
 
     private void renderSkill(ItemStack soul, GuiGraphics guiGraphics, int x, int y) {
         UmaSkill skill = UmaSkillRegistry.REGISTRY.get(UmaSoulUtils.getSelectedSkill(soul));
+        renderSkill(skill, minecraft.font, guiGraphics, x, y);
+    }
+
+    public static void renderSkill(UmaSkill skill, Font font, GuiGraphics guiGraphics, int x, int y) {
         if (skill != null) {
             switch (skill.getType()) {
-            case BUFF -> guiGraphics.blit(HUD, x + 3, y + 2, 0, 48, 16, 16, 128, 64);
-            case HINDER -> guiGraphics.blit(HUD, x + 3, y + 2, 16, 48, 16, 16, 128, 64);
-            case HEAL -> guiGraphics.blit(HUD, x + 3, y + 2, 32, 48, 16, 16, 128, 64);
-            case PASSIVE -> guiGraphics.blit(HUD, x + 3, y + 2, 48, 48, 16, 16, 128, 64);
+                case BUFF -> guiGraphics.blit(HUD, x + 3, y + 2, 0, 48, 16, 16, 128, 64);
+                case HINDER -> guiGraphics.blit(HUD, x + 3, y + 2, 16, 48, 16, 16, 128, 64);
+                case HEAL -> guiGraphics.blit(HUD, x + 3, y + 2, 32, 48, 16, 16, 128, 64);
+                case PASSIVE -> guiGraphics.blit(HUD, x + 3, y + 2, 48, 48, 16, 16, 128, 64);
             }
-            guiGraphics.drawString(minecraft.font, skill.getDescription(), x + 22, y + 6, 0x794016);
+            guiGraphics.drawString(font, skill.getDescription(), x + 22, y + 6, 0x794016);
         } else {
             guiGraphics.blit(HUD, x, y, 0, 20, 96, 20, 128, 64);
         }

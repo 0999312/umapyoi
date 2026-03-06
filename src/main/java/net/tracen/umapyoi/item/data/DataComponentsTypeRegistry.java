@@ -5,14 +5,13 @@ import java.util.List;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.registry.factors.FactorData;
-import net.tracen.umapyoi.registry.umadata.UmaDataBasicStatus;
-import net.tracen.umapyoi.registry.umadata.UmaDataExtraStatus;
-import net.tracen.umapyoi.registry.umadata.UmaDataSkills;
-import net.tracen.umapyoi.registry.umadata.UmaDataTranining;
+import net.tracen.umapyoi.registry.races.UmaRaceHistory;
+import net.tracen.umapyoi.registry.umadata.*;
 
 public class DataComponentsTypeRegistry {
 	public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister
@@ -67,17 +66,41 @@ public class DataComponentsTypeRegistry {
 		        .networkSynchronized(UmaDataSkills.STREAM)
 	);
 	
-	public static final DeferredHolder<DataComponentType<?>, DataComponentType<UmaDataTranining>> UMADATA_TRAINING = 
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<UmaDataTraining>> UMADATA_TRAINING =
 		DATA_COMPONENTS.registerComponentType("umadata_training", 
 				builder -> builder
-		        .persistent(UmaDataTranining.CODEC)
-		        .networkSynchronized(UmaDataTranining.STREAM)
+		        .persistent(UmaDataTraining.CODEC)
+		        .networkSynchronized(UmaDataTraining.STREAM)
 	);
-		
+
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<UmaDataAptitude>> UMADATA_APTITUDE =
+		DATA_COMPONENTS.registerComponentType("umadata_aptitude",
+			builder -> builder
+				.persistent(UmaDataAptitude.CODEC)
+				.networkSynchronized(UmaDataAptitude.STREAM));
+
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<FactorData>>> FACTOR_DATA = 
 		DATA_COMPONENTS.registerComponentType("factor_data", 
 				builder -> builder
 		        .persistent(FactorData.CODEC.listOf())
 		        .networkSynchronized(FactorData.STREAM.apply(ByteBufCodecs.list()))
 	);
+
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<UmaRaceHistory>> UMA_RACE_HISTORY =
+		DATA_COMPONENTS.registerComponentType("uma_race_history",
+				builder -> builder
+				.persistent(UmaRaceHistory.CODEC)
+				.networkSynchronized(UmaRaceHistory.STREAM)
+		);
+
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<ResourceLocation>> COSMETIC_DATA =
+			DATA_COMPONENTS.registerComponentType("cosmetic",
+					builder -> builder
+							.persistent(ResourceLocation.CODEC)
+							.networkSynchronized(ResourceLocation.STREAM_CODEC)
+			);
+
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<ResourceLocation>> RACE_DATA =
+			DATA_COMPONENTS.registerComponentType("race",
+					builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
 }

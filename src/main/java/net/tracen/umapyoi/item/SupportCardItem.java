@@ -40,7 +40,7 @@ public class SupportCardItem extends Item implements SupportContainer {
 	}
 
 	public static Stream<Reference<SupportCard>> sortedCardDataList(HolderLookup.Provider provider) {
-		return provider.lookupOrThrow(SupportCard.REGISTRY_KEY).listElements().sorted(SupportCardItem.COMPARATOR);
+		return UmapyoiAPI.getSupportCardRegistry(provider).listElements().sorted(SupportCardItem.COMPARATOR);
 	}
 
 	@Override

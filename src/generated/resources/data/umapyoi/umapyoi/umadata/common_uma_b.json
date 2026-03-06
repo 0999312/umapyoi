@@ -1,26 +1,16 @@
 {
+  "distance_aptitude": [
+    4,
+    4,
+    4,
+    4
+  ],
   "identifier": "umapyoi:common_uma_b",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
-  "propertyRate": [
-    0,
-    0,
-    0,
-    0,
-    0
-  ],
+  "position": "late_surger",
   "ranking": "r",
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    4,
+    4,
+    5
+  ]
 }

@@ -1,6 +1,7 @@
 package net.tracen.umapyoi.client.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -10,12 +11,19 @@ import cn.mcmod_mmf.mmlib.client.model.BedrockHumanoidModel;
 import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockPart;
 import cn.mcmod_mmf.mmlib.client.model.pojo.BedrockModelPOJO;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ElytraItem;
+import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.UmapyoiConfig;
+import net.tracen.umapyoi.api.UmapyoiAPI;
+import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
+import net.tracen.umapyoi.registry.umadata.UmaData;
+import net.tracen.umapyoi.utils.ClientUtils;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel<T> {
 
@@ -47,9 +55,14 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     }
 
     @Override
+    public BedrockPart getChild(String partName) {
+        return Objects.requireNonNullElse(super.getChild(partName), new BedrockPart());
+    }
+
+    @Override
     public void loadModel(BedrockModelPOJO pojo) {
         super.loadModel(pojo);
-        
+
         this.rightArmDown = this.getChild("right_arm_down");
         this.leftArmDown = this.getChild("left_arm_down");
         this.rightLegDown = this.getChild("right_leg_down");
@@ -131,7 +144,12 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             else 
             	this.longHairParts.forEach(part -> part.xRot = 0F);
 
-            animationEarTail(entityIn, pAgeInTicks);
+            ItemStack renderingUmaSoul = UmapyoiAPI.getRenderingUmaSoul(entityIn);
+            boolean isStucked = ClientUtils.getClientUmaDataRegistry()
+                    .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(renderingUmaSoul)))
+                    .get().is(UmapyoiUmaDataTags.STUCK_MODEL);
+            if(!isStucked)
+                animationEarTail(entityIn, pAgeInTicks);
         }
         this.hat.copyFrom(head);
 
@@ -181,51 +199,34 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
 
             this.crouching = player.isCrouching();
             if (UmapyoiConfig.VANILLA_ARMOR_RENDER.get() && !UmapyoiConfig.HIDE_PARTS_RENDER.get()) {
-                
-                if (!player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
-                    this.hat.visible = false;
-                }else {
-                    this.hat.visible = true;
-                }
+                var noHelmet = player.getItemBySlot(EquipmentSlot.HEAD).isEmpty();
+                this.setHatAndEarsVisible(noHelmet, true);
 
-                if (!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty()
-                        && !(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ElytraItem)) {
-                    this.hideParts.visible = false;
-                    this.cape.visible = false;
-                }else {
-                    this.hideParts.visible = true;
-                    this.cape.visible = true;
-                }
+                var chestEquipment = player.getItemBySlot(EquipmentSlot.CHEST);
+                var noChestplate = chestEquipment.isEmpty() || (chestEquipment.getItem() instanceof ElytraItem);
+                this.hideParts.visible = noChestplate;
+                this.cape.visible = noChestplate;
 
-                if (!player.getItemBySlot(EquipmentSlot.LEGS).isEmpty()) {
-                    this.rightLegHideParts.visible = false;
-                    this.leftLegHideParts.visible = false;
-                }else {
-                    this.rightLegHideParts.visible = true;
-                    this.leftLegHideParts.visible = true;
-                }
+                var noLeggings = player.getItemBySlot(EquipmentSlot.LEGS).isEmpty();
+                this.rightLegHideParts.visible = noLeggings;
+                this.leftLegHideParts.visible = noLeggings;
 
-                if (!player.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
-                    this.rightFoot.visible = false;
-                    this.leftFoot.visible = false;
-                }else {
-                    this.rightFoot.visible = true;
-                    this.leftFoot.visible = true;
-                }
-            }
-            
-            if (this.hat.visible) {
-                if (this.leftEarHideParts != null)
-                    this.leftEar.visible = false;
-                if (this.rightEarHideParts != null)
-                    this.rightEar.visible = false;
-            } else {
-                if (this.leftEarHideParts != null)
-                    this.leftEar.visible = true;
-                if (this.rightEarHideParts != null)
-                    this.rightEar.visible = true;
+                var noBoots = player.getItemBySlot(EquipmentSlot.FEET).isEmpty();
+                this.rightFoot.visible = noBoots;
+                this.leftFoot.visible = noBoots;
             }
         }
+    }
+
+    @Override
+    public void setAllVisible(boolean visible) {
+        this.setHatAndEarsVisible(visible, visible);
+        this.setHeadVisible(visible);
+        this.setBodyVisible(visible);
+        this.setCapeVisible(visible);
+        this.setArmsVisible(visible);
+        this.setLegsVisible(visible);
+        this.setTailVisible(visible);
     }
 
     public void copyAnim(BedrockPart part, ModelPart old_part) {
@@ -248,6 +249,92 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
             part.z -= 0.125F;
         if (part == this.rightLeg)
             part.z -= 0.125F;
+    }
+
+    /**
+     * Set the visibility of both the hat and the ears. Should be preferred over setting the
+     * hat's visibility directly to ensure that the correct ear parts are shown.
+     */
+    public void setHatAndEarsVisible(boolean hatVisible, boolean earsVisible) {
+        this.hat.visible = hatVisible;
+        setEarsVisible(earsVisible);
+    }
+
+    public void setEarsVisible(boolean visible) {
+        setLeftEarVisible(visible);
+        setRightEarVisible(visible);
+    }
+
+    public void setLeftEarVisible(boolean visible) {
+        this.leftEarHideParts.visible = visible;
+        // hide parts (earmuffs) are mounted to hat
+        this.leftEar.visible = visible && (!this.hat.visible || this.leftEarHideParts.isEmpty());
+    }
+
+    public void setRightEarVisible(boolean visible) {
+        this.rightEarHideParts.visible = visible;
+        // hide parts (earmuffs) are mounted to hat
+        this.rightEar.visible = visible && (!this.hat.visible || this.rightEarHideParts.isEmpty());
+    }
+
+    /**
+     * Set the visibility of the head and long hair parts.
+     */
+    public void setHeadVisible(boolean visible) {
+        this.head.visible = visible;
+        this.setLongHairPartsVisible(visible);
+    }
+
+    public void setBodyVisible(boolean visible) {
+        this.body.visible = visible;
+        this.hideParts.visible = visible;
+    }
+
+    public void setCapeVisible(boolean visible) {
+        this.cape.visible = visible;
+    }
+
+    public void setArmsVisible(boolean visible) {
+        setLeftArmVisible(visible);
+        setRightArmVisible(visible);
+    }
+
+    public void setLeftArmVisible(boolean visible) {
+        this.leftArm.visible = visible;
+        this.leftArmDown.visible = visible;
+    }
+
+    public void setRightArmVisible(boolean visible) {
+        this.rightArm.visible = visible;
+        this.rightArmDown.visible = visible;
+    }
+
+    public void setLegsVisible(boolean visible) {
+        setLeftLegVisible(visible);
+        setRightLegVisible(visible);
+    }
+
+    public void setLeftLegVisible(boolean visible) {
+        this.leftLeg.visible = visible;
+        this.leftLegDown.visible = visible;
+        this.leftLegHideParts.visible = visible;
+        this.leftFoot.visible = visible;
+    }
+
+    public void setRightLegVisible(boolean visible) {
+        this.rightLeg.visible = visible;
+        this.rightLegDown.visible = visible;
+        this.rightLegHideParts.visible = visible;
+        this.rightFoot.visible = visible;
+    }
+
+    public void setTailVisible(boolean visible) {
+        this.tail.visible = visible;
+        this.tailDown.visible = visible;
+    }
+
+    public void setLongHairPartsVisible(boolean visible) {
+        this.longHairParts.forEach(part -> part.visible = visible);
     }
     
     public void showHat() {

@@ -1,0 +1,18 @@
+{
+  "attribute_correction": [
+    1,
+    3
+  ],
+  "field": "umapyoi:tokyo",
+  "id": "umapyoi:fuji_stakes",
+  "length": 1600,
+  "ranking": "gii",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 20,
+  "year": [
+    "senior",
+    "classic"
+  ]
+}

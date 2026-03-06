@@ -1,19 +1,12 @@
 {
+  "distance_aptitude": [
+    7,
+    7,
+    7,
+    7
+  ],
   "identifier": "umapyoi:godolphin_barb",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
+  "position": "pace_chaser",
   "propertyRate": [
     25,
     0,
@@ -21,5 +14,9 @@
     0,
     25
   ],
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    7,
+    7,
+    5
+  ]
 }

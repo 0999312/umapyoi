@@ -10,18 +10,14 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
 import net.tracen.umapyoi.client.model.UmaPlayerModel;
-import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
 import net.tracen.umapyoi.events.client.RenderingUmaSuitEvent;
 import net.tracen.umapyoi.item.UmaSoulItem;
-import net.tracen.umapyoi.registry.umadata.UmaData;
 import net.tracen.umapyoi.utils.ClientUtils;
-import net.tracen.umapyoi.utils.UmaSoulUtils;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
@@ -30,6 +26,10 @@ import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 public abstract class AbstractSuitRenderer implements ICurioRenderer {
 
     private final UmaPlayerModel<LivingEntity> baseModel;
+
+    public UmaPlayerModel<LivingEntity> getBaseModel() {
+        return baseModel;
+    }
 
     public AbstractSuitRenderer() {
         baseModel = new UmaPlayerModel<>();
@@ -62,29 +62,24 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
                     if (!(stacksHandler).getRenders().get(0))
                         return;
                     
-                    flat_flag = ClientUtils.getClientUmaDataRegistry()
-                            .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
-                            .get().is(UmapyoiUmaDataTags.FLAT_CHEST);
+                    flat_flag = ClientUtils.isFlatUmamusume(stackInSlot);
                     
-                    tanned = ClientUtils.getClientUmaDataRegistry()
-                            .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stackInSlot)))
-                            .get().is(UmapyoiUmaDataTags.TANNED_SKIN);
+                    tanned = ClientUtils.isTannedSkin(stackInSlot);
                 }
 
                 VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(
-                        RenderType.entityTranslucentCull(flat_flag ? getFlatTexture(tanned) : getTexture(tanned)));
+                        RenderType.entityTranslucentCull(flat_flag ? getFlatTexture(stack, tanned) : getTexture(stack, tanned)));
 
-                var pojo = ClientUtil.getModelPOJO(flat_flag ? getFlatModel() : getModel());
+                var pojo = ClientUtil.getModelPOJO(flat_flag ? getFlatModel(stack) : getModel(stack));
                 if (baseModel.needRefresh(pojo))
                     baseModel.loadModel(pojo);
-                if (NeoForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Pre(entity, baseModel, partialTicks,
-                        matrixStack, renderTypeBuffer, light)).isCanceled())
-                    return;
                 baseModel.setModelProperties(entity);
                 baseModel.head.visible = false;
                 baseModel.tail.visible = false;
-                baseModel.hat.visible = false;
                 baseModel.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+                if (NeoForge.EVENT_BUS.post(new RenderingUmaSuitEvent.Pre(entity, baseModel, partialTicks,
+                        matrixStack, renderTypeBuffer, light)).isCanceled())
+                    return;
 
                 if (renderLayerParent.getModel() instanceof HumanoidModel) {
                     @SuppressWarnings("unchecked")
@@ -108,12 +103,12 @@ public abstract class AbstractSuitRenderer implements ICurioRenderer {
         });
     }
 
-    protected abstract ResourceLocation getModel();
+    public abstract ResourceLocation getModel(ItemStack stack);
 
-    protected abstract ResourceLocation getTexture(boolean tanned);
+    public abstract ResourceLocation getTexture(ItemStack stack, boolean tanned);
 
-    protected abstract ResourceLocation getFlatModel();
+    public abstract ResourceLocation getFlatModel(ItemStack stack);
 
-    protected abstract ResourceLocation getFlatTexture(boolean tanned);
+    public abstract ResourceLocation getFlatTexture(ItemStack stack, boolean tanned);
 
 }

@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.client.screen;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import org.joml.Quaternionf;
 
 import com.mojang.blaze3d.platform.Lighting;
@@ -34,8 +35,9 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
 	
 	@Override
 	protected void renderBg(GuiGraphics graphic, float partialTicks, int mouseX, int mouseY) {
+		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 		graphic.blit(BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-		this.renderModels(graphic);
+
 		// Render progress bar
 		int l = this.menu.getProgressionScaled();
 		graphic.blit(BACKGROUND_TEXTURE, this.leftPos + 9, this.topPos + 112, 0, 220, l + 1, 5);
@@ -75,6 +77,7 @@ public class ThreeGoddessScreen extends AbstractContainerScreen<ThreeGoddessCont
 	public void render(GuiGraphics graphic, final int mouseX, final int mouseY, float partialTicks) {
 		super.render(graphic, mouseX, mouseY, partialTicks);
 		this.renderTooltip(graphic, mouseX, mouseY);
+		this.renderModels(graphic);
 	}
 	
 	@Override

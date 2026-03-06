@@ -1,0 +1,22 @@
+{
+  "distance_aptitude": [
+    0,
+    4,
+    6,
+    6
+  ],
+  "identifier": "umapyoi:kiseki",
+  "propertyRate": [
+    10,
+    0,
+    0,
+    10,
+    10
+  ],
+  "ranking": "sr",
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
+}

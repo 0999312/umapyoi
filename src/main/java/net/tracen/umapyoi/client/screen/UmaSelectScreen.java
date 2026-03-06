@@ -120,6 +120,7 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
         String s = this.searchBox.getValue();
         this.init(pMinecraft, pWidth, pHeight);
         this.searchBox.setValue(s);
+        this.searchBox.setEditable(this.hasRequestItems());
     }
     
     @Override
@@ -160,6 +161,10 @@ public class UmaSelectScreen extends AbstractContainerScreen<UmaSelectMenu> impl
             this.selectIndex = -1;
             PacketDistributor.sendToServer(EmptyResultPacket.packet());
         }
+    }
+
+    public boolean hasRequestItems() {
+        return this.menu.getSlot(0).hasItem() && this.menu.getSlot(1).hasItem();
     }
     
     protected void renderBg(GuiGraphics guiGraphics, float pPartialTick, int pX, int pY) {

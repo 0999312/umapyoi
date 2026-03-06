@@ -1,19 +1,12 @@
 {
-  "identifier": "umapyoi:tyche",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
+  "distance_aptitude": [
+    4,
+    3,
+    2,
     1
   ],
+  "identifier": "umapyoi:tyche",
+  "position": "pace_chaser",
   "propertyRate": [
     20,
     20,
@@ -21,5 +14,9 @@
     10,
     0
   ],
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    6,
+    5,
+    5
+  ]
 }

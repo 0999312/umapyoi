@@ -1,12 +1,25 @@
-// 1.21.1	2024-09-13T13:45:29.6242613	Tags for minecraft:item mod id umapyoi
+// 1.21.1	2026-03-06T19:33:49.5731547	Tags for minecraft:item mod id umapyoi
+578dd629e6c69bf5641983afdf5f54ca2d3b5882 data/c/tags/item/bamboo.json
 ff5557ba2dff8c4b6d88e595ac1c54818ace923a data/c/tags/item/bread.json
 0bdc999a7f653eecbb3c513a0baf1b963a2587ab data/c/tags/item/bread/wheat.json
+4df4769ce371b6112083c2e1cf0afabab4e5fa94 data/c/tags/item/crops/carrot.json
 edb5947f84984a39ab47c98c6fb0b3c3a9a8cc39 data/c/tags/item/milk.json
 e801bdef0719e27dd7decd88269ada7c5740348e data/c/tags/item/sugar.json
 c62b9be8a52938b166add3c15cf8fe7b6021f08a data/c/tags/item/water.json
 056600831210a346003c48312051db320720ea31 data/umapyoi/tags/item/card_ticket.json
 cc9f68af00c5f085ea80b9561020a4d628660cc3 data/umapyoi/tags/item/common_gacha_item.json
 cc9a98374f8212259b3b6bfee2befe4e4f33aee8 data/umapyoi/tags/item/horseshoe.json
+205b5503e7cbe3dfc0a0ccf6c753ef2d9d117848 data/umapyoi/tags/item/motivation_down_1.json
+f78b702056fbcf8edb0f9dc5bddef741fc9b0e50 data/umapyoi/tags/item/motivation_up_1.json
+83240fb8c7b661aa88731dd818cbca35fa46f174 data/umapyoi/tags/item/motivation_up_2.json
+74eefeb986d633d26ad42202c4a6b5e71463c425 data/umapyoi/tags/item/race_champions_material.json
+8e7c42d750a8bfd68a04e993ee4777c1592a99e8 data/umapyoi/tags/item/race_giii_material.json
+37a11d9b343bb7b38e456cd41c3db5ca03b492fb data/umapyoi/tags/item/race_gii_material.json
+d7160b3ddc802c57f798147148a479d2477adf34 data/umapyoi/tags/item/race_gi_material.json
+c3c22d0a388c9472e44188492769c812e98868c5 data/umapyoi/tags/item/race_op_material.json
+a6469d298f5efc41198a6e50992f9b06dcc6fdb8 data/umapyoi/tags/item/race_preop_material.json
+2d3bf196ea615d4be6e72c6c59c7235a36ad0f90 data/umapyoi/tags/item/should_render.json
+83240fb8c7b661aa88731dd818cbca35fa46f174 data/umapyoi/tags/item/slow_metabolism.json
 3ef940a4f4e192e4a70dbd5d18fc2aa409b770ce data/umapyoi/tags/item/sr_card_ticket.json
 eea415f25c1df6b1634850b8e7f53f5a263249aa data/umapyoi/tags/item/sr_uma_ticket.json
 ddc68bee333d189e8e26f1496243259be29b64be data/umapyoi/tags/item/ssr_card_ticket.json

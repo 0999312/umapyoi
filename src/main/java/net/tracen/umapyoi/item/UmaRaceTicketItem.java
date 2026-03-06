@@ -1,0 +1,250 @@
+package net.tracen.umapyoi.item;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import net.tracen.umapyoi.Umapyoi;
+import net.tracen.umapyoi.api.UmapyoiAPI;
+import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
+import net.tracen.umapyoi.registry.races.Race;
+import net.tracen.umapyoi.registry.races.RaceRegistry;
+import net.tracen.umapyoi.utils.*;
+
+import javax.annotation.Nonnull;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
+import java.util.stream.Stream;
+
+
+public class UmaRaceTicketItem extends Item {
+    public UmaRaceTicketItem() {
+        super(Umapyoi.defaultItemProperties());
+    }
+
+    public static class RacePairComparator implements Comparator<Map.Entry<ResourceLocation, Race>> {
+        private RacePairComparator() {}
+        public static final RacePairComparator INSTANCE = new RacePairComparator();
+
+        @Override
+        public int compare(Map.Entry<ResourceLocation, Race> o1, Map.Entry<ResourceLocation, Race> o2) {
+            Year minLeft = o1.getValue().year.stream().min(Year::compareTo).orElse(null);
+            Year minRight = o2.getValue().year.stream().min(Year::compareTo).orElse(null);
+            if (minLeft == null) return 1;
+            if (minRight == null) return -1;
+            if (minLeft != minRight) return minLeft.compareTo(minRight);
+            int timeLeft = o1.getValue().time;
+            int timeRight = o2.getValue().time;
+            if (timeLeft != timeRight) return timeLeft - timeRight;
+            RaceRanking rankLeft = o1.getValue().ranking;
+            RaceRanking rankRight = o2.getValue().ranking;
+            if (rankLeft != rankRight) return rankRight.compareTo(rankLeft);
+            Surface surfaceLeft = o1.getValue().surface;
+            Surface surfaceRight = o2.getValue().surface;
+            if (surfaceLeft != surfaceRight) return surfaceLeft.compareTo(surfaceRight);
+            int lengthLeft = o1.getValue().length;
+            int lengthRight = o2.getValue().length;
+            if (lengthLeft != lengthRight) return lengthRight - lengthLeft;
+            ResourceLocation locLeft = o1.getKey();
+            ResourceLocation locRight = o2.getKey();
+            return locLeft.compareTo(locRight);
+        }
+    }
+
+    public static class RaceEntryComparator implements Comparator<Map.Entry<ResourceKey<Race>, Race>> {
+        private RaceEntryComparator() {}
+        public static final RaceEntryComparator INSTANCE = new RaceEntryComparator();
+
+        @Override
+        public int compare(Map.Entry<ResourceKey<Race>, Race> o1, Map.Entry<ResourceKey<Race>, Race> o2) {
+            return RacePairComparator.INSTANCE.compare(
+                    new AbstractMap.SimpleEntry<>(o1.getKey().location(), o1.getValue()),
+                    new AbstractMap.SimpleEntry<>(o2.getKey().location(), o2.getValue())
+            );
+        }
+    }
+
+    public static class RaceComparator implements Comparator<Holder.Reference<Race>> {
+        private RaceComparator() {}
+        public static final RaceComparator INSTANCE = new RaceComparator();
+        @Override
+        public int compare(Holder.Reference<Race> o1, Holder.Reference<Race> o2) {
+            return RaceEntryComparator.INSTANCE.compare(
+                    new AbstractMap.SimpleEntry<>(o1.key(), o1.value()),
+                    new AbstractMap.SimpleEntry<>(o2.key(), o2.value())
+            );
+        }
+    }
+
+    public static Stream<Holder.Reference<Race>> sortedRaceList(HolderLookup.Provider provider) {
+        return UmapyoiAPI.getRaceRegistry(provider).listElements().sorted(RaceComparator.INSTANCE);
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getDefaultInstance() {
+        ItemStack result = super.getDefaultInstance();
+        result.set(DataComponentsTypeRegistry.RACE_DATA, RaceRegistry.DEFAULT.location());
+        result.set(DataComponents.RARITY, Rarity.COMMON);
+        return result;
+    }
+
+    @Override
+    public boolean isDamageable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public boolean isRepairable(@Nonnull ItemStack stack) {
+        return false;
+    }
+
+    /* @Nonnull
+    @Override
+    @Deprecated
+    public Rarity getRarity(@Nonnull ItemStack pStack) {
+        RaceRanking ranking = Optional.ofNullable(getRace(pStack)).map(r -> r.ranking).orElse(RaceRanking.DEBUT);
+        return ranking == RaceRanking.GI ? Rarity.EPIC :
+                (ranking == RaceRanking.GII || ranking == RaceRanking.GIII) ? Rarity.UNCOMMON : Rarity.COMMON;
+    } */
+
+    @Override
+    @Deprecated
+    @Nonnull
+    public String getDescriptionId(@Nonnull ItemStack pStack) {
+        if (getRaceID(pStack).equals(RaceRegistry.DEFAULT.location())) return super.getDescriptionId(pStack);
+        return Util.makeDescriptionId("race", getRaceID(pStack)) + ".name";
+    }
+
+    public static MutableComponent getRaceNameInRawComponent(@Nonnull ItemStack pStack) {
+        return Component.translatable(Util.makeDescriptionId("race", getRaceID(pStack)) + ".name");
+    }
+
+    public static MutableComponent getRaceNameInStyledComponent(@Nonnull ItemStack pStack) {
+        return getRaceNameInRawComponent(pStack).withStyle(
+                Optional.ofNullable(getRace(pStack)).map(r -> r.ranking).orElse(RaceRanking.DEBUT).color
+        );
+    }
+
+    @Nonnull
+    @Override
+    public Component getName(@Nonnull ItemStack pStack) {
+        if (getRaceID(pStack).equals(RaceRegistry.DEFAULT.location())) return super.getName(pStack);
+        return Component.translatable(this.getDescriptionId(pStack)).withStyle(
+                Optional.ofNullable(getRace(pStack)).map(r -> r.ranking).orElse(RaceRanking.DEBUT).color
+        );
+    }
+
+    public static ResourceLocation getRaceID(ItemStack stack) {
+        return stack.getOrDefault(DataComponentsTypeRegistry.RACE_DATA, RaceRegistry.DEFAULT.location());
+    }
+
+    public static Race getRace(ItemStack stack) {
+        return getRace(stack, null);
+    }
+
+    public static Race getRace(ItemStack stack, Level world) {
+        try {
+            ResourceLocation loc = getRaceID(stack);
+            if (loc.equals(RaceRegistry.DEFAULT.location())) return null;
+            return Optional.ofNullable(world).map(UmapyoiAPI::getRaceRegistry).orElse(ClientUtils.getRaceRegistry()).get(loc);
+        } catch (Exception _ignored) {
+            return null;
+        }
+    }
+
+    private static class ComponentCollector implements Collector<MutableComponent, MutableComponent, MutableComponent> {
+        @Override
+        public Supplier<MutableComponent> supplier() {
+            return Component::empty;
+        }
+
+        @Override
+        public BiConsumer<MutableComponent, MutableComponent> accumulator() {
+            return (s1, s2) -> (s1.getString().isEmpty() ? s1 : s1.append("/")).append(s2);
+        }
+
+        @Override
+        public BinaryOperator<MutableComponent> combiner() {
+            return (s1, s2) -> (s1.getString().isEmpty() ? s1 : s1.append("/")).append(s2);
+        }
+
+        @Override
+        public Function<MutableComponent, MutableComponent> finisher() {
+            return Function.identity();
+        }
+
+        @Override
+        public Set<Characteristics> characteristics() {
+            return Set.of(Characteristics.IDENTITY_FINISH);
+        }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltip, tooltipFlag);
+        ResourceLocation raceID = getRaceID(stack);
+        if (raceID == RaceRegistry.DEFAULT.location()) return;
+        Race raceObj = getRace(stack);
+        if (raceObj == null) return;
+        MutableComponent year = raceObj.year.stream().sorted().map(Year::name).map(String::toLowerCase)
+                .map(s -> Component.translatable("tooltip.umapyoi.race.time." + s))
+                .collect(new ComponentCollector());
+        year = year.append(" ").append(Component.translatable("tooltip.umapyoi.race.time." + raceObj.time));
+        tooltip.add(year);
+
+        RaceRanking ranking = raceObj.ranking;
+        tooltip.add(Component.translatable("tooltip.umapyoi.race.tier.hint").append(
+                Component.translatable("race.umapyoi.tier." + ranking.name().toLowerCase()).withStyle(ranking.color)
+        ));
+
+        Surface surface = raceObj.surface;
+        tooltip.add(Component.translatable("tooltip.umapyoi.race.surface").append(
+                Component.translatable("race.umapyoi.surface." + surface.name().toLowerCase()).withStyle(surface.color)
+        ));
+
+        MutableComponent baseComponent = Component.translatable("tooltip.umapyoi.race.distance")
+                .append(Component.translatable("tooltip.umapyoi.race.distance." + raceObj.distance.name().toLowerCase()));
+
+        if (raceObj.distance != Distance.ADAPTIVE) {
+            baseComponent = baseComponent.append(" ")
+                    .append(Component.literal(Integer.toString(raceObj.length))
+                            .append(Component.translatable("tooltip.umapyoi.race.unit")));
+        }
+
+        tooltip.add(baseComponent);
+
+        ResourceLocation locField = raceObj.field;
+        tooltip.add(Component.translatable("tooltip.umapyoi.race.field").append(
+                Component.translatable("race." + locField.getNamespace() + ".field." + locField.getPath())
+        ));
+
+        if (!raceObj.tags.isEmpty()) {
+            tooltip.add(Component.literal(""));
+            tooltip.add(Component.translatable("tooltip.umapyoi.race.gainable_tags").withStyle(ChatFormatting.BLUE));
+            raceObj.tags.stream().sorted()
+                    .map(ClientUtils.getRaceTagRegistry()::get)
+                    .filter(Objects::nonNull)
+                    .map(rl ->
+                            Component.literal(" ")
+                                    .append(Component.translatable("race." + rl.id().getNamespace() + ".tags." + rl.id().getPath()))
+                                    .withStyle(ChatFormatting.DARK_GREEN)
+                    )
+                    .forEach(tooltip::add);
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "after_race": [
+    "umapyoi:ura_finals"
+  ],
+  "allow_status": [
+    "retired"
+  ],
+  "exclusive": false,
+  "field": "umapyoi:nakayama",
+  "id": "umapyoi:sagittarius_cup",
+  "length": 2500,
+  "ranking": "gi",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "texture_predicate_override": "champions",
+  "time": 23,
+  "year": [
+    "after_regular"
+  ]
+}

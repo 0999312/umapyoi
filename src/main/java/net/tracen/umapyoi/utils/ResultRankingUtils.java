@@ -32,9 +32,9 @@ public final class ResultRankingUtils {
     }
 
     public static int generateRanking(int score) {
-        if (score >= 191)
-            return 38;
-        for (int i = 1; i < 39; i++) {
+        if (score >= 196)
+            return 39;
+        for (int i = 1; i < 40; i++) {
             if (score < (i * 5 + 1))
                 return i - 1;
         }

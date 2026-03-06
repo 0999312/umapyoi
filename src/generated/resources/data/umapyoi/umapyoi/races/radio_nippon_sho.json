@@ -1,0 +1,17 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:nakayama",
+  "id": "umapyoi:radio_nippon_sho",
+  "length": 1800,
+  "ranking": "op",
+  "reference_level": 15,
+  "surface": "turf",
+  "tags": [],
+  "time": 17,
+  "year": [
+    "senior",
+    "classic"
+  ]
+}

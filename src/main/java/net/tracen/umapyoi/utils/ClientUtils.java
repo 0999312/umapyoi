@@ -2,6 +2,13 @@ package net.tracen.umapyoi.utils;
 
 import java.util.List;
 
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.ItemStack;
+import net.tracen.umapyoi.data.tag.UmapyoiUmaDataTags;
+import net.tracen.umapyoi.registry.cosmetics.CosmeticData;
+import net.tracen.umapyoi.registry.races.Race;
+import net.tracen.umapyoi.registry.races.field.RaceField;
+import net.tracen.umapyoi.registry.races.tags.RaceTag;
 import org.joml.Quaternionf;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -64,6 +71,34 @@ public class ClientUtils {
 
     public static Registry<SupportCard> getClientSupportCardRegistry() {
         return Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(SupportCard.REGISTRY_KEY);
+    }
+
+    public static Registry<CosmeticData> getClientCosmeticDataRegistry() {
+        return Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(CosmeticData.REGISTRY_KEY);
+    }
+
+    public static Registry<Race> getRaceRegistry() {
+        return Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(Race.REGISTRY_KEY);
+    }
+
+    public static Registry<RaceTag> getRaceTagRegistry() {
+        return Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(RaceTag.REGISTRY_KEY);
+    }
+
+    public static Registry<RaceField> getRaceFieldRegistry() {
+        return Minecraft.getInstance().getConnection().registryAccess().registryOrThrow(RaceField.REGISTRY_KEY);
+    }
+
+    public static boolean isFlatUmamusume(ItemStack stack) {
+        return ClientUtils.getClientUmaDataRegistry()
+                .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stack)))
+                .get().is(UmapyoiUmaDataTags.FLAT_CHEST);
+    }
+
+    public static boolean isTannedSkin(ItemStack stack) {
+        return ClientUtils.getClientUmaDataRegistry()
+                .getHolder(ResourceKey.create(UmaData.REGISTRY_KEY, UmaSoulUtils.getName(stack)))
+                .get().is(UmapyoiUmaDataTags.TANNED_SKIN);
     }
     
     public static void addSummonParticle(Level pLevel, BlockPos pPos) {

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "umapyoi:item/gate_door",
+    "particle": "minecraft:block/iron_bars"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "attribute_correction": [
+    1
+  ],
+  "field": "umapyoi:kyoto",
+  "id": "umapyoi:nikkei_shinshun_hai",
+  "length": 2400,
+  "ranking": "gii",
+  "reference_level": 30,
+  "surface": "turf",
+  "tags": [],
+  "time": 1,
+  "year": [
+    "senior"
+  ]
+}

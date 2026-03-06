@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
@@ -15,9 +16,8 @@ public class SkillSupport extends TrainingSupport {
     }
 
     @Override
-    public boolean applySupport(ItemStack soul, SupportStack stack) {
+    public boolean applySupport(ItemStack soul, RandomSource rand, SupportStack stack) {
         ResourceLocation skill = ResourceLocation.tryParse(stack.getOrCreateTag().getString("skill"));
-        Random rand = new Random();
         if (rand.nextFloat() < (stack.getLevel() * 0.33)) {
                 UmaSkillUtils.learnSkill(soul, skill);
                 return true;

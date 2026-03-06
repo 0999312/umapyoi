@@ -1,0 +1,16 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:hanshin_juvenile_fillies",
+  "length": 1600,
+  "ranking": "gi",
+  "reference_level": 35,
+  "surface": "turf",
+  "tags": [],
+  "time": 23,
+  "year": [
+    "junior"
+  ]
+}

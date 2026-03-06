@@ -1,0 +1,14 @@
+{
+  "type": "friendship",
+  "max_damage": 3,
+  "ranking": "r",
+  "supporters": [
+    "umapyoi:anshinzawa_sasami"
+  ],
+  "supports": [
+    {
+      "level": 1,
+      "support": "umapyoi:acupuncturist_support"
+    }
+  ]
+}

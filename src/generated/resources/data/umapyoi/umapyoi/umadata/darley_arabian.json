@@ -1,19 +1,12 @@
 {
+  "distance_aptitude": [
+    7,
+    7,
+    7,
+    7
+  ],
   "identifier": "umapyoi:darley_arabian",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
+  "position": "pace_chaser",
   "propertyRate": [
     10,
     10,
@@ -21,5 +14,9 @@
     10,
     10
   ],
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    7,
+    7,
+    5
+  ]
 }

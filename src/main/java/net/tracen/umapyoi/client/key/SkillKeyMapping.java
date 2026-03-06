@@ -1,6 +1,8 @@
 package net.tracen.umapyoi.client.key;
 
+import net.minecraft.client.Minecraft;
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.tracen.umapyoi.client.screen.setting.OverlayScreen;
 import org.lwjgl.glfw.GLFW;
 
 import com.mojang.blaze3d.platform.InputConstants;
@@ -25,6 +27,9 @@ public class SkillKeyMapping {
     public static final KeyMapping KEY_LATTER_SKILL = new KeyMapping("key.umapyoi.select_latter_skill",
             KeyConflictContext.IN_GAME, KeyModifier.NONE, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_DOWN,
             "key.category.umapyoi");
+    public static final KeyMapping KEY_CONFIGURE_GUI = new KeyMapping("key.umapyoi.configure",
+            KeyConflictContext.IN_GAME, KeyModifier.NONE, InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_F10, "key.category.umapyoi");
 
     @SubscribeEvent
     public static void onKeyboardInput(InputEvent.Key event) {
@@ -38,6 +43,10 @@ public class SkillKeyMapping {
         }
         if (KEY_LATTER_SKILL.isDown()) {
             PacketDistributor.sendToServer(new SelectSkillPacket("latter"));
+            return;
+        }
+        if (KEY_CONFIGURE_GUI.isDown()) {
+            Minecraft.getInstance().setScreen(new OverlayScreen());
             return;
         }
     }

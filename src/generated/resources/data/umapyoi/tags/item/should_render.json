@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:elytra",
+    {
+      "id": "corn_delight:cob_pipe",
+      "required": false
+    },
+    {
+      "id": "create:goggles",
+      "required": false
+    }
+  ]
+}

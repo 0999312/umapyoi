@@ -1,19 +1,11 @@
 {
+  "distance_aptitude": [
+    6,
+    3,
+    0,
+    0
+  ],
   "identifier": "umapyoi:calstone_light_o",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
   "propertyRate": [
     15,
     0,
@@ -22,5 +14,9 @@
     0
   ],
   "ranking": "sr",
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    6,
+    0,
+    5
+  ]
 }

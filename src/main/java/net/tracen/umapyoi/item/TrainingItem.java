@@ -9,8 +9,11 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ClickAction;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -41,30 +44,43 @@ public class TrainingItem extends Item implements SupportContainer {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if (pLevel.isClientSide)
-            return super.use(pLevel, pPlayer, pUsedHand);
-        ItemStack soul = UmapyoiAPI.getUmaSoul(pPlayer);
-        ItemStack itemInHand = pPlayer.getItemInHand(pUsedHand);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        if (level.isClientSide()) return super.use(level, player, usedHand);
+        ItemStack soul = UmapyoiAPI.getUmaSoul(player);
+        ItemStack itemInHand = player.getItemInHand(usedHand);
+        return learning(level, player, soul, itemInHand);
+    }
+
+    private InteractionResultHolder<ItemStack> learning(Level pLevel, Player pPlayer, ItemStack soul, ItemStack tranining) {
         if (soul.isEmpty()) {
             pPlayer.displayClientMessage(Component.translatable("umapyoi.no_umasoul_equiped"), true);
-            return InteractionResultHolder.fail(itemInHand);
+            return InteractionResultHolder.fail(tranining);
         }
         
         if (UmaSoulUtils.getLearningTimes(soul) <= 0) {
             pPlayer.displayClientMessage(Component.translatable("umapyoi.learning.no_learning_time"), true);
-            return InteractionResultHolder.fail(itemInHand);
+            return InteractionResultHolder.fail(tranining);
         }
         
-        if (this.getSupport().applySupport(soul)) {
+        if (this.getSupport().applySupport(soul, pLevel.getRandom())) {
             UmaSoulUtils.downLearningTimes(soul);
-            pPlayer.getCooldowns().addCooldown(itemInHand.getItem(), 30);
-            itemInHand.shrink(1);
-            return InteractionResultHolder.success(itemInHand);
+            pPlayer.getCooldowns().addCooldown(tranining.getItem(), 30);
+            tranining.shrink(1);
+            return InteractionResultHolder.success(tranining);
         } else {
             pPlayer.displayClientMessage(Component.translatable("umapyoi.learning.can_not_learn"), true);
-            return InteractionResultHolder.fail(itemInHand);
+            return InteractionResultHolder.fail(tranining);
         }
+    }
+
+    @Override
+    public boolean overrideStackedOnOther(ItemStack pStack, Slot pSlot, ClickAction pAction, Player pPlayer) {
+        if (pPlayer.level().isClientSide())
+            return super.overrideStackedOnOther(pStack, pSlot, pAction, pPlayer);
+        if(pAction != ClickAction.SECONDARY || pPlayer.getCooldowns().isOnCooldown(pStack.getItem())) return false;
+
+        ItemStack soul = pSlot.getItem();
+        return this.learning(pPlayer.level(), pPlayer, soul, pStack).getResult() == InteractionResult.SUCCESS;
     }
 
     protected SupportStack getSupport() {

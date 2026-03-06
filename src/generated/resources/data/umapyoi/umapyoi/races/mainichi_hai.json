@@ -1,0 +1,16 @@
+{
+  "attribute_correction": [
+    2
+  ],
+  "field": "umapyoi:hanshin",
+  "id": "umapyoi:mainichi_hai",
+  "length": 1800,
+  "ranking": "giii",
+  "reference_level": 25,
+  "surface": "turf",
+  "tags": [],
+  "time": 6,
+  "year": [
+    "classic"
+  ]
+}

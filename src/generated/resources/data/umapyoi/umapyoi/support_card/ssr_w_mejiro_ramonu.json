@@ -2,9 +2,6 @@
   "type": "wisdom",
   "max_damage": 5,
   "ranking": "ssr",
-  "supporters": [
-    "umapyoi:mejiro_ramonu"
-  ],
   "supports": [
     {
       "level": 4,

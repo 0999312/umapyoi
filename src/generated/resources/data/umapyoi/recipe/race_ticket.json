@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:gems/emerald"
+    },
+    {
+      "item": "umapyoi:blank_ticket"
+    }
+  ],
+  "result": {
+    "components": {
+      "umapyoi:race": "umapyoi:make_debut"
+    },
+    "count": 1,
+    "id": "umapyoi:race_ticket"
+  }
+}

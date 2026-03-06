@@ -1,19 +1,11 @@
 {
+  "distance_aptitude": [
+    5,
+    6,
+    6,
+    2
+  ],
   "identifier": "umapyoi:smart_falcon",
-  "maxProperty": [
-    18,
-    18,
-    18,
-    18,
-    18
-  ],
-  "property": [
-    1,
-    1,
-    1,
-    1,
-    1
-  ],
   "propertyRate": [
     20,
     0,
@@ -22,5 +14,9 @@
     0
   ],
   "ranking": "sr",
-  "uniqueSkill": "umapyoi:basic_pace"
+  "surface_aptitude": [
+    2,
+    6,
+    5
+  ]
 }

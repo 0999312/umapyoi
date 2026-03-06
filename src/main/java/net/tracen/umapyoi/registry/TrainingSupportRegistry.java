@@ -5,10 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tracen.umapyoi.Umapyoi;
-import net.tracen.umapyoi.registry.training.ExtraAPSupport;
-import net.tracen.umapyoi.registry.training.SkillSupport;
-import net.tracen.umapyoi.registry.training.StatusSupport;
-import net.tracen.umapyoi.registry.training.TrainingSupport;
+import net.tracen.umapyoi.registry.training.*;
 import net.tracen.umapyoi.utils.UmaStatusUtils.StatusType;
 
 public class TrainingSupportRegistry {
@@ -37,17 +34,17 @@ public class TrainingSupportRegistry {
 
     public static final DeferredHolder<TrainingSupport, TrainingSupport> SKILL_SUPPORT = SUPPORTS.register("skill_support",
             SkillSupport::new);
-    
-    public static final DeferredHolder<TrainingSupport, TrainingSupport> AP_SUPPORT = SUPPORTS.register("actionpoint_support",
-            () -> new ExtraAPSupport());
 
-//    public static final DeferredHolder<TrainingSupport, TrainingSupport> MEMORY_SUPPORT = SUPPORTS.register("memory_support",
-//            () -> new ExtraStatusSupport());
-//    
-//    public static final DeferredHolder<TrainingSupport, TrainingSupport> RANDOM_STATUS_SUPPORT = SUPPORTS.register("random_status_support",
-//            RandomStatusSupport::new);
-//
-//    public static final DeferredHolder<TrainingSupport, TrainingSupport> ACUPUNCTUIST_SUPPORT = SUPPORTS.register("acupuncturist_support",
-//            BorealisSupport::new);
+    public static final DeferredHolder<TrainingSupport, TrainingSupport> AP_SUPPORT = SUPPORTS.register("actionpoint_support",
+            () -> new ExtraStatusSupport(3));
+
+    public static final DeferredHolder<TrainingSupport, TrainingSupport> MEMORY_SUPPORT = SUPPORTS.register("memory_support",
+            () -> new ExtraStatusSupport(2));
+
+    public static final DeferredHolder<TrainingSupport, TrainingSupport> RANDOM_STATUS_SUPPORT = SUPPORTS.register("random_status_support",
+            RandomStatusSupport::new);
+
+    public static final DeferredHolder<TrainingSupport, TrainingSupport> ACUPUNCTUIST_SUPPORT = SUPPORTS.register("acupuncturist_support",
+            BorealisSupport::new);
 
 }

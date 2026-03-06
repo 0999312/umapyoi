@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "umapyoi:item/race_ticket_g1"
+  }
+}
