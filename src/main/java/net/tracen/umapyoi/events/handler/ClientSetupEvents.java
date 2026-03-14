@@ -69,7 +69,7 @@ public class ClientSetupEvents {
 			BlockEntityRenderers.register(BlockEntityRegistry.GATE.get(), GateRender::new);
 		});
 	}
-
+	
 	@SubscribeEvent
 	public static void registerModels(ModelEvent.RegisterAdditional event) {
 		FileToIdConverter.json("models/item/costume")
