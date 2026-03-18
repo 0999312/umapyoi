@@ -1,12 +1,11 @@
 {
   "distance_aptitude": [
-    4,
-    3,
-    2,
+    0,
+    6,
+    6,
     1
   ],
   "identifier": "umapyoi:almond_eye",
-  "position": "pace_chaser",
   "propertyRate": [
     10,
     5,
@@ -17,7 +16,7 @@
   "ranking": "ssr",
   "surface_aptitude": [
     6,
-    5,
+    0,
     5
   ]
 }

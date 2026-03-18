@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.IItemNameMutableMenu;
-import net.tracen.umapyoi.container.UmaSelectMenu;
 
 public class SetupResultPacket {
     private final String message;

@@ -1,4 +1,4 @@
-// 1.20.1	2026-03-07T00:21:08.2635251	Recipes
+// 1.20.1	2026-03-14T11:42:32.2480727	Recipes
 b4ab59ad2d4d282adcf9049b8ab8514bd7d5c0c7 data/umapyoi/advancements/recipes/combat/baseball_bat.json
 524581bdb50f71aecc5e95ddf2d1d442b02a8b40 data/umapyoi/advancements/recipes/combat/naginata.json
 0a24939c82d7769035c051f47712647f493ec3ff data/umapyoi/advancements/recipes/combat/summer_uniform.json
@@ -10,6 +10,7 @@ f5bcc0650e4b112c70cee39a9cf558e55ca853f8 data/umapyoi/advancements/recipes/comba
 519b62431865f4c25c8b87b2f16fd5a0bb15bcff data/umapyoi/advancements/recipes/decorations/factor_research_table.json
 4ad68a6beaf587059c5afb6ea68248c59cc695ec data/umapyoi/advancements/recipes/decorations/gate.json
 949ac05b4f593b1aec9d3a4841e34638924f54e6 data/umapyoi/advancements/recipes/decorations/race_register.json
+16c9d0a392b9f6066020fbac5b412844fe42c0fa data/umapyoi/advancements/recipes/decorations/race_select_block.json
 8c1088ce3f879bf71bc212b7ea8b309222d23486 data/umapyoi/advancements/recipes/decorations/register_lectern.json
 05390ad1ee79e16d2f353a4c8f757c22247e3dce data/umapyoi/advancements/recipes/decorations/silver_uma_pedestal.json
 80d4d440ad1a104ee077748c50d91908bacd8c11 data/umapyoi/advancements/recipes/decorations/skill_learning_table.json
@@ -52,6 +53,7 @@ abecf35fe5705f028da4f78b0285e9ea0349d288 data/umapyoi/recipes/gate_door.json
 37b7654070d0a3c078a1ea70e2c2c2dd973a9a6a data/umapyoi/recipes/medium_energy_drink.json
 d588a2c981b9489da8e46e09b48789578d8fdc7c data/umapyoi/recipes/naginata.json
 bef9dbe84d9180e70df502aa43afc788c4a60a98 data/umapyoi/recipes/race_register.json
+c0a840691111c48655b2be004555b65e3fc08a35 data/umapyoi/recipes/race_select_block.json
 00d1f2dbb14c3f5374960fc046b6de59baf79b6a data/umapyoi/recipes/register_lectern.json
 3e63e67a0b0453b6280da924d2b102dda9b8e519 data/umapyoi/recipes/royal_bitter.json
 5cf230ea2ddcd2b688814f4c169942ea8516fdc0 data/umapyoi/recipes/silver_uma_pedestal.json
@@ -68,7 +70,7 @@ d71af5bc0a47e1efd5f0d5d9e1231beada66f2d2 data/umapyoi/recipes/three_goddess.json
 b991d63509dc48ede9caaf1273fdc791baa4cbbd data/umapyoi/recipes/training_facility.json
 066f3c061acbcf2c5e919b4ecc77aa796db480fa data/umapyoi/recipes/trainning_suit.json
 6211e0039ac51c2fcf9ec261b1dd44b4b3c01da6 data/umapyoi/recipes/uma_pedestal.json
-551a1beed269d0eee2317fa1f2d318d08012f28f data/umapyoi/recipes/uma_select_block.json
+56097af9d508202f314ab8bb7139036e56b5500f data/umapyoi/recipes/uma_select_block.json
 93e2a5a946fc600e77a7440b7210ce42dc0a1ab6 data/umapyoi/recipes/uma_statue.json
 cf13183fc925da6089c98b3a322ee61539925480 data/umapyoi/recipes/uma_ticket.json
 b973e88c980998ec3c1f67e8d2391c8a3bcb6628 data/umapyoi/recipes/winter_uniform.json

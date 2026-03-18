@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:nakayama",
   "id": "umapyoi:sprinters_stakes",
   "length": 1200,
@@ -14,7 +10,7 @@
   ],
   "time": 18,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:kyoto",
   "id": "umapyoi:swan_stakes",
   "length": 1400,
@@ -12,7 +8,7 @@
   "tags": [],
   "time": 20,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

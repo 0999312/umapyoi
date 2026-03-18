@@ -125,7 +125,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add(BlockRegistry.SUPPORT_ALBUM_PEDESTAL.get(), "Golden Support Album Pedestal");
 
         add(BlockRegistry.DISASSEMBLY_BLOCK.get(), "Transfer Register Lectern");
-        add(BlockRegistry.UMA_SELECT_BLOCK.get(), "Selection Lectern");
+        add(BlockRegistry.UMA_SELECT_BLOCK.get(), "Uma Selection Lectern");
 
         add(BlockRegistry.UMA_STATUES.get(), "Umamusume Statue");
 
@@ -134,6 +134,8 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add(BlockRegistry.FACTOR_RESEARCH_TABLE.get(), "Factor Research Table");
         add(BlockRegistry.GATE_DOOR.get(), "Gate Door");
         add(BlockRegistry.GATE.get(), "Gate");
+        
+        add(BlockRegistry.RACE_SELECT_BLOCK.get(), "Race Selection Lectern");
 
         add(ItemRegistry.SWIMSUIT.get(), "Tracen Swimsuit");
 
@@ -378,11 +380,11 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("container.umapyoi.skill_learning", "Skill Learning Table");
         add("container.umapyoi.retire_register", "Retire Register");
         add("container.umapyoi.disassembly_block", "Transfer Register");
-        add("container.umapyoi.umaselect", "Selection Register");
+        add("container.umapyoi.umaselect", "Uma Selection Register");
         add("container.umapyoi.race", "Race Registration Terminal");
         add("container.umapyoi.factor_decompose", "Factor Decomposition Table");
         add("container.umapyoi.factor_research", "Factor Research Table");
-
+        add("container.umapyoi.raceselect", "Race Selection Register");
 
         add("key.category.umapyoi", "Umapyoi");
         add("key.umapyoi.use_skill", "Use Skill");

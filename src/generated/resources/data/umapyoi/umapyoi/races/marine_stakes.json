@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:hakodate",
   "id": "umapyoi:marine_stakes",
   "length": 1700,
@@ -12,7 +8,7 @@
   "tags": [],
   "time": 13,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

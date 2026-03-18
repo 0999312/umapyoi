@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:chukyo",
   "id": "umapyoi:chunichi_shimbun_hai",
   "length": 2000,
@@ -12,7 +8,7 @@
   "tags": [],
   "time": 23,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

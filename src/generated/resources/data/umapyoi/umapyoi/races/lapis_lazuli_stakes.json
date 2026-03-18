@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:nakayama",
   "id": "umapyoi:lapis_lazuli_stakes",
   "length": 1200,
@@ -12,7 +8,7 @@
   "tags": [],
   "time": 23,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

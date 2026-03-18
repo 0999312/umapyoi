@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:fukushima",
   "id": "umapyoi:fukushima_junior_stakes",
   "length": 1200,

@@ -14,7 +14,6 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tracen.umapyoi.item.ItemRegistry;
-import net.tracen.umapyoi.utils.RaceRanking;
 import net.tracen.umapyoi.villager.itemlisting.*;
 
 @Mod.EventBusSubscriber

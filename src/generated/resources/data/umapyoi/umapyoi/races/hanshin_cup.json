@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:hanshin",
   "id": "umapyoi:hanshin_cup",
   "length": 1400,
@@ -12,7 +8,7 @@
   "tags": [],
   "time": 24,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }

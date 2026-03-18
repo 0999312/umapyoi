@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "exclusive": false,
   "field": "umapyoi:adaptive",
   "id": "umapyoi:ura_finals",

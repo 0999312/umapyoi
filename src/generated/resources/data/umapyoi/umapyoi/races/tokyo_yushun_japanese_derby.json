@@ -1,8 +1,4 @@
 {
-  "allow_status": [
-    "retired",
-    "trained"
-  ],
   "field": "umapyoi:tokyo",
   "id": "umapyoi:tokyo_yushun_japanese_derby",
   "length": 2400,
