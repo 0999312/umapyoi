@@ -1,0 +1,15 @@
+{
+  "field": "umapyoi:churchill_downs",
+  "id": "umapyoi:kentucky_derby",
+  "length": 2000,
+  "ranking": "gi",
+  "reference_level": 35,
+  "surface": "dirt",
+  "tags": [
+    "umapyoi:american_g1"
+  ],
+  "time": 9,
+  "year": [
+    "classic"
+  ]
+}

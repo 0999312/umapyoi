@@ -28,6 +28,26 @@ public class RaceFieldRegistry {
     public static final ResourceKey<RaceField> MORIOKA = simpleRegister("morioka"); //盛岡
     public static final ResourceKey<RaceField> OHI = simpleRegister("ohi"); //大井
 
+    //Dubai racetrack
+    public static final ResourceKey<RaceField> MEYDAN = simpleRegister("meydan");
+
+    //French racetracks
+    public static final ResourceKey<RaceField> LONGCHAMP = simpleRegister("longchamp");
+    public static final ResourceKey<RaceField> DEAUVILLE = simpleRegister("deauville");
+    public static final ResourceKey<RaceField> SAINT_CLOUD = simpleRegister("saint_cloud");
+
+    //Hong Kong racetrack
+    public static final ResourceKey<RaceField> SHATIN = simpleRegister("shatin");
+
+    //Saudi racetrack
+    public static final ResourceKey<RaceField> KING_ABDULAZIZ = simpleRegister("king_abdulaziz");
+
+    //USA racetracks
+    public static final ResourceKey<RaceField> DELMAR = simpleRegister("delmar");
+    public static final ResourceKey<RaceField> SANTA_ANITA = simpleRegister("santa_anita");
+    public static final ResourceKey<RaceField> CHURCHILL_DOWNS = simpleRegister("churchill_downs");
+    public static final ResourceKey<RaceField> BELMONT_PARK = simpleRegister("belmont_park");
+
     private static HashMap<ResourceKey<RaceField>, Function<ResourceLocation, RaceField>> forDataGenMap;
 
     public static ResourceKey<RaceField> simpleRegister(String name) {

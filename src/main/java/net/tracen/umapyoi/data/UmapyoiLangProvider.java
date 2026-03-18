@@ -1,8 +1,5 @@
 package net.tracen.umapyoi.data;
 
-import java.time.Month;
-import java.util.function.Supplier;
-
 import cn.mcmod_mmf.mmlib.data.AbstractLangProvider;
 import net.minecraft.Util;
 import net.minecraft.data.PackOutput;
@@ -27,6 +24,9 @@ import net.tracen.umapyoi.registry.training.TrainingSupport;
 import net.tracen.umapyoi.registry.training.card.SupportCard;
 import net.tracen.umapyoi.registry.umadata.UmaData;
 import org.apache.commons.lang3.StringUtils;
+
+import java.time.Month;
+import java.util.function.Supplier;
 
 public class UmapyoiLangProvider extends AbstractLangProvider {
 
@@ -360,6 +360,17 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("race.umapyoi.field.morioka", "Morioka");
         add("race.umapyoi.field.ohi", "Ohi");
         add("race.umapyoi.field.adaptive", "Adaptive");
+
+        add("race.umapyoi.field.meydan", "Meydan");
+        add("race.umapyoi.field.longchamp", "Longchamp");
+        add("race.umapyoi.field.deauville", "Deauville");
+        add("race.umapyoi.field.saint_cloud", "Saint-Cloud");
+        add("race.umapyoi.field.shatin", "Sha Tin");
+        add("race.umapyoi.field.king_abdulaziz", "King Abdulaziz");
+        add("race.umapyoi.field.delmar", "Del Mar");
+        add("race.umapyoi.field.santa_anita", "Santa Anita Park");
+        add("race.umapyoi.field.churchill_downs", "Churchill Downs");
+        add("race.umapyoi.field.belmont_park", "Belmont Park");
         
         addTooltip(".race.gainable_tags", "Race Tags: ");
 
@@ -374,6 +385,9 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         add("race.umapyoi.tags.mile", "Spring-Autumn Mile");
         add("race.umapyoi.tags.sprint", "Spring-Autumn Sprint");
         add("race.umapyoi.tags.dirt", "Spring-Autumn Dirt");
+
+        add("race.umapyoi.tags.larc", "Glory of Arc de Triomphe");
+        add("race.umapyoi.tags.american_g1", "American Dream");
 
         add("container.umapyoi.three_goddess", "Three Goddesses Statue");
         add("container.umapyoi.training_facility", "Training Terminal");
@@ -1034,6 +1048,52 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addRace(RaceRegistry.PISCES_CUP, "Pisces Cup");
         addRace(RaceRegistry.ARIES_CUP, "Aries Cup");
 
+        addRace(RaceRegistry.PRIX_FOY, "Prix Foy");
+        addRace(RaceRegistry.PRIX_NIEL, "Prix Niel");
+        addRace(RaceRegistry.PRIX_DE_LARC, "Prix de l'Arc de Triomphe");
+        addRace(RaceRegistry.GRAND_PRIX_DE_SAINT_CLOUD, "Grand Prix de Saint-Cloud");
+        addRace(RaceRegistry.PRIX_JACQUES_LE_MAROIS, "Prix Jacques le Marois");
+        addRace(RaceRegistry.PRIX_MAURICE_DE_GHEEST, "Prix Maurice de Gheest");
+
+        addRace(RaceRegistry.BC_CLASSIC_DELMAR, "Breeders' Cup Classic");
+        addRace(RaceRegistry.BC_CLASSIC_SANTA_ANITA, "Breeders' Cup Classic");
+        addRace(RaceRegistry.BC_DISTAFF_DELMAR, "Breeders' Cup Distaff");
+        addRace(RaceRegistry.BC_DISTAFF_SANTA_ANITA, "Breeders' Cup Distaff");
+        addRace(RaceRegistry.BC_DIRT_MILE_DELMAR, "Breeders' Cup Dirt Mile");
+        addRace(RaceRegistry.BC_DIRT_MILE_SANTA_ANITA, "Breeders' Cup Dirt Mile");
+        addRace(RaceRegistry.BC_F_AND_M_SPRINT_DELMAR, "Breeders' Cup Filly & Mare Sprint");
+        addRace(RaceRegistry.BC_F_AND_M_SPRINT_SANTA_ANITA, "Breeders' Cup Filly & Mare Sprint");
+        addRace(RaceRegistry.BC_SPRINT_DELMAR, "Breeders' Cup Sprint");
+        addRace(RaceRegistry.BC_SPRINT_SANTA_ANITA, "Breeders' Cup Sprint");
+        addRace(RaceRegistry.BC_TURF_DELMAR, "Breeders' Cup Turf");
+        addRace(RaceRegistry.BC_TURF_SANTA_ANITA, "Breeders' Cup Turf");
+        addRace(RaceRegistry.BC_F_AND_M_TURF_DELMAR, "Breeders' Cup Filly & Mare Turf");
+        addRace(RaceRegistry.BC_F_AND_M_TURF_SANTA_ANITA, "Breeders' Cup Filly & Mare Turf");
+        addRace(RaceRegistry.BC_MILE_DELMAR, "Breeders' Cup Mile");
+        addRace(RaceRegistry.BC_MILE_SANTA_ANITA, "Breeders' Cup Mile");
+        addRace(RaceRegistry.BC_TURF_SPRINT_DELMAR, "Breeders' Cup Turf Sprint");
+        addRace(RaceRegistry.BC_TURF_SPRINT_SANTA_ANITA, "Breeders' Cup Turf Sprint");
+        addRace(RaceRegistry.KENTUCKY_DERBY, "Kentucky Derby");
+        addRace(RaceRegistry.PETER_PAN_STAKES, "Peter Pan Stakes");
+        addRace(RaceRegistry.AMERICAN_OAKS, "American Oaks Stakes");
+
+        addRace(RaceRegistry.HONG_KONG_VASE, "Hong Kong Vase");
+        addRace(RaceRegistry.HONG_KONG_SPRINT, "Hong Kong Sprint");
+        addRace(RaceRegistry.HONG_KONG_MILE, "Hong Kong Mile");
+        addRace(RaceRegistry.HONG_KONG_CUP, "Hong Kong Cup");
+        addRace(RaceRegistry.QE2_CUP, "Queen Elizabeth II Cup");
+
+        addRace(RaceRegistry.UAE_DERBY, "UAE Derby");
+        addRace(RaceRegistry.JEBEL_HATTA, "Jebel Hatta");
+        addRace(RaceRegistry.AL_MAKTOUM_CHALLENGE_SYNTHETIC, "Al Maktoum Challenge Round 3");
+        addRace(RaceRegistry.AL_MAKTOUM_CHALLENGE_DIRT, "Al Maktoum Challenge");
+        addRace(RaceRegistry.DUBAI_TURF, "Dubai Turf");
+        addRace(RaceRegistry.DUBAI_SHEEMA_CLASSIC, "Dubai Sheema Classic");
+        addRace(RaceRegistry.DUBAI_WORLD_CUP_SYNTHETIC, "Dubai World Cup");
+        addRace(RaceRegistry.DUBAI_WORLD_CUP_DIRT, "Dubai World Cup");
+
+        addRace(RaceRegistry.SAUDI_DERBY, "Saudi Derby");
+        addRace(RaceRegistry.SAUDI_CUP, "Saudi Cup");
     }
 
     private void addSupportCard(ResourceKey<SupportCard> data, String name) {
