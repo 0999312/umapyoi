@@ -11,6 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.item.UmaCostumeItem;
 import org.jetbrains.annotations.Nullable;
 
+import cn.mcmod_mmf.mmlib.client.model.DynamicItemBakedModel;
+
 public class UmaCostumeItemModel extends DynamicItemBakedModel {
 
 	public UmaCostumeItemModel(BakedModel original, ModelBakery loader) {
