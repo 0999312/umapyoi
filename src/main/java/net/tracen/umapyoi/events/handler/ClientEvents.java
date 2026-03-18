@@ -32,8 +32,6 @@ import net.tracen.umapyoi.utils.UmaSoulUtils;
 @EventBusSubscriber(value = Dist.CLIENT)
 public class ClientEvents {
 
-    private static NonNullList<ItemStack> armor;
-
     @SubscribeEvent
     public static void preUmaSoulRendering(RenderingUmaSoulEvent.Pre event) {
         LivingEntity entity = event.getWearer();

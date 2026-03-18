@@ -274,7 +274,7 @@ public class UmaDataRegistry {
         bootstrap.register(YAMANIN_ZEPHYR, UmaData.createNewUmamusume("yamanin_zephyr", GachaRanking.SR, new int[] {10, 0, 0, 10, 10}, new Aptitude[]{Aptitude.A, Aptitude.D, Aptitude.B, Aptitude.A, Aptitude.A, Aptitude.G}, Position.PACE_CHASER));
         bootstrap.register(SATONO_CROWN, UmaData.createNewUmamusume("satono_crown", GachaRanking.SR, new int[] {0, 0, 15, 15, 0}, new Aptitude[]{Aptitude.A, Aptitude.G, Aptitude.G, Aptitude.B, Aptitude.A, Aptitude.E}, Position.LATE_SURGER));
 
-        bootstrap.register(ALMOND_EYE, UmaData.createNewUmamusume("almond_eye", GachaRanking.SSR, new int[] {10, 5, 10, 10, 5}, new Aptitude[]{Aptitude.A, Aptitude.B, Aptitude.C, Aptitude.D, Aptitude.E, Aptitude.F}, Position.PACE_CHASER)); // Unknown data for Almond Eye: Not yet implemented in Umamusume: Pretty Derby
+        bootstrap.register(ALMOND_EYE, UmaData.createNewUmamusume("almond_eye", GachaRanking.SSR, new int[] {10, 10, 10, 5, 5}, new Aptitude[]{Aptitude.A, Aptitude.G, Aptitude.G, Aptitude.A, Aptitude.A, Aptitude.F}, Position.FRONT_RUNNER));
         bootstrap.register(FUSAICHI_PANDORA, UmaData.createNewUmamusume("fusaichi_pandora", GachaRanking.SR, new int[] {0, 0, 15, 15, 0}, new Aptitude[]{Aptitude.A, Aptitude.E, Aptitude.G, Aptitude.B, Aptitude.A, Aptitude.G}, Position.PACE_CHASER));
 
         bootstrap.register(MEJIRO_RYAN, UmaData.createNewUmamusume("mejiro_ryan", GachaRanking.SR, new int[] {0, 0, 20, 0, 10}, new Aptitude[]{Aptitude.A, Aptitude.G, Aptitude.E, Aptitude.C, Aptitude.A, Aptitude.B}, Position.PACE_CHASER)); // Pace Chaser (A) / Late Surger (A)

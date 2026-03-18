@@ -1,6 +1,5 @@
 package net.tracen.umapyoi.data;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
@@ -79,8 +78,15 @@ public class UmapyoiRecipeProvider extends AbstractRecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.UMA_SELECT_BLOCK.get()).pattern(" J ").pattern("BLB").pattern("AAA")
         .define('A', Tags.Items.GEMS_DIAMOND)
         .define('B', Items.NETHER_STAR).define('L', Items.LECTERN)
-        .define('J', ItemRegistry.JEWEL.get())
+        .define('J', ItemRegistry.BLANK_TICKET.get())
         .unlockedBy("has_item", has(ItemRegistry.BLANK_TICKET.get())).save(consumer);
+        
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.RACE_SELECT_BLOCK.get()).pattern(" J ").pattern("BLB").pattern("AAA")
+        .define('A', Tags.Items.INGOTS_GOLD)
+        .define('B', Items.NETHER_STAR).define('L', Items.LECTERN)
+        .define('J', ItemRegistry.RACE_SELECT_BLOCK.get())
+        .unlockedBy("has_item", has(ItemRegistry.RACE_SELECT_BLOCK.get())).save(consumer);
+        
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlockRegistry.THREE_GODDESS.get()).pattern(" J ")
                 .pattern("JLJ").pattern("AAA").define('A', Tags.Items.STONES)
                 .define('L', Items.QUARTZ_BLOCK).define('J', ItemRegistry.JEWEL.get())

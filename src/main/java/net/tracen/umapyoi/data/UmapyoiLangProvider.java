@@ -193,6 +193,9 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addTooltip(".uma_soul.aptitude.strategy.late_surger", "Late");
         addTooltip(".uma_soul.aptitude.strategy.end_closer", "End");
         addTooltip(".uma_soul.aptitude.strategy.runaway", "Runaway");
+        
+        add(BlockRegistry.RACE_SELECT_BLOCK.get(), "Race Selection Lectern");
+        add("container.umapyoi.raceselect", "Race Selection Register");
 
         addSupport(TrainingSupportRegistry.SPEED_SUPPORT, "Speed Increase");
         addSupport(TrainingSupportRegistry.STAMINA_SUPPORT, "Stamina Increase");

@@ -270,7 +270,7 @@
   "block.umapyoi.three_goddess_upper": "三女神像",
   "block.umapyoi.training_facility": "训练设施终端",
   "block.umapyoi.register_lectern": "育成登记台",
-  "block.umapyoi.uma_select_block": "自选登记台",
+  "block.umapyoi.uma_select_block": "马娘自选登记台",
   "block.umapyoi.uma_pedestal": "马娘召唤基座",
   "block.umapyoi.support_album_pedestal": "支援相册基座",
   "block.umapyoi.silver_support_album_pedestal": "银色支援相册基座",
@@ -290,6 +290,8 @@
   "container.umapyoi.race": "比赛登记终端",
   "container.umapyoi.factor_decompose": "因子拆解台",
   "container.umapyoi.factor_research": "因子研究台",
+  "block.umapyoi.race_select_block": "比赛自选登记台",
+  "container.umapyoi.raceselect": "自选登记",
 
   "support_card.umapyoi.adv_guts_card.name": "[进阶训练] 毅力训练",
   "support_card.umapyoi.adv_speed_card.name": "[进阶训练] 速度训练",

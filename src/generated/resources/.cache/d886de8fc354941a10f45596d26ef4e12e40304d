@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-06T19:33:49.567106	Item Models: umapyoi
+// 1.21.1	2026-03-14T12:21:51.0594674	Item Models: umapyoi
 eb203ac61047f57a3d27c883fef827ffb672e86e assets/umapyoi/models/item/blank_ticket.json
 a160441d9de23d2cd1e654138352edb941f60bd3 assets/umapyoi/models/item/blank_uma_soul.json
 8942fac00e5e9760addae49b0928ca83558fbc4c assets/umapyoi/models/item/card_ticket.json
@@ -19,7 +19,7 @@ b43ea4199d6d746e136da7350144321deed9b86e assets/umapyoi/models/item/horseshoe_si
 33d08372781b3cf659e4a53a935c6c25e302b731 assets/umapyoi/models/item/mentality_low_item.json
 60c96cbe8223e881462ee1def17ccd8b2c4cc7cb assets/umapyoi/models/item/mentality_mid_item.json
 61ba577fa24cfb43a4e1c9b16edb0e8210e99e1a assets/umapyoi/models/item/race_register.json
-bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f assets/umapyoi/models/item/race_select_block.json
+bda86377623d3e4afe9600365906e2eecf570c35 assets/umapyoi/models/item/race_select_block.json
 84b6bce607e756aaee8f9fdd40276568e33ed049 assets/umapyoi/models/item/race_ticket.json
 44f6fd56b5307c312f4dfad264feac4c1e8dd15a assets/umapyoi/models/item/race_ticket/race_ticket_champions.json
 84b6bce607e756aaee8f9fdd40276568e33ed049 assets/umapyoi/models/item/race_ticket/race_ticket_common.json

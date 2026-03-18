@@ -32,7 +32,8 @@ public class UmapyoiBlockStateProvider extends AbstractBlockStateProvider {
                 models().getExistingFile(ResourceLocation.parse("umapyoi:block/uma_select_block")));
         horizontalBlock(BlockRegistry.RACE_REGISTER_BLOCK.get(),
                 models().getExistingFile(ResourceLocation.parse("umapyoi:block/race_register")));
-
+        horizontalBlock(BlockRegistry.RACE_SELECT_BLOCK.get(),
+                models().getExistingFile(ResourceLocation.parse("umapyoi:block/race_select_block")));
 
         getVariantBuilder(BlockRegistry.GATE.get()).forAllStates(state ->
                 ConfiguredModel.builder()

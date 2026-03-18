@@ -12,8 +12,6 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.network.handling.ServerPayloadContext;
 import net.tracen.umapyoi.Umapyoi;
 import net.tracen.umapyoi.container.IItemNameMutableMenu;
-import net.tracen.umapyoi.container.UmaSelectMenu;
-
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
