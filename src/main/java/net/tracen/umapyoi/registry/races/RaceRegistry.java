@@ -3743,7 +3743,7 @@ public class RaceRegistry {
                     .setRanking(RaceRanking.GI)
                     .setField(SHATIN)
                     .setSurface(Surface.TURF)
-                    .setLength(1600)
+                    .setLength(2000)
                     ::create
     );
 

@@ -1,14 +1,14 @@
 {
   "field": "umapyoi:shatin",
   "id": "umapyoi:hong_kong_cup",
-  "length": 1600,
+  "length": 2000,
   "ranking": "gi",
   "reference_level": 35,
   "surface": "turf",
   "tags": [],
   "time": 23,
   "year": [
-    "classic",
-    "senior"
+    "senior",
+    "classic"
   ]
 }
