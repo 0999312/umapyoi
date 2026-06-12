@@ -48,6 +48,7 @@
   "block.umapyoi.gate": "게이트",
   "block.umapyoi.gate_door": "게이트 문",
   "block.umapyoi.race_register": "레이스 출전 터미널",
+  "block.umapyoi.race_select_block": "레이스 선택 독서대",
 
   "container.umapyoi.disassembly_block": "이적",
   "container.umapyoi.retire_register": "육성 완료",
