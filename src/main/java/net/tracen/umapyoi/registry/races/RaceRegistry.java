@@ -10,12 +10,12 @@ import net.tracen.umapyoi.utils.RaceRanking;
 import net.tracen.umapyoi.utils.Surface;
 import net.tracen.umapyoi.utils.Year;
 
-import static net.tracen.umapyoi.registry.races.field.RaceFieldRegistry.*;
-import static net.tracen.umapyoi.registry.races.Race.RaceBuilder;
-import static net.tracen.umapyoi.registry.races.tags.RaceTagRegistry.*;
-
 import java.util.HashMap;
 import java.util.function.Function;
+
+import static net.tracen.umapyoi.registry.races.Race.RaceBuilder;
+import static net.tracen.umapyoi.registry.races.field.RaceFieldRegistry.*;
+import static net.tracen.umapyoi.registry.races.tags.RaceTagRegistry.*;
 
 public class RaceRegistry {
     public static final String PREDICATE_CHAMPIONS = "champions";
@@ -1789,7 +1789,7 @@ public class RaceRegistry {
                     .setRanking(RaceRanking.GI)
                     .setField(KYOTO)
                     .setSurface(Surface.TURF)
-                    .setLength(2000)
+                    .setLength(3000)
                     .addAttr(2, 4)
                     .addTags(TRIPLE_CROWN, EIGHT_GREAT_RACES)
                     ::create
@@ -2695,8 +2695,8 @@ public class RaceRegistry {
             new RaceBuilder().setTime(3, true)
                     .addYear(Year.SENIOR)
                     .setRanking(RaceRanking.GI)
-                    .setField(HANSHIN)
-                    .setSurface(Surface.DIRT)
+                    .setField(CHUKYO)
+                    .setSurface(Surface.TURF)
                     .setLength(1200)
                     .addTags(SPRINT)
                     ::create
@@ -3408,6 +3408,467 @@ public class RaceRegistry {
                     .onlyIfLaterThen(URA_FINALS.location())
                     .setReferenceLevel(30)
                     .setTexture(PREDICATE_CHAMPIONS)
+                    ::create
+    );
+
+    //French races
+    public static final ResourceKey<Race> PRIX_NIEL = simpleRegister("prix_niel",
+            new RaceBuilder().setTime(9, false)
+                    .addYear(Year.CLASSIC)
+                    .setRanking(RaceRanking.GII)
+                    .setField(LONGCHAMP)
+                    .setSurface(Surface.TURF)
+                    .setLength(2400)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> PRIX_FOY = simpleRegister("prix_foy",
+            new RaceBuilder().setTime(9, false)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GII)
+                    .setField(LONGCHAMP)
+                    .setSurface(Surface.TURF)
+                    .setLength(2400)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> PRIX_DE_LARC = simpleRegister("prix_de_larc",
+            new RaceBuilder().setTime(10, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(LONGCHAMP)
+                    .setSurface(Surface.TURF)
+                    .setLength(2400)
+                    .addTags(LARC)
+                    ::create
+    );
+
+    //Grand Prix de Saint-Cloud (El Condor Pasa 1st)
+    public static final ResourceKey<Race> GRAND_PRIX_DE_SAINT_CLOUD = simpleRegister("grand_prix_de_saint_cloud",
+            new RaceBuilder().setTime(7, false)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SAINT_CLOUD)
+                    .setSurface(Surface.TURF)
+                    .setLength(2400)
+                    ::create
+    );
+
+    //Prix Jacques le Marois (Taiki Shuttle 1st)
+    public static final ResourceKey<Race> PRIX_JACQUES_LE_MAROIS = simpleRegister("prix_jacques_le_marois",
+            new RaceBuilder().setTime(8, true)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DEAUVILLE)
+                    .setSurface(Surface.TURF)
+                    .setLength(1600)
+                    ::create
+    );
+
+    //Prix Maurice de Gheest (Seeking the Pearl 1st)
+    public static final ResourceKey<Race> PRIX_MAURICE_DE_GHEEST = simpleRegister("prix_maurice_de_gheest",
+            new RaceBuilder().setTime(9, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DEAUVILLE)
+                    .setSurface(Surface.TURF)
+                    .setLength(1300)
+                    ::create
+    );
+
+    //Breeders' Cup races
+    public static final ResourceKey<Race> BC_CLASSIC_DELMAR = simpleRegister("bc_classic_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.DIRT)
+                    .setLength(2000)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_CLASSIC_SANTA_ANITA = simpleRegister("bc_classic_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.DIRT)
+                    .setLength(2000)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> BC_DISTAFF_DELMAR = simpleRegister("bc_distaff_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1800)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_DISTAFF_SANTA_ANITA = simpleRegister("bc_distaff_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1800)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> BC_DIRT_MILE_DELMAR = simpleRegister("bc_dirt_mile_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1600)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_DIRT_MILE_SANTA_ANITA = simpleRegister("bc_dirt_mile_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1600)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> BC_F_AND_M_SPRINT_DELMAR = simpleRegister("bc_f_and_m_sprint_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1400)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_F_AND_M_SPRINT_SANTA_ANITA = simpleRegister("bc_f_and_m_sprint_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1400)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> BC_SPRINT_DELMAR = simpleRegister("bc_sprint_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1200)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_SPRINT_SANTA_ANITA = simpleRegister("bc_sprint_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1200)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> BC_TURF_DELMAR = simpleRegister("bc_turf_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.TURF)
+                    .setLength(2400)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_TURF_SANTA_ANITA = simpleRegister("bc_turf_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.TURF)
+                    .setLength(2400)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> BC_F_AND_M_TURF_DELMAR = simpleRegister("bc_f_and_m_turf_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.TURF)
+                    .setLength(2200) // 2200m
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_F_AND_M_TURF_SANTA_ANITA = simpleRegister("bc_f_and_m_turf_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.TURF)
+                    .setLength(2000) // 2000m
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> BC_MILE_DELMAR = simpleRegister("bc_mile_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.TURF)
+                    .setLength(1600)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_MILE_SANTA_ANITA = simpleRegister("bc_mile_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.TURF)
+                    .setLength(1600)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    public static final ResourceKey<Race> BC_TURF_SPRINT_DELMAR = simpleRegister("bc_turf_sprint_delmar",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(DELMAR)
+                    .setSurface(Surface.TURF)
+                    .setLength(1000)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+    public static final ResourceKey<Race> BC_TURF_SPRINT_SANTA_ANITA = simpleRegister("bc_turf_sprint_santa_anita",
+            new RaceBuilder().setTime(11, false)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.TURF)
+                    .setLength(1000)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    //other USA races
+    //Kentucky Derby (Forever Young 3rd)
+    public static final ResourceKey<Race> KENTUCKY_DERBY = simpleRegister("kentucky_derby",
+            new RaceBuilder().setTime(5, false)
+                    .addYear(Year.CLASSIC)
+                    .setRanking(RaceRanking.GI)
+                    .setField(CHURCHILL_DOWNS)
+                    .setSurface(Surface.DIRT)
+                    .setLength(2000)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    //Peter Pan Stakes (Casino Drive 1st)
+    public static final ResourceKey<Race> PETER_PAN_STAKES = simpleRegister("peter_pan_stakes",
+            new RaceBuilder().setTime(5, false)
+                    .addYear(Year.CLASSIC)
+                    .setRanking(RaceRanking.GIII)
+                    .setField(BELMONT_PARK)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1800)
+                    ::create
+    );
+
+    //American Oaks (Cesario 1st)
+    public static final ResourceKey<Race> AMERICAN_OAKS = simpleRegister("american_oaks",
+            new RaceBuilder().setTime(7, false)
+                    .addYear(Year.CLASSIC)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SANTA_ANITA)
+                    .setSurface(Surface.TURF)
+                    .setLength(2000)
+                    .addTags(AMERICAN_GI)
+                    ::create
+    );
+
+    //Hong Kong races
+    //Hong Kong Vase (Stay Gold 1st, Satono Crown 1st, Kiseki 9th)
+    public static final ResourceKey<Race> HONG_KONG_VASE = simpleRegister("hong_kong_vase",
+            new RaceBuilder().setTime(12, false)
+                    .addYear(Year.CLASSIC,Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SHATIN)
+                    .setSurface(Surface.TURF)
+                    .setLength(2400)
+                    ::create
+    );
+
+    //Hong Kong Sprint (Believe 12th, Curren Chan 5th and 7th)
+    public static final ResourceKey<Race> HONG_KONG_SPRINT = simpleRegister("hong_kong_sprint",
+            new RaceBuilder().setTime(12, false)
+                    .addYear(Year.CLASSIC,Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SHATIN)
+                    .setSurface(Surface.TURF)
+                    .setLength(1200)
+                    ::create
+    );
+
+    //Hong Kong Mile (Durandal 5th, Logotype 5th, Vivlos 2nd)
+    public static final ResourceKey<Race> HONG_KONG_MILE = simpleRegister("hong_kong_mile",
+            new RaceBuilder().setTime(12, false)
+                    .addYear(Year.CLASSIC,Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SHATIN)
+                    .setSurface(Surface.TURF)
+                    .setLength(1600)
+                    ::create
+    );
+
+    //Hong Kong Cup (Agnes Digital 1st, Loves Only You 1st)
+    public static final ResourceKey<Race> HONG_KONG_CUP = simpleRegister("hong_kong_cup",
+            new RaceBuilder().setTime(12, false)
+                    .addYear(Year.CLASSIC,Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SHATIN)
+                    .setSurface(Surface.TURF)
+                    .setLength(2000)
+                    ::create
+    );
+
+    //Queen Elizabeth II Cup
+    //Agnes Digital 2nd, Rulership 1st, Eishin Flash 3rd, Epiphaneia 4th, Satono Crown 12th, Loves Only You 1st, Daring Tact 3rd, Kiseki 4th
+    public static final ResourceKey<Race> QE2_CUP = simpleRegister("qe2_cup",
+            new RaceBuilder().setTime(4, true)
+                    .addYear(Year.CLASSIC,Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(SHATIN)
+                    .setSurface(Surface.TURF)
+                    .setLength(2000)
+                    ::create
+    );
+
+    //Dubai races
+    //UAE Derby (Forever Young 1st)
+    public static final ResourceKey<Race> UAE_DERBY = simpleRegister("uae_derby",
+            new RaceBuilder().setTime(3, true)
+                    .addYear(Year.CLASSIC)
+                    .setRanking(RaceRanking.GII)
+                    .setField(MEYDAN)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1900)
+                    ::create
+    );
+
+    //Jebel Hatta (Vodka 5th)
+    public static final ResourceKey<Race> JEBEL_HATTA = simpleRegister("jebel_hatta",
+            new RaceBuilder().setTime(3, true)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(MEYDAN)
+                    .setSurface(Surface.TURF)
+                    .setLength(1800)
+                    ::create
+    );
+
+    //Al Maktoum Challenge round 3 (Red Desire 1st, Vodka 8th)
+    public static final ResourceKey<Race> AL_MAKTOUM_CHALLENGE_SYNTHETIC = simpleRegister("al_maktoum_challenge_synthetic",
+            new RaceBuilder().setTime(3, false)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GII)
+                    .setField(MEYDAN)
+                    .setSurface(Surface.SYNTHETIC)
+                    .setLength(2000)
+                    ::create
+    );
+    //Al Maktoum Challenge (Changed condition and grade)
+    public static final ResourceKey<Race> AL_MAKTOUM_CHALLENGE_DIRT = simpleRegister("al_maktoum_challenge_dirt",
+            new RaceBuilder().setTime(3, false)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(MEYDAN)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1900)
+                    ::create
+    );
+
+    //Dubai Turf (Vodka 4th and 7th, Logotype 6th, Vivlos 1st and 2nd, Almond Eye 1st)
+    public static final ResourceKey<Race> DUBAI_TURF = simpleRegister("dubai_turf",
+            new RaceBuilder().setTime(3, true)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(MEYDAN)
+                    .setSurface(Surface.TURF)
+                    .setLength(1800)
+                    ::create
+    );
+
+    //Dubai Sheema Classic (Stay Gold 1st, Buena Vista 2nd, Rulership 6th,
+    //Gentildonna 2nd, Duramente 2nd, Sounds Of Earth 6th, Satono Crown 7th, Cheval Grand 2nd, Chrono Genesis 2nd, Loves Only You 3rd)
+    public static final ResourceKey<Race> DUBAI_SHEEMA_CLASSIC = simpleRegister("dubai_sheema_classic",
+            new RaceBuilder().setTime(3, true)
+                    .addYear(Year.CLASSIC, Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(MEYDAN)
+                    .setSurface(Surface.TURF)
+                    .setLength(2400)
+                    ::create
+    );
+
+    //Dubai World Cup (All Weather)
+    //Red Desire 11th, Victoire Pisa 1st, Transcend 2nd and 13th,  Buena Vista 8th, Eishin Flash 6th, Smart Falcon 10th, Hokko Tarumae 16th
+    public static final ResourceKey<Race> DUBAI_WORLD_CUP_SYNTHETIC = simpleRegister("dubai_world_cup_synthetic",
+            new RaceBuilder().setTime(3, true)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(MEYDAN)
+                    .setSurface(Surface.SYNTHETIC)
+                    .setLength(2000)
+                    ::create
+    );
+    //Dubai World Cup (Dirt)
+    //Casino Drive 8th, Hokko Tarumae 5th and 9th, Epiphaneia 9th, Forever Young 3rd and 2nd
+    public static final ResourceKey<Race> DUBAI_WORLD_CUP_DIRT = simpleRegister("dubai_world_cup_dirt",
+            new RaceBuilder().setTime(3, true)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(MEYDAN)
+                    .setSurface(Surface.DIRT)
+                    .setLength(2000)
+                    ::create
+    );
+
+    //Saudi races
+    //Saudi Derby (Forever Young 1st)
+    public static final ResourceKey<Race> SAUDI_DERBY = simpleRegister("saudi_derby",
+            new RaceBuilder().setTime(2, true)
+                    .addYear(Year.CLASSIC)
+                    .setRanking(RaceRanking.GIII)
+                    .setField(KING_ABDULAZIZ)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1600)
+                    ::create
+    );
+
+    //Saudi Cup (Forever Young 1st)
+    public static final ResourceKey<Race> SAUDI_CUP = simpleRegister("saudi_cup",
+            new RaceBuilder().setTime(2, true)
+                    .addYear(Year.SENIOR)
+                    .setRanking(RaceRanking.GI)
+                    .setField(KING_ABDULAZIZ)
+                    .setSurface(Surface.DIRT)
+                    .setLength(1800)
                     ::create
     );
 
