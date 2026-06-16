@@ -115,20 +115,24 @@ repositories {
 	mavenLocal()
     maven { url = "https://raw.github.com/0999312/MMMaven/main/repository" }
     maven {
-        name = "OctoStudios"
-        url = "https://maven.octo-studios.com/releases"
+        name = "Curios"
+        url = "https://maven.theillusivec4.top/"
     }
     maven {
         // location of the maven that hosts JEI files since January 2023
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
     }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
 }
 
 
 dependencies {
     implementation ("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:${mmlib_version}")
-    implementation("top.theillusivec4.curios:curios-neoforge:9.0.14+1.21.1")
+    implementation("top.theillusivec4.curios:curios-neoforge:9.2.0+1.21.1")
     // compile against the JEI API but do not include it at runtime
     compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
