@@ -140,7 +140,7 @@ repositories {
 
 dependencies {
     implementation ("maven.modrinth:mmlib:${mmlib_version}")
-    implementation("top.theillusivec4.curios:curios-neoforge:9.0.14+1.21.1")
+    implementation("top.theillusivec4.curios:curios-neoforge:9.2.0+1.21.1")
     // compile against the JEI API but do not include it at runtime
     compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
