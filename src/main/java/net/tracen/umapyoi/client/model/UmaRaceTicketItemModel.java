@@ -14,6 +14,8 @@ import net.tracen.umapyoi.item.UmaRaceTicketItem;
 
 import java.util.Optional;
 
+import cn.mcmod_mmf.mmlib.client.model.DynamicItemBakedModel;
+
 public class UmaRaceTicketItemModel extends DynamicItemBakedModel {
     public UmaRaceTicketItemModel(BakedModel original, ModelBakery loader) {
         super(original, loader);

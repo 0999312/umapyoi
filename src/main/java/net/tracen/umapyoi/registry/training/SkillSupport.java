@@ -1,7 +1,5 @@
 package net.tracen.umapyoi.registry.training;
 
-import java.util.Random;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;

@@ -6,8 +6,8 @@
   "id": "umapyoi:tokyo",
   "synthetics": [],
   "turfs": [
+    "mile",
     "medium",
-    "sprint",
-    "mile"
+    "sprint"
   ]
 }

@@ -27,10 +27,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tracen.umapyoi.block.BlockRegistry;
-import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.UmaSoulItem;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
-import net.tracen.umapyoi.item.data.DataLocation;
 import net.tracen.umapyoi.registry.UmaFactorRegistry;
 import net.tracen.umapyoi.registry.UmaSkillRegistry;
 import net.tracen.umapyoi.registry.factors.FactorType;
@@ -40,7 +38,6 @@ import net.tracen.umapyoi.registry.factors.UmaFactor;
 import net.tracen.umapyoi.registry.factors.UmaFactorStack;
 import net.tracen.umapyoi.registry.skills.UmaSkill;
 import net.tracen.umapyoi.utils.ResultRankingUtils;
-import net.tracen.umapyoi.utils.UmaFactorUtils;
 import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class RetireRegisterMenu extends AbstractContainerMenu {

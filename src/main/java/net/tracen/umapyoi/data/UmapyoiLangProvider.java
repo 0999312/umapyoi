@@ -193,6 +193,9 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addTooltip(".uma_soul.aptitude.strategy.late_surger", "Late");
         addTooltip(".uma_soul.aptitude.strategy.end_closer", "End");
         addTooltip(".uma_soul.aptitude.strategy.runaway", "Runaway");
+        
+        add(BlockRegistry.RACE_SELECT_BLOCK.get(), "Race Selection Lectern");
+        add("container.umapyoi.raceselect", "Race Selection Register");
 
         addSupport(TrainingSupportRegistry.SPEED_SUPPORT, "Speed Increase");
         addSupport(TrainingSupportRegistry.STAMINA_SUPPORT, "Stamina Increase");
@@ -801,7 +804,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addRace(RaceRegistry.WAKABA_STAKES, "Wakaba Stakes");
         addRace(RaceRegistry.YAYOI_SHO, "Yayoi Sho");
         addRace(RaceRegistry.FILLIES_REVIEW, "Fillies Review");
-        addRace(RaceRegistry.TURNIP_STAKES, "Turnip Stakes");
+        addRace(RaceRegistry.TURNIP_STAKES, "Tulip Stakes");
         addRace(RaceRegistry.ANEMONE_STAKES, "Anemone Stakes");
         addRace(RaceRegistry.SHORYU_STAKES, "Shoryu Stakes");
         addRace(RaceRegistry.FLORA_STAKES, "Flora Stakes");
@@ -892,7 +895,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addRace(RaceRegistry.TENNO_SHO_AUTUMN, "Tenno Sho Autumn");
         addRace(RaceRegistry.SWAN_STAKES, "Swan Stakes");
         addRace(RaceRegistry.FUJI_STAKES, "Fuji Stakes");
-        addRace(RaceRegistry.MUROMAJI_STAKES, "Muromaji Stakes");
+        addRace(RaceRegistry.MUROMAJI_STAKES, "Muromachi Stakes");
         addRace(RaceRegistry.BRAZIL_CUP, "Brazil Cup");
         addRace(RaceRegistry.CASSIOPEIA_STAKES, "Cassiopeia Stakes");
         addRace(RaceRegistry.LUMIERE_AUTUMN_DASH, "Lumiere Autumn Dash");
@@ -969,7 +972,7 @@ public class UmapyoiLangProvider extends AbstractLangProvider {
         addRace(RaceRegistry.KAWASAKI_KINEN, "Kawasaki Kinen");
         addRace(RaceRegistry.KYOTO_KINEN, "Kyoto Kinen");
         addRace(RaceRegistry.TOKYO_SHIMBUN_HAI, "Tokyo Shimbun Hai");
-        addRace(RaceRegistry.DAIWA_STAKES, "Daiwa Stakes");
+        addRace(RaceRegistry.DAIWA_STAKES, "Yamato Stakes");
         addRace(RaceRegistry.RAKUYO_STAKES, "Rakuyo Stakes");
         addRace(RaceRegistry.ALDEBARAN_STAKES, "Aldebaran Stakes");
         addRace(RaceRegistry.VALENTINE_STAKES, "Valentine Stakes");

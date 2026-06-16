@@ -18,7 +18,7 @@ public class GrantBookOnFirstJoin extends SimpleCriterionTrigger<GrantBookOnFirs
         return Codec.unit(Instance::new);
     }
 
-    public static class Instance implements SimpleInstance {
+    public static class Instance implements SimpleCriterionTrigger.SimpleInstance {
         public boolean test(ServerPlayer player) {
             return UmapyoiConfig.GRANT_GUIDE_ON_FIRST_JOIN.get();
         }

@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.client.model;
 
+import cn.mcmod_mmf.mmlib.client.model.DynamicItemBakedModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.model.BakedModel;

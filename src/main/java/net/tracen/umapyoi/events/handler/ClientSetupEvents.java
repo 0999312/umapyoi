@@ -1,6 +1,7 @@
 package net.tracen.umapyoi.events.handler;
 
 import cn.mcmod_mmf.mmlib.client.model.BedrockModelResourceLoader;
+import cn.mcmod_mmf.mmlib.client.model.DynamicItemBakedModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.resources.model.BakedModel;
@@ -22,7 +23,6 @@ import net.tracen.umapyoi.client.ActionBarOverlay;
 import net.tracen.umapyoi.client.MotivationOverlay;
 import net.tracen.umapyoi.client.SkillOverlay;
 import net.tracen.umapyoi.client.key.SkillKeyMapping;
-import net.tracen.umapyoi.client.model.DynamicItemBakedModel;
 import net.tracen.umapyoi.client.model.SupportCardItemModel;
 import net.tracen.umapyoi.client.model.UmaCostumeItemModel;
 import net.tracen.umapyoi.client.model.UmaRaceTicketItemModel;

@@ -18,7 +18,6 @@ import net.tracen.umapyoi.item.weapon.BaseballBatItem;
 import net.tracen.umapyoi.item.weapon.GrassNaginataItem;
 import net.tracen.umapyoi.registry.TrainingSupportRegistry;
 import net.tracen.umapyoi.registry.training.SupportType;
-import net.tracen.umapyoi.utils.UmaStatusUtils;
 
 public class ItemRegistry {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Umapyoi.MODID);
