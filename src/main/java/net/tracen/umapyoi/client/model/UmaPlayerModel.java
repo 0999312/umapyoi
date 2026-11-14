@@ -24,9 +24,12 @@ import java.util.List;
 import cn.mcmod_mmf.mmlib.client.model.BedrockHumanoidModel;
 import cn.mcmod_mmf.mmlib.client.model.bedrock.BedrockPart;
 import cn.mcmod_mmf.mmlib.client.model.pojo.BedrockModelPOJO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel<T> {
 
+    private static final Logger log = LoggerFactory.getLogger(UmaPlayerModel.class);
     public BedrockPart rightArmDown;
     public BedrockPart leftArmDown;
     public BedrockPart rightLegDown;
@@ -45,6 +48,9 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     public BedrockPart tailDown;
     
     public BedrockPart cape;
+    public BedrockPart leftEarmuff;
+    public BedrockPart rightEarmuff;
+
     public List<BedrockPart> longHairParts = Lists.newArrayList();
     public UmaPlayerModel() {
         super();
@@ -75,6 +81,8 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
         this.leftLegHideParts = this.getChild("left_leg_hide_parts");
         this.tail = this.getChild("tail");
         this.tailDown = this.getChild("tail_down");
+        this.leftEarmuff = this.getChild("left_earmuffs_costume");
+        this.rightEarmuff = this.getChild("right_earmuffs_costume");
         this.longHairParts = Lists.newArrayList();
         this.getModelMap().forEach((name,part)->{
             if(name.startsWith("long_hair_") || name.equals("long_hair"))
@@ -161,6 +169,8 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.rightEarHideParts.zRot = -earRot;
             this.leftEar.zRot = earRot;
             this.rightEar.zRot = -earRot;
+            this.leftEarmuff.zRot = earRot;
+            this.rightEarmuff.zRot = -earRot;
         } else {
             if (this.leftEarHideParts != null)
                 this.leftEarHideParts.zRot = 0F;
@@ -168,6 +178,8 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.rightEarHideParts.zRot = 0F;
             this.leftEar.zRot = 0F;
             this.rightEar.zRot = 0F;
+            this.leftEarmuff.zRot = 0f;
+            this.rightEarmuff.zRot = 0f;
         }
 
         if (0 < tail_reminder && tail_reminder < 8) {
