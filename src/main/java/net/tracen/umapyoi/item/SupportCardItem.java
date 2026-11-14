@@ -83,6 +83,13 @@ public class SupportCardItem extends Item implements SupportContainer {
     }
 
     @Override
+    public Component getName(ItemStack pStack) {
+        GachaRanking ranking = GachaRanking.getGachaRanking(pStack);
+        if (ranking == GachaRanking.EASTER_EGG && !getSupportCardID(pStack).equals(SupportCard.EMPTY_ID)) return super.getName(pStack).copy().withStyle(ChatFormatting.GREEN);
+        return super.getName(pStack);
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, level, tooltip, flagIn);
