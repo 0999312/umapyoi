@@ -1,5 +1,6 @@
 package net.tracen.umapyoi.recipe;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,16 +10,23 @@ import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tracen.umapyoi.item.ItemRegistry;
+import net.tracen.umapyoi.item.UmaSoulItem;
+import net.tracen.umapyoi.registry.umadata.UmaData;
+import net.tracen.umapyoi.utils.UmaSoulUtils;
 
 public class UmasoulIngredient extends Ingredient {
     private final Set<Item> items;
@@ -45,6 +53,31 @@ public class UmasoulIngredient extends Ingredient {
 
     public static UmasoulIngredient of(RequestUma request) {
         return new UmasoulIngredient(Set.of(ItemRegistry.BLANK_UMA_SOUL.get()), request);
+    }
+
+    public static ItemStack genData(Item item, String name, UmaData data) {
+        ItemStack result = new ItemStack(item);
+        result.getOrCreateTag().putString("name", name);
+        result.getOrCreateTag().putString("identifier", data.getIdentifier().toString());
+        result.getOrCreateTag().putString("ranking", data.getGachaRanking().toString().toLowerCase());
+        return result;
+    }
+
+    @Override
+    public ItemStack[] getItems() {
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            Level level = Minecraft.getInstance().level;
+            if (level == null) return super.getItems();
+            ArrayList<ItemStack> result = new ArrayList<>();
+            for (var item: items) {
+                UmaSoulItem.sortedUmaDataList(level.registryAccess())
+                        .map(entry -> genData(item, entry.key().location().toString(), entry.value()))
+                        .filter(this.request::test)
+                        .forEach(result::add);
+            }
+            return result.toArray(new ItemStack[0]);
+        }
+        return super.getItems();
     }
 
     @Override
