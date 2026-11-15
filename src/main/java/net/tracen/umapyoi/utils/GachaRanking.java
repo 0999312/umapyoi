@@ -2,6 +2,8 @@ package net.tracen.umapyoi.utils;
 
 import com.mojang.serialization.Codec;
 
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 

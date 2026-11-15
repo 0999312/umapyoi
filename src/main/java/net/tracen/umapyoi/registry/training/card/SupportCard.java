@@ -53,9 +53,12 @@ public class SupportCard{
         this.supporters = supporters;
         this.maxDamage = maxDamage;
     }
-    
+
     public static ItemStack init(ResourceLocation name, SupportCard card) {
-        ItemStack result = new ItemStack(ItemRegistry.SUPPORT_CARD.get());
+        return init(new ItemStack(ItemRegistry.SUPPORT_CARD.get()), name, card);
+    }
+
+    public static ItemStack init(ItemStack result, ResourceLocation name, SupportCard card) {
         result.set(DataComponents.MAX_DAMAGE, card.getMaxDamage());
         result.set(DataComponents.DAMAGE, 0);
         result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(name));

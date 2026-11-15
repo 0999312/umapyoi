@@ -30,7 +30,11 @@ public class UmaSoulItem extends Item{
     }
     
     public static Stream<Reference<UmaData>> sortedUmaDataList(HolderLookup.Provider provider) {
-        return provider.lookupOrThrow(UmaData.REGISTRY_KEY).listElements().sorted(UmaSoulItem.COMPARATOR);
+        return sortedUmaDataList(provider.lookupOrThrow(UmaData.REGISTRY_KEY));
+    }
+
+    public static Stream<Reference<UmaData>> sortedUmaDataList(HolderLookup<UmaData> lookup) {
+        return lookup.listElements().sorted(UmaSoulItem.COMPARATOR);
     }
 
     @Override

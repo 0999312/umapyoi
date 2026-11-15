@@ -51,12 +51,17 @@ public class FadedUmaSoulItem extends Item {
         return getUmaName(itemStack).getNamespace();
     }
 
-    public static ItemStack genUmaSoul(ResourceLocation name, UmaData data) {
-        ItemStack result = ItemRegistry.BLANK_UMA_SOUL.get().getDefaultInstance();
+    public static ItemStack genUmaSoul(ItemStack result, ResourceLocation name, UmaData data) {
         result.set(DataComponentsTypeRegistry.DATA_LOCATION, new DataLocation(name));
         GachaRanking ranking = data.ranking();
         result.set(DataComponentsTypeRegistry.GACHA_RANKING, new GachaRankingData(ranking));
         result.set(DataComponents.RARITY, ranking == GachaRanking.SSR || ranking == GachaRanking.EASTER_EGG ? Rarity.EPIC : ranking == GachaRanking.SR ? Rarity.UNCOMMON : Rarity.COMMON);
+        return result;
+    }
+
+    public static ItemStack genUmaSoul(ResourceLocation name, UmaData data) {
+        ItemStack result = ItemRegistry.BLANK_UMA_SOUL.get().getDefaultInstance();
+        genUmaSoul(result, name, data);
         return result;
     }
 }
