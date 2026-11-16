@@ -21,6 +21,8 @@ import net.tracen.umapyoi.effect.MobEffectRegistry;
 import net.tracen.umapyoi.item.ItemRegistry;
 import net.tracen.umapyoi.item.data.DataComponentsTypeRegistry;
 import net.tracen.umapyoi.loot.LootFunctionRegistry;
+import net.tracen.umapyoi.recipe.IngredientRegistry;
+import net.tracen.umapyoi.recipe.RecipeSerializerRegistry;
 import net.tracen.umapyoi.registry.*;
 import net.tracen.umapyoi.villager.VillageRegistry;
 
@@ -55,6 +57,8 @@ public class Umapyoi {
         DataComponentsTypeRegistry.DATA_COMPONENTS.register(modEventBus);
         SoundRegistry.SOUNDS.register(modEventBus);
         GLMRegistry.GLM.register(modEventBus);
+        IngredientRegistry.INGREDIENTS.register(modEventBus);
+        RecipeSerializerRegistry.RECIPE_SERIALIZER.register(modEventBus);
         modEventBus.addListener(EventPriority.HIGHEST, this::onEntityAttributeModification);
         modContainer.registerConfig(ModConfig.Type.COMMON, UmapyoiConfig.COMMON_CONFIG);
         modContainer.registerConfig(ModConfig.Type.CLIENT, UmapyoiConfig.CLIENT_CONFIG);

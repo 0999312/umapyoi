@@ -54,6 +54,11 @@ public class ClientEvents {
             else {
                 model.setHatAndEarsVisible(true, true);
             }
+            var suit = UmapyoiAPI.getRenderingUmasuit(entity);
+            if (suit != null) {
+                model.setLeftEarVisible(suit.getChild("left_earmuffs_costume").isEmpty());
+                model.setRightEarVisible(suit.getChild("right_earmuffs_costume").isEmpty());
+            }
         }
     }
     

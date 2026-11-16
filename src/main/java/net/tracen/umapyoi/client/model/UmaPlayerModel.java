@@ -45,6 +45,9 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
     public BedrockPart tailDown;
     
     public BedrockPart cape;
+    public BedrockPart leftEarmuff;
+    public BedrockPart rightEarmuff;
+
     public List<BedrockPart> longHairParts;
     public UmaPlayerModel() {
         super();
@@ -82,6 +85,8 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 : new BedrockPart();
         this.tail = this.getChild("tail");
         this.tailDown = this.getChild("tail_down");
+        this.leftEarmuff = this.getChild("left_earmuffs_costume");
+        this.rightEarmuff = this.getChild("right_earmuffs_costume");
         this.longHairParts = Lists.newArrayList();
         this.getModelMap().forEach((name,part)->{
         	if(name.startsWith("long_hair_") || name.equals("long_hair"))
@@ -168,6 +173,8 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.rightEarHideParts.zRot = -earRot;
             this.leftEar.zRot = earRot;
             this.rightEar.zRot = -earRot;
+            this.leftEarmuff.zRot = earRot;
+            this.rightEarmuff.zRot = -earRot;
         } else {
             if (this.leftEarHideParts != null)
                 this.leftEarHideParts.zRot = 0F;
@@ -175,6 +182,8 @@ public class UmaPlayerModel<T extends LivingEntity> extends BedrockHumanoidModel
                 this.rightEarHideParts.zRot = 0F;
             this.leftEar.zRot = 0F;
             this.rightEar.zRot = 0F;
+            this.leftEarmuff.zRot = 0f;
+            this.rightEarmuff.zRot = 0f;
         }
 
         if (0 < tail_reminder && tail_reminder < 8) {

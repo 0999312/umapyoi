@@ -9,6 +9,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForge;
+import net.tracen.umapyoi.client.model.UmaPlayerModel;
 import net.tracen.umapyoi.client.renderer.AbstractSuitRenderer;
 import net.tracen.umapyoi.events.FindUmaSoulEvent;
 import net.tracen.umapyoi.item.UmaCostumeItem;
@@ -128,6 +129,16 @@ public class UmapyoiAPI {
             }
         }
         return false;
+    }
+
+    public static UmaPlayerModel<LivingEntity> getRenderingUmasuit(LivingEntity player) {
+        Optional<ICurioRenderer> renderer = CuriosRendererRegistry.getRenderer(UmapyoiAPI.getUmaSuit(player).getItem());
+        if (renderer.isPresent()) {
+            if(renderer.get() instanceof AbstractSuitRenderer suit) {
+                return suit.getBaseModel();
+            }
+        }
+        return null;
     }
 
     public static boolean isSpecifyUmamusumeSoul(ItemStack soul, ResourceLocation name) {
