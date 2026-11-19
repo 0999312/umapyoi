@@ -13,8 +13,10 @@ public class RaceTagRegistry {
             new int[]{1, 1, 1, 1, 1}); //note: 三后冠
     public static ResourceKey<RaceTag> TRIPLE_CROWN = simpleRegister("triple_crown", 3, true,
             new int[]{1, 1, 1, 1, 1}); //note: 三冠
-    public static ResourceKey<RaceTag> EIGHT_GREAT_RACES = simpleRegister("eight_great_races", 8, true,
+    public static ResourceKey<RaceTag> EIGHT_GREAT_RACES = simpleRegister("eight_great_races", 6, true,
             new int[]{1, 1, 1, 1, 1}); //note: 八大赛事
+    //max is should be 6 due to conflicting schedules of Satsuki Sho/Oka Sho and Japanese Derby/Oaks
+
     public static ResourceKey<RaceTag> SENIOR_SPRING_TRIPLE_CROWN = simpleRegister("senior_spring_triple_crown", 3, true,
             new int[]{1, 1, 1, 1, 1}); //note: 春季资深三冠
     public static ResourceKey<RaceTag> SENIOR_AUTUMN_TRIPLE_CROWN = simpleRegister("senior_autumn_triple_crown", 3, true,
@@ -27,6 +29,12 @@ public class RaceTagRegistry {
             new int[]{1, 1, 1, 1, 1}); //note: 春秋短途赛（高松宫纪念+短途马锦标） 编者注: 不是高松灯是高松宫
     public static ResourceKey<RaceTag> DIRT = simpleRegister("dirt", 2, true,
             new int[]{1, 1, 1, 1, 1}); //note: 春秋沙地赛（二月锦标+日本冠军）
+
+    public static ResourceKey<RaceTag> LARC = simpleRegister("larc", 1, true,
+            new int[]{1, 1, 1, 1, 1}); //note: L'arc
+    public static ResourceKey<RaceTag> AMERICAN_GI = simpleRegister("american_g1", 1, true,
+            new int[]{1, 1, 1, 1, 1}); //note: American GI (BC, American Oaks, etc.)
+
 
     private static HashMap<ResourceKey<RaceTag>, Function<ResourceLocation, RaceTag>> forDataGenMap;
 

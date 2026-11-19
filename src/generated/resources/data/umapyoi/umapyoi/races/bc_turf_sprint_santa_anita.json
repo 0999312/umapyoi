@@ -1,0 +1,16 @@
+{
+  "field": "umapyoi:santa_anita",
+  "id": "umapyoi:bc_turf_sprint_santa_anita",
+  "length": 1000,
+  "ranking": "gi",
+  "reference_level": 35,
+  "surface": "turf",
+  "tags": [
+    "umapyoi:american_g1"
+  ],
+  "time": 21,
+  "year": [
+    "classic",
+    "senior"
+  ]
+}
